@@ -1,307 +1,237 @@
-# Giải đáp các câu hỏi về tài liệu nghiệp vụ
+# Trả lời ba điểm còn thắc mắc
 
-Mình đã ghi nhận việc chỉ tập trung vào **cấu trúc, cách bố trí và flow tài liệu**. Phần thiết kế test từ mục 8 trở đi sẽ để lại bàn sau.
+## 1. Có nên xóa hẳn nghiệp vụ cũ khỏi tài liệu hiện hành?
 
-Riêng yêu cầu số 3 đã đủ rõ nên mình đã cập nhật trực tiếp vào mục 6.1 của `cach_tao_dac_ta_nghiep_vu_voi_ai.md`. Những phần còn lại dưới đây mới là giải thích và đề xuất, chưa tự ý sửa quy tắc.
+Bạn hiểu đúng. Quy tắc trước đó của mình quá cứng khi yêu cầu mặc định giữ nguyên mục cũ dưới trạng thái `SUPERSEDED`.
 
-## 1. Không xóa hoặc tái sử dụng mã cũ cho nghĩa khác
+Điều bắt buộc phải giữ là **khả năng phân tích và cập nhật tất cả nơi đang dùng**, không phải giữ toàn bộ nội dung cũ mãi mãi trong tài liệu hiện hành.
 
-Hãy hình dung mã như `BAL-RESERVE` là **địa chỉ cố định** của một nghiệp vụ, giống địa chỉ một trang web.
+### Trường hợp chỉ cập nhật nghiệp vụ
 
-Ví dụ ban đầu:
+Nếu mục đích và trách nhiệm vẫn là “reserve số dư”, nhưng ta thay đổi một số rule như:
 
-```text
-BAL-RESERVE = chuyển một số tiền từ available sang reserved
-```
+- thêm điều kiện số tiền phải lớn hơn `0`;
+- đổi cách làm tròn;
+- bổ sung một mã lỗi;
+- điều chỉnh công thức tính số tiền cần reserve;
 
-Sau này ta không còn dùng cách này và thay bằng nghiệp vụ mới `BAL-HOLD`. Ta không được:
+thì vẫn giữ ID `BAL-RESERVE`.
 
-- xóa hẳn `BAL-RESERVE`; hoặc
-- dùng lại tên `BAL-RESERVE` cho một nghiệp vụ khác, chẳng hạn “khóa toàn bộ tài khoản”.
+Quy trình đúng là:
 
-Nếu làm vậy, các Feature, test hoặc lịch sử thay đổi đang trỏ đến `BAL-RESERVE` sẽ dẫn đến nội dung sai hoặc mất dấu nghiệp vụ cũ.
+1. đưa tài liệu về `DRAFT` nếu trước đó đã được duyệt;
+2. tìm tất cả Feature, tài liệu và test đang dùng `BAL-RESERVE`;
+3. phân tích từng nơi xem có cần cập nhật không;
+4. cập nhật hoặc ghi rõ “không cần đổi” kèm lý do;
+5. Human duyệt lại toàn bộ impact list.
 
-Cách đúng là giữ mục cũ:
+Không cần tạo ID mới chỉ vì rule được cập nhật.
 
-```markdown
-## BAL-RESERVE
+### Trường hợp nghiệp vụ thực sự bị thay bằng một nghiệp vụ khác
 
-**Status:** `SUPERSEDED`
+Chỉ tạo ID mới khi **ý nghĩa hoặc trách nhiệm đã đổi thành một contract nghiệp vụ khác**.
 
-Nghiệp vụ này không còn được sử dụng. Được thay thế bởi
-[BAL-HOLD](#bal-hold).
-```
-
-Nhờ vậy:
-
-- link cũ vẫn mở được;
-- người đọc biết nghiệp vụ cũ từng có nghĩa gì;
-- biết nó được thay bằng mục nào;
-- lịch sử quyết định và test cũ vẫn truy ngược được.
-
-Tóm lại: **một mã đã được cấp thì mã đó gắn vĩnh viễn với một nghĩa nghiệp vụ**. Có thể sửa và duyệt lại nghĩa đó; nhưng nếu thay bằng một khái niệm khác thì tạo mã mới và cho mã cũ trỏ sang mã mới.
-
-## 2. Vì sao không thể test mọi giá trị và mọi chuỗi trạng thái?
-
-### Vấn đề cơ bản
-
-Giả sử nghiệp vụ rút tiền nhận `amount`. Giá trị có thể là `1`, `2`, `2.5`, `99.99`, hàng triệu giá trị khác, thậm chí rất nhiều số thập phân. Ta không thể viết một test cho từng con số.
-
-Nếu nghiệp vụ còn phụ thuộc vào:
-
-- trạng thái tài khoản: `ACTIVE` hoặc `FROZEN`;
-- số dư: đủ hoặc thiếu;
-- KYC: đạt hoặc chưa đạt;
-- loại tiền: VND, USD, EUR;
-- sự kiện trước đó: đã rút, đã hoàn tiền, đã retry...
-
-thì số tổ hợp tăng rất nhanh. Ví dụ chỉ với 4 nhóm số tiền × 2 trạng thái tài khoản × 2 trạng thái KYC × 3 loại tiền đã có `4 × 2 × 2 × 3 = 48` tổ hợp. Khi thêm nhiều bước liên tiếp, retry hoặc vòng lặp, số chuỗi có thể gần như không có giới hạn thực tế.
-
-Vì vậy ta không kiểm tra từng giá trị. Ta tạo một **mô hình hữu hạn**, tức là gom không gian rất lớn thành số nhóm hành vi hữu hạn có ý nghĩa nghiệp vụ.
-
-### Các khái niệm
-
-| Khái niệm | Giải thích dễ hiểu | Ví dụ với số dư `100` |
-|---|---|---|
-| Lớp tương đương | Nhóm các giá trị mà nghiệp vụ xử lý giống nhau; chọn vài đại diện thay vì test tất cả | Mọi `amount < 0` đều không hợp lệ; chọn `-1` làm đại diện |
-| Ranh giới | Giá trị ngay dưới, đúng tại và ngay trên điểm đổi hành vi | Với giới hạn `100`: test `99`, `100`, `101` |
-| Mô hình hữu hạn | Chuyển vô số giá trị thực thành số trạng thái/nhóm có thể liệt kê | `INVALID`, `WITHIN_BALANCE`, `EXACT_BALANCE`, `OVER_BALANCE` |
-| Tích Descartes | Lấy mọi tổ hợp giữa tất cả nhóm đầu vào và trạng thái | 4 nhóm amount × 2 trạng thái account = 8 tổ hợp |
-| Exhaustive | Test toàn bộ tổ hợp, nhưng chỉ khả thi khi mô hình nhỏ | Test đủ cả 8 tổ hợp trên nếu cả 8 đều hợp lệ và quan trọng |
-| Decision table | Bảng điều kiện nào kết hợp với nhau thì cho kết quả nào | `ACTIVE + đủ tiền → cho rút`; `FROZEN → từ chối` |
-| State transition | Kiểm tra một sự kiện làm trạng thái đổi từ đâu sang đâu | `PENDING --approve--> COMPLETED` |
-| Sequence test | Kiểm tra nhiều sự kiện theo đúng thứ tự | `request → approve → retry` |
-| Property / invariant | Điều phải luôn đúng với nhiều giá trị hoặc sau nhiều bước | Số dư không bao giờ âm |
-| Pairwise / 2-way | Chọn test sao cho mọi cặp giá trị giữa hai yếu tố từng xuất hiện cùng nhau ít nhất một lần | Mỗi trạng thái account từng được ghép với mỗi trạng thái KYC |
-| t-way | Mở rộng pairwise: bảo đảm mọi tổ hợp của `t` yếu tố từng xuất hiện; `t` càng lớn càng nhiều test | 3-way kiểm tra tương tác của từng bộ ba yếu tố |
-
-### Ví dụ rút tiền
-
-Quy tắc:
+Ví dụ:
 
 ```text
-Tài khoản phải ACTIVE.
-amount phải lớn hơn 0 và không vượt quá available balance.
-Thành công thì available balance giảm đúng amount.
-Thất bại thì balance giữ nguyên.
-Balance không bao giờ âm.
+BAL-RESERVE
+= chuyển tiền từ available sang reserved ngay lập tức
 ```
 
-Với số dư `100`, ta không test mọi số. Ta ưu tiên:
+được thay bằng:
 
-- `-1`, `0`, `1`: ngay quanh ranh giới hợp lệ thấp nhất;
-- `99`, `100`, `101`: ngay quanh số dư hiện có;
-- trạng thái `ACTIVE` và `FROZEN`;
-- một vài tổ hợp bắt buộc như `FROZEN + amount=1` và `FROZEN + amount=101` để xác nhận tài khoản bị khóa luôn bị từ chối và không đổi số dư.
+```text
+BAL-HOLD
+= tạo một khoản hold có thời hạn, có thể gia hạn, capture một phần hoặc hết hạn
+```
 
-Pairwise hay `t-way` chỉ là cách giảm số tổ hợp còn lại. Chúng **không thay thế** các test được rule gọi tên, ranh giới quan trọng, transition bắt buộc hoặc rủi ro cao.
+Hai nghiệp vụ này có vòng đời, state và hành vi khác nhau. Khi đó ta tạo `BAL-HOLD`, nhưng vẫn bắt buộc phân tích mọi nơi đang dùng `BAL-RESERVE`:
 
-Ý chính của mục 2.4 là: không hứa “test mọi trường hợp có thể tồn tại”; thay vào đó phải nói rõ **mô hình nào đã được bao phủ, giá trị đại diện nào được chọn, ranh giới nào đã kiểm tra và phần nào còn rủi ro**.
+- nơi nào phù hợp với mô hình mới thì chuyển sang `BAL-HOLD`;
+- nơi nào vẫn cần hành vi khác thì chuyển sang dependency phù hợp khác;
+- nơi nào không còn cần reserve thì xóa dependency;
+- test, forward link, backlink và `INDEX.md` phải được cập nhật cùng lúc.
 
-## 3. Ghi nhớ cụm Feature đang làm
+Sau khi không còn tài liệu hiện hành nào dùng `BAL-RESERVE`, ta có thể xóa toàn bộ nội dung cũ khỏi tài liệu hiện hành.
 
-Mình đồng ý và đã bổ sung yêu cầu này vào mục 6.1.
+### Vậy còn `SUPERSEDED` để làm gì?
 
-Không cần tạo file mới. Trong `INDEX.md` sẽ có phần `Cụm Feature đang đặc tả`, ví dụ:
+`SUPERSEDED` chỉ nên dùng tạm thời khi có lý do cụ thể, chẳng hạn:
+
+- đang trong giai đoạn chuyển đổi và chưa thể cập nhật hết các consumer trong cùng một lần;
+- có tài liệu hoặc hệ thống bên ngoài repository vẫn đang link đến mã cũ;
+- Human cần duy trì song song nghiệp vụ cũ và mới trong một khoảng thời gian.
+
+Nếu đã cập nhật được tất cả nơi dùng thì không cần giữ cả mục cũ làm rác.
+
+Để tránh sau này vô tình lấy `BAL-RESERVE` đặt cho một nghĩa hoàn toàn khác, `INDEX.md` chỉ giữ một dòng rất ngắn:
 
 ```markdown
-## Cụm Feature đang đặc tả
-
-| Cụm | Feature | Dùng chung bắt buộc | Đang xử lý | Sau khi xong quay lại |
-|---|---|---|---|---|
-| `ORDER-MVP-01` | `F-PLACE-ORDER`, `F-CANCEL-ORDER` | `BALANCE`, `ORDER-STATE` | `BALANCE#BAL-RESERVE` | `F-PLACE-ORDER#ORD-RESERVE-BALANCE` |
+| Mã | Nghĩa cũ | Mã thay thế | Ngừng dùng tại revision |
+|---|---|---|---|
+| `BAL-RESERVE` | Reserve balance theo mô hình cũ | `BAL-HOLD` | `abc1234` |
 ```
 
-Khi tạm rời Feature để hoàn thiện một phần dùng chung, cột `Sau khi xong quay lại` giữ đúng điểm phải tiếp tục. Mỗi lần chuyển bước, AI phải cập nhật bảng này. Đây chỉ là trạng thái công việc, không thay thế trạng thái duyệt `DRAFT / IN_REVIEW / APPROVED / SUPERSEDED` của tài liệu.
+Đây không phải là giữ lại nghiệp vụ cũ. Nó chỉ là danh sách mã đã ngừng dùng. Nội dung đầy đủ và lý do thay đổi đã có Git history lưu lại.
 
-## 4. AC và Business Test Specification khác nhau thế nào?
+Quy tắc sau khi chỉnh lại là:
 
-`AC` là viết tắt của **Acceptance Criteria — tiêu chí chấp nhận**. Nó trả lời:
+| Tình huống | Xử lý ID |
+|---|---|
+| Cùng mục đích, chỉ thay rule/điều kiện/output | Giữ ID cũ và impact analysis tất cả consumer |
+| Đổi thành trách nhiệm nghiệp vụ khác | Tạo ID mới và di chuyển từng consumer sau phân tích |
+| Mã cũ không còn consumer | Xóa nội dung cũ; chỉ ghi một dòng mã đã ngừng dùng |
+| Còn giai đoạn chuyển tiếp hoặc tham chiếu ngoài | Tạm giữ mục `SUPERSEDED` và link sang mục mới |
 
-> Feature phải thỏa những điều kiện lớn nào để Human chấp nhận rằng nghiệp vụ đã được mô tả đúng?
+Mình đã cập nhật quy tắc này nhất quán tại mục 2.3, mục 4, mục 5 và mục 7.3 của tài liệu.
 
-`Business Test Specification` là **đặc tả kiểm thử nghiệp vụ chi tiết**. Nó đưa các rule và AC thành những tình huống có initial state, input, kết quả và final state cụ thể.
+## 2. Cách hiểu về AC và Business Test Specification
 
-Ví dụ Feature “Rút tiền”:
+Cách hiểu của bạn **gần đúng**, nhưng cần sửa phần “đảm bảo với mọi trường hợp”.
 
 ### AC
 
+AC là các hành vi hoặc điều kiện lớn mà Feature bắt buộc phải đạt để Human chấp nhận Feature đó.
+
+Ví dụ:
+
 ```text
-AC-01: Khi tài khoản ACTIVE và có đủ số dư, yêu cầu rút hợp lệ được chấp nhận
-       và số dư giảm đúng số tiền rút.
-
-AC-02: Khi số tiền vượt số dư, yêu cầu bị từ chối và số dư không đổi.
-
-AC-03: Khi tài khoản FROZEN, mọi yêu cầu rút bị từ chối và số dư không đổi.
+Khi tài khoản hợp lệ và đủ số dư, yêu cầu rút tiền hợp lệ phải được chấp nhận,
+đồng thời số dư giảm đúng số tiền rút.
 ```
-
-AC mô tả hành vi cần đạt nhưng chưa liệt kê mọi ví dụ số cụ thể.
 
 ### Business Test Specification
 
-| Test | Căn cứ | Initial state | Input/event | Expected output | Expected final state |
-|---|---|---|---|---|---|
-| `BTS-001` | `AC-01` | `ACTIVE`, balance `100` | Rút `40` | Chấp nhận | Balance `60` |
-| `BTS-002` | `AC-01` | `ACTIVE`, balance `100` | Rút `100` | Chấp nhận | Balance `0` |
-| `BTS-003` | `AC-02` | `ACTIVE`, balance `100` | Rút `101` | Từ chối: không đủ số dư | Balance vẫn `100` |
-| `BTS-004` | `AC-03` | `FROZEN`, balance `100` | Rút `40` | Từ chối: tài khoản bị khóa | Balance vẫn `100` |
+Business Test Specification biến AC và các rule chi tiết thành những trường hợp kiểm chứng cụ thể, gồm:
 
-Quan hệ giữa hai phần:
+- trường hợp phổ thông;
+- ranh giới;
+- trường hợp không hợp lệ;
+- trường hợp hiếm nhưng có rủi ro hoặc ý nghĩa nghiệp vụ;
+- state và chuỗi sự kiện quan trọng;
+- kết quả và final state mong đợi.
 
-```text
-Một AC lớn
-    └── được chứng minh bởi một hoặc nhiều Business Test
-```
+Tuy nhiên, nó **không cố liệt kê mọi giá trị và mọi chuỗi có thể tồn tại**, vì điều đó thường là vô hạn hoặc quá lớn như mục 2.4 đã giải thích.
 
-AC giúp Human đọc nhanh Feature có đúng mong muốn không. Business Test Specification giúp xác định chính xác ví dụ nào chứng minh AC và rule đó. Nó vẫn là tài liệu nghiệp vụ, chưa nói API nào được gọi hay dùng framework test gì.
+Nó phải bảo đảm bao phủ đầy đủ **mô hình hữu hạn và phạm vi test đã được Human duyệt**, chứ không tuyên bố bao phủ toàn bộ không gian thực tế.
 
-## 5. Trigger, guard và output/action trong state transition
+Ngoài ra, Business Test Specification mới chỉ xác định:
 
-Một state transition có thể đọc như câu sau:
+> Với tình huống này, kết quả đúng phải là gì?
 
-> Khi đang ở **trạng thái A**, nếu xảy ra **trigger E** và **guard G** đúng, hệ thống tạo **output/action O** rồi chuyển sang **trạng thái B**.
+Nó chưa tự chứng minh phần mềm hoạt động đúng. Chỉ khi các test tương ứng được triển khai và chạy thành công thì ta mới có bằng chứng implementation đang đáp ứng đặc tả.
 
-| Thành phần | Nghĩa | Ví dụ đặt lệnh |
-|---|---|---|
-| State hiện tại | Đối tượng đang ở tình trạng nào | Order đang `DRAFT` |
-| Trigger | Sự kiện kích hoạt việc xem xét chuyển trạng thái | User bấm `Submit` |
-| Guard | Điều kiện phải đúng để nhánh chuyển trạng thái được phép xảy ra | Symbol đang giao dịch, input hợp lệ và đủ số dư |
-| Output | Kết quả nghiệp vụ trả cho actor hoặc phần gọi | Trả về order ID và kết quả chấp nhận |
-| Action | Hiệu ứng nghiệp vụ xảy ra | Reserve số dư, ghi nhận lệnh vào order book |
-| Next state | Trạng thái sau cùng | Order thành `OPEN` |
+Có thể hiểu ngắn gọn:
 
-Ví dụ đầy đủ:
+| Thành phần | Vai trò |
+|---|---|
+| AC | Feature phải đạt những hành vi lớn nào? |
+| Business Test Specification | Dùng những tình huống cụ thể nào để kiểm chứng AC và rule? |
+| Test được triển khai và thực thi | Phần mềm thực tế có cho ra kết quả đã đặc tả không? |
 
-```text
-DRAFT --[trigger: Submit]
-      --[guard: symbol tradable && input valid && sufficient balance]
-      --[action: reserve balance, accept order]
-      --> OPEN
-```
+Một câu diễn đạt chính xác hơn cho ý của bạn là:
 
-Nếu guard không đạt, một transition khác xảy ra:
+> Business Test Specification bao phủ trường hợp phổ thông, ranh giới, trường hợp hiếm hoặc khó có ý nghĩa và rủi ro; qua đó kiểm chứng Feature trên phạm vi nghiệp vụ hữu hạn đã được Human chốt.
 
-```text
-DRAFT --[Submit + insufficient balance]
-      --[output: reject INSUFFICIENT_BALANCE]
-      --> DRAFT
-```
+## 3. `NEXT / PREVIOUS` có tác dụng khi nào?
 
-`Action` ở đây là hiệu ứng nhìn từ nghiệp vụ, không phải chi tiết kỹ thuật như update bảng database hay mở transaction.
+`NEXT / PREVIOUS` dùng để mô tả **thứ tự giữa các bước trong một flow cụ thể**.
 
-## 6. Link hai chiều dùng để làm gì?
-
-Giả sử mục `ORD-RESERVE-BALANCE` trong Feature đặt lệnh cần dùng nghiệp vụ `BAL-RESERVE` trong tài liệu Balance.
+Ví dụ flow rút tiền:
 
 ```mermaid
 flowchart LR
-    A["F-PLACE-ORDER<br/>ORD-RESERVE-BALANCE"] -->|"CHANGES_STATE"| B["BALANCE<br/>BAL-RESERVE"]
-    B -.->|"STATE_CHANGED_BY"| A
+    V[WDR-VALIDATE] -->|Hợp lệ| C[WDR-CHECK-BALANCE]
+    C -->|Đủ số dư| D[WDR-DEBIT]
+    D --> S[WDR-COMPLETE]
+    V -->|Không hợp lệ| R[WDR-REJECT]
+    C -->|Không đủ số dư| R
 ```
 
-### Forward link — nhìn từ nơi gọi
-
-Trong file Feature:
-
-```markdown
-## ORD-RESERVE-BALANCE
-
-Sử dụng [BAL-RESERVE](../shared/BALANCE.md#bal-reserve)
-để giữ số dư cần cho lệnh.
-```
-
-Nó trả lời: **mục này đang phụ thuộc vào nghiệp vụ nào?**
-
-### Backlink — nhìn từ nơi được gọi
-
-Cuối file `BALANCE.md`:
-
-```markdown
-| Phạm vi trong file này | Quan hệ | Nơi gọi | Mục đích |
-|---|---|---|---|
-| `BAL-RESERVE` | `STATE_CHANGED_BY` | `F-PLACE-ORDER#ORD-RESERVE-BALANCE` | Giữ số dư cho lệnh |
-```
-
-Nó trả lời: **nếu sửa `BAL-RESERVE`, những nơi nào có thể bị ảnh hưởng?**
-
-### Vì sao quan hệ phải có loại?
-
-| Quan hệ | Cách hiểu đơn giản | Ví dụ |
-|---|---|---|
-| `CONTAINS / PART_OF` | A chứa B; B là một phần của A | Tài liệu `BALANCE` chứa `BAL-RESERVE` |
-| `USES / USED_BY` | A sử dụng contract của B | Feature tính phí dùng nghiệp vụ `FEE-CALCULATE` |
-| `READS_STATE / STATE_READ_BY` | A chỉ đọc state do B sở hữu | View Balance đọc available balance |
-| `CHANGES_STATE / STATE_CHANGED_BY` | A yêu cầu thay đổi state do B sở hữu | Place Order reserve balance |
-| `NEXT / PREVIOUS` | Quan hệ thứ tự trong một flow cụ thể | Validate xong thì đến Reserve |
-
-Nếu chỉ ghi “A liên quan B”, ta không biết A đọc dữ liệu, thay đổi dữ liệu, gọi rule hay chỉ đứng trước B trong flow. Loại quan hệ làm cho graph có ý nghĩa và giúp impact analysis chính xác hơn.
-
-## 7. Đã có forward link trong nội dung, tại sao cuối file còn cần bảng “File này sử dụng”?
-
-Hai phần phục vụ hai cách đọc khác nhau:
-
-- **Forward link trong nội dung** giải thích dependency ngay tại bước nghiệp vụ cụ thể, có đầy đủ ngữ cảnh.
-- **Bảng `File này sử dụng`** là mục lục dependency tập trung của cả file, giúp nhìn toàn bộ dependency mà không phải đọc và tìm link trong hàng chục trang nội dung.
-
-Nó hữu ích khi:
-
-1. AI hoặc Human cần biết nhanh file này phụ thuộc những tài liệu nào.
-2. Kiểm tra mỗi forward relation có backlink đối xứng ở file đích hay chưa.
-3. Một mục bị xóa hoặc không còn dùng dependency: biết phải gỡ backlink tương ứng ở đâu.
-4. Review một change set: thấy dependency nào được thêm, bỏ hoặc đổi chỉ bằng một bảng.
-5. Thực hiện mục 7.3: rà soát tác động và tính nhất quán của graph.
-
-Vì vậy suy đoán của bạn đúng: **giá trị lớn nhất của bảng này nằm ở việc kiểm tra và cập nhật quan hệ khi tài liệu thay đổi**.
-
-Nhược điểm là dữ liệu bị lặp giữa nội dung và bảng, nên có nguy cơ hai nơi lệch nhau. Khuyến nghị của mình cho pilot là vẫn giữ bảng vì nó giúp Human review và AI impact analysis rõ ràng. Sau pilot, nếu việc duy trì thực sự nặng, ta có thể sinh hoặc kiểm tra bảng từ forward link; chưa cần xây công cụ bây giờ.
-
-Bảng này chỉ là dependency summary, không phải nơi chứa rule nghiệp vụ thứ hai. Rule có hiệu lực vẫn nằm tại section được link.
-
-## 8. Vì sao khi sửa một tài liệu phải quét cả “File này sử dụng”?
-
-Hai phía trả lời hai câu hỏi khác nhau:
-
-| Phía cần đọc | Câu hỏi cần trả lời |
-|---|---|
-| `Được sử dụng bởi` | Ai đang phụ thuộc vào phần vừa sửa và có thể bị ảnh hưởng? |
-| `File này sử dụng` | Sau khi sửa, chính file này còn dùng đúng contract của các dependency không? Có dependency nào cần thêm, đổi hoặc bỏ không? |
-
-Ví dụ `F-CANCEL-ORDER` hiện dùng `BAL-RELEASE` để trả số dư ngay khi hủy lệnh. Sau đó nghiệp vụ đổi thành “việc hủy chỉ tạo yêu cầu; số dư được release khi yêu cầu được xác nhận”.
-
-Khi đó cần kiểm tra phía `File này sử dụng` để phát hiện:
-
-- bước Cancel hiện tại có còn gọi trực tiếp `BAL-RELEASE` không;
-- có phải chuyển dependency đó sang bước Confirm hay không;
-- forward link cũ có phải bỏ không;
-- backlink trong `BALANCE.md` có phải đổi từ Cancel sang Confirm không.
-
-Quét không có nghĩa là mọi dependency đều phải sửa. Kết quả hoàn toàn có thể là:
+Quan hệ xuôi:
 
 ```text
-BAL-RELEASE: cần đổi nơi gọi
-ORDER-STATE: vẫn tương thích, không cần đổi
-IDENTITY: không bị ảnh hưởng
+WDR-VALIDATE
+    NEXT, khi input hợp lệ
+WDR-CHECK-BALANCE
 ```
 
-Nếu file này không còn dùng một tài liệu nữa, ta gỡ cả hai đầu của quan hệ:
+Quan hệ ngược tại `WDR-CHECK-BALANCE`:
 
-1. bỏ forward link và dòng tương ứng trong `File này sử dụng`;
-2. bỏ backlink của nó trong `Được sử dụng bởi` ở file đích.
+```text
+WDR-CHECK-BALANCE
+    PREVIOUS, trong nhánh input hợp lệ
+WDR-VALIDATE
+```
 
-Nhưng **không tự động xóa tài liệu được gọi**. Nếu sau thay đổi nó không còn consumer nào, AI chỉ báo đây là tài liệu không còn nơi dùng để Human quyết định:
+### Nó hữu ích trong các trường hợp sau
 
-- vẫn giữ vì sắp có Feature khác dùng;
-- giữ nguyên vì nó vẫn là nghiệp vụ hợp lệ độc lập;
-- hoặc đánh dấu `SUPERSEDED` nếu nghiệp vụ đó thực sự không còn hiệu lực hay đã được thay thế.
+#### 1. Các bước nằm ở nhiều section hoặc nhiều file
 
-Không có consumer hiện tại chưa đủ để kết luận một tài liệu phải bị xóa.
+Ví dụ validate nằm trong Feature, kiểm tra balance nằm trong tài liệu dùng chung và debit nằm ở tài liệu khác. `NEXT` giúp lần theo flow qua các file mà không phải đoán bước tiếp theo.
 
-## Kết luận đề xuất cho phần tài liệu
+#### 2. Flow có nhiều nhánh
 
-- Đã bổ sung theo dõi cụm Feature và điểm quay lại ngay trong `INDEX.md`.
-- Nên giữ cả forward link tại nơi gọi và dependency summary cuối file trong pilot.
-- Khi giải thích mục 7.3 trong tài liệu, nên tách rõ: quét backlink để tìm **ảnh hưởng xuống caller**; quét forward dependency để kiểm tra **tính tương thích và dọn quan hệ của chính file đang sửa**.
-- Không tự xóa tài liệu chỉ vì không còn consumer.
-- Tạm dừng ở đây, chưa đi sâu vào thiết kế từ mục 8 trở đi như bạn yêu cầu.
+Từ `WDR-VALIDATE`:
 
-Thay đổi ở mục 6.1 và toàn bộ câu trả lời này đã được commit, push lên `origin/master`.
+- hợp lệ thì `NEXT` là `WDR-CHECK-BALANCE`;
+- không hợp lệ thì `NEXT` là `WDR-REJECT`.
+
+Vì vậy quan hệ phải đi kèm tên flow hoặc điều kiện nhánh. Nếu chỉ ghi `NEXT` mà không ghi điều kiện thì vẫn mơ hồ.
+
+#### 3. Có retry hoặc vòng lặp hợp lệ
+
+Ví dụ:
+
+```text
+PAYMENT-FAILED --[User retry]--> PAYMENT-PROCESSING
+```
+
+Quan hệ `NEXT` cho thấy đây là vòng lặp có chủ ý, không phải link nhầm.
+
+#### 4. Khi thay đổi thứ tự flow
+
+Nếu `WDR-CHECK-KYC` được chèn vào giữa Validate và Check Balance, AI có thể phát hiện và cập nhật:
+
+```text
+Trước:
+WDR-VALIDATE → WDR-CHECK-BALANCE
+
+Sau:
+WDR-VALIDATE → WDR-CHECK-KYC → WDR-CHECK-BALANCE
+```
+
+Backlink `PREVIOUS` giúp phát hiện `WDR-CHECK-BALANCE` vẫn đang trỏ ngược về bước cũ hay chưa.
+
+### Có cần dùng cho mọi flow không?
+
+Không nên.
+
+Nếu một flow đơn giản, nằm trọn trong một file và đã có bảng hoặc danh sách đánh số rõ ràng:
+
+```text
+1. Validate
+2. Check balance
+3. Debit
+4. Complete
+```
+
+thì thêm `NEXT / PREVIOUS` cho từng bước chỉ làm tài liệu nặng và lặp thông tin.
+
+Mình đề xuất quy tắc gọn hơn:
+
+- Flow đơn giản trong cùng một section/file: dùng danh sách hoặc bảng thứ tự, không bắt buộc `NEXT / PREVIOUS`.
+- Flow đi qua nhiều section/file, có nhánh, retry hoặc bước được tái sử dụng: dùng `NEXT / PREVIOUS`, kèm flow ID và điều kiện nhánh.
+
+Như vậy ta vẫn dựng được flow graph khi thực sự cần nhưng không biến mọi tài liệu đơn giản thành một mạng link rườm rà. Mình chưa sửa phần này trong tài liệu, chờ bạn xác nhận cách giới hạn trên.
+
+Các thay đổi về ID cũ và toàn bộ câu trả lời này đã được commit, push lên `origin/master`.
+
+<oai-mem-citation>
+<citation_entries>
+MEMORY.md:51-51|note=[avoided carrying over discarded Kidea design decisions]
+</citation_entries>
+<rollout_ids>
+01a0389b-4126-7403-a368-d79d5bac0d69
+</rollout_ids>
+</oai-mem-citation>

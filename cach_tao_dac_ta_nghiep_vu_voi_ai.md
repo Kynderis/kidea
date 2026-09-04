@@ -57,7 +57,12 @@ Link đến đúng mục:
 [BAL-RESERVE](../shared/BALANCE.md#bal-reserve)
 ```
 
-Không xóa hoặc tái sử dụng mã cũ cho nghĩa khác. Nếu một mục bị thay thế, giữ mục cũ với trạng thái `SUPERSEDED` và link sang mục mới.
+Không tái sử dụng một mã đã cấp cho nghĩa nghiệp vụ khác.
+
+- Nếu rule, precondition hoặc output thay đổi nhưng mục đích và trách nhiệm nghiệp vụ vẫn là một, giữ nguyên mã, đưa tài liệu về `DRAFT` và phân tích tất cả nơi đang dùng để cập nhật hoặc xác nhận không cần đổi.
+- Nếu mục đích hoặc trách nhiệm đổi thành một nghiệp vụ khác, tạo mã mới. Trước khi bỏ mã cũ, phải tìm tất cả forward link, backlink, Feature và test đang dùng nó; từng nơi phải được chuyển sang mã mới, chuyển sang dependency phù hợp khác hoặc xóa dependency.
+- Khi mã cũ không còn nơi dùng và nội dung cũ không còn hiệu lực, xóa nội dung đó khỏi tài liệu hiện hành cho gọn. Chỉ ghi một dòng trong danh sách `Mã đã ngừng dùng` của `INDEX.md`; lịch sử đầy đủ đã có Git lưu.
+- Chỉ giữ mục cũ với trạng thái `SUPERSEDED` và link sang mục mới khi có lý do cụ thể phải hỗ trợ giai đoạn chuyển tiếp hoặc còn tham chiếu bên ngoài chưa thể cập nhật ngay. Không giữ mặc định.
 
 ### 2.4. Không thể test mọi giá trị và mọi chuỗi trạng thái thực tế
 
@@ -98,7 +103,7 @@ Không tạo một file cho mỗi phép tính hoặc node lá. Một file có th
 
 ## 4. Mục lục nghiệp vụ
 
-`INDEX.md` là nơi AI phải đọc đầu tiên. Nó có hai bảng.
+`INDEX.md` là nơi AI phải đọc đầu tiên. Nó có các bảng tra cứu dưới đây và phần `Cụm Feature đang đặc tả` khi một cụm đang được xử lý.
 
 ### Nghiệp vụ dùng chung
 
@@ -117,6 +122,16 @@ Không tạo một file cho mỗi phép tính hoặc node lá. Một file có th
 | [`F-ORDER-LIMIT-BUY`](features/F-PLACE-LIMIT-ORDER.md) | User đặt Limit Buy Spot | `IDENTITY`, `SYMBOL`, `BAL`, `BOOK`, `MATCH`, `ORDER-STATE` | `DRAFT` |
 ```
 
+### Mã đã ngừng dùng
+
+Chỉ thêm dòng khi có mã đã bị loại khỏi tài liệu hiện hành. Bảng này ngăn việc vô tình tái sử dụng mã cũ nhưng không giữ lại toàn bộ nội dung nghiệp vụ đã hết hiệu lực.
+
+```markdown
+| Mã | Nghĩa cũ | Mã thay thế | Ngừng dùng tại revision |
+|---|---|---|---|
+| `BAL-RESERVE` | Chuyển available sang reserved theo mô hình cũ | `BAL-HOLD` | `abc1234` |
+```
+
 Mô tả phải đủ để AI quyết định file nào cần mở. `INDEX.md` giúp tìm kiếm, nhưng file được link mới là nguồn rule có hiệu lực.
 
 ## 5. Trạng thái và Human approval
@@ -129,8 +144,10 @@ DRAFT → IN_REVIEW → APPROVED
              └── reject + lý do → DRAFT
 
 APPROVED bị thay đổi semantics → DRAFT
-Không còn dùng → SUPERSEDED + link thay thế
+Cần giữ tạm mục đã được thay thế → SUPERSEDED + link thay thế
 ```
+
+Nếu mục không còn dùng, không còn tham chiếu hiện hành và không cần giữ cho giai đoạn chuyển tiếp, Human có thể duyệt xóa nội dung khỏi tài liệu hiện hành sau impact analysis. Mã được ghi tối thiểu trong `INDEX.md`; nội dung đầy đủ vẫn có trong Git history.
 
 Metadata đầu mỗi tài liệu:
 
@@ -271,10 +288,12 @@ AI bắt buộc:
 1. đổi tài liệu bị sửa sang `DRAFT` nếu semantics thay đổi;
 2. đọc cả `File này sử dụng` và `Được sử dụng bởi`;
 3. lập impact list đến đúng mục ở các file khác và test liên quan;
-4. cập nhật nội dung, forward link, backlink và `INDEX.md` trong cùng thay đổi;
-5. cập nhật hoặc ghi rõ “không cần đổi” cho từng nơi bị ảnh hưởng;
-6. kiểm tra link tồn tại và quan hệ hai chiều khớp nhau;
-7. gửi toàn bộ change set và impact list để Human approve.
+4. nếu giữ nguyên mã, cập nhật hoặc ghi rõ “không cần đổi” cho từng nơi đang dùng;
+5. nếu thay thế hoặc loại bỏ mã, chuyển hoặc xóa tất cả tham chiếu hiện hành và test trước khi xóa nội dung cũ;
+6. cập nhật nội dung, forward link, backlink và `INDEX.md` trong cùng thay đổi;
+7. khi xóa nội dung cũ, ghi mã vào `Mã đã ngừng dùng`; chỉ giữ mục `SUPERSEDED` nếu có lý do chuyển tiếp cụ thể;
+8. kiểm tra link tồn tại và quan hệ hai chiều khớp nhau;
+9. gửi toàn bộ change set và impact list để Human approve.
 
 Nếu đổi tên mô tả nhưng semantics và mã không đổi, không cần làm toàn bộ vòng duyệt lại; AI vẫn phải kiểm tra link và mục lục.
 
