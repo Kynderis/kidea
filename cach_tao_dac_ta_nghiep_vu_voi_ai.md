@@ -163,6 +163,18 @@ Human có thể `APPROVE`, `REJECT` hoặc yêu cầu đổi ranh giới. AI c�
 
 Sau khi danh sách được duyệt, chọn cụm Feature sẽ đặc tả trước và chỉ hoàn tất các tài liệu dùng chung bắt buộc của cụm đó. Ví dụ với `Place Order` và `Cancel Order`, làm rõ phần cần dùng của `IDENTITY`, `SYMBOL`, `BALANCE`, `ORDER_BOOK` và `ORDER-STATE`; chưa cần hoàn tất nghiệp vụ dùng chung chỉ phục vụ một cụm MVP khác.
 
+Ngay khi chọn cụm, AI phải ghi phần `Cụm Feature đang đặc tả` trong `INDEX.md`, tối thiểu gồm: mã/tên cụm, các Feature thuộc cụm, tài liệu dùng chung bắt buộc, mục đang xử lý và điểm phải quay lại sau khi hoàn tất mục đó. Mỗi lần chuyển sang xử lý một dependency dùng chung hoặc quay lại Feature, AI cập nhật phần này trong cùng change set. Đây là trạng thái theo dõi công việc, không thay thế trạng thái duyệt của tài liệu.
+
+Ví dụ:
+
+```markdown
+## Cụm Feature đang đặc tả
+
+| Cụm | Feature | Dùng chung bắt buộc | Đang xử lý | Sau khi xong quay lại |
+|---|---|---|---|---|
+| `ORDER-MVP-01` | `F-PLACE-ORDER`, `F-CANCEL-ORDER` | `BALANCE`, `ORDER-STATE` | `BALANCE#BAL-RESERVE` | `F-PLACE-ORDER#ORD-RESERVE-BALANCE` |
+```
+
 ### 6.2. AI viết nghiệp vụ chung
 
 Mỗi file được phân tích đệ quy:
