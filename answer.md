@@ -236,7 +236,7 @@ Nó trả lời: **nếu sửa `BAL-RESERVE`, những nơi nào có thể bị �
 
 Nếu chỉ ghi “A liên quan B”, ta không biết A đọc dữ liệu, thay đổi dữ liệu, gọi rule hay chỉ đứng trước B trong flow. Loại quan hệ làm cho graph có ý nghĩa và giúp impact analysis chính xác hơn.
 
-## 7. Đã có forward link trong nội dung, tại sao cuối file còn cần bảng “File này sử dụng”? 
+## 7. Đã có forward link trong nội dung, tại sao cuối file còn cần bảng “File này sử dụng”?
 
 Hai phần phục vụ hai cách đọc khác nhau:
 
@@ -257,7 +257,7 @@ Nhược điểm là dữ liệu bị lặp giữa nội dung và bảng, nên c
 
 Bảng này chỉ là dependency summary, không phải nơi chứa rule nghiệp vụ thứ hai. Rule có hiệu lực vẫn nằm tại section được link.
 
-## 8. Vì sao khi sửa một tài liệu phải quét cả “File này sử dụng”? 
+## 8. Vì sao khi sửa một tài liệu phải quét cả “File này sử dụng”?
 
 Hai phía trả lời hai câu hỏi khác nhau:
 
