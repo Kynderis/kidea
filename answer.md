@@ -1,191 +1,201 @@
-# Trả lời về ID và cách biểu diễn flow
+# Rà soát lại quy tắc ID và các loại dependency
 
-## 1. Xóa hoàn toàn ID và nghiệp vụ cũ
+## 1. Khi bản chất nghiệp vụ thay đổi thì xử lý ID thế nào?
 
-Mình đồng ý với bạn. Tư duy đúng của project này là:
+Đúng, cách bạn nhắc lại chính là cách tài liệu hiện tại đang hướng tới.
 
-> Bộ tài liệu hiện hành chỉ phản ánh nghiệp vụ mới nhất và đang có hiệu lực. Khi thay đổi, phải cập nhật trọn vẹn mọi nơi liên quan; không giữ lịch sử trong tài liệu hiện hành.
+Quy trình phải là:
 
-Vì vậy, khi `BAL-RESERVE` không còn được sử dụng:
+1. AI so sánh nghiệp vụ trước và sau thay đổi.
+2. Nếu vẫn cùng mục đích và trách nhiệm, giữ ID hiện tại; chỉ cập nhật rule, input/output, state và các phần liên quan.
+3. Nếu bản chất hoặc trách nhiệm đã đổi thành một nghiệp vụ khác, AI đề xuất ID mới phù hợp hơn.
+4. Human xác nhận việc đổi bản chất và ID.
+5. AI tìm toàn bộ Feature, shared business, test, forward link, backlink và `INDEX.md` đang liên quan đến ID cũ.
+6. Với từng nơi, quyết định chuyển sang ID mới, dùng nghiệp vụ khác hoặc xóa dependency.
+7. Chỉ xóa nghiệp vụ và ID cũ sau khi không còn tham chiếu hiện hành nào.
 
-1. tìm toàn bộ Feature, tài liệu dùng chung, test, forward link và backlink liên quan;
-2. với từng nơi, quyết định chuyển sang nghiệp vụ khác hoặc xóa dependency;
-3. cập nhật tất cả trong cùng change set;
-4. kiểm tra không còn link hoặc tham chiếu sót;
-5. xóa hoàn toàn mục `BAL-RESERVE`;
-6. không giữ stub `SUPERSEDED`, không giữ danh sách mã cũ trong `INDEX.md`.
-
-Sau này nếu xuất hiện một nghiệp vụ mới thực sự mang nghĩa “reserve balance” thì hoàn toàn có thể dùng lại ID `BAL-RESERVE`.
-
-ID chỉ cần đáp ứng hai điều trong **tài liệu hiện hành**:
-
-- duy nhất, không trùng với mục khác đang tồn tại;
-- đúng với ý nghĩa nghiệp vụ hiện tại.
-
-Từ “ổn định” ở đây chỉ nên hiểu là: trong lúc một mục vẫn còn tồn tại, việc đổi câu chữ hoặc tiêu đề trình bày không được làm link đến mục đó bị hỏng. Nó không có nghĩa ID phải được giữ vĩnh viễn sau khi nghiệp vụ đã bị xóa.
-
-Mình đã sửa tài liệu theo đúng nguyên tắc này:
-
-- bỏ danh sách `Mã đã ngừng dùng`;
-- bỏ trạng thái `SUPERSEDED`;
-- hệ trạng thái tài liệu chỉ còn `DRAFT → IN_REVIEW → APPROVED`;
-- quy trình thay đổi bắt buộc cập nhật toàn bộ nơi liên quan rồi xóa sạch nội dung cũ;
-- cho phép dùng lại ID đã xóa nếu nó phù hợp với nghiệp vụ hiện hành mới.
-
-## 2. `NEXT / PREVIOUS` có chỉ dùng trong từng Feature không?
-
-Cách hiểu của bạn **gần đúng**: `NEXT / PREVIOUS` mô tả thứ tự các bước trong một **flow nghiệp vụ cụ thể**, và flow đó thường thuộc một Feature.
-
-Tuy nhiên, cần phân biệt hai khái niệm:
-
-| Khái niệm | Câu hỏi nó trả lời |
-|---|---|
-| Flow step | Sau bước nghiệp vụ này thì thực hiện bước nào? |
-| State transition | Khi có sự kiện này, đối tượng chuyển từ trạng thái nào sang trạng thái nào? |
-
-`NEXT / PREVIOUS` nói về **thứ tự bước**, không trực tiếp nói về việc chuyển trạng thái.
-
-### Ví dụ Feature rút tiền
-
-```mermaid
-flowchart TD
-    A[WDR-RECEIVE<br/>Nhận yêu cầu] --> B[WDR-VALIDATE<br/>Kiểm tra input]
-    B -->|Hợp lệ| C[WDR-CHECK-BALANCE<br/>Kiểm tra số dư]
-    B -->|Không hợp lệ| R[WDR-REJECT<br/>Từ chối]
-    C -->|Đủ số dư| D[WDR-DEBIT<br/>Trừ số dư]
-    C -->|Không đủ| R
-    D --> S[WDR-COMPLETE<br/>Hoàn thành]
-```
-
-Trong flow này:
+Ví dụ vẫn giữ ID:
 
 ```text
-WDR-RECEIVE NEXT WDR-VALIDATE
-WDR-VALIDATE NEXT WDR-CHECK-BALANCE khi input hợp lệ
-WDR-VALIDATE NEXT WDR-REJECT khi input không hợp lệ
-WDR-CHECK-BALANCE NEXT WDR-DEBIT khi đủ số dư
-WDR-CHECK-BALANCE NEXT WDR-REJECT khi không đủ số dư
+BAL-RESERVE trước đây:
+- amount phải lớn hơn 0
+- trừ available và cộng reserved
+
+BAL-RESERVE sau thay đổi:
+- vẫn reserve balance
+- bổ sung min amount và quy tắc rounding
 ```
 
-`PREVIOUS` chỉ là chiều đọc ngược. Ví dụ:
+Bản chất vẫn là reserve balance, nên giữ `BAL-RESERVE`.
+
+Ví dụ nên cân nhắc ID mới:
 
 ```text
-WDR-DEBIT PREVIOUS WDR-CHECK-BALANCE
+BAL-RESERVE:
+- chuyển amount từ available sang reserved ngay lập tức
+
+Nghiệp vụ mới:
+- tạo hold có thời hạn
+- cho phép gia hạn, capture một phần và tự hết hạn
+- sở hữu vòng đời/state riêng
 ```
 
-### State transition trong cùng Feature lại là chuyện khác
+Đây không còn chỉ là sửa rule; nó trở thành một contract và vòng đời nghiệp vụ khác. AI có thể đề xuất `BAL-HOLD`, rồi phân tích toàn bộ nơi đang dùng `BAL-RESERVE`.
 
-Flow trên có thể làm trạng thái yêu cầu rút tiền thay đổi:
+Điểm quan trọng nhất: **đổi ID không bao giờ thay thế impact analysis**. Đổi hay giữ ID thì tất cả nơi liên quan vẫn phải được xem xét và cập nhật trọn vẹn.
 
-```mermaid
-stateDiagram-v2
-    [*] --> RECEIVED: Nhận yêu cầu
-    RECEIVED --> REJECTED: Validation hoặc balance không đạt
-    RECEIVED --> PROCESSING: Validation và balance đạt
-    PROCESSING --> COMPLETED: Debit thành công
-```
+Quy tắc này đã có trong mục 2.3 và 7.3. Chưa cần sửa thêm nội dung ở điểm này.
 
-Ở đây:
+## 2. Rà soát các quan hệ dependency hiện tại
 
-- `WDR-VALIDATE → WDR-CHECK-BALANCE` là thứ tự bước trong flow;
-- `RECEIVED → PROCESSING` là chuyển trạng thái của yêu cầu rút tiền.
-
-Hai thứ có liên quan nhưng không phải một.
-
-## 3. Flow có thể nằm ngoài Feature không?
-
-Có, nhưng chỉ khi tài liệu dùng chung thực sự **sở hữu một quy trình nghiệp vụ độc lập**.
-
-Ví dụ `IDENTITY-VERIFICATION` là nghiệp vụ dùng chung có flow riêng:
+Danh sách hiện tại gồm tám tên theo bốn cặp:
 
 ```text
-Nhận hồ sơ → Kiểm tra hồ sơ → Yêu cầu bổ sung hoặc Phê duyệt → Hoàn tất
-```
-
-Flow này có thể được nhiều Feature sử dụng, nên nó nằm trong tài liệu dùng chung `IDENTITY.md`.
-
-Ngược lại, một chức năng dùng chung đơn lẻ như `BAL-RESERVE` chỉ mô tả:
-
-- input;
-- precondition;
-- rule;
-- output;
-- state effect;
-- error.
-
-Nó không nên tự ghi rằng bước trước nó là Validate Order hay bước sau nó là Create Order, vì thứ tự đó do từng Feature quyết định.
-
-Quy tắc hợp lý là:
-
-- Feature sở hữu flow thực hiện Feature đó.
-- Tài liệu dùng chung chỉ sở hữu flow nếu bản thân nghiệp vụ dùng chung là một quy trình nhiều bước độc lập.
-- Một chức năng dùng chung được Feature gọi không tự sở hữu thứ tự trước/sau của Feature.
-
-## 4. Có nên dùng Mermaid cho các flow không?
-
-Có. Mermaid rất phù hợp để Human nhìn nhanh:
-
-- thứ tự các bước;
-- các nhánh thành công và từ chối;
-- vòng retry;
-- điểm gọi sang nghiệp vụ dùng chung;
-- trạng thái thay đổi như thế nào.
-
-Nhưng mình không đề xuất dùng Mermaid làm nguồn mô tả duy nhất. Diagram dễ nhìn nhưng không thuận tiện để chứa đầy đủ precondition, guard, input/output và state effect của từng bước.
-
-Cách bố trí tốt nhất là:
-
-### Phần 1 — Bảng flow là nguồn chi tiết
-
-```markdown
-| Bước | Nghiệp vụ | Điều kiện vào | Kết quả | Bước tiếp theo | State effect |
-|---|---|---|---|---|---|
-| `WDR-01` | Nhận yêu cầu | User đã đăng nhập | Ghi nhận yêu cầu | `WDR-02` | Tạo trạng thái `RECEIVED` |
-| `WDR-02` | Validate | Có đủ field | Hợp lệ hoặc lỗi validation | `WDR-03` hoặc `WDR-REJECT` | Không đổi balance |
-| `WDR-03` | Kiểm tra số dư | Input hợp lệ | Đủ hoặc thiếu số dư | `WDR-04` hoặc `WDR-REJECT` | Không đổi balance |
-| `WDR-04` | Dùng `BAL-DEBIT` | Đủ số dư | Debit thành công | `WDR-DONE` | Balance giảm đúng amount |
-```
-
-Bảng này phù hợp cho cả AI và Human vì mỗi bước có dữ liệu rõ ràng, có thể tìm kiếm và impact analysis.
-
-### Phần 2 — Mermaid là góc nhìn trực quan
-
-Mermaid được đặt ngay sau bảng để thể hiện cùng flow bằng hình. Nó không được bổ sung rule chỉ có trong hình; mọi rule quan trọng vẫn phải nằm trong bảng hoặc section nghiệp vụ tương ứng.
-
-```text
-Bảng flow = nguồn chi tiết có hiệu lực
-Mermaid   = góc nhìn trực quan của cùng nội dung
-```
-
-Nếu bảng và Mermaid không khớp, phải sửa Mermaid theo bảng.
-
-## 5. Có cần ghi riêng `NEXT / PREVIOUS` nữa không?
-
-Sau khi áp dụng nguyên tắc clean và không lặp dữ liệu không cần thiết, mình thấy **không nên giữ `NEXT / PREVIOUS` như một loại link hai chiều bắt buộc**.
-
-Lý do:
-
-- cột `Bước tiếp theo` trong bảng flow đã thể hiện `NEXT`;
-- từ bảng có thể suy ra bước trước, nên ghi thêm `PREVIOUS` là lặp dữ liệu;
-- Mermaid cũng được sinh từ cùng thứ tự đó;
-- forward/backlink nên tập trung vào dependency giữa các nghiệp vụ, không dùng để lặp lại thứ tự nội bộ của một flow.
-
-Đề xuất đơn giản hơn:
-
-```text
-Dependency giữa tài liệu:
 CONTAINS / PART_OF
 USES / USED_BY
 READS_STATE / STATE_READ_BY
 CHANGES_STATE / STATE_CHANGED_BY
-
-Thứ tự trong flow:
-Bảng flow với “Bước tiếp theo”
-+ Mermaid khi flow đủ phức tạp để cần hình
 ```
 
-Với flow rất đơn giản chỉ có hai hoặc ba bước thẳng, danh sách đánh số hoặc bảng là đủ, không bắt buộc Mermaid. Với flow có nhánh, retry, nhiều state hoặc đi qua nhiều nghiệp vụ dùng chung, nên có Mermaid.
+Sau khi xem lại theo mục tiêu clean, clear và không lặp dữ liệu, mình kết luận: **không nên giữ nguyên cả tám tên**.
 
-Mình khuyến nghị sửa tài liệu theo hướng này: bỏ `NEXT / PREVIOUS` khỏi bảng quan hệ hai chiều và bổ sung quy ước **bảng flow là nguồn chi tiết, Mermaid là góc nhìn trực quan**. Phần này mình chưa sửa để bạn xác nhận trước.
+### `CONTAINS / PART_OF`: nên bỏ
 
-Thay đổi về việc xóa sạch ID/nghiệp vụ cũ và toàn bộ câu trả lời này đã được commit, push lên `origin/master`.
+Quan hệ này nói tài liệu hoặc đơn vị A chứa phần B.
+
+Ví dụ:
+
+```text
+BALANCE CONTAINS BAL-RESERVE
+BAL-RESERVE PART_OF BALANCE
+```
+
+Nhưng thông tin đó đã thể hiện sẵn bằng:
+
+- `BAL-RESERVE` là heading nằm trong file `BALANCE.md`;
+- `INDEX.md` đã liệt kê các chức năng chính của `BALANCE`;
+- đường dẫn `BALANCE.md#bal-reserve` đã cho biết rõ mục nằm ở đâu.
+
+Ghi thêm `CONTAINS` và `PART_OF` không giúp impact analysis đáng kể, nhưng tạo hai dòng quan hệ phải duy trì. Đây là dữ liệu trùng lặp có thể suy ra trực tiếp từ cấu trúc Markdown.
+
+**Kết luận:** bỏ `CONTAINS / PART_OF`.
+
+### Các tên quan hệ ngược: nên bỏ
+
+`USED_BY`, `STATE_READ_BY` và `STATE_CHANGED_BY` không phải quan hệ mới. Chúng chỉ là cùng một dependency được nhìn từ phía ngược lại.
+
+Ví dụ quan hệ thực tế là:
+
+```text
+F-PLACE-ORDER#ORD-RESERVE
+    CHANGES_STATE
+BALANCE#BAL-RESERVE
+```
+
+Trong file Feature, nó xuất hiện ở bảng `File này sử dụng`.
+
+Trong `BALANCE.md`, nó xuất hiện ở bảng `Được sử dụng bởi`.
+
+Hai bảng đã cho biết ta đang nhìn từ phía nào, nên không cần đổi tên relation thành `STATE_CHANGED_BY`. Việc duy trì hai tên cho một cạnh graph làm tăng số thuật ngữ và dễ gây sai.
+
+Thực tế ví dụ hiện tại trong tài liệu đã bộc lộ vấn đề này: backlink của `BAL-RESERVE` đang ghi `USED_BY`, dù hành vi reserve thực chất là yêu cầu thay đổi state. Điều đó cho thấy hệ tên xuôi/ngược vừa khó nhớ vừa dễ bị dùng không nhất quán.
+
+**Kết luận:** chỉ giữ tên quan hệ từ phía nơi gọi; backlink dùng lại cùng tên đó.
+
+## 3. Ba quan hệ thực sự có giá trị
+
+Mình đề xuất chỉ giữ:
+
+| Quan hệ | Dùng khi nào? | Ví dụ |
+|---|---|---|
+| `USES` | Dùng rule, phép tính, validation hoặc kết quả nghiệp vụ nhưng không trực tiếp đọc/thay đổi state do bên kia sở hữu | Feature đặt lệnh dùng `FEE-CALCULATE` để tính phí |
+| `READS_STATE` | Đọc state do nghiệp vụ khác sở hữu và không yêu cầu thay đổi nó | View Balance đọc `BAL-AVAILABLE` |
+| `CHANGES_STATE` | Yêu cầu nghiệp vụ khác thay đổi state mà nó sở hữu | Place Order gọi `BAL-RESERVE` để thay đổi available/reserved balance |
+
+Ba loại này tạo thông tin có ích cho impact analysis:
+
+- sửa công thức hoặc rule: xem các caller `USES`;
+- sửa ý nghĩa hoặc cách cung cấp state: xem các caller `READS_STATE`;
+- sửa invariant hoặc quy tắc thay đổi state: xem các caller `CHANGES_STATE`.
+
+Nếu chỉ giữ một quan hệ chung như `USES`, tài liệu sẽ đơn giản hơn một chút nhưng khi impact analysis, AI lại phải đọc nội dung từng link để biết nơi nào chỉ đọc và nơi nào làm thay đổi state. Với mục tiêu xác định state ownership và ảnh hưởng thay đổi, giữ ba loại trên là hợp lý.
+
+## 4. Làm sao tránh `USES` trùng với hai loại còn lại?
+
+Phải đặt quy tắc các loại này **loại trừ nhau trên cùng một hành động**:
+
+1. Nếu hành động yêu cầu thay đổi state của dependency: ghi `CHANGES_STATE`.
+2. Nếu hành động chỉ đọc state: ghi `READS_STATE`.
+3. Nếu không đọc hoặc thay đổi state mà chỉ dùng rule, calculation, validation hoặc contract khác: ghi `USES`.
+4. Không ghi thêm `USES` bên cạnh `READS_STATE` hoặc `CHANGES_STATE` cho cùng một hành động.
+
+Ví dụ:
+
+| Từ mục | Quan hệ | Đến mục | Mục đích |
+|---|---|---|---|
+| `ORD-CALCULATE-FEE` | `USES` | `FEE-CALCULATE` | Tính phí dự kiến |
+| `ORD-CHECK-BALANCE` | `READS_STATE` | `BAL-AVAILABLE` | Kiểm tra available balance |
+| `ORD-RESERVE-BALANCE` | `CHANGES_STATE` | `BAL-RESERVE` | Giữ tiền cho lệnh |
+
+Không ghi thêm:
+
+```text
+ORD-RESERVE-BALANCE USES BAL-RESERVE
+```
+
+vì `CHANGES_STATE` đã mô tả dependency đó chính xác hơn.
+
+Nếu trong một Feature có hai bước riêng biệt, một bước đọc và một bước thay đổi cùng một state, có thể có hai relation vì đó là hai hành động khác nhau:
+
+```text
+ORD-CHECK-BALANCE READS_STATE BAL-AVAILABLE
+ORD-RESERVE-BALANCE CHANGES_STATE BAL-RESERVE
+```
+
+## 5. Backlink sẽ ghi thế nào khi bỏ các tên quan hệ ngược?
+
+### Trong Feature — `File này sử dụng`
+
+```markdown
+| Từ mục | Quan hệ | Đến mục | Mục đích |
+|---|---|---|---|
+| `ORD-RESERVE-BALANCE` | `CHANGES_STATE` | `BALANCE#BAL-RESERVE` | Giữ số dư cho lệnh |
+```
+
+### Trong `BALANCE.md` — `Được sử dụng bởi`
+
+```markdown
+| Nơi gọi | Quan hệ của nơi gọi | Phạm vi trong file này | Mục đích |
+|---|---|---|---|
+| `F-PLACE-ORDER#ORD-RESERVE-BALANCE` | `CHANGES_STATE` | `BAL-RESERVE` | Giữ số dư cho lệnh |
+```
+
+Cả hai nơi đều dùng `CHANGES_STATE`. Tên bảng và tên cột đã làm rõ chiều nhìn, không cần phát minh thêm `STATE_CHANGED_BY`.
+
+## 6. Mô hình rút gọn được khuyến nghị
+
+```text
+Bỏ:
+- CONTAINS
+- PART_OF
+- USED_BY
+- STATE_READ_BY
+- STATE_CHANGED_BY
+- NEXT
+- PREVIOUS
+
+Giữ:
+- USES
+- READS_STATE
+- CHANGES_STATE
+
+Flow:
+- thể hiện bằng bảng flow
+- Mermaid là góc nhìn trực quan khi cần
+```
+
+Kết quả là từ mười tên relation ban đầu, ta chỉ còn ba loại dependency có ý nghĩa thực tế. Cấu trúc file thể hiện quan hệ chứa; bảng flow thể hiện thứ tự; tên bảng forward/backlink thể hiện chiều quan hệ.
+
+Đây là phương án mình khuyến nghị vì ít thuật ngữ hơn, không mất thông tin quan trọng và vẫn đủ cho impact analysis.
+
+Lượt này mình chưa sửa phần quan hệ trong tài liệu để bạn xem và xác nhận mô hình rút gọn này trước. `answer.md` đã được cập nhật, commit và push lên `origin/master`.
