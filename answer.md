@@ -1,201 +1,306 @@
-# Rà soát lại quy tắc ID và các loại dependency
+# Ví dụ thực tế cho `USES`, `READS_STATE` và `CHANGES_STATE`
 
-## 1. Khi bản chất nghiệp vụ thay đổi thì xử lý ID thế nào?
+## 1. Cách hiểu của bạn có đúng không?
 
-Đúng, cách bạn nhắc lại chính là cách tài liệu hiện tại đang hướng tới.
+Gần đúng. Có thể dùng mô hình sau để nhớ:
 
-Quy trình phải là:
+| Quan hệ | Cách hiểu ngắn |
+|---|---|
+| `USES` | Dùng một rule, phép tính hoặc validation không làm thay đổi business state |
+| `READS_STATE` | Đọc business state do nơi khác sở hữu, không thay đổi nó |
+| `CHANGES_STATE` | Yêu cầu nơi sở hữu state thực hiện thay đổi state |
 
-1. AI so sánh nghiệp vụ trước và sau thay đổi.
-2. Nếu vẫn cùng mục đích và trách nhiệm, giữ ID hiện tại; chỉ cập nhật rule, input/output, state và các phần liên quan.
-3. Nếu bản chất hoặc trách nhiệm đã đổi thành một nghiệp vụ khác, AI đề xuất ID mới phù hợp hơn.
-4. Human xác nhận việc đổi bản chất và ID.
-5. AI tìm toàn bộ Feature, shared business, test, forward link, backlink và `INDEX.md` đang liên quan đến ID cũ.
-6. Với từng nơi, quyết định chuyển sang ID mới, dùng nghiệp vụ khác hoặc xóa dependency.
-7. Chỉ xóa nghiệp vụ và ID cũ sau khi không còn tham chiếu hiện hành nào.
+Có hai điểm cần chỉnh nhẹ:
 
-Ví dụ vẫn giữ ID:
+### `USES` không khẳng định code là pure function
 
-```text
-BAL-RESERVE trước đây:
-- amount phải lớn hơn 0
-- trừ available và cộng reserved
+Ở cấp tài liệu nghiệp vụ, `USES` nên **có hành vi giống một phép tính/rule không có side effect lên business state**: nhận input, áp dụng rule và trả output.
 
-BAL-RESERVE sau thay đổi:
-- vẫn reserve balance
-- bổ sung min amount và quy tắc rounding
+Ta không dùng quan hệ này để khẳng định implementation bên dưới chắc chắn là pure function hoặc không đọc cache/configuration. Đó là chi tiết kỹ thuật.
+
+### `CHANGES_STATE` có thể đọc state trong quá trình thay đổi
+
+Ví dụ `BAL-RESERVE` phải đọc available balance để kiểm tra có đủ tiền rồi mới thay đổi balance. Nhưng từ phía Feature, mục đích của lời gọi là yêu cầu thay đổi state, nên chỉ ghi `CHANGES_STATE`, không ghi thêm `READS_STATE` và `USES` cho cùng hành động.
+
+## 2. Một Feature sử dụng cả ba loại như thế nào?
+
+Giả sử Feature đặt lệnh có ba bước:
+
+```mermaid
+flowchart LR
+    A[ORD-CALCULATE-FEE] -->|USES| F[FEE-CALCULATE]
+    B[ORD-CHECK-BALANCE] -->|READS_STATE| R[BAL-AVAILABLE]
+    C[ORD-RESERVE-BALANCE] -->|CHANGES_STATE| W[BAL-RESERVE]
 ```
 
-Bản chất vẫn là reserve balance, nên giữ `BAL-RESERVE`.
-
-Ví dụ nên cân nhắc ID mới:
-
-```text
-BAL-RESERVE:
-- chuyển amount từ available sang reserved ngay lập tức
-
-Nghiệp vụ mới:
-- tạo hold có thời hạn
-- cho phép gia hạn, capture một phần và tự hết hạn
-- sở hữu vòng đời/state riêng
-```
-
-Đây không còn chỉ là sửa rule; nó trở thành một contract và vòng đời nghiệp vụ khác. AI có thể đề xuất `BAL-HOLD`, rồi phân tích toàn bộ nơi đang dùng `BAL-RESERVE`.
-
-Điểm quan trọng nhất: **đổi ID không bao giờ thay thế impact analysis**. Đổi hay giữ ID thì tất cả nơi liên quan vẫn phải được xem xét và cập nhật trọn vẹn.
-
-Quy tắc này đã có trong mục 2.3 và 7.3. Chưa cần sửa thêm nội dung ở điểm này.
-
-## 2. Rà soát các quan hệ dependency hiện tại
-
-Danh sách hiện tại gồm tám tên theo bốn cặp:
-
-```text
-CONTAINS / PART_OF
-USES / USED_BY
-READS_STATE / STATE_READ_BY
-CHANGES_STATE / STATE_CHANGED_BY
-```
-
-Sau khi xem lại theo mục tiêu clean, clear và không lặp dữ liệu, mình kết luận: **không nên giữ nguyên cả tám tên**.
-
-### `CONTAINS / PART_OF`: nên bỏ
-
-Quan hệ này nói tài liệu hoặc đơn vị A chứa phần B.
-
-Ví dụ:
-
-```text
-BALANCE CONTAINS BAL-RESERVE
-BAL-RESERVE PART_OF BALANCE
-```
-
-Nhưng thông tin đó đã thể hiện sẵn bằng:
-
-- `BAL-RESERVE` là heading nằm trong file `BALANCE.md`;
-- `INDEX.md` đã liệt kê các chức năng chính của `BALANCE`;
-- đường dẫn `BALANCE.md#bal-reserve` đã cho biết rõ mục nằm ở đâu.
-
-Ghi thêm `CONTAINS` và `PART_OF` không giúp impact analysis đáng kể, nhưng tạo hai dòng quan hệ phải duy trì. Đây là dữ liệu trùng lặp có thể suy ra trực tiếp từ cấu trúc Markdown.
-
-**Kết luận:** bỏ `CONTAINS / PART_OF`.
-
-### Các tên quan hệ ngược: nên bỏ
-
-`USED_BY`, `STATE_READ_BY` và `STATE_CHANGED_BY` không phải quan hệ mới. Chúng chỉ là cùng một dependency được nhìn từ phía ngược lại.
-
-Ví dụ quan hệ thực tế là:
-
-```text
-F-PLACE-ORDER#ORD-RESERVE
-    CHANGES_STATE
-BALANCE#BAL-RESERVE
-```
-
-Trong file Feature, nó xuất hiện ở bảng `File này sử dụng`.
-
-Trong `BALANCE.md`, nó xuất hiện ở bảng `Được sử dụng bởi`.
-
-Hai bảng đã cho biết ta đang nhìn từ phía nào, nên không cần đổi tên relation thành `STATE_CHANGED_BY`. Việc duy trì hai tên cho một cạnh graph làm tăng số thuật ngữ và dễ gây sai.
-
-Thực tế ví dụ hiện tại trong tài liệu đã bộc lộ vấn đề này: backlink của `BAL-RESERVE` đang ghi `USED_BY`, dù hành vi reserve thực chất là yêu cầu thay đổi state. Điều đó cho thấy hệ tên xuôi/ngược vừa khó nhớ vừa dễ bị dùng không nhất quán.
-
-**Kết luận:** chỉ giữ tên quan hệ từ phía nơi gọi; backlink dùng lại cùng tên đó.
-
-## 3. Ba quan hệ thực sự có giá trị
-
-Mình đề xuất chỉ giữ:
-
-| Quan hệ | Dùng khi nào? | Ví dụ |
-|---|---|---|
-| `USES` | Dùng rule, phép tính, validation hoặc kết quả nghiệp vụ nhưng không trực tiếp đọc/thay đổi state do bên kia sở hữu | Feature đặt lệnh dùng `FEE-CALCULATE` để tính phí |
-| `READS_STATE` | Đọc state do nghiệp vụ khác sở hữu và không yêu cầu thay đổi nó | View Balance đọc `BAL-AVAILABLE` |
-| `CHANGES_STATE` | Yêu cầu nghiệp vụ khác thay đổi state mà nó sở hữu | Place Order gọi `BAL-RESERVE` để thay đổi available/reserved balance |
-
-Ba loại này tạo thông tin có ích cho impact analysis:
-
-- sửa công thức hoặc rule: xem các caller `USES`;
-- sửa ý nghĩa hoặc cách cung cấp state: xem các caller `READS_STATE`;
-- sửa invariant hoặc quy tắc thay đổi state: xem các caller `CHANGES_STATE`.
-
-Nếu chỉ giữ một quan hệ chung như `USES`, tài liệu sẽ đơn giản hơn một chút nhưng khi impact analysis, AI lại phải đọc nội dung từng link để biết nơi nào chỉ đọc và nơi nào làm thay đổi state. Với mục tiêu xác định state ownership và ảnh hưởng thay đổi, giữ ba loại trên là hợp lý.
-
-## 4. Làm sao tránh `USES` trùng với hai loại còn lại?
-
-Phải đặt quy tắc các loại này **loại trừ nhau trên cùng một hành động**:
-
-1. Nếu hành động yêu cầu thay đổi state của dependency: ghi `CHANGES_STATE`.
-2. Nếu hành động chỉ đọc state: ghi `READS_STATE`.
-3. Nếu không đọc hoặc thay đổi state mà chỉ dùng rule, calculation, validation hoặc contract khác: ghi `USES`.
-4. Không ghi thêm `USES` bên cạnh `READS_STATE` hoặc `CHANGES_STATE` cho cùng một hành động.
-
-Ví dụ:
-
-| Từ mục | Quan hệ | Đến mục | Mục đích |
-|---|---|---|---|
-| `ORD-CALCULATE-FEE` | `USES` | `FEE-CALCULATE` | Tính phí dự kiến |
-| `ORD-CHECK-BALANCE` | `READS_STATE` | `BAL-AVAILABLE` | Kiểm tra available balance |
-| `ORD-RESERVE-BALANCE` | `CHANGES_STATE` | `BAL-RESERVE` | Giữ tiền cho lệnh |
-
-Không ghi thêm:
-
-```text
-ORD-RESERVE-BALANCE USES BAL-RESERVE
-```
-
-vì `CHANGES_STATE` đã mô tả dependency đó chính xác hơn.
-
-Nếu trong một Feature có hai bước riêng biệt, một bước đọc và một bước thay đổi cùng một state, có thể có hai relation vì đó là hai hành động khác nhau:
-
-```text
-ORD-CHECK-BALANCE READS_STATE BAL-AVAILABLE
-ORD-RESERVE-BALANCE CHANGES_STATE BAL-RESERVE
-```
-
-## 5. Backlink sẽ ghi thế nào khi bỏ các tên quan hệ ngược?
-
-### Trong Feature — `File này sử dụng`
+Trong `F-PLACE-ORDER.md`:
 
 ```markdown
+## RELATION-MAP
+
+### File này sử dụng
+
 | Từ mục | Quan hệ | Đến mục | Mục đích |
 |---|---|---|---|
+| `ORD-CALCULATE-FEE` | `USES` | `FEE#FEE-CALCULATE` | Tính phí dự kiến |
+| `ORD-CHECK-BALANCE` | `READS_STATE` | `BALANCE#BAL-AVAILABLE` | Kiểm tra số dư có thể dùng |
 | `ORD-RESERVE-BALANCE` | `CHANGES_STATE` | `BALANCE#BAL-RESERVE` | Giữ số dư cho lệnh |
 ```
 
-### Trong `BALANCE.md` — `Được sử dụng bởi`
+Mỗi tài liệu đích có backlink tương ứng. Ví dụ trong `BALANCE.md`:
 
 ```markdown
+### Được sử dụng bởi
+
 | Nơi gọi | Quan hệ của nơi gọi | Phạm vi trong file này | Mục đích |
 |---|---|---|---|
+| `F-PLACE-ORDER#ORD-CHECK-BALANCE` | `READS_STATE` | `BAL-AVAILABLE` | Kiểm tra số dư có thể dùng |
 | `F-PLACE-ORDER#ORD-RESERVE-BALANCE` | `CHANGES_STATE` | `BAL-RESERVE` | Giữ số dư cho lệnh |
 ```
 
-Cả hai nơi đều dùng `CHANGES_STATE`. Tên bảng và tên cột đã làm rõ chiều nhìn, không cần phát minh thêm `STATE_CHANGED_BY`.
+Sau đây là tác dụng thực tế của từng loại khi tài liệu thay đổi.
 
-## 6. Mô hình rút gọn được khuyến nghị
+## 3. Ví dụ `USES`: dùng rule hoặc phép tính
+
+### Nghiệp vụ được gọi
+
+`FEE#FEE-CALCULATE`:
 
 ```text
-Bỏ:
-- CONTAINS
-- PART_OF
-- USED_BY
-- STATE_READ_BY
-- STATE_CHANGED_BY
-- NEXT
-- PREVIOUS
-
-Giữ:
-- USES
-- READS_STATE
-- CHANGES_STATE
-
-Flow:
-- thể hiện bằng bảng flow
-- Mermaid là góc nhìn trực quan khi cần
+Input: order_value
+Rule: fee = order_value × 0.1%
+Output: fee
+Không sở hữu hoặc thay đổi balance/order state.
 ```
 
-Kết quả là từ mười tên relation ban đầu, ta chỉ còn ba loại dependency có ý nghĩa thực tế. Cấu trúc file thể hiện quan hệ chứa; bảng flow thể hiện thứ tự; tên bảng forward/backlink thể hiện chiều quan hệ.
+Các nơi gọi:
 
-Đây là phương án mình khuyến nghị vì ít thuật ngữ hơn, không mất thông tin quan trọng và vẫn đủ cho impact analysis.
+```text
+F-PLACE-ORDER#ORD-CALCULATE-FEE USES FEE-CALCULATE
+F-PREVIEW-ORDER#PREVIEW-CALCULATE-FEE USES FEE-CALCULATE
+```
 
-Lượt này mình chưa sửa phần quan hệ trong tài liệu để bạn xem và xác nhận mô hình rút gọn này trước. `answer.md` đã được cập nhật, commit và push lên `origin/master`.
+### Khi `FEE-CALCULATE` thay đổi
+
+Giả sử công thức đổi từ phí cố định `0.1%` sang phí theo cấp người dùng.
+
+AI thực hiện:
+
+1. đưa `FEE.md` về `DRAFT`;
+2. mở bảng `Được sử dụng bởi` của `FEE-CALCULATE`;
+3. tìm được Place Order và Preview Order;
+4. phân tích từng caller.
+
+Kết quả impact có thể là:
+
+| Caller | Ảnh hưởng |
+|---|---|
+| Place Order | Phí thay đổi làm tổng tiền cần reserve thay đổi; phải cập nhật công thức, ví dụ và test |
+| Preview Order | Số phí hiển thị thay đổi; phải cập nhật expected output và test |
+
+Từ Place Order, AI còn có thể phát hiện ảnh hưởng tiếp theo:
+
+```text
+FEE-CALCULATE thay đổi
+→ ORD-CALCULATE-FEE thay đổi
+→ amount truyền vào BAL-RESERVE thay đổi
+→ test reserve và expected balance phải được xem lại
+```
+
+Đây là giá trị của dependency graph: thay đổi ở một rule có thể được lần tới Feature, rồi từ Feature tới dependency tiếp theo.
+
+### Khi nơi gọi thay đổi
+
+Giả sử Preview Order không còn hiển thị phí.
+
+AI đọc `File này sử dụng` của `F-PREVIEW-ORDER.md`, sau đó:
+
+1. xóa link tới `FEE-CALCULATE` trong nội dung Feature;
+2. xóa dòng `USES` trong relation map của Feature;
+3. xóa backlink Preview Order trong `FEE.md`;
+4. cập nhật flow, AC và test của Preview Order;
+5. không sửa `FEE-CALCULATE`, vì contract của nó vẫn đúng và còn caller khác sử dụng.
+
+### `USES` giúp gì?
+
+- tìm tất cả Feature phụ thuộc vào một rule/phép tính;
+- lần ảnh hưởng khi formula, validation hoặc output thay đổi;
+- biết dependency chỉ cung cấp kết quả, không sở hữu state mà Feature đang đọc/ghi trực tiếp.
+
+## 4. Ví dụ `READS_STATE`: đọc state do nơi khác sở hữu
+
+### Nghiệp vụ được gọi
+
+`BALANCE#BAL-AVAILABLE`:
+
+```text
+State owner: BALANCE
+Output: available balance hiện tại của asset
+Không thay đổi balance.
+```
+
+Các nơi gọi:
+
+```text
+F-VIEW-BALANCE#VIEW-AVAILABLE READS_STATE BAL-AVAILABLE
+F-PLACE-ORDER#ORD-CHECK-BALANCE READS_STATE BAL-AVAILABLE
+```
+
+### Khi ý nghĩa của `BAL-AVAILABLE` thay đổi
+
+Giả sử trước đây:
+
+```text
+available = total - reserved
+```
+
+Sau thay đổi:
+
+```text
+available = total - reserved - pending_withdrawal
+```
+
+AI mở `Được sử dụng bởi` của `BAL-AVAILABLE` và phân tích:
+
+| Caller | Ảnh hưởng có thể có |
+|---|---|
+| View Balance | Giá trị hiển thị có thể giảm; cần cập nhật mô tả, ví dụ và expected output |
+| Place Order | Điều kiện “đủ số dư” có thể cho kết quả khác; cần cập nhật flow từ chối và test boundary |
+
+Có thể sau phân tích Human quyết định:
+
+- View Balance vẫn nên đọc `BAL-AVAILABLE` mới;
+- Place Order cần một khái niệm chính xác hơn là `BAL-SPENDABLE`.
+
+Khi đó AI:
+
+1. đổi forward link của `ORD-CHECK-BALANCE` từ `BAL-AVAILABLE` sang `BAL-SPENDABLE`;
+2. xóa backlink cũ trong `BAL-AVAILABLE`;
+3. thêm backlink mới trong `BAL-SPENDABLE`;
+4. cập nhật rule, flow và test của Place Order.
+
+### Khi nơi gọi không còn cần đọc state
+
+Giả sử Place Order bỏ bước đọc trước và gọi thẳng `BAL-RESERVE`; chính `BAL-RESERVE` chịu trách nhiệm từ chối nếu thiếu tiền.
+
+AI sẽ:
+
+1. xóa bước `ORD-CHECK-BALANCE` nếu nó không còn ý nghĩa khác;
+2. xóa forward relation `READS_STATE BAL-AVAILABLE`;
+3. xóa backlink tương ứng trong `BALANCE.md`;
+4. giữ relation `CHANGES_STATE BAL-RESERVE`;
+5. cập nhật flow để xử lý output `INSUFFICIENT_BALANCE` từ `BAL-RESERVE`.
+
+### `READS_STATE` giúp gì?
+
+- xác định chính xác ai đang phụ thuộc vào ý nghĩa của một state;
+- tìm nơi bị ảnh hưởng khi state definition, đơn vị, phạm vi hoặc độ mới thay đổi;
+- chỉ rõ tài liệu nào sở hữu state, tránh mỗi Feature tự định nghĩa balance theo một cách.
+
+## 5. Ví dụ `CHANGES_STATE`: yêu cầu thay đổi state
+
+### Nghiệp vụ được gọi
+
+`BALANCE#BAL-RESERVE`:
+
+```text
+Input: asset, amount
+Precondition: amount > 0 và available >= amount
+Success:
+- available giảm amount
+- reserved tăng amount
+Failure:
+- trả lỗi
+- balance giữ nguyên
+Invariant:
+- available và reserved không âm
+```
+
+Các nơi gọi:
+
+```text
+F-PLACE-ORDER#ORD-RESERVE-BALANCE CHANGES_STATE BAL-RESERVE
+F-WITHDRAW#WDR-HOLD-BALANCE CHANGES_STATE BAL-RESERVE
+```
+
+### Khi `BAL-RESERVE` thay đổi
+
+Giả sử nghiệp vụ đổi từ “chỉ chấp nhận toàn bộ amount” thành “có thể reserve một phần và trả về actual_reserved”.
+
+AI mở các backlink `CHANGES_STATE` và phát hiện:
+
+| Caller | Câu hỏi impact bắt buộc |
+|---|---|
+| Place Order | Có chấp nhận đặt lệnh với số tiền reserve một phần không? Order chuyển state nào? |
+| Withdraw | Có được tạo yêu cầu rút một phần không hay phải từ chối toàn bộ? |
+
+Hai Feature có thể đưa ra quyết định khác nhau:
+
+- Place Order cho phép giảm quantity theo `actual_reserved`;
+- Withdraw vẫn yêu cầu all-or-nothing và từ chối nếu reserve không đủ.
+
+AI phải cập nhật tại từng caller:
+
+- cách gọi contract;
+- cách xử lý output;
+- flow thành công/từ chối;
+- expected final state;
+- invariant và test liên quan.
+
+### Khi nơi gọi thay đổi
+
+Giả sử Place Order chuyển sang mô hình không reserve trước mà chỉ debit khi match.
+
+AI đọc `File này sử dụng` của Feature và:
+
+1. xóa bước `ORD-RESERVE-BALANCE`;
+2. xóa forward relation `CHANGES_STATE BAL-RESERVE`;
+3. xóa backlink Place Order trong `BAL-RESERVE`;
+4. thêm relation mới tới nghiệp vụ debit tại bước match nếu cần;
+5. cập nhật flow, order state, balance effect, AC và test;
+6. không xóa `BAL-RESERVE` nếu Withdraw hoặc Feature khác vẫn dùng.
+
+### `CHANGES_STATE` giúp gì?
+
+- tìm tất cả nơi có khả năng làm thay đổi state được sở hữu tập trung;
+- đánh giá ảnh hưởng khi precondition, transition, error hoặc invariant thay đổi;
+- phát hiện các Feature đang yêu cầu thay đổi cùng một state;
+- hỗ trợ sinh dependency contract test: caller phải gửi input đúng và xử lý đủ success/failure;
+- giúp ưu tiên review vì thay đổi state thường có rủi ro cao hơn chỉ đọc state.
+
+## 6. Ba loại quan hệ giúp impact analysis chính xác hơn thế nào?
+
+Giả sử `BALANCE.md` thay đổi:
+
+| Phần thay đổi | Nhóm cần xem trước |
+|---|---|
+| Công thức tính phí độc lập | Các relation `USES` tới công thức đó |
+| Ý nghĩa của available balance | Các relation `READS_STATE` tới state đó; đồng thời xem writer nếu invariant chung bị đổi |
+| Rule reserve/release/debit | Các relation `CHANGES_STATE` tới đúng operation bị đổi |
+| Invariant cấp toàn bộ Balance | Cả `READS_STATE` và `CHANGES_STATE` liên quan tới phạm vi invariant |
+
+Nếu chỉ có một relation chung là `USES`, AI vẫn có thể phân tích nhưng phải mở tất cả caller rồi tự xác định lại mục đích của từng dependency. Ba loại quan hệ giúp thu hẹp phạm vi và biết ngay lý do phải review.
+
+Tuy nhiên, relation type không thay thế nội dung chi tiết. Mỗi relation vẫn phải trỏ tới đúng section và ghi mục đích; AI vẫn đọc contract thật trước khi kết luận ảnh hưởng.
+
+## 7. Quy tắc phân loại cuối cùng
+
+```mermaid
+flowchart TD
+    A[Caller phụ thuộc vào một nghiệp vụ khác] --> B{Mục đích của hành động?}
+    B -->|Yêu cầu thay đổi state| C[CHANGES_STATE]
+    B -->|Chỉ đọc state hiện tại| D[READS_STATE]
+    B -->|Dùng rule, calculation hoặc validation| E[USES]
+```
+
+Quy tắc ưu tiên:
+
+```text
+CHANGES_STATE > READS_STATE > USES
+```
+
+Nghĩa là nếu một operation vừa phải đọc state để kiểm tra vừa thay đổi state khi thành công, ghi `CHANGES_STATE`. Không ghi ba relation cho cùng một hành động.
+
+Mình vẫn khuyến nghị giữ cả ba loại vì mỗi loại giúp tìm một nhóm ảnh hưởng khác nhau, nhưng chỉ sau khi định nghĩa chúng loại trừ nhau như trên. Lượt này chưa sửa phần relation trong tài liệu để bạn tiếp tục đánh giá trước khi chốt.
+
+Toàn bộ câu trả lời đã được ghi vào `answer.md`, commit và push lên `origin/master`.
