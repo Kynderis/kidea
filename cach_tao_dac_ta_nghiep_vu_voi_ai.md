@@ -204,10 +204,12 @@ Với từng Feature:
 3. dựng cây `NEW / REUSE / OPEN`;
 4. link chính xác từng phần `REUSE` đến mục trong file chung;
 5. phân tích depth-first phần `NEW` đến khi expected result không còn mơ hồ;
-6. viết flow theo thứ tự, kèm pre/post-state ở mỗi bước quan trọng;
+6. viết flow thành bảng có thứ tự bước, điều kiện/nhánh, kết quả, bước tiếp theo và pre/post-state ở mỗi bước quan trọng;
 7. sinh AC và Business Test Specification;
 8. cập nhật forward link, backlink và `INDEX.md`;
 9. AI audit; Human review và approve toàn file.
+
+Bảng flow là nguồn mô tả chi tiết có hiệu lực. Với flow có nhánh, retry, nhiều state hoặc đi qua nhiều nghiệp vụ dùng chung, AI thêm Mermaid ngay sau bảng để Human và AI nhìn nhanh; Mermaid không được chứa rule chỉ có trong hình và phải được cập nhật theo bảng. Flow tuyến tính rất ngắn không bắt buộc có Mermaid.
 
 ### 6.4. Điều kiện dừng phân tích đệ quy
 
@@ -225,17 +227,14 @@ Vòng lặp, cây dữ liệu, transaction, lock hay database thuộc thiết k�
 
 ## 7. Quy ước link hai chiều
 
-Mỗi link phải có loại quan hệ; không dùng một mũi tên chung cho mọi ý nghĩa:
+Không phân loại dependency thành `USES`, `READS_STATE` hay `CHANGES_STATE`. Khi một mục A phụ thuộc vào mục B, chỉ cần:
 
-| Quan hệ xuôi | Ý nghĩa | Quan hệ ngược |
-|---|---|---|
-| `CONTAINS` | Tài liệu/đơn vị này phân rã thành phần kia | `PART_OF` |
-| `USES` | Dùng contract nghiệp vụ của phần kia | `USED_BY` |
-| `READS_STATE` | Đọc state do phần kia sở hữu | `STATE_READ_BY` |
-| `CHANGES_STATE` | Yêu cầu thay đổi state do phần kia sở hữu | `STATE_CHANGED_BY` |
-| `NEXT` | Bước kế tiếp trong một flow cụ thể | `PREVIOUS` |
+- forward link từ đúng mục A đến đúng mục B, kèm mục đích;
+- backlink tại mục B chỉ về đúng mục A, kèm cùng mục đích.
 
-Dependency graph và flow graph là hai góc nhìn khác nhau dù cùng lấy dữ liệu từ các link. Vòng lặp `NEXT` như retry có thể hợp lệ; vòng phụ thuộc giữa các nghiệp vụ chung phải được AI báo rõ để Human kiểm tra ranh giới và nơi sở hữu state.
+Khi B thay đổi, AI dùng backlink để tìm mọi caller, sau đó đọc đầy đủ từng tài liệu caller và contract liên quan trước khi quyết định ảnh hưởng. Không được dùng nhãn quan hệ để bỏ qua việc đọc và phân tích.
+
+Quan hệ chứa đã thể hiện qua cấu trúc file/heading và `INDEX.md`; thứ tự bước đã thể hiện trong bảng flow. `RELATION-MAP` chỉ lưu dependency giữa các mục, không lặp lại cấu trúc chứa hoặc thứ tự flow.
 
 ### 7.1. Forward link ở nơi gọi
 
@@ -257,30 +256,36 @@ Mỗi file có một bảng cuối file. Không cần rải backlink khắp nộ
 ## RELATION-MAP
 
 ### File này sử dụng
-| Từ mục | Quan hệ | Đến mục | Mục đích |
+| Từ mục | Đến mục | Mục đích |
+|---|---|---|
 
 ### Được sử dụng bởi
-| Phạm vi trong file này | Quan hệ | Nơi gọi | Mục đích |
-|---|---|---|---|
-| `BAL-RESERVE` | `USED_BY` | [ORD-RESERVE-BALANCE](../features/F-PLACE-LIMIT-ORDER.md#ord-reserve-balance) | Giữ USDT cho Limit Buy |
-| `ALL` | `USED_BY` | [F-VIEW-BALANCE](../features/F-VIEW-BALANCE.md#f-view-balance) | Dùng toàn bộ nghiệp vụ balance |
+| Phạm vi trong file này | Nơi gọi | Mục đích |
+|---|---|---|
+| `BAL-RESERVE` | [ORD-RESERVE-BALANCE](../features/F-PLACE-LIMIT-ORDER.md#ord-reserve-balance) | Giữ USDT cho Limit Buy |
+| `BAL-AVAILABLE` | [F-VIEW-BALANCE](../features/F-VIEW-BALANCE.md#f-view-balance) | Hiển thị số dư có thể dùng |
 ```
 
-`ALL` biểu thị nơi kia phụ thuộc toàn bộ file. Nếu chỉ dùng một mục thì phải ghi ID mục, không ghi `ALL` cho tiện.
+Không dùng `ALL`. Mỗi dependency phải trỏ tới mục cụ thể. Nếu caller phụ thuộc một invariant áp dụng toàn file, invariant đó cũng phải có ID riêng để link chính xác.
 
 ### 7.3. Khi sửa một mục
 
-AI bắt buộc:
+AI bắt buộc phân tích ảnh hưởng đệ quy đến khi không còn mục mới cần sửa:
 
 1. đổi tài liệu bị sửa sang `DRAFT` nếu semantics thay đổi;
-2. đọc cả `File này sử dụng` và `Được sử dụng bởi`;
-3. lập impact list đến đúng mục ở các file khác và test liên quan;
-4. nếu giữ nguyên mã, cập nhật hoặc ghi rõ “không cần đổi” cho từng nơi đang dùng;
-5. nếu thay thế hoặc loại bỏ mã, chuyển hoặc xóa tất cả tham chiếu hiện hành và test trước khi xóa nội dung cũ;
-6. cập nhật nội dung, forward link, backlink và `INDEX.md` trong cùng thay đổi;
-7. xóa hoàn toàn nội dung và mã cũ khi không còn nơi dùng; không giữ lịch sử trong tài liệu hiện hành;
-8. kiểm tra link tồn tại và quan hệ hai chiều khớp nhau;
-9. gửi toàn bộ change set và impact list để Human approve.
+2. đọc toàn bộ tài liệu bị sửa, cả `File này sử dụng` và `Được sử dụng bởi`;
+3. tìm kiếm toàn bộ bộ tài liệu theo ID và link của mục bị sửa để bắt cả tham chiếu bị thiếu trong `RELATION-MAP`;
+4. kiểm tra mọi dependency mà mục bị sửa đang gọi để bảo đảm contract mới vẫn tương thích;
+5. theo mọi backlink và kết quả tìm kiếm đến từng caller, đọc toàn bộ tài liệu caller và các mục được link trước khi kết luận;
+6. với mỗi nơi đã đọc, ghi `CẦN SỬA` hoặc `ĐÃ KIỂM TRA — KHÔNG CẦN SỬA` kèm lý do;
+7. nếu semantics, input/output, state, flow hoặc dependency của một caller phải sửa, coi caller đó là một mục thay đổi mới và tiếp tục kiểm tra cả dependency lẫn caller của nó;
+8. tiếp tục cho đến khi một vòng phân tích không phát hiện thêm mục nào cần sửa; lưu danh sách mục đã đọc để không lặp vô hạn khi graph có vòng;
+9. nếu thay thế hoặc loại bỏ mã, chuyển hoặc xóa tất cả tham chiếu hiện hành và test trước khi xóa hoàn toàn nội dung cũ;
+10. cập nhật nội dung, bảng flow, Mermaid, forward link, backlink, `INDEX.md` và test trong cùng change set;
+11. kiểm tra mọi link tồn tại, forward/backlink đối xứng và mọi mục trong impact list đã có kết luận;
+12. gửi toàn bộ change set và impact list để Human approve.
+
+Chỉ lan truyền tiếp từ một caller khi thay đổi làm semantics hoặc contract có thể quan sát của caller thay đổi. Nếu đã đọc đầy đủ và xác nhận caller không đổi hành vi, dừng nhánh đó nhưng vẫn giữ lý do trong impact list. Sửa chính tả hoặc trình bày thuần túy không kích hoạt phân tích đệ quy nghiệp vụ.
 
 Nếu đổi tên mô tả nhưng semantics và mã không đổi, không cần làm toàn bộ vòng duyệt lại; AI vẫn phải kiểm tra link và mục lục.
 
@@ -397,18 +402,18 @@ Coverage contract chứng minh phạm vi mô hình đã được kiểm tra; nó
 
 ```mermaid
 flowchart LR
-    PLACE["F-PLACE-ORDER"] -->|uses BAL-RESERVE| BAL["BALANCE"]
-    CANCEL["F-CANCEL-ORDER"] -->|uses BAL-RELEASE| BAL
-    DEPOSIT["F-DEPOSIT"] -->|uses BAL-CREDIT| BAL
-    WITHDRAW["F-WITHDRAW"] -->|uses BAL-RESERVE / DEBIT| BAL
-    VIEW["F-VIEW-BALANCE"] -->|uses ALL| BAL
+    PLACE["F-PLACE-ORDER"] -->|BAL-RESERVE| BAL["BALANCE"]
+    CANCEL["F-CANCEL-ORDER"] -->|BAL-RELEASE| BAL
+    DEPOSIT["F-DEPOSIT"] -->|BAL-CREDIT| BAL
+    WITHDRAW["F-WITHDRAW"] -->|BAL-RESERVE / BAL-DEBIT| BAL
+    VIEW["F-VIEW-BALANCE"] -->|BAL-AVAILABLE| BAL
 
-    PLACE -->|uses| BOOK["ORDER-BOOK"]
-    CANCEL -->|changes| BOOK
-    GETBOOK["F-GET-ORDER-BOOK"] -->|reads| BOOK
+    PLACE -->|BOOK-INSERT| BOOK["ORDER-BOOK"]
+    CANCEL -->|BOOK-REMOVE| BOOK
+    GETBOOK["F-GET-ORDER-BOOK"] -->|BOOK-MATCH-VIEW| BOOK
 ```
 
-Nếu sửa `BAL-RESERVE`, backlink chỉ ra `PLACE` và `WITHDRAW` cần impact review; không mặc nhiên bắt `DEPOSIT` sửa vì nó chỉ dùng `BAL-CREDIT`. Nếu sửa invariant cấp file `BALANCE`, mọi caller dùng phần liên quan hoặc `ALL` phải được xem lại.
+Nếu sửa `BAL-RESERVE`, backlink chỉ ra `PLACE` và `WITHDRAW` phải được đọc và impact review. Nếu một trong hai Feature phải đổi semantics, tiếp tục lần dependency và backlink của Feature đó. `DEPOSIT` chỉ được đưa vào khi quá trình đệ quy tìm thấy dependency thực sự liên quan; không suy đoán từ việc cùng nằm trong `BALANCE.md`. Nếu sửa invariant dùng chung của Balance, lần backlink từ đúng mục invariant đến mọi caller của nó.
 
 ## 10. Prompt dùng với AI
 

@@ -1,306 +1,214 @@
-# Ví dụ thực tế cho `USES`, `READS_STATE` và `CHANGES_STATE`
+# Kết luận về dependency và impact analysis đệ quy
 
-## 1. Cách hiểu của bạn có đúng không?
+Mình đồng ý với lập luận của bạn. Với tiêu chuẩn bạn chọn — **mọi caller trực tiếp đều phải được đọc và phân tích đầy đủ, nếu caller thay đổi thì tiếp tục lan truyền đệ quy** — việc chia dependency thành `USES`, `READS_STATE`, `CHANGES_STATE` không tạo đủ giá trị để đáng giữ.
 
-Gần đúng. Có thể dùng mô hình sau để nhớ:
+## 1. Vì sao ba loại quan hệ không còn cần thiết?
 
-| Quan hệ | Cách hiểu ngắn |
-|---|---|
-| `USES` | Dùng một rule, phép tính hoặc validation không làm thay đổi business state |
-| `READS_STATE` | Đọc business state do nơi khác sở hữu, không thay đổi nó |
-| `CHANGES_STATE` | Yêu cầu nơi sở hữu state thực hiện thay đổi state |
+Ba nhãn đó chủ yếu giúp:
 
-Có hai điểm cần chỉnh nhẹ:
+- lọc nhanh nhóm caller có khả năng bị ảnh hưởng;
+- ước lượng loại ảnh hưởng trước khi mở tài liệu;
+- ưu tiên review nơi thay đổi state.
 
-### `USES` không khẳng định code là pure function
+Nhưng quy trình của chúng ta không cho phép kết luận chỉ từ nhãn. Dù backlink ghi `USES`, `READS_STATE` hay `CHANGES_STATE`, AI vẫn phải:
 
-Ở cấp tài liệu nghiệp vụ, `USES` nên **có hành vi giống một phép tính/rule không có side effect lên business state**: nhận input, áp dụng rule và trả output.
+1. mở tài liệu caller;
+2. đọc đầy đủ semantics, flow, state, input/output và dependency;
+3. quyết định caller có bị ảnh hưởng hay không;
+4. nếu bị ảnh hưởng thì cập nhật và tiếp tục phân tích đệ quy.
 
-Ta không dùng quan hệ này để khẳng định implementation bên dưới chắc chắn là pure function hoặc không đọc cache/configuration. Đó là chi tiết kỹ thuật.
+Như vậy, nhãn chỉ tiết kiệm một ít công đọc hoặc giúp ưu tiên. Bạn đã xác nhận không cần tối ưu token/công sức theo cách đó và muốn tất cả caller đều được xem xét đầy đủ. Khi ấy ba nhãn trở thành:
 
-### `CHANGES_STATE` có thể đọc state trong quá trình thay đổi
+- thêm thuật ngữ phải học;
+- thêm cột phải duy trì ở hai phía;
+- có nguy cơ phân loại sai;
+- dễ tạo cảm giác an toàn giả và bỏ qua caller vì “không đúng loại”.
 
-Ví dụ `BAL-RESERVE` phải đọc available balance để kiểm tra có đủ tiền rồi mới thay đổi balance. Nhưng từ phía Feature, mục đích của lời gọi là yêu cầu thay đổi state, nên chỉ ghi `CHANGES_STATE`, không ghi thêm `READS_STATE` và `USES` cho cùng hành động.
+**Kết luận:** bỏ toàn bộ loại quan hệ. Chỉ cần biết chính xác **A phụ thuộc B vì mục đích gì** và **B đang được A sử dụng**.
 
-## 2. Một Feature sử dụng cả ba loại như thế nào?
+## 2. Dependency tối giản sẽ được ghi thế nào?
 
-Giả sử Feature đặt lệnh có ba bước:
-
-```mermaid
-flowchart LR
-    A[ORD-CALCULATE-FEE] -->|USES| F[FEE-CALCULATE]
-    B[ORD-CHECK-BALANCE] -->|READS_STATE| R[BAL-AVAILABLE]
-    C[ORD-RESERVE-BALANCE] -->|CHANGES_STATE| W[BAL-RESERVE]
-```
-
-Trong `F-PLACE-ORDER.md`:
+### Tại nơi gọi A
 
 ```markdown
-## RELATION-MAP
-
 ### File này sử dụng
 
-| Từ mục | Quan hệ | Đến mục | Mục đích |
-|---|---|---|---|
-| `ORD-CALCULATE-FEE` | `USES` | `FEE#FEE-CALCULATE` | Tính phí dự kiến |
-| `ORD-CHECK-BALANCE` | `READS_STATE` | `BALANCE#BAL-AVAILABLE` | Kiểm tra số dư có thể dùng |
-| `ORD-RESERVE-BALANCE` | `CHANGES_STATE` | `BALANCE#BAL-RESERVE` | Giữ số dư cho lệnh |
+| Từ mục | Đến mục | Mục đích |
+|---|---|---|
+| `A-CALCULATE-TOTAL` | `B-CALCULATE-FEE` | Lấy phí để tính tổng tiền |
 ```
 
-Mỗi tài liệu đích có backlink tương ứng. Ví dụ trong `BALANCE.md`:
+### Tại nơi được gọi B
 
 ```markdown
 ### Được sử dụng bởi
 
-| Nơi gọi | Quan hệ của nơi gọi | Phạm vi trong file này | Mục đích |
-|---|---|---|---|
-| `F-PLACE-ORDER#ORD-CHECK-BALANCE` | `READS_STATE` | `BAL-AVAILABLE` | Kiểm tra số dư có thể dùng |
-| `F-PLACE-ORDER#ORD-RESERVE-BALANCE` | `CHANGES_STATE` | `BAL-RESERVE` | Giữ số dư cho lệnh |
+| Phạm vi trong file này | Nơi gọi | Mục đích |
+|---|---|---|
+| `B-CALCULATE-FEE` | `A-CALCULATE-TOTAL` | Lấy phí để tính tổng tiền |
 ```
 
-Sau đây là tác dụng thực tế của từng loại khi tài liệu thay đổi.
-
-## 3. Ví dụ `USES`: dùng rule hoặc phép tính
-
-### Nghiệp vụ được gọi
-
-`FEE#FEE-CALCULATE`:
+Không còn cột `Quan hệ`. Tên hai bảng đã thể hiện chiều:
 
 ```text
-Input: order_value
-Rule: fee = order_value × 0.1%
-Output: fee
-Không sở hữu hoặc thay đổi balance/order state.
+A → B: File này sử dụng
+B ← A: Được sử dụng bởi
 ```
 
-Các nơi gọi:
+Thông tin “đọc state”, “thay đổi state” hay “dùng phép tính” vẫn nằm trong nội dung contract và flow thực tế. AI phải đọc nội dung đó, không đoán từ một nhãn ngắn.
 
-```text
-F-PLACE-ORDER#ORD-CALCULATE-FEE USES FEE-CALCULATE
-F-PREVIEW-ORDER#PREVIEW-CALCULATE-FEE USES FEE-CALCULATE
-```
+## 3. Impact analysis đệ quy sẽ hoạt động thế nào?
 
-### Khi `FEE-CALCULATE` thay đổi
-
-Giả sử công thức đổi từ phí cố định `0.1%` sang phí theo cấp người dùng.
-
-AI thực hiện:
-
-1. đưa `FEE.md` về `DRAFT`;
-2. mở bảng `Được sử dụng bởi` của `FEE-CALCULATE`;
-3. tìm được Place Order và Preview Order;
-4. phân tích từng caller.
-
-Kết quả impact có thể là:
-
-| Caller | Ảnh hưởng |
-|---|---|
-| Place Order | Phí thay đổi làm tổng tiền cần reserve thay đổi; phải cập nhật công thức, ví dụ và test |
-| Preview Order | Số phí hiển thị thay đổi; phải cập nhật expected output và test |
-
-Từ Place Order, AI còn có thể phát hiện ảnh hưởng tiếp theo:
-
-```text
-FEE-CALCULATE thay đổi
-→ ORD-CALCULATE-FEE thay đổi
-→ amount truyền vào BAL-RESERVE thay đổi
-→ test reserve và expected balance phải được xem lại
-```
-
-Đây là giá trị của dependency graph: thay đổi ở một rule có thể được lần tới Feature, rồi từ Feature tới dependency tiếp theo.
-
-### Khi nơi gọi thay đổi
-
-Giả sử Preview Order không còn hiển thị phí.
-
-AI đọc `File này sử dụng` của `F-PREVIEW-ORDER.md`, sau đó:
-
-1. xóa link tới `FEE-CALCULATE` trong nội dung Feature;
-2. xóa dòng `USES` trong relation map của Feature;
-3. xóa backlink Preview Order trong `FEE.md`;
-4. cập nhật flow, AC và test của Preview Order;
-5. không sửa `FEE-CALCULATE`, vì contract của nó vẫn đúng và còn caller khác sử dụng.
-
-### `USES` giúp gì?
-
-- tìm tất cả Feature phụ thuộc vào một rule/phép tính;
-- lần ảnh hưởng khi formula, validation hoặc output thay đổi;
-- biết dependency chỉ cung cấp kết quả, không sở hữu state mà Feature đang đọc/ghi trực tiếp.
-
-## 4. Ví dụ `READS_STATE`: đọc state do nơi khác sở hữu
-
-### Nghiệp vụ được gọi
-
-`BALANCE#BAL-AVAILABLE`:
-
-```text
-State owner: BALANCE
-Output: available balance hiện tại của asset
-Không thay đổi balance.
-```
-
-Các nơi gọi:
-
-```text
-F-VIEW-BALANCE#VIEW-AVAILABLE READS_STATE BAL-AVAILABLE
-F-PLACE-ORDER#ORD-CHECK-BALANCE READS_STATE BAL-AVAILABLE
-```
-
-### Khi ý nghĩa của `BAL-AVAILABLE` thay đổi
-
-Giả sử trước đây:
-
-```text
-available = total - reserved
-```
-
-Sau thay đổi:
-
-```text
-available = total - reserved - pending_withdrawal
-```
-
-AI mở `Được sử dụng bởi` của `BAL-AVAILABLE` và phân tích:
-
-| Caller | Ảnh hưởng có thể có |
-|---|---|
-| View Balance | Giá trị hiển thị có thể giảm; cần cập nhật mô tả, ví dụ và expected output |
-| Place Order | Điều kiện “đủ số dư” có thể cho kết quả khác; cần cập nhật flow từ chối và test boundary |
-
-Có thể sau phân tích Human quyết định:
-
-- View Balance vẫn nên đọc `BAL-AVAILABLE` mới;
-- Place Order cần một khái niệm chính xác hơn là `BAL-SPENDABLE`.
-
-Khi đó AI:
-
-1. đổi forward link của `ORD-CHECK-BALANCE` từ `BAL-AVAILABLE` sang `BAL-SPENDABLE`;
-2. xóa backlink cũ trong `BAL-AVAILABLE`;
-3. thêm backlink mới trong `BAL-SPENDABLE`;
-4. cập nhật rule, flow và test của Place Order.
-
-### Khi nơi gọi không còn cần đọc state
-
-Giả sử Place Order bỏ bước đọc trước và gọi thẳng `BAL-RESERVE`; chính `BAL-RESERVE` chịu trách nhiệm từ chối nếu thiếu tiền.
-
-AI sẽ:
-
-1. xóa bước `ORD-CHECK-BALANCE` nếu nó không còn ý nghĩa khác;
-2. xóa forward relation `READS_STATE BAL-AVAILABLE`;
-3. xóa backlink tương ứng trong `BALANCE.md`;
-4. giữ relation `CHANGES_STATE BAL-RESERVE`;
-5. cập nhật flow để xử lý output `INSUFFICIENT_BALANCE` từ `BAL-RESERVE`.
-
-### `READS_STATE` giúp gì?
-
-- xác định chính xác ai đang phụ thuộc vào ý nghĩa của một state;
-- tìm nơi bị ảnh hưởng khi state definition, đơn vị, phạm vi hoặc độ mới thay đổi;
-- chỉ rõ tài liệu nào sở hữu state, tránh mỗi Feature tự định nghĩa balance theo một cách.
-
-## 5. Ví dụ `CHANGES_STATE`: yêu cầu thay đổi state
-
-### Nghiệp vụ được gọi
-
-`BALANCE#BAL-RESERVE`:
-
-```text
-Input: asset, amount
-Precondition: amount > 0 và available >= amount
-Success:
-- available giảm amount
-- reserved tăng amount
-Failure:
-- trả lỗi
-- balance giữ nguyên
-Invariant:
-- available và reserved không âm
-```
-
-Các nơi gọi:
-
-```text
-F-PLACE-ORDER#ORD-RESERVE-BALANCE CHANGES_STATE BAL-RESERVE
-F-WITHDRAW#WDR-HOLD-BALANCE CHANGES_STATE BAL-RESERVE
-```
-
-### Khi `BAL-RESERVE` thay đổi
-
-Giả sử nghiệp vụ đổi từ “chỉ chấp nhận toàn bộ amount” thành “có thể reserve một phần và trả về actual_reserved”.
-
-AI mở các backlink `CHANGES_STATE` và phát hiện:
-
-| Caller | Câu hỏi impact bắt buộc |
-|---|---|
-| Place Order | Có chấp nhận đặt lệnh với số tiền reserve một phần không? Order chuyển state nào? |
-| Withdraw | Có được tạo yêu cầu rút một phần không hay phải từ chối toàn bộ? |
-
-Hai Feature có thể đưa ra quyết định khác nhau:
-
-- Place Order cho phép giảm quantity theo `actual_reserved`;
-- Withdraw vẫn yêu cầu all-or-nothing và từ chối nếu reserve không đủ.
-
-AI phải cập nhật tại từng caller:
-
-- cách gọi contract;
-- cách xử lý output;
-- flow thành công/từ chối;
-- expected final state;
-- invariant và test liên quan.
-
-### Khi nơi gọi thay đổi
-
-Giả sử Place Order chuyển sang mô hình không reserve trước mà chỉ debit khi match.
-
-AI đọc `File này sử dụng` của Feature và:
-
-1. xóa bước `ORD-RESERVE-BALANCE`;
-2. xóa forward relation `CHANGES_STATE BAL-RESERVE`;
-3. xóa backlink Place Order trong `BAL-RESERVE`;
-4. thêm relation mới tới nghiệp vụ debit tại bước match nếu cần;
-5. cập nhật flow, order state, balance effect, AC và test;
-6. không xóa `BAL-RESERVE` nếu Withdraw hoặc Feature khác vẫn dùng.
-
-### `CHANGES_STATE` giúp gì?
-
-- tìm tất cả nơi có khả năng làm thay đổi state được sở hữu tập trung;
-- đánh giá ảnh hưởng khi precondition, transition, error hoặc invariant thay đổi;
-- phát hiện các Feature đang yêu cầu thay đổi cùng một state;
-- hỗ trợ sinh dependency contract test: caller phải gửi input đúng và xử lý đủ success/failure;
-- giúp ưu tiên review vì thay đổi state thường có rủi ro cao hơn chỉ đọc state.
-
-## 6. Ba loại quan hệ giúp impact analysis chính xác hơn thế nào?
-
-Giả sử `BALANCE.md` thay đổi:
-
-| Phần thay đổi | Nhóm cần xem trước |
-|---|---|
-| Công thức tính phí độc lập | Các relation `USES` tới công thức đó |
-| Ý nghĩa của available balance | Các relation `READS_STATE` tới state đó; đồng thời xem writer nếu invariant chung bị đổi |
-| Rule reserve/release/debit | Các relation `CHANGES_STATE` tới đúng operation bị đổi |
-| Invariant cấp toàn bộ Balance | Cả `READS_STATE` và `CHANGES_STATE` liên quan tới phạm vi invariant |
-
-Nếu chỉ có một relation chung là `USES`, AI vẫn có thể phân tích nhưng phải mở tất cả caller rồi tự xác định lại mục đích của từng dependency. Ba loại quan hệ giúp thu hẹp phạm vi và biết ngay lý do phải review.
-
-Tuy nhiên, relation type không thay thế nội dung chi tiết. Mỗi relation vẫn phải trỏ tới đúng section và ghi mục đích; AI vẫn đọc contract thật trước khi kết luận ảnh hưởng.
-
-## 7. Quy tắc phân loại cuối cùng
+Giả sử graph ban đầu:
 
 ```mermaid
-flowchart TD
-    A[Caller phụ thuộc vào một nghiệp vụ khác] --> B{Mục đích của hành động?}
-    B -->|Yêu cầu thay đổi state| C[CHANGES_STATE]
-    B -->|Chỉ đọc state hiện tại| D[READS_STATE]
-    B -->|Dùng rule, calculation hoặc validation| E[USES]
+flowchart LR
+    D[D] --> A[A]
+    E[E] --> C[C]
+    A --> B[B thay đổi]
+    C --> B
+    A --> X[X]
+    C --> Y[Y]
 ```
 
-Quy tắc ưu tiên:
+Mũi tên có nghĩa “nơi bên trái phụ thuộc vào nơi bên phải”.
+
+Khi B thay đổi, quy trình không dừng ở A và C:
+
+### Bước 1 — Phân tích chính B
+
+- đọc toàn bộ tài liệu chứa B;
+- xác định chính xác semantics nào đổi;
+- đọc mọi dependency mà B đang gọi để bảo đảm B mới vẫn tương thích;
+- tìm tất cả backlink và tìm kiếm toàn bộ tài liệu theo ID/link của B.
+
+Việc tìm kiếm toàn bộ tài liệu là lớp an toàn bổ sung. Nếu ai đó quên ghi backlink nhưng trong nội dung vẫn có link hoặc ID của B, AI vẫn có cơ hội phát hiện.
+
+### Bước 2 — Đọc đầy đủ A và C
+
+Vì A và C gọi B, AI phải đọc toàn bộ tài liệu của A và C, không chỉ nhìn một dòng backlink.
+
+Với mỗi nơi, AI kết luận một trong hai trạng thái phân tích:
 
 ```text
-CHANGES_STATE > READS_STATE > USES
+CẦN SỬA
+ĐÃ KIỂM TRA — KHÔNG CẦN SỬA
 ```
 
-Nghĩa là nếu một operation vừa phải đọc state để kiểm tra vừa thay đổi state khi thành công, ghi `CHANGES_STATE`. Không ghi ba relation cho cùng một hành động.
+Kết luận phải có lý do cụ thể.
 
-Mình vẫn khuyến nghị giữ cả ba loại vì mỗi loại giúp tìm một nhóm ảnh hưởng khác nhau, nhưng chỉ sau khi định nghĩa chúng loại trừ nhau như trên. Lượt này chưa sửa phần relation trong tài liệu để bạn tiếp tục đánh giá trước khi chốt.
+Ví dụ:
 
-Toàn bộ câu trả lời đã được ghi vào `answer.md`, commit và push lên `origin/master`.
+| Mục | Kết luận | Lý do |
+|---|---|---|
+| A | `CẦN SỬA` | Output mới của B làm công thức và output của A thay đổi |
+| C | `ĐÃ KIỂM TRA — KHÔNG CẦN SỬA` | C chỉ cần điều kiện mà B vẫn giữ nguyên; output/flow của C không đổi |
+
+### Bước 3 — Lan truyền từ A vì A đã thay đổi
+
+Do semantics hoặc contract của A thay đổi, AI coi A là một điểm thay đổi mới:
+
+- đọc các dependency A đang gọi, gồm X và B, để kiểm tra A mới vẫn dùng chúng đúng;
+- lần backlink của A tới D;
+- đọc toàn bộ D;
+- nếu D phải đổi thì tiếp tục làm tương tự với dependency và caller của D.
+
+### Bước 4 — Dừng nhánh C nếu C không đổi
+
+C đã được đọc đầy đủ và có kết luận không thay đổi semantics. Vì vậy không cần lan tiếp tới E chỉ vì E gọi C.
+
+Lý do: contract mà E nhìn thấy từ C vẫn y nguyên. Việc tiếp tục đọc E sẽ không còn căn cứ nghiệp vụ và chỉ biến impact analysis thành quét toàn bộ graph mỗi lần.
+
+Nếu C chỉ sửa câu chữ nội bộ nhưng input/output, behavior, state và contract không đổi thì cũng không lan truyền nghiệp vụ tới E.
+
+### Bước 5 — Lặp đến điểm ổn định
+
+Quy trình tiếp tục cho đến khi một vòng phân tích không tìm thấy mục mới cần sửa:
+
+```text
+B thay đổi
+├── A cần sửa
+│   ├── kiểm tra dependency của A
+│   └── D gọi A → đọc D
+│       └── nếu D đổi thì tiếp tục đệ quy
+└── C đã đọc, không cần sửa
+    └── dừng nhánh tại C
+```
+
+Đây là điều kiện dừng rõ ràng: **không còn semantics hoặc contract mới nào bị thay đổi để lan truyền tiếp**.
+
+## 4. Phải đi cả hai hướng, không chỉ lần ngược caller
+
+Với mỗi mục X bị thay đổi, AI phải kiểm tra:
+
+| Hướng | Câu hỏi |
+|---|---|
+| Dependency X đang gọi | Sau khi X đổi, X còn dùng đúng contract của các dependency không? |
+| Caller đang gọi X | Thay đổi của X có làm caller đổi behavior, state, flow hoặc output không? |
+
+Ví dụ A thay đổi vì B:
+
+```text
+A → B
+A → X
+D → A
+```
+
+Ta không chỉ xem D có bị A ảnh hưởng hay không. Ta còn phải xem phiên bản mới của A có tiếp tục truyền input đúng cho X và xử lý output của X đúng không.
+
+Nhờ vậy change set được kiểm tra cả:
+
+- chiều đi xuống dependency;
+- chiều đi ngược lên caller;
+- các nhánh phát sinh khi caller tiếp tục thay đổi.
+
+## 5. Impact list phải ghi lại toàn bộ nơi đã xem
+
+Để chứng minh AI không bỏ sót hoặc chỉ nói chung chung, impact list nên có tối thiểu:
+
+| Mục đã đọc | Được tìm thấy từ | Kết luận | Lý do | Có lan truyền tiếp không? |
+|---|---|---|---|---|
+| B | Yêu cầu thay đổi ban đầu | `CẦN SỬA` | Rule tính phí đổi | Có |
+| A | Backlink của B | `CẦN SỬA` | Output và tổng tiền đổi | Có |
+| C | Backlink của B | `KHÔNG CẦN SỬA` | Contract C quan sát không đổi | Không |
+| X | Dependency của A | `KHÔNG CẦN SỬA` | A vẫn đáp ứng input contract của X | Không |
+| D | Backlink của A | `CẦN SỬA` hoặc `KHÔNG CẦN SỬA` | Kết luận sau khi đọc D | Tùy kết quả |
+
+Nếu graph có vòng như A phụ thuộc B và B gián tiếp phụ thuộc A, AI giữ danh sách mục đã đọc cùng phiên bản phân tích để không lặp vô hạn. Nếu một mục tiếp tục thay đổi ở vòng sau, nó được xem lại với semantics mới.
+
+## 6. Khi nào toàn bộ thay đổi được coi là hoàn tất?
+
+Chỉ hoàn tất khi:
+
+1. mọi caller trực tiếp của mục thay đổi đã được đọc;
+2. mọi dependency của từng mục thực sự bị sửa đã được kiểm tra lại;
+3. mọi caller của mục thực sự bị sửa đã được phân tích đệ quy;
+4. mỗi mục trong impact list có kết luận và lý do;
+5. nội dung, flow table, Mermaid, AC/test, `INDEX.md`, forward link và backlink đã đồng bộ;
+6. không còn link hỏng hoặc quan hệ một chiều;
+7. tìm kiếm toàn bộ tài liệu không còn tham chiếu cũ bị bỏ sót;
+8. một vòng phân tích mới không phát hiện thêm semantics cần sửa;
+9. toàn bộ change set được Human review và approve.
+
+Điều này tạo tính trọn vẹn **trong phạm vi nguồn sự thật hiện có**. Không phương pháp nào có thể bảo đảm một dependency chưa từng được viết ra sẽ tự xuất hiện, nên forward/backlink, tìm kiếm toàn văn và Human review vẫn phải hỗ trợ lẫn nhau.
+
+## 7. Những thay đổi mình đã cập nhật vào tài liệu
+
+Mình đã cập nhật trực tiếp `cach_tao_dac_ta_nghiep_vu_voi_ai.md` theo kết luận trên:
+
+- bỏ toàn bộ `CONTAINS / PART_OF`;
+- bỏ `USES / USED_BY`;
+- bỏ `READS_STATE / STATE_READ_BY`;
+- bỏ `CHANGES_STATE / STATE_CHANGED_BY`;
+- bỏ `NEXT / PREVIOUS` khỏi relation map;
+- relation map chỉ còn `Từ mục`, `Đến mục`, `Mục đích` và backlink tương ứng;
+- bỏ `ALL`, bắt buộc link đến mục cụ thể;
+- flow được mô tả bằng bảng; Mermaid dùng thêm cho flow phức tạp;
+- bổ sung impact analysis hai hướng và đệ quy đến điểm ổn định;
+- bắt buộc đọc toàn bộ caller, ghi cả trường hợp không cần sửa cùng lý do;
+- bổ sung tìm kiếm toàn văn để bắt tham chiếu bị thiếu trong relation map;
+- cập nhật ví dụ graph để nhãn cạnh chỉ là ID nghiệp vụ được gọi, không còn loại quan hệ.
+
+Đây là hướng mình khuyến nghị: cấu trúc dependency đơn giản hơn nhưng quy trình phân tích nghiêm ngặt và toàn diện hơn. Chi phí AI cao hơn, nhưng phù hợp với ưu tiên chất lượng mà bạn vừa xác nhận.
+
+Các thay đổi và toàn bộ câu trả lời này đã được commit, push lên `origin/master`.
