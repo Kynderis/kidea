@@ -1,237 +1,191 @@
-# Trả lời ba điểm còn thắc mắc
+# Trả lời về ID và cách biểu diễn flow
 
-## 1. Có nên xóa hẳn nghiệp vụ cũ khỏi tài liệu hiện hành?
+## 1. Xóa hoàn toàn ID và nghiệp vụ cũ
 
-Bạn hiểu đúng. Quy tắc trước đó của mình quá cứng khi yêu cầu mặc định giữ nguyên mục cũ dưới trạng thái `SUPERSEDED`.
+Mình đồng ý với bạn. Tư duy đúng của project này là:
 
-Điều bắt buộc phải giữ là **khả năng phân tích và cập nhật tất cả nơi đang dùng**, không phải giữ toàn bộ nội dung cũ mãi mãi trong tài liệu hiện hành.
+> Bộ tài liệu hiện hành chỉ phản ánh nghiệp vụ mới nhất và đang có hiệu lực. Khi thay đổi, phải cập nhật trọn vẹn mọi nơi liên quan; không giữ lịch sử trong tài liệu hiện hành.
 
-### Trường hợp chỉ cập nhật nghiệp vụ
+Vì vậy, khi `BAL-RESERVE` không còn được sử dụng:
 
-Nếu mục đích và trách nhiệm vẫn là “reserve số dư”, nhưng ta thay đổi một số rule như:
+1. tìm toàn bộ Feature, tài liệu dùng chung, test, forward link và backlink liên quan;
+2. với từng nơi, quyết định chuyển sang nghiệp vụ khác hoặc xóa dependency;
+3. cập nhật tất cả trong cùng change set;
+4. kiểm tra không còn link hoặc tham chiếu sót;
+5. xóa hoàn toàn mục `BAL-RESERVE`;
+6. không giữ stub `SUPERSEDED`, không giữ danh sách mã cũ trong `INDEX.md`.
 
-- thêm điều kiện số tiền phải lớn hơn `0`;
-- đổi cách làm tròn;
-- bổ sung một mã lỗi;
-- điều chỉnh công thức tính số tiền cần reserve;
+Sau này nếu xuất hiện một nghiệp vụ mới thực sự mang nghĩa “reserve balance” thì hoàn toàn có thể dùng lại ID `BAL-RESERVE`.
 
-thì vẫn giữ ID `BAL-RESERVE`.
+ID chỉ cần đáp ứng hai điều trong **tài liệu hiện hành**:
 
-Quy trình đúng là:
+- duy nhất, không trùng với mục khác đang tồn tại;
+- đúng với ý nghĩa nghiệp vụ hiện tại.
 
-1. đưa tài liệu về `DRAFT` nếu trước đó đã được duyệt;
-2. tìm tất cả Feature, tài liệu và test đang dùng `BAL-RESERVE`;
-3. phân tích từng nơi xem có cần cập nhật không;
-4. cập nhật hoặc ghi rõ “không cần đổi” kèm lý do;
-5. Human duyệt lại toàn bộ impact list.
+Từ “ổn định” ở đây chỉ nên hiểu là: trong lúc một mục vẫn còn tồn tại, việc đổi câu chữ hoặc tiêu đề trình bày không được làm link đến mục đó bị hỏng. Nó không có nghĩa ID phải được giữ vĩnh viễn sau khi nghiệp vụ đã bị xóa.
 
-Không cần tạo ID mới chỉ vì rule được cập nhật.
+Mình đã sửa tài liệu theo đúng nguyên tắc này:
 
-### Trường hợp nghiệp vụ thực sự bị thay bằng một nghiệp vụ khác
+- bỏ danh sách `Mã đã ngừng dùng`;
+- bỏ trạng thái `SUPERSEDED`;
+- hệ trạng thái tài liệu chỉ còn `DRAFT → IN_REVIEW → APPROVED`;
+- quy trình thay đổi bắt buộc cập nhật toàn bộ nơi liên quan rồi xóa sạch nội dung cũ;
+- cho phép dùng lại ID đã xóa nếu nó phù hợp với nghiệp vụ hiện hành mới.
 
-Chỉ tạo ID mới khi **ý nghĩa hoặc trách nhiệm đã đổi thành một contract nghiệp vụ khác**.
+## 2. `NEXT / PREVIOUS` có chỉ dùng trong từng Feature không?
 
-Ví dụ:
+Cách hiểu của bạn **gần đúng**: `NEXT / PREVIOUS` mô tả thứ tự các bước trong một **flow nghiệp vụ cụ thể**, và flow đó thường thuộc một Feature.
 
-```text
-BAL-RESERVE
-= chuyển tiền từ available sang reserved ngay lập tức
-```
+Tuy nhiên, cần phân biệt hai khái niệm:
 
-được thay bằng:
-
-```text
-BAL-HOLD
-= tạo một khoản hold có thời hạn, có thể gia hạn, capture một phần hoặc hết hạn
-```
-
-Hai nghiệp vụ này có vòng đời, state và hành vi khác nhau. Khi đó ta tạo `BAL-HOLD`, nhưng vẫn bắt buộc phân tích mọi nơi đang dùng `BAL-RESERVE`:
-
-- nơi nào phù hợp với mô hình mới thì chuyển sang `BAL-HOLD`;
-- nơi nào vẫn cần hành vi khác thì chuyển sang dependency phù hợp khác;
-- nơi nào không còn cần reserve thì xóa dependency;
-- test, forward link, backlink và `INDEX.md` phải được cập nhật cùng lúc.
-
-Sau khi không còn tài liệu hiện hành nào dùng `BAL-RESERVE`, ta có thể xóa toàn bộ nội dung cũ khỏi tài liệu hiện hành.
-
-### Vậy còn `SUPERSEDED` để làm gì?
-
-`SUPERSEDED` chỉ nên dùng tạm thời khi có lý do cụ thể, chẳng hạn:
-
-- đang trong giai đoạn chuyển đổi và chưa thể cập nhật hết các consumer trong cùng một lần;
-- có tài liệu hoặc hệ thống bên ngoài repository vẫn đang link đến mã cũ;
-- Human cần duy trì song song nghiệp vụ cũ và mới trong một khoảng thời gian.
-
-Nếu đã cập nhật được tất cả nơi dùng thì không cần giữ cả mục cũ làm rác.
-
-Để tránh sau này vô tình lấy `BAL-RESERVE` đặt cho một nghĩa hoàn toàn khác, `INDEX.md` chỉ giữ một dòng rất ngắn:
-
-```markdown
-| Mã | Nghĩa cũ | Mã thay thế | Ngừng dùng tại revision |
-|---|---|---|---|
-| `BAL-RESERVE` | Reserve balance theo mô hình cũ | `BAL-HOLD` | `abc1234` |
-```
-
-Đây không phải là giữ lại nghiệp vụ cũ. Nó chỉ là danh sách mã đã ngừng dùng. Nội dung đầy đủ và lý do thay đổi đã có Git history lưu lại.
-
-Quy tắc sau khi chỉnh lại là:
-
-| Tình huống | Xử lý ID |
+| Khái niệm | Câu hỏi nó trả lời |
 |---|---|
-| Cùng mục đích, chỉ thay rule/điều kiện/output | Giữ ID cũ và impact analysis tất cả consumer |
-| Đổi thành trách nhiệm nghiệp vụ khác | Tạo ID mới và di chuyển từng consumer sau phân tích |
-| Mã cũ không còn consumer | Xóa nội dung cũ; chỉ ghi một dòng mã đã ngừng dùng |
-| Còn giai đoạn chuyển tiếp hoặc tham chiếu ngoài | Tạm giữ mục `SUPERSEDED` và link sang mục mới |
+| Flow step | Sau bước nghiệp vụ này thì thực hiện bước nào? |
+| State transition | Khi có sự kiện này, đối tượng chuyển từ trạng thái nào sang trạng thái nào? |
 
-Mình đã cập nhật quy tắc này nhất quán tại mục 2.3, mục 4, mục 5 và mục 7.3 của tài liệu.
+`NEXT / PREVIOUS` nói về **thứ tự bước**, không trực tiếp nói về việc chuyển trạng thái.
 
-## 2. Cách hiểu về AC và Business Test Specification
-
-Cách hiểu của bạn **gần đúng**, nhưng cần sửa phần “đảm bảo với mọi trường hợp”.
-
-### AC
-
-AC là các hành vi hoặc điều kiện lớn mà Feature bắt buộc phải đạt để Human chấp nhận Feature đó.
-
-Ví dụ:
-
-```text
-Khi tài khoản hợp lệ và đủ số dư, yêu cầu rút tiền hợp lệ phải được chấp nhận,
-đồng thời số dư giảm đúng số tiền rút.
-```
-
-### Business Test Specification
-
-Business Test Specification biến AC và các rule chi tiết thành những trường hợp kiểm chứng cụ thể, gồm:
-
-- trường hợp phổ thông;
-- ranh giới;
-- trường hợp không hợp lệ;
-- trường hợp hiếm nhưng có rủi ro hoặc ý nghĩa nghiệp vụ;
-- state và chuỗi sự kiện quan trọng;
-- kết quả và final state mong đợi.
-
-Tuy nhiên, nó **không cố liệt kê mọi giá trị và mọi chuỗi có thể tồn tại**, vì điều đó thường là vô hạn hoặc quá lớn như mục 2.4 đã giải thích.
-
-Nó phải bảo đảm bao phủ đầy đủ **mô hình hữu hạn và phạm vi test đã được Human duyệt**, chứ không tuyên bố bao phủ toàn bộ không gian thực tế.
-
-Ngoài ra, Business Test Specification mới chỉ xác định:
-
-> Với tình huống này, kết quả đúng phải là gì?
-
-Nó chưa tự chứng minh phần mềm hoạt động đúng. Chỉ khi các test tương ứng được triển khai và chạy thành công thì ta mới có bằng chứng implementation đang đáp ứng đặc tả.
-
-Có thể hiểu ngắn gọn:
-
-| Thành phần | Vai trò |
-|---|---|
-| AC | Feature phải đạt những hành vi lớn nào? |
-| Business Test Specification | Dùng những tình huống cụ thể nào để kiểm chứng AC và rule? |
-| Test được triển khai và thực thi | Phần mềm thực tế có cho ra kết quả đã đặc tả không? |
-
-Một câu diễn đạt chính xác hơn cho ý của bạn là:
-
-> Business Test Specification bao phủ trường hợp phổ thông, ranh giới, trường hợp hiếm hoặc khó có ý nghĩa và rủi ro; qua đó kiểm chứng Feature trên phạm vi nghiệp vụ hữu hạn đã được Human chốt.
-
-## 3. `NEXT / PREVIOUS` có tác dụng khi nào?
-
-`NEXT / PREVIOUS` dùng để mô tả **thứ tự giữa các bước trong một flow cụ thể**.
-
-Ví dụ flow rút tiền:
+### Ví dụ Feature rút tiền
 
 ```mermaid
-flowchart LR
-    V[WDR-VALIDATE] -->|Hợp lệ| C[WDR-CHECK-BALANCE]
-    C -->|Đủ số dư| D[WDR-DEBIT]
-    D --> S[WDR-COMPLETE]
-    V -->|Không hợp lệ| R[WDR-REJECT]
-    C -->|Không đủ số dư| R
+flowchart TD
+    A[WDR-RECEIVE<br/>Nhận yêu cầu] --> B[WDR-VALIDATE<br/>Kiểm tra input]
+    B -->|Hợp lệ| C[WDR-CHECK-BALANCE<br/>Kiểm tra số dư]
+    B -->|Không hợp lệ| R[WDR-REJECT<br/>Từ chối]
+    C -->|Đủ số dư| D[WDR-DEBIT<br/>Trừ số dư]
+    C -->|Không đủ| R
+    D --> S[WDR-COMPLETE<br/>Hoàn thành]
 ```
 
-Quan hệ xuôi:
+Trong flow này:
 
 ```text
-WDR-VALIDATE
-    NEXT, khi input hợp lệ
-WDR-CHECK-BALANCE
+WDR-RECEIVE NEXT WDR-VALIDATE
+WDR-VALIDATE NEXT WDR-CHECK-BALANCE khi input hợp lệ
+WDR-VALIDATE NEXT WDR-REJECT khi input không hợp lệ
+WDR-CHECK-BALANCE NEXT WDR-DEBIT khi đủ số dư
+WDR-CHECK-BALANCE NEXT WDR-REJECT khi không đủ số dư
 ```
 
-Quan hệ ngược tại `WDR-CHECK-BALANCE`:
+`PREVIOUS` chỉ là chiều đọc ngược. Ví dụ:
 
 ```text
-WDR-CHECK-BALANCE
-    PREVIOUS, trong nhánh input hợp lệ
-WDR-VALIDATE
+WDR-DEBIT PREVIOUS WDR-CHECK-BALANCE
 ```
 
-### Nó hữu ích trong các trường hợp sau
+### State transition trong cùng Feature lại là chuyện khác
 
-#### 1. Các bước nằm ở nhiều section hoặc nhiều file
+Flow trên có thể làm trạng thái yêu cầu rút tiền thay đổi:
 
-Ví dụ validate nằm trong Feature, kiểm tra balance nằm trong tài liệu dùng chung và debit nằm ở tài liệu khác. `NEXT` giúp lần theo flow qua các file mà không phải đoán bước tiếp theo.
+```mermaid
+stateDiagram-v2
+    [*] --> RECEIVED: Nhận yêu cầu
+    RECEIVED --> REJECTED: Validation hoặc balance không đạt
+    RECEIVED --> PROCESSING: Validation và balance đạt
+    PROCESSING --> COMPLETED: Debit thành công
+```
 
-#### 2. Flow có nhiều nhánh
+Ở đây:
 
-Từ `WDR-VALIDATE`:
+- `WDR-VALIDATE → WDR-CHECK-BALANCE` là thứ tự bước trong flow;
+- `RECEIVED → PROCESSING` là chuyển trạng thái của yêu cầu rút tiền.
 
-- hợp lệ thì `NEXT` là `WDR-CHECK-BALANCE`;
-- không hợp lệ thì `NEXT` là `WDR-REJECT`.
+Hai thứ có liên quan nhưng không phải một.
 
-Vì vậy quan hệ phải đi kèm tên flow hoặc điều kiện nhánh. Nếu chỉ ghi `NEXT` mà không ghi điều kiện thì vẫn mơ hồ.
+## 3. Flow có thể nằm ngoài Feature không?
 
-#### 3. Có retry hoặc vòng lặp hợp lệ
+Có, nhưng chỉ khi tài liệu dùng chung thực sự **sở hữu một quy trình nghiệp vụ độc lập**.
 
-Ví dụ:
+Ví dụ `IDENTITY-VERIFICATION` là nghiệp vụ dùng chung có flow riêng:
 
 ```text
-PAYMENT-FAILED --[User retry]--> PAYMENT-PROCESSING
+Nhận hồ sơ → Kiểm tra hồ sơ → Yêu cầu bổ sung hoặc Phê duyệt → Hoàn tất
 ```
 
-Quan hệ `NEXT` cho thấy đây là vòng lặp có chủ ý, không phải link nhầm.
+Flow này có thể được nhiều Feature sử dụng, nên nó nằm trong tài liệu dùng chung `IDENTITY.md`.
 
-#### 4. Khi thay đổi thứ tự flow
+Ngược lại, một chức năng dùng chung đơn lẻ như `BAL-RESERVE` chỉ mô tả:
 
-Nếu `WDR-CHECK-KYC` được chèn vào giữa Validate và Check Balance, AI có thể phát hiện và cập nhật:
+- input;
+- precondition;
+- rule;
+- output;
+- state effect;
+- error.
+
+Nó không nên tự ghi rằng bước trước nó là Validate Order hay bước sau nó là Create Order, vì thứ tự đó do từng Feature quyết định.
+
+Quy tắc hợp lý là:
+
+- Feature sở hữu flow thực hiện Feature đó.
+- Tài liệu dùng chung chỉ sở hữu flow nếu bản thân nghiệp vụ dùng chung là một quy trình nhiều bước độc lập.
+- Một chức năng dùng chung được Feature gọi không tự sở hữu thứ tự trước/sau của Feature.
+
+## 4. Có nên dùng Mermaid cho các flow không?
+
+Có. Mermaid rất phù hợp để Human nhìn nhanh:
+
+- thứ tự các bước;
+- các nhánh thành công và từ chối;
+- vòng retry;
+- điểm gọi sang nghiệp vụ dùng chung;
+- trạng thái thay đổi như thế nào.
+
+Nhưng mình không đề xuất dùng Mermaid làm nguồn mô tả duy nhất. Diagram dễ nhìn nhưng không thuận tiện để chứa đầy đủ precondition, guard, input/output và state effect của từng bước.
+
+Cách bố trí tốt nhất là:
+
+### Phần 1 — Bảng flow là nguồn chi tiết
+
+```markdown
+| Bước | Nghiệp vụ | Điều kiện vào | Kết quả | Bước tiếp theo | State effect |
+|---|---|---|---|---|---|
+| `WDR-01` | Nhận yêu cầu | User đã đăng nhập | Ghi nhận yêu cầu | `WDR-02` | Tạo trạng thái `RECEIVED` |
+| `WDR-02` | Validate | Có đủ field | Hợp lệ hoặc lỗi validation | `WDR-03` hoặc `WDR-REJECT` | Không đổi balance |
+| `WDR-03` | Kiểm tra số dư | Input hợp lệ | Đủ hoặc thiếu số dư | `WDR-04` hoặc `WDR-REJECT` | Không đổi balance |
+| `WDR-04` | Dùng `BAL-DEBIT` | Đủ số dư | Debit thành công | `WDR-DONE` | Balance giảm đúng amount |
+```
+
+Bảng này phù hợp cho cả AI và Human vì mỗi bước có dữ liệu rõ ràng, có thể tìm kiếm và impact analysis.
+
+### Phần 2 — Mermaid là góc nhìn trực quan
+
+Mermaid được đặt ngay sau bảng để thể hiện cùng flow bằng hình. Nó không được bổ sung rule chỉ có trong hình; mọi rule quan trọng vẫn phải nằm trong bảng hoặc section nghiệp vụ tương ứng.
 
 ```text
-Trước:
-WDR-VALIDATE → WDR-CHECK-BALANCE
-
-Sau:
-WDR-VALIDATE → WDR-CHECK-KYC → WDR-CHECK-BALANCE
+Bảng flow = nguồn chi tiết có hiệu lực
+Mermaid   = góc nhìn trực quan của cùng nội dung
 ```
 
-Backlink `PREVIOUS` giúp phát hiện `WDR-CHECK-BALANCE` vẫn đang trỏ ngược về bước cũ hay chưa.
+Nếu bảng và Mermaid không khớp, phải sửa Mermaid theo bảng.
 
-### Có cần dùng cho mọi flow không?
+## 5. Có cần ghi riêng `NEXT / PREVIOUS` nữa không?
 
-Không nên.
+Sau khi áp dụng nguyên tắc clean và không lặp dữ liệu không cần thiết, mình thấy **không nên giữ `NEXT / PREVIOUS` như một loại link hai chiều bắt buộc**.
 
-Nếu một flow đơn giản, nằm trọn trong một file và đã có bảng hoặc danh sách đánh số rõ ràng:
+Lý do:
+
+- cột `Bước tiếp theo` trong bảng flow đã thể hiện `NEXT`;
+- từ bảng có thể suy ra bước trước, nên ghi thêm `PREVIOUS` là lặp dữ liệu;
+- Mermaid cũng được sinh từ cùng thứ tự đó;
+- forward/backlink nên tập trung vào dependency giữa các nghiệp vụ, không dùng để lặp lại thứ tự nội bộ của một flow.
+
+Đề xuất đơn giản hơn:
 
 ```text
-1. Validate
-2. Check balance
-3. Debit
-4. Complete
+Dependency giữa tài liệu:
+CONTAINS / PART_OF
+USES / USED_BY
+READS_STATE / STATE_READ_BY
+CHANGES_STATE / STATE_CHANGED_BY
+
+Thứ tự trong flow:
+Bảng flow với “Bước tiếp theo”
++ Mermaid khi flow đủ phức tạp để cần hình
 ```
 
-thì thêm `NEXT / PREVIOUS` cho từng bước chỉ làm tài liệu nặng và lặp thông tin.
+Với flow rất đơn giản chỉ có hai hoặc ba bước thẳng, danh sách đánh số hoặc bảng là đủ, không bắt buộc Mermaid. Với flow có nhánh, retry, nhiều state hoặc đi qua nhiều nghiệp vụ dùng chung, nên có Mermaid.
 
-Mình đề xuất quy tắc gọn hơn:
+Mình khuyến nghị sửa tài liệu theo hướng này: bỏ `NEXT / PREVIOUS` khỏi bảng quan hệ hai chiều và bổ sung quy ước **bảng flow là nguồn chi tiết, Mermaid là góc nhìn trực quan**. Phần này mình chưa sửa để bạn xác nhận trước.
 
-- Flow đơn giản trong cùng một section/file: dùng danh sách hoặc bảng thứ tự, không bắt buộc `NEXT / PREVIOUS`.
-- Flow đi qua nhiều section/file, có nhánh, retry hoặc bước được tái sử dụng: dùng `NEXT / PREVIOUS`, kèm flow ID và điều kiện nhánh.
-
-Như vậy ta vẫn dựng được flow graph khi thực sự cần nhưng không biến mọi tài liệu đơn giản thành một mạng link rườm rà. Mình chưa sửa phần này trong tài liệu, chờ bạn xác nhận cách giới hạn trên.
-
-Các thay đổi về ID cũ và toàn bộ câu trả lời này đã được commit, push lên `origin/master`.
-
-<oai-mem-citation>
-<citation_entries>
-MEMORY.md:51-51|note=[avoided carrying over discarded Kidea design decisions]
-</citation_entries>
-<rollout_ids>
-01a0389b-4126-7403-a368-d79d5bac0d69
-</rollout_ids>
-</oai-mem-citation>
+Thay đổi về việc xóa sạch ID/nghiệp vụ cũ và toàn bộ câu trả lời này đã được commit, push lên `origin/master`.
