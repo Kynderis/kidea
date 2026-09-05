@@ -1,46 +1,61 @@
-Ý mình là: **AC giúp bạn đọc được các điều kiện chấp nhận Feature; rule giải thích chính xác từng điều kiện; test đưa dữ liệu cụ thể để kiểm tra.** Câu “AC ngắn” trước đó dễ khiến bạn hiểu thành chỉ chọn vài hành vi tiêu biểu rồi bỏ phần còn lại. Mình diễn đạt chưa rõ. :codex-annotation{index="1"}
+Đúng, **một AC có thể dựa trên nhiều rule, và một rule thường cần nhiều test**. Nhưng còn chiều ngược lại: **một rule có thể phục vụ nhiều AC, và một test có thể kiểm tra nhiều rule hoặc AC cùng lúc**.
 
-Lấy ví dụ đơn giản: **chủ đơn được hủy đơn đang chờ xử lý**.
+Vì vậy, chúng liên kết với nhau theo quan hệ **nhiều–nhiều**, không phải một cây mà mỗi test chỉ thuộc đúng một rule.
 
-**Trong phần AC**, ta viết:
+Lấy ví dụ Feature **“Hủy đơn hàng”**. Giả sử đơn tồn tại, người yêu cầu đã đăng nhập và ta đã chốt các rule sau:
 
-> Khi chủ đơn yêu cầu hủy một đơn đang chờ xử lý, yêu cầu phải thành công và đơn chuyển sang đã hủy.
-
-Bạn đọc câu này để đánh giá: “Đúng, tôi muốn Feature có hành vi đó.”
-
-**Trong phần rule**, ta làm rõ những gì câu trên dựa vào:
-
-| Rule | Nội dung |
+| Rule | Quy tắc nghiệp vụ |
 |---|---|
-| Quyền hủy | Người yêu cầu phải có ID trùng với ID chủ đơn. |
-| Trạng thái cho phép | Chỉ cho hủy khi trạng thái hiện tại là `CHỜ_XỬ_LÝ`. |
-| Kết quả thành công | Chuyển trạng thái sang `ĐÃ_HỦY`, giữ nguyên chủ đơn. |
-| Kết quả từ chối | Nếu không đủ điều kiện thì từ chối, trạng thái đơn giữ nguyên. |
+| R1 | Chỉ chủ đơn mới được hủy đơn. |
+| R2 | Chỉ đơn đang `CHỜ_XỬ_LÝ` mới được hủy. |
+| R3 | Khi thỏa cả R1 và R2, hủy thành công và chuyển đơn sang `ĐÃ_HỦY`. |
+| R4 | Khi yêu cầu bị từ chối, trạng thái đơn phải giữ nguyên. |
 
-AC liên kết tới các rule này. Khi cần biết “chủ đơn được xác định thế nào?” hoặc “đơn đang giao có được hủy không?”, ta đọc phần rule tương ứng.
+**Từ các rule đó, AC diễn đạt những hành vi Feature cần đạt:**
 
-**Trong phần test**, ta chọn những tình huống cụ thể:
+| AC | Tiêu chí chấp nhận | Dựa trên rule |
+|---|---|---|
+| AC1 | Chủ đơn hủy đơn đang chờ xử lý thì thành công, đơn thành đã hủy. | R1 + R2 + R3 |
+| AC2 | Người không phải chủ đơn yêu cầu hủy thì bị từ chối, trạng thái đơn giữ nguyên. | R1 + R4 |
+| AC3 | Yêu cầu hủy đơn ở trạng thái không cho phép bị từ chối, trạng thái đơn giữ nguyên. | R2 + R4 |
 
-| Test | Ban đầu | Hành động | Kết quả mong đợi |
-|---|---|---|---|
-| T1 | Đơn O1 thuộc U1, đang chờ xử lý | U1 hủy O1 | Thành công; O1 thành đã hủy |
-| T2 | Đơn O1 thuộc U1, đang chờ xử lý | U2 hủy O1 | Từ chối; O1 vẫn chờ xử lý |
-| T3 | Đơn O1 thuộc U1, đang giao | U1 hủy O1 | Từ chối; O1 vẫn đang giao |
+Bạn có thể thấy:
 
-T1 kiểm tra AC thành công ở trên. T2 và T3 kiểm tra các rule từ chối; Feature cũng cần tiêu chí chấp nhận tương ứng nếu đây là những hành vi bắt buộc để chấp nhận Feature.
+- **AC1 dựa trên ba rule:** R1, R2, R3.
+- **R1 xuất hiện trong hai AC:** AC1 xét người có quyền; AC2 xét người không có quyền.
+- **R4 cũng phục vụ hai AC:** cả từ chối vì quyền lẫn vì trạng thái đều phải giữ nguyên đơn.
 
-**“Độ bao phủ nằm ở test” nghĩa là:** nhìn một câu AC chưa cho biết đã có đủ tình huống kiểm tra hay chưa. Ta phải đối chiếu các test với rule để biết:
+**Tiếp theo, test đặt dữ liệu cụ thể vào những hành vi này.**
 
-- đã kiểm tra đúng chủ đơn và sai chủ đơn chưa;
-- đã kiểm tra các trạng thái được phép và không được phép chưa;
-- đã kiểm tra trạng thái sau thành công và sau từ chối chưa.
+Trong các test dưới đây, đơn O1 thuộc U1; mỗi test bắt đầu độc lập:
 
-Chỉ có T1 thì chưa đủ, dù T1 đáp ứng AC thành công.
+| Test | Trạng thái ban đầu | Hành động | Kết quả mong đợi | AC được kiểm tra | Rule được kiểm tra |
+|---|---|---|---|---|---|
+| T1 | O1 chờ xử lý | U1 hủy O1 | Thành công; O1 thành đã hủy | AC1 | R1, R2, R3 |
+| T2 | O1 chờ xử lý | U2 hủy O1 | Từ chối; O1 vẫn chờ xử lý | AC2 | R1, R4 |
+| T3 | O1 đang giao | U1 hủy O1 | Từ chối; O1 vẫn đang giao | AC3 | R2, R4 |
+| T4 | O1 đang giao | U2 hủy O1 | Từ chối; O1 vẫn đang giao | AC2, AC3 | R1, R2, R4 |
 
-Còn “AI truy ngược được đầy đủ” nghĩa là mỗi test ghi rõ căn cứ của nó. Ví dụ T1 trỏ tới AC thành công và các rule quyền hủy/chuyển trạng thái. Khi rule quyền hủy đổi, AI tìm các AC và test liên quan để đọc, phân tích và cập nhật theo quy trình đệ quy ta đã chốt.
+Đọc bảng theo từng chiều sẽ thấy rõ quan hệ:
 
-**Mình điều chỉnh đề xuất thành: AC phải đủ các tiêu chí chấp nhận cần thiết, viết rõ và không dài hơn cần thiết. Không đặt mục tiêu ít AC hoặc ngắn bằng mọi giá.** Human vẫn review toàn bộ rule và test khi duyệt; phần AC chỉ giúp nhìn rõ những kết quả mà Feature phải đạt.
+- **Một AC → nhiều test:** AC2 được kiểm tra bởi T2 và T4.
+- **Một rule → nhiều test:** R4 được kiểm tra trong T2, T3 và T4.
+- **Một test → nhiều rule:** T1 kiểm tra quyền, trạng thái được phép và kết quả hủy.
+- **Một test → nhiều AC:** T4 đồng thời nằm trong trường hợp của AC2 và AC3.
 
-Có một sự trùng lặp thực sự ở đây: với Feature đơn giản, AC có thể gần giống rule. Nếu viết thêm AC chỉ là chép lại từng rule mà không giúp bạn đánh giá Feature dễ hơn, ta nên cân nhắc gộp hoặc bỏ lớp AC riêng. Đây là điểm cần đánh giá bằng ví dụ thực tế trước khi bắt buộc mọi Feature đều có một bảng AC.
+Tuy nhiên, **T4 không thay thế được T2 và T3**. Nếu phần mềm quên kiểm tra quyền, T4 vẫn có thể bị từ chối vì đơn đang giao. T2 mới kiểm tra riêng trường hợp chỉ sai quyền. Tương tự, T3 kiểm tra riêng trường hợp chỉ sai trạng thái. Đây là lý do cần nhiều test dù chúng có chung rule hoặc chung kết quả.
+
+Bảng trên chưa quy định mã lỗi khi vừa sai quyền vừa sai trạng thái. Nếu cần kiểm tra chính xác mã lỗi, ta phải chốt thêm rule ưu tiên lỗi trước, rồi mới bổ sung kết quả mong đợi cho T4.
+
+**Vậy khi viết tài liệu, ta nên làm thế nào?**
+
+1. Làm rõ rule và flow nghiệp vụ.
+2. Viết AC để diễn đạt các điều kiện chấp nhận Feature, liên kết về rule/flow tương ứng.
+3. Thiết kế test từ cả rule, AC, state và flow; mỗi test ghi rõ nó kiểm tra những mục nào.
+4. Đối chiếu ngược để biết AC/rule nào còn thiếu tình huống kiểm tra.
+
+Không cần “mỗi rule sinh một bộ test riêng” rồi chép cùng một test vào nhiều bộ. **T1 chỉ viết một lần và liên kết tới R1, R2, R3 cùng AC1.**
+
+Khi R1 thay đổi, AI tìm AC1, AC2 và các test có liên quan để đọc và phân tích; việc có link chỉ ra nơi cần xem, chưa tự động có nghĩa tất cả đều phải sửa.
 
 Mình chưa sửa tài liệu phương pháp. Câu trả lời đã được lưu vào [answer.md](https://github.com/Kynderis/kidea/blob/master/answer.md) và push lên GitHub.
