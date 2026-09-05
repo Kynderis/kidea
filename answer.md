@@ -1,54 +1,46 @@
-Được, ta chuyển sang AC/test và đi từng phần. Mình đã đọc lại toàn bộ tài liệu; hiện mục 8 mô tả cách thiết kế test khá nhiều, nhưng **AC mới được nhắc tên ở mục 6.3, chưa có quy tắc viết và liên kết cụ thể**. Nên bắt đầu từ chỗ này.
+Ý mình là: **AC giúp bạn đọc được các điều kiện chấp nhận Feature; rule giải thích chính xác từng điều kiện; test đưa dữ liệu cụ thể để kiểm tra.** Câu “AC ngắn” trước đó dễ khiến bạn hiểu thành chỉ chọn vài hành vi tiêu biểu rồi bỏ phần còn lại. Mình diễn đạt chưa rõ. :codex-annotation{index="1"}
 
-Mình đề xuất thứ tự:
+Lấy ví dụ đơn giản: **chủ đơn được hủy đơn đang chờ xử lý**.
 
-1. AC viết thế nào, nằm ở đâu và liên kết với nghiệp vụ ra sao.
-2. Một Business Test Specification cần ghi những gì.
-3. Test phần dùng chung và test Feature khác nhau thế nào để tránh trùng lặp.
-4. Cách xác định đủ coverage và cập nhật test khi nghiệp vụ thay đổi.
+**Trong phần AC**, ta viết:
 
-**Trước hết, AC có vai trò gì khi đã có đặc tả nghiệp vụ?**
+> Khi chủ đơn yêu cầu hủy một đơn đang chờ xử lý, yêu cầu phải thành công và đơn chuyển sang đã hủy.
 
-AC là tiêu chí chấp nhận: diễn đạt hành vi cần đạt ở góc nhìn người sử dụng hoặc kết quả nghiệp vụ. Nó giúp Human kiểm tra Feature có đáp ứng mục tiêu hay không.
+Bạn đọc câu này để đánh giá: “Đúng, tôi muốn Feature có hành vi đó.”
 
-Đặc tả chi tiết giải thích từng rule và cách các bước phối hợp. AC chọn ra những kết quả cần được chấp nhận; test đưa tình huống cụ thể để kiểm tra các kết quả đó.
+**Trong phần rule**, ta làm rõ những gì câu trên dựa vào:
 
-Ví dụ minh họa Feature “Hủy đơn hàng”, giả sử nghiệp vụ đã chốt:
-
-- Chỉ chủ đơn được yêu cầu hủy.
-- Đơn ở trạng thái `CHỜ_XỬ_LÝ` được hủy.
-- Hủy thành công chuyển đơn sang `ĐÃ_HỦY`.
-- Đơn `ĐANG_GIAO` không được hủy; từ chối thì trạng thái giữ nguyên.
-
-AC có thể viết:
-
-| AC | Tiêu chí chấp nhận | Căn cứ nghiệp vụ |
-|---|---|---|
-| `CANCEL-AC-01` | Chủ đơn hủy đơn đang chờ xử lý thì nhận kết quả thành công và đơn chuyển sang đã hủy. | Quyền hủy + chuyển trạng thái |
-| `CANCEL-AC-02` | Yêu cầu hủy của người không phải chủ đơn bị từ chối; đơn giữ nguyên trạng thái. | Quyền hủy |
-| `CANCEL-AC-03` | Chủ đơn yêu cầu hủy đơn đang giao thì bị từ chối; đơn vẫn đang giao. | Giới hạn trạng thái được hủy |
-
-Một test cụ thể cho `CANCEL-AC-01`:
-
-| Thành phần | Nội dung |
+| Rule | Nội dung |
 |---|---|
-| Căn cứ | `CANCEL-AC-01` và các rule quyền hủy/chuyển trạng thái |
-| Trạng thái ban đầu | Đơn `O-01` thuộc người dùng `U-01`, trạng thái `CHỜ_XỬ_LÝ` |
-| Sự kiện | `U-01` yêu cầu hủy `O-01` |
-| Kết quả mong đợi | Hủy thành công |
-| Trạng thái cuối | `O-01` thành `ĐÃ_HỦY`; chủ đơn vẫn là `U-01` |
+| Quyền hủy | Người yêu cầu phải có ID trùng với ID chủ đơn. |
+| Trạng thái cho phép | Chỉ cho hủy khi trạng thái hiện tại là `CHỜ_XỬ_LÝ`. |
+| Kết quả thành công | Chuyển trạng thái sang `ĐÃ_HỦY`, giữ nguyên chủ đơn. |
+| Kết quả từ chối | Nếu không đủ điều kiện thì từ chối, trạng thái đơn giữ nguyên. |
 
-Đây chỉ là ví dụ cho một nhánh thành công. Các nhánh từ chối và trường hợp khác cần test riêng theo phạm vi nghiệp vụ đã chốt.
+AC liên kết tới các rule này. Khi cần biết “chủ đơn được xác định thế nào?” hoặc “đơn đang giao có được hủy không?”, ta đọc phần rule tương ứng.
 
-**Để AC hữu ích mà tài liệu vẫn gọn, mình đề xuất:**
+**Trong phần test**, ta chọn những tình huống cụ thể:
 
-- Đặt AC và Business Test Specification ngay trong file Feature; chưa tạo file riêng.
-- Mỗi AC ghi rõ hoàn cảnh, hành động và kết quả quan sát được. Tránh câu như “hủy đơn hoạt động đúng”.
-- AC liên kết tới rule/flow nguồn, không sao chép toàn bộ công thức hoặc đặc tả dùng chung.
-- Test liên kết trực tiếp tới rule/state/flow được kiểm tra, và tới AC nếu có. Không bắt mọi test chi tiết phải đi vòng qua một AC.
-- Nghiệp vụ dùng chung có test cho contract của chính nó. Chưa cần thêm một lớp AC riêng nếu nó chỉ lặp lại contract.
-- Nếu viết AC hoặc test làm lộ một câu hỏi chưa chốt — chẳng hạn “hủy lại đơn đã hủy thì trả gì?” — ghi `OPEN` và làm rõ nghiệp vụ trước khi điền kết quả mong đợi.
+| Test | Ban đầu | Hành động | Kết quả mong đợi |
+|---|---|---|---|
+| T1 | Đơn O1 thuộc U1, đang chờ xử lý | U1 hủy O1 | Thành công; O1 thành đã hủy |
+| T2 | Đơn O1 thuộc U1, đang chờ xử lý | U2 hủy O1 | Từ chối; O1 vẫn chờ xử lý |
+| T3 | Đơn O1 thuộc U1, đang giao | U1 hủy O1 | Từ chối; O1 vẫn đang giao |
 
-Điểm đáng bàn đầu tiên là **AC nên là một danh sách tiêu chí chấp nhận ngắn trong Feature, còn độ chi tiết và bao phủ nằm ở rule cùng test liên quan**. Như vậy Human có phần đọc nhanh mà AI vẫn truy ngược được đầy đủ.
+T1 kiểm tra AC thành công ở trên. T2 và T3 kiểm tra các rule từ chối; Feature cũng cần tiêu chí chấp nhận tương ứng nếu đây là những hành vi bắt buộc để chấp nhận Feature.
 
-Đây là đề xuất để ta bàn tiếp, chưa sửa mục AC/test trong tài liệu phương pháp. Câu trả lời đã được lưu vào [answer.md](https://github.com/Kynderis/kidea/blob/master/answer.md) và push lên GitHub.
+**“Độ bao phủ nằm ở test” nghĩa là:** nhìn một câu AC chưa cho biết đã có đủ tình huống kiểm tra hay chưa. Ta phải đối chiếu các test với rule để biết:
+
+- đã kiểm tra đúng chủ đơn và sai chủ đơn chưa;
+- đã kiểm tra các trạng thái được phép và không được phép chưa;
+- đã kiểm tra trạng thái sau thành công và sau từ chối chưa.
+
+Chỉ có T1 thì chưa đủ, dù T1 đáp ứng AC thành công.
+
+Còn “AI truy ngược được đầy đủ” nghĩa là mỗi test ghi rõ căn cứ của nó. Ví dụ T1 trỏ tới AC thành công và các rule quyền hủy/chuyển trạng thái. Khi rule quyền hủy đổi, AI tìm các AC và test liên quan để đọc, phân tích và cập nhật theo quy trình đệ quy ta đã chốt.
+
+**Mình điều chỉnh đề xuất thành: AC phải đủ các tiêu chí chấp nhận cần thiết, viết rõ và không dài hơn cần thiết. Không đặt mục tiêu ít AC hoặc ngắn bằng mọi giá.** Human vẫn review toàn bộ rule và test khi duyệt; phần AC chỉ giúp nhìn rõ những kết quả mà Feature phải đạt.
+
+Có một sự trùng lặp thực sự ở đây: với Feature đơn giản, AC có thể gần giống rule. Nếu viết thêm AC chỉ là chép lại từng rule mà không giúp bạn đánh giá Feature dễ hơn, ta nên cân nhắc gộp hoặc bỏ lớp AC riêng. Đây là điểm cần đánh giá bằng ví dụ thực tế trước khi bắt buộc mọi Feature đều có một bảng AC.
+
+Mình chưa sửa tài liệu phương pháp. Câu trả lời đã được lưu vào [answer.md](https://github.com/Kynderis/kidea/blob/master/answer.md) và push lên GitHub.
