@@ -10,4 +10,4 @@ Ba file dưới đây được chuyển nguyên nội dung từ root vào thư m
 
 Các đường dẫn `docs/business/`, tên nghiệp vụ và link trong khối ví dụ là cấu trúc minh họa của phương pháp cũ, không phải các file đang tồn tại trong repository này. Khi tích hợp vào Kidea, sẽ đối chiếu để sử dụng dưới `.kidea/` và bổ sung những kết luận AC/flow/test đã được Human chốt nhưng chưa cập nhật vào bản phương pháp.
 
-Bản thiết kế hoạt động Kidea nằm ở [KIDEA_DESIGN.md](../../KIDEA_DESIGN.md): phần tổng thể đã được Human đồng ý; các giải pháp chi tiết bổ sung được đánh dấu riêng để review.
+Bản thiết kế hiện hành nằm ở [KIDEA_DESIGN.md](../../KIDEA_DESIGN.md): Human đã đồng ý định hướng tổng thể, các bổ sung và mô hình ba bản đồ. Những chi tiết phương pháp còn mở phải được thử và duyệt khi tích hợp; không tự coi toàn bộ bản `PROPOSED v0.2` là quy chuẩn đã duyệt. [KIDEA_ROADMAP.md](../../KIDEA_ROADMAP.md) quản lý lộ trình và trạng thái xây dựng Kidea, trong đó P04 dành cho phương pháp nghiệp vụ.

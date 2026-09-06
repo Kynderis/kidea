@@ -1,12 +1,16 @@
 # Kidea — Thiết kế cách hoạt động
 
-Trạng thái: `THIẾT KẾ TỔNG THỂ ĐÃ ĐƯỢC HUMAN ĐỒNG Ý — CHI TIẾT BỔ SUNG CHỜ REVIEW`
+Trạng thái: `THIẾT KẾ TỔNG THỂ ĐÃ ĐƯỢC HUMAN ĐỒNG Ý — CHƯA TRIỂN KHAI`
 
-Ngày: 2026-09-05
+Ngày cập nhật: 2026-09-06
 
-Phạm vi: định hình cách Kidea hoạt động; chưa tạo/cài skill, chưa chia phase/task để xây dựng Kidea.
+Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); chưa tạo/cài skill hoặc triển khai code.
 
-Human đã xác nhận “tôi hoàn toàn đồng ý với các đề xuất của bạn” đối với phản hồi trình bày thiết kế tổng thể trước lượt bổ sung này. Các yêu cầu mới về giao diện tiến độ, quy tắc code theo môi trường, approval ở bước con và tính nhất quán được ghi nhận là yêu cầu của Human. Các giải pháp chi tiết mới ở dưới vẫn chờ review; không coi sự đồng ý trước đó là phê duyệt trước cho nội dung AI mới viết.
+Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ sung, gồm giao diện tiến độ, quy tắc code theo môi trường, gate ở bước con, truy xuất xuyên tầng và ba bản đồ liên thông. Bản này hợp nhất các quyết định đó. Định dạng dữ liệu, runtime, bộ công cụ và phạm vi hỗ trợ cụ thể vẫn cần thiết kế, thử nghiệm và Human duyệt theo lộ trình; không coi đồng ý định hướng là duyệt trước mọi chi tiết triển khai.
+
+Tài liệu này là nguồn thiết kế hiện hành. Roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào để đối chiếu; `answer.md` là bản sao câu trả lời để đọc từ xa, không thay thế thiết kế hoặc roadmap.
+
+<a id="scope"></a>
 
 ## 1. Mục tiêu và ranh giới
 
@@ -23,8 +27,7 @@ Yêu cầu Human đã nêu:
 - Resume được qua phiên làm việc hoặc máy khác khi có đủ file cần thiết.
 - Trong project được Kidea quản lý, không tự commit, push hoặc tạo branch; chỉ thực hiện khi Human yêu cầu rõ.
 - Thêm Feature giữa MVP hoặc sau production đều quay lại chốt Feature rồi đi qua các bước tiếp theo.
-- Chốt thiết kế hoạt động Kidea trước, sau đó mới lập kế hoạch xây dựng skill.
-
+- Chốt thiết kế hoạt động Kidea trước, sau đó lập kế hoạch và xây dựng skill theo các gate đã duyệt.
 - Khi cần, có giao diện tổng quan và chi tiết trạng thái project, các bước/task, MVP hoặc bổ sung Feature cho sản phẩm đã chạy production.
 - Có quy tắc code phù hợp ngôn ngữ, thành phần và môi trường chạy; có cách kiểm tra việc tuân thủ và chất lượng thực tế.
 - Các bước con quan trọng cũng phải có Human approval, không chỉ bước lớn.
@@ -32,9 +35,9 @@ Yêu cầu Human đã nêu:
 
 Phân biệt hai phạm vi Git: quy tắc không tự thao tác Git ở trên là hành vi của skill trong project được quản lý. Tại repository xây dựng Kidea này, Human yêu cầu tiếp tục lưu toàn bộ câu trả lời cuối vào `answer.md`, commit và push để đọc trên GitHub; quy tắc đó còn hiệu lực đến khi Human yêu cầu dừng. Không đưa ngoại lệ riêng của repo này thành hành vi mặc định của skill.
 
-Các nguyên tắc và luồng tổng thể đã được Human đồng ý. Định dạng máy đọc, runtime của script và chi tiết triển khai chưa được chốt. Những đoạn ghi rõ “bổ sung — chờ review” là giải pháp mới, không phải quyết định đã được Human duyệt.
+Thiết kế tổng thể được chấp thuận không có nghĩa skill đã tồn tại, đã được test hoặc đủ tin cậy để quản lý sản phẩm thật. Các tiêu chí kiểm chứng và quyết định triển khai còn mở nằm ở mục 12 và roadmap.
 
-## 2. Những điều chỉnh so với phác thảo
+## 2. Nguyên tắc tổ chức quy trình
 
 ### 2.1. Làm rõ monitoring/admin trước kiến trúc
 
@@ -61,6 +64,8 @@ Không mặc định mọi sản phẩm phải có mobile, nhiều service, dash
 Future giúp nhận diện hướng mở rộng và những quyết định khó đảo ngược; không phải giấy phép xây trước mọi thứ. Với một người, đề xuất ban đầu nên xem xét một ứng dụng chia module rõ trước khi cân nhắc nhiều service, rồi quyết định theo yêu cầu thực tế.
 
 Tinh gọn nghĩa là mỗi file, trường dữ liệu, rule và bước kiểm tra có công dụng rõ, một nơi định nghĩa có hiệu lực; mạnh mẽ nghĩa là có thể kiểm chứng và tiếp tục an toàn khi bị ngắt; chỉn chu nghĩa là thông tin đúng, rõ, đồng bộ và kết quả được kiểm tra. Không lấy việc ít file hoặc ít bước làm thước đo duy nhất của sự đơn giản.
+
+<a id="workflow"></a>
 
 ## 3. Quy trình cho mỗi đợt phát triển
 
@@ -101,6 +106,8 @@ Trong lúc đang xây MVP, yêu cầu thêm Feature cũng quay về bước 1; l
 
 Chốt một Feature vào Future/Idea chỉ là chốt phân loại và mô tả cần thiết, không có nghĩa phải đặc tả đầy đủ hoặc cam kết triển khai nó. Bước 1 hoàn tất khi Human duyệt phạm vi đợt hiện tại và Feature Map, không cần biến mọi Idea thành quyết định xây sản phẩm.
 
+<a id="state-approval"></a>
+
 ## 4. Trạng thái, approval và điều kiện dừng
 
 ### 4.1. Một việc hiện hành
@@ -127,13 +134,13 @@ Lưu phạm vi, thời điểm, xác nhận của Human và phiên bản nội d
 
 Với thay đổi làm sai căn cứ đã duyệt, đưa nội dung đó về nháp và đánh dấu phần phụ thuộc cần kiểm tra lại. Không bắt duyệt lại mọi trang chỉ vì một lỗi chính tả.
 
-Đề xuất gate bên trong bước 9: Human duyệt kế hoạch; từng task chỉ DONE khi đạt các kiểm tra đã chốt; cuối mỗi phase có gói review và Human duyệt trước phase tiếp. Không yêu cầu thêm một lần approve cho mọi chỉnh sửa nhỏ ngoài các gate đã thống nhất.
+Gate bên trong bước 9: Human duyệt kế hoạch; từng task chỉ DONE khi đạt các kiểm tra đã chốt; cuối mỗi phase có gói review và Human duyệt trước phase tiếp. Không yêu cầu thêm một lần approve cho mọi chỉnh sửa nhỏ ngoài các gate đã thống nhất.
 
-#### Gate ở bước con — bổ sung, chi tiết chờ review
+#### Gate ở bước con
 
 Không để AI tự quyết định tùy hứng bước nào “đủ quan trọng”. Khi phân rã một bước lớn, AI phải nêu bước con nào cần Human duyệt, duyệt điều gì, dựa trên đầu ra nào và lý do. Human chốt các điểm dừng này trước khi thực hiện phần phụ thuộc vào quyết định đó.
 
-Các nhóm quyết định đề xuất bắt buộc trình Human, dù nằm ở bước con:
+Các nhóm quyết định bắt buộc trình Human, dù nằm ở bước con:
 
 - Thay đổi phạm vi, hành vi nghiệp vụ, rule hoặc thứ tự/ý nghĩa lỗi mà người sử dụng quan sát được.
 - Ranh giới nghiệp vụ dùng chung, quyền sở hữu dữ liệu và hợp đồng API/event có ảnh hưởng bên sử dụng.
@@ -153,7 +160,9 @@ Approve thiết kế, phase hoặc bản sẵn sàng phát hành không mặc nh
 
 Không tự chạy thử phá hỏng hệ thống trên production. Kịch bản sự cố được diễn tập trong môi trường được phép; nếu cần kiểm chứng ở production phải có kế hoạch và quyền riêng.
 
-## 5. Cấu trúc file đề xuất
+<a id="files-view"></a>
+
+## 5. Cấu trúc hồ sơ và giao diện tiến độ
 
 ```text
 .kidea/
@@ -174,7 +183,7 @@ Init chỉ cần tạo `INDEX.md`, `work.md`, `features.md`. Thư mục và tài
 
 ### INDEX.md
 
-Đề xuất dùng tên `INDEX.md` vì bản thân thư mục `.kidea` đã cho biết ngữ cảnh. File này chứa:
+Dùng tên `INDEX.md` vì bản thân thư mục `.kidea` đã cho biết ngữ cảnh. File này chứa:
 
 - Mục tiêu, phạm vi đợt phát triển và phiên bản định dạng Kidea.
 - Danh sách toàn bộ bước lớn, trạng thái từng bước, đầu ra và gate liên quan.
@@ -196,17 +205,17 @@ Thu gọn không có nghĩa xóa cây task cần hiển thị: với các task �
 
 ### Ranh giới của .kidea
 
-Đề xuất `.kidea` chứa toàn bộ **hồ sơ do Kidea quản lý**: tài liệu, trạng thái, kế hoạch và chỉ mục bằng chứng. Code sản phẩm, test chạy được, cấu hình build/CI và triển khai nằm ở vị trí chuẩn của project; `.kidea` link đến chúng, không sao chép.
+`.kidea` chứa toàn bộ **hồ sơ do Kidea quản lý**: tài liệu, trạng thái, kế hoạch và chỉ mục bằng chứng. Code sản phẩm, test chạy được, cấu hình build/CI và triển khai nằm ở vị trí chuẩn của project; `.kidea` link đến chúng, không sao chép.
 
 Human đã đồng ý với ranh giới hồ sơ/code trong phản hồi tổng thể: không đặt toàn bộ source code dưới `.kidea`, tránh trộn hồ sơ quy trình với sản phẩm và xung đột cấu trúc mà công cụ của project yêu cầu.
 
 Không lưu mật khẩu, token, dữ liệu cá nhân hoặc log sản xuất nhạy cảm trong hồ sơ public. Bằng chứng lớn/nhạy cảm có thể nằm ở nơi lưu phù hợp; trong `.kidea` chỉ giữ kết luận và vị trí truy cập đã được phép.
 
-### Giao diện trạng thái project — bổ sung, chi tiết chờ review
+### Giao diện trạng thái project
 
 Mục tiêu đã được Human yêu cầu: một flowchart tổng quan các bước lớn, mở được chi tiết tên/trạng thái bước con và task, nhìn rõ đang làm MVP hay bổ sung tính năng nào cho hệ thống đã chạy production.
 
-Giải pháp đề xuất: `$kidea visualize` gọi một script đọc dữ liệu có cấu trúc trong hồ sơ `.kidea`, kiểm tra tính hợp lệ và sinh `.kidea/views/progress.html`. Một file HTML mở trực tiếp bằng trình duyệt, hoạt động offline, không cần server hay tải thư viện từ mạng. Có thể dùng các khối HTML/SVG và mở/thu gọn chi tiết; không cần kéo cả framework frontend vào bản đầu. Chọn Python hoặc Node.js ở bước thiết kế triển khai Kidea dựa trên môi trường cài đặt được hỗ trợ, không buộc sản phẩm sử dụng Kidea phải viết bằng cùng ngôn ngữ.
+`$kidea visualize` gọi một script đọc dữ liệu có cấu trúc trong hồ sơ `.kidea`, kiểm tra tính hợp lệ và sinh `.kidea/views/progress.html`. Một file HTML mở trực tiếp bằng trình duyệt, hoạt động offline, không cần server hay tải thư viện từ mạng. Có thể dùng các khối HTML/SVG và mở/thu gọn chi tiết; không cần kéo cả framework frontend vào bản đầu. Chọn Python hoặc Node.js ở bước thiết kế triển khai Kidea dựa trên môi trường cài đặt được hỗ trợ, không buộc sản phẩm sử dụng Kidea phải viết bằng cùng ngôn ngữ.
 
 Đường dữ liệu: hồ sơ nguồn → kiểm tra/đọc cấu trúc → HTML. Không để AI vẽ lại tiến độ theo trí nhớ, không đọc ngược HTML để xác định trạng thái và không thêm bản trạng thái JSON được sửa độc lập với Markdown. Metadata/bảng trạng thái trong các file nguồn cần có định dạng cố định, ID, quan hệ cha-con, nhãn và trạng thái hợp lệ; schema cụ thể sẽ được thiết kế tiếp. Các câu giải thích tự do vẫn là Markdown, không phải đầu vào để script tự suy diễn trạng thái.
 
@@ -226,6 +235,8 @@ Bản đầu chỉ xem: không approve, sửa trạng thái, commit/push, deploy
 
 Nội dung đọc từ hồ sơ phải được chèn vào HTML như dữ liệu an toàn, không được thực thi thành script. Không tự upload/host giao diện; khi mang riêng HTML sang máy khác vẫn đọc được phần tiến độ đã nhúng, nhưng link tới tài liệu nguồn cần các file tương ứng. Chỉ đưa dữ liệu đã được phép chia sẻ vào file xuất.
 
+<a id="resume"></a>
+
 ## 6. Resume qua phiên hoặc máy khác
 
 1. Tìm root project và `.kidea/INDEX.md`; không tự init lại nếu đã có trạng thái.
@@ -239,6 +250,8 @@ Resume không cần đọc toàn bộ project mỗi lần, nhưng khi phân tíc
 
 Sang máy khác cần có cả `.kidea`, đúng source và tài nguyên cần dùng; Kidea cũng phải được cài/khả dụng ở máy đó. Resume không tự đồng bộ file giữa máy, không tự clone/pull/push và không khôi phục được file chưa được chuyển sang. Chuyển qua Git chỉ xảy ra khi Human yêu cầu.
 
+<a id="change"></a>
+
 ## 7. Thay đổi và đồng bộ toàn chuỗi
 
 ### 7.1. Thêm Feature
@@ -247,7 +260,7 @@ Ghi checkpoint công việc cũ → lập gói thay đổi hiện hành → quay
 
 Mỗi bước phía sau phải có kết luận: cần sửa gì hoặc đã kiểm tra và không cần sửa vì sao. Không nhất thiết viết lại toàn bộ tài liệu, nhưng không được bỏ qua một bước chỉ vì đoán rằng thay đổi nhỏ.
 
-Sửa bug đúng theo đặc tả đã duyệt có thể bắt đầu ở bước sớm nhất thực sự bị ảnh hưởng; đây là đề xuất cho lệnh change, không phải ngoại lệ để bỏ qua vòng chốt Feature khi đang thêm/đổi Feature.
+Sửa bug đúng theo đặc tả đã duyệt có thể bắt đầu ở bước sớm nhất thực sự bị ảnh hưởng; phải xác minh đây là sửa triển khai lệch đặc tả, không phải thêm/đổi hành vi được ngụy trang thành bugfix. Không dùng đường này để bỏ vòng chốt Feature.
 
 ### 7.2. Phân tích ảnh hưởng đến khi xử lý trọn vẹn
 
@@ -265,7 +278,7 @@ Khi B đổi:
 
 ID chỉ cần đúng nghĩa, duy nhất và nhất quán trong bộ tài liệu hiện hành. Khi thay hoặc bỏ nghiệp vụ, cập nhật/xóa đủ tham chiếu rồi bỏ nội dung cũ; không tạo kho mã cũ bị cấm tái sử dụng.
 
-#### Truy xuất xuyên tầng — bổ sung, chi tiết chờ review
+#### Truy xuất xuyên tầng
 
 Không chỉ truy được “A gọi B” trong tài liệu nghiệp vụ. Một rule/flow/AC cần lần được tới thiết kế, test specification, code và bằng chứng tương ứng khi những phần này đã đến bước được tạo; đồng thời tìm ngược được từ nơi triển khai/test đến căn cứ nguồn.
 
@@ -283,9 +296,53 @@ Không thể yêu cầu code luôn đã theo tài liệu mới ngay tại thời
 
 Ví dụ: tài liệu của bản kế tiếp cho phép hủy thêm một trạng thái đơn, nhưng production vẫn chạy bản trước. Kidea phải ghi rõ target mới, phần code/test còn thiếu và bản đang triển khai; không nói production đã có hành vi mới.
 
-Đề xuất giữ một bộ đặc tả làm việc hiện hành, phân biệt trạng thái duyệt nội dung với tình trạng đã triển khai. Bản đang chạy được nhận diện bằng mã bản phát hành và gói triển khai có thể truy xuất, chứa căn cứ cấu hình/đặc tả và bằng chứng của bản đó. Gói này chỉ cần tạo khi thực sự phát hành, không sao chép toàn bộ tài liệu sau mỗi lần sửa và không đòi Kidea tự commit.
+Giữ một bộ đặc tả làm việc hiện hành, phân biệt trạng thái duyệt nội dung với tình trạng đã triển khai. Bản đang chạy được nhận diện bằng mã bản phát hành và gói triển khai có thể truy xuất, chứa căn cứ cấu hình/đặc tả và bằng chứng của bản đó. Gói này chỉ cần tạo khi thực sự phát hành, không sao chép toàn bộ tài liệu sau mỗi lần sửa và không đòi Kidea tự commit.
 
 Tài liệu làm việc sạch không đồng nghĩa xóa dữ liệu cần khôi phục production. Bản triển khai trước, backup và bằng chứng vận hành có thời hạn giữ được chốt riêng; không trộn chúng thành các rule cũ còn hiệu lực trong tài liệu hiện hành.
+
+<a id="three-maps"></a>
+
+### 7.4. Ba bản đồ liên thông
+
+Kidea tổ chức thông tin thành đúng ba góc nhìn dưới đây, không tạo ba kho phải cập nhật thủ công độc lập. Kiến trúc, dữ liệu, test và vận hành là các phần hoặc bộ lọc bên trong; không cần thêm một hệ thống bản đồ riêng cho mỗi loại.
+
+| Bản đồ | Phạm vi | Nguồn có hiệu lực và cách tạo |
+|---|---|---|
+| 1. Hồ sơ đặc tả | Feature, rule, state, flow, AC, đặc tả test; yêu cầu chất lượng, UI, thiết kế vận hành, kiến trúc và hợp đồng API/event/dữ liệu | Nội dung hồ sơ được Human duyệt mô tả điều sản phẩm phải đạt. Quan hệ lấy từ ID/link và mục đích liên kết trong tài liệu nguồn. |
+| 2. Triển khai | Module, class/struct, hàm, lời gọi, include, dữ liệu dùng chung, API/event thực tế, cấu hình build/deploy và test chạy được | Source/cấu hình mô tả điều thực sự được xây, có thể đang sai đặc tả. Công cụ trích xuất quan hệ khi hỗ trợ; quan hệ còn thiếu được bổ sung có căn cứ hoặc ghi rõ chưa biết. |
+| 3. Đối chiếu đặc tả ↔ triển khai | Mục đặc tả được thực hiện ở đâu, test nào kiểm tra yêu cầu nào, chiều ngược từ code/test về căn cứ | Mapping nhiều–nhiều do AI đề xuất, kiểm tra nội dung thực tế và Human review ý nghĩa tại gate liên quan; chỉ mục ngược được sinh hoặc kiểm tra đối xứng. |
+
+Không thêm bản đồ test thứ tư: đặc tả test ở bản đồ 1; test thực thi ở bản đồ 2; quan hệ giữa chúng ở bản đồ 3. Bằng chứng chạy gắn với test thực thi, đúng phiên bản code/cấu hình, đặc tả và môi trường đã kiểm tra.
+
+#### Ranh giới nguồn dữ liệu
+
+- Quan hệ cơ học lấy được từ source không chép tay từng caller/callee vào Markdown. Nếu lưu kết quả sinh hoặc cache thì phải tái tạo được và không được sửa như một nguồn độc lập.
+- Mapping trực tiếp tập trung vào nơi mang trách nhiệm nghiệp vụ/kỹ thuật: mục đặc tả, module/file/symbol, contract và test. Không ép mỗi hàm tiện ích có một ID nghiệp vụ riêng; lần qua quan hệ triển khai để tìm bên dùng nó.
+- Mỗi quan hệ có một nơi định nghĩa có hiệu lực. Khi cần bổ sung quan hệ event/dữ liệu/cấu hình mà công cụ không lấy được, ghi vị trí và lý do thực tế; không suy ra từ tên gần giống.
+- Mỗi bản đồ dẫn xuất cần nhận diện phiên bản hồ sơ/source, phạm vi quét, phiên bản công cụ, cấu hình phân tích và giới hạn. Thiếu công cụ, file sinh, đường dẫn hoặc loại quan hệ không được hỗ trợ phải báo rõ, không biến graph rỗng thành “không có dependency”.
+- Di chuyển/đổi tên/xóa symbol hoặc thay cấu hình build phải kiểm tra lại mapping và bằng chứng liên quan. ID tài liệu ổn định theo ý nghĩa; vị trí code dùng file/module/symbol phù hợp, không dựa riêng vào số dòng.
+
+Định dạng lưu và giao diện giữa công cụ trích xuất với Kidea sẽ được chốt theo roadmap. Không cần graph database hoặc một file riêng cho từng quan hệ.
+
+#### Doxygen là một công cụ đầu vào, không phải toàn bộ bản đồ triển khai
+
+Với C++, Doxygen có thể cung cấp cấu trúc class, kế thừa, include, call/caller graph và đầu ra XML máy đọc. Nhưng độ đầy đủ/chính xác của call graph phụ thuộc bộ phân tích, không phải bảo đảm mọi dependency đã được tìm. [Doxygen — Diagrams](https://www.doxygen.nl/manual/diagrams.html), [Call graph](https://www.doxygen.nl/manual/commands.html#cmdcallgraph), [XML output](https://www.doxygen.nl/manual/config.html#cfg_generate_xml).
+
+Chữ ký hàm chỉ cho biết một phần input/output; chưa nói đủ đơn vị, điều kiện, thứ tự lỗi, làm tròn, tác dụng lên state hay invariant. Event giữa hai tiến trình, callback, dữ liệu dùng chung và cấu hình cũng có thể tạo ảnh hưởng ngoài đường gọi hàm trực tiếp. Công cụ theo ngôn ngữ là phần thay được; không bắt mọi project dùng Doxygen hoặc coi một adapter C++ là hỗ trợ mọi ngôn ngữ.
+
+#### Cách dùng ba bản đồ khi thay đổi
+
+1. Từ mục đặc tả đổi, lần quan hệ trong bản đồ 1 để xác định rule/flow/AC/contract/test specification và các yêu cầu khác liên quan.
+2. Qua bản đồ 3 đến phần code, cấu hình và test thực thi tương ứng.
+3. Qua bản đồ 2 đến bên gọi, bên được gọi, bên nhận event, bên dùng dữ liệu/cấu hình và test liên quan.
+4. Quay qua bản đồ 3 để kiểm tra các đặc tả khác mà phần triển khai đó phục vụ; tiếp tục vòng đánh giá theo mục 7.2, kể cả khi không có diff văn bản.
+5. Ghi `CẦN SỬA` hoặc `ĐÃ KIỂM TRA — KHÔNG CẦN SỬA` kèm lý do, phiên bản đầu vào và bằng chứng. Chỉ đóng khi toàn bộ ảnh hưởng được xử lý và đủ gate, không chỉ vì đã duyệt hết các cạnh hiện có.
+
+Ví dụ: code hủy đơn phát `OrderCancelled`; một tiến trình khác nhận event để hoàn tiền. Đổi sang hủy phần còn lại của đơn xử lý một phần có thể ảnh hưởng số tiền hoàn dù hai bên không gọi hàm trực tiếp. Phải kiểm tra payload, state, rule, bên nhận và test tích hợp xác nhận số tiền thực tế. Test chỉ gọi hàm hủy rồi kiểm tra “không crash” chưa chứng minh hoàn tiền đúng.
+
+Đi từ code về đặc tả cũng áp dụng cùng cơ chế. Nếu code lệch yêu cầu đã duyệt, sửa code; không tự sửa đặc tả để hợp thức hóa triển khai. Có link đúng chưa chứng minh đúng trách nhiệm; chạy qua code chưa chứng minh test có assertion cho hành vi cần kiểm tra. Bản đồ giúp tìm nơi cần đọc, không thay thế phân tích ngữ nghĩa, tìm kiếm bổ sung hoặc Human quyết định.
+
+<a id="testing"></a>
 
 ## 8. Từ yêu cầu đến test và bằng chứng
 
@@ -319,6 +376,24 @@ Yêu cầu sự cố cần phân biệt **mất tối đa bao nhiêu dữ liệu
 
 Không cam kết test mọi giá trị/chuỗi vô hạn hoặc phần mềm chắc chắn không còn lỗi. Cam kết kiểm tra đủ mô hình/phạm vi/rủi ro đã thống nhất, chỉ rõ khoảng trống và không giả mạo kết quả.
 
+<a id="business-method"></a>
+
+### 8.1. Tích hợp phương pháp nghiệp vụ
+
+Phương pháp chi tiết được phát triển từ [tài liệu tham khảo nghiệp vụ](references/business-spec/README.md), nhưng phải điều chỉnh theo phạm vi Kidea hiện hành. Các nguyên tắc cần giữ khi hoàn thiện hướng dẫn bước 2:
+
+- Nhìn Feature Map để nhận diện phần có thể dùng chung; chỉ đi sâu cụm MVP/Feature đang được làm. Không đặc tả hết Future hoặc tự tách một module chung chỉ vì đoán có thể tái sử dụng.
+- Làm rõ phần dùng chung và quyền sở hữu state trước phần riêng phụ thuộc nó; lưu điểm quay lại khi đi sâu dependency. Thêm một bên dùng mới là dịp kiểm tra ranh giới chung, không tự động tách kiến trúc hoặc đổi nghiệp vụ.
+- Mỗi rule/flow/state/đặc tả test cần mục tham chiếu rõ, ID hiện hành duy nhất và link/backlink có mục đích. Không thêm các loại quan hệ `USES / READS_STATE / CHANGES_STATE`; không dùng tham chiếu mơ hồ `ALL / NEXT` thay cho đích cụ thể.
+- Nội dung cần đủ dữ liệu đầu vào, đơn vị, điều kiện, kết quả, thay đổi state, lỗi, quy tắc làm tròn/biên và invariant khi áp dụng. Điểm mở có thể làm khác kết quả trong phạm vi đang duyệt phải được giải quyết trước approval.
+- Bảng flow là nguồn quy định trình tự; Mermaid chỉ là hình dẫn xuất. Thứ tự trả lỗi phải xuất phát từ hành vi đã chốt, không được AI tự đặt để đơn giản hóa test.
+- AC diễn tả kết quả quan sát được cần chấp nhận; business test có trạng thái đầu, input/sự kiện, kết quả mong đợi, trạng thái cuối và invariant. Không sinh AC bằng cách tổ hợp tùy tiện mọi rule.
+- Chọn test theo phân lớp giá trị, biên, bảng quyết định, chuyển trạng thái, chuỗi hợp lệ/không hợp lệ, dependency và rủi ro về lặp request, đồng thời hoặc thất bại khi có. Vét cạn chỉ trong mô hình hữu hạn được chốt; các mức bao phủ phải giải thích được và Human duyệt.
+
+Cách phân rã chính xác, mẫu AC, thuật toán chọn tập test và ví dụ đầy đủ còn phải thử ở phase nghiệp vụ. Ví dụ “n điều kiện kiểm tra lần lượt thì n + 1 nhánh” chỉ có ý nghĩa trong flow dừng ở lỗi đầu tiên đã được đặc tả như vậy; không là công thức bao phủ mọi nghiệp vụ.
+
+<a id="operations"></a>
+
 ## 9. Monitoring và admin: mapping thế nào?
 
 Nên có mapping đến nguồn nhu cầu, nhưng không ép mọi chỉ số phải thuộc một Feature nghiệp vụ.
@@ -338,11 +413,13 @@ Cần kiểm tra cả việc hệ thống hoặc chính dashboard bị lỗi. Đ
 
 Nút “tắt hệ thống” phải được định nghĩa cụ thể: dừng nhận việc mới hay dừng tiến trình, xử lý việc đang dở ra sao, bảo toàn dữ liệu thế nào, xác nhận trạng thái thành công từ đâu và làm sao bật lại. Đây không chỉ là một nút UI.
 
+<a id="commands"></a>
+
 ## 10. Giao diện gọi skill
 
 Tên hiển thị dự kiến: **Kidea**; tên skill: `kidea`.
 
-Đề xuất ít lệnh:
+Bộ cách gọi mục tiêu gồm sáu hành động:
 
 | Cách gọi dự kiến | Ý nghĩa |
 |---|---|
@@ -351,7 +428,7 @@ Tên hiển thị dự kiến: **Kidea**; tên skill: `kidea`.
 | `$kidea status` | Chỉ đọc và báo đang ở đâu, còn gì, đang chờ gì; không tự sửa hoặc triển khai. |
 | `$kidea approve <mã-bước-hoặc-gói-review>` | Duyệt đúng gói review hiện hành của bước lớn/bước con được chỉ định, sau khi kiểm tra điều kiện. |
 | `$kidea change <yêu cầu>` | Ghi nhận thay đổi, phân tích phạm vi và dẫn qua quy trình phù hợp. |
-| `$kidea visualize` | Bổ sung: đọc hồ sơ, kiểm tra dữ liệu và sinh HTML tiến độ chỉ để xem; không tự thay trạng thái, approve hoặc publish. |
+| `$kidea visualize` | Đọc hồ sơ, kiểm tra dữ liệu và sinh HTML tiến độ chỉ để xem; không tự thay trạng thái, approve hoặc publish. |
 
 Sau khi init/resume, Human và AI trao đổi bằng ngôn ngữ bình thường; không cần biến mọi phản hồi thành một command. Các args trên do Kidea quy ước, chưa phải lệnh đã cài trong Codex.
 
@@ -359,9 +436,11 @@ Về ký hiệu: tài liệu chính thức mô tả Codex CLI/IDE dùng `$` đ�
 
 Không thêm command Git tự động vào luồng. Thiếu args hoặc lệnh không hợp lệ thì giải thích ngắn và yêu cầu thông tin cần thiết; không tự chọn một hành động có tác dụng phụ khác.
 
+<a id="skill-structure"></a>
+
 ## 11. Cấu tạo skill: hướng tối giản
 
-Đề xuất một skill Kidea, không tạo một skill riêng cho mỗi bước:
+Một skill Kidea, không tạo một skill riêng cho mỗi bước:
 
 - `SKILL.md` ngắn: phạm vi, cách gọi, cách đọc trạng thái, một việc hiện hành, gate Human và quy tắc không tự thao tác Git/production.
 - Tài liệu hướng dẫn theo bước: chỉ tải phần cần cho công việc hiện tại và quy tắc nền liên quan.
@@ -370,13 +449,15 @@ Không thêm command Git tự động vào luồng. Thiếu args hoặc lệnh k
 
 Không cần server Kidea, graph database, hệ thống điều phối nhiều agent hay cơ chế tự chia branch cho bản đầu. Việc kiểm tra bằng script cụ thể đến đâu sẽ chốt khi thiết kế định dạng trạng thái và thử workflow, chưa xây ngay ở lượt này.
 
-Trước khi coi Kidea đáng tin, cần thử một project nhỏ đi hết chu trình; thử resume giữa chừng, reject tại gate, test fail, mất môi trường, thêm Feature giữa MVP và đổi Feature sau một bản đã phát hành. Đây là tiêu chí kiểm chứng thiết kế, chưa phải danh sách task triển khai được duyệt.
+Trước khi coi Kidea đáng tin, cần thử một project nhỏ đi hết chu trình; thử resume giữa chừng, reject tại gate, test fail, mất môi trường, thêm Feature giữa MVP và đổi Feature sau một bản đã phát hành. Test helper phải có từ lúc xây helper; thử hành vi của skill trong phiên AI mới để bắt lỗi điều phối mà test script không thấy. Tách bằng chứng kiểm tra chính Kidea khỏi test mà Kidea tạo cho sản phẩm thử nghiệm. Có một project mẫu chưa chứng minh mọi ngôn ngữ/nền tảng đều được hỗ trợ.
 
-### 11.1. Quy tắc code theo thành phần và môi trường — bổ sung, chi tiết chờ review
+<a id="code-rules"></a>
+
+### 11.1. Quy tắc code theo thành phần và môi trường
 
 Yêu cầu Human: Kidea có sẵn hướng dẫn lập trình phù hợp từng ngôn ngữ và nơi chạy code, dùng cho backend/web/mobile; chú trọng hiệu năng, quản lý bộ nhớ/tài nguyên và môi trường đích.
 
-Đề xuất tổ chức theo các lớp, chỉ đọc phần áp dụng cho task hiện hành:
+Tổ chức theo các lớp, chỉ đọc phần áp dụng cho task hiện hành:
 
 | Lớp | Nội dung |
 |---|---|
@@ -405,14 +486,23 @@ Với web/mobile, giữ cùng cơ chế nhưng thay tiêu chí theo nơi chạy:
 
 Điểm nối quy trình: bước 3 chốt mục tiêu chất lượng → bước 7 chọn và duyệt rule hiệu lực → bước 8 xác định kiểm tra tương ứng → bước 9 áp dụng/chạy kiểm tra cho task và phase → bước 10 xác nhận đúng môi trường/cấu hình phát hành. Task không thể DONE nếu vi phạm một rule bắt buộc chưa được xử lý hoặc chưa có ngoại lệ đã duyệt.
 
-## 12. Tài liệu hiện có và điểm review tiếp theo
+<a id="open-decisions"></a>
+
+## 12. Tài liệu liên quan, quyết định còn mở và lộ trình
 
 Tài liệu về nghiệp vụ được giữ nguyên trong [references/business-spec/](references/business-spec/README.md). Đây là tài sản tham khảo cho bước 2, không phải đặc tả đã duyệt cho toàn Kidea. Không bỏ những quyết định đã được Human thống nhất; khi tích hợp phải đối chiếu với cuộc trao đổi và giải quyết phần chưa chốt.
 
-Các điểm nền đã được Human đồng ý:
+Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải chốt trước phần triển khai phụ thuộc. Đây không phải thiếu sót được phép bỏ qua khi nghiệm thu.
 
-1. Thứ tự mười bước và việc đưa monitoring/admin lên trước kiến trúc.
-2. `INDEX.md` làm cửa vào, một nơi quản lý việc hiện hành; `.kidea` chứa hồ sơ, còn code/test/config theo cấu trúc project.
-3. Mỗi bước có Human gate, thay đổi phải đánh giá đầy đủ các bước liên quan nhưng không viết lại phần đã kiểm tra không ảnh hưởng.
+| Quyết định cần chốt | Nơi xử lý trong roadmap |
+|---|---|
+| Bản đầu phục vụ ai, host/OS/ngôn ngữ nào; pilot và tiêu chí thành công có thể đo | [P01](KIDEA_ROADMAP.md#p01) |
+| Runtime của helper, cách đóng gói/cài; schema Markdown, ID, quyền ghi, approval fingerprint, checkpoint và nâng phiên bản | [P02](KIDEA_ROADMAP.md#p02) |
+| Cách phân rã nghiệp vụ, AC và chọn tập business test có thể áp dụng lặp lại | [P04](KIDEA_ROADMAP.md#p04) |
+| Hồ sơ coding rules đầu tiên, công cụ kiểm tra và cách mang đúng phiên bản qua máy mới | [P06](KIDEA_ROADMAP.md#p06) |
+| Hợp đồng dữ liệu của ba bản đồ, adapter trích xuất đầu tiên, phạm vi hỗ trợ và cách thể hiện thiếu căn cứ | [P07](KIDEA_ROADMAP.md#p07) |
+| Chi tiết hàng đợi impact, đóng/mở lại kết luận và tiếp tục sau gián đoạn | [P08](KIDEA_ROADMAP.md#p08) |
+| Layout HTML và ma trận trình duyệt cần kiểm tra | [P09](KIDEA_ROADMAP.md#p09) |
+| Quy trình phát hành Kidea, tương thích/nâng cấp hồ sơ và phạm vi được tuyên bố hỗ trợ | [P12](KIDEA_ROADMAP.md#p12) |
 
-Review tiếp theo tập trung vào giải pháp mới: HTML tiến độ dẫn xuất từ hồ sơ; hồ sơ quy tắc code theo thành phần/môi trường; danh sách gate ở bước con; cơ chế truy xuất và kiểm chứng ảnh hưởng xuyên tầng. Sau đó chốt cấu trúc dữ liệu trạng thái và quy tắc chuyển bước, rồi mới chia phase/task để xây dựng chính Kidea.
+Lộ trình duy nhất để theo dõi phase/task xây Kidea: [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md). Mỗi phase có đầu ra, kiểm chứng và Human gate; chưa bắt đầu code chỉ vì roadmap đã được viết. Mọi điều chỉnh làm đổi thiết kế phải cập nhật đúng mục nguồn ở đây và đánh giá các phase/task phụ thuộc, không tạo một thiết kế thứ hai ẩn trong roadmap.
