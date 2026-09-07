@@ -43,8 +43,10 @@ Tên file/folder là minh họa; Kidea bổ sung dần khi cần, không tạo s
 
 **Quy tắc dễ nhớ:**
 
-> Mô tả sản phẩm → `docs/`.  
-> Điều phối quá trình làm sản phẩm → `.kidea/`.  
+> Mô tả sản phẩm → `docs/`.
+>
+> Điều phối quá trình làm sản phẩm → `.kidea/`.
+>
 > Thực thi sản phẩm và kiểm thử → các thư mục code/test phù hợp.
 
 ### Những chỗ dễ nhầm cần quy định rõ
