@@ -2,13 +2,15 @@
 
 Trạng thái: `THIẾT KẾ TỔNG THỂ ĐÃ ĐƯỢC HUMAN ĐỒNG Ý — CHƯA TRIỂN KHAI`
 
-Ngày cập nhật: 2026-09-06
+Ngày cập nhật: 2026-09-07
 
 Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); chưa tạo/cài skill hoặc triển khai code.
 
 Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ sung, gồm giao diện tiến độ, quy tắc code theo môi trường, gate ở bước con, truy xuất xuyên tầng và ba bản đồ liên thông. Bản này hợp nhất các quyết định đó. Định dạng dữ liệu, runtime, bộ công cụ và phạm vi hỗ trợ cụ thể vẫn cần thiết kế, thử nghiệm và Human duyệt theo lộ trình; không coi đồng ý định hướng là duyệt trước mọi chi tiết triển khai.
 
 Tài liệu này là nguồn thiết kế hiện hành. Roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào để đối chiếu; `answer.md` là bản sao câu trả lời để đọc từ xa, không thay thế thiết kế hoặc roadmap.
+
+Phần bổ sung [phạm vi bản đầu](#first-release-scope) đang `IN_REVIEW` tại gate `P01-T01`; chưa được coi là quyết định đã duyệt. Việc Human duyệt lộ trình ngày 2026-09-07 cho phép bắt đầu task này, không duyệt trước nội dung đề xuất mới.
 
 <a id="scope"></a>
 
@@ -36,6 +38,53 @@ Yêu cầu Human đã nêu:
 Phân biệt hai phạm vi Git: quy tắc không tự thao tác Git ở trên là hành vi của skill trong project được quản lý. Tại repository xây dựng Kidea này, Human yêu cầu tiếp tục lưu toàn bộ câu trả lời cuối vào `answer.md`, commit và push để đọc trên GitHub; quy tắc đó còn hiệu lực đến khi Human yêu cầu dừng. Không đưa ngoại lệ riêng của repo này thành hành vi mặc định của skill.
 
 Thiết kế tổng thể được chấp thuận không có nghĩa skill đã tồn tại, đã được test hoặc đủ tin cậy để quản lý sản phẩm thật. Các tiêu chí kiểm chứng và quyết định triển khai còn mở nằm ở mục 12 và roadmap.
+
+<a id="first-release-scope"></a>
+
+### 1.1. Phạm vi bản đầu — đề xuất P01-T01
+
+Gói review: `P01-T01-SCOPE-r1`, ngày 2026-09-07. Trạng thái nội dung: `IN_REVIEW`; xác nhận Human và tiến trình task được quản lý tại [roadmap](KIDEA_ROADMAP.md#p01-t01-review).
+
+**Mục tiêu đề xuất:** một bản Kidea dùng được trọn chu trình đã thống nhất cho một người cùng AI, trên phạm vi công nghệ đã kiểm chứng. Giữ đủ các năng lực cốt lõi, giới hạn bề rộng hỗ trợ; không gọi một bộ prompt hoặc vài helper chạy được là bản Kidea hoàn chỉnh.
+
+#### Người dùng và loại project
+
+- Người dùng chính của bản đầu là Human đang xây dựng Kidea, dùng cùng AI để phát triển và vận hành các project của mình. Hướng dẫn sử dụng bằng tiếng Việt; phương pháp không gắn cứng với một ngành nghiệp vụ hoặc sản phẩm pilot.
+- Luồng chính bắt đầu từ ý tưởng của một project mới; tiếp tục/resume, thêm Feature giữa MVP và thay đổi sau một bản đã phát hành đều thuộc phạm vi.
+- Resume và change áp dụng cho project đã có hồ sơ Kidea hợp lệ, với source, bằng chứng và phiên bản công cụ cần thiết. Có source hoặc quy ước sẵn vẫn phải đối chiếu và tôn trọng chúng; không tự ghi đè để ép project theo template.
+- Tự động tiếp nhận toàn bộ một dự án cũ chưa có hồ sơ Kidea — suy ngược đặc tả, chứng nhận độ đầy đủ và chuyển toàn bộ trạng thái — chưa thuộc phạm vi nghiệm thu bản đầu. Việc này khác với đọc/tận dụng code hoặc quy ước sẵn có, và khác với resume một project đã được Kidea quản lý.
+
+#### Các năng lực bắt buộc khi nghiệm thu bản đầu
+
+| Nhóm năng lực | Phạm vi bản đầu | Căn cứ chi tiết |
+|---|---|---|
+| Điều phối | Đủ `init`, `resume`, `status`, `approve`, `change`, `visualize`; trao đổi tự nhiên trong công việc, một task hiện hành và đúng ranh giới quyền | [Cách gọi](#commands), [approval](#state-approval) |
+| Quy trình sản phẩm | Đủ mười bước, gồm nghiệp vụ/AC/test, chất lượng, UX, monitoring/admin, kiến trúc, kế hoạch/code và triển khai; từng gate vẫn riêng | [Quy trình](#workflow) |
+| Hồ sơ và tiếp tục công việc | Một nguồn có hiệu lực cho mỗi dữ kiện; checkpoint, điểm quay lại, approval theo nội dung, task đã hoàn thành còn truy được; resume qua phiên/máy khi đủ đầu vào | [Hồ sơ](#files-view), [resume](#resume) |
+| Truy xuất và thay đổi | Đủ ba bản đồ, đối chiếu hai chiều; tìm ảnh hưởng theo ngữ nghĩa, kể cả event/dữ liệu/cấu hình và trường hợp không có diff trung gian; không coi thiếu mapping là không ảnh hưởng | [Ba bản đồ](#three-maps), [change](#change) |
+| Code và kiểm chứng | Profile rule theo tổ hợp đã chốt; test specification, test chạy được và bằng chứng gắn phiên bản/môi trường; có kiểm tra hành vi Kidea và pilot chạy thật | [Coding rules](#code-rules), [test](#testing), [cấu tạo skill](#skill-structure) |
+| Xem tiến độ | HTML offline, chỉ đọc, tổng quan/chi tiết task, gate/blocker và nguồn; thể hiện đúng dữ liệu chưa biết hoặc snapshot cũ | [Giao diện tiến độ](#files-view) |
+| Dùng và bàn giao | Có bản cài, hướng dẫn, giới hạn hỗ trợ, kiểm tra tương thích/nâng cấp và bằng chứng nghiệm thu trong phạm vi được Human cho phép | [P12](KIDEA_ROADMAP.md#p12) |
+
+Một hạng mục không áp dụng cho sản phẩm cụ thể có thể được Human duyệt `N/A` theo thiết kế; điều đó không xóa năng lực hướng dẫn hạng mục ấy khỏi Kidea. Ví dụ pilot không cần mobile không có nghĩa Kidea bỏ bước xác định nền tảng hoặc mặc nhiên đã hỗ trợ triển khai mobile.
+
+#### Mức hỗ trợ được cam kết
+
+- Phương pháp tổng thể dùng lại được cho nhiều project; mức hỗ trợ thực thi chỉ được công bố cho các tổ hợp host/OS/ngôn ngữ/thành phần đã được chọn và kiểm chứng.
+- Chưa chốt số lượng hoặc tên tổ hợp ở task này. Danh sách cụ thể thuộc `P01-T02`; runtime/schema thuộc P02, profile rule thuộc P06 và adapter bản đồ thuộc P07. Không mặc định ví dụ C++/Ubuntu trong thiết kế là lựa chọn đã duyệt.
+- Với tổ hợp chưa hỗ trợ, Kidea phải nêu phần thiếu, chưa xác minh hoặc cần Human quyết định; không tự tuyên bố tương thích, tối ưu hoặc đầy đủ chỉ vì AI vẫn có thể đọc/viết code của ngôn ngữ đó.
+- Bản đầu phải chứng minh luồng trọn vẹn và những tình huống gián đoạn/thay đổi đã chốt; một test helper hoặc một đường chạy thuận lợi chưa đủ nghiệm thu. Bộ case và ngưỡng cụ thể được chốt tiếp ở `P01-T04`/`P01-T05`.
+
+#### Những việc chưa làm trong bản đầu
+
+- Nền tảng cộng tác nhiều người, nhiều task triển khai song song hoặc bộ điều phối nhiều agent riêng của Kidea.
+- Server Kidea, graph database, dịch vụ đồng bộ hồ sơ giữa các máy hoặc dashboard tiến độ online có thao tác approve/deploy.
+- Kho coding rules/adapter bao phủ mọi ngôn ngữ, hệ điều hành và framework; hoặc tự động nhập/chứng nhận mọi dự án cũ chưa có hồ sơ.
+- Tự quyết định nghiệp vụ, tự duyệt nội dung, tự thao tác Git/production; bảo đảm tuyệt đối không còn lỗi, không sót dependency hoặc đạt hiệu năng tốt nhất trong mọi môi trường.
+
+Những giới hạn này không loại bỏ monitoring/admin của sản phẩm, hướng dẫn deploy/khôi phục, hay yêu cầu xử lý thay đổi sau release. Kidea vẫn hướng dẫn và kiểm chứng các phần đó trong phạm vi đã chốt; thao tác có tác dụng phụ chỉ được làm khi có quyền tương ứng.
+
+**Quyết định đang xin Human:** duyệt người dùng/luồng project mục tiêu, các năng lực bắt buộc và giới hạn bản đầu nêu trên. Chưa xin duyệt ma trận công nghệ, pilot, runtime hoặc schema ở gate này.
 
 ## 2. Nguyên tắc tổ chức quy trình
 

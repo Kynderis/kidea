@@ -1,19 +1,20 @@
-Đã hoàn tất hai tài liệu:
+Bắt đầu nhé. Mình đã ghi nhận **lộ trình được duyệt** và mở **P01-T01 — chốt phạm vi bản đầu**.
 
-- [KIDEA_DESIGN.md](D:/Code/kynderis/kidea/KIDEA_DESIGN.md): hợp nhất thiết kế hiện hành, bổ sung ba bản đồ, truy xuất ngữ nghĩa, Human gate, resume, coding rules và giới hạn kiểm chứng.
-- [KIDEA_ROADMAP.md](D:/Code/kynderis/kidea/KIDEA_ROADMAP.md): **12 phase, 77 task**, có thứ tự phụ thuộc, đầu ra, tiêu chí kiểm tra, trạng thái và nơi ghi bằng chứng.
+Mình đề xuất:
 
-Lộ trình có các lần thử sớm, review cuối mỗi phase và gate riêng cho quyết định quan trọng. Một bảng đối chiếu giúp truy từ yêu cầu thiết kế đến task xây dựng và kiểm chứng.
+- **Người dùng:** bạn cùng AI; dùng lại cho nhiều project, bắt đầu từ ý tưởng rồi tiếp tục phát triển, vận hành và thay đổi.
+- **Năng lực:** giữ đủ sáu hành động, mười bước, ba bản đồ, Human gate, resume, coding rules và giao diện tiến độ.
+- **Mức hỗ trợ:** chỉ cam kết các tổ hợp công nghệ đã kiểm chứng; chọn cụ thể ở P01-T02.
+- **Chưa làm:** nền tảng cộng tác nhiều người, dịch vụ đồng bộ/điều khiển online, hỗ trợ mọi công nghệ và tự động dựng đầy đủ hồ sơ cho dự án cũ chưa dùng Kidea. Vẫn phải đọc, tận dụng và tôn trọng code/quy ước có sẵn.
 
-Đã rà soát độc lập, sửa hai điểm về thứ tự triển khai; kiểm tra link/anchor, ID và trạng thái task. Ba tài liệu tham khảo gốc được giữ nguyên.
+Đã ghi [đề xuất chi tiết](D:/Code/kynderis/kidea/KIDEA_DESIGN.md:44), cập nhật roadmap và lưu/push câu trả lời lên [GitHub](https://github.com/Kynderis/kidea/blob/master/answer.md). Chỉ P01-T01 đang làm; chưa viết skill/code.
 
-**Chưa triển khai skill hoặc code.** Roadmap đang chờ bạn duyệt; toàn bộ task còn `TODO`. Sau approval, bắt đầu **P01-T01 — chốt phạm vi bản đầu**, rồi tiến từng task nhỏ.
-
-Đã lưu câu trả lời vào `answer.md`, commit và push lên `origin/master`. Bạn có thể đọc [lộ trình trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md).
+**Bạn duyệt phạm vi bản đầu này để mình chuyển sang P01-T02 nhé?**
 
 <oai-mem-citation>
 <citation_entries>
-MEMORY.md:60-64|note=[Preserve current-only design, recursive impact review and scoped answer mirroring]
+MEMORY.md:180-181|note=[Respect sequential Human gates and the repository-scoped answer mirror]
+MEMORY.md:187-189|note=[Verify current design and roadmap before advancing P01-T01]
 </citation_entries>
 <rollout_ids>
 01a064b8-dde1-7882-acc1-7d02d6f568c8

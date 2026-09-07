@@ -1,10 +1,10 @@
 # Kidea — Lộ trình xây dựng và theo dõi tiến trình
 
-Trạng thái lộ trình: `IN_REVIEW` — chờ Human duyệt kế hoạch trước khi thực hiện.
+Trạng thái lộ trình: `APPROVED` — Human đã duyệt kế hoạch và cho phép bắt đầu; các gate của từng task/phase vẫn áp dụng.
 
-Ngày cập nhật: 2026-09-06.
+Ngày cập nhật: 2026-09-07.
 
-Căn cứ: [KIDEA_DESIGN.md](KIDEA_DESIGN.md), thiết kế tổng thể và các đề xuất đã được Human đồng ý. Việc chia phase/task dưới đây là kế hoạch mới, không phải kết quả triển khai hoặc approval có sẵn.
+Căn cứ: [KIDEA_DESIGN.md](KIDEA_DESIGN.md) và lộ trình tại commit `d6dbc20`, được Human đồng ý bắt đầu ngày 2026-09-07. Duyệt lộ trình không phải duyệt trước đầu ra mới của các task hoặc xác nhận đã triển khai xong.
 
 ## 1. Phạm vi và cách đi
 
@@ -25,14 +25,14 @@ Nguyên tắc thực hiện:
 
 | Trường | Giá trị hiện hành |
 |---|---|
-| Gate đang chờ | `G-ROADMAP`: Human review lộ trình này |
-| Phase/task đang thực hiện | Chưa có |
-| Việc tiếp theo sau approval | `P01-T01` — chốt phạm vi bản đầu |
-| Điều kiện để bắt đầu | Ghi nhận Human đồng ý đúng phiên bản/phạm vi lộ trình |
+| Gate đang chờ | `P01-T01`: Human review gói `P01-T01-SCOPE-r1` |
+| Phase/task đang thực hiện | [P01 / P01-T01](#p01-t01-review) |
+| Việc tiếp theo sau approval | `P01-T02` — chốt ma trận host, OS, ngôn ngữ/thành phần và môi trường thử |
+| Điều kiện để tiếp tục | Human duyệt [phạm vi bản đầu](KIDEA_DESIGN.md#first-release-scope); sau đó mới đóng P01-T01 và bắt đầu P01-T02 |
 | Điểm quay lại | Chưa có |
 | Vướng mắc khác | Chưa ghi nhận; các lựa chọn triển khai còn mở được giao cho task cụ thể |
 
-Viết xong tài liệu thiết kế/roadmap ở lượt này không làm các task xây Kidea bên dưới thành `DONE`. Chưa có skill, helper hoặc pilot được tạo theo lộ trình này.
+Đã bắt đầu P01-T01 và chuẩn bị đầu ra để review, chưa đánh dấu task này `DONE`. Chưa có skill, helper hoặc pilot được tạo theo lộ trình này.
 
 ## 3. Quy ước cập nhật, bằng chứng và Human gate
 
@@ -55,7 +55,7 @@ Task có nhãn **[H]** là điểm dừng bên trong phase: trình đầu ra cho
 
 | Gate khởi đầu | Phạm vi | Xác nhận Human |
 |---|---|---|
-| G-ROADMAP | Thứ tự phase, task, gate và phạm vi kế hoạch hiện hành | Chưa có |
+| G-ROADMAP | Lộ trình 12 phase/77 task tại commit `d6dbc2092c69c5286f121bf44ea679f0bcba4202`; blob của KIDEA_ROADMAP.md: `dd527007ed982c7564e5fa59a527684b52d7c462` | APPROVED, 2026-09-07 (Asia/Saigon). Human: “Tôi thấy ổn đấy, ta bắt đầu thôi nhỉ”. Phạm vi: duyệt lộ trình và bắt đầu P01-T01, không duyệt trước các đầu ra [H]. |
 
 ### 3.3. Cách cập nhật mỗi task
 
@@ -79,7 +79,7 @@ Một bản ghi bằng chứng cần đủ: task/case, đầu ra được kiểm
 
 | Phase | Kết quả chính | Phụ thuộc | Trạng thái | Xác nhận Human cuối phase |
 |---|---|---|---|---|
-| [P01](#p01) | Phạm vi bản đầu và bộ kịch bản nghiệm thu | G-ROADMAP | PENDING | — |
+| [P01](#p01) | Phạm vi bản đầu và bộ kịch bản nghiệm thu | G-ROADMAP | IN_PROGRESS | — |
 | [P02](#p02) | Hợp đồng trạng thái, lưu trữ và runtime | P01 | PENDING | — |
 | [P03](#p03) | Khung skill và vòng init/status/resume/approve tối thiểu | P02 | PENDING | — |
 | [P04](#p04) | Phương pháp Feature → nghiệp vụ → AC/business test | P03 | PENDING | — |
@@ -102,7 +102,7 @@ Mục tiêu: biết chính xác bản đầu cần làm được gì và kiểm 
 
 | Task | Đầu ra cần tạo | Điều kiện kiểm chứng | Trạng thái | Bằng chứng |
 |---|---|---|---|---|
-| P01-T01 [H] | Phạm vi bản đầu, điều không làm, nhóm người dùng và mức hỗ trợ | Đối chiếu đủ sáu hành động/mười bước/ba bản đồ; giới hạn tổ hợp hỗ trợ rõ, không âm thầm bỏ yêu cầu đã duyệt | TODO | — |
+| P01-T01 [H] | Phạm vi bản đầu, điều không làm, nhóm người dùng và mức hỗ trợ | Đối chiếu đủ sáu hành động/mười bước/ba bản đồ; giới hạn tổ hợp hỗ trợ rõ, không âm thầm bỏ yêu cầu đã duyệt | IN_PROGRESS | [Gói review và đối chiếu](#p01-t01-review); chờ Human |
 | P01-T02 [H] | Ma trận host, OS, ngôn ngữ/thành phần đầu tiên và môi trường chạy thử | Ghi cái nào cần kiểm chứng thực, cái nào chưa hỗ trợ; xác định quyền/công cụ cần mà chưa tự cài | TODO | — |
 | P01-T03 [H] | Phạm vi một sản phẩm pilot nhỏ dùng dữ liệu giả | Có nghiệp vụ dùng chung, ít nhất một dependency ngoài lời gọi trực tiếp, giao diện và nhu cầu admin/monitoring vừa đủ; môi trường phi production, chi phí và ranh giới được chốt | TODO | — |
 | P01-T04 | Danh mục kịch bản nghiệm thu Kidea, tách khỏi test của pilot | Có đường đúng, Human reject, approval cũ, dữ liệu sai, ngắt/resume, thay đổi giữa MVP và sau release; mỗi case có hành vi mong đợi quan sát được | TODO | — |
@@ -110,6 +110,28 @@ Mục tiêu: biết chính xác bản đầu cần làm được gì và kiểm 
 | P01-T06 | Gói review phạm vi, pilot, acceptance và rủi ro | Mỗi yêu cầu thiết kế có task/kiểm tra dự kiến; lựa chọn chưa chốt không bị thể hiện là đã hỗ trợ | TODO | — |
 
 Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không có pilot đủ nhỏ, thu gọn pilot có chủ đích trước, không bỏ kiểm tra quan trọng để giữ lịch.
+
+<a id="p01-t01-review"></a>
+
+### Gói review P01-T01
+
+- Mã gói: `P01-T01-SCOPE-r1`, ngày 2026-09-07; nội dung `IN_REVIEW`, chưa có xác nhận Human.
+- Đầu ra duy nhất về phạm vi: [KIDEA_DESIGN.md — mục 1.1](KIDEA_DESIGN.md#first-release-scope). Không chép lại một bản scope trong roadmap.
+- Phiên bản tài liệu trình review: blob `1ac38cc62f966a566f0c95f59f6536f0f974b751` của KIDEA_DESIGN.md; phạm vi xin duyệt chỉ là mục 1.1, không phải các quyết định triển khai còn mở ở mục khác.
+- Đầu vào đối chiếu: thiết kế đã duyệt tại `d6dbc20`, đặc biệt các mục mục tiêu/quy trình/state/resume/change/ba bản đồ/coding rules; task P01-T01 và thứ tự gate trong lộ trình đã duyệt.
+- Giới hạn công việc lượt này: soạn phạm vi, đối chiếu thiết kế, cập nhật trạng thái và gói review. Không chọn stack, pilot, runtime/schema; không tạo/cài skill hoặc viết helper.
+- Mục phải có Human quyết định: toàn bộ phạm vi r1, đặc biệt giới hạn tổ hợp được cam kết hỗ trợ và việc chưa nghiệm thu tự động tiếp nhận một dự án cũ chưa có hồ sơ Kidea.
+
+| Phần được đối chiếu | Kết luận hiện hành | Căn cứ và xử lý |
+|---|---|---|
+| Sáu hành động, mười bước, ba bản đồ | ĐÃ KIỂM TRA — KHÔNG CẦN SỬA thiết kế nền | Mục 1.1 giữ đủ năng lực, tham chiếu định nghĩa nguồn; không tạo command hoặc map mới |
+| Human gate, một task, hồ sơ/resume/change | ĐÃ KIỂM TRA — KHÔNG CẦN SỬA thiết kế nền | Bản đầu vẫn phải xử lý gián đoạn và thay đổi giữa MVP/sau release; approval kế hoạch không được dùng cho đầu ra scope |
+| Người dùng, phạm vi project và mức hỗ trợ bản đầu | CẦN HUMAN DUYỆT | Mục 1.1 là đề xuất mới, đã gắn nhãn IN_REVIEW; không áp giới hạn mới như quyết định đã có |
+| P01-T02/T03/T04/T05 và các phase phụ thuộc | ĐÃ KIỂM TRA — KHÔNG CẦN SỬA task/gate | R1 không chọn trước công nghệ/pilot hoặc giảm bộ nghiệm thu; chi tiết vẫn ở đúng task đã được duyệt |
+| Trạng thái lộ trình và điểm tiếp tục | ĐÃ CẬP NHẬT | G-ROADMAP được ghi nhận; P01/P01-T01 đang làm; task còn lại chưa bắt đầu |
+| Tài liệu tham khảo nghiệp vụ | ĐÃ KIỂM TRA — KHÔNG CẦN SỬA | Không đổi phương pháp AC/flow/test ở P01-T01; việc tích hợp vẫn thuộc P04 |
+
+Kiểm tra cấu trúc ngày 2026-09-07 bằng PowerShell trên Windows: 57 link/anchor nội bộ trong hai tài liệu thiết kế/roadmap hợp lệ; 77 task, chỉ P01-T01 IN_PROGRESS, 76 TODO và 0 DONE; không có anchor trùng hoặc fence Markdown chưa đóng; `git diff --check` đạt. Đây là rà soát tài liệu và cấu trúc, không phải test hành vi Kidea. Task chỉ đóng sau khi Human duyệt phạm vi hiện hành; nếu có góp ý, sửa đúng mục 1.1, cập nhật phiên bản gói và kiểm tra lại ảnh hưởng trước khi xin duyệt.
 
 <a id="p02"></a>
 
@@ -335,4 +357,4 @@ Bảng này là chỉ mục bao phủ, không giữ thêm trạng thái task. Tr
 - Nếu test đòi môi trường/quyền chưa có: ghi blocker và yêu cầu cụ thể, không tự cài/deploy/thu thập dữ liệu ngoài quyền hoặc đổi test thành PASS.
 - Khi cập nhật tiến trình, giữ tài liệu hiện hành rõ ràng: quyết định cũ không còn hiệu lực phải được thay/migrate đủ tham chiếu; giữ bằng chứng cần thiết cho nghiệm thu và khôi phục, không tích lũy các quy tắc cũ mâu thuẫn.
 
-**Bước kế tiếp:** Human review lộ trình; sau khi được duyệt, bắt đầu đúng `P01-T01`, chưa nhảy sang viết SKILL.md hoặc helper.
+**Bước kế tiếp:** Human review gói `P01-T01-SCOPE-r1`; khi được duyệt mới đóng P01-T01 và chuyển P01-T02. Chưa nhảy sang viết SKILL.md hoặc helper.
