@@ -10,7 +10,7 @@ Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ
 
 Tài liệu này là nguồn thiết kế hiện hành. Roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào để đối chiếu; `answer.md` là bản sao câu trả lời để đọc từ xa, không thay thế thiết kế hoặc roadmap.
 
-Phần bổ sung [phạm vi bản đầu](#first-release-scope) đang `IN_REVIEW` tại gate `P01-T01`; chưa được coi là quyết định đã duyệt. Việc Human duyệt lộ trình ngày 2026-09-07 cho phép bắt đầu task này, không duyệt trước nội dung đề xuất mới.
+[Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đang được làm rõ tại `P01-T02`; gợi ý stack và [cách tích hợp SEO](#seo-proposal) còn chờ Human duyệt, chưa phải năng lực đã được triển khai hoặc kiểm chứng.
 
 <a id="scope"></a>
 
@@ -41,18 +41,18 @@ Thiết kế tổng thể được chấp thuận không có nghĩa skill đã t
 
 <a id="first-release-scope"></a>
 
-### 1.1. Phạm vi bản đầu — đề xuất P01-T01
+### 1.1. Phạm vi bản đầu — P01-T01 đã duyệt
 
-Gói review: `P01-T01-SCOPE-r1`, ngày 2026-09-07. Trạng thái nội dung: `IN_REVIEW`; xác nhận Human và tiến trình task được quản lý tại [roadmap](KIDEA_ROADMAP.md#p01-t01-review).
+Gói phạm vi hiện hành: `P01-T01-SCOPE-r2`, ngày 2026-09-07. Trạng thái nội dung: `APPROVED` theo xác nhận Human và các điều chỉnh trực tiếp trong cùng phản hồi; bằng chứng và tiến trình task được quản lý tại [roadmap](KIDEA_ROADMAP.md#p01-t01-review).
 
-**Mục tiêu đề xuất:** một bản Kidea dùng được trọn chu trình đã thống nhất cho một người cùng AI, trên phạm vi công nghệ đã kiểm chứng. Giữ đủ các năng lực cốt lõi, giới hạn bề rộng hỗ trợ; không gọi một bộ prompt hoặc vài helper chạy được là bản Kidea hoàn chỉnh.
+**Mục tiêu:** một bản Kidea dùng được trọn chu trình đã thống nhất cho một người cùng AI, trên phạm vi công nghệ đã kiểm chứng. Giữ đủ các năng lực cốt lõi, giới hạn bề rộng hỗ trợ; không gọi một bộ prompt hoặc vài helper chạy được là bản Kidea hoàn chỉnh.
 
 #### Người dùng và loại project
 
 - Người dùng chính của bản đầu là Human đang xây dựng Kidea, dùng cùng AI để phát triển và vận hành các project của mình. Hướng dẫn sử dụng bằng tiếng Việt; phương pháp không gắn cứng với một ngành nghiệp vụ hoặc sản phẩm pilot.
 - Luồng chính bắt đầu từ ý tưởng của một project mới; tiếp tục/resume, thêm Feature giữa MVP và thay đổi sau một bản đã phát hành đều thuộc phạm vi.
 - Resume và change áp dụng cho project đã có hồ sơ Kidea hợp lệ, với source, bằng chứng và phiên bản công cụ cần thiết. Có source hoặc quy ước sẵn vẫn phải đối chiếu và tôn trọng chúng; không tự ghi đè để ép project theo template.
-- Tự động tiếp nhận toàn bộ một dự án cũ chưa có hồ sơ Kidea — suy ngược đặc tả, chứng nhận độ đầy đủ và chuyển toàn bộ trạng thái — chưa thuộc phạm vi nghiệm thu bản đầu. Việc này khác với đọc/tận dụng code hoặc quy ước sẵn có, và khác với resume một project đã được Kidea quản lý.
+- Dự án cũ chưa có hồ sơ Kidea vẫn bắt đầu từ bước 1 và đi đầy đủ quy trình/gate. AI được đọc tài liệu và code hiện có làm context ở từng bước, giảm nhập lại; không coi hành vi đang có là nghiệp vụ đúng hoặc bằng chứng Human đã duyệt. Không tự suy ngược rồi chứng nhận toàn bộ đặc tả/trạng thái để bỏ qua quy trình. Việc này khác với resume một project đã có hồ sơ Kidea hợp lệ.
 
 #### Các năng lực bắt buộc khi nghiệm thu bản đầu
 
@@ -71,20 +71,42 @@ Một hạng mục không áp dụng cho sản phẩm cụ thể có thể đư�
 #### Mức hỗ trợ được cam kết
 
 - Phương pháp tổng thể dùng lại được cho nhiều project; mức hỗ trợ thực thi chỉ được công bố cho các tổ hợp host/OS/ngôn ngữ/thành phần đã được chọn và kiểm chứng.
-- Chưa chốt số lượng hoặc tên tổ hợp ở task này. Danh sách cụ thể thuộc `P01-T02`; runtime/schema thuộc P02, profile rule thuộc P06 và adapter bản đồ thuộc P07. Không mặc định ví dụ C++/Ubuntu trong thiết kế là lựa chọn đã duyệt.
+- Human đã chọn định hướng bản đầu: Kidea chạy trên Windows; backend sản phẩm dùng C++20, triển khai Ubuntu; Android/iOS native với code độc lập; web ưu tiên khả năng được tìm thấy trên công cụ tìm kiếm và AI search, đồng thời nhẹ/mượt. Đây là yêu cầu đích, chưa phải tuyên bố đã hỗ trợ. Ma trận phiên bản, công cụ và môi trường kiểm chứng thuộc [P01-T02](#platform-matrix); runtime/schema thuộc P02, profile rule thuộc P06 và adapter bản đồ thuộc P07.
 - Với tổ hợp chưa hỗ trợ, Kidea phải nêu phần thiếu, chưa xác minh hoặc cần Human quyết định; không tự tuyên bố tương thích, tối ưu hoặc đầy đủ chỉ vì AI vẫn có thể đọc/viết code của ngôn ngữ đó.
 - Bản đầu phải chứng minh luồng trọn vẹn và những tình huống gián đoạn/thay đổi đã chốt; một test helper hoặc một đường chạy thuận lợi chưa đủ nghiệm thu. Bộ case và ngưỡng cụ thể được chốt tiếp ở `P01-T04`/`P01-T05`.
 
 #### Những việc chưa làm trong bản đầu
 
-- Nền tảng cộng tác nhiều người, nhiều task triển khai song song hoặc bộ điều phối nhiều agent riêng của Kidea.
-- Server Kidea, graph database, dịch vụ đồng bộ hồ sơ giữa các máy hoặc dashboard tiến độ online có thao tác approve/deploy.
+- Nền tảng cộng tác nhiều người: Human không có định hướng xây chức năng này; không ghi thành cam kết tương lai. Cụm nhiều agent cho một Human là ý tưởng riêng, ngoài bản đầu, chưa có kế hoạch triển khai.
+- Server Kidea, graph database, dịch vụ đồng bộ riêng hoặc dashboard tiến độ online có thao tác approve/deploy: Human chưa có ý định xây dịch vụ Kidea online. Chuyển hồ sơ/source giữa các máy dùng Git theo [quy tắc resume](#resume), không cần một dịch vụ đồng bộ Kidea.
 - Kho coding rules/adapter bao phủ mọi ngôn ngữ, hệ điều hành và framework; hoặc tự động nhập/chứng nhận mọi dự án cũ chưa có hồ sơ.
 - Tự quyết định nghiệp vụ, tự duyệt nội dung, tự thao tác Git/production; bảo đảm tuyệt đối không còn lỗi, không sót dependency hoặc đạt hiệu năng tốt nhất trong mọi môi trường.
 
 Những giới hạn này không loại bỏ monitoring/admin của sản phẩm, hướng dẫn deploy/khôi phục, hay yêu cầu xử lý thay đổi sau release. Kidea vẫn hướng dẫn và kiểm chứng các phần đó trong phạm vi đã chốt; thao tác có tác dụng phụ chỉ được làm khi có quyền tương ứng.
 
-**Quyết định đang xin Human:** duyệt người dùng/luồng project mục tiêu, các năng lực bắt buộc và giới hạn bản đầu nêu trên. Chưa xin duyệt ma trận công nghệ, pilot, runtime hoặc schema ở gate này.
+Phạm vi này không duyệt trước ma trận phiên bản/công cụ, lựa chọn framework, pilot, runtime hoặc schema. Các đề xuất mới tiếp tục ở đúng gate của chúng.
+
+<a id="platform-matrix"></a>
+
+### 1.2. Ma trận nền tảng — P01-T02 đang làm rõ
+
+Gói review: `P01-T02-PLATFORM-r1`, ngày 2026-09-07, `IN_REVIEW`. Bảng này tách yêu cầu Human đã chốt khỏi khuyến nghị AI chưa được duyệt. Lý do, nguồn chính thức và giới hạn nghiên cứu nằm trong [báo cáo nền tảng/SEO](exa-results/kidea-platform-seo-2026-09-07.md); báo cáo không phải nguồn trạng thái hay một thiết kế khác.
+
+| Thành phần | Đầu vào Human đã chốt | Khuyến nghị đang xin duyệt | Còn phải xác định/kiểm chứng |
+|---|---|---|---|
+| Host Kidea | Windows | Giữ Windows làm host bản đầu | Phiên bản Windows, ứng dụng host AI/cách gọi skill, runtime/helper và quyền cài thử; runtime quyết định ở P02 |
+| Backend sản phẩm | C++20; triển khai Ubuntu | Giữ nghiệp vụ ở backend C++20, frontend dùng hợp đồng API đã duyệt | Ubuntu/CPU/compiler/thư viện; máy build, môi trường thử và quy trình release; chưa chọn phiên bản Ubuntu |
+| Android | Native, code độc lập; nhẹ/mượt/đồ họa tốt, dùng được trên máy yếu | Kotlin + Jetpack Compose; bổ sung thành phần chuyên biệt khi có số đo chứng minh cần | Phiên bản SDK/công cụ; thiết bị yếu đại diện, workload, ngân sách khung hình/bộ nhớ/pin/dung lượng; build release và kiểm tra thực |
+| iOS | Native, code độc lập; cùng mục tiêu chất lượng Android | Swift + SwiftUI; UIKit hoặc Metal chỉ cho phần có nhu cầu cụ thể | iOS tối thiểu/thiết bị, Swift/Xcode; nguồn lực Mac hoặc Mac CI cho build/test/sign; ngân sách và quyền sử dụng chưa được cấp |
+| Web | Nhẹ/mượt; SEO Google/Bing và AI search là ưu tiên cao hơn hiệu ứng trang trí | Nếu web công khai là trọng tâm: Astro + TypeScript, HTML/CSS trước, Svelte islands khi cần; nếu ứng dụng tương tác là trọng tâm: cân nhắc SvelteKit + TypeScript có SSR | Loại web, độ tươi nội dung, SSG/SSR theo route, thư viện UI/đồ họa nếu cần, công cụ/runtime, thiết bị và điều kiện mạng để kiểm chứng |
+
+SSG là tạo sẵn HTML lúc build; SSR là tạo HTML phía máy chủ khi cần. Cả hai vẫn có thể thêm tương tác. Astro SSR cần runtime/adapter phù hợp, có thể thêm Node cạnh backend C++; Astro xuất tĩnh không cần server JavaScript lúc phục vụ. Không mặc định dựng hai framework web hoặc chuyển nghiệp vụ C++ sang frontend. Không công bố lựa chọn nào nhanh nhất khi chưa có benchmark đúng workload.
+
+Yêu cầu SEO áp dụng cho nội dung được phép công khai. Không dùng mục tiêu được tìm thấy để mở dữ liệu riêng tư, admin hoặc nội dung cần xác thực. Quyền riêng tư, an toàn và tính đúng không bị hạ ưu tiên để lấy SEO. Cách đưa SEO thành đầu ra/gate cụ thể đang được đề xuất ở [mục 2.5](#seo-proposal).
+
+#### Ý tưởng ngoài bản đầu: một Human, nhiều agent
+
+Human nêu khả năng một orchestrator dùng model mạnh điều phối các agent làm task độc lập, chọn mức model theo tính chất việc. Chỉ ghi nhận ở mức `Idea`, chưa phải yêu cầu xây, chạy nhiều agent hiện tại hoặc chọn model cụ thể. Nếu được đưa vào phạm vi sau này, cần thiết kế riêng quyền ghi trạng thái, tính độc lập của công việc, tổng hợp/kiểm chứng kết quả và Human gate; không suy ra ý tưởng này cho phép nhiều agent tự duyệt lẫn nhau hoặc ghi đè cùng hồ sơ.
 
 ## 2. Nguyên tắc tổ chức quy trình
 
@@ -113,6 +135,26 @@ Không mặc định mọi sản phẩm phải có mobile, nhiều service, dash
 Future giúp nhận diện hướng mở rộng và những quyết định khó đảo ngược; không phải giấy phép xây trước mọi thứ. Với một người, đề xuất ban đầu nên xem xét một ứng dụng chia module rõ trước khi cân nhắc nhiều service, rồi quyết định theo yêu cầu thực tế.
 
 Tinh gọn nghĩa là mỗi file, trường dữ liệu, rule và bước kiểm tra có công dụng rõ, một nơi định nghĩa có hiệu lực; mạnh mẽ nghĩa là có thể kiểm chứng và tiếp tục an toàn khi bị ngắt; chỉn chu nghĩa là thông tin đúng, rõ, đồng bộ và kết quả được kiểm tra. Không lấy việc ít file hoặc ít bước làm thước đo duy nhất của sự đơn giản.
+
+<a id="seo-proposal"></a>
+
+### 2.5. SEO và khả năng được tìm thấy — đề xuất tích hợp đang chờ duyệt
+
+Yêu cầu Human đã chốt: ưu tiên khả năng tìm thấy nội dung/sản phẩm công khai qua Google, Bing và AI search như ChatGPT, Perplexity; vẫn cần trải nghiệm nhẹ/mượt. Phần dưới là đề xuất AI `SEO-WORKFLOW-r1`, `IN_REVIEW`, chưa thay bảng mười bước hoặc danh mục task đã duyệt.
+
+Đề xuất giữ mười bước và bổ sung một nhánh yêu cầu xuyên suốt tên **SEO & khả năng được tìm thấy**, với hai gate bước con: **duyệt thiết kế SEO** trong bước 4 trước kiến trúc và **duyệt sẵn sàng SEO** trong bước 10 trước phát hành công khai. Không dồn SEO thành bước cuối; không tạo bước 11 chỉ để sửa hậu quả URL/rendering/nội dung đã xây.
+
+| Nơi tích hợp trong quy trình sản phẩm | Đầu ra/điều kiện đề xuất | Task xây hướng dẫn cần cập nhật nếu Human duyệt |
+|---|---|---|
+| Bước 1–2: phạm vi, nghiệp vụ | Nội dung công khai/riêng tư, khách cần tìm gì, trang/sản phẩm mục tiêu, nguồn nội dung và người chịu trách nhiệm; nghiệp vụ xuất bản/cập nhật/gỡ nội dung khi có | P04-T02/T03 |
+| Bước 3–4: chất lượng, UX/nội dung | Tiêu chí kiểm tra được; cấu trúc nội dung/URL/internal link, tiêu đề/mô tả, kế hoạch nội dung hữu ích; Human duyệt thiết kế SEO trước kiến trúc | P05-T01/T02 |
+| Bước 5–7: monitoring, admin, kiến trúc | Theo dõi crawler/indexing và kết quả tìm kiếm; quyền biên tập nếu cần; SSG/SSR, HTTP/canonical/redirect, cache và độ tươi, robots/sitemap/structured data; policy search bot và training bot tách biệt | P05-T03/T04/T05/T06 |
+| Bước 8–9: test và code | Test HTML/URL/nội dung có thể đọc, metadata/structured data nhất quán, link/status, thiết bị/mạng và hiệu năng; đưa yêu cầu SEO vào ba bản đồ như yêu cầu khác | P06-T04/T06, P07-T05/T06, P10-T01/T02 |
+| Bước 10 và vận hành sau release | Duyệt cấu hình phát hành; kiểm tra website thật, không rò dữ liệu riêng; xác minh truy cập crawler và gửi sitemap/IndexNow khi phù hợp, theo dõi kết quả sau đó | P10-T03/T04/T05, P11-T02/T03/T07, P12-T04/T05/T06 |
+
+Gate trước phát hành kiểm tra mức sẵn sàng kỹ thuật/nội dung, không đòi kết quả index vốn chỉ quan sát được sau khi công khai. Kiểm tra sau deploy và theo dõi tìm kiếm không được đánh dấu đạt khi chưa có dữ liệu; không coi crawler được phép vào, test PASS hoặc đã gửi sitemap là bảo đảm được index, lên hạng hay được AI trích dẫn. Search bot được phép truy cập không đồng nghĩa phải cho phép bot huấn luyện.
+
+Nếu được duyệt, cập nhật bảng mười bước và các task nêu trên tại nguồn; chỉ tách task con trong roadmap khi cần giữ công việc đủ nhỏ. Chưa tạo phase mới, map thứ tư hoặc bộ checklist/tracker SEO riêng.
 
 <a id="workflow"></a>
 
@@ -297,7 +339,9 @@ Nội dung đọc từ hồ sơ phải được chèn vào HTML như dữ liệu
 
 Resume không cần đọc toàn bộ project mỗi lần, nhưng khi phân tích ảnh hưởng vẫn phải tìm đủ nơi liên quan và đọc đầy đủ chúng. Context không đủ thì chia lượt đọc, lưu kết quả có căn cứ và tiếp tục; không kết luận không ảnh hưởng chỉ vì chưa đọc hết.
 
-Sang máy khác cần có cả `.kidea`, đúng source và tài nguyên cần dùng; Kidea cũng phải được cài/khả dụng ở máy đó. Resume không tự đồng bộ file giữa máy, không tự clone/pull/push và không khôi phục được file chưa được chuyển sang. Chuyển qua Git chỉ xảy ra khi Human yêu cầu.
+Human chọn Git để chuyển công việc giữa máy: lưu `.kidea` cùng source và các file cần để khôi phục công việc trong repo; sau khi máy đích pull, `resume` tự đọc hồ sơ trên đĩa để xác định việc đang dở và quyền tiếp tục. Không yêu cầu một dịch vụ đồng bộ Kidea. Không đưa secret, dữ liệu riêng tư hoặc đầu ra không được phép chia sẻ vào Git.
+
+Máy đích vẫn cần Kidea khả dụng và đúng phiên bản công cụ/profile. Resume kiểm tra source/hồ sơ có khớp nhau, thiếu file hoặc conflict, thay đổi ngoài luồng và hiệu lực approval; không tin riêng một dòng trạng thái đã được push. Checkpoint local không phụ thuộc việc đã commit; phần chưa push không có ở máy khác. Resume không tự clone/pull/push, không tự giải quyết conflict, chuyển branch hoặc khôi phục file chưa được chuyển sang. Quyền thao tác Git vẫn tách khỏi quyền đọc/tiếp tục công việc.
 
 <a id="change"></a>
 
@@ -527,7 +571,7 @@ Ví dụ cho C++ backend, chưa phải bộ rule hoàn chỉnh:
 - Quản lý vòng đời tài nguyên bằng RAII: gắn bộ nhớ/file/khóa với đối tượng quản lý để việc giải phóng đi theo vòng đời đối tượng, giảm việc nhớ giải phóng thủ công ở từng nhánh. Làm rõ quyền sở hữu và vòng đời; không coi dùng smart pointer là tự bảo đảm không còn leak hoặc lỗi concurrency. [C++ Core Guidelines — R.1](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rr-raii).
 - Formatter và phân tích tĩnh kiểm tra phần có thể tự động hóa; test phát hiện lỗi bộ nhớ và test đồng thời khi áp dụng; có bằng chứng đo bộ nhớ, độ trễ và thông lượng với tải đại diện. Công cụ và cấu hình cụ thể phải phù hợp compiler/môi trường đã chốt.
 
-Ubuntu Server 24.04 LTS chỉ là một phần của môi trường đích; chưa cho biết CPU, compiler, thư viện, workload hoặc yêu cầu khả chuyển. Ví dụ với GCC trên x86, `-march=native` lấy đặc điểm CPU máy build và có thể sinh chương trình không chạy trên CPU máy khác; không được mặc định bật chỉ vì cùng dùng Ubuntu. [GCC — x86 Options](https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html).
+Ubuntu đã được Human chọn nhưng chưa chọn phiên bản. Ví dụ Ubuntu Server 24.04 LTS cũng chỉ là một phần của môi trường đích; chưa cho biết CPU, compiler, thư viện, workload hoặc yêu cầu khả chuyển. Ví dụ với GCC trên x86, `-march=native` lấy đặc điểm CPU máy build và có thể sinh chương trình không chạy trên CPU máy khác; không được mặc định bật chỉ vì cùng dùng Ubuntu. [GCC — x86 Options](https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html).
 
 Mục tiêu hiệu năng là đáp ứng ngân sách độ trễ/thông lượng/bộ nhớ đã chốt và cải thiện phần quan trọng bằng số đo trên môi trường đại diện. Không có một bộ style/cú pháp tự bảo đảm “tốt nhất” cho mọi tải. Tối ưu phải giữ đúng nghiệp vụ, an toàn và khả năng triển khai; đánh giá trade-off trước khi thêm kỹ thuật chuyên biệt. [C++ Core Guidelines — Per.6](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rper-measure).
 
@@ -545,7 +589,8 @@ Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải c
 
 | Quyết định cần chốt | Nơi xử lý trong roadmap |
 |---|---|
-| Bản đầu phục vụ ai, host/OS/ngôn ngữ nào; pilot và tiêu chí thành công có thể đo | [P01](KIDEA_ROADMAP.md#p01) |
+| Hoàn tất ma trận phiên bản/công cụ/môi trường theo định hướng Windows, C++20/Ubuntu và native/web đã chốt; pilot và tiêu chí thành công có thể đo | [P01](KIDEA_ROADMAP.md#p01) |
+| Duyệt đề xuất tích hợp SEO vào đầu ra/gate của mười bước, rồi cập nhật các task xây hướng dẫn bị ảnh hưởng | [Đề xuất SEO](#seo-proposal), [review P01-T02](KIDEA_ROADMAP.md#p01-t02-review) |
 | Runtime của helper, cách đóng gói/cài; schema Markdown, ID, quyền ghi, approval fingerprint, checkpoint và nâng phiên bản | [P02](KIDEA_ROADMAP.md#p02) |
 | Cách phân rã nghiệp vụ, AC và chọn tập business test có thể áp dụng lặp lại | [P04](KIDEA_ROADMAP.md#p04) |
 | Hồ sơ coding rules đầu tiên, công cụ kiểm tra và cách mang đúng phiên bản qua máy mới | [P06](KIDEA_ROADMAP.md#p06) |

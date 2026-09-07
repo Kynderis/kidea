@@ -25,14 +25,14 @@ Nguyên tắc thực hiện:
 
 | Trường | Giá trị hiện hành |
 |---|---|
-| Gate đang chờ | `P01-T01`: Human review gói `P01-T01-SCOPE-r1` |
-| Phase/task đang thực hiện | [P01 / P01-T01](#p01-t01-review) |
-| Việc tiếp theo sau approval | `P01-T02` — chốt ma trận host, OS, ngôn ngữ/thành phần và môi trường thử |
-| Điều kiện để tiếp tục | Human duyệt [phạm vi bản đầu](KIDEA_DESIGN.md#first-release-scope); sau đó mới đóng P01-T01 và bắt đầu P01-T02 |
+| Gate đang chờ | `P01-T02`: review hướng công nghệ `P01-T02-PLATFORM-r1`; đề xuất tích hợp SEO `SEO-WORKFLOW-r1` chưa được duyệt |
+| Phase/task đang thực hiện | [P01 / P01-T02](#p01-t02-review) |
+| Việc tiếp theo | Chốt hướng mobile/web, sau đó hoàn thiện phiên bản/công cụ/thiết bị và môi trường thử trong P01-T02 |
+| Điều kiện để tiếp tục | Duyệt định hướng chưa đủ đóng P01-T02; phải có ma trận cụ thể, phần cần kiểm chứng và quyền/công cụ còn thiếu. Chỉ bắt đầu P01-T03 sau gate này |
 | Điểm quay lại | Chưa có |
 | Vướng mắc khác | Chưa ghi nhận; các lựa chọn triển khai còn mở được giao cho task cụ thể |
 
-Đã bắt đầu P01-T01 và chuẩn bị đầu ra để review, chưa đánh dấu task này `DONE`. Chưa có skill, helper hoặc pilot được tạo theo lộ trình này.
+P01-T01 đã `DONE` sau xác nhận phạm vi của Human ngày 2026-09-07; P01-T02 đang làm rõ các lựa chọn. Chưa có skill, helper hoặc pilot được tạo theo lộ trình này.
 
 ## 3. Quy ước cập nhật, bằng chứng và Human gate
 
@@ -102,10 +102,10 @@ Mục tiêu: biết chính xác bản đầu cần làm được gì và kiểm 
 
 | Task | Đầu ra cần tạo | Điều kiện kiểm chứng | Trạng thái | Bằng chứng |
 |---|---|---|---|---|
-| P01-T01 [H] | Phạm vi bản đầu, điều không làm, nhóm người dùng và mức hỗ trợ | Đối chiếu đủ sáu hành động/mười bước/ba bản đồ; giới hạn tổ hợp hỗ trợ rõ, không âm thầm bỏ yêu cầu đã duyệt | IN_PROGRESS | [Gói review và đối chiếu](#p01-t01-review); chờ Human |
-| P01-T02 [H] | Ma trận host, OS, ngôn ngữ/thành phần đầu tiên và môi trường chạy thử | Ghi cái nào cần kiểm chứng thực, cái nào chưa hỗ trợ; xác định quyền/công cụ cần mà chưa tự cài | TODO | — |
+| P01-T01 [H] | Phạm vi bản đầu, điều không làm, nhóm người dùng và mức hỗ trợ | Đối chiếu đủ sáu hành động/mười bước/ba bản đồ; giới hạn tổ hợp hỗ trợ rõ, không âm thầm bỏ yêu cầu đã duyệt | DONE | [Xác nhận Human và đối chiếu](#p01-t01-review), 2026-09-07 |
+| P01-T02 [H] | Ma trận host, OS, ngôn ngữ/thành phần đầu tiên và môi trường chạy thử | Ghi cái nào cần kiểm chứng thực, cái nào chưa hỗ trợ; xác định quyền/công cụ cần mà chưa tự cài | IN_PROGRESS | [Gói review nền tảng](#p01-t02-review); chưa đủ ma trận để đóng task |
 | P01-T03 [H] | Phạm vi một sản phẩm pilot nhỏ dùng dữ liệu giả | Có nghiệp vụ dùng chung, ít nhất một dependency ngoài lời gọi trực tiếp, giao diện và nhu cầu admin/monitoring vừa đủ; môi trường phi production, chi phí và ranh giới được chốt | TODO | — |
-| P01-T04 | Danh mục kịch bản nghiệm thu Kidea, tách khỏi test của pilot | Có đường đúng, Human reject, approval cũ, dữ liệu sai, ngắt/resume, thay đổi giữa MVP và sau release; mỗi case có hành vi mong đợi quan sát được | TODO | — |
+| P01-T04 | Danh mục kịch bản nghiệm thu Kidea, tách khỏi test của pilot | Có đường đúng, Human reject, approval cũ, dữ liệu sai, ngắt/resume qua Git, dự án cũ đi từ bước 1, thay đổi giữa MVP và sau release; mỗi case có hành vi mong đợi quan sát được | TODO | — |
 | P01-T05 [H] | Tiêu chí chất lượng Kidea và mức bằng chứng tối thiểu | Chốt cách đo độ đúng trạng thái, an toàn ghi, khả năng resume, thời gian đọc/chạy trên hồ sơ đại diện; không dùng “nhanh/tốt/đầy đủ” không kiểm tra được | TODO | — |
 | P01-T06 | Gói review phạm vi, pilot, acceptance và rủi ro | Mỗi yêu cầu thiết kế có task/kiểm tra dự kiến; lựa chọn chưa chốt không bị thể hiện là đã hỗ trợ | TODO | — |
 
@@ -113,25 +113,44 @@ Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không c
 
 <a id="p01-t01-review"></a>
 
-### Gói review P01-T01
+### Xác nhận và đối chiếu P01-T01
 
-- Mã gói: `P01-T01-SCOPE-r1`, ngày 2026-09-07; nội dung `IN_REVIEW`, chưa có xác nhận Human.
-- Đầu ra duy nhất về phạm vi: [KIDEA_DESIGN.md — mục 1.1](KIDEA_DESIGN.md#first-release-scope). Không chép lại một bản scope trong roadmap.
-- Phiên bản tài liệu trình review: blob `1ac38cc62f966a566f0c95f59f6536f0f974b751` của KIDEA_DESIGN.md; phạm vi xin duyệt chỉ là mục 1.1, không phải các quyết định triển khai còn mở ở mục khác.
-- Đầu vào đối chiếu: thiết kế đã duyệt tại `d6dbc20`, đặc biệt các mục mục tiêu/quy trình/state/resume/change/ba bản đồ/coding rules; task P01-T01 và thứ tự gate trong lộ trình đã duyệt.
-- Giới hạn công việc lượt này: soạn phạm vi, đối chiếu thiết kế, cập nhật trạng thái và gói review. Không chọn stack, pilot, runtime/schema; không tạo/cài skill hoặc viết helper.
-- Mục phải có Human quyết định: toàn bộ phạm vi r1, đặc biệt giới hạn tổ hợp được cam kết hỗ trợ và việc chưa nghiệm thu tự động tiếp nhận một dự án cũ chưa có hồ sơ Kidea.
+- Gói hiện hành: `P01-T01-SCOPE-r2`, `APPROVED`, ngày 2026-09-07. Đầu ra phạm vi duy nhất: [KIDEA_DESIGN.md — mục 1.1](KIDEA_DESIGN.md#first-release-scope).
+- Bằng chứng Human: phản hồi bắt đầu “vài điểm mình nêu ý kiến nhé”, kết thúc “Những điều còn lại mình nhất trí với bạn”; Human đồng ý giới hạn hỗ trợ, không xây nền tảng nhiều người/dịch vụ online, xác định Git để chuyển hồ sơ và yêu cầu dự án cũ vẫn đi từ bước 1. Bản r2 tích hợp các điều chỉnh trực tiếp đó, không dùng lời đồng ý này để duyệt trước framework hoặc cách tổ chức SEO do AI đề xuất sau phản hồi.
+- Nội dung Human đã xem: mục 1.1 trong blob thiết kế `1ac38cc62f966a566f0c95f59f6536f0f974b751`, cùng phần giải thích tại commit `5e24501`; các điều chỉnh trực tiếp của Human là căn cứ cho phạm vi hiện hành.
+- Đầu vào đối chiếu nền: thiết kế và lộ trình tại `d6dbc20`. Phạm vi vẫn giữ sáu hành động, mười bước và ba bản đồ; chưa cấp quyền cài/chạy skill, code pilot hoặc triển khai thật.
 
 | Phần được đối chiếu | Kết luận hiện hành | Căn cứ và xử lý |
 |---|---|---|
 | Sáu hành động, mười bước, ba bản đồ | ĐÃ KIỂM TRA — KHÔNG CẦN SỬA thiết kế nền | Mục 1.1 giữ đủ năng lực, tham chiếu định nghĩa nguồn; không tạo command hoặc map mới |
-| Human gate, một task, hồ sơ/resume/change | ĐÃ KIỂM TRA — KHÔNG CẦN SỬA thiết kế nền | Bản đầu vẫn phải xử lý gián đoạn và thay đổi giữa MVP/sau release; approval kế hoạch không được dùng cho đầu ra scope |
-| Người dùng, phạm vi project và mức hỗ trợ bản đầu | CẦN HUMAN DUYỆT | Mục 1.1 là đề xuất mới, đã gắn nhãn IN_REVIEW; không áp giới hạn mới như quyết định đã có |
-| P01-T02/T03/T04/T05 và các phase phụ thuộc | ĐÃ KIỂM TRA — KHÔNG CẦN SỬA task/gate | R1 không chọn trước công nghệ/pilot hoặc giảm bộ nghiệm thu; chi tiết vẫn ở đúng task đã được duyệt |
-| Trạng thái lộ trình và điểm tiếp tục | ĐÃ CẬP NHẬT | G-ROADMAP được ghi nhận; P01/P01-T01 đang làm; task còn lại chưa bắt đầu |
+| Human gate, một task, hồ sơ/resume/change | ĐÃ CẬP NHẬT phần làm rõ | Git chuyển `.kidea` cùng source, resume kiểm tra trước tiếp tục; checkpoint local không phụ thuộc Git; quyền Git vẫn riêng |
+| Người dùng, phạm vi project và mức hỗ trợ bản đầu | HUMAN ĐÃ DUYỆT | Mục 1.1 tích hợp xác nhận và điều chỉnh trực tiếp; dự án cũ không bỏ bước/gate, cụm agent chỉ là Idea ngoài bản đầu |
+| P01-T02/T03/T04/T05 và các phase phụ thuộc | ĐÃ KIỂM TRA — GIỮ GATE | Yêu cầu nền tảng là đầu vào P01-T02, không phải bằng chứng tương thích; pilot và bộ nghiệm thu chưa được chọn |
+| Trạng thái lộ trình và điểm tiếp tục | ĐÃ CẬP NHẬT | P01-T01 DONE; chỉ P01-T02 IN_PROGRESS; P01 chưa hoàn thành |
 | Tài liệu tham khảo nghiệp vụ | ĐÃ KIỂM TRA — KHÔNG CẦN SỬA | Không đổi phương pháp AC/flow/test ở P01-T01; việc tích hợp vẫn thuộc P04 |
 
-Kiểm tra cấu trúc ngày 2026-09-07 bằng PowerShell trên Windows: 57 link/anchor nội bộ trong hai tài liệu thiết kế/roadmap hợp lệ; 77 task, chỉ P01-T01 IN_PROGRESS, 76 TODO và 0 DONE; không có anchor trùng hoặc fence Markdown chưa đóng; `git diff --check` đạt. Đây là rà soát tài liệu và cấu trúc, không phải test hành vi Kidea. Task chỉ đóng sau khi Human duyệt phạm vi hiện hành; nếu có góp ý, sửa đúng mục 1.1, cập nhật phiên bản gói và kiểm tra lại ảnh hưởng trước khi xin duyệt.
+Đối chiếu này là review tài liệu và xác nhận phạm vi; không phải test hành vi Kidea. Nhận diện nội dung phạm vi hiện hành và kết quả kiểm tra cấu trúc được ghi tại phần kiểm chứng P01-T02 bên dưới; thay đổi ngữ nghĩa phạm vi sau đây phải mở lại đúng gate.
+
+<a id="p01-t02-review"></a>
+
+### Gói review P01-T02 đang làm rõ
+
+- Gói `P01-T02-PLATFORM-r1`, `IN_REVIEW`, ngày 2026-09-07: [ma trận nền tảng](KIDEA_DESIGN.md#platform-matrix). Các yêu cầu Human đã chọn và công nghệ AI đề xuất được tách cột; chưa có framework mobile/web nào được Human duyệt hoặc benchmark trong lượt này.
+- Xin duyệt thêm hướng tích hợp `SEO-WORKFLOW-r1` tại [thiết kế mục 2.5](KIDEA_DESIGN.md#seo-proposal). SEO là yêu cầu đã chốt; hai gate và nơi tích hợp là đề xuất mới. Giữ nguyên bảng mười bước và 77 task trong khi chờ, không tự thêm phase hay coi đề xuất là quyết định.
+- Còn thiếu: loại web công khai/ứng dụng tương tác; phiên bản OS/compiler/SDK và môi trường thử; thiết bị yếu đại diện; nguồn lực Mac/Mac CI cho iOS; phạm vi được phép cài/chạy. Runtime/helper vẫn được chọn ở P02 theo ràng buộc host đã chốt.
+- Sau khi Human chọn hướng, hoàn thiện ma trận và điểm thiếu quyền/công cụ ngay trong P01-T02 rồi xin duyệt đầu ra đầy đủ; không chuyển P01-T03 chỉ vì đã chọn tên framework.
+
+| Ảnh hưởng đã rà | Xử lý hiện hành |
+|---|---|
+| Git/resume → hợp đồng/checkpoint/lõi/đổi máy | Làm rõ thiết kế mục 6; cập nhật case Git ở P01-T04, P02-T05, P08-T06, P11-T06, P12-T03; P02-T04/P03-T06 vẫn giữ checkpoint local và không tự Git |
+| Dự án cũ → init/nghiệp vụ/gate | Làm rõ mục 1.1; bổ sung tiêu chí P01-T04, P03-T04 và P04-T02: đi từ bước 1, chỉ tận dụng context, không tự init đè hoặc nhận code là đặc tả đã duyệt |
+| Nền tảng → rule/adapter/test/pilot/phát hành | P01-T02 còn mở; P02, P05–P07, P10–P12 chỉ triển khai theo ma trận được duyệt, phải ghi rõ phần chưa kiểm chứng; không lấy Windows làm bằng chứng build iOS được |
+| SEO → nghiệp vụ/nội dung/UX/ops/architecture/test/release | Danh sách task bị ảnh hưởng nằm ở đề xuất mục 2.5; chỉ sửa đầu ra/gate các task này sau khi Human duyệt phương án tích hợp |
+| HTML offline Kidea, ba bản đồ và tài liệu nghiệp vụ gốc | Không đổi nguồn/trạng thái/định nghĩa: SEO nói về web sản phẩm công khai, không biến view offline thành website SEO; không thêm map hoặc sửa nguyên bản tham khảo |
+
+Kiểm chứng tài liệu ngày 2026-09-07 bằng PowerShell trên Windows: 71 link/anchor nội bộ trong thiết kế, roadmap và báo cáo nghiên cứu hợp lệ; 77 task có ID duy nhất, gồm 1 DONE (P01-T01), 1 IN_PROGRESS (P01-T02), 75 TODO; không có anchor trùng hoặc fence chưa đóng; `git diff --check` đạt. Tài liệu nghiệp vụ gốc không thay đổi. Không có cài đặt, test ứng dụng mobile/web hoặc thao tác môi trường sản phẩm trong lượt này.
+
+Nhận diện nội dung mục 1.1 đã ghi nhận theo phản hồi Human: SHA-256 `e2912fb8b2f6d260fdac63b592b2d853152a34aa88634506ae775f3df79222ab`. Phạm vi băm: từ anchor `first-release-scope` đến trước anchor `platform-matrix`, chuẩn hóa LF và một newline cuối. Mã băm chỉ nhận diện nội dung đã ghi, không thay bằng chứng xác nhận Human ở trên và không bao gồm đề xuất stack/SEO đang chờ duyệt.
 
 <a id="p02"></a>
 
@@ -145,7 +164,7 @@ Mục tiêu: một bộ hồ sơ đọc được bằng mắt lẫn máy, biết
 | P02-T02 [H] | Schema nguồn cho INDEX/work/features, ID, task cha-con và trạng thái tài liệu | Mỗi dữ kiện có một nơi ghi có hiệu lực; task DONE vẫn truy được; chưa phân rã khác với hoàn tất; phân biệt target và bản đã release | TODO | — |
 | P02-T03 [H] | Hợp đồng chuyển trạng thái, review ID, nội dung được duyệt và hiệu lực approval | Bảng đủ chuyển hợp lệ/không hợp lệ; reject, N/A, gate bước con, approval sai mục/cũ và thay đổi ngữ nghĩa; không dùng test PASS làm Human approval | TODO | — |
 | P02-T04 [H] | Hợp đồng checkpoint, quyền ghi, khôi phục và phiên bản skill/schema/profile | Chốt nhận diện phiên bản/tương thích từ đầu; xử lý ghi dở/xung đột/sai root/path thoát phạm vi, bản chưa hỗ trợ và thao tác chưa biết kết quả; không yêu cầu Git để lưu trạng thái | TODO | — |
-| P02-T05 | Bộ hồ sơ mẫu hợp lệ/không hợp lệ và diễn tập đọc/chuyển bằng tay | Thử chuỗi dependency nhiều cấp, trạng thái mâu thuẫn, file thiếu, nguồn sửa ngoài luồng và máy mới; cùng dữ liệu phải dẫn tới cùng kết luận cấu trúc | TODO | — |
+| P02-T05 | Bộ hồ sơ mẫu hợp lệ/không hợp lệ và diễn tập đọc/chuyển bằng tay | Thử chuỗi dependency nhiều cấp, trạng thái mâu thuẫn, file thiếu, nguồn sửa ngoài luồng; máy mới sau Git có hồ sơ/source đúng hoặc lệch/conflict; cùng dữ liệu phải dẫn tới cùng kết luận cấu trúc | TODO | — |
 | P02-T06 | Gói review hợp đồng và danh sách test cho helper | Mẫu không chứa trường trang trí/nguồn trùng; mỗi rủi ro P02 có case kiểm tra; quyết định đủ để bắt đầu P03 | TODO | — |
 
 Gate cuối: Human duyệt hợp đồng dữ liệu và quyền thao tác. Schema các phần chuyên biệt được mở rộng tại phase tương ứng, phải theo quy tắc tương thích đã chốt ở đây.
@@ -161,7 +180,7 @@ Mục tiêu: cài thử trong vị trí được Human cho phép và chứng min
 | P03-T01 | Khung một skill, SKILL.md ngắn, bộ test và bản cài thử khi có quyền | Khai báo/routing hợp lệ; chỉ cài khi Human cho phép đúng vị trí; đọc hướng dẫn theo việc hiện hành; nhận diện lời gọi chủ động và không chiếm yêu cầu ngoài phạm vi | TODO | — |
 | P03-T02 | Bộ đọc/kiểm tra schema và mẫu khởi đầu | Test dữ liệu hợp lệ/sai/thiếu/không hỗ trợ; lỗi rõ vị trí; không sửa nguồn khi chỉ kiểm tra | TODO | — |
 | P03-T03 | Helper ghi an toàn theo P02 | Test từ chối sai root/path, không ghi đè file không sở hữu, lỗi giữa ghi và nguồn đổi trong lúc xử lý; kiểm tra file gốc không hỏng | TODO | — |
-| P03-T04 | Hành động init tối thiểu | Chỉ tạo INDEX/work/features cần thiết; tách ý tưởng Human và gợi ý AI; gọi lại không init đè hoặc mở hai việc hiện hành | TODO | — |
+| P03-T04 | Hành động init tối thiểu | Chỉ tạo INDEX/work/features cần thiết; tách ý tưởng Human và gợi ý AI; dự án cũ chưa có hồ sơ bắt đầu bước 1, không tự duyệt từ code; gọi lại không init đè hoặc mở hai việc hiện hành | TODO | — |
 | P03-T05 | Hành động status chỉ đọc | Báo đúng bước/task/gate/blocker; không ghi nguồn, chạy code sản phẩm hay thực hiện việc kế tiếp | TODO | — |
 | P03-T06 | Hành động resume tối thiểu | Phiên mới đọc đủ nguồn và điểm quay lại; phát hiện gián đoạn/approval cũ/thiếu công cụ; không đoán DONE hoặc tự thao tác Git | TODO | — |
 | P03-T07 | Hành động approve đúng phạm vi | Chỉ ghi xác nhận Human cho review hiện hành đủ điều kiện; sai ID/phiên bản/mục thiếu kiểm tra phải dừng; approve bước con không duyệt bước lớn | TODO | — |
@@ -178,7 +197,7 @@ Mục tiêu: một cách đặc tả có thể dùng lặp lại, đủ sâu đ�
 | Task | Đầu ra cần tạo | Điều kiện kiểm chứng | Trạng thái | Bằng chứng |
 |---|---|---|---|---|
 | P04-T01 | Đối chiếu tài liệu tham khảo với thiết kế hiện hành | Ghi giữ/điều chỉnh/cần chốt có lý do; phân biệt đề xuất v0.2 với quyết định đã duyệt; không khôi phục phạm vi cũ đã bỏ | TODO | — |
-| P04-T02 [H] | Hướng dẫn Feature Map, cụm đang làm và ranh giới nghiệp vụ chung/riêng | Thử MVP/Future/Idea, shared state, bên dùng thứ hai và dependency nhiều cấp; không đặc tả toàn Future hoặc tự tách shared module | TODO | — |
+| P04-T02 [H] | Hướng dẫn Feature Map, cụm đang làm và ranh giới nghiệp vụ chung/riêng | Thử MVP/Future/Idea, shared state, bên dùng thứ hai và dependency nhiều cấp; code/tài liệu dự án cũ chỉ là context, vẫn đi từng gate; không đặc tả toàn Future hoặc tự tách shared module | TODO | — |
 | P04-T03 [H] | Mẫu rule/state/flow/data và link/backlink có mục đích | Ví dụ đủ input/output/đơn vị/biên/lỗi/invariant; bảng flow là nguồn; ID cụ thể, không ALL/NEXT hay thêm loại quan hệ bị loại | TODO | — |
 | P04-T04 [H] | Cách viết AC và chọn business test specification | Expected result truy về rule/nhánh/invariant; có ví dụ flow lỗi đầu tiên và flow khác; phạm vi test hữu hạn được giải thích, không hứa test mọi tổ hợp | TODO | — |
 | P04-T05 | Áp dụng bước 1–2 lên lát cắt pilot, tích hợp hướng dẫn vào skill | Có phiên Human review từng gate, reuse và điểm quay lại; không còn OPEN ảnh hưởng hành vi đang duyệt; tìm ngược test tới căn cứ được | TODO | — |
@@ -251,7 +270,7 @@ Mục tiêu: thay đổi không bỏ sót các bên liên quan đã xác định
 | P08-T03 | Luồng change và tìm ảnh hưởng xuyên ba bản đồ | Truy dependency/caller, API/event/shared data/config; tìm bổ sung trong source/hồ sơ để bắt mapping thiếu; từng nơi có CẦN SỬA hoặc ĐÃ KIỂM TRA — KHÔNG CẦN SỬA | TODO | — |
 | P08-T04 | Xử lý chu kỳ và lan truyền khi không có diff trung gian | Test B đổi quy tắc làm tròn → A không sửa chữ nhưng đầu ra đổi → D phải được kiểm tra; dependency có vòng lặp không chạy vô hạn và không đóng sớm; input đổi phải requeue | TODO | — |
 | P08-T05 | Đồng bộ approval, mapping và nội dung hiện hành khi đổi/xóa/di chuyển | Migrate đủ link trước bỏ nội dung cũ; ID tái dùng chỉ khi tham chiếu hiện hành đúng nghĩa; không tạo retired-ID registry; approval/test cũ mất hiệu lực đúng phạm vi | TODO | — |
-| P08-T06 | Resume sau change dở và trên môi trường sạch | Giữ task DONE/điểm quay lại nhiều cấp; phát hiện source sửa ngoài luồng, bản rule thiếu, sai repo/branch, pending side effect; không tự pull/đổi branch/replay nguy hiểm | TODO | — |
+| P08-T06 | Resume sau change dở và trên môi trường sạch | Giữ task DONE/điểm quay lại nhiều cấp; phát hiện nguồn sửa ngoài luồng, bản rule thiếu, sai repo/branch, pending side effect; sau Human pull kiểm tra hồ sơ/source và conflict; không tự pull/đổi branch/replay nguy hiểm | TODO | — |
 | P08-T07 | Bộ case thay đổi và gói review | Mọi ảnh hưởng đã xác định được xử lý hoặc còn blocker rõ; target mới tách khỏi release cũ; không đóng vì đã quét hết cạnh hoặc giữ APPROVED khi căn cứ sai | TODO | — |
 
 Gate cuối: Human review cả đường đúng và đường khó, bao gồm thay đổi ngữ nghĩa không có diff. Nếu chưa xử lý xong tác động bắt buộc thì phase chưa đủ điều kiện duyệt.
@@ -303,7 +322,7 @@ Mục tiêu: dùng chính bản Kidea đang xây trong phiên mới để dẫn 
 | P11-T03 | Deploy pilot vào môi trường thử được phép và xác nhận release | Có bản đang chạy thực, smoke/monitor/admin, diễn tập rollback/restore áp dụng; không gắn nhãn production thật | TODO | — |
 | P11-T04 | Kịch bản thêm Feature khi MVP đang dở | Chạy trên checkpoint MVP có thể tái tạo; quay bước 1, giữ việc cũ, đánh giá đủ bước liên quan, Human gate và resume đúng điểm; không chỉ kể giả định | TODO | — |
 | P11-T05 | Kịch bản đổi Feature sau release và bugfix giữ nguyên đặc tả | Hai nhánh phân biệt rõ; xử lý impact/test/approval, target mới khác bản đang chạy; bug code không được hợp thức hóa bằng sửa rule | TODO | — |
-| P11-T06 | Kịch bản lỗi, ngắt phiên và chuyển môi trường/máy | Thực hiện Human reject, test fail/skip, mất công cụ, approval cũ, nguồn đổi ngoài luồng và pending side effect; bản rule/source đúng; không thực hiện Git/production ngoài quyền | TODO | — |
+| P11-T06 | Kịch bản lỗi, ngắt phiên và chuyển môi trường/máy | Thực hiện reject, fail/skip, mất công cụ, approval cũ, nguồn đổi và pending side effect; chuyển `.kidea` cùng source qua Git được phép rồi resume, thử thiếu file/conflict; không Git/production ngoài quyền | TODO | — |
 | P11-T07 | Báo cáo nghiệm thu pilot, sửa lỗi Kidea phát hiện và chạy lại | Mỗi lỗi có phạm vi sửa nhỏ, impact review và bằng chứng hồi quy; tách lỗi Kidea/lỗi pilot; đủ case P01, không dùng mẫu chạy xanh duy nhất thay toàn ma trận | TODO | — |
 
 Gate cuối: Human quyết định bản Kidea đủ điều kiện đóng gói hay phải quay phase trước. Chứng minh giả lập chỉ được ghi là giả lập; hạng mục cần máy/môi trường thực còn thiếu thì chưa đạt tiêu chí tương ứng.
@@ -320,7 +339,7 @@ Mục tiêu: người dùng có thể cài đúng bản, dùng từ đầu hoặ
 |---|---|---|---|---|
 | P12-T01 [H] | Ma trận phiên bản phát hành, nâng cấp và khôi phục theo hợp đồng P02 | Chốt các version thực sự hỗ trợ, cách bảo toàn hồ sơ và quyền nâng cấp; schema quá mới phải dừng rõ; nếu cần đổi hợp đồng nền phải mở lại P02 và phần phụ thuộc | TODO | — |
 | P12-T02 | Gói cài và hướng dẫn cài/gỡ trong phạm vi được phép | Cài sạch, kiểm tra phát hiện skill/sáu hành động, tránh đè bản khác; gỡ skill không xóa hồ sơ/source sản phẩm; không tự nhận /kidea được host hỗ trợ | TODO | — |
-| P12-T03 | Test cài/resume/nâng cấp trên ma trận hỗ trợ | Dùng đúng version source/rule/công cụ ở môi trường sạch; test từ chối bản không tương thích và rollback nâng cấp; nêu rõ phần mới mô phỏng/chưa chạy thực | TODO | — |
+| P12-T03 | Test cài/resume/nâng cấp trên ma trận hỗ trợ | Dùng đúng source/`.kidea`/rule/công cụ ở môi trường sạch, có case resume sau Git; test từ chối bản không tương thích và rollback nâng cấp; nêu rõ phần mới mô phỏng/chưa chạy thực | TODO | — |
 | P12-T04 | Tài liệu sử dụng tiếng Việt, ví dụ nhỏ và xử lý sự cố | Người dùng mới biết bắt đầu/gate/resume/change/view, backup và giới hạn; link/file thật, không lệ thuộc cuộc hội thoại; SKILL.md giữ gọn và routing đúng | TODO | — |
 | P12-T05 | Chạy bộ nghiệm thu cuối và review độc lập | Validator skill, tests helper, hành vi AI, maps/change/view/install đều gắn bản release candidate; rà secrets/quyền ghi/link lỗi, không còn lỗi chặn nghiệm thu | TODO | — |
 | P12-T06 | Gói bàn giao bản đầu và đề nghị Human nghiệm thu | Có version, phạm vi hỗ trợ đã chứng minh, kết quả, giới hạn/rủi ro và hướng dùng; publication/cài môi trường thật chỉ thực hiện nếu Human cấp quyền cụ thể | TODO | — |
@@ -357,4 +376,4 @@ Bảng này là chỉ mục bao phủ, không giữ thêm trạng thái task. Tr
 - Nếu test đòi môi trường/quyền chưa có: ghi blocker và yêu cầu cụ thể, không tự cài/deploy/thu thập dữ liệu ngoài quyền hoặc đổi test thành PASS.
 - Khi cập nhật tiến trình, giữ tài liệu hiện hành rõ ràng: quyết định cũ không còn hiệu lực phải được thay/migrate đủ tham chiếu; giữ bằng chứng cần thiết cho nghiệm thu và khôi phục, không tích lũy các quy tắc cũ mâu thuẫn.
 
-**Bước kế tiếp:** Human review gói `P01-T01-SCOPE-r1`; khi được duyệt mới đóng P01-T01 và chuyển P01-T02. Chưa nhảy sang viết SKILL.md hoặc helper.
+**Bước kế tiếp:** Human review hướng mobile/web và đề xuất tích hợp SEO tại [P01-T02](#p01-t02-review); hoàn thiện ma trận phiên bản/công cụ/môi trường trước khi đóng task này. Chưa chuyển sang pilot, viết SKILL.md hoặc helper.
