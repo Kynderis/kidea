@@ -8,11 +8,11 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T01-S01 — Đích và ranh giới bản đầu](#review-current). Trạng thái chi tiết ở [sổ công việc](#work-state). Các phần sau là tài liệu để AI làm đủ việc; Human không cần đọc toàn file để trả lời gói hiện tại.
+R01-T01 đã khép theo [kết quả và xác nhận](#r01-t01-result). Việc kế tiếp, chưa bắt đầu: R01-T02-S01 — xác nhận tài liệu sản phẩm ngoài .kidea và điều phối/review trong .kidea. Task này chỉ rà ranh giới hồ sơ, không chuyển file hoặc thay quyền Git. Trạng thái chi tiết ở [sổ công việc](#work-state).
 
 <a id="review-current"></a>
 
-### R01-T01-S01-r1 — Hai quyết định, không có quyết định kèm theo
+### R01-T01-S01-r1 — Gói đã được duyệt, không còn chờ phản hồi
 
 **Mục đích:** xác nhận đích đến trước khi xem công nghệ, Git hoặc tiêu chí đo. Dùng các lựa chọn vòng trước làm đề xuất, không tự kế thừa trạng thái DONE/APPROVED sang vòng mới.
 
@@ -23,7 +23,7 @@ Việc hiện hành: [R01-T01-S01 — Đích và ranh giới bản đầu](#revi
 
 **Không duyệt kèm:** chi tiết nền tảng/phiên bản, pilot, Git G1–G6, số giây/số lần thử của QUALITY, runtime/schema hay quyền thao tác. Các phần đó có gói nhỏ riêng bên dưới.
 
-Đầu ra đang review là hai quyết định trên, đối chiếu phạm vi vòng trước tại [bằng chứng lịch sử](#previous-round). Chưa có test hành vi hoặc approval mới. Sau xác nhận, đồng bộ đúng phạm vi và giới thiệu subtask kế tiếp; không tự chuyển sang code.
+Human đã duyệt đúng D1–D2 bằng phản hồi “Mình duyệt nhé”, sau gói được trình tại commit `5aa4e5b5a69b9305821e43bb5d4b3151ee2a271d`. Không có test hành vi hoặc quyền code mới; [kết quả đóng task](#r01-t01-result) ghi phần đồng bộ và kiểm tra.
 
 <a id="working-rules"></a>
 
@@ -74,9 +74,20 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 
 | Subtask | Trạng thái | Gói/gate | Kết quả, bằng chứng hoặc blocker |
 |---|---|---|---|
-| R01-T01-S01 | IN_PROGRESS | R01-T01-S01-r1 — IN_REVIEW | [Hai quyết định hiện tại](#review-current); chờ Human, chưa có approval vòng mới |
+| R01-T01-S01 | DONE | R01-T01-S01-r1 — APPROVED | Human: “Mình duyệt nhé”; chỉ D1–D2 ở commit 5aa4e5b; [bằng chứng](#r01-t01-result) |
+| R01-T01-S02 | DONE | [A] — không có quyết định mới | Đối chiếu DESIGN, danh mục KA và bảng bao phủ; không đổi scope hoặc ngưỡng; [kết quả](#r01-t01-result) |
+| R01-T01-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ approval, kiểm tra tài liệu và dọn tạm; [kết quả](#r01-t01-result) |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
+
+<a id="r01-t01-result"></a>
+
+### Kết quả R01-T01 — ngày 2026-09-08
+
+- S01: Human phản hồi “Mình duyệt nhé” ngay sau gói D1–D2 tại [commit 5aa4e5b](https://github.com/Kynderis/kidea/blob/5aa4e5b5a69b9305821e43bb5d4b3151ee2a271d/KIDEA_ROADMAP.md#review-current). Chỉ xác nhận đích bản đầu đầy đủ và ranh giới đã trình; không duyệt công nghệ, pilot, Git G1–G6, QUALITY, runtime/schema hoặc cấp quyền thao tác.
+- S02: đối chiếu DESIGN mục 1.1, bảng bao phủ roadmap và danh mục KA: sáu hành động → R02/R06/R07; mười bước → R03–R05/R08/R09; ba bản đồ/change → R06/R09; rules/view/cài/giới hạn → R05/R07/R10. Không phát hiện nghĩa vụ bị cắt; chưa cần sửa case/ngưỡng hoặc nghiên cứu lại nền tảng vì D1–D2 giữ hướng đang có.
+- S03: DESIGN dẫn về đúng bằng chứng approval, sổ công việc đóng đủ ba subtask. Kiểm tra link/anchor liên quan và diff; không có file tạm tạo ra hoặc untracked cần xóa. Đây là kiểm chứng tài liệu, không phải test Kidea hoặc đóng phase R01.
+- Tiếp theo R01-T02-S01 chỉ rà ranh giới tài liệu sản phẩm và hồ sơ điều phối; chưa bắt đầu, chưa chuyển file project thật.
 
 <a id="phase-overview"></a>
 
@@ -105,7 +116,7 @@ Bảng dưới là phân rã cụ thể của phase gần nhất. Mã con có d�
 
 | Task / đầu ra | S01 | S02 | S03 |
 |---|---|---|---|
-| R01-T01 — Đích và ranh giới | [H] Năng lực bắt buộc; ngoài phạm vi — gói hiện tại | [A] Đối chiếu thiết kế và nghĩa vụ nghiệm thu theo D1/D2 | [A] Đồng bộ nguồn, bằng chứng và dọn tạm |
+| R01-T01 — Đích và ranh giới | [H] Năng lực bắt buộc; ngoài phạm vi | [A] Đối chiếu thiết kế và nghĩa vụ nghiệm thu theo D1/D2 | [A] Đồng bộ nguồn, bằng chứng và dọn tạm |
 | R01-T02 — Một repo, hai vùng hồ sơ | [H] Xác nhận nội dung sản phẩm ngoài .kidea; điều phối/review trong .kidea | [H] Nguồn duy nhất và cách đọc/ghi xuyên vùng | [A] Đồng bộ ví dụ/link; không chuyển file project thật |
 | R01-T03 — Nền tảng bản đầu | [H] Host Windows và backend Ubuntu | [H] Web/rendering và nhánh SEO đã chọn | [H] Android/iOS native; chính sách kiểm tra thiết bị/toolchain đúng lúc |
 | R01-T04 — Pilot và nơi giữ hồ sơ | [H] Bài toán workshop và MVP giới hạn | [H] Chuỗi event/đường lỗi cần chứng minh; thứ tự backend–web rồi native | [H] Nơi giữ tài liệu trước khi ghi; lab/chi phí/quyền (tách tiếp nếu cần lựa chọn môi trường cụ thể) |
