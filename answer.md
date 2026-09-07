@@ -1,73 +1,81 @@
-Mình đã dùng Exa rà 25 kết quả qua bốn nhánh và đối chiếu nguồn chính thức. **Android có thể phát triển trên Windows; iOS có dịch vụ Mac thuê. Còn cách chia Astro/SvelteKit của bạn hợp lý, nhưng chưa thể gọi là tối ưu nhất.**
+**Với loại sản phẩm bạn mô tả, mình chọn SvelteKit + TypeScript làm nền web chính, chưa thêm Astro. Với iOS, hãy tận dụng MacBook và iPhone hiện có trước; chưa bắt buộc mua Mac mini ngay.**
 
-## 1. Web: nên điều chỉnh tiêu chí chia
+Mình đã đối chiếu 35 kết quả qua ba nhánh nghiên cứu bằng Exa, đặc biệt kiểm tra giới hạn Xcode trên Mac Intel.
 
-Điểm quan trọng: **Astro vẫn làm được tương tác/hiệu ứng; SvelteKit vẫn làm SEO tốt.** Vì vậy, không nên chia cứng “cần SEO → Astro, nhiều hiệu ứng → SvelteKit”.
+## 1. Web lớn, realtime nhưng vẫn SEO: chọn một SvelteKit
 
-Mình đề xuất:
+Thông tin mới làm lựa chọn rõ hơn: đây là **ứng dụng lớn có nội dung công khai và dữ liệu động**, không phải website nội dung có thêm vài widget.
 
-| Loại màn hình/khu vực | Hướng ưu tiên |
+| Loại trang | Cách triển khai mình đề xuất |
 |---|---|
-| Trang sản phẩm, bài viết, giới thiệu; có form, bộ lọc hoặc hiệu ứng | **Astro + TypeScript**, thêm component **Svelte** khi cần |
-| Khu ứng dụng nhiều màn hình, giữ trạng thái liên tục, thao tác dữ liệu phức tạp | **SvelteKit + TypeScript** |
-| Web nhỏ hoặc hai khu gắn chặt với nhau | Cân nhắc **chỉ SvelteKit**, chọn cách tạo HTML theo từng route |
+| Giới thiệu sàn, sản phẩm, bài viết ít đổi | **Prerender:** tạo sẵn HTML |
+| Giá BTC/USDT, giá vàng cần SEO | **SSR:** tạo HTML với dữ liệu ban đầu; sau đó cập nhật realtime |
+| Biểu đồ, order book, giao diện giao dịch | Tương tác phía trình duyệt, chỉ tải thành phần nặng khi cần |
+| Tài khoản, dữ liệu cá nhân | Xác thực/phân quyền; không đưa vào nội dung SEO |
 
-**Svelte khác SvelteKit:** Astro dùng được component Svelte trực tiếp, không cần dựng thêm cả SvelteKit. Ngược lại, SvelteKit cho phép trang marketing tạo sẵn HTML, trang động tạo HTML phía máy chủ và khu ứng dụng tương tác cùng tồn tại. [Astro components](https://docs.astro.build/en/guides/framework-components/), [SvelteKit page options](https://svelte.dev/docs/kit/page-options).
+SvelteKit hỗ trợ phối hợp các cách render theo từng route trong cùng hệ thống. Vì vậy, **không cần Astro chỉ để có SEO**. [SvelteKit page options](https://svelte.dev/docs/kit/page-options), [SEO](https://svelte.dev/docs/kit/seo).
 
-Nếu dùng cả hai, nên tách thành **khu nội dung và khu ứng dụng có ranh giới rõ**, không xen kẽ framework tùy từng hiệu ứng. Đổi lại, phải quản lý thêm routing, triển khai, đăng nhập và thành phần dùng chung.
+Ví dụ trang BTC/USDT:
 
-**Khuyến nghị:** giữ Astro + Svelte cho khu công khai; chỉ thêm SvelteKit khi khu ứng dụng thực sự cần nó. Số lượng hiệu ứng không đủ để quyết định. Với sản phẩm nhỏ, một SvelteKit có thể tối ưu tổng thể hơn nhờ ít phức tạp—không có nghĩa hy sinh SEO.
+- Khi mở trang, người dùng và crawler nhận ngay HTML có tên cặp, giá, đơn vị, thời điểm cập nhật và nội dung liên quan.
+- Sau đó, trình duyệt nhận dữ liệu realtime để cập nhật giá/biểu đồ.
+- **Không render lại toàn trang trên server mỗi lần giá đổi**, cũng không trả trang rỗng chỉ có khung biểu đồ.
 
-## 2. Android trên Windows: đúng, có hỗ trợ chính thức
+Backend **C++20 vẫn sở hữu dữ liệu và nghiệp vụ**. SvelteKit đảm nhiệm web và phần tạo HTML; triển khai SSR cần runtime phù hợp, chẳng hạn Node. Cache phải có giới hạn độ cũ, mất kết nối phải báo rõ, dữ liệu cá nhân không được cache chung.
 
-Android Studio hỗ trợ **Windows x64**. Tài liệu hiện tại nêu:
+**Đây là phương án mình đánh giá hợp lý nhất cho nhu cầu hiện tại:** một hệ routing, UI, đăng nhập và triển khai; vẫn đáp ứng trang tĩnh, động và SEO. Không khẳng định nhanh nhất trong mọi benchmark. Astro chỉ nên xem xét lại nếu sau này có một khu nội dung thực sự độc lập, đáng tách riêng.
 
-- RAM tối thiểu: **8 GB** cho Studio; **16 GB** nếu chạy cả emulator; khuyến nghị **32 GB**.
-- Có thể dùng điện thoại Android thật thay emulator.
-- Windows ARM hiện chưa được hỗ trợ theo trang yêu cầu hệ thống. [Android Studio](https://developer.android.com/studio/install).
+## 2. MacBook Pro 2019 và iPhone 12 Pro Max có dùng được không?
 
-Vì vậy, hướng **Kotlin + Compose trên Windows** là phù hợp. Mình chưa kiểm tra cấu hình máy của bạn trong lượt này nên chưa khẳng định mọi điều kiện đều đạt. Máy lập trình đủ mạnh và app chạy tốt trên điện thoại yếu là hai việc phải kiểm tra riêng.
+### MacBook: có thể bắt đầu, nhưng phải biết đúng phiên bản
 
-## 3. iOS: thuê Mac được, nhưng phải chọn đúng loại
+| MacBook Pro 2019 | Khả năng theo hỗ trợ hiện tại |
+|---|---|
+| **16 inch** | Hỗ trợ macOS Tahoe; có đường chạy **Xcode 26.6** khi macOS phù hợp |
+| **13 hoặc 15 inch** | Hỗ trợ Sequoia, không nằm trong danh sách Tahoe; có thể dùng **Xcode 26.3 trên Sequoia 15.6**, nhưng không đáp ứng OS của Xcode 26.6 |
 
-Có hai nhóm:
+Nguồn: [Mac hỗ trợ Tahoe](https://support.apple.com/en-us/122867), [Sequoia](https://support.apple.com/en-us/120282), [yêu cầu Xcode](https://developer.apple.com/xcode/system-requirements/).
 
-- **Mac remote:** điều khiển desktop macOS, mở Xcode/Simulator, lập trình và debug.
-- **CI macOS:** tự động build/test/sign từ source; không phải desktop Xcode để làm việc cả ngày.
+**Giới hạn quan trọng:** tài liệu **Xcode 27, hiện ở giai đoạn beta**, ghi rõ chỉ cài và chạy trên **Apple Silicon**. Kể cả MacBook Intel 16 inch chạy Tahoe cũng không vượt qua giới hạn này. [Xcode 27 — Intel Deprecation](https://developer.apple.com/documentation/xcode-release-notes/xcode-27-release-notes).
 
-Giá tham khảo tại ngày **07/09/2026**, chưa coi là báo giá cuối:
+Vì vậy:
 
-| Dịch vụ | Phù hợp | Giá/điều kiện đáng chú ý |
-|---|---|---|
-| [MacinCloud Managed](https://www.macincloud.com/pages/managed.html) | Bắt đầu dùng Xcode từ Windows | M4/16 GB **từ 29 USD/tháng**; không tự quản trị toàn máy, tác vụ admin qua support |
-| [MacStadium](https://macstadium.com/pricing) | Cần Mac riêng, toàn quyền | M4/16 GB niêm yết **149 USD/tháng**; cần xác nhận tồn kho và điều kiện thuê |
-| [Codemagic](https://docs.codemagic.io/billing/pricing/) | Build/test tự động | Cá nhân có **500 phút M2 miễn phí/tháng**, sau đó **0,095 USD/phút**; Team không có phần miễn phí này |
-| [Xcode Cloud](https://developer.apple.com/xcode-cloud/) | CI tích hợp hệ Apple | **25 giờ compute/tháng** kèm Apple Developer Program; khởi tạo workflow trong Xcode |
+- **Dùng trước mắt:** có thể, với toolchain tương thích; còn phải biết RAM, macOS và dung lượng trống.
+- **Dùng dài hạn cho công cụ mới:** không nên dựa vào Intel 2019.
+- Khi cần Xcode 27, cần **quyền sử dụng Mac Apple Silicon**—máy riêng, máy thuê hoặc CI phù hợp; **không bắt buộc phải mua Mac mini**.
 
-Codemagic hỗ trợ **native iOS**, không chỉ Flutter. [Hướng dẫn chính thức](https://docs.codemagic.io/yaml-quick-start/building-a-native-ios-app/).
+### iPhone: giữ lại, chưa cần mua mới
 
-### Phương án mình khuyên
+**iPhone 12 Pro Max phù hợp để bắt đầu test trên thiết bị thật**, và được Apple liệt kê hỗ trợ iOS 26. [Danh sách tương thích](https://support.apple.com/en-gb/guide/iphone/iphe3fa5df43/26/ios/26).
 
-**Trước mắt:** thử Mac remote ngắn hạn, chưa cần mua máy. MacinCloud có khu vực Singapore—đáng đưa vào danh sách thử từ Việt Nam, nhưng phải đo độ trễ thực, không mặc định sẽ mượt. [Vị trí máy](https://www.macincloud.com/).
+Ta có thể dùng nó để kiểm tra giao diện, phản hồi và hiệu năng thực. Tuy nhiên, một máy chưa chứng minh app chạy tốt trên toàn bộ nhóm “máy yếu”; sau này phải chốt thêm thiết bị thấp nhất cần hỗ trợ.
 
-Trước khi thuê, xác nhận **Xcode/Simulator đúng phiên bản, giới hạn giờ dùng, quyền cài công cụ, dung lượng và điều kiện tính phí**. Gói rẻ nhưng thiếu quyền cần thiết có thể không phù hợp.
+## 3. Nếu mua Mac mini, mình chọn cấu hình nào?
 
-**Nếu làm iOS thường xuyên:** mình nghiêng về **Mac mini Apple Silicon tại chỗ + iPhone thật**, dùng Windows làm máy chính nếu thích. Đây là lựa chọn thuận tiện hơn cho vòng lặp sửa–chạy–debug; chưa đủ dữ liệu để kết luận rẻ hơn thuê.
+**Lựa chọn chính: Mac mini M6 — RAM 32 GB — SSD 1 TB.**
 
-Đặc biệt với mục tiêu đồ họa/mượt:
+Đây là cấu hình mình đề xuất cho IDE, simulator, build cache và đa nhiệm của dự án lớn; **không phải mức tối thiểu bắt buộc**.
 
-- Video từ desktop remote **không phải số đo hiệu năng trên iPhone**.
-- iPhone cắm vào Windows không tự trở thành thiết bị local của Mac thuê; cần chốt riêng cách cài bản thử và debug.
-- Mac thuê/CI không thay thế toàn bộ kiểm tra trên thiết bị thật.
+| Nhu cầu | Cấu hình |
+|---|---|
+| Cân bằng để làm việc lâu dài | **M6 / 32 GB / 1 TB** |
+| Tiết kiệm, Mac chủ yếu phục vụ iOS | **M6 / 24 GB / 512 GB** |
+| Thường xuyên chạy nhiều bộ công cụ/build hoặc đồ họa chuyên sâu | Cân nhắc **M5 Pro / 48 GB / 1 TB** |
 
-Apple Developer Program để phục vụ phân phối có phí **99 USD/năm**, tách khỏi tiền thuê Mac. [Apple membership](https://developer.apple.com/programs/whats-included/).
+Các lựa chọn RAM/SSD này nằm trong [thông số Apple công bố](https://www.apple.com/vn/mac-mini/specs/). Mình **chưa thấy lý do bắt buộc lên Pro** chỉ vì ứng dụng cần hiệu ứng mượt; hiệu năng ứng dụng vẫn phải đo trên iPhone.
 
-Phần bạn đã đồng ý được giữ nguyên. Lượt này chỉ tư vấn, **chưa chốt thêm kiến trúc, thuê dịch vụ hay đóng P01-T02**. Mình đã lưu và đẩy [bản nghiên cứu đầy đủ](https://github.com/Kynderis/kidea/blob/master/exa-results/web-split-ios-remote-2026-09-07.md) cùng câu trả lời lên GitHub.
+**Lưu ý thời điểm mua:** Apple công bố M6/M5 Pro ngày 25/08/2026, thông báo bắt đầu có hàng từ 22/09 ở các thị trường được nêu. Trang Việt Nam hiện ghi chờ hàng; mình chưa xác minh được giá Việt Nam cho cấu hình tùy chọn nên không đưa giá ước đoán. [Thông báo Apple](https://www.apple.com/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro/).
+
+**Link chính thức:** [Mua và chọn cấu hình Mac mini tại Apple Việt Nam](https://www.apple.com/vn/shop/buy-mac/mac-mini).
+
+Trước khi quyết định mua, bạn cho mình biết **MacBook là bản 13/15/16 inch, RAM bao nhiêu và macOS hiện tại** nhé. Mình ưu tiên xác định phần máy cũ còn làm được, rồi mới đề xuất chi tiền.
+
+Đã lưu và đẩy [bản phân tích đầy đủ](https://github.com/Kynderis/kidea/blob/master/exa-results/realtime-web-ios-hardware-2026-09-07.md) cùng câu trả lời lên GitHub. Chưa thay trạng thái roadmap, cài công cụ hay mua thiết bị.
 
 <oai-mem-citation>
 <citation_entries>
 MEMORY.md:319-320|note=[preserve approval boundaries and scoped answer mirror]
-MEMORY.md:326-328|note=[keep authoritative design and roadmap unchanged during advice]
+MEMORY.md:326-328|note=[keep roadmap state and verify published response]
 </citation_entries>
 <rollout_ids>
 01a064b8-dde1-7882-acc1-7d02d6f568c8
