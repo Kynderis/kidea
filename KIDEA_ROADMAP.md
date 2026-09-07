@@ -26,13 +26,13 @@ Nguyên tắc thực hiện:
 | Trường | Giá trị hiện hành |
 |---|---|
 | Gate đang chờ | Không còn gate P01-T03; Human đã duyệt `P01-T03-PILOT-r1` |
-| Phase/task đang thực hiện | P01 đang thực hiện; P01-T01/T02/T03 DONE, chưa mở task tiếp theo |
-| Việc tiếp theo | P01-T04: lập danh mục kịch bản nghiệm thu Kidea, tách khỏi test của pilot; vẫn TODO |
-| Điều kiện để tiếp tục | Dependency của P01-T04 đã đạt; dùng phạm vi pilot r1 đã duyệt, giữ các gate còn lại |
+| Phase/task đang thực hiện | P01 đang thực hiện; P01-T01–T04 DONE; chưa mở P01-T05 |
+| Việc tiếp theo | P01-T05 [H]: đề xuất tiêu chí chất lượng và mức bằng chứng tối thiểu |
+| Điều kiện để tiếp tục | Đầu vào P01-T05 đã đủ; không cần chọn thêm trước khi chuẩn bị đề xuất. Đầu ra P01-T05 phải Human duyệt trước phần phụ thuộc |
 | Điểm quay lại | Chưa có |
 | Vướng mắc khác | Chưa ghi nhận; các lựa chọn triển khai còn mở được giao cho task cụ thể |
 
-P01-T01, P01-T02 và P01-T03 đã `DONE`; chưa bắt đầu P01-T04. Chưa có skill, helper hoặc code pilot được tạo theo lộ trình này.
+P01-T01–T04 đã `DONE`; danh mục nghiệm thu là đặc tả chưa thực thi. Chưa có skill, helper hoặc code pilot được tạo theo lộ trình này.
 
 ## 3. Quy ước cập nhật, bằng chứng và Human gate
 
@@ -59,7 +59,7 @@ Task có nhãn **[H]** là điểm dừng bên trong phase: trình đầu ra cho
 
 ### 3.3. Cách cập nhật mỗi task
 
-1. Trước khi làm: đọc thiết kế/đầu vào liên quan, kiểm tra dependency và approval còn hiệu lực; cập nhật task đang làm và điểm tiếp tục.
+1. Trước khi làm: nói rõ task làm gì, đầu ra là gì và Human có cần xác nhận gì trước khi bắt đầu không; đọc thiết kế/đầu vào liên quan, kiểm tra dependency và approval còn hiệu lực; cập nhật task đang làm và điểm tiếp tục. Quy tắc giới thiệu task được Human yêu cầu ngày 2026-09-07; không tự thêm gate ngoài các điểm đã chốt.
 2. Chốt phạm vi nhỏ, file dự kiến tác động, kiểm tra sẽ chạy và thao tác nào cần quyền riêng. Không để code phát sinh trước quyết định [H].
 3. Sau khi làm: đối chiếu đầu ra với tiêu chí, chạy kiểm tra thực tế, lưu kết quả và phiên bản/môi trường. Nếu bị ngắt, ghi điều chưa xác nhận; kiểm tra thực tế trước khi chạy lại tác dụng phụ.
 4. Chỉ chuyển `DONE` khi đủ bằng chứng. Điền cột bằng chứng bằng đường dẫn/mục kết quả thực, không chỉ ghi “đã test”. Test chưa chạy, fail, skip hoặc chỉ mô phỏng phải nói đúng.
@@ -105,7 +105,7 @@ Mục tiêu: biết chính xác bản đầu cần làm được gì và kiểm 
 | P01-T01 [H] | Phạm vi bản đầu, điều không làm, nhóm người dùng và mức hỗ trợ | Đối chiếu đủ sáu hành động/mười bước/ba bản đồ; giới hạn tổ hợp hỗ trợ rõ, không âm thầm bỏ yêu cầu đã duyệt | DONE | [Xác nhận Human và đối chiếu](#p01-t01-review), 2026-09-07 |
 | P01-T02 [H] | Ma trận host, OS, ngôn ngữ/thành phần đầu tiên và môi trường chạy thử | Ghi cái nào cần kiểm chứng thực, cái nào chưa hỗ trợ; xác định quyền/công cụ cần mà chưa tự cài | DONE | [Gói r3 đã Human duyệt](#p01-t02-review), 2026-09-07 |
 | P01-T03 [H] | Phạm vi một sản phẩm pilot nhỏ dùng dữ liệu giả | Có nghiệp vụ dùng chung, ít nhất một dependency ngoài lời gọi trực tiếp, giao diện và nhu cầu admin/monitoring vừa đủ; môi trường phi production, chi phí và ranh giới được chốt | DONE | [Gói r1 đã Human duyệt](#p01-t03-review), 2026-09-07 |
-| P01-T04 | Danh mục kịch bản nghiệm thu Kidea, tách khỏi test của pilot | Có đường đúng, Human reject, approval cũ, dữ liệu sai, ngắt/resume qua Git, dự án cũ đi từ bước 1, thay đổi giữa MVP và sau release; mỗi case có hành vi mong đợi quan sát được | TODO | — |
+| P01-T04 | Danh mục kịch bản nghiệm thu Kidea, tách khỏi test của pilot | Có đường đúng, Human reject, approval cũ, dữ liệu sai, ngắt/resume qua Git, dự án cũ đi từ bước 1, thay đổi giữa MVP và sau release; mỗi case có hành vi mong đợi quan sát được | DONE | [Danh mục r1 và kiểm chứng tài liệu](#p01-t04-result), 2026-09-07 |
 | P01-T05 [H] | Tiêu chí chất lượng Kidea và mức bằng chứng tối thiểu | Chốt cách đo độ đúng trạng thái, an toàn ghi, khả năng resume, thời gian đọc/chạy trên hồ sơ đại diện; không dùng “nhanh/tốt/đầy đủ” không kiểm tra được | TODO | — |
 | P01-T06 | Gói review phạm vi, pilot, acceptance và rủi ro | Mỗi yêu cầu thiết kế có task/kiểm tra dự kiến; lựa chọn chưa chốt không bị thể hiện là đã hỗ trợ | TODO | — |
 
@@ -171,6 +171,17 @@ Nhận diện nội dung mục 1.1 đã ghi nhận theo phản hồi Human: SHA-
 - Kiểm tra tài liệu: đối chiếu với phạm vi T01, ma trận T02 và P11-T01–T07; kiểm tra ID/link nội bộ, trạng thái một task hiện hành và diff. Không chạy build/test sản phẩm; chưa có bằng chứng mobile, deploy, tải hoặc SEO thực tế.
 - Ảnh hưởng dây chuyền đã rà: P01-T04/T05 cần case/ngưỡng tương ứng; P04–P06 cần hướng dẫn đặc tả nghiệp vụ chung, UX/admin/monitoring, kiến trúc và technical test; P07/P08 phải truy dependency event và consumer không có diff; P09 là giao diện tiến độ Kidea riêng, không phải màn hình vận hành pilot; P10 chuẩn bị hướng dẫn/kế hoạch, P11 mới xây và thử; P12 không được suy pilot nhỏ là đủ bằng chứng mọi tổ hợp hỗ trợ. Giữ nguyên dependency và gate, chưa kích hoạt task sau.
 - Xác nhận Human: **APPROVED**, ngày 2026-09-07 (Asia/Saigon), Human: “mình duyệt nhé”. Phạm vi: gói `P01-T03-PILOT-r1` trong mục 1.3 KIDEA_DESIGN.md tại commit `87d1ede`, gồm MVP, kịch bản thử, môi trường/chi phí và giới hạn. Đóng P01-T03; chưa đóng phase P01, chưa xây pilot hoặc cấp quyền thực thi mới.
+
+<a id="p01-t04-result"></a>
+
+### Kết quả P01-T04 — Danh mục nghiệm thu r1
+
+- Human yêu cầu tiếp tục P01-T04 ngày 2026-09-07. Task không có gate [H] riêng; đóng task lập danh mục không duyệt trước tiêu chí chất lượng hoặc phase P01.
+- Đầu ra: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md), gói `P01-T04-ACCEPTANCE-r1`, 30 họ kịch bản KA-01–KA-30; có điều kiện đầu, kích thích, kết quả quan sát và nơi kiểm chứng. Biến thể phải tách thành lần chạy riêng khi hiện thực; toàn bộ hiện chưa chạy.
+- Đối chiếu tiêu chí: KA-04 đường đúng; KA-05 reject; KA-07 approval cũ; KA-09 dữ liệu sai; KA-11–13 ngắt/Git/resume; KA-02 project cũ; KA-17/18 thay đổi giữa MVP/sau release. Các nhóm còn lại bao phủ sáu hành động, ba bản đồ, rule/test, view, quyền và phát hành.
+- Kiểm tra tài liệu ngày 2026-09-07 trên PowerShell/Windows: kiểm tra ID duy nhất/liên tục, 30 dòng đủ bốn cột, file/anchor nội bộ tồn tại, trạng thái 77 task và `git diff --check`. Đây là kiểm tra cấu trúc cùng review ngữ nghĩa thủ công đối với thiết kế/roadmap, không phải chạy 30 họ case hoặc chứng nhận Kidea hoạt động.
+- Rà ảnh hưởng: P01-T05 lấy danh mục này làm đầu vào chốt ngưỡng/bằng chứng; P01-T06 tổng hợp review; P02–P10 hiện thực từng nhóm tại phase sở hữu; P11 thử hành vi phiên mới/pilot thật; P12 kiểm tra bản phát hành và ma trận. Các task sau vẫn TODO, không thay scope T01/T02/T03, không tạo gate mới hoặc chọn runtime/schema.
+- Quy tắc giới thiệu mục đích và xác nhận trước task mới đã ghi tại mục 3.3 theo yêu cầu Human. P01-T04 DONE vì hoàn tất đầu ra tài liệu; P01 vẫn IN_PROGRESS.
 
 <a id="p02"></a>
 
@@ -396,4 +407,4 @@ Bảng này là chỉ mục bao phủ, không giữ thêm trạng thái task. Tr
 - Nếu test đòi môi trường/quyền chưa có: ghi blocker và yêu cầu cụ thể, không tự cài/deploy/thu thập dữ liệu ngoài quyền hoặc đổi test thành PASS.
 - Khi cập nhật tiến trình, giữ tài liệu hiện hành rõ ràng: quyết định cũ không còn hiệu lực phải được thay/migrate đủ tham chiếu; giữ bằng chứng cần thiết cho nghiệm thu và khôi phục, không tích lũy các quy tắc cũ mâu thuẫn.
 
-**Bước kế tiếp:** P01-T04 — danh mục kịch bản nghiệm thu Kidea. P01-T03 đã DONE theo Human approval; P01-T04 vẫn TODO, lượt này ghi nhận duyệt và giải thích mục đích pilot. Ý tưởng nhiều agent chỉ xem xét sau khi Kidea bản đầu hoàn thiện, không thay phạm vi hiện hành.
+**Bước kế tiếp:** P01-T05 [H] — tiêu chí chất lượng và mức bằng chứng tối thiểu. P01-T04 DONE; chưa bắt đầu P01-T05. Không cần thêm lựa chọn đầu vào trước khi chuẩn bị đề xuất T05, nhưng đầu ra T05 cần Human duyệt. Ý tưởng nhiều agent vẫn ngoài phạm vi bản đầu.

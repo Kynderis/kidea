@@ -518,6 +518,8 @@ Ví dụ: code hủy đơn phát `OrderCancelled`; một tiến trình khác nh�
 
 ## 8. Từ yêu cầu đến test và bằng chứng
 
+Danh mục nghiệm thu **chính Kidea**, tách khỏi test sản phẩm được quản lý: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md), đầu ra P01-T04. Đây là đặc tả kịch bản chưa chạy; ngưỡng/mức bằng chứng chốt ở P01-T05 và gói P01 được Human review trước phase tiếp.
+
 Mối liên hệ cần truy được hai chiều:
 
 ```text
@@ -668,7 +670,7 @@ Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải c
 
 | Quyết định cần chốt | Nơi xử lý trong roadmap |
 |---|---|
-| Chốt pilot và tiêu chí thành công có thể đo; ma trận P01-T02 đã duyệt, các kiểm chứng thực thi vẫn phải thực hiện đúng phase | [P01](KIDEA_ROADMAP.md#p01) |
+| Pilot r1 đã duyệt; danh mục kịch bản P01-T04 đã lập; còn chốt ngưỡng chất lượng/mức bằng chứng P01-T05 và review P01-T06. Kiểm chứng thực thi vẫn phải làm đúng phase | [P01](KIDEA_ROADMAP.md#p01) |
 | Runtime của helper, cách đóng gói/cài; schema Markdown, ID, quyền ghi, approval fingerprint, checkpoint và nâng phiên bản | [P02](KIDEA_ROADMAP.md#p02) |
 | Cách phân rã nghiệp vụ, AC và chọn tập business test có thể áp dụng lặp lại | [P04](KIDEA_ROADMAP.md#p04) |
 | Hồ sơ coding rules đầu tiên, công cụ kiểm tra và cách mang đúng phiên bản qua máy mới | [P06](KIDEA_ROADMAP.md#p06) |
