@@ -25,9 +25,9 @@ Nguyên tắc thực hiện:
 
 | Trường | Giá trị hiện hành |
 |---|---|
-| Gate đang chờ | `P01-T02`: review hướng công nghệ `P01-T02-PLATFORM-r1`; đề xuất tích hợp SEO `SEO-WORKFLOW-r1` chưa được duyệt |
+| Gate đang chờ | `P01-T02`: hoàn thiện ma trận `P01-T02-PLATFORM-r2`, hướng web đã duyệt; đề xuất gate SEO `SEO-WORKFLOW-r1` còn chờ duyệt riêng |
 | Phase/task đang thực hiện | [P01 / P01-T02](#p01-t02-review) |
-| Việc tiếp theo | Chốt hướng mobile/web, sau đó hoàn thiện phiên bản/công cụ/thiết bị và môi trường thử trong P01-T02 |
+| Việc tiếp theo | Hoàn thiện hướng mobile, phiên bản/công cụ/thiết bị và môi trường thử; web đã chốt SvelteKit + TypeScript, prerender/SSR và realtime |
 | Điều kiện để tiếp tục | Duyệt định hướng chưa đủ đóng P01-T02; phải có ma trận cụ thể, phần cần kiểm chứng và quyền/công cụ còn thiếu. Chỉ bắt đầu P01-T03 sau gate này |
 | Điểm quay lại | Chưa có |
 | Vướng mắc khác | Chưa ghi nhận; các lựa chọn triển khai còn mở được giao cho task cụ thể |
@@ -135,16 +135,16 @@ Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không c
 
 ### Gói review P01-T02 đang làm rõ
 
-- Gói `P01-T02-PLATFORM-r1`, `IN_REVIEW`, ngày 2026-09-07: [ma trận nền tảng](KIDEA_DESIGN.md#platform-matrix). Các yêu cầu Human đã chọn và công nghệ AI đề xuất được tách cột; chưa có framework mobile/web nào được Human duyệt hoặc benchmark trong lượt này.
+- Gói `P01-T02-PLATFORM-r2`, `IN_REVIEW` toàn ma trận, ngày 2026-09-07: [ma trận nền tảng](KIDEA_DESIGN.md#platform-matrix). Human xác nhận “về web, chốt theo phương án bạn đề xuất”, duyệt hướng SvelteKit + TypeScript, prerender/SSR, realtime và tiêu chí SEO/hiệu năng trong câu trả lời tại commit `a58558b`. Không coi đây là benchmark hoặc duyệt toàn bộ P01-T02.
 - Xin duyệt thêm hướng tích hợp `SEO-WORKFLOW-r1` tại [thiết kế mục 2.5](KIDEA_DESIGN.md#seo-proposal). SEO là yêu cầu đã chốt; hai gate và nơi tích hợp là đề xuất mới. Giữ nguyên bảng mười bước và 77 task trong khi chờ, không tự thêm phase hay coi đề xuất là quyết định.
-- Còn thiếu: loại web công khai/ứng dụng tương tác; phiên bản OS/compiler/SDK và môi trường thử; thiết bị yếu đại diện; nguồn lực Mac/Mac CI cho iOS; phạm vi được phép cài/chạy. Runtime/helper vẫn được chọn ở P02 theo ràng buộc host đã chốt.
+- Đã rõ: web lớn có cả nội dung tĩnh/động; MacBook Pro 16 inch 2019 Intel, Sonoma, RAM 16 GB, khoảng 512 GB trống theo Human và iPhone 12 Pro Max hiện có. Còn thiếu: hướng mobile cụ thể, phiên bản OS/compiler/SDK/runtime/adapter và môi trường thử; bản Sonoma/iOS/Xcode chính xác; thiết bị yếu đại diện, ngân sách hiệu năng và phạm vi được phép cài/chạy. Chưa có kiểm chứng build trên Mac. Runtime/helper Kidea vẫn được chọn ở P02 theo ràng buộc host đã chốt.
 - Sau khi Human chọn hướng, hoàn thiện ma trận và điểm thiếu quyền/công cụ ngay trong P01-T02 rồi xin duyệt đầu ra đầy đủ; không chuyển P01-T03 chỉ vì đã chọn tên framework.
 
 | Ảnh hưởng đã rà | Xử lý hiện hành |
 |---|---|
 | Git/resume → hợp đồng/checkpoint/lõi/đổi máy | Làm rõ thiết kế mục 6; cập nhật case Git ở P01-T04, P02-T05, P08-T06, P11-T06, P12-T03; P02-T04/P03-T06 vẫn giữ checkpoint local và không tự Git |
 | Dự án cũ → init/nghiệp vụ/gate | Làm rõ mục 1.1; bổ sung tiêu chí P01-T04, P03-T04 và P04-T02: đi từ bước 1, chỉ tận dụng context, không tự init đè hoặc nhận code là đặc tả đã duyệt |
-| Nền tảng → rule/adapter/test/pilot/phát hành | P01-T02 còn mở; P02, P05–P07, P10–P12 chỉ triển khai theo ma trận được duyệt, phải ghi rõ phần chưa kiểm chứng; không lấy Windows làm bằng chứng build iOS được |
+| Nền tảng → rule/adapter/test/pilot/phát hành | Hướng web đã duyệt được ghi ở ma trận r2; P01-T02 còn mở. P02, P05–P07, P10–P12 phải dùng quyết định SvelteKit và tiêu chí SEO/hiệu năng tại nguồn khi xây runtime/rule/adapter/test/pilot/release; không cần đổi task/gate hiện tại. Cấu hình Mac do Human cung cấp không phải bằng chứng build iOS |
 | SEO → nghiệp vụ/nội dung/UX/ops/architecture/test/release | Danh sách task bị ảnh hưởng nằm ở đề xuất mục 2.5; chỉ sửa đầu ra/gate các task này sau khi Human duyệt phương án tích hợp |
 | HTML offline Kidea, ba bản đồ và tài liệu nghiệp vụ gốc | Không đổi nguồn/trạng thái/định nghĩa: SEO nói về web sản phẩm công khai, không biến view offline thành website SEO; không thêm map hoặc sửa nguyên bản tham khảo |
 
@@ -376,4 +376,4 @@ Bảng này là chỉ mục bao phủ, không giữ thêm trạng thái task. Tr
 - Nếu test đòi môi trường/quyền chưa có: ghi blocker và yêu cầu cụ thể, không tự cài/deploy/thu thập dữ liệu ngoài quyền hoặc đổi test thành PASS.
 - Khi cập nhật tiến trình, giữ tài liệu hiện hành rõ ràng: quyết định cũ không còn hiệu lực phải được thay/migrate đủ tham chiếu; giữ bằng chứng cần thiết cho nghiệm thu và khôi phục, không tích lũy các quy tắc cũ mâu thuẫn.
 
-**Bước kế tiếp:** Human review hướng mobile/web và đề xuất tích hợp SEO tại [P01-T02](#p01-t02-review); hoàn thiện ma trận phiên bản/công cụ/môi trường trước khi đóng task này. Chưa chuyển sang pilot, viết SKILL.md hoặc helper.
+**Bước kế tiếp:** Hoàn thiện hướng mobile và ma trận phiên bản/công cụ/môi trường tại [P01-T02](#p01-t02-review); hướng web đã được duyệt, đề xuất gate SEO còn chờ duyệt riêng. Chưa đóng task, chuyển sang pilot, viết SKILL.md hoặc helper.

@@ -10,7 +10,7 @@ Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ
 
 Tài liệu này là nguồn thiết kế hiện hành. Roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào để đối chiếu; `answer.md` là bản sao câu trả lời để đọc từ xa, không thay thế thiết kế hoặc roadmap.
 
-[Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đang được làm rõ tại `P01-T02`; gợi ý stack và [cách tích hợp SEO](#seo-proposal) còn chờ Human duyệt, chưa phải năng lực đã được triển khai hoặc kiểm chứng.
+[Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đang được làm rõ tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Các lựa chọn còn lại và [cách tích hợp SEO vào gate quy trình](#seo-proposal) còn chờ duyệt; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
 
 <a id="scope"></a>
 
@@ -90,17 +90,21 @@ Phạm vi này không duyệt trước ma trận phiên bản/công cụ, lựa 
 
 ### 1.2. Ma trận nền tảng — P01-T02 đang làm rõ
 
-Gói review: `P01-T02-PLATFORM-r1`, ngày 2026-09-07, `IN_REVIEW`. Bảng này tách yêu cầu Human đã chốt khỏi khuyến nghị AI chưa được duyệt. Lý do, nguồn chính thức và giới hạn nghiên cứu nằm trong [báo cáo nền tảng/SEO](exa-results/kidea-platform-seo-2026-09-07.md); báo cáo không phải nguồn trạng thái hay một thiết kế khác.
+Gói review: `P01-T02-PLATFORM-r2`, ngày 2026-09-07, `IN_REVIEW` toàn ma trận; riêng hướng web đã được Human duyệt. Bảng này tách quyết định đã chốt khỏi khuyến nghị còn mở. Các báo cáo [nền tảng/SEO](exa-results/kidea-platform-seo-2026-09-07.md) và [tiêu chí web SEO-first](exa-results/seo-first-web-criteria-2026-09-07.md) là đầu vào nghiên cứu; quyết định hiện hành nằm ở đây, không lấy đề xuất cũ trong báo cáo thay quyết định đã duyệt.
 
-| Thành phần | Đầu vào Human đã chốt | Khuyến nghị đang xin duyệt | Còn phải xác định/kiểm chứng |
+| Thành phần | Đầu vào Human đã chốt | Hướng công nghệ và trạng thái | Còn phải xác định/kiểm chứng |
 |---|---|---|---|
 | Host Kidea | Windows | Giữ Windows làm host bản đầu | Phiên bản Windows, ứng dụng host AI/cách gọi skill, runtime/helper và quyền cài thử; runtime quyết định ở P02 |
 | Backend sản phẩm | C++20; triển khai Ubuntu | Giữ nghiệp vụ ở backend C++20, frontend dùng hợp đồng API đã duyệt | Ubuntu/CPU/compiler/thư viện; máy build, môi trường thử và quy trình release; chưa chọn phiên bản Ubuntu |
 | Android | Native, code độc lập; nhẹ/mượt/đồ họa tốt, dùng được trên máy yếu | Kotlin + Jetpack Compose; bổ sung thành phần chuyên biệt khi có số đo chứng minh cần | Phiên bản SDK/công cụ; thiết bị yếu đại diện, workload, ngân sách khung hình/bộ nhớ/pin/dung lượng; build release và kiểm tra thực |
 | iOS | Native, code độc lập; cùng mục tiêu chất lượng Android | Swift + SwiftUI; UIKit hoặc Metal chỉ cho phần có nhu cầu cụ thể | iOS tối thiểu/thiết bị, Swift/Xcode; nguồn lực Mac hoặc Mac CI cho build/test/sign; ngân sách và quyền sử dụng chưa được cấp |
-| Web | Nhẹ/mượt; SEO Google/Bing và AI search là ưu tiên cao hơn hiệu ứng trang trí | Nếu web công khai là trọng tâm: Astro + TypeScript, HTML/CSS trước, Svelte islands khi cần; nếu ứng dụng tương tác là trọng tâm: cân nhắc SvelteKit + TypeScript có SSR | Loại web, độ tươi nội dung, SSG/SSR theo route, thư viện UI/đồ họa nếu cần, công cụ/runtime, thiết bị và điều kiện mạng để kiểm chứng |
+| Web | Website lớn, nhiều chức năng, cả trang tĩnh và động; tối ưu SEO và hiệu năng, trải nghiệm mượt | HUMAN ĐÃ DUYỆT: SvelteKit + TypeScript; prerender/SSR theo route, realtime phía trình duyệt; không ghép thêm Astro mặc định | Phiên bản/runtime/adapter; chính sách cache và độ tươi từng route; thư viện UI/đồ họa nếu cần; ngân sách và thiết bị/mạng/workload kiểm chứng |
 
-SSG là tạo sẵn HTML lúc build; SSR là tạo HTML phía máy chủ khi cần. Cả hai vẫn có thể thêm tương tác. Astro SSR cần runtime/adapter phù hợp, có thể thêm Node cạnh backend C++; Astro xuất tĩnh không cần server JavaScript lúc phục vụ. Không mặc định dựng hai framework web hoặc chuyển nghiệp vụ C++ sang frontend. Không công bố lựa chọn nào nhanh nhất khi chưa có benchmark đúng workload.
+SSG/prerender là tạo sẵn HTML; SSR là tạo HTML phía máy chủ khi cần. Trang tĩnh dùng prerender/CDN, trang động cần SEO có nội dung chính, metadata và dữ liệu ban đầu trong HTML; realtime/hiệu ứng cập nhật phía trình duyệt sau lần tải đầu, tải phần nặng khi cần và không render lại toàn trang mỗi tick. Lớp SSR cần runtime/adapter phù hợp (Node là ứng viên, chưa chốt phiên bản); nghiệp vụ vẫn thuộc backend C++20. Không công bố nhanh nhất khi chưa benchmark đúng workload.
+
+Kiến trúc web đã chốt phải bao gồm URL/canonical/liên kết nội bộ/sitemap/phân trang và đa ngôn ngữ khi áp dụng; chọn tổ hợp bộ lọc đáng index; nội dung hữu ích và dữ liệu có cấu trúc khớp hiển thị. Dữ liệu giá có thời điểm, giới hạn độ cũ của cache và trạng thái mất kết nối. Kiểm chứng HTML thực nhận, crawl/index, tốc độ và tương tác trên thiết bị thật; theo dõi sau phát hành. Không bảo đảm thứ hạng hoặc được AI trích dẫn chỉ từ tên framework. Việc tổ chức thêm gate quy trình vẫn riêng tại mục 2.5.
+
+Nguồn lực iOS Human xác nhận: MacBook Pro 16 inch 2019 Intel, RAM 16 GB, macOS Sonoma, còn trống khoảng 512 GB; iPhone 12 Pro Max hiện có. Đây là thông tin Human cung cấp, chưa kiểm tra máy/build thực. Chưa rõ bản Sonoma 14.x cụ thể, iOS hiện tại và Xcode đã cài. Theo [ma trận Apple](https://developer.apple.com/xcode/system-requirements/) kiểm tra ngày 2026-09-07, Xcode 16.2 chạy từ Sonoma 14.5, còn Xcode 26.6 cần Tahoe 26.2–26.x. Model Mac này có trong [danh sách Tahoe](https://support.apple.com/en-us/122867); khả năng nâng cấp không đồng nghĩa đã nâng hoặc được phép cài. Ưu tiên tận dụng máy để kiểm chứng trước; chưa chốt mua/thuê Mac hoặc nâng macOS.
 
 Yêu cầu SEO áp dụng cho nội dung được phép công khai. Không dùng mục tiêu được tìm thấy để mở dữ liệu riêng tư, admin hoặc nội dung cần xác thực. Quyền riêng tư, an toàn và tính đúng không bị hạ ưu tiên để lấy SEO. Cách đưa SEO thành đầu ra/gate cụ thể đang được đề xuất ở [mục 2.5](#seo-proposal).
 
