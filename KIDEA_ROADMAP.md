@@ -43,7 +43,7 @@ Human đã duyệt D1–D2 bằng phản hồi “Tôi duyệt”, sau gói tạ
 
 ### 2.2. Bắt đầu, review và đóng đơn vị
 
-1. Trước khi bắt đầu: nói ngắn mục đích, đầu ra, cần xác nhận trước hay không; kiểm tra dependency, phiên bản, quyền và file dự kiến tác động.
+1. Trước khi bắt đầu hoặc giới thiệu việc kế tiếp: nói rõ task cha giải quyết việc gì, subtask sắp làm tạo đầu ra gì, link đúng mục cần đọc và trạng thái thực tế. Phải phân biệt “chưa bắt đầu”, “đang làm”, “chờ duyệt đầu ra” với “cần quyền thao tác”; nói thẳng Human có cần trả lời ngay không và AI sẽ làm gì tiếp, không chỉ nêu mã S01/S02 rồi dừng mơ hồ. Nếu không cần xác nhận trước thì ghi rõ; nếu cần thì hỏi đúng điều đang thiếu. Kiểm tra dependency, phiên bản, quyền và file dự kiến tác động. Quy tắc được Human làm rõ ngày 2026-09-08.
 2. **[H]** là gói dừng chờ Human; **[A]** là thực hiện/kiểm tra trong thiết kế và quyền đã có. Mỗi gói chỉ định ID/r1/r2, nguồn, đề xuất, kết quả/giới hạn và điều chưa duyệt. Góp ý, im lặng hoặc PASS không là approval.
 3. Chỉ ghi DONE khi đạt đầu ra/test bắt buộc, đã đồng bộ tài liệu/map/bằng chứng liên quan và dọn tạm. Subtask [H] còn phải có xác nhận Human cho đúng gói hiện hành trước DONE hoặc mở việc phụ thuộc. Task không cần một approval thừa nếu các gate con đã đủ; chỉnh format hoặc test theo đặc tả không tự tạo gate mới.
 4. Cuối phase: review tối đa 2 quyết định — chấp nhận kết quả tích hợp/giới hạn và cho mở phase kế theo phạm vi nêu rõ. Không yêu cầu đọc lại từng đoạn đã duyệt; có thay đổi làm sai căn cứ thì chỉ rõ gói bị ảnh hưởng và duyệt lại phần đó.

@@ -398,6 +398,8 @@ Không ghi suy nghĩ dài dòng của AI, toàn bộ hội thoại hoặc log th
 
 Thu gọn không có nghĩa xóa cây task cần hiển thị: với các task đã xác định trong phạm vi theo dõi hiện hành, kể cả đã hoàn thành, giữ tối thiểu ID, tên, quan hệ cha-con, trạng thái và link kết quả/bằng chứng. Chỉ bỏ log hoặc diễn giải không còn cần, để INDEX và giao diện vẫn liệt kê đúng phần đã làm/chưa làm.
 
+<a id="source-authority-and-write-boundary"></a>
+
 ### Nguồn có hiệu lực và ranh giới ghi
 
 | Loại thông tin | Nguồn có hiệu lực |
