@@ -138,7 +138,8 @@ Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không c
 - Gói `P01-T02-PLATFORM-r2`, `IN_REVIEW` toàn ma trận, ngày 2026-09-07: [ma trận nền tảng](KIDEA_DESIGN.md#platform-matrix). Human xác nhận “về web, chốt theo phương án bạn đề xuất”, duyệt hướng SvelteKit + TypeScript, prerender/SSR, realtime và tiêu chí SEO/hiệu năng trong câu trả lời tại commit `a58558b`. Không coi đây là benchmark hoặc duyệt toàn bộ P01-T02.
 - Xin duyệt thêm hướng tích hợp `SEO-WORKFLOW-r1` tại [thiết kế mục 2.5](KIDEA_DESIGN.md#seo-proposal). SEO là yêu cầu đã chốt; hai gate và nơi tích hợp là đề xuất mới. Giữ nguyên bảng mười bước và 77 task trong khi chờ, không tự thêm phase hay coi đề xuất là quyết định.
 - Đã rõ: web lớn có cả nội dung tĩnh/động; MacBook Pro 16 inch 2019 Intel, Sonoma, RAM 16 GB, khoảng 512 GB trống theo Human và iPhone 12 Pro Max hiện có. Còn thiếu: hướng mobile cụ thể, phiên bản OS/compiler/SDK/runtime/adapter và môi trường thử; bản Sonoma/iOS/Xcode chính xác; thiết bị yếu đại diện, ngân sách hiệu năng và phạm vi được phép cài/chạy. Chưa có kiểm chứng build trên Mac. Runtime/helper Kidea vẫn được chọn ở P02 theo ràng buộc host đã chốt.
-- Sau khi Human chọn hướng, hoàn thiện ma trận và điểm thiếu quyền/công cụ ngay trong P01-T02 rồi xin duyệt đầu ra đầy đủ; không chuyển P01-T03 chỉ vì đã chọn tên framework.
+- Human chốt: Mac chỉ xác định giải pháp ở hiện tại, đến khi làm iOS mới kiểm tra/nâng macOS nếu cần. Không yêu cầu nâng macOS, cài Xcode hoặc build thử ngay để đóng P01-T02; phải ghi rõ các kiểm chứng/quyền còn chờ và thời điểm thực hiện, không coi là đã PASS.
+- Sau khi Human chọn hướng, AI hoàn thiện ma trận và điểm thiếu quyền/công cụ ngay trong P01-T02 rồi xin duyệt đầu ra đầy đủ; không chuyển P01-T03 chỉ vì đã chọn tên framework. Không yêu cầu Human tự chọn mọi số phiên bản; AI đề xuất tổ hợp và nêu các lựa chọn có ảnh hưởng đáng kể để duyệt.
 
 | Ảnh hưởng đã rà | Xử lý hiện hành |
 |---|---|

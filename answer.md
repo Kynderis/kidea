@@ -1,25 +1,40 @@
-**Đã chốt web: SvelteKit + TypeScript**, dùng prerender cho trang tĩnh, SSR cho trang động cần SEO và realtime phía trình duyệt. Mình đã cập nhật thiết kế và roadmap, giữ đầy đủ yêu cầu SEO/hiệu năng đã thống nhất.
+**Đúng, P01-T01 đã xong (DONE). P01-T02 đang thực hiện.** Và đúng như bạn nói: MacBook chỉ chốt phương án sử dụng; **đến lúc làm iOS mới kiểm tra và nâng macOS nếu cần**, không phải làm ngay.
 
-**MacBook của bạn đủ để bắt đầu phát triển iOS; chưa cần mua Mac mini.** RAM 16 GB và khoảng 512 GB trống phù hợp cho bước đầu, nhưng hiệu năng build lớn vẫn cần đo thực tế.
+### P01-T02 làm gì?
 
-Điểm hạn chế hiện tại là phiên bản macOS:
+Chốt **Kidea bản đầu sẽ hướng dẫn phát triển trên những nền tảng/công nghệ nào, dùng môi trường nào và còn gì cần kiểm chứng**. Đây là bước thiết kế, không phải bước cài công cụ hay xây ứng dụng.
 
-| Môi trường | Khả năng dùng Xcode |
+Hiện đã chốt:
+
+| Thành phần | Quyết định |
 |---|---|
-| Sonoma **14.5 trở lên** | Dùng được Xcode 16.2; đây là bộ công cụ cũ |
-| Sonoma hiện tại | Không chạy được Xcode 26.6 |
-| Tahoe **26.2–26.x** | Đáp ứng yêu cầu hệ điều hành của Xcode 26.6 |
+| Kidea | Chạy trên Windows |
+| Backend sản phẩm | C++20, triển khai Ubuntu |
+| Web | SvelteKit + TypeScript; prerender/SSR và realtime; SEO và hiệu năng xuyên suốt |
+| Mobile | Android/iOS native, code độc lập |
+| Thiết bị iOS | Tận dụng MacBook và iPhone hiện có; chuẩn bị môi trường khi đến lúc làm |
 
-Các mốc trên theo [bảng tương thích Apple](https://developer.apple.com/xcode/system-requirements/). MacBook Pro **16 inch 2019** nằm trong [danh sách hỗ trợ Tahoe](https://support.apple.com/en-us/122867).
+### Bạn còn cần xác nhận gì?
 
-**Khuyến nghị:** tận dụng máy hiện có; khi bắt đầu triển khai iOS bằng bộ công cụ mới, kiểm tra phần mềm đang dùng và sao lưu trước khi nâng macOS. Chưa cần nâng ngay trong giai đoạn thiết kế. Khả năng chạy thử trên iPhone còn phải đối chiếu phiên bản iOS của máy với Xcode đã chọn.
+**Còn hai nhóm quyết định:**
 
-Đã đẩy tài liệu và câu trả lời lên GitHub, kiểm tra nội dung khớp. **P01-T02 vẫn đang thực hiện**: còn hoàn thiện phiên bản/công cụ/môi trường thử; việc thêm gate SEO vào quy trình chưa được coi là duyệt cùng quyết định chọn web. Chưa cài đặt hoặc thay đổi gì trên MacBook.
+1. **Công nghệ mobile cụ thể:** Android dùng **Kotlin + Jetpack Compose**; iOS dùng **Swift + SwiftUI**. Chỉ bổ sung công nghệ giao diện/đồ họa chuyên biệt khi có nhu cầu và bằng chứng cần thiết.
+2. **Cách đưa SEO vào quy trình:** giữ nguyên mười bước, tích hợp SEO xuyên suốt và thêm hai điểm duyệt:
+   - Duyệt **thiết kế SEO** ở bước 4, trước kiến trúc.
+   - Duyệt **sẵn sàng SEO** ở bước 10, trước phát hành công khai.
+
+Nhóm 2 khác với việc chọn SvelteKit: đây là xác nhận **cách tổ chức quy trình và điểm duyệt**, không phải chọn lại giải pháp web.
+
+**Bạn không cần tự chọn từng phiên bản SDK/compiler/runtime.** Mình sẽ hoàn thiện bảng đề xuất, ghi rõ môi trường dự kiến, phần kiểm chứng để sau và quyền cần xin khi thực hiện; sau đó đưa bạn duyệt đầu ra P01-T02 một lần trước khi đóng task.
+
+Bạn xác nhận giúp mình **hai nhóm quyết định trên** nhé. Sau khi hoàn thiện và duyệt P01-T02, bước tiếp theo là **P01-T03: chọn một sản phẩm pilot nhỏ để kiểm chứng Kidea**.
+
+Đã cập nhật cách xử lý MacBook vào tài liệu và đồng bộ GitHub; chưa nâng cấp hay cài đặt gì.
 
 <oai-mem-citation>
 <citation_entries>
-MEMORY.md:319-320|note=[preserve Human gates and scoped answer mirror]
-MEMORY.md:328-328|note=[verify exact public answer publication]
+MEMORY.md:319-320|note=[preserve sequential Human gates and scoped answer mirror]
+MEMORY.md:328-328|note=[verify public answer publication]
 </citation_entries>
 <rollout_ids>
 01a064b8-dde1-7882-acc1-7d02d6f568c8
