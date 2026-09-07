@@ -151,7 +151,7 @@ Yêu cầu SEO áp dụng cho nội dung được phép công khai. Không dùng
 
 ### 1.3. Pilot đề xuất — Đăng ký workshop thử nghiệm
 
-Gói `P01-T03-PILOT-r1`, ngày 2026-09-07: **IN_REVIEW, chưa được Human duyệt**. [Roadmap](KIDEA_ROADMAP.md#p01-t03-review) quản lý trạng thái và gate. Đây là phạm vi sản phẩm dùng để kiểm chứng Kidea, không phải yêu cầu xây ứng dụng ngay.
+Gói `P01-T03-PILOT-r1`, ngày 2026-09-07: **APPROVED, Human duyệt ngày 2026-09-07**. [Roadmap](KIDEA_ROADMAP.md#p01-t03-review) quản lý trạng thái và gate. Đây là phạm vi sản phẩm dùng để kiểm chứng Kidea, không phải yêu cầu xây ứng dụng ngay.
 
 **Mục tiêu:** một người dùng xem workshop, đăng ký/hủy một chỗ; quản trị viên quản lý số chỗ và trạng thái mở đăng ký. Chọn bài toán này vì nhỏ nhưng có rule dùng chung giữa các client, tranh chấp chỗ cuối và dependency qua event/dữ liệu, không chỉ lời gọi hàm.
 
