@@ -8,22 +8,24 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-R01-T01 đã khép theo [kết quả và xác nhận](#r01-t01-result). Việc kế tiếp, chưa bắt đầu: R01-T02-S01 — xác nhận tài liệu sản phẩm ngoài .kidea và điều phối/review trong .kidea. Task này chỉ rà ranh giới hồ sơ, không chuyển file hoặc thay quyền Git. Trạng thái chi tiết ở [sổ công việc](#work-state).
+Việc hiện hành: [R01-T02-S01 — Ranh giới hồ sơ](#review-current). Chỉ duyệt hai quyết định bên dưới; không cần đọc toàn file. [Sổ công việc](#work-state) giữ trạng thái duy nhất.
 
 <a id="review-current"></a>
 
-### R01-T01-S01-r1 — Gói đã được duyệt, không còn chờ phản hồi
+### R01-T02-S01-r1 — Tài liệu sản phẩm và hồ sơ điều phối
 
-**Mục đích:** xác nhận đích đến trước khi xem công nghệ, Git hoặc tiêu chí đo. Dùng các lựa chọn vòng trước làm đề xuất, không tự kế thừa trạng thái DONE/APPROVED sang vòng mới.
+**Mục đích:** phân biệt “sản phẩm phải làm gì/được xây thế nào” với “công việc đang ở đâu”. Một project vẫn dùng một repo chứa cả tài liệu, .kidea, code và test; không tách repo quản lý riêng.
 
-| Quyết định | Đề xuất và ý nghĩa | Đọc đúng mục nguồn nếu cần |
+| Quyết định | Đề xuất | Ý nghĩa thực tế |
 |---|---|---|
-| D1. Bản đầu cần hoàn chỉnh đến đâu? | Giữ đủ sáu hành động, mười bước, ba bản đồ, quy tắc code và HTML tiến độ offline. Xây từng lát cắt để thử sớm, nhưng không gọi một lõi/prompt chạy được là đã hoàn thành Kidea. | [Năng lực bản đầu](KIDEA_DESIGN.md#first-release-capabilities) |
-| D2. Ranh giới bản đầu là gì? | Một Human cùng AI; không mở dịch vụ Kidea online, cộng tác nhiều người, điều phối nhiều agent hoặc hỗ trợ mọi công nghệ. Chỉ công bố tổ hợp đã kiểm chứng; quyền Git/cài/deploy chưa được mở rộng. | [Người dùng](KIDEA_DESIGN.md#first-release-audience) · [Ngoài phạm vi](KIDEA_DESIGN.md#first-release-exclusions) |
+| D1. Tài liệu sản phẩm nằm đâu? | Ngoài `.kidea`, mặc định trong `docs/`: Feature, nghiệp vụ/AC, yêu cầu chất lượng, UX, kiến trúc, coding rules, mapping, đặc tả test, runbook và bằng chứng sản phẩm. | Tài liệu vẫn dùng được khi không dùng Kidea. Code/test chạy được và cấu hình ở vị trí chuẩn của công nghệ, không ép vào docs. |
+| D2. Hồ sơ điều phối nằm đâu? | Trong `.kidea`: tiến trình bước/phase/task/subtask, kế hoạch công việc, checkpoint, blocker/điểm quay lại và gói review/xác nhận Human. | Kidea biết đang làm gì và chờ gì. Ví dụ rule “không vượt sức chứa” thuộc tài liệu sản phẩm; task thực hiện rule và bản ghi duyệt nó thuộc .kidea. |
 
-**Không duyệt kèm:** chi tiết nền tảng/phiên bản, pilot, Git G1–G6, số giây/số lần thử của QUALITY, runtime/schema hay quyền thao tác. Các phần đó có gói nhỏ riêng bên dưới.
+**Đọc nguồn khi cần:** [ranh giới lưu trữ](KIDEA_DESIGN.md#project-storage-boundary). Đây là xác nhận lại hướng PROJECT-FILES-r1 của vòng trước, không đề xuất thêm cây thư mục phức tạp.
 
-Human đã duyệt đúng D1–D2 bằng phản hồi “Mình duyệt nhé”, sau gói được trình tại commit `5aa4e5b5a69b9305821e43bb5d4b3151ee2a271d`. Không có test hành vi hoặc quyền code mới; [kết quả đóng task](#r01-t01-result) ghi phần đồng bộ và kiểm tra.
+**Không duyệt kèm:** tên/schema từng file, cách bảo đảm nguồn duy nhất và đọc/ghi xuyên vùng (S02), chọn repo pilot, di chuyển file hiện có hoặc quyền Git/cài/deploy. Không tạo cả cây rỗng; project có bố cục hợp lý không bị ép đổi thư mục.
+
+Đã đối chiếu thiết kế và các điểm nối init/resume/view; chưa sửa quy tắc hoặc chạy skill. Gói chờ Human duyệt D1–D2 trước khi đóng S01.
 
 <a id="working-rules"></a>
 
@@ -77,6 +79,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T01-S01 | DONE | R01-T01-S01-r1 — APPROVED | Human: “Mình duyệt nhé”; chỉ D1–D2 ở commit 5aa4e5b; [bằng chứng](#r01-t01-result) |
 | R01-T01-S02 | DONE | [A] — không có quyết định mới | Đối chiếu DESIGN, danh mục KA và bảng bao phủ; không đổi scope hoặc ngưỡng; [kết quả](#r01-t01-result) |
 | R01-T01-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ approval, kiểm tra tài liệu và dọn tạm; [kết quả](#r01-t01-result) |
+| R01-T02-S01 | IN_PROGRESS | R01-T02-S01-r1 — IN_REVIEW | [Hai quyết định ranh giới](#review-current); Human cho bắt đầu bằng “Ok bạn làm đi”, chưa duyệt đầu ra |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -87,7 +90,7 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - S01: Human phản hồi “Mình duyệt nhé” ngay sau gói D1–D2 tại [commit 5aa4e5b](https://github.com/Kynderis/kidea/blob/5aa4e5b5a69b9305821e43bb5d4b3151ee2a271d/KIDEA_ROADMAP.md#review-current). Chỉ xác nhận đích bản đầu đầy đủ và ranh giới đã trình; không duyệt công nghệ, pilot, Git G1–G6, QUALITY, runtime/schema hoặc cấp quyền thao tác.
 - S02: đối chiếu DESIGN mục 1.1, bảng bao phủ roadmap và danh mục KA: sáu hành động → R02/R06/R07; mười bước → R03–R05/R08/R09; ba bản đồ/change → R06/R09; rules/view/cài/giới hạn → R05/R07/R10. Không phát hiện nghĩa vụ bị cắt; chưa cần sửa case/ngưỡng hoặc nghiên cứu lại nền tảng vì D1–D2 giữ hướng đang có.
 - S03: DESIGN dẫn về đúng bằng chứng approval, sổ công việc đóng đủ ba subtask. Kiểm tra link/anchor liên quan và diff; không có file tạm tạo ra hoặc untracked cần xóa. Đây là kiểm chứng tài liệu, không phải test Kidea hoặc đóng phase R01.
-- Tiếp theo R01-T02-S01 chỉ rà ranh giới tài liệu sản phẩm và hồ sơ điều phối; chưa bắt đầu, chưa chuyển file project thật.
+- Tại thời điểm đóng R01-T01, việc tiếp theo là R01-T02-S01; trạng thái hiện hành xem sổ công việc, không giữ bản sao trong kết quả lịch sử này.
 
 <a id="phase-overview"></a>
 

@@ -342,6 +342,8 @@ Không tự chạy thử phá hỏng hệ thống trên production. Kịch bản
 
 ## 5. Cấu trúc hồ sơ và giao diện tiến độ
 
+<a id="project-storage-boundary"></a>
+
 Ranh giới `PROJECT-FILES-r1` đã được Human duyệt: **mô tả sản phẩm nằm ngoài `.kidea`; điều phối quá trình làm sản phẩm nằm trong `.kidea`; code/test thực thi nằm ở vị trí chuẩn của project.** Một project dùng một Git repo cho các phần này. Tên file/thư mục dưới đây là bố cục mặc định để thiết kế tiếp ở R02, không yêu cầu đổi cấu trúc hợp lý sẵn có hoặc sinh cả cây ngay khi init.
 
 ```text
