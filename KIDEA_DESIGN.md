@@ -10,7 +10,7 @@ Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ
 
 Tài liệu này là nguồn thiết kế hiện hành. Roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào để đối chiếu; `answer.md` là bản sao câu trả lời để đọc từ xa, không thay thế thiết kế hoặc roadmap.
 
-[Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đang được làm rõ tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Human đã duyệt Kotlin + Jetpack Compose, Swift + SwiftUI và [cách tích hợp SEO vào gate quy trình](#seo-proposal); ma trận phiên bản/môi trường còn chờ hoàn thiện; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
+[Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đã được Human duyệt tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Human đã duyệt Kotlin + Jetpack Compose, Swift + SwiftUI và [cách tích hợp SEO vào gate quy trình](#seo-proposal); ma trận phiên bản/môi trường r3 đã được duyệt; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
 
 <a id="scope"></a>
 
@@ -88,11 +88,11 @@ Phạm vi này không duyệt trước ma trận phiên bản/công cụ, lựa 
 
 <a id="platform-matrix"></a>
 
-### 1.2. Ma trận nền tảng — P01-T02 chờ duyệt đầu ra
+### 1.2. Ma trận nền tảng — P01-T02 đã duyệt
 
-Gói review: `P01-T02-PLATFORM-r3`, ngày 2026-09-07, `IN_REVIEW` toàn ma trận. Hướng Windows/C++20/native/web và tích hợp SEO đã được Human duyệt; tổ hợp phiên bản, phạm vi kiểm chứng và cách xử lý phần chờ dưới đây là đầu ra đang xin duyệt. [Đối chiếu nguồn và môi trường](exa-results/p01-t02-platform-baseline-2026-09-07.md) là bằng chứng nghiên cứu, không phải nguồn quyết định hoặc tracker khác. Các báo cáo cũ chỉ giữ vai trò tham khảo theo thời điểm.
+Gói review: `P01-T02-PLATFORM-r3`, ngày 2026-09-07, `APPROVED` toàn ma trận theo xác nhận Human “ok mình duyệt gói này”, đối với gói được trình tại commit `9f73940`. Tổ hợp phiên bản, phạm vi kiểm chứng và cách xử lý phần chờ dưới đây đã được duyệt làm nền thiết kế, không phải bằng chứng đã triển khai. [Đối chiếu nguồn và môi trường](exa-results/p01-t02-platform-baseline-2026-09-07.md) là bằng chứng nghiên cứu, không phải nguồn quyết định hoặc tracker khác. Các báo cáo cũ chỉ giữ vai trò tham khảo theo thời điểm.
 
-| Thành phần | Hướng đã duyệt | Cấu hình nền đề xuất để kiểm chứng | Môi trường thực thi dự kiến |
+| Thành phần | Hướng đã duyệt | Cấu hình nền đã duyệt để kiểm chứng | Môi trường thực thi dự kiến |
 |---|---|---|---|
 | Host Kidea | Windows, một Human + AI | Windows 11 x64; máy kiểm chứng đầu tiên là Windows 11 Pro 25H2 hiện có. Dùng phiên AI desktop hiện tại để thử hướng dẫn theo file; kiểm chứng khả năng nạp/gọi skill, chọn runtime/helper và cách đóng gói ở P02-T01 | Hồ sơ/source local, Git theo quyền đã chốt; không cần server Kidea. Không suy ra đã hỗ trợ mọi ứng dụng AI hoặc host Mac |
 | Backend sản phẩm | C++20 → Ubuntu | Ubuntu 24.04 LTS amd64; GCC/G++ 13.3, CMake 3.28.3, Ninja; chuẩn C++20, không mặc định dùng modules/extension chưa kiểm chứng. Patch bảo mật distro được cập nhật có ghi nhận | Soạn source trên Windows; build/test Linux trong WSL2 Ubuntu đúng phiên bản hoặc môi trường Linux riêng được duyệt. Release phải build/test lại trên Ubuntu đích, không lấy binary Windows hoặc WSL PASS thay bằng chứng release |
@@ -145,7 +145,7 @@ Yêu cầu SEO áp dụng cho nội dung được phép công khai. Không dùng
 
 #### Ý tưởng ngoài bản đầu: một Human, nhiều agent
 
-Human nêu khả năng một orchestrator dùng model mạnh điều phối các agent làm task độc lập, chọn mức model theo tính chất việc. Chỉ ghi nhận ở mức `Idea`, chưa phải yêu cầu xây, chạy nhiều agent hiện tại hoặc chọn model cụ thể. Nếu được đưa vào phạm vi sau này, cần thiết kế riêng quyền ghi trạng thái, tính độc lập của công việc, tổng hợp/kiểm chứng kết quả và Human gate; không suy ra ý tưởng này cho phép nhiều agent tự duyệt lẫn nhau hoặc ghi đè cùng hồ sơ.
+Ý tưởng chi tiết được lưu riêng, nguyên văn tại [Điều phối nhiều AI agent bằng subscription](ideas/multi-agent-subscription.md). Human yêu cầu chỉ xem xét sau khi Kidea bản đầu hoàn thiện; phân loại `Idea`, ngoài MVP và lộ trình hiện hành. Chưa duyệt thiết kế điều phối, chọn/xác minh model, tạo worker, cài công cụ hoặc tích hợp. Khi xem xét lại phải đối chiếu phạm vi/quyền/Human gate và khả năng công cụ lúc đó, rồi xin duyệt riêng.
 
 ## 2. Nguyên tắc tổ chức quy trình
 
@@ -628,7 +628,7 @@ Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải c
 
 | Quyết định cần chốt | Nơi xử lý trong roadmap |
 |---|---|
-| Hoàn tất ma trận phiên bản/công cụ/môi trường theo định hướng Windows, C++20/Ubuntu và native/web đã chốt; pilot và tiêu chí thành công có thể đo | [P01](KIDEA_ROADMAP.md#p01) |
+| Chốt pilot và tiêu chí thành công có thể đo; ma trận P01-T02 đã duyệt, các kiểm chứng thực thi vẫn phải thực hiện đúng phase | [P01](KIDEA_ROADMAP.md#p01) |
 | Runtime của helper, cách đóng gói/cài; schema Markdown, ID, quyền ghi, approval fingerprint, checkpoint và nâng phiên bản | [P02](KIDEA_ROADMAP.md#p02) |
 | Cách phân rã nghiệp vụ, AC và chọn tập business test có thể áp dụng lặp lại | [P04](KIDEA_ROADMAP.md#p04) |
 | Hồ sơ coding rules đầu tiên, công cụ kiểm tra và cách mang đúng phiên bản qua máy mới | [P06](KIDEA_ROADMAP.md#p06) |

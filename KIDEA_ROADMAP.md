@@ -25,14 +25,14 @@ Nguyên tắc thực hiện:
 
 | Trường | Giá trị hiện hành |
 |---|---|
-| Gate đang chờ | Human duyệt đầu ra `P01-T02-PLATFORM-r3`; hướng web/mobile và gate SEO đã duyệt, cấu hình nền/môi trường/phần chờ đã được AI hoàn thiện |
-| Phase/task đang thực hiện | [P01 / P01-T02](#p01-t02-review) |
-| Việc tiếp theo | Human review ma trận r3 tại thiết kế mục 1.2; chỉ đóng P01-T02 sau xác nhận, rồi mới chọn pilot P01-T03 |
-| Điều kiện để tiếp tục | Duyệt định hướng chưa đủ đóng P01-T02; phải có ma trận cụ thể, phần cần kiểm chứng và quyền/công cụ còn thiếu. Chỉ bắt đầu P01-T03 sau gate này |
+| Gate đang chờ | Không còn gate P01-T02; gói `P01-T02-PLATFORM-r3` đã được Human duyệt. P01-T03 sẽ có gate chọn pilot riêng |
+| Phase/task đang thực hiện | P01 đang thực hiện; P01-T01/T02 DONE, chưa mở task tiếp theo |
+| Việc tiếp theo | P01-T03: chọn pilot nhỏ, vẫn TODO; lượt này chỉ ghi nhận ý tưởng cho tương lai theo yêu cầu Human |
+| Điều kiện để tiếp tục | Khi tiếp tục P01-T03, đề xuất phạm vi pilot để Human duyệt; không đưa ý tưởng nhiều agent vào pilot hoặc MVP hiện hành |
 | Điểm quay lại | Chưa có |
 | Vướng mắc khác | Chưa ghi nhận; các lựa chọn triển khai còn mở được giao cho task cụ thể |
 
-P01-T01 đã `DONE` sau xác nhận phạm vi của Human ngày 2026-09-07; P01-T02 đang làm rõ các lựa chọn. Chưa có skill, helper hoặc pilot được tạo theo lộ trình này.
+P01-T01 và P01-T02 đã `DONE`; chưa bắt đầu P01-T03. Chưa có skill, helper hoặc pilot được tạo theo lộ trình này.
 
 ## 3. Quy ước cập nhật, bằng chứng và Human gate
 
@@ -103,7 +103,7 @@ Mục tiêu: biết chính xác bản đầu cần làm được gì và kiểm 
 | Task | Đầu ra cần tạo | Điều kiện kiểm chứng | Trạng thái | Bằng chứng |
 |---|---|---|---|---|
 | P01-T01 [H] | Phạm vi bản đầu, điều không làm, nhóm người dùng và mức hỗ trợ | Đối chiếu đủ sáu hành động/mười bước/ba bản đồ; giới hạn tổ hợp hỗ trợ rõ, không âm thầm bỏ yêu cầu đã duyệt | DONE | [Xác nhận Human và đối chiếu](#p01-t01-review), 2026-09-07 |
-| P01-T02 [H] | Ma trận host, OS, ngôn ngữ/thành phần đầu tiên và môi trường chạy thử | Ghi cái nào cần kiểm chứng thực, cái nào chưa hỗ trợ; xác định quyền/công cụ cần mà chưa tự cài | IN_PROGRESS | [Gói r3 chờ Human duyệt](#p01-t02-review); đã hoàn thiện đầu ra thiết kế, chưa được duyệt đóng |
+| P01-T02 [H] | Ma trận host, OS, ngôn ngữ/thành phần đầu tiên và môi trường chạy thử | Ghi cái nào cần kiểm chứng thực, cái nào chưa hỗ trợ; xác định quyền/công cụ cần mà chưa tự cài | DONE | [Gói r3 đã Human duyệt](#p01-t02-review), 2026-09-07 |
 | P01-T03 [H] | Phạm vi một sản phẩm pilot nhỏ dùng dữ liệu giả | Có nghiệp vụ dùng chung, ít nhất một dependency ngoài lời gọi trực tiếp, giao diện và nhu cầu admin/monitoring vừa đủ; môi trường phi production, chi phí và ranh giới được chốt | TODO | — |
 | P01-T04 | Danh mục kịch bản nghiệm thu Kidea, tách khỏi test của pilot | Có đường đúng, Human reject, approval cũ, dữ liệu sai, ngắt/resume qua Git, dự án cũ đi từ bước 1, thay đổi giữa MVP và sau release; mỗi case có hành vi mong đợi quan sát được | TODO | — |
 | P01-T05 [H] | Tiêu chí chất lượng Kidea và mức bằng chứng tối thiểu | Chốt cách đo độ đúng trạng thái, an toàn ghi, khả năng resume, thời gian đọc/chạy trên hồ sơ đại diện; không dùng “nhanh/tốt/đầy đủ” không kiểm tra được | TODO | — |
@@ -126,20 +126,20 @@ Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không c
 | Human gate, một task, hồ sơ/resume/change | ĐÃ CẬP NHẬT phần làm rõ | Git chuyển `.kidea` cùng source, resume kiểm tra trước tiếp tục; checkpoint local không phụ thuộc Git; quyền Git vẫn riêng |
 | Người dùng, phạm vi project và mức hỗ trợ bản đầu | HUMAN ĐÃ DUYỆT | Mục 1.1 tích hợp xác nhận và điều chỉnh trực tiếp; dự án cũ không bỏ bước/gate, cụm agent chỉ là Idea ngoài bản đầu |
 | P01-T02/T03/T04/T05 và các phase phụ thuộc | ĐÃ KIỂM TRA — GIỮ GATE | Yêu cầu nền tảng là đầu vào P01-T02, không phải bằng chứng tương thích; pilot và bộ nghiệm thu chưa được chọn |
-| Trạng thái lộ trình và điểm tiếp tục | ĐÃ CẬP NHẬT | P01-T01 DONE; chỉ P01-T02 IN_PROGRESS; P01 chưa hoàn thành |
+| Trạng thái lộ trình và điểm tiếp tục | ĐÃ CẬP NHẬT | P01-T01/T02 DONE; P01-T03 TODO; P01 chưa hoàn thành |
 | Tài liệu tham khảo nghiệp vụ | ĐÃ KIỂM TRA — KHÔNG CẦN SỬA | Không đổi phương pháp AC/flow/test ở P01-T01; việc tích hợp vẫn thuộc P04 |
 
 Đối chiếu này là review tài liệu và xác nhận phạm vi; không phải test hành vi Kidea. Nhận diện nội dung phạm vi hiện hành và kết quả kiểm tra cấu trúc được ghi tại phần kiểm chứng P01-T02 bên dưới; thay đổi ngữ nghĩa phạm vi sau đây phải mở lại đúng gate.
 
 <a id="p01-t02-review"></a>
 
-### Gói review P01-T02 — đầu ra đã hoàn thiện, chờ Human
+### Xác nhận và đối chiếu P01-T02 — đã duyệt
 
-- Gói `P01-T02-PLATFORM-r3`, `IN_REVIEW` toàn ma trận, ngày 2026-09-07: [ma trận nền tảng](KIDEA_DESIGN.md#platform-matrix), có [nguồn và snapshot môi trường](exa-results/p01-t02-platform-baseline-2026-09-07.md). AI đã hoàn thiện theo yêu cầu “ok thế bạn làm đi, xong việc hoặc cần confirm thì bảo tôi”; yêu cầu làm không thay xác nhận duyệt đầu ra. Human trước đó duyệt hướng SvelteKit/TypeScript/prerender/SSR/realtime và SEO tại câu trả lời commit `a58558b`.
-- Human phản hồi “mình đồng ý” gắn với hai nhóm quyết định tại câu trả lời commit `4235774`: duyệt Android Kotlin + Jetpack Compose, iOS Swift + SwiftUI và `SEO-WORKFLOW-r1` tại [mục 2.5](KIDEA_DESIGN.md#seo-proposal). Đã tích hợp vào mười bước và task liên quan; giữ 77 task, chưa đóng P01-T02.
+- Gói `P01-T02-PLATFORM-r3`, `APPROVED`, ngày 2026-09-07: [ma trận nền tảng](KIDEA_DESIGN.md#platform-matrix), có [nguồn và snapshot môi trường](exa-results/p01-t02-platform-baseline-2026-09-07.md). Bằng chứng Human: “ok mình duyệt gói này” sau gói được trình tại commit `9f73940`; P01-T02 DONE. Duyệt thiết kế không xác nhận build/hiệu năng và không cấp quyền cài/nâng cấp/deploy.
+- Human phản hồi “mình đồng ý” gắn với hai nhóm quyết định tại câu trả lời commit `4235774`: duyệt Android Kotlin + Jetpack Compose, iOS Swift + SwiftUI và `SEO-WORKFLOW-r1` tại [mục 2.5](KIDEA_DESIGN.md#seo-proposal). Đã tích hợp vào mười bước và task liên quan; giữ 77 task; xác nhận đóng P01-T02 được ghi ở trên.
 - Ma trận r3 có tổ hợp OS/toolchain/runtime/adapter cụ thể, minSdk/deployment target đề xuất, môi trường kiểm chứng và giới hạn. Chưa chạy build. Bản OS/Xcode/SDK thực, thiết bị Android thật và các phép đo còn chờ đến bước chuẩn bị/thực thi; nơi xử lý được ghi rõ tại nguồn, không còn yêu cầu Human chọn từng số phiên bản để hoàn thành thiết kế. Runtime/helper Kidea vẫn thuộc P02-T01; workload/pilot/ngưỡng nghiệm thu thuộc P01-T03/T04/T05 và các phase liên quan.
 - Human chốt: Mac chỉ xác định giải pháp ở hiện tại, đến khi làm iOS mới kiểm tra/nâng macOS nếu cần. Không yêu cầu nâng macOS, cài Xcode hoặc build thử ngay để đóng P01-T02; phải ghi rõ các kiểm chứng/quyền còn chờ và thời điểm thực hiện, không coi là đã PASS.
-- Đang xin duyệt toàn bộ r3: cấu hình nền và phạm vi OS đề xuất, chính sách khóa/kiểm tra lại phiên bản, ma trận kiểm chứng, quyền và phần để sau. Chỉ khi Human duyệt đúng gói này mới ghi P01-T02 DONE; trước đó không chuyển P01-T03 hoặc triển khai môi trường.
+- Phạm vi được duyệt: cấu hình nền, phạm vi OS, chính sách khóa/kiểm tra lại phiên bản, ma trận kiểm chứng, quyền và phần để sau. P01-T03 chưa bắt đầu: Human yêu cầu trước hết lưu ý tưởng nhiều agent để xem xét sau khi Kidea hoàn thiện; đã lưu tại [file Idea riêng](ideas/multi-agent-subscription.md), không thêm task triển khai.
 
 | Điều kiện đầu ra P01-T02 | Kết quả review tài liệu |
 |---|---|
@@ -147,17 +147,17 @@ Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không c
 | Phiên bản/công cụ và môi trường thử | Có tổ hợp nền, nguồn chính thức/metadata, cách khóa phiên bản; không chọn preview hoặc trộn package latest thiếu tương thích |
 | Chưa kiểm chứng/chưa hỗ trợ | Có ma trận bằng chứng và phase phải xử lý, không lấy simulator/WSL/metadata thay test thiết bị/đích thật |
 | Quyền/công cụ thiếu | Có danh mục và thời điểm xin; không tự cài, nâng macOS, đổi WSL, mua/thuê hoặc deploy |
-| Human review đầu ra | CHỜ — r3 chưa được duyệt, P01-T02 giữ IN_PROGRESS |
+| Human review đầu ra | ĐÃ DUYỆT — r3 APPROVED, P01-T02 DONE; không phải PASS của môi trường thực |
 
 | Ảnh hưởng đã rà | Xử lý hiện hành |
 |---|---|
 | Git/resume → hợp đồng/checkpoint/lõi/đổi máy | Làm rõ thiết kế mục 6; cập nhật case Git ở P01-T04, P02-T05, P08-T06, P11-T06, P12-T03; P02-T04/P03-T06 vẫn giữ checkpoint local và không tự Git |
 | Dự án cũ → init/nghiệp vụ/gate | Làm rõ mục 1.1; bổ sung tiêu chí P01-T04, P03-T04 và P04-T02: đi từ bước 1, chỉ tận dụng context, không tự init đè hoặc nhận code là đặc tả đã duyệt |
-| Nền tảng → rule/adapter/test/pilot/phát hành | Đã rà P02-T01, P01-T03/T04/T05, P05–P07, P10–P12: tham chiếu ma trận r3 khi được duyệt; không sao chép số phiên bản vào từng task hoặc chốt trước helper/pilot. Giữ các gate hiện có. Phạm vi chưa đo phải còn là chưa kiểm chứng tại nghiệm thu, không nhận cấu hình Mac/metadata làm bằng chứng build |
+| Nền tảng → rule/adapter/test/pilot/phát hành | Đã rà P02-T01, P01-T03/T04/T05, P05–P07, P10–P12: tham chiếu ma trận r3 đã duyệt; không sao chép số phiên bản vào từng task hoặc chốt trước helper/pilot. Giữ các gate hiện có. Phạm vi chưa đo phải còn là chưa kiểm chứng tại nghiệm thu, không nhận cấu hình Mac/metadata làm bằng chứng build |
 | SEO → nghiệp vụ/nội dung/UX/ops/architecture/test/release | Đã tích hợp mục 2.5 vào mười bước và các task P04–P07, P10–P12 bên dưới; hai gate SEO được giữ riêng, chưa có bằng chứng chạy thực. Không thay tài liệu nghiệp vụ gốc hoặc tạo map/tracker mới |
 | HTML offline Kidea, ba bản đồ và tài liệu nghiệp vụ gốc | Không đổi nguồn/trạng thái/định nghĩa: SEO nói về web sản phẩm công khai, không biến view offline thành website SEO; không thêm map hoặc sửa nguyên bản tham khảo |
 
-Kiểm chứng r3 ngày 2026-09-07 bằng PowerShell trên Windows: 69 link/anchor nội bộ trong thiết kế, roadmap và báo cáo r3 hợp lệ; 77 task có ID duy nhất, gồm 1 DONE (P01-T01), 1 IN_PROGRESS (P01-T02), 75 TODO; không có anchor trùng hoặc fence chưa đóng; `git diff --check` đạt. Tài liệu nghiệp vụ gốc không thay đổi. Bằng chứng môi trường chỉ là đọc cấu hình/tool version/WSL; không có cài đặt, build/test ứng dụng mobile/web hoặc thao tác sản phẩm thật.
+Kiểm chứng r3 ngày 2026-09-07 bằng PowerShell trên Windows: link/anchor nội bộ trong thiết kế, roadmap, báo cáo r3 và file Idea đã kiểm tra; 77 task có ID duy nhất, gồm 2 DONE (P01-T01/T02), 0 IN_PROGRESS, 75 TODO; không có anchor trùng hoặc fence chưa đóng; `git diff --check` đạt. Tài liệu nghiệp vụ gốc không thay đổi. Bằng chứng môi trường chỉ là đọc cấu hình/tool version/WSL; không có cài đặt, build/test ứng dụng mobile/web hoặc thao tác sản phẩm thật.
 
 Nhận diện nội dung mục 1.1 đã ghi nhận theo phản hồi Human: SHA-256 `e2912fb8b2f6d260fdac63b592b2d853152a34aa88634506ae775f3df79222ab`. Phạm vi băm: từ anchor `first-release-scope` đến trước anchor `platform-matrix`, chuẩn hóa LF và một newline cuối. Mã băm chỉ nhận diện nội dung đã ghi, không thay bằng chứng xác nhận Human ở trên và không bao gồm các quyết định stack/SEO ở mục 1.2 và 2.5.
 
@@ -385,4 +385,4 @@ Bảng này là chỉ mục bao phủ, không giữ thêm trạng thái task. Tr
 - Nếu test đòi môi trường/quyền chưa có: ghi blocker và yêu cầu cụ thể, không tự cài/deploy/thu thập dữ liệu ngoài quyền hoặc đổi test thành PASS.
 - Khi cập nhật tiến trình, giữ tài liệu hiện hành rõ ràng: quyết định cũ không còn hiệu lực phải được thay/migrate đủ tham chiếu; giữ bằng chứng cần thiết cho nghiệm thu và khôi phục, không tích lũy các quy tắc cũ mâu thuẫn.
 
-**Bước kế tiếp:** Human review gói `P01-T02-PLATFORM-r3` tại [P01-T02](#p01-t02-review). AI đã hoàn thiện đầu ra thiết kế; chờ duyệt trước khi đóng task và sang P01-T03. Chưa viết SKILL.md/helper hoặc chuẩn bị môi trường ứng dụng.
+**Bước kế tiếp:** P01-T03 — chọn pilot nhỏ. Chưa bắt đầu trong lượt lưu ý tưởng này. P01-T02 đã được Human duyệt và đóng; ý tưởng nhiều agent chỉ xem xét sau khi Kidea bản đầu hoàn thiện, không thay phạm vi hiện hành.
