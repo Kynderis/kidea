@@ -1,6 +1,6 @@
 # Kidea — Tiêu chí chất lượng và bằng chứng nghiệm thu
 
-Gói `P01-T05-QUALITY-r1`, ngày 2026-09-07: **IN_REVIEW — chưa được Human duyệt, chưa đo/chạy**. [Roadmap](KIDEA_ROADMAP.md#p01-t05-review) là nguồn trạng thái task. Tài liệu này bổ sung mức đạt/cách đo cho [30 họ kịch bản](KIDEA_ACCEPTANCE.md), không thay thiết kế nền hoặc test sản phẩm pilot.
+Gói `P01-T05-QUALITY-r2`, ngày 2026-09-07: **IN_REVIEW — chưa được Human duyệt, chưa đo/chạy**. Bản r2 đồng bộ ranh giới `PROJECT-FILES-r1` đã duyệt; không coi duyệt thư mục là duyệt tiêu chí. [Roadmap](KIDEA_ROADMAP.md#p01-t05-review) là nguồn trạng thái task. Tài liệu này bổ sung mức đạt/cách đo cho [30 họ kịch bản](KIDEA_ACCEPTANCE.md), không thay thiết kế nền hoặc test sản phẩm pilot. Các vấn đề cần làm rõ trước khi chốt r2 nằm trong [rà soát tổng quan](KIDEA_ROADMAP.md#overall-review); chưa tự thay ngưỡng hoặc số lần chạy.
 
 ## 1. Quy tắc kết luận
 
@@ -8,6 +8,8 @@ Gói `P01-T05-QUALITY-r1`, ngày 2026-09-07: **IN_REVIEW — chưa được Huma
 - Bất kỳ lần quan sát nào có mất dữ liệu, ghi ngoài quyền, vượt gate, replay nguy hiểm hoặc báo đạt sai đều chặn nghiệm thu. Sửa nguyên nhân, rà ảnh hưởng và chạy lại nhóm liên quan; giữ bằng chứng lỗi cũ, không chọn lần chạy đẹp nhất.
 - “Không lỗi trong bộ thử” không có nghĩa bảo đảm không lỗi trong mọi tình huống. Chỉ công bố đúng mô hình lỗi, dữ liệu và môi trường đã kiểm chứng. Phạm vi ngoài bộ thử phải nêu giới hạn.
 - P01-T05 chỉ duyệt thước đo. Fixture thực thi, schema, runtime và cơ chế ghi/khôi phục được thiết kế ở phase sở hữu; không cài/chạy skill hoặc tạo pilot tại đây.
+
+Trong các tiêu chí dưới đây, **hồ sơ đầu vào** gồm cả trạng thái/review ở `.kidea` và tài liệu sản phẩm ở `docs/` hoặc nguồn project xác định, cùng source/test/config có liên quan. Nội dung sản phẩm, mapping và bằng chứng không được sao chép vào .kidea để tạo một nguồn thứ hai. Approval đối chiếu đúng bản nội dung được duyệt: tài liệu sản phẩm ở ngoài .kidea, còn kế hoạch/hồ sơ điều phối ở nguồn .kidea tương ứng; record review chỉ tham chiếu, không sao chép.
 
 ## 2. Tiêu chí chức năng và an toàn
 
@@ -31,7 +33,7 @@ Các con số sau là **ngân sách đề xuất để Human duyệt**, không p
 | QF-S — nhỏ | 30 file Markdown, tổng 1 MiB UTF-8, 100 task, 300 quan hệ đặc tả/mapping, 10 bước lớn |
 | QF-M — vừa | 300 file Markdown, tổng 10 MiB UTF-8, 1.000 task, 3.000 quan hệ đặc tả/mapping, 10 bước lớn |
 
-Mỗi bộ có trạng thái hỗn hợp, task DONE, blocker, gate, điểm quay lại hai cấp, tiếng Việt, tên dài 200 ký tự và link hai chiều. Kích thước tính trên hồ sơ đầu vào, không tính source, thư viện, log lớn hay đầu ra sinh; phần văn bản để đạt dung lượng phải là nội dung hợp lệ. P02/P09 tạo manifest và hash fixture, ghi số thực; không chỉ tạo file rỗng hoặc lặp nhãn để có đủ số lượng. Pilot thật là bộ thứ ba để kiểm tra tính thực dụng, không bị ép vừa đúng số lượng trên.
+Mỗi bộ có cả `.kidea` và tài liệu sản phẩm bên ngoài, link hai chiều xuyên thư mục, trạng thái hỗn hợp, task DONE, blocker, gate, điểm quay lại hai cấp, tiếng Việt và tên dài 200 ký tự. Số file/dung lượng là tổng hồ sơ đầu vào của hai vùng, không chỉ .kidea đã thu nhỏ; không tính source, thư viện, log lớn hay đầu ra sinh. Phần văn bản để đạt dung lượng phải là nội dung hợp lệ. P02/P09 tạo manifest và hash fixture, ghi số thực và phân bố giữa hai vùng; không chỉ tạo file rỗng hoặc lặp nhãn để có đủ số lượng. Pilot thật là bộ thứ ba để kiểm tra tính thực dụng, không bị ép vừa đúng số lượng trên.
 
 | KQ-07 — thao tác công cụ local | QF-S: tối đa mỗi lần | QF-M: tối đa mỗi lần |
 |---|---|---|
@@ -42,6 +44,7 @@ Mỗi bộ có trạng thái hỗn hợp, task DONE, blocker, gate, điểm quay
 - Mỗi thao tác/bộ dữ liệu: 1 lần đầu không cache ứng dụng có sẵn và 10 lần tiếp theo, mỗi lần tiến trình mới. Đo wall-clock từ khởi động công cụ tới kết thúc, gồm startup/I/O; không ép xóa cache OS. Lưu cả 11 số đo, báo lần đầu, trung vị và lớn nhất; tất cả 11 lần phải trong ngưỡng và đầu ra đúng. Không dùng nhãn p95 với mẫu nhỏ này.
 - Nếu có nhiễu hệ thống xác định được, lưu lý do và cả loạt cũ, chạy lại nguyên loạt; không xóa riêng lần chậm. Không đạt thì sửa/đo lại hoặc trình Human đổi ngân sách trước khi kết luận, không tự nâng ngưỡng theo kết quả.
 - Phép đo không gồm AI/network, chờ Human, Git, compile/test sản phẩm hoặc trích xuất toàn source bằng adapter. Các tác vụ đó có bằng chứng thời gian và điều kiện riêng tại phase sở hữu, không gán vào ngân sách đọc hồ sơ.
+- Phần đọc/đối chiếu tài liệu ngoài .kidea mà status/view cần để xác minh link/phiên bản phải nằm trong thời gian đo; không loại phần đó ra để đạt ngưỡng. Ghi đúng danh sách đầu vào thực sự đọc, không nhận đã kiểm tra đầy đủ sản phẩm từ một phép đọc trạng thái.
 
 ## 4. Phiên AI và vòng ảnh hưởng
 

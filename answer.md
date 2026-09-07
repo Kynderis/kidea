@@ -1,78 +1,35 @@
-**Mình khuyến nghị tách theo hướng bạn vừa nêu: tài liệu của sản phẩm nằm ngoài `.kidea`; hồ sơ điều phối công việc của Kidea nằm trong `.kidea`.** Ranh giới này rõ và hợp lý hơn cách gom toàn bộ hồ sơ vào `.kidea` hiện tại.
+**Đã cập nhật thiết kế theo ranh giới bạn duyệt**, đồng thời rà tổng quan thiết kế, roadmap và bộ nghiệm thu.
 
-### Vì sao trước đây mình để chung?
+### Phần đã cập nhật
 
-Thiết kế cũ chia theo **“hồ sơ do Kidea quản lý”** và **“code/test thực thi”**. Cách đó gom mọi thứ Kidea cần đọc vào một chỗ, nhưng trộn hai loại thông tin:
+- Tài liệu nghiệp vụ, kiến trúc, coding rules, mapping và bằng chứng sản phẩm nằm ngoài `.kidea`.
+- `.kidea` giữ trạng thái, big-step/phase/task, checkpoint, kế hoạch và review.
+- Mỗi dữ kiện có một nguồn chính; review trỏ tới đúng nội dung/phiên bản, không sao chép tài liệu.
+- Đã đồng bộ init, resume, quyền ghi, giao diện tiến độ và các case kiểm thử qua hai vùng thư mục. Phép đo cũng tính phần tài liệu bên ngoài thực sự cần đọc.
 
-- **Sản phẩm là gì, phải hoạt động thế nào?**
-- **Chúng ta đang xây sản phẩm đến đâu, đang chờ ai, tiếp tục từ đâu?**
+Chi tiết tại [cấu trúc hiện hành](https://github.com/Kynderis/kidea/blob/master/KIDEA_DESIGN.md#files-view). Đây là cập nhật **thiết kế cho project tương lai**, chưa tạo skill/pilot hoặc di chuyển dữ liệu project thật.
 
-Sau khi phân biệt rõ như bạn đề xuất, mình thấy nên chia theo **vai trò của thông tin**, không theo công cụ nào tạo ra nó. Tài liệu nghiệp vụ vẫn là tài sản của sản phẩm, dù được Kidea hỗ trợ viết.
+### Những điểm cần làm tốt hơn
 
-## Ranh giới mình đề xuất
+Mình chưa thấy cần thay toàn bộ hướng thiết kế. Tuy nhiên, có các điểm đáng xử lý trước khi đi tiếp:
 
-Ví dụ cấu trúc, vẫn trong **một Git repo**:
-
-```text
-project/
-├── .kidea/
-│   ├── INDEX.md          Điểm vào và trạng thái tổng quan
-│   ├── work.md           Việc hiện hành, blocker, điểm quay lại
-│   ├── plans/            Big-step, phase, task và tiến trình
-│   ├── reviews/          Gói review, xác nhận duyệt, bản được duyệt
-│   └── views/            Giao diện tiến độ được sinh
-│
-├── docs/
-│   ├── features.md       Mục tiêu, phạm vi, Feature Map
-│   ├── business/         Nghiệp vụ, rule, flow, AC
-│   ├── requirements/     Yêu cầu chất lượng sản phẩm
-│   ├── experience/       UX, luồng màn hình
-│   ├── architecture/     Kiến trúc, API, dữ liệu, coding rules
-│   ├── testing/          Đặc tả và chiến lược kiểm thử
-│   └── operations/       Vận hành, triển khai, khôi phục
-│
-├── backend/              Code và test của backend
-├── web/                  Code và test của web
-├── android/
-├── ios/
-├── tests/                Test tích hợp/toàn hệ thống khi cần
-└── deploy/               Cấu hình và script triển khai
-```
-
-Tên file/folder là minh họa; Kidea bổ sung dần khi cần, không tạo sẵn toàn bộ cây và không ép project có quy ước tốt phải đổi tên.
-
-**Quy tắc dễ nhớ:**
-
-> Mô tả sản phẩm → `docs/`.
->
-> Điều phối quá trình làm sản phẩm → `.kidea/`.
->
-> Thực thi sản phẩm và kiểm thử → các thư mục code/test phù hợp.
-
-### Những chỗ dễ nhầm cần quy định rõ
-
-| Nội dung | Đặt ở đâu? |
+| Vấn đề | Đề xuất của mình |
 |---|---|
-| Feature có ý nghĩa gì, thuộc MVP/Future/Idea | `docs/features.md` |
-| Feature đang ở bước nào, task nào xong/chưa xong | `.kidea/` |
-| Quy tắc nghiệp vụ và kết quả cần đạt | `docs/business/` |
-| Ai duyệt quy tắc ấy, duyệt bản nào, còn hiệu lực không | Hồ sơ review trong `.kidea/`, trỏ tới đúng tài liệu/phiên bản |
-| Hướng dẫn triển khai và xử lý sự cố | `docs/operations/` |
-| Task triển khai đang chờ quyền hay đã kiểm tra xong | `.kidea/` |
+| **1. Chọn repo pilot đang quá muộn.** P04 sẽ tạo tài liệu pilot, nhưng thiết kế để đến P11 mới chọn repo chứa nó. | Chọn nơi lưu/repo pilot ngay khi bắt đầu tài liệu ở P04. P11 chỉ chốt môi trường và quyền chạy/deploy. Chưa cần tạo repo bây giờ. |
+| **2. Cần tránh bằng chứng tự trở thành “cũ”.** Nếu ghi kết quả test làm đổi hồ sơ, rồi coi mọi thay đổi hồ sơ đều vô hiệu hóa test, ta có thể kiểm tra lại vô tận. | Nhận diện đúng **đầu vào ảnh hưởng kết quả**: rule, code, cấu hình… Tách chúng khỏi file kết quả và trạng thái ghi nhận. Làm rõ hợp đồng này ở P02. |
+| **3. Tiêu chí tốc độ/số lần thử còn thiếu căn cứ thực dụng.** Các con số đã được ghi là đề xuất, nhưng chưa có helper hoặc danh sách lượt thử cụ thể. | Giữ yêu cầu đo minh bạch; dùng số giây làm mục tiêu dự kiến, thử công cụ sớm rồi trình ngưỡng nghiệm thu. Với ba lần thử AI, lập rõ những biến thể phải chạy và cách gộp phiên trước khi duyệt. Không tự giảm tiêu chí. |
+| **4. Pilot nhỏ về nghiệp vụ, nhưng không nhỏ về kỹ thuật.** Có backend, web, hai app native, realtime và phục hồi event. | Giữ phạm vi đã duyệt; làm lát cắt backend–web trước, rồi native và các đường lỗi. Kiểm tra khả thi công cụ/thiết bị bằng mẫu nhỏ khi tới P06, tránh dồn rủi ro đến P11. |
+| **5. Một case đang diễn đạt quá rộng về mock.** “Chỉ mock” không phải lúc nào cũng là bằng chứng sai. | Chỉ cấm dùng kết quả mô phỏng để nhận đạt kiểm tra tích hợp/triển khai thật; vẫn cho test dùng mock đúng phạm vi. Bổ sung tình huống tài liệu/comment tự nhận “Human đã duyệt” để kiểm tra Kidea không nhầm dữ liệu với quyền thực hiện. |
+| **6. Có vài câu cũ chưa nhất quán.** Ví dụ còn câu “Ubuntu chưa chọn phiên bản” dù ma trận đã chốt; bảng ba bản đồ có câu SEO bị đặt sai tầng. | Đồng bộ câu chữ theo nguồn đã duyệt, không thay công nghệ hoặc bỏ yêu cầu SEO. |
 
-**Không lưu hai bản của cùng một nội dung.** Ví dụ `.kidea` chỉ trỏ đến đặc tả nghiệp vụ và bản được duyệt, không chép lại rule. Nếu tài liệu hiện nhãn “đã duyệt”, nhãn đó phải tham chiếu hoặc được suy ra từ hồ sơ duyệt, không là một trạng thái nhập tay độc lập.
+Báo cáo đầy đủ, kèm căn cứ và nơi xử lý: [rà soát tổng quan](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#overall-review).
 
-Bản đồ liên kết đặc tả–code–test và bằng chứng chất lượng cũng cần phân biệt: phần phục vụ hiểu/kiểm chứng sản phẩm thuộc hồ sơ sản phẩm; danh sách ảnh hưởng đang xử lý, mục chờ review và tiến độ xử lý thuộc `.kidea`. Không tạo thêm bản đồ hoặc nguồn dữ liệu trùng.
+Các đề xuất ngoài ranh giới thư mục **mới được ghi nhận, chưa tự áp dụng**. Mình chỉ chỉnh thêm cách hiển thị trạng thái lịch sử để không bị nhầm với tiến trình hiện tại.
 
-## Cách này tốt hơn ở đâu?
+### Bước tiếp theo nên làm gì?
 
-- Người đọc mở `docs/` sẽ tìm thấy tài liệu sản phẩm, không cần hiểu cách Kidea điều phối.
-- Có thể dùng tài liệu với công cụ khác; cấu trúc không phụ thuộc quá nhiều vào Kidea.
-- `.kidea` gọn và đúng vai trò quản lý công việc.
-- Git vẫn lưu **tài liệu + trạng thái + code + test cùng phiên bản**, nên không mất lợi ích đồng bộ.
+**Ưu tiên chốt G1–G6 về Git và nơi giữ hồ sơ pilot, rồi hoàn thiện lại P01-T05.** Không nên duyệt nguyên gói tiêu chí trong khi cách quản lý phiên bản vẫn đang thay đổi.
 
-Đổi lại, Kidea cần liên kết và kiểm tra đường dẫn giữa các thư mục. Đây là phần quản lý cần làm rõ, không phải lý do phải nhét tất cả vào một folder. Và `.kidea` vẫn là dữ liệu quan trọng, **không phải cache có thể tùy tiện xóa**: mất nó có thể mất tiến trình, điểm resume và căn cứ approval.
+Hiện **P01-T05 vẫn IN_PROGRESS**, bản tiêu chí r2 chưa duyệt. Việc bạn duyệt tách thư mục không được tính thành duyệt quyền Git hay các ngưỡng chất lượng.
 
-**Mình đề xuất dùng ranh giới mới này.** Nếu bạn đồng ý, mình sẽ cập nhật đồng bộ cấu trúc, quyền sở hữu trạng thái/approval, mapping, resume, các case và tiêu chí chất lượng. Phép đo đọc hồ sơ cũng phải tính đúng cả tài liệu ngoài `.kidea` khi cần, không chỉ đo folder quản lý đã thu nhỏ.
-
-Lượt này chưa chuyển file hoặc sửa thiết kế; đây là thay đổi bổ sung vào hướng Git đang thảo luận, chưa đồng nghĩa bạn đã duyệt G1–G6 hoặc P01-T05.
+Đã kiểm tra liên kết, 30 nhóm case, 10 nhóm tiêu chí và trạng thái 77 task; giữ nguyên phạm vi P01-T01 và tài liệu tham khảo gốc. Đã commit, push và đối chiếu nội dung trên GitHub. Chưa chạy test hành vi Kidea hoặc benchmark.

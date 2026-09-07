@@ -10,6 +10,8 @@ Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ
 
 Tài liệu này là nguồn thiết kế hiện hành. Roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào để đối chiếu; `answer.md` là bản sao câu trả lời để đọc từ xa, không thay thế thiết kế hoặc roadmap.
 
+Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). Đề xuất thay đổi quyền Git/branch/release G1–G6 vẫn chưa được duyệt; không suy approval thư mục thành approval Git hoặc tiêu chí P01-T05.
+
 [Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đã được Human duyệt tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Human đã duyệt Kotlin + Jetpack Compose, Swift + SwiftUI và [cách tích hợp SEO vào gate quy trình](#seo-proposal); ma trận phiên bản/môi trường r3 đã được duyệt; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
 
 <a id="scope"></a>
@@ -289,7 +291,7 @@ Khi tạm chuyển sang làm dependency, ghi cả đường đi và điểm quay
 ### 4.2. Trạng thái vừa đủ
 
 - Bước lớn: `PENDING → IN_PROGRESS → IN_REVIEW → APPROVED`.
-- Tài liệu: giữ `DRAFT → IN_REVIEW → APPROVED` như phương pháp nghiệp vụ.
+- Tài liệu: giữ `DRAFT → IN_REVIEW → APPROVED` như phương pháp nghiệp vụ; trạng thái điều phối và căn cứ duyệt được quản lý trong `.kidea/reviews/`, trỏ tới nội dung sản phẩm ở `docs/` hoặc vị trí nguồn của project. Không giữ trạng thái nhập tay có hiệu lực thứ hai trong tài liệu sản phẩm.
 - Task thực hiện: `TODO → IN_PROGRESS → DONE`.
 - Nếu bị chặn, ghi lý do và điều cần giải quyết bên cạnh trạng thái hiện tại; không coi bị chặn là hoàn thành.
 - Bước không áp dụng phải có kết luận `N/A` với lý do được Human xác nhận.
@@ -300,7 +302,7 @@ Khi tạm chuyển sang làm dependency, ghi cả đường đi và điểm quay
 
 AI gửi gói review gồm nội dung cần duyệt, các thay đổi, kết quả kiểm tra, điểm còn thiếu và bước kế tiếp. Human duyệt đúng bước/gói nội dung hiện tại; góp ý hoặc nói “tiếp tục phân tích” không tự động được coi là approval.
 
-Lưu phạm vi, thời điểm, xác nhận của Human và phiên bản nội dung được duyệt. Phiên bản có thể nhận diện bằng dấu vân tay nội dung file; không cần tạo Git commit. Khi đầu vào hoặc nội dung liên quan thay đổi, đánh giá lại hiệu lực approval và bằng chứng test. Không giữ nhãn “đã đạt” chỉ vì từng đạt ở một bản cũ.
+Lưu phạm vi, thời điểm, xác nhận của Human và phiên bản nội dung được duyệt trong `.kidea/reviews/`. Nội dung sản phẩm được duyệt và bằng chứng sản phẩm ở nguồn tương ứng bên ngoài `.kidea`; nội dung điều phối được duyệt (như kế hoạch) vẫn ở nguồn trong `.kidea`. Bản ghi review chỉ tham chiếu đúng nội dung/phiên bản, không chép lại rule/test/kết quả hoặc kế hoạch. Phiên bản có thể nhận diện bằng dấu vân tay nội dung file; không cần tạo Git commit. Khi đầu vào hoặc nội dung liên quan thay đổi, đánh giá lại hiệu lực approval và bằng chứng test. Không giữ nhãn “đã đạt” chỉ vì từng đạt ở một bản cũ.
 
 Với thay đổi làm sai căn cứ đã duyệt, đưa nội dung đó về nháp và đánh dấu phần phụ thuộc cần kiểm tra lại. Không bắt duyệt lại mọi trang chỉ vì một lỗi chính tả.
 
@@ -334,38 +336,49 @@ Không tự chạy thử phá hỏng hệ thống trên production. Kịch bản
 
 ## 5. Cấu trúc hồ sơ và giao diện tiến độ
 
+Ranh giới `PROJECT-FILES-r1` đã được Human duyệt: **mô tả sản phẩm nằm ngoài `.kidea`; điều phối quá trình làm sản phẩm nằm trong `.kidea`; code/test thực thi nằm ở vị trí chuẩn của project.** Một project dùng một Git repo cho các phần này. Tên file/thư mục dưới đây là bố cục mặc định để thiết kế tiếp ở P02, không yêu cầu đổi cấu trúc hợp lý sẵn có hoặc sinh cả cây ngay khi init.
+
 ```text
-.kidea/
-├── INDEX.md             # Cửa vào: mục tiêu, các bước, trạng thái và link
-├── work.md              # Việc hiện hành, bước con/task, điểm quay lại, impact, review
-├── features.md          # MVP / Future / Idea và quyết định phạm vi
-├── business/            # Đặc tả nghiệp vụ, AC và business test
-├── requirements/        # Yêu cầu chất lượng và cách đo/kiểm chứng
-├── experience/          # Nền tảng, luồng màn hình, phác thảo sản phẩm
-├── operations/          # Thiết kế monitoring và admin
-├── architecture/        # Thiết kế kỹ thuật và mapping
-├── tests/               # Đặc tả test kỹ thuật và bảng truy xuất bằng chứng
-├── delivery/            # Kế hoạch phát hành, hướng dẫn và bằng chứng triển khai
-└── views/               # HTML tiến độ sinh khi cần; không phải nguồn trạng thái
+project/
+├── .kidea/
+│   ├── INDEX.md         # Điểm vào, trạng thái tổng quan và link nguồn
+│   ├── work.md          # Việc hiện hành, blocker, điểm quay lại, impact đang xử lý
+│   ├── plans/           # Big-step, phase, task, dependency và tiến trình khi cần tách
+│   ├── reviews/         # Trạng thái/gói review, xác nhận Human, bản được duyệt
+│   └── views/           # HTML tiến độ dẫn xuất, chỉ đọc
+├── docs/
+│   ├── features.md      # Mục tiêu, phạm vi, Feature Map MVP / Future / Idea
+│   ├── business/        # Nghiệp vụ, rule/state/flow, AC và business test specification
+│   ├── requirements/    # Yêu cầu chất lượng sản phẩm và cách đo
+│   ├── experience/      # UX và luồng màn hình
+│   ├── architecture/    # Kiến trúc, API/event/dữ liệu, coding rules, mapping sản phẩm
+│   ├── testing/         # Technical test specification, chỉ mục kết quả/bằng chứng
+│   └── operations/      # Monitoring/admin, runbook, hồ sơ phát hành và triển khai
+├── backend/             # Ví dụ thành phần; code/test theo quy ước công nghệ
+├── web/
+├── android/
+├── ios/
+├── tests/               # Test tích hợp/toàn hệ thống khi phù hợp
+└── deploy/              # Cấu hình/script triển khai, không phải bản sao runbook
 ```
 
-Init chỉ cần tạo `INDEX.md`, `work.md`, `features.md`. Thư mục và tài liệu khác chỉ tạo khi đến việc cần chúng. Đây là cấu trúc dự kiến, không phải yêu cầu tạo ngay toàn bộ cây rỗng.
+Init tối thiểu chỉ cần `.kidea/INDEX.md`, `.kidea/work.md` và `docs/features.md` (hoặc link tới Feature Map đã tồn tại ở vị trí được đối chiếu). `plans/`, `reviews/` và các tài liệu khác chỉ tạo khi có nội dung cần lưu; không tạo sẵn cây rỗng. Chưa có hồ sơ Kidea không cho phép ghi đè `docs/` hiện có: đọc và xác định nguồn có hiệu lực trước khi dùng hoặc sửa.
 
 ### INDEX.md
 
 Dùng tên `INDEX.md` vì bản thân thư mục `.kidea` đã cho biết ngữ cảnh. File này chứa:
 
-- Mục tiêu, phạm vi đợt phát triển và phiên bản định dạng Kidea.
+- Link tới mục tiêu/phạm vi/Feature Map nguồn; đợt phát triển hiện hành và phiên bản định dạng Kidea. Không chép một bản mục tiêu/phạm vi có hiệu lực thứ hai.
 - Danh sách toàn bộ bước lớn, trạng thái từng bước, đầu ra và gate liên quan.
 - Bước đang làm và link chính xác đến công việc đang dở.
 - Link đến danh sách bước con đã xong/chưa xong, phase/task khi đã có kế hoạch.
-- Bản sản phẩm đang phát triển và bản đang được ghi nhận triển khai, nếu đã có.
+- Link tới bản sản phẩm đang phát triển và hồ sơ bản được ghi nhận triển khai, nếu đã có; không tự tạo bản ghi triển khai độc lập trong INDEX.
 
-Chi tiết trạng thái task chỉ có một nơi quản lý trong `work.md` hoặc file kế hoạch được nó trỏ tới khi kế hoạch lớn. INDEX là điểm điều hướng/tóm tắt, không phải bản chép thứ hai của toàn bộ checklist. Trạng thái tài liệu nằm ở tài liệu nguồn; phần tóm tắt ở INDEX phải được đồng bộ hoặc kiểm tra lại từ nguồn.
+Chi tiết trạng thái task chỉ có một nơi quản lý trong `.kidea/work.md` hoặc file kế hoạch được nó trỏ tới trong `.kidea/plans/` khi kế hoạch lớn. INDEX là điểm điều hướng/tóm tắt, không phải bản chép thứ hai của toàn bộ checklist. Trạng thái/gate tài liệu có nguồn trong `.kidea/reviews/`; nhãn hiển thị trong `docs/`, INDEX hoặc view phải tham chiếu hay được sinh/kiểm tra từ nguồn đó. Không có record phù hợp thì chưa đủ căn cứ coi tài liệu APPROVED, dù tài liệu có ghi một nhãn cũ. Schema/nhận diện nội dung và phép kiểm tra tính nhất quán cụ thể được chốt ở P02, không dùng đường dẫn đơn thuần làm bằng chứng phiên bản.
 
 ### work.md
 
-Chứa mục tiêu hiện hành, bước con, danh sách việc đã xong/còn lại, file cần đọc, quyết định đang có hiệu lực, câu hỏi còn mở, chuỗi điểm quay lại khi xử lý dependency, impact list, gói chờ review và bằng chứng kiểm tra.
+Chứa việc hiện hành, bước con, danh sách việc đã xong/còn lại hoặc link kế hoạch, file cần đọc, câu hỏi/blocker, chuỗi điểm quay lại khi xử lý dependency và impact đang xử lý. Quyết định đã duyệt, gói review và bằng chứng ở nguồn tương ứng được tham chiếu bằng link/phiên bản; không chép nội dung sản phẩm hoặc giữ thêm trạng thái duyệt độc lập trong work.md.
 
 Ghi trước một thao tác quan trọng là định làm gì; ghi sau là đã xảy ra gì và kiểm tra bằng cách nào. Khi bị ngắt giữa chừng, trạng thái phải cho phép AI nhận biết “chưa xác nhận kết quả” thay vì tự đoán hoàn thành hoặc chạy lại thao tác có tác dụng phụ.
 
@@ -373,19 +386,28 @@ Không ghi suy nghĩ dài dòng của AI, toàn bộ hội thoại hoặc log th
 
 Thu gọn không có nghĩa xóa cây task cần hiển thị: với các task đã xác định trong phạm vi theo dõi hiện hành, kể cả đã hoàn thành, giữ tối thiểu ID, tên, quan hệ cha-con, trạng thái và link kết quả/bằng chứng. Chỉ bỏ log hoặc diễn giải không còn cần, để INDEX và giao diện vẫn liệt kê đúng phần đã làm/chưa làm.
 
-### Ranh giới của .kidea
+### Nguồn có hiệu lực và ranh giới ghi
 
-`.kidea` chứa toàn bộ **hồ sơ do Kidea quản lý**: tài liệu, trạng thái, kế hoạch và chỉ mục bằng chứng. Code sản phẩm, test chạy được, cấu hình build/CI và triển khai nằm ở vị trí chuẩn của project; `.kidea` link đến chúng, không sao chép.
+| Loại thông tin | Nguồn có hiệu lực |
+|---|---|
+| Mục tiêu, Feature Map, nghiệp vụ, kiến trúc, quy tắc code và đặc tả test sản phẩm | `docs/` hoặc vị trí tài liệu sản phẩm đã được project xác định; mỗi nội dung chỉ một nguồn |
+| Tiến trình big-step/phase/task, checkpoint, blocker, điểm quay lại và impact đang xử lý | `.kidea/work.md` hoặc `.kidea/plans/` được chỉ định, không nhập hai checklist song song |
+| Trạng thái review, gate, xác nhận Human và bản nội dung được duyệt | `.kidea/reviews/`, trỏ về đúng nguồn/bản; tài liệu nguồn có thể hiện link hoặc nhãn dẫn xuất |
+| Mapping đặc tả–triển khai/test đã xác lập | Hồ sơ sản phẩm, mặc định `docs/architecture/`; chỉ mục ngược/graph là dẫn xuất hoặc được kiểm tra đối xứng. Không tạo map thứ tư để theo dõi tiến trình |
+| Test chạy được, cấu hình build/CI/deploy | Vị trí chuẩn trong source; tài liệu và review link tới chúng, không sao chép |
+| Kết quả test, hồ sơ release/deploy và bằng chứng sản phẩm | Chỉ mục ở `docs/testing/` hoặc `docs/operations/`, trỏ tới bằng chứng thật đúng phiên bản. `.kidea` chỉ ghi trạng thái công việc và tham chiếu kết quả; không là bản sao lịch sử triển khai |
 
-Human đã đồng ý với ranh giới hồ sơ/code trong phản hồi tổng thể: không đặt toàn bộ source code dưới `.kidea`, tránh trộn hồ sơ quy trình với sản phẩm và xung đột cấu trúc mà công cụ của project yêu cầu.
+Một repo chứa tài liệu, hồ sơ điều phối và source/test/config cần quản lý phiên bản; không có repo `.kidea` riêng cho cùng sản phẩm. Các clone/worktree của cùng repo không phải project hoặc nguồn đặc tả độc lập. Quyền tạo/đổi/push Git vẫn theo chính sách đã có; đề xuất G1–G6 chưa được duyệt. Repository xây chính Kidea này chưa là project mẫu do skill quản lý: các file `KIDEA_*` ở root vẫn là nguồn thiết kế/lộ trình hiện hành, không tự di chuyển chúng sang cây pilot.
 
-Không lưu mật khẩu, token, dữ liệu cá nhân hoặc log sản xuất nhạy cảm trong hồ sơ public. Bằng chứng lớn/nhạy cảm có thể nằm ở nơi lưu phù hợp; trong `.kidea` chỉ giữ kết luận và vị trí truy cập đã được phép.
+Tách thư mục không tách quyền kiểm tra: Kidea phải đọc đủ nguồn liên quan ở cả `.kidea`, `docs/`, source/test/config. Helper chỉ được ghi đúng file/đường dẫn đã xác định cho hành động hiện tại; không coi “nằm trong repo” là quyền sửa toàn repo. Các link sang tài liệu sản phẩm là bình thường, nhưng link sai root/thoát phạm vi không được tự trở thành quyền đọc/ghi ngoài project.
+
+Không lưu mật khẩu, token, dữ liệu cá nhân hoặc log sản xuất nhạy cảm trong hồ sơ public. Bằng chứng lớn/nhạy cảm hoặc artifact có thể nằm ở nơi được phép, với chỉ mục/nhận diện trong hồ sơ sản phẩm; không cần thêm Git repo tài liệu. `.kidea` là dữ liệu quản lý cần giữ và chuyển cùng project, không phải cache được phép xóa tùy ý. Xóa/gỡ skill không mặc nhiên xóa `.kidea` hoặc tài liệu sản phẩm.
 
 ### Giao diện trạng thái project
 
 Mục tiêu đã được Human yêu cầu: một flowchart tổng quan các bước lớn, mở được chi tiết tên/trạng thái bước con và task, nhìn rõ đang làm MVP hay bổ sung tính năng nào cho hệ thống đã chạy production.
 
-`$kidea visualize` gọi một script đọc dữ liệu có cấu trúc trong hồ sơ `.kidea`, kiểm tra tính hợp lệ và sinh `.kidea/views/progress.html`. Một file HTML mở trực tiếp bằng trình duyệt, hoạt động offline, không cần server hay tải thư viện từ mạng. Có thể dùng các khối HTML/SVG và mở/thu gọn chi tiết; không cần kéo cả framework frontend vào bản đầu. Chọn Python hoặc Node.js ở bước thiết kế triển khai Kidea dựa trên môi trường cài đặt được hỗ trợ, không buộc sản phẩm sử dụng Kidea phải viết bằng cùng ngôn ngữ.
+`$kidea visualize` gọi một script đọc dữ liệu điều phối có cấu trúc trong `.kidea` và các nguồn sản phẩm cần để đối chiếu link/phiên bản theo schema, kiểm tra tính hợp lệ rồi sinh `.kidea/views/progress.html`. Không cần đọc toàn bộ code để dựng tiến độ, nhưng cũng không bỏ qua việc nguồn `docs/` mà approval viện dẫn đã thay đổi. Một file HTML mở trực tiếp bằng trình duyệt, hoạt động offline, không cần server hay tải thư viện từ mạng. Có thể dùng các khối HTML/SVG và mở/thu gọn chi tiết; không cần kéo cả framework frontend vào bản đầu. Chọn Python hoặc Node.js ở bước thiết kế triển khai Kidea dựa trên môi trường cài đặt được hỗ trợ, không buộc sản phẩm sử dụng Kidea phải viết bằng cùng ngôn ngữ.
 
 Đường dữ liệu: hồ sơ nguồn → kiểm tra/đọc cấu trúc → HTML. Không để AI vẽ lại tiến độ theo trí nhớ, không đọc ngược HTML để xác định trạng thái và không thêm bản trạng thái JSON được sửa độc lập với Markdown. Metadata/bảng trạng thái trong các file nguồn cần có định dạng cố định, ID, quan hệ cha-con, nhãn và trạng thái hợp lệ; schema cụ thể sẽ được thiết kế tiếp. Các câu giải thích tự do vẫn là Markdown, không phải đầu vào để script tự suy diễn trạng thái.
 
@@ -410,15 +432,15 @@ Nội dung đọc từ hồ sơ phải được chèn vào HTML như dữ liệu
 ## 6. Resume qua phiên hoặc máy khác
 
 1. Tìm root project và `.kidea/INDEX.md`; không tự init lại nếu đã có trạng thái.
-2. Đọc mục tiêu, phiên bản định dạng, bước hiện hành và `work.md`.
-3. Đọc đầy đủ tài liệu nguồn cần cho mục đang xử lý và các dependency; không lấy bản tóm tắt thay cho nội dung cần phân tích.
+2. Đọc điểm vào, phiên bản định dạng, bước hiện hành và `.kidea/work.md`; theo link tới mục tiêu/phạm vi nguồn.
+3. Đọc đầy đủ tài liệu sản phẩm trong `docs/` hoặc vị trí nguồn được chỉ định, hồ sơ review trong `.kidea` và các dependency cần cho mục đang xử lý; không lấy bản tóm tắt thay cho nội dung cần phân tích.
 4. Kiểm tra file có tồn tại, có thay đổi chưa xử lý, approval và bằng chứng còn đúng với bản hiện tại không; kiểm tra repo đang ở đúng vị trí/trạng thái, chỉ đọc, không tự chuyển branch.
 5. Với thao tác dang dở, kiểm tra thực tế trước khi thử lại. Nếu trạng thái thiếu hoặc mâu thuẫn, ghi rõ và đối chiếu bằng chứng; không tự chữa bằng cách đánh dấu hoàn thành.
 6. Thông báo ngắn đang ở đâu, chờ Human duyệt gì nếu có, và tiếp tục đúng việc chưa hoàn thành được phép làm.
 
 Resume không cần đọc toàn bộ project mỗi lần, nhưng khi phân tích ảnh hưởng vẫn phải tìm đủ nơi liên quan và đọc đầy đủ chúng. Context không đủ thì chia lượt đọc, lưu kết quả có căn cứ và tiếp tục; không kết luận không ảnh hưởng chỉ vì chưa đọc hết.
 
-Human chọn Git để chuyển công việc giữa máy: lưu `.kidea` cùng source và các file cần để khôi phục công việc trong repo; sau khi máy đích pull, `resume` tự đọc hồ sơ trên đĩa để xác định việc đang dở và quyền tiếp tục. Không yêu cầu một dịch vụ đồng bộ Kidea. Không đưa secret, dữ liệu riêng tư hoặc đầu ra không được phép chia sẻ vào Git.
+Human chọn Git để chuyển công việc giữa máy: lưu `.kidea`, tài liệu sản phẩm (`docs/` hoặc nguồn được chỉ định), source/test/config và các file cần để khôi phục công việc trong cùng repo; sau khi máy đích pull, `resume` tự đọc hồ sơ trên đĩa để xác định việc đang dở và quyền tiếp tục. Chỉ chuyển `.kidea` là không đủ. Không yêu cầu một dịch vụ đồng bộ Kidea. Không đưa secret, dữ liệu riêng tư hoặc đầu ra không được phép chia sẻ vào Git.
 
 Máy đích vẫn cần Kidea khả dụng và đúng phiên bản công cụ/profile. Resume kiểm tra source/hồ sơ có khớp nhau, thiếu file hoặc conflict, thay đổi ngoài luồng và hiệu lực approval; không tin riêng một dòng trạng thái đã được push. Checkpoint local không phụ thuộc việc đã commit; phần chưa push không có ở máy khác. Resume không tự clone/pull/push, không tự giải quyết conflict, chuyển branch hoặc khôi phục file chưa được chuyển sang. Quyền thao tác Git vẫn tách khỏi quyền đọc/tiếp tục công việc.
 
@@ -518,7 +540,7 @@ Ví dụ: code hủy đơn phát `OrderCancelled`; một tiến trình khác nh�
 
 ## 8. Từ yêu cầu đến test và bằng chứng
 
-Đề xuất thước đo nghiệm thu Kidea: [KIDEA_QUALITY.md](KIDEA_QUALITY.md), gói `P01-T05-QUALITY-r1` **chưa duyệt**. Ngân sách công cụ local tách khỏi thời gian AI và hiệu năng sản phẩm; không phải kết quả đo thực tế.
+Đề xuất thước đo nghiệm thu Kidea: [KIDEA_QUALITY.md](KIDEA_QUALITY.md), gói `P01-T05-QUALITY-r2` **chưa duyệt**. Ngân sách công cụ local tách khỏi thời gian AI và hiệu năng sản phẩm; không phải kết quả đo thực tế. Các vấn đề Git, bằng chứng và pilot được nêu tại [rà soát tổng quan](KIDEA_ROADMAP.md#overall-review), chưa tự coi đề xuất sửa là đã duyệt.
 
 Danh mục nghiệm thu **chính Kidea**, tách khỏi test sản phẩm được quản lý: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md), đầu ra P01-T04. Đây là đặc tả kịch bản chưa chạy; ngưỡng/mức bằng chứng chốt ở P01-T05 và gói P01 được Human review trước phase tiếp.
 
@@ -644,7 +666,7 @@ Tổ chức theo các lớp, chỉ đọc phần áp dụng cho task hiện hàn
 
 Kidea cung cấp bộ rule nền có phạm vi rõ; sau khi chốt công nghệ ở bước 7, AI đối chiếu với quy ước thực tế của project, đề xuất bộ rule hiệu lực cho từng thành phần để Human duyệt trước code. Nếu gặp project đã có quy tắc, không âm thầm áp chuẩn mặc định của Kidea đè lên; nêu xung đột và chốt cách giải quyết. Không tạo một ma trận đầy đủ mọi ngôn ngữ × hệ điều hành × framework ngay từ đầu; hỗ trợ sâu những tổ hợp đã chọn và kiểm chứng, nói rõ tổ hợp nào chưa được hỗ trợ/duyệt.
 
-Hồ sơ hiệu lực nằm trong `.kidea/architecture/` của project, chỉ chứa các rule áp dụng, tham chiếu bộ nền ở phiên bản cố định và quyết định riêng. Nếu quy tắc nền được viện dẫn là thiết yếu để resume, phải bảo đảm máy mới truy được đúng phiên bản đó; có thể lưu phần đã chọn vào gói hồ sơ hiệu lực. Không phụ thuộc ngầm vào bản skill mới nhất hoặc trí nhớ AI. Cấu hình formatter/linter/build/test thực thi nằm ở vị trí chuẩn trong source và được mapping tới hồ sơ, không sao chép hai cấu hình cùng có hiệu lực.
+Hồ sơ rule hiệu lực là tài liệu sản phẩm, mặc định ở `docs/architecture/`, chỉ chứa các rule áp dụng, tham chiếu bộ nền ở phiên bản cố định và quyết định riêng; căn cứ Human duyệt nằm ở `.kidea/reviews/`. Nếu quy tắc nền được viện dẫn là thiết yếu để resume, phải bảo đảm máy mới truy được đúng phiên bản đó; có thể lưu phần đã chọn vào gói hồ sơ hiệu lực. Không phụ thuộc ngầm vào bản skill mới nhất hoặc trí nhớ AI. Cấu hình formatter/linter/build/test thực thi nằm ở vị trí chuẩn trong source và được mapping tới hồ sơ, không sao chép hai cấu hình cùng có hiệu lực.
 
 Mỗi rule cần rõ phạm vi, yêu cầu cụ thể, cách kiểm tra tự động hoặc review thủ công và ngoại lệ nếu có. Những lời như “code tốt nhất”, “luôn tối ưu” không đủ để kiểm tra. Rule mới hoặc nâng phiên bản bộ nền không tự áp vào project đang chạy: phân tích ảnh hưởng, Human duyệt và kiểm tra lại code/test/môi trường liên quan.
 
@@ -672,6 +694,7 @@ Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải c
 
 | Quyết định cần chốt | Nơi xử lý trong roadmap |
 |---|---|
+| Chính sách Git G1–G6: branch/worktree, checkpoint, quyền tích hợp/push/tag và release; khác với ranh giới thư mục đã duyệt. Chưa áp dụng quyền Git mới | Human review hướng trước khi cập nhật hợp đồng P02/P08/P10 và bộ nghiệm thu; [vấn đề hiện hành](KIDEA_ROADMAP.md#overall-review) |
 | Pilot r1 đã duyệt; danh mục kịch bản P01-T04 đã lập; còn chốt ngưỡng chất lượng/mức bằng chứng P01-T05 và review P01-T06. Kiểm chứng thực thi vẫn phải làm đúng phase | [P01](KIDEA_ROADMAP.md#p01) |
 | Runtime của helper, cách đóng gói/cài; schema Markdown, ID, quyền ghi, approval fingerprint, checkpoint và nâng phiên bản | [P02](KIDEA_ROADMAP.md#p02) |
 | Cách phân rã nghiệp vụ, AC và chọn tập business test có thể áp dụng lặp lại | [P04](KIDEA_ROADMAP.md#p04) |
