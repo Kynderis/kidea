@@ -25,14 +25,14 @@ Nguyên tắc thực hiện:
 
 | Trường | Giá trị hiện hành |
 |---|---|
-| Gate đang chờ | Không còn gate P01-T02; gói `P01-T02-PLATFORM-r3` đã được Human duyệt. P01-T03 sẽ có gate chọn pilot riêng |
-| Phase/task đang thực hiện | P01 đang thực hiện; P01-T01/T02 DONE, chưa mở task tiếp theo |
-| Việc tiếp theo | P01-T03: chọn pilot nhỏ, vẫn TODO; lượt này chỉ ghi nhận ý tưởng cho tương lai theo yêu cầu Human |
-| Điều kiện để tiếp tục | Khi tiếp tục P01-T03, đề xuất phạm vi pilot để Human duyệt; không đưa ý tưởng nhiều agent vào pilot hoặc MVP hiện hành |
+| Gate đang chờ | Human review gói `P01-T03-PILOT-r1`: [phạm vi pilot](KIDEA_DESIGN.md#pilot-scope) |
+| Phase/task đang thực hiện | P01 đang thực hiện; P01-T03 IN_PROGRESS, đầu ra IN_REVIEW |
+| Việc tiếp theo | Human duyệt hoặc yêu cầu chỉnh phạm vi pilot; chưa mở P01-T04 |
+| Điều kiện để tiếp tục | P01-T03 [H] được duyệt trước khi đóng task và bắt đầu P01-T04; không đưa ý tưởng nhiều agent vào pilot |
 | Điểm quay lại | Chưa có |
 | Vướng mắc khác | Chưa ghi nhận; các lựa chọn triển khai còn mở được giao cho task cụ thể |
 
-P01-T01 và P01-T02 đã `DONE`; chưa bắt đầu P01-T03. Chưa có skill, helper hoặc pilot được tạo theo lộ trình này.
+P01-T01 và P01-T02 đã `DONE`; P01-T03 đang chờ review phạm vi. Chưa có skill, helper hoặc code pilot được tạo theo lộ trình này.
 
 ## 3. Quy ước cập nhật, bằng chứng và Human gate
 
@@ -104,7 +104,7 @@ Mục tiêu: biết chính xác bản đầu cần làm được gì và kiểm 
 |---|---|---|---|---|
 | P01-T01 [H] | Phạm vi bản đầu, điều không làm, nhóm người dùng và mức hỗ trợ | Đối chiếu đủ sáu hành động/mười bước/ba bản đồ; giới hạn tổ hợp hỗ trợ rõ, không âm thầm bỏ yêu cầu đã duyệt | DONE | [Xác nhận Human và đối chiếu](#p01-t01-review), 2026-09-07 |
 | P01-T02 [H] | Ma trận host, OS, ngôn ngữ/thành phần đầu tiên và môi trường chạy thử | Ghi cái nào cần kiểm chứng thực, cái nào chưa hỗ trợ; xác định quyền/công cụ cần mà chưa tự cài | DONE | [Gói r3 đã Human duyệt](#p01-t02-review), 2026-09-07 |
-| P01-T03 [H] | Phạm vi một sản phẩm pilot nhỏ dùng dữ liệu giả | Có nghiệp vụ dùng chung, ít nhất một dependency ngoài lời gọi trực tiếp, giao diện và nhu cầu admin/monitoring vừa đủ; môi trường phi production, chi phí và ranh giới được chốt | TODO | — |
+| P01-T03 [H] | Phạm vi một sản phẩm pilot nhỏ dùng dữ liệu giả | Có nghiệp vụ dùng chung, ít nhất một dependency ngoài lời gọi trực tiếp, giao diện và nhu cầu admin/monitoring vừa đủ; môi trường phi production, chi phí và ranh giới được chốt | IN_PROGRESS | [Gói r1 chờ Human review](#p01-t03-review), 2026-09-07 |
 | P01-T04 | Danh mục kịch bản nghiệm thu Kidea, tách khỏi test của pilot | Có đường đúng, Human reject, approval cũ, dữ liệu sai, ngắt/resume qua Git, dự án cũ đi từ bước 1, thay đổi giữa MVP và sau release; mỗi case có hành vi mong đợi quan sát được | TODO | — |
 | P01-T05 [H] | Tiêu chí chất lượng Kidea và mức bằng chứng tối thiểu | Chốt cách đo độ đúng trạng thái, an toàn ghi, khả năng resume, thời gian đọc/chạy trên hồ sơ đại diện; không dùng “nhanh/tốt/đầy đủ” không kiểm tra được | TODO | — |
 | P01-T06 | Gói review phạm vi, pilot, acceptance và rủi ro | Mỗi yêu cầu thiết kế có task/kiểm tra dự kiến; lựa chọn chưa chốt không bị thể hiện là đã hỗ trợ | TODO | — |
@@ -160,6 +160,17 @@ Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không c
 Kiểm chứng r3 ngày 2026-09-07 bằng PowerShell trên Windows: link/anchor nội bộ trong thiết kế, roadmap, báo cáo r3 và file Idea đã kiểm tra; 77 task có ID duy nhất, gồm 2 DONE (P01-T01/T02), 0 IN_PROGRESS, 75 TODO; không có anchor trùng hoặc fence chưa đóng; `git diff --check` đạt. Tài liệu nghiệp vụ gốc không thay đổi. Bằng chứng môi trường chỉ là đọc cấu hình/tool version/WSL; không có cài đặt, build/test ứng dụng mobile/web hoặc thao tác sản phẩm thật.
 
 Nhận diện nội dung mục 1.1 đã ghi nhận theo phản hồi Human: SHA-256 `e2912fb8b2f6d260fdac63b592b2d853152a34aa88634506ae775f3df79222ab`. Phạm vi băm: từ anchor `first-release-scope` đến trước anchor `platform-matrix`, chuẩn hóa LF và một newline cuối. Mã băm chỉ nhận diện nội dung đã ghi, không thay bằng chứng xác nhận Human ở trên và không bao gồm các quyết định stack/SEO ở mục 1.2 và 2.5.
+
+<a id="p01-t03-review"></a>
+
+### Review P01-T03 — Phạm vi pilot r1
+
+- Human yêu cầu “Bắt đầu P01-T03.” ngày 2026-09-07; đây là quyền chuẩn bị đề xuất, chưa phải duyệt đầu ra [H].
+- Đầu ra: [P01-T03-PILOT-r1](KIDEA_DESIGN.md#pilot-scope), trạng thái nội dung `IN_REVIEW`; đề xuất Đăng ký workshop thử nghiệm, chưa xây ứng dụng.
+- Đối chiếu tiêu chí task: có rule chung đa client, dependency event/dữ liệu, UI/admin/monitoring, dữ liệu giả, môi trường phi production, ngân sách phát sinh 0 đồng và quyền thực thi riêng. Các ranh giới này đang chờ Human chốt; chưa đủ điều kiện DONE.
+- Kiểm tra tài liệu: đối chiếu với phạm vi T01, ma trận T02 và P11-T01–T07; kiểm tra ID/link nội bộ, trạng thái một task hiện hành và diff. Không chạy build/test sản phẩm; chưa có bằng chứng mobile, deploy, tải hoặc SEO thực tế.
+- Ảnh hưởng dây chuyền đã rà: P01-T04/T05 cần case/ngưỡng tương ứng; P04–P06 cần hướng dẫn đặc tả nghiệp vụ chung, UX/admin/monitoring, kiến trúc và technical test; P07/P08 phải truy dependency event và consumer không có diff; P09 là giao diện tiến độ Kidea riêng, không phải màn hình vận hành pilot; P10 chuẩn bị hướng dẫn/kế hoạch, P11 mới xây và thử; P12 không được suy pilot nhỏ là đủ bằng chứng mọi tổ hợp hỗ trợ. Giữ nguyên dependency và gate, chưa kích hoạt task sau.
+- Xác nhận Human: **chưa có**. Sau khi duyệt đúng gói hiện hành, đóng P01-T03 và tiếp tục P01-T04; chưa tự đóng phase P01.
 
 <a id="p02"></a>
 
@@ -385,4 +396,4 @@ Bảng này là chỉ mục bao phủ, không giữ thêm trạng thái task. Tr
 - Nếu test đòi môi trường/quyền chưa có: ghi blocker và yêu cầu cụ thể, không tự cài/deploy/thu thập dữ liệu ngoài quyền hoặc đổi test thành PASS.
 - Khi cập nhật tiến trình, giữ tài liệu hiện hành rõ ràng: quyết định cũ không còn hiệu lực phải được thay/migrate đủ tham chiếu; giữ bằng chứng cần thiết cho nghiệm thu và khôi phục, không tích lũy các quy tắc cũ mâu thuẫn.
 
-**Bước kế tiếp:** P01-T03 — chọn pilot nhỏ. Chưa bắt đầu trong lượt lưu ý tưởng này. P01-T02 đã được Human duyệt và đóng; ý tưởng nhiều agent chỉ xem xét sau khi Kidea bản đầu hoàn thiện, không thay phạm vi hiện hành.
+**Bước kế tiếp:** Human review `P01-T03-PILOT-r1`. P01-T03 đang IN_PROGRESS; chưa mở P01-T04. Ý tưởng nhiều agent chỉ xem xét sau khi Kidea bản đầu hoàn thiện, không thay phạm vi hiện hành.
