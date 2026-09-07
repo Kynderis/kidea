@@ -88,19 +88,52 @@ Phạm vi này không duyệt trước ma trận phiên bản/công cụ, lựa 
 
 <a id="platform-matrix"></a>
 
-### 1.2. Ma trận nền tảng — P01-T02 đang làm rõ
+### 1.2. Ma trận nền tảng — P01-T02 chờ duyệt đầu ra
 
-Gói review: `P01-T02-PLATFORM-r2`, ngày 2026-09-07, `IN_REVIEW` toàn ma trận; hướng web/mobile đã được Human duyệt. Bảng này tách quyết định đã chốt khỏi khuyến nghị còn mở. Các báo cáo [nền tảng/SEO](exa-results/kidea-platform-seo-2026-09-07.md) và [tiêu chí web SEO-first](exa-results/seo-first-web-criteria-2026-09-07.md) là đầu vào nghiên cứu; quyết định hiện hành nằm ở đây, không lấy đề xuất cũ trong báo cáo thay quyết định đã duyệt.
+Gói review: `P01-T02-PLATFORM-r3`, ngày 2026-09-07, `IN_REVIEW` toàn ma trận. Hướng Windows/C++20/native/web và tích hợp SEO đã được Human duyệt; tổ hợp phiên bản, phạm vi kiểm chứng và cách xử lý phần chờ dưới đây là đầu ra đang xin duyệt. [Đối chiếu nguồn và môi trường](exa-results/p01-t02-platform-baseline-2026-09-07.md) là bằng chứng nghiên cứu, không phải nguồn quyết định hoặc tracker khác. Các báo cáo cũ chỉ giữ vai trò tham khảo theo thời điểm.
 
-| Thành phần | Đầu vào Human đã chốt | Hướng công nghệ và trạng thái | Còn phải xác định/kiểm chứng |
+| Thành phần | Hướng đã duyệt | Cấu hình nền đề xuất để kiểm chứng | Môi trường thực thi dự kiến |
 |---|---|---|---|
-| Host Kidea | Windows | Giữ Windows làm host bản đầu | Phiên bản Windows, ứng dụng host AI/cách gọi skill, runtime/helper và quyền cài thử; runtime quyết định ở P02 |
-| Backend sản phẩm | C++20; triển khai Ubuntu | Giữ nghiệp vụ ở backend C++20, frontend dùng hợp đồng API đã duyệt | Ubuntu/CPU/compiler/thư viện; máy build, môi trường thử và quy trình release; chưa chọn phiên bản Ubuntu |
-| Android | Native, code độc lập; nhẹ/mượt/đồ họa tốt, dùng được trên máy yếu | HUMAN ĐÃ DUYỆT: Kotlin + Jetpack Compose; bổ sung thành phần chuyên biệt khi có số đo chứng minh cần | Phiên bản SDK/công cụ; thiết bị yếu đại diện, workload, ngân sách khung hình/bộ nhớ/pin/dung lượng; build release và kiểm tra thực |
-| iOS | Native, code độc lập; cùng mục tiêu chất lượng Android; tận dụng MacBook/iPhone hiện có, chỉ cân nhắc nâng macOS khi bắt đầu làm iOS và nếu cần | HUMAN ĐÃ DUYỆT: Swift + SwiftUI; UIKit hoặc Metal chỉ cho phần có nhu cầu cụ thể | iOS tối thiểu, Swift/Xcode và môi trường build/test/sign; kiểm tra tương thích và xin quyền cài/nâng cấp khi đến bước thực thi, không yêu cầu thao tác máy ngay ở P01-T02 |
-| Web | Website lớn, nhiều chức năng, cả trang tĩnh và động; tối ưu SEO và hiệu năng, trải nghiệm mượt | HUMAN ĐÃ DUYỆT: SvelteKit + TypeScript; prerender/SSR theo route, realtime phía trình duyệt; không ghép thêm Astro mặc định | Phiên bản/runtime/adapter; chính sách cache và độ tươi từng route; thư viện UI/đồ họa nếu cần; ngân sách và thiết bị/mạng/workload kiểm chứng |
+| Host Kidea | Windows, một Human + AI | Windows 11 x64; máy kiểm chứng đầu tiên là Windows 11 Pro 25H2 hiện có. Dùng phiên AI desktop hiện tại để thử hướng dẫn theo file; kiểm chứng khả năng nạp/gọi skill, chọn runtime/helper và cách đóng gói ở P02-T01 | Hồ sơ/source local, Git theo quyền đã chốt; không cần server Kidea. Không suy ra đã hỗ trợ mọi ứng dụng AI hoặc host Mac |
+| Backend sản phẩm | C++20 → Ubuntu | Ubuntu 24.04 LTS amd64; GCC/G++ 13.3, CMake 3.28.3, Ninja; chuẩn C++20, không mặc định dùng modules/extension chưa kiểm chứng. Patch bảo mật distro được cập nhật có ghi nhận | Soạn source trên Windows; build/test Linux trong WSL2 Ubuntu đúng phiên bản hoặc môi trường Linux riêng được duyệt. Release phải build/test lại trên Ubuntu đích, không lấy binary Windows hoặc WSL PASS thay bằng chứng release |
+| Android | Kotlin + Jetpack Compose; native, code độc lập | Android Studio Quail 1 (2026.1.1) hoặc stable tương thích AGP 9.2.1; Gradle 9.4.1, JDK 17; Kotlin tích hợp của AGP (2.3.10), Compose compiler khớp Kotlin; Compose BOM 2026.06.01. compileSdk 36.1, targetSdk 36, minSdk 26 là cấu hình nền đề xuất | Build trên Windows, Gradle Wrapper; một emulator khi cần và điện thoại thật để đo hiệu năng. Không thêm KMP/NDK mặc định; không áp lại kotlin-android plugin khi dùng Kotlin tích hợp của AGP 9 |
+| iOS | Swift + SwiftUI; native, code độc lập; tận dụng Mac/iPhone hiện có | Khi đến bước iOS: ứng viên Xcode 26.6 + Swift compiler 6.3, Swift 6 language mode, iOS SDK 26.5; deployment target iOS 16.0 là nền đề xuất. Xcode này cần Tahoe 26.2–26.x | MacBook Pro 16 inch 2019 Intel, RAM 16 GB, hiện Sonoma và khoảng 512 GB trống; iPhone 12 Pro Max. Chỉ kiểm tra/nâng macOS nếu cần khi làm iOS; không cài/nâng ngay. UIKit/Metal chỉ bổ sung khi có nhu cầu và bằng chứng |
+| Web | SvelteKit + TypeScript; prerender/SSR + realtime; SEO và hiệu năng xuyên suốt | Node.js 24 LTS (mốc 24.20.0), npm 11.19.0; SvelteKit 2.70.3, Svelte 5.57.0, TypeScript 6.0.3, Vite 8.2.2, vite-plugin-svelte 7.3.0, adapter-node 5.5.7. Đây là mốc tương thích metadata, chưa chạy build | Dev trên Windows; build/SSR trên Ubuntu 24.04 amd64, Node cùng dòng. Nội dung prerender/assets qua CDN khi triển khai; không ghép Astro mặc định, không chuyển nghiệp vụ C++ sang Node |
 
-SSG/prerender là tạo sẵn HTML; SSR là tạo HTML phía máy chủ khi cần. Trang tĩnh dùng prerender/CDN, trang động cần SEO có nội dung chính, metadata và dữ liệu ban đầu trong HTML; realtime/hiệu ứng cập nhật phía trình duyệt sau lần tải đầu, tải phần nặng khi cần và không render lại toàn trang mỗi tick. Lớp SSR cần runtime/adapter phù hợp (Node là ứng viên, chưa chốt phiên bản); nghiệp vụ vẫn thuộc backend C++20. Không công bố nhanh nhất khi chưa benchmark đúng workload.
+**Ý nghĩa cấu hình nền:** đây là tổ hợp đầu tiên để viết hướng dẫn và kiểm chứng Kidea, không phải giới hạn cố định cho mọi sản phẩm hoặc tuyên bố máy đã chạy được. Android 8/API 26 và iOS 16 là mức OS tối thiểu đề xuất cho tổ hợp này, không phải bằng chứng mượt trên mọi máy cũ; sản phẩm có nhu cầu khác phải chốt lại phạm vi ở đúng gate. Điện thoại là phạm vi kiểm chứng mobile đầu tiên; tablet/watch/TV/XR chưa được công bố hỗ trợ. Chưa chọn backend framework, database, CDN vendor hoặc thư viện đồ họa khi nghiệp vụ pilot chưa yêu cầu.
+
+#### Chính sách phiên bản và khả năng tái tạo
+
+- Dùng bản stable/LTS còn được hỗ trợ tại thời điểm thực hiện; không dùng beta/RC làm nền nghiệm thu. Các mốc ở bảng là snapshot ngày 2026-09-07, không phải lệnh cài hoặc đóng băng vô thời hạn. Trước khi tạo môi trường, kiểm tra lại bản vá, cảnh báo bảo mật, registry/release chính thức và tương thích toàn tổ hợp; khóa phiên bản thực vào lockfile/Gradle Wrapper, cấu hình build và evidence của project.
+- Không lấy từng gói `latest` rồi giả định chúng tương thích: metadata SvelteKit được kiểm tra nhận TypeScript 5/6, không nhận TypeScript 7 đang là latest ở registry. Tương tự, Compose BOM không khóa Compose compiler; compiler phải theo phiên bản Kotlin thực tế của build.
+- Đổi major, deployment target, host, adapter hoặc hợp đồng/runtime phải mở review ảnh hưởng trước phần việc phụ thuộc. Thay patch cũng cần test hồi quy và cập nhật evidence; nếu có breaking change/cảnh báo ảnh hưởng phạm vi thì xin Human quyết định, không giữ approval cũ cho nội dung đã đổi.
+- Runtime/helper của **Kidea** vẫn quyết định ở P02-T01; Node trong dòng web là runtime **sản phẩm**, không tự quyết định ngôn ngữ helper. Trên Windows hiện có Node 22.18.0/npm 10.9.3 không có nghĩa đã cài Node 24 hoặc cần thay global ngay.
+
+#### Môi trường và bằng chứng cần có trước khi công bố hỗ trợ
+
+| Phạm vi | Môi trường/test cần có | Phần chưa kiểm chứng và điểm phải xử lý |
+|---|---|---|
+| Host/file/Git | Windows 11 x64; hồ sơ UTF-8, đường dẫn có dấu/khoảng trắng, CRLF/LF; init/resume/change, đổi checkout qua Git, conflict và approval cũ | Host đã quan sát read-only; hành vi skill/helper chưa tồn tại. P02–P03/P08/P11/P12 kiểm chứng theo bản được phép cài |
+| C++/Ubuntu | Build sạch Debug/Release với toolchain đã khóa; unit/integration và sanitizer phù hợp; artifact chạy trên Ubuntu đích có cấu hình/version rõ | WSL2 có distro tên Ubuntu nhưng chưa xác minh release bên trong, chưa khởi động/cài/sửa distro. P06 chốt rule/test, P10 chuẩn bị build/môi trường, P11 thực thi trước khi tuyên bố hỗ trợ |
+| Android | Emulator API 26 và API 36 để kiểm tra hành vi; máy thật hạng thấp khoảng 3–4 GB RAM, màn hình 60 Hz để đo release build; ghi model/OS/chip thực | Chưa có model Android được Human cung cấp; emulator không chứng minh hiệu năng máy yếu. Chọn thiết bị khi lập kế hoạch thử trước P11; nếu chưa có thì mục hiệu năng là chưa kiểm chứng, không PASS. Chưa xác minh SDK/JDK/ảo hóa/GPU |
+| iOS | iPhone 12 Pro Max hiện có và simulator OS tối thiểu khi runtime khả dụng; release build, unit/UI/integration và đo frame/bộ nhớ/pin trên máy thật | Chưa kiểm tra phiên bản iOS/Xcode/Mac thực, signing hoặc simulator. Nếu không có môi trường cho iOS tối thiểu thì nêu thiếu và bổ sung thiết bị hoặc xin đổi phạm vi; iPhone hiện có không đại diện mọi máy yếu |
+| Web sản phẩm | Chromium/Firefox/WebKit để hồi quy; Chrome/Edge desktop stable, Safari trên iPhone và Chrome trên Android thật khi chuẩn bị release; route tĩnh, SSR động, private/admin, realtime mất/kết nối lại, cấu hình CDN/proxy khi áp dụng | Ghi phiên bản browser/test runner, viewport, mạng và CPU của phép đo khi chạy. WebKit tự động không thay Safari thật; chưa chọn thư viện test/đồ họa hoặc tuyên bố benchmark. Không nhầm với ma trận HTML offline Kidea ở P09 |
+
+Ngân sách đo cụ thể (tải, độ trễ, khung hình, bộ nhớ, pin, dung lượng, độ tươi cache) phải gắn workload và tiêu chí được duyệt: P01-T03 chọn pilot; P01-T04/T05 chốt case/ngưỡng nghiệm thu Kidea; P05/P06/P10 xây hướng dẫn cho sản phẩm; P11 đo thật. Không đặt một cấu hình server hoặc số người dùng giả làm cam kết hiệu năng của mọi sản phẩm lớn.
+
+#### Quyền, công cụ còn thiếu và thời điểm xin
+
+| Hành động sau này | Ranh giới hiện tại | Khi nào cần xin/chốt |
+|---|---|---|
+| Cài thử skill/helper, đổi runtime host | Chưa được cấp bởi việc duyệt ma trận; vị trí cài/dependency còn thuộc P02-T01 | Trước thao tác cài thử ở phase phù hợp |
+| Cài Node/JDK/SDK/Android Studio; bật ảo hóa hoặc sửa WSL | Chưa cài, không đổi global hoặc distro hiện có; ưu tiên môi trường tách biệt | Trước khi chuẩn bị môi trường build/test trong kế hoạch đã duyệt |
+| Nâng macOS/cài Xcode, dùng thiết bị/signing | Chưa thực hiện; phải kiểm tra phần mềm đang dùng, backup và phiên bản iOS trước | Khi bắt đầu phần iOS; không chặn review P01-T02 hiện tại |
+| Mua/thuê thiết bị, Mac CI, server/CDN hoặc tài khoản trả phí | Không có ngân sách/nhà cung cấp nào được duyệt từ ma trận | Chỉ xin khi thiếu nguồn lực thực và đã nêu lựa chọn/chi phí |
+| Đăng nhập, chứng chỉ, phát hành store, deploy công khai, DNS/production | Không được suy ra từ quyền nghiên cứu/tài liệu; không đưa secret vào Git | Trước đúng thao tác môi trường đích, theo gate release P10/P11/P12 |
+
+Giới hạn release cần kiểm tra lại lúc thực hiện: Google Play hiện yêu cầu app điện thoại mới/update target API 36 trở lên; Apple hiện yêu cầu Xcode 26+/SDK iOS 26+ khi upload. Xcode 16.2 trên Sonoma chỉ là khả năng dùng công cụ cũ, không phải nền phát hành hiện hành. Xcode 27 beta chỉ chạy trên Apple Silicon; nếu sau này bắt buộc dùng toolchain đó, quay lại Human chọn mua/thuê/mượn nguồn lực phù hợp, không tự mua máy hoặc bỏ yêu cầu iOS. Nguồn và ngày đối chiếu nằm trong báo cáo liên kết ở đầu mục.
+
+SSG/prerender là tạo sẵn HTML; SSR là tạo HTML phía máy chủ khi cần. Trang tĩnh dùng prerender/CDN, trang động cần SEO có nội dung chính, metadata và dữ liệu ban đầu trong HTML; realtime/hiệu ứng cập nhật phía trình duyệt sau lần tải đầu, tải phần nặng khi cần và không render lại toàn trang mỗi tick. Runtime/adapter SSR đề xuất ở bảng trên; nghiệp vụ vẫn thuộc backend C++20. Không công bố nhanh nhất khi chưa benchmark đúng workload.
 
 Kiến trúc web đã chốt phải bao gồm URL/canonical/liên kết nội bộ/sitemap/phân trang và đa ngôn ngữ khi áp dụng; chọn tổ hợp bộ lọc đáng index; nội dung hữu ích và dữ liệu có cấu trúc khớp hiển thị. Dữ liệu giá có thời điểm, giới hạn độ cũ của cache và trạng thái mất kết nối. Kiểm chứng HTML thực nhận, crawl/index, tốc độ và tương tác trên thiết bị thật; theo dõi sau phát hành. Không bảo đảm thứ hạng hoặc được AI trích dẫn chỉ từ tên framework. Việc tổ chức thêm gate quy trình vẫn riêng tại mục 2.5.
 
