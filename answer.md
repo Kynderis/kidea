@@ -1,69 +1,73 @@
-Mình đã dùng Exa rà 55 kết quả qua bốn nhánh nghiên cứu và đối chiếu tài liệu chính thức. **Hướng mình đề xuất: Android dùng Kotlin, iOS dùng Swift, web ưu tiên HTML nhẹ; SEO trở thành yêu cầu xuyên suốt, có điểm duyệt riêng.**
+Mình đã dùng Exa rà 25 kết quả qua bốn nhánh và đối chiếu nguồn chính thức. **Android có thể phát triển trên Windows; iOS có dịch vụ Mac thuê. Còn cách chia Astro/SvelteKit của bạn hợp lý, nhưng chưa thể gọi là tối ưu nhất.**
 
-## 1. Công nghệ mobile và web
+## 1. Web: nên điều chỉnh tiêu chí chia
 
-| Thành phần | Đề xuất | Lý do |
-|---|---|---|
-| Android | **Kotlin + Jetpack Compose** | Phù hợp codebase native mới và định hướng Kotlin/Compose-first hiện tại của Android. [Kotlin](https://developer.android.com/kotlin/first), [Compose](https://developer.android.com/develop/ui/compose/first). |
-| iOS | **Swift + SwiftUI** | Nền native; có thể tích hợp UIKit cho thành phần đặc thù. [SwiftUI](https://developer.apple.com/swiftui/), [UIKit integration](https://developer.apple.com/documentation/swiftui/uikit-integration). |
-| Web công khai, SEO là trọng tâm | **Astro + TypeScript**, thêm Svelte khi cần | Phần lớn trang là HTML; chỉ tải JavaScript cho các vùng tương tác cần thiết, gọi là “islands”. [Astro islands](https://docs.astro.build/en/concepts/islands/). |
+Điểm quan trọng: **Astro vẫn làm được tương tác/hiệu ứng; SvelteKit vẫn làm SEO tốt.** Vì vậy, không nên chia cứng “cần SEO → Astro, nhiều hiệu ứng → SvelteKit”.
 
-Với mobile, mình không đề xuất dùng công cụ đồ họa nặng cho mọi màn hình. UI/animation thông thường dùng nền tảng UI; phần đồ họa chuyên biệt mới cân nhắc giải pháp riêng, chẳng hạn [Metal trên iOS](https://developer.apple.com/metal/).
+Mình đề xuất:
 
-**“Chạy tốt trên máy yếu” phải được kiểm chứng**, không thể bảo đảm chỉ bằng Kotlin/Swift. Ta cần chốt thiết bị thấp nhất, tình huống sử dụng, rồi đo độ giật, khởi động, bộ nhớ, dung lượng và pin trên bản release. Compose có chi phí khởi động; Baseline Profiles là một hướng tối ưu cần đo thực tế. [Android performance](https://developer.android.com/develop/ui/compose/performance/baseline-profiles).
-
-Một ràng buộc quan trọng: **Kidea chạy Windows, nhưng build/test/sign iOS cần Mac hoặc Mac CI phù hợp**, vì Xcode chạy trên macOS. [Yêu cầu Xcode](https://developer.apple.com/xcode/system-requirements/).
-
-Với web:
-
-- Nếu chủ yếu giới thiệu sản phẩm, nội dung công khai và thu hút khách từ tìm kiếm: mình nghiêng về **Astro**.
-- Nếu chủ yếu là ứng dụng tương tác nhiều màn hình/trạng thái: cân nhắc **SvelteKit + TypeScript**, giữ HTML phía máy chủ cho trang cần SEO. Không mặc định phải dùng cả hai framework. [SvelteKit SEO](https://svelte.dev/docs/kit/seo).
-- Backend C++20 vẫn giữ nguyên. Astro xuất tĩnh không cần server JavaScript khi phục vụ; nếu tạo trang động phía máy chủ, cần runtime/adapter tương ứng, có thể thêm Node. [Astro rendering](https://docs.astro.build/en/guides/on-demand-rendering/).
-
-## 2. SEO tốt có xung đột với web mượt không?
-
-**Thông thường không; nhiều tối ưu giúp cả hai:** nội dung xuất hiện sớm, ít JavaScript, ảnh hợp lý và phản hồi nhanh. Google có thể xử lý JavaScript, nhưng vẫn khuyến nghị HTML tạo sẵn hoặc tạo phía máy chủ; không phải mọi bot đều chạy JavaScript. [Google JavaScript SEO](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics).
-
-Xung đột thường đến từ hiệu ứng quá nặng hoặc nội dung chỉ xuất hiện sau thao tác. Mình đề xuất: **nội dung và chức năng chính luôn truy cập được; hiệu ứng bổ sung sau.** Nếu phải giảm bớt, giảm hiệu ứng trang trí theo ưu tiên SEO bạn đã chọn.
-
-Để được Google/Bing và AI search tìm thấy, cần ba lớp:
-
-1. **Nội dung hữu ích, đáng tin:** trả lời đúng nhu cầu, thông tin sản phẩm rõ và nhất quán; không chỉ tối ưu mã nguồn. Google xác nhận nền tảng SEO vẫn áp dụng cho tính năng AI, không yêu cầu một “markup AI” đặc biệt. [Google AI optimization](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide).
-2. **Website dễ thu thập và hiểu:** HTML, URL/liên kết, metadata, sitemap và dữ liệu có cấu trúc đúng nội dung. Bing cũng áp dụng nền tảng crawl/index cho Copilot; IndexNow giúp thông báo URL thay đổi. [Bing guidelines](https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a).
-3. **Không vô tình chặn bot tìm kiếm:** kiểm tra robots và lớp bảo vệ website cho OAI-SearchBot/PerplexityBot. Quyền cho bot tìm kiếm **khác** quyền cho bot huấn luyện. [OpenAI bots](https://developers.openai.com/api/docs/bots), [Perplexity crawlers](https://docs.perplexity.ai/docs/resources/perplexity-crawlers).
-
-Không công nghệ hay cấu hình nào bảo đảm lên hạng hoặc được AI trích dẫn. Mục tiêu là tăng khả năng tiếp cận và chất lượng nội dung công khai, không mở dữ liệu riêng tư để lấy SEO.
-
-## 3. Nên đưa SEO vào quy trình thế nào?
-
-Mình đề xuất **giữ 10 bước, bổ sung hai điểm Human duyệt rõ ràng**:
-
-| Điểm duyệt | Nội dung |
+| Loại màn hình/khu vực | Hướng ưu tiên |
 |---|---|
-| Trong bước 4, trước kiến trúc | Duyệt thiết kế SEO: người tìm, nội dung cần tìm thấy, cấu trúc trang/URL và cách tiếp cận |
-| Trong bước 10, trước phát hành công khai | Duyệt sẵn sàng SEO: nội dung, HTML, metadata, liên kết và cấu hình crawler |
+| Trang sản phẩm, bài viết, giới thiệu; có form, bộ lọc hoặc hiệu ứng | **Astro + TypeScript**, thêm component **Svelte** khi cần |
+| Khu ứng dụng nhiều màn hình, giữ trạng thái liên tục, thao tác dữ liệu phức tạp | **SvelteKit + TypeScript** |
+| Web nhỏ hoặc hai khu gắn chặt với nhau | Cân nhắc **chỉ SvelteKit**, chọn cách tạo HTML theo từng route |
 
-Yêu cầu SEO được nhận diện từ bước 1, có tiêu chí ở bước 3, đi vào kiến trúc/test/code và được theo dõi sau deploy. **Không để đến cuối mới “làm SEO”.** Kết quả được index hoặc AI trích dẫn phải quan sát sau khi công khai, không thể lấy test local thay thế.
+**Svelte khác SvelteKit:** Astro dùng được component Svelte trực tiếp, không cần dựng thêm cả SvelteKit. Ngược lại, SvelteKit cho phép trang marketing tạo sẵn HTML, trang động tạo HTML phía máy chủ và khu ứng dụng tương tác cùng tồn tại. [Astro components](https://docs.astro.build/en/guides/framework-components/), [SvelteKit page options](https://svelte.dev/docs/kit/page-options).
 
-## 4. Những điểm bạn đã chốt
+Nếu dùng cả hai, nên tách thành **khu nội dung và khu ứng dụng có ranh giới rõ**, không xen kẽ framework tùy từng hiệu ứng. Đổi lại, phải quản lý thêm routing, triển khai, đăng nhập và thành phần dùng chung.
 
-Mình đã cập nhật vào thiết kế:
+**Khuyến nghị:** giữ Astro + Svelte cho khu công khai; chỉ thêm SvelteKit khi khu ứng dụng thực sự cần nó. Số lượng hiệu ứng không đủ để quyết định. Với sản phẩm nhỏ, một SvelteKit có thể tối ưu tổng thể hơn nhờ ít phức tạp—không có nghĩa hy sinh SEO.
 
-- Kidea chạy **Windows**; backend **C++20 → Ubuntu**; Android/iOS native, code độc lập.
-- Không định hướng xây nền tảng nhiều người hoặc dịch vụ Kidea online. Cụm orchestrator–agent được ghi riêng ở mức **Idea**, ngoài bản đầu.
-- Dùng Git chuyển **cả `.kidea` và source**. Sau pull, resume tự đọc và kiểm tra hồ sơ; không tự pull/push, bỏ qua conflict hay tin một dòng trạng thái.
-- Dự án cũ vẫn đi từ **bước 1 và đủ gate**; tài liệu/code hiện có chỉ giúp bổ sung context.
+## 2. Android trên Windows: đúng, có hỗ trợ chính thức
 
-Theo hướng dẫn skill-creator, phần công nghệ được tách khỏi lõi quy trình dùng lại. **P01-T01 đã hoàn tất; P01-T02 đang làm rõ**, chưa code/cài skill và chưa coi các stack đề xuất là đã duyệt.
+Android Studio hỗ trợ **Windows x64**. Tài liệu hiện tại nêu:
 
-Đã kiểm tra liên kết/trạng thái và đẩy tài liệu cùng câu trả lời lên `origin/master`: [thiết kế](D:/Code/kynderis/kidea/KIDEA_DESIGN.md), [roadmap](D:/Code/kynderis/kidea/KIDEA_ROADMAP.md), [bản tư vấn đầy đủ trên GitHub](https://github.com/Kynderis/kidea/blob/master/exa-results/kidea-platform-seo-2026-09-07.md).
+- RAM tối thiểu: **8 GB** cho Studio; **16 GB** nếu chạy cả emulator; khuyến nghị **32 GB**.
+- Có thể dùng điện thoại Android thật thay emulator.
+- Windows ARM hiện chưa được hỗ trợ theo trang yêu cầu hệ thống. [Android Studio](https://developer.android.com/studio/install).
 
-Bạn duyệt hướng mobile và cách tích hợp SEO này để mình tiếp tục hoàn thiện ma trận công nghệ trong P01-T02 nhé?
+Vì vậy, hướng **Kotlin + Compose trên Windows** là phù hợp. Mình chưa kiểm tra cấu hình máy của bạn trong lượt này nên chưa khẳng định mọi điều kiện đều đạt. Máy lập trình đủ mạnh và app chạy tốt trên điện thoại yếu là hai việc phải kiểm tra riêng.
+
+## 3. iOS: thuê Mac được, nhưng phải chọn đúng loại
+
+Có hai nhóm:
+
+- **Mac remote:** điều khiển desktop macOS, mở Xcode/Simulator, lập trình và debug.
+- **CI macOS:** tự động build/test/sign từ source; không phải desktop Xcode để làm việc cả ngày.
+
+Giá tham khảo tại ngày **07/09/2026**, chưa coi là báo giá cuối:
+
+| Dịch vụ | Phù hợp | Giá/điều kiện đáng chú ý |
+|---|---|---|
+| [MacinCloud Managed](https://www.macincloud.com/pages/managed.html) | Bắt đầu dùng Xcode từ Windows | M4/16 GB **từ 29 USD/tháng**; không tự quản trị toàn máy, tác vụ admin qua support |
+| [MacStadium](https://macstadium.com/pricing) | Cần Mac riêng, toàn quyền | M4/16 GB niêm yết **149 USD/tháng**; cần xác nhận tồn kho và điều kiện thuê |
+| [Codemagic](https://docs.codemagic.io/billing/pricing/) | Build/test tự động | Cá nhân có **500 phút M2 miễn phí/tháng**, sau đó **0,095 USD/phút**; Team không có phần miễn phí này |
+| [Xcode Cloud](https://developer.apple.com/xcode-cloud/) | CI tích hợp hệ Apple | **25 giờ compute/tháng** kèm Apple Developer Program; khởi tạo workflow trong Xcode |
+
+Codemagic hỗ trợ **native iOS**, không chỉ Flutter. [Hướng dẫn chính thức](https://docs.codemagic.io/yaml-quick-start/building-a-native-ios-app/).
+
+### Phương án mình khuyên
+
+**Trước mắt:** thử Mac remote ngắn hạn, chưa cần mua máy. MacinCloud có khu vực Singapore—đáng đưa vào danh sách thử từ Việt Nam, nhưng phải đo độ trễ thực, không mặc định sẽ mượt. [Vị trí máy](https://www.macincloud.com/).
+
+Trước khi thuê, xác nhận **Xcode/Simulator đúng phiên bản, giới hạn giờ dùng, quyền cài công cụ, dung lượng và điều kiện tính phí**. Gói rẻ nhưng thiếu quyền cần thiết có thể không phù hợp.
+
+**Nếu làm iOS thường xuyên:** mình nghiêng về **Mac mini Apple Silicon tại chỗ + iPhone thật**, dùng Windows làm máy chính nếu thích. Đây là lựa chọn thuận tiện hơn cho vòng lặp sửa–chạy–debug; chưa đủ dữ liệu để kết luận rẻ hơn thuê.
+
+Đặc biệt với mục tiêu đồ họa/mượt:
+
+- Video từ desktop remote **không phải số đo hiệu năng trên iPhone**.
+- iPhone cắm vào Windows không tự trở thành thiết bị local của Mac thuê; cần chốt riêng cách cài bản thử và debug.
+- Mac thuê/CI không thay thế toàn bộ kiểm tra trên thiết bị thật.
+
+Apple Developer Program để phục vụ phân phối có phí **99 USD/năm**, tách khỏi tiền thuê Mac. [Apple membership](https://developer.apple.com/programs/whats-included/).
+
+Phần bạn đã đồng ý được giữ nguyên. Lượt này chỉ tư vấn, **chưa chốt thêm kiến trúc, thuê dịch vụ hay đóng P01-T02**. Mình đã lưu và đẩy [bản nghiên cứu đầy đủ](https://github.com/Kynderis/kidea/blob/master/exa-results/web-split-ios-remote-2026-09-07.md) cùng câu trả lời lên GitHub.
 
 <oai-mem-citation>
 <citation_entries>
-MEMORY.md:319-320|note=[preserve Human gates and scoped answer mirror]
-MEMORY.md:326-328|note=[keep design and roadmap authoritative and verify publication]
+MEMORY.md:319-320|note=[preserve approval boundaries and scoped answer mirror]
+MEMORY.md:326-328|note=[keep authoritative design and roadmap unchanged during advice]
 </citation_entries>
 <rollout_ids>
 01a064b8-dde1-7882-acc1-7d02d6f568c8
