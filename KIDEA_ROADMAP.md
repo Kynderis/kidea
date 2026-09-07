@@ -8,11 +8,11 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T02-S01 — Ranh giới hồ sơ](#review-current). Chỉ duyệt hai quyết định bên dưới; không cần đọc toàn file. [Sổ công việc](#work-state) giữ trạng thái duy nhất.
+R01-T02-S01 đã được duyệt và đóng; [bằng chứng](#r01-t02-s01-result). Việc kế tiếp, chưa bắt đầu: R01-T02-S02 — nguồn dữ liệu duy nhất và ranh giới đọc/ghi xuyên vùng. [Sổ công việc](#work-state) giữ trạng thái duy nhất; R01-T02 chưa hoàn tất.
 
 <a id="review-current"></a>
 
-### R01-T02-S01-r1 — Tài liệu sản phẩm và hồ sơ điều phối
+### R01-T02-S01-r1 — Đã duyệt, không còn chờ phản hồi
 
 **Mục đích:** phân biệt “sản phẩm phải làm gì/được xây thế nào” với “công việc đang ở đâu”. Một project vẫn dùng một repo chứa cả tài liệu, .kidea, code và test; không tách repo quản lý riêng.
 
@@ -25,7 +25,7 @@ Việc hiện hành: [R01-T02-S01 — Ranh giới hồ sơ](#review-current). Ch
 
 **Không duyệt kèm:** tên/schema từng file, cách bảo đảm nguồn duy nhất và đọc/ghi xuyên vùng (S02), chọn repo pilot, di chuyển file hiện có hoặc quyền Git/cài/deploy. Không tạo cả cây rỗng; project có bố cục hợp lý không bị ép đổi thư mục.
 
-Đã đối chiếu thiết kế và các điểm nối init/resume/view; chưa sửa quy tắc hoặc chạy skill. Gói chờ Human duyệt D1–D2 trước khi đóng S01.
+Human đã duyệt D1–D2 bằng phản hồi “Tôi duyệt”, sau gói tại commit `b908696144e90054738896d0ffc49b8177cc35aa`. Đã đồng bộ căn cứ và kiểm tra liên kết; không chuyển file hoặc chạy skill. [Bằng chứng đúng phạm vi](#r01-t02-s01-result).
 
 <a id="working-rules"></a>
 
@@ -79,7 +79,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T01-S01 | DONE | R01-T01-S01-r1 — APPROVED | Human: “Mình duyệt nhé”; chỉ D1–D2 ở commit 5aa4e5b; [bằng chứng](#r01-t01-result) |
 | R01-T01-S02 | DONE | [A] — không có quyết định mới | Đối chiếu DESIGN, danh mục KA và bảng bao phủ; không đổi scope hoặc ngưỡng; [kết quả](#r01-t01-result) |
 | R01-T01-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ approval, kiểm tra tài liệu và dọn tạm; [kết quả](#r01-t01-result) |
-| R01-T02-S01 | IN_PROGRESS | R01-T02-S01-r1 — IN_REVIEW | [Hai quyết định ranh giới](#review-current); Human cho bắt đầu bằng “Ok bạn làm đi”, chưa duyệt đầu ra |
+| R01-T02-S01 | DONE | R01-T02-S01-r1 — APPROVED | Human: “Tôi duyệt”; chỉ D1–D2 tại b908696; [bằng chứng](#r01-t02-s01-result) |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -91,6 +91,14 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - S02: đối chiếu DESIGN mục 1.1, bảng bao phủ roadmap và danh mục KA: sáu hành động → R02/R06/R07; mười bước → R03–R05/R08/R09; ba bản đồ/change → R06/R09; rules/view/cài/giới hạn → R05/R07/R10. Không phát hiện nghĩa vụ bị cắt; chưa cần sửa case/ngưỡng hoặc nghiên cứu lại nền tảng vì D1–D2 giữ hướng đang có.
 - S03: DESIGN dẫn về đúng bằng chứng approval, sổ công việc đóng đủ ba subtask. Kiểm tra link/anchor liên quan và diff; không có file tạm tạo ra hoặc untracked cần xóa. Đây là kiểm chứng tài liệu, không phải test Kidea hoặc đóng phase R01.
 - Tại thời điểm đóng R01-T01, việc tiếp theo là R01-T02-S01; trạng thái hiện hành xem sổ công việc, không giữ bản sao trong kết quả lịch sử này.
+
+<a id="r01-t02-s01-result"></a>
+
+### Kết quả R01-T02-S01 — ngày 2026-09-08
+
+- Human: “Tôi duyệt”, đối với D1–D2 trong [gói tại b908696](https://github.com/Kynderis/kidea/blob/b908696144e90054738896d0ffc49b8177cc35aa/KIDEA_ROADMAP.md#review-current): tài liệu sản phẩm ngoài .kidea; hồ sơ điều phối/review trong .kidea; cùng một repo.
+- DESIGN dẫn về xác nhận này. Nội dung ranh giới không đổi so với đề xuất, nên không cần sửa case hoặc cấu trúc file; kiểm tra anchor/link và diff. Không có file tạm tạo ra hoặc cần xóa, không chuyển file project thật.
+- S02 (nguồn duy nhất và đọc/ghi), S03 (đồng bộ toàn task), schema, repo pilot và quyền Git/cài/deploy chưa được duyệt hoặc thực hiện kèm. S01 DONE không đóng R01-T02 hay phase R01; không phải test hành vi skill.
 
 <a id="phase-overview"></a>
 
