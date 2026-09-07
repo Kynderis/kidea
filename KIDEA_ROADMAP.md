@@ -25,9 +25,9 @@ Nguyên tắc thực hiện:
 
 | Trường | Giá trị hiện hành |
 |---|---|
-| Gate đang chờ | `P01-T02`: hoàn thiện ma trận `P01-T02-PLATFORM-r2`, hướng web đã duyệt; đề xuất gate SEO `SEO-WORKFLOW-r1` còn chờ duyệt riêng |
+| Gate đang chờ | `P01-T02`: hoàn thiện ma trận `P01-T02-PLATFORM-r2`, hướng web/mobile và gate SEO `SEO-WORKFLOW-r1` đã duyệt |
 | Phase/task đang thực hiện | [P01 / P01-T02](#p01-t02-review) |
-| Việc tiếp theo | Hoàn thiện hướng mobile, phiên bản/công cụ/thiết bị và môi trường thử; web đã chốt SvelteKit + TypeScript, prerender/SSR và realtime |
+| Việc tiếp theo | Hoàn thiện phiên bản/công cụ/thiết bị và môi trường thử; web đã chốt SvelteKit + TypeScript, prerender/SSR và realtime |
 | Điều kiện để tiếp tục | Duyệt định hướng chưa đủ đóng P01-T02; phải có ma trận cụ thể, phần cần kiểm chứng và quyền/công cụ còn thiếu. Chỉ bắt đầu P01-T03 sau gate này |
 | Điểm quay lại | Chưa có |
 | Vướng mắc khác | Chưa ghi nhận; các lựa chọn triển khai còn mở được giao cho task cụ thể |
@@ -136,8 +136,8 @@ Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không c
 ### Gói review P01-T02 đang làm rõ
 
 - Gói `P01-T02-PLATFORM-r2`, `IN_REVIEW` toàn ma trận, ngày 2026-09-07: [ma trận nền tảng](KIDEA_DESIGN.md#platform-matrix). Human xác nhận “về web, chốt theo phương án bạn đề xuất”, duyệt hướng SvelteKit + TypeScript, prerender/SSR, realtime và tiêu chí SEO/hiệu năng trong câu trả lời tại commit `a58558b`. Không coi đây là benchmark hoặc duyệt toàn bộ P01-T02.
-- Xin duyệt thêm hướng tích hợp `SEO-WORKFLOW-r1` tại [thiết kế mục 2.5](KIDEA_DESIGN.md#seo-proposal). SEO là yêu cầu đã chốt; hai gate và nơi tích hợp là đề xuất mới. Giữ nguyên bảng mười bước và 77 task trong khi chờ, không tự thêm phase hay coi đề xuất là quyết định.
-- Đã rõ: web lớn có cả nội dung tĩnh/động; MacBook Pro 16 inch 2019 Intel, Sonoma, RAM 16 GB, khoảng 512 GB trống theo Human và iPhone 12 Pro Max hiện có. Còn thiếu: hướng mobile cụ thể, phiên bản OS/compiler/SDK/runtime/adapter và môi trường thử; bản Sonoma/iOS/Xcode chính xác; thiết bị yếu đại diện, ngân sách hiệu năng và phạm vi được phép cài/chạy. Chưa có kiểm chứng build trên Mac. Runtime/helper Kidea vẫn được chọn ở P02 theo ràng buộc host đã chốt.
+- Human phản hồi “mình đồng ý” gắn với hai nhóm quyết định tại câu trả lời commit `4235774`: duyệt Android Kotlin + Jetpack Compose, iOS Swift + SwiftUI và `SEO-WORKFLOW-r1` tại [mục 2.5](KIDEA_DESIGN.md#seo-proposal). Đã tích hợp vào mười bước và task liên quan; giữ 77 task, chưa đóng P01-T02.
+- Đã rõ: web lớn có cả nội dung tĩnh/động; MacBook Pro 16 inch 2019 Intel, Sonoma, RAM 16 GB, khoảng 512 GB trống theo Human và iPhone 12 Pro Max hiện có. Còn thiếu: phiên bản OS/compiler/SDK/runtime/adapter và môi trường thử; bản Sonoma/iOS/Xcode chính xác; thiết bị yếu đại diện, ngân sách hiệu năng và phạm vi được phép cài/chạy. Chưa có kiểm chứng build trên Mac. Runtime/helper Kidea vẫn được chọn ở P02 theo ràng buộc host đã chốt.
 - Human chốt: Mac chỉ xác định giải pháp ở hiện tại, đến khi làm iOS mới kiểm tra/nâng macOS nếu cần. Không yêu cầu nâng macOS, cài Xcode hoặc build thử ngay để đóng P01-T02; phải ghi rõ các kiểm chứng/quyền còn chờ và thời điểm thực hiện, không coi là đã PASS.
 - Sau khi Human chọn hướng, AI hoàn thiện ma trận và điểm thiếu quyền/công cụ ngay trong P01-T02 rồi xin duyệt đầu ra đầy đủ; không chuyển P01-T03 chỉ vì đã chọn tên framework. Không yêu cầu Human tự chọn mọi số phiên bản; AI đề xuất tổ hợp và nêu các lựa chọn có ảnh hưởng đáng kể để duyệt.
 
@@ -145,13 +145,13 @@ Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không c
 |---|---|
 | Git/resume → hợp đồng/checkpoint/lõi/đổi máy | Làm rõ thiết kế mục 6; cập nhật case Git ở P01-T04, P02-T05, P08-T06, P11-T06, P12-T03; P02-T04/P03-T06 vẫn giữ checkpoint local và không tự Git |
 | Dự án cũ → init/nghiệp vụ/gate | Làm rõ mục 1.1; bổ sung tiêu chí P01-T04, P03-T04 và P04-T02: đi từ bước 1, chỉ tận dụng context, không tự init đè hoặc nhận code là đặc tả đã duyệt |
-| Nền tảng → rule/adapter/test/pilot/phát hành | Hướng web đã duyệt được ghi ở ma trận r2; P01-T02 còn mở. P02, P05–P07, P10–P12 phải dùng quyết định SvelteKit và tiêu chí SEO/hiệu năng tại nguồn khi xây runtime/rule/adapter/test/pilot/release; không cần đổi task/gate hiện tại. Cấu hình Mac do Human cung cấp không phải bằng chứng build iOS |
-| SEO → nghiệp vụ/nội dung/UX/ops/architecture/test/release | Danh sách task bị ảnh hưởng nằm ở đề xuất mục 2.5; chỉ sửa đầu ra/gate các task này sau khi Human duyệt phương án tích hợp |
+| Nền tảng → rule/adapter/test/pilot/phát hành | Hướng web/mobile đã duyệt được ghi ở ma trận r2; P01-T02 còn mở. P02, P05–P07, P10–P12 phải dùng quyết định SvelteKit, Kotlin/Compose, Swift/SwiftUI và tiêu chí SEO/hiệu năng tại nguồn khi xây runtime/rule/adapter/test/pilot/release; các task SEO được cập nhật ở dòng dưới. Cấu hình Mac do Human cung cấp không phải bằng chứng build iOS |
+| SEO → nghiệp vụ/nội dung/UX/ops/architecture/test/release | Đã tích hợp mục 2.5 vào mười bước và các task P04–P07, P10–P12 bên dưới; hai gate SEO được giữ riêng, chưa có bằng chứng chạy thực. Không thay tài liệu nghiệp vụ gốc hoặc tạo map/tracker mới |
 | HTML offline Kidea, ba bản đồ và tài liệu nghiệp vụ gốc | Không đổi nguồn/trạng thái/định nghĩa: SEO nói về web sản phẩm công khai, không biến view offline thành website SEO; không thêm map hoặc sửa nguyên bản tham khảo |
 
 Kiểm chứng tài liệu ngày 2026-09-07 bằng PowerShell trên Windows: 71 link/anchor nội bộ trong thiết kế, roadmap và báo cáo nghiên cứu hợp lệ; 77 task có ID duy nhất, gồm 1 DONE (P01-T01), 1 IN_PROGRESS (P01-T02), 75 TODO; không có anchor trùng hoặc fence chưa đóng; `git diff --check` đạt. Tài liệu nghiệp vụ gốc không thay đổi. Không có cài đặt, test ứng dụng mobile/web hoặc thao tác môi trường sản phẩm trong lượt này.
 
-Nhận diện nội dung mục 1.1 đã ghi nhận theo phản hồi Human: SHA-256 `e2912fb8b2f6d260fdac63b592b2d853152a34aa88634506ae775f3df79222ab`. Phạm vi băm: từ anchor `first-release-scope` đến trước anchor `platform-matrix`, chuẩn hóa LF và một newline cuối. Mã băm chỉ nhận diện nội dung đã ghi, không thay bằng chứng xác nhận Human ở trên và không bao gồm đề xuất stack/SEO đang chờ duyệt.
+Nhận diện nội dung mục 1.1 đã ghi nhận theo phản hồi Human: SHA-256 `e2912fb8b2f6d260fdac63b592b2d853152a34aa88634506ae775f3df79222ab`. Phạm vi băm: từ anchor `first-release-scope` đến trước anchor `platform-matrix`, chuẩn hóa LF và một newline cuối. Mã băm chỉ nhận diện nội dung đã ghi, không thay bằng chứng xác nhận Human ở trên và không bao gồm các quyết định stack/SEO ở mục 1.2 và 2.5.
 
 <a id="p02"></a>
 
@@ -198,8 +198,8 @@ Mục tiêu: một cách đặc tả có thể dùng lặp lại, đủ sâu đ�
 | Task | Đầu ra cần tạo | Điều kiện kiểm chứng | Trạng thái | Bằng chứng |
 |---|---|---|---|---|
 | P04-T01 | Đối chiếu tài liệu tham khảo với thiết kế hiện hành | Ghi giữ/điều chỉnh/cần chốt có lý do; phân biệt đề xuất v0.2 với quyết định đã duyệt; không khôi phục phạm vi cũ đã bỏ | TODO | — |
-| P04-T02 [H] | Hướng dẫn Feature Map, cụm đang làm và ranh giới nghiệp vụ chung/riêng | Thử MVP/Future/Idea, shared state, bên dùng thứ hai và dependency nhiều cấp; code/tài liệu dự án cũ chỉ là context, vẫn đi từng gate; không đặc tả toàn Future hoặc tự tách shared module | TODO | — |
-| P04-T03 [H] | Mẫu rule/state/flow/data và link/backlink có mục đích | Ví dụ đủ input/output/đơn vị/biên/lỗi/invariant; bảng flow là nguồn; ID cụ thể, không ALL/NEXT hay thêm loại quan hệ bị loại | TODO | — |
+| P04-T02 [H] | Hướng dẫn Feature Map, cụm đang làm và ranh giới nghiệp vụ chung/riêng | Thử MVP/Future/Idea, shared state, bên dùng thứ hai và dependency nhiều cấp; code/tài liệu dự án cũ chỉ là context, vẫn đi từng gate; không đặc tả toàn Future hoặc tự tách shared module Xác định nội dung công khai/riêng tư và nhu cầu tìm kiếm. | TODO | — |
+| P04-T03 [H] | Mẫu rule/state/flow/data và link/backlink có mục đích | Ví dụ đủ input/output/đơn vị/biên/lỗi/invariant; bảng flow là nguồn; ID cụ thể, không ALL/NEXT hay thêm loại quan hệ bị loại Có nghiệp vụ nội dung/xuất bản và AC tương ứng khi áp dụng. | TODO | — |
 | P04-T04 [H] | Cách viết AC và chọn business test specification | Expected result truy về rule/nhánh/invariant; có ví dụ flow lỗi đầu tiên và flow khác; phạm vi test hữu hạn được giải thích, không hứa test mọi tổ hợp | TODO | — |
 | P04-T05 | Áp dụng bước 1–2 lên lát cắt pilot, tích hợp hướng dẫn vào skill | Có phiên Human review từng gate, reuse và điểm quay lại; không còn OPEN ảnh hưởng hành vi đang duyệt; tìm ngược test tới căn cứ được | TODO | — |
 | P04-T06 | Gói review phương pháp và hồi quy lõi | Sửa điểm mơ hồ phát hiện trong pilot; dữ liệu mới vẫn qua validator P03; hướng dẫn đủ dùng ở phiên mới, không cần nhớ cuộc trao đổi cũ | TODO | — |
@@ -214,12 +214,12 @@ Mục tiêu: xây hướng dẫn/template cho bước 3–7 của sản phẩm, 
 
 | Task | Đầu ra cần tạo | Điều kiện kiểm chứng | Trạng thái | Bằng chứng |
 |---|---|---|---|---|
-| P05-T01 [H] | Hướng dẫn yêu cầu chất lượng và tiêu chí đo | Phân biệt tải/độ trễ, bảo mật/quyền riêng tư, chi phí, mất dữ liệu/thời gian phục hồi; mỗi yêu cầu áp dụng có phép đo và điều kiện test | TODO | — |
-| P05-T02 [H] | Hướng dẫn UX/nền tảng và đầu ra màn hình | Có luồng đúng/lỗi/rỗng/loading/thiếu quyền; mapping về hành vi, trạng thái và test; nền tảng không áp dụng có lý do Human duyệt | TODO | — |
-| P05-T03 [H] | Hướng dẫn monitoring/điều khiển vận hành | Chỉ số có ý nghĩa/độ mới/ngưỡng/hành động; nhận diện mất thu thập, lỗi dashboard và quyền điều khiển; không coi thiếu tín hiệu là khỏe | TODO | — |
-| P05-T04 [H] | Hướng dẫn admin | Mỗi thao tác có nguồn nghiệp vụ, quyền, xác nhận, audit và lỗi; nếu phát sinh nghiệp vụ mới phải quay lại bước 1–2, không tự định nghĩa trong UI | TODO | — |
-| P05-T05 [H] | Hướng dẫn kiến trúc và hợp đồng kỹ thuật | Đủ các thành phần đã chốt, owner dữ liệu, API/event/lỗi, môi trường và deploy/recovery; công nghệ theo nhu cầu, không mặc định microservices | TODO | — |
-| P05-T06 | Diễn tập bước 3–7 trên hồ sơ pilot và gói review | Giữ năm gate tách biệt; nguồn NFR/UX/ops/admin truy tới kiến trúc; thiếu đầu vào được phát hiện, không tạo hồ sơ giả cho đủ mẫu | TODO | — |
+| P05-T01 [H] | Hướng dẫn yêu cầu chất lượng và tiêu chí đo | Phân biệt tải/độ trễ, bảo mật/quyền riêng tư, chi phí, mất dữ liệu/thời gian phục hồi; mỗi yêu cầu áp dụng có phép đo và điều kiện test Có tiêu chí SEO và hiệu năng đo được. | TODO | — |
+| P05-T02 [H] | Hướng dẫn UX/nền tảng và đầu ra màn hình | Có luồng đúng/lỗi/rỗng/loading/thiếu quyền; mapping về hành vi, trạng thái và test; nền tảng không áp dụng có lý do Human duyệt Giữ gate Human duyệt thiết kế SEO trước kiến trúc. | TODO | — |
+| P05-T03 [H] | Hướng dẫn monitoring/điều khiển vận hành | Chỉ số có ý nghĩa/độ mới/ngưỡng/hành động; nhận diện mất thu thập, lỗi dashboard và quyền điều khiển; không coi thiếu tín hiệu là khỏe Theo dõi crawler/indexing sau công khai, phân biệt thiếu dữ liệu với PASS. | TODO | — |
+| P05-T04 [H] | Hướng dẫn admin | Mỗi thao tác có nguồn nghiệp vụ, quyền, xác nhận, audit và lỗi; nếu phát sinh nghiệp vụ mới phải quay lại bước 1–2, không tự định nghĩa trong UI Có quyền biên tập/xuất bản khi áp dụng. | TODO | — |
+| P05-T05 [H] | Hướng dẫn kiến trúc và hợp đồng kỹ thuật | Đủ các thành phần đã chốt, owner dữ liệu, API/event/lỗi, môi trường và deploy/recovery; công nghệ theo nhu cầu, không mặc định microservices Bao gồm rendering/cache/độ tươi, canonical/HTTP, sitemap/robots/structured data và policy bot. | TODO | — |
+| P05-T06 | Diễn tập bước 3–7 trên hồ sơ pilot và gói review | Giữ năm gate tách biệt; nguồn NFR/UX/ops/admin truy tới kiến trúc; thiếu đầu vào được phát hiện, không tạo hồ sơ giả cho đủ mẫu Diễn tập gate thiết kế SEO hoặc N/A được Human duyệt. | TODO | — |
 
 Gate cuối: Human review hướng dẫn và kết quả diễn tập; chưa coi việc có thiết kế monitoring/admin là các dashboard đã tồn tại.
 
@@ -234,9 +234,9 @@ Mục tiêu: biến yêu cầu chất lượng thành quy tắc áp dụng đư�
 | P06-T01 [H] | Hợp đồng profile rule theo ngôn ngữ/thành phần/môi trường | Có scope, phiên bản, yêu cầu, cách kiểm tra, ngoại lệ; tách rule nền với quyết định project và config thực thi | TODO | — |
 | P06-T02 [H] | Profile đầu tiên và cách chốt xung đột với project hiện có | Compiler/runtime/OS/CPU/framework đủ cụ thể; không tự đè conventions; rule chất lượng đo được, không mặc định tối ưu native hoặc bảo đảm hết leak | TODO | — |
 | P06-T03 | Ví dụ config và kiểm tra rule trên code mẫu nhỏ | Formatter/linter/build/test ở vị trí chuẩn; có mẫu vi phạm phải bị phát hiện và mẫu đúng; kiểm tra thủ công không bị ghi thành tự động | TODO | — |
-| P06-T04 [H] | Hướng dẫn technical test specification và mapping từ nguồn yêu cầu | Có contract/integration/E2E, tải/lỗi/bảo mật/restore khi áp dụng; mỗi case có setup/input/assertion/expected result, phân biệt chạy được và đang chờ code | TODO | — |
+| P06-T04 [H] | Hướng dẫn technical test specification và mapping từ nguồn yêu cầu | Có contract/integration/E2E, tải/lỗi/bảo mật/restore khi áp dụng; mỗi case có setup/input/assertion/expected result, phân biệt chạy được và đang chờ code Có test HTML/URL/metadata/nội dung, riêng tư và hiệu năng SEO khi áp dụng. | TODO | — |
 | P06-T05 | Áp dụng hồ sơ rule/test vào pilot và thử mang hồ sơ sang môi trường sạch | Truy đúng bản rule nền/config đã chốt; thiếu phiên bản/công cụ phải báo; kết quả mock không thay tích hợp thật; test fail/skip không thành PASS | TODO | — |
-| P06-T06 | Gói review rule/test và hồi quy hướng dẫn | Đủ điểm nối bước 3 → 7 → 8 → 9 → 10; task không thể báo DONE khi vi phạm rule bắt buộc chưa có ngoại lệ Human duyệt | TODO | — |
+| P06-T06 | Gói review rule/test và hồi quy hướng dẫn | Đủ điểm nối bước 3 → 7 → 8 → 9 → 10; task không thể báo DONE khi vi phạm rule bắt buộc chưa có ngoại lệ Human duyệt Hồi quy yêu cầu SEO và hai gate liên quan. | TODO | — |
 
 Gate cuối: Human duyệt profile hỗ trợ và phương pháp test. Bổ sung ngôn ngữ/môi trường khác là thay đổi phạm vi có gate, không chép một profile rồi tuyên bố hỗ trợ.
 
@@ -252,8 +252,8 @@ Mục tiêu: truy được quan hệ hai chiều với nguồn/giới hạn rõ.
 | P07-T02 | Bộ đọc map hồ sơ và kiểm tra link/ID | Bao phủ nghiệp vụ, NFR, UX, kiến trúc, API/event/data/ops/testspec; bắt thiếu đích, ID trùng, backlink sai; không suy diễn từ prose tự do | TODO | — |
 | P07-T03 [H] | Chọn adapter triển khai đầu tiên và thử khả năng trích xuất | Chạy trên source/build của code mẫu thuộc ma trận P01, không dùng graph bịa; nếu C++ có thể thử Doxygen/XML; ghi rõ caller/callee, event, callback hoặc quan hệ nào lấy được/chưa lấy được | TODO | — |
 | P07-T04 | Tích hợp adapter cùng nguồn bổ sung có căn cứ | Test đổi tên/di chuyển/xóa symbol, config build khác, file sinh/công cụ thiếu; thiếu phân tích không thành graph đầy đủ hoặc không có ảnh hưởng | TODO | — |
-| P07-T05 | Mapping đặc tả ↔ triển khai/test và chỉ mục ngược | Trỏ đúng file/module/symbol/test theo trách nhiệm; không bắt ID riêng mọi utility, không nhập lại từng lời gọi hàm; mỗi quan hệ một nơi có hiệu lực | TODO | — |
-| P07-T06 | Bộ kiểm tra cấu trúc và review ngữ nghĩa trên case đối chứng | Phát hiện hoặc đưa về review mapping đúng đường dẫn nhưng sai ý nghĩa, test gọi code nhưng thiếu assertion, snapshot cũ và test evidence sai phiên bản; nêu rõ phần cần Human/AI đọc | TODO | — |
+| P07-T05 | Mapping đặc tả ↔ triển khai/test và chỉ mục ngược | Trỏ đúng file/module/symbol/test theo trách nhiệm; không bắt ID riêng mọi utility, không nhập lại từng lời gọi hàm; mỗi quan hệ một nơi có hiệu lực Truy xuất yêu cầu SEO qua ba bản đồ, không tạo map riêng. | TODO | — |
+| P07-T06 | Bộ kiểm tra cấu trúc và review ngữ nghĩa trên case đối chứng | Phát hiện hoặc đưa về review mapping đúng đường dẫn nhưng sai ý nghĩa, test gọi code nhưng thiếu assertion, snapshot cũ và test evidence sai phiên bản; nêu rõ phần cần Human/AI đọc Kiểm tra mapping/evidence SEO không thiếu assertion hoặc sai phiên bản. | TODO | — |
 | P07-T07 | Gói review ba bản đồ trên bộ mẫu và hồ sơ pilot, cùng hồi quy | Truy hai chiều trên bộ mẫu; map pilot chưa có code phải ghi chờ P11; map rỗng/không hỗ trợ không được coi hoàn tất; không sửa đặc tả để khớp code lỗi | TODO | — |
 
 Gate cuối: Human duyệt hợp đồng mapping, adapter và mức hỗ trợ đã được chứng minh. Link hợp lệ/coverage cao không được trình bày như bằng chứng tuân thủ nghiệp vụ đầy đủ.
@@ -301,11 +301,11 @@ Mục tiêu: hoàn thiện hướng dẫn bước 9–10 của sản phẩm. K�
 
 | Task | Đầu ra cần tạo | Điều kiện kiểm chứng | Trạng thái | Bằng chứng |
 |---|---|---|---|---|
-| P10-T01 [H] | Hướng dẫn phân rã phase/task và gói duyệt kế hoạch sản phẩm | Mỗi task có dependency/đầu ra/test/gate; bao phủ backend/web/mobile/ops/admin thuộc phạm vi; không gộp duyệt kế hoạch với bắt đầu code | TODO | — |
-| P10-T02 | Hướng dẫn vòng code → rule/test → evidence → review | Có checkpoint trước/sau, cập nhật mapping, hồi quy task/phase/release; không tự chọn task song song hoặc DONE khi kiểm tra bắt buộc fail | TODO | — |
-| P10-T03 | Hướng dẫn build/test tự động và môi trường kiểm thử sớm | Có cách tái tạo, config và version rõ; phân biệt kiểm tra local với môi trường đích; không đợi cuối code mới nghĩ CI/deploy | TODO | — |
-| P10-T04 [H] | Hợp đồng release, migration/rollback/restore và quyền môi trường | Tách duyệt nội dung với quyền deploy/Git/dữ liệu; chỉ diễn tập nơi được phép; nêu điều kiện dừng/khôi phục và dữ liệu cần giữ | TODO | — |
-| P10-T05 | Hướng dẫn kiểm chứng sau deploy và ghi nhận bản đang chạy | Smoke test, config/version thực, monitoring/alert/admin cần thiết, kết quả restore; không dùng bản build mới nhất thay xác nhận bản đã deploy | TODO | — |
+| P10-T01 [H] | Hướng dẫn phân rã phase/task và gói duyệt kế hoạch sản phẩm | Mỗi task có dependency/đầu ra/test/gate; bao phủ backend/web/mobile/ops/admin thuộc phạm vi; không gộp duyệt kế hoạch với bắt đầu code Kế hoạch bao phủ SEO và hai gate khi áp dụng. | TODO | — |
+| P10-T02 | Hướng dẫn vòng code → rule/test → evidence → review | Có checkpoint trước/sau, cập nhật mapping, hồi quy task/phase/release; không tự chọn task song song hoặc DONE khi kiểm tra bắt buộc fail Chạy test SEO, lưu evidence cùng phiên bản. | TODO | — |
+| P10-T03 | Hướng dẫn build/test tự động và môi trường kiểm thử sớm | Có cách tái tạo, config và version rõ; phân biệt kiểm tra local với môi trường đích; không đợi cuối code mới nghĩ CI/deploy Kiểm tra HTML/cấu hình SEO trên môi trường thử; không mở index môi trường riêng để lấy bằng chứng. | TODO | — |
+| P10-T04 [H] | Hợp đồng release, migration/rollback/restore và quyền môi trường | Tách duyệt nội dung với quyền deploy/Git/dữ liệu; chỉ diễn tập nơi được phép; nêu điều kiện dừng/khôi phục và dữ liệu cần giữ Human duyệt sẵn sàng SEO trước phát hành công khai; không đòi đã index trước deploy. | TODO | — |
+| P10-T05 | Hướng dẫn kiểm chứng sau deploy và ghi nhận bản đang chạy | Smoke test, config/version thực, monitoring/alert/admin cần thiết, kết quả restore; không dùng bản build mới nhất thay xác nhận bản đã deploy Kiểm tra crawler/sitemap khi phù hợp và theo dõi tìm kiếm sau deploy; không cam kết thứ hạng. | TODO | — |
 | P10-T06 | Diễn tập thiếu quyền/lỗi deploy và gói review hướng dẫn | Không tự deploy/retry tác dụng phụ khi chưa rõ; không báo release thành công khi smoke/restore chưa đạt; bước 9a/9b/10 và gate vẫn riêng | TODO | — |
 
 Gate cuối: Human duyệt hướng dẫn toàn chu trình. Không có thao tác production thật trong phase này.
@@ -319,12 +319,12 @@ Mục tiêu: dùng chính bản Kidea đang xây trong phiên mới để dẫn 
 | Task | Đầu ra cần tạo | Điều kiện kiểm chứng | Trạng thái | Bằng chứng |
 |---|---|---|---|---|
 | P11-T01 [H] | Gói chạy pilot: baseline, bản skill, môi trường, kế hoạch và quyền | Kiểm tra lại đầu ra bước 1–8 đã có, đi đủ gate còn thiếu; duyệt kế hoạch bước 9 trước code; dữ liệu giả và môi trường riêng đã được cho phép | TODO | — |
-| P11-T02 | Thực hiện từng task pilot bằng Kidea và ghi nhận kết quả | Có source/test chạy thật, mapping/assertion đúng, build/CI sớm; lưu checkpoint MVP đang dở có thể tái tạo cho T04; review cuối từng phase pilot, không dùng một approval P11 thay mọi gate bên trong | TODO | — |
-| P11-T03 | Deploy pilot vào môi trường thử được phép và xác nhận release | Có bản đang chạy thực, smoke/monitor/admin, diễn tập rollback/restore áp dụng; không gắn nhãn production thật | TODO | — |
+| P11-T02 | Thực hiện từng task pilot bằng Kidea và ghi nhận kết quả | Có source/test chạy thật, mapping/assertion đúng, build/CI sớm; lưu checkpoint MVP đang dở có thể tái tạo cho T04; review cuối từng phase pilot, không dùng một approval P11 thay mọi gate bên trong Thực hiện test SEO và gate thiết kế SEO khi áp dụng. | TODO | — |
+| P11-T03 | Deploy pilot vào môi trường thử được phép và xác nhận release | Có bản đang chạy thực, smoke/monitor/admin, diễn tập rollback/restore áp dụng; không gắn nhãn production thật Giữ gate sẵn sàng SEO; môi trường kín không giả định index, N/A phải được Human duyệt. | TODO | — |
 | P11-T04 | Kịch bản thêm Feature khi MVP đang dở | Chạy trên checkpoint MVP có thể tái tạo; quay bước 1, giữ việc cũ, đánh giá đủ bước liên quan, Human gate và resume đúng điểm; không chỉ kể giả định | TODO | — |
 | P11-T05 | Kịch bản đổi Feature sau release và bugfix giữ nguyên đặc tả | Hai nhánh phân biệt rõ; xử lý impact/test/approval, target mới khác bản đang chạy; bug code không được hợp thức hóa bằng sửa rule | TODO | — |
 | P11-T06 | Kịch bản lỗi, ngắt phiên và chuyển môi trường/máy | Thực hiện reject, fail/skip, mất công cụ, approval cũ, nguồn đổi và pending side effect; chuyển `.kidea` cùng source qua Git được phép rồi resume, thử thiếu file/conflict; không Git/production ngoài quyền | TODO | — |
-| P11-T07 | Báo cáo nghiệm thu pilot, sửa lỗi Kidea phát hiện và chạy lại | Mỗi lỗi có phạm vi sửa nhỏ, impact review và bằng chứng hồi quy; tách lỗi Kidea/lỗi pilot; đủ case P01, không dùng mẫu chạy xanh duy nhất thay toàn ma trận | TODO | — |
+| P11-T07 | Báo cáo nghiệm thu pilot, sửa lỗi Kidea phát hiện và chạy lại | Mỗi lỗi có phạm vi sửa nhỏ, impact review và bằng chứng hồi quy; tách lỗi Kidea/lỗi pilot; đủ case P01, không dùng mẫu chạy xanh duy nhất thay toàn ma trận Báo cáo bằng chứng/giới hạn SEO; không gọi thiếu dữ liệu là PASS. | TODO | — |
 
 Gate cuối: Human quyết định bản Kidea đủ điều kiện đóng gói hay phải quay phase trước. Chứng minh giả lập chỉ được ghi là giả lập; hạng mục cần máy/môi trường thực còn thiếu thì chưa đạt tiêu chí tương ứng.
 
@@ -341,9 +341,9 @@ Mục tiêu: người dùng có thể cài đúng bản, dùng từ đầu hoặ
 | P12-T01 [H] | Ma trận phiên bản phát hành, nâng cấp và khôi phục theo hợp đồng P02 | Chốt các version thực sự hỗ trợ, cách bảo toàn hồ sơ và quyền nâng cấp; schema quá mới phải dừng rõ; nếu cần đổi hợp đồng nền phải mở lại P02 và phần phụ thuộc | TODO | — |
 | P12-T02 | Gói cài và hướng dẫn cài/gỡ trong phạm vi được phép | Cài sạch, kiểm tra phát hiện skill/sáu hành động, tránh đè bản khác; gỡ skill không xóa hồ sơ/source sản phẩm; không tự nhận /kidea được host hỗ trợ | TODO | — |
 | P12-T03 | Test cài/resume/nâng cấp trên ma trận hỗ trợ | Dùng đúng source/`.kidea`/rule/công cụ ở môi trường sạch, có case resume sau Git; test từ chối bản không tương thích và rollback nâng cấp; nêu rõ phần mới mô phỏng/chưa chạy thực | TODO | — |
-| P12-T04 | Tài liệu sử dụng tiếng Việt, ví dụ nhỏ và xử lý sự cố | Người dùng mới biết bắt đầu/gate/resume/change/view, backup và giới hạn; link/file thật, không lệ thuộc cuộc hội thoại; SKILL.md giữ gọn và routing đúng | TODO | — |
-| P12-T05 | Chạy bộ nghiệm thu cuối và review độc lập | Validator skill, tests helper, hành vi AI, maps/change/view/install đều gắn bản release candidate; rà secrets/quyền ghi/link lỗi, không còn lỗi chặn nghiệm thu | TODO | — |
-| P12-T06 | Gói bàn giao bản đầu và đề nghị Human nghiệm thu | Có version, phạm vi hỗ trợ đã chứng minh, kết quả, giới hạn/rủi ro và hướng dùng; publication/cài môi trường thật chỉ thực hiện nếu Human cấp quyền cụ thể | TODO | — |
+| P12-T04 | Tài liệu sử dụng tiếng Việt, ví dụ nhỏ và xử lý sự cố | Người dùng mới biết bắt đầu/gate/resume/change/view, backup và giới hạn; link/file thật, không lệ thuộc cuộc hội thoại; SKILL.md giữ gọn và routing đúng Hướng dẫn hai gate SEO, kiểm tra sau phát hành và N/A. | TODO | — |
+| P12-T05 | Chạy bộ nghiệm thu cuối và review độc lập | Validator skill, tests helper, hành vi AI, maps/change/view/install đều gắn bản release candidate; rà secrets/quyền ghi/link lỗi, không còn lỗi chặn nghiệm thu Kiểm tra tích hợp SEO/gate/mapping, không suy diễn thứ hạng từ test PASS. | TODO | — |
+| P12-T06 | Gói bàn giao bản đầu và đề nghị Human nghiệm thu | Có version, phạm vi hỗ trợ đã chứng minh, kết quả, giới hạn/rủi ro và hướng dùng; publication/cài môi trường thật chỉ thực hiện nếu Human cấp quyền cụ thể Nêu giới hạn kiểm chứng SEO và việc theo dõi sau phát hành. | TODO | — |
 
 Gate cuối: Human nghiệm thu bản đầu. Mọi yêu cầu mới, tổ hợp chưa hỗ trợ hoặc cải tiến sau đó được chốt thành đợt tiếp theo; không tự kéo dài lộ trình bằng scope chưa được đồng ý.
 
@@ -377,4 +377,4 @@ Bảng này là chỉ mục bao phủ, không giữ thêm trạng thái task. Tr
 - Nếu test đòi môi trường/quyền chưa có: ghi blocker và yêu cầu cụ thể, không tự cài/deploy/thu thập dữ liệu ngoài quyền hoặc đổi test thành PASS.
 - Khi cập nhật tiến trình, giữ tài liệu hiện hành rõ ràng: quyết định cũ không còn hiệu lực phải được thay/migrate đủ tham chiếu; giữ bằng chứng cần thiết cho nghiệm thu và khôi phục, không tích lũy các quy tắc cũ mâu thuẫn.
 
-**Bước kế tiếp:** Hoàn thiện hướng mobile và ma trận phiên bản/công cụ/môi trường tại [P01-T02](#p01-t02-review); hướng web đã được duyệt, đề xuất gate SEO còn chờ duyệt riêng. Chưa đóng task, chuyển sang pilot, viết SKILL.md hoặc helper.
+**Bước kế tiếp:** AI hoàn thiện ma trận phiên bản/công cụ/môi trường tại [P01-T02](#p01-t02-review) rồi xin Human duyệt đầu ra đầy đủ; web/mobile và cách tích hợp SEO đã duyệt. Chưa đóng task, chuyển pilot, viết SKILL.md hoặc helper.

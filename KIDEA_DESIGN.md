@@ -10,7 +10,7 @@ Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ
 
 Tài liệu này là nguồn thiết kế hiện hành. Roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào để đối chiếu; `answer.md` là bản sao câu trả lời để đọc từ xa, không thay thế thiết kế hoặc roadmap.
 
-[Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đang được làm rõ tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Các lựa chọn còn lại và [cách tích hợp SEO vào gate quy trình](#seo-proposal) còn chờ duyệt; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
+[Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đang được làm rõ tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Human đã duyệt Kotlin + Jetpack Compose, Swift + SwiftUI và [cách tích hợp SEO vào gate quy trình](#seo-proposal); ma trận phiên bản/môi trường còn chờ hoàn thiện; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
 
 <a id="scope"></a>
 
@@ -90,14 +90,14 @@ Phạm vi này không duyệt trước ma trận phiên bản/công cụ, lựa 
 
 ### 1.2. Ma trận nền tảng — P01-T02 đang làm rõ
 
-Gói review: `P01-T02-PLATFORM-r2`, ngày 2026-09-07, `IN_REVIEW` toàn ma trận; riêng hướng web đã được Human duyệt. Bảng này tách quyết định đã chốt khỏi khuyến nghị còn mở. Các báo cáo [nền tảng/SEO](exa-results/kidea-platform-seo-2026-09-07.md) và [tiêu chí web SEO-first](exa-results/seo-first-web-criteria-2026-09-07.md) là đầu vào nghiên cứu; quyết định hiện hành nằm ở đây, không lấy đề xuất cũ trong báo cáo thay quyết định đã duyệt.
+Gói review: `P01-T02-PLATFORM-r2`, ngày 2026-09-07, `IN_REVIEW` toàn ma trận; hướng web/mobile đã được Human duyệt. Bảng này tách quyết định đã chốt khỏi khuyến nghị còn mở. Các báo cáo [nền tảng/SEO](exa-results/kidea-platform-seo-2026-09-07.md) và [tiêu chí web SEO-first](exa-results/seo-first-web-criteria-2026-09-07.md) là đầu vào nghiên cứu; quyết định hiện hành nằm ở đây, không lấy đề xuất cũ trong báo cáo thay quyết định đã duyệt.
 
 | Thành phần | Đầu vào Human đã chốt | Hướng công nghệ và trạng thái | Còn phải xác định/kiểm chứng |
 |---|---|---|---|
 | Host Kidea | Windows | Giữ Windows làm host bản đầu | Phiên bản Windows, ứng dụng host AI/cách gọi skill, runtime/helper và quyền cài thử; runtime quyết định ở P02 |
 | Backend sản phẩm | C++20; triển khai Ubuntu | Giữ nghiệp vụ ở backend C++20, frontend dùng hợp đồng API đã duyệt | Ubuntu/CPU/compiler/thư viện; máy build, môi trường thử và quy trình release; chưa chọn phiên bản Ubuntu |
-| Android | Native, code độc lập; nhẹ/mượt/đồ họa tốt, dùng được trên máy yếu | Kotlin + Jetpack Compose; bổ sung thành phần chuyên biệt khi có số đo chứng minh cần | Phiên bản SDK/công cụ; thiết bị yếu đại diện, workload, ngân sách khung hình/bộ nhớ/pin/dung lượng; build release và kiểm tra thực |
-| iOS | Native, code độc lập; cùng mục tiêu chất lượng Android; tận dụng MacBook/iPhone hiện có, chỉ cân nhắc nâng macOS khi bắt đầu làm iOS và nếu cần | Swift + SwiftUI đang xin duyệt; UIKit hoặc Metal chỉ cho phần có nhu cầu cụ thể | iOS tối thiểu, Swift/Xcode và môi trường build/test/sign; kiểm tra tương thích và xin quyền cài/nâng cấp khi đến bước thực thi, không yêu cầu thao tác máy ngay ở P01-T02 |
+| Android | Native, code độc lập; nhẹ/mượt/đồ họa tốt, dùng được trên máy yếu | HUMAN ĐÃ DUYỆT: Kotlin + Jetpack Compose; bổ sung thành phần chuyên biệt khi có số đo chứng minh cần | Phiên bản SDK/công cụ; thiết bị yếu đại diện, workload, ngân sách khung hình/bộ nhớ/pin/dung lượng; build release và kiểm tra thực |
+| iOS | Native, code độc lập; cùng mục tiêu chất lượng Android; tận dụng MacBook/iPhone hiện có, chỉ cân nhắc nâng macOS khi bắt đầu làm iOS và nếu cần | HUMAN ĐÃ DUYỆT: Swift + SwiftUI; UIKit hoặc Metal chỉ cho phần có nhu cầu cụ thể | iOS tối thiểu, Swift/Xcode và môi trường build/test/sign; kiểm tra tương thích và xin quyền cài/nâng cấp khi đến bước thực thi, không yêu cầu thao tác máy ngay ở P01-T02 |
 | Web | Website lớn, nhiều chức năng, cả trang tĩnh và động; tối ưu SEO và hiệu năng, trải nghiệm mượt | HUMAN ĐÃ DUYỆT: SvelteKit + TypeScript; prerender/SSR theo route, realtime phía trình duyệt; không ghép thêm Astro mặc định | Phiên bản/runtime/adapter; chính sách cache và độ tươi từng route; thư viện UI/đồ họa nếu cần; ngân sách và thiết bị/mạng/workload kiểm chứng |
 
 SSG/prerender là tạo sẵn HTML; SSR là tạo HTML phía máy chủ khi cần. Trang tĩnh dùng prerender/CDN, trang động cần SEO có nội dung chính, metadata và dữ liệu ban đầu trong HTML; realtime/hiệu ứng cập nhật phía trình duyệt sau lần tải đầu, tải phần nặng khi cần và không render lại toàn trang mỗi tick. Lớp SSR cần runtime/adapter phù hợp (Node là ứng viên, chưa chốt phiên bản); nghiệp vụ vẫn thuộc backend C++20. Không công bố nhanh nhất khi chưa benchmark đúng workload.
@@ -108,7 +108,7 @@ Nguồn lực iOS Human xác nhận: MacBook Pro 16 inch 2019 Intel, RAM 16 GB, 
 
 Human đã chốt cách chuẩn bị Mac: hiện tại chỉ chốt giải pháp; đến khi làm iOS mới kiểm tra và cập nhật macOS nếu cần. P01-T02 ghi môi trường dự kiến, phần chưa kiểm chứng và thời điểm cần quyền; không lấy việc chưa nâng macOS/cài Xcode làm điều kiện bắt buộc để đóng task thiết kế. Không ghi tương thích thực tế là PASS trước khi kiểm tra.
 
-Yêu cầu SEO áp dụng cho nội dung được phép công khai. Không dùng mục tiêu được tìm thấy để mở dữ liệu riêng tư, admin hoặc nội dung cần xác thực. Quyền riêng tư, an toàn và tính đúng không bị hạ ưu tiên để lấy SEO. Cách đưa SEO thành đầu ra/gate cụ thể đang được đề xuất ở [mục 2.5](#seo-proposal).
+Yêu cầu SEO áp dụng cho nội dung được phép công khai. Không dùng mục tiêu được tìm thấy để mở dữ liệu riêng tư, admin hoặc nội dung cần xác thực. Quyền riêng tư, an toàn và tính đúng không bị hạ ưu tiên để lấy SEO. Cách đưa SEO thành đầu ra/gate cụ thể đã được duyệt ở [mục 2.5](#seo-proposal).
 
 #### Ý tưởng ngoài bản đầu: một Human, nhiều agent
 
@@ -144,13 +144,13 @@ Tinh gọn nghĩa là mỗi file, trường dữ liệu, rule và bước kiểm
 
 <a id="seo-proposal"></a>
 
-### 2.5. SEO và khả năng được tìm thấy — đề xuất tích hợp đang chờ duyệt
+### 2.5. SEO và khả năng được tìm thấy — tích hợp đã duyệt
 
-Yêu cầu Human đã chốt: ưu tiên khả năng tìm thấy nội dung/sản phẩm công khai qua Google, Bing và AI search như ChatGPT, Perplexity; vẫn cần trải nghiệm nhẹ/mượt. Phần dưới là đề xuất AI `SEO-WORKFLOW-r1`, `IN_REVIEW`, chưa thay bảng mười bước hoặc danh mục task đã duyệt.
+Yêu cầu Human đã chốt: ưu tiên khả năng tìm thấy nội dung/sản phẩm công khai qua Google, Bing và AI search như ChatGPT, Perplexity; vẫn cần trải nghiệm nhẹ/mượt. Gói `SEO-WORKFLOW-r1` đã được Human duyệt ngày 2026-09-07 qua phản hồi “mình đồng ý” gắn với hai nhóm quyết định mobile và SEO trong câu trả lời tại commit `4235774`. Bảng mười bước và các task liên quan đã tích hợp yêu cầu; chưa phải bằng chứng triển khai.
 
-Đề xuất giữ mười bước và bổ sung một nhánh yêu cầu xuyên suốt tên **SEO & khả năng được tìm thấy**, với hai gate bước con: **duyệt thiết kế SEO** trong bước 4 trước kiến trúc và **duyệt sẵn sàng SEO** trong bước 10 trước phát hành công khai. Không dồn SEO thành bước cuối; không tạo bước 11 chỉ để sửa hậu quả URL/rendering/nội dung đã xây.
+Giữ mười bước và bổ sung một nhánh yêu cầu xuyên suốt tên **SEO & khả năng được tìm thấy**, với hai gate bước con: **duyệt thiết kế SEO** trong bước 4 trước kiến trúc và **duyệt sẵn sàng SEO** trong bước 10 trước phát hành công khai. Không dồn SEO thành bước cuối; không tạo bước 11 chỉ để sửa hậu quả URL/rendering/nội dung đã xây.
 
-| Nơi tích hợp trong quy trình sản phẩm | Đầu ra/điều kiện đề xuất | Task xây hướng dẫn cần cập nhật nếu Human duyệt |
+| Nơi tích hợp trong quy trình sản phẩm | Đầu ra/điều kiện đã duyệt | Task xây hướng dẫn chịu trách nhiệm |
 |---|---|---|
 | Bước 1–2: phạm vi, nghiệp vụ | Nội dung công khai/riêng tư, khách cần tìm gì, trang/sản phẩm mục tiêu, nguồn nội dung và người chịu trách nhiệm; nghiệp vụ xuất bản/cập nhật/gỡ nội dung khi có | P04-T02/T03 |
 | Bước 3–4: chất lượng, UX/nội dung | Tiêu chí kiểm tra được; cấu trúc nội dung/URL/internal link, tiêu đề/mô tả, kế hoạch nội dung hữu ích; Human duyệt thiết kế SEO trước kiến trúc | P05-T01/T02 |
@@ -160,7 +160,7 @@ Yêu cầu Human đã chốt: ưu tiên khả năng tìm thấy nội dung/sản
 
 Gate trước phát hành kiểm tra mức sẵn sàng kỹ thuật/nội dung, không đòi kết quả index vốn chỉ quan sát được sau khi công khai. Kiểm tra sau deploy và theo dõi tìm kiếm không được đánh dấu đạt khi chưa có dữ liệu; không coi crawler được phép vào, test PASS hoặc đã gửi sitemap là bảo đảm được index, lên hạng hay được AI trích dẫn. Search bot được phép truy cập không đồng nghĩa phải cho phép bot huấn luyện.
 
-Nếu được duyệt, cập nhật bảng mười bước và các task nêu trên tại nguồn; chỉ tách task con trong roadmap khi cần giữ công việc đủ nhỏ. Chưa tạo phase mới, map thứ tư hoặc bộ checklist/tracker SEO riêng.
+Yêu cầu được tích hợp tại bảng mười bước và các task tương ứng trong roadmap. Không tạo phase mới, map thứ tư hoặc tracker SEO riêng. Với sản phẩm không có nội dung công khai cần SEO, ghi lý do và xin Human duyệt N/A; không bỏ gate ngầm.
 
 <a id="workflow"></a>
 
@@ -170,16 +170,16 @@ Nếu được duyệt, cập nhật bảng mười bước và các task nêu t
 
 | Bước | Công việc và đầu ra để Human duyệt |
 |---|---|
-| 1. Ý tưởng và phạm vi | Mục tiêu, người dùng, vấn đề cần giải quyết, tiêu chí thành công, ràng buộc đã biết; Feature Map `MVP / Future / Idea`, bao gồm nhu cầu admin/vận hành. Từng Feature có quyết định rõ về phạm vi/phân loại. |
-| 2. Nghiệp vụ + AC + business test | Cụm Feature đang làm; phần dùng chung và phần riêng; dữ liệu, rule, state, flow, lỗi, dependency; AC; tình huống kiểm tra nghiệp vụ và phạm vi bao phủ. Không còn điểm mơ hồ làm thay đổi kết quả trong phạm vi cần duyệt. |
-| 3. Yêu cầu chất lượng hệ thống | Tải, độ trễ, tính sẵn sàng, bảo mật, quyền riêng tư, lưu giữ dữ liệu, mất dữ liệu cho phép, thời gian khôi phục, giới hạn chi phí; cách đo và kịch bản kiểm chứng tương ứng. |
-| 4. Trải nghiệm sản phẩm | Web/mobile và nền tảng hỗ trợ; hành trình sử dụng, màn hình, dữ liệu và thao tác; trạng thái đang tải/rỗng/lỗi/thiếu quyền; phác thảo giao diện, yêu cầu khả năng sử dụng và test liên quan. |
-| 5. Monitoring và điều khiển vận hành | Cần biết hệ thống đang ra sao, đo ở đâu, dữ liệu mới đến mức nào; dashboard, ngưỡng và kênh cảnh báo, cách xử lý; thao tác vận hành và quyền; kịch bản kiểm tra cả đường thu thập/cảnh báo/điều khiển. |
-| 6. Admin | Màn hình và thao tác quản trị, phạm vi quyền, xác nhận thao tác nhạy cảm, ghi nhận ai làm gì, kiểm tra tính đúng và an toàn. Tái sử dụng nghiệp vụ đã chốt, không định nghĩa lại trong UI. |
-| 7. Kiến trúc và hợp đồng kỹ thuật | Mapping nghiệp vụ → module/service; công nghệ và lý do; dữ liệu và bên sở hữu; API/event input-output, lỗi, dependency; frontend, dashboard, bảo mật, môi trường triển khai, backup/khôi phục và chiến lược nâng cấp. Chọn và Human duyệt bộ quy tắc code hiệu lực cho từng thành phần/môi trường. |
-| 8. Đặc tả kiểm thử kỹ thuật | Cụ thể hóa business/quality/UI/operations tests thành kiểm thử hợp đồng, tích hợp, luồng đầu-cuối, tải, bảo mật, lỗi và khôi phục khi áp dụng. Nêu cái nào chạy được ngay và cái nào phải chờ code/hạ tầng. |
-| 9. Lộ trình và triển khai | Human duyệt phase/task trước; sau đó thực hiện từng task, bổ sung test chạy được, chạy và lưu bằng chứng. Bao phủ toàn bộ thành phần trong phạm vi phát hành. Task, phase và toàn bản phát hành có bộ kiểm tra tương ứng. |
-| 10. Triển khai và xác nhận vận hành | Kiểm tra môi trường, diễn tập deploy/nâng cấp/khôi phục; Human cho phép triển khai đích cụ thể; kiểm tra sau deploy, cảnh báo, dữ liệu và thao tác vận hành; xác nhận bản thực sự đang chạy. |
+| 1. Ý tưởng và phạm vi | Mục tiêu, người dùng, vấn đề cần giải quyết, tiêu chí thành công, ràng buộc đã biết; Feature Map `MVP / Future / Idea`, bao gồm nhu cầu admin/vận hành. Từng Feature có quyết định rõ về phạm vi/phân loại. Xác định nội dung công khai/riêng tư, nhu cầu tìm kiếm và trang mục tiêu. |
+| 2. Nghiệp vụ + AC + business test | Cụm Feature đang làm; phần dùng chung và phần riêng; dữ liệu, rule, state, flow, lỗi, dependency; AC; tình huống kiểm tra nghiệp vụ và phạm vi bao phủ. Không còn điểm mơ hồ làm thay đổi kết quả trong phạm vi cần duyệt. Đặc tả nghiệp vụ xuất bản/cập nhật/gỡ nội dung và nguồn nội dung khi áp dụng. |
+| 3. Yêu cầu chất lượng hệ thống | Tải, độ trễ, tính sẵn sàng, bảo mật, quyền riêng tư, lưu giữ dữ liệu, mất dữ liệu cho phép, thời gian khôi phục, giới hạn chi phí; cách đo và kịch bản kiểm chứng tương ứng. Chốt tiêu chí SEO/hiệu năng có thể kiểm tra và cách đo. |
+| 4. Trải nghiệm sản phẩm | Web/mobile và nền tảng hỗ trợ; hành trình sử dụng, màn hình, dữ liệu và thao tác; trạng thái đang tải/rỗng/lỗi/thiếu quyền; phác thảo giao diện, yêu cầu khả năng sử dụng và test liên quan. Human duyệt thiết kế SEO (cấu trúc nội dung, URL, liên kết, metadata) trước kiến trúc khi áp dụng. |
+| 5. Monitoring và điều khiển vận hành | Cần biết hệ thống đang ra sao, đo ở đâu, dữ liệu mới đến mức nào; dashboard, ngưỡng và kênh cảnh báo, cách xử lý; thao tác vận hành và quyền; kịch bản kiểm tra cả đường thu thập/cảnh báo/điều khiển. Theo dõi crawler/indexing và kết quả tìm kiếm sau phát hành; thiếu dữ liệu không phải PASS. |
+| 6. Admin | Màn hình và thao tác quản trị, phạm vi quyền, xác nhận thao tác nhạy cảm, ghi nhận ai làm gì, kiểm tra tính đúng và an toàn. Tái sử dụng nghiệp vụ đã chốt, không định nghĩa lại trong UI. Quyền biên tập/xuất bản phải có nguồn nghiệp vụ khi áp dụng. |
+| 7. Kiến trúc và hợp đồng kỹ thuật | Mapping nghiệp vụ → module/service; công nghệ và lý do; dữ liệu và bên sở hữu; API/event input-output, lỗi, dependency; frontend, dashboard, bảo mật, môi trường triển khai, backup/khôi phục và chiến lược nâng cấp. Chọn và Human duyệt bộ quy tắc code hiệu lực cho từng thành phần/môi trường. Thiết kế rendering/cache/độ tươi, HTTP/canonical/redirect, robots/sitemap/structured data và policy bot theo mục 2.5. |
+| 8. Đặc tả kiểm thử kỹ thuật | Cụ thể hóa business/quality/UI/operations tests thành kiểm thử hợp đồng, tích hợp, luồng đầu-cuối, tải, bảo mật, lỗi và khôi phục khi áp dụng. Nêu cái nào chạy được ngay và cái nào phải chờ code/hạ tầng. Đặc tả test HTML/URL/metadata/nội dung, quyền riêng tư và hiệu năng khi áp dụng. |
+| 9. Lộ trình và triển khai | Human duyệt phase/task trước; sau đó thực hiện từng task, bổ sung test chạy được, chạy và lưu bằng chứng. Bao phủ toàn bộ thành phần trong phạm vi phát hành. Task, phase và toàn bản phát hành có bộ kiểm tra tương ứng. Triển khai, kiểm thử và truy xuất yêu cầu SEO qua ba bản đồ như yêu cầu khác. |
+| 10. Triển khai và xác nhận vận hành | Kiểm tra môi trường, diễn tập deploy/nâng cấp/khôi phục; Human cho phép triển khai đích cụ thể; kiểm tra sau deploy, cảnh báo, dữ liệu và thao tác vận hành; xác nhận bản thực sự đang chạy. Human duyệt sẵn sàng SEO trước phát hành công khai; kiểm tra crawler và theo dõi kết quả sau deploy, không đòi index trước phát hành. |
 
 ```mermaid
 flowchart TD
@@ -407,9 +407,9 @@ Kidea tổ chức thông tin thành đúng ba góc nhìn dưới đây, không t
 
 | Bản đồ | Phạm vi | Nguồn có hiệu lực và cách tạo |
 |---|---|---|
-| 1. Hồ sơ đặc tả | Feature, rule, state, flow, AC, đặc tả test; yêu cầu chất lượng, UI, thiết kế vận hành, kiến trúc và hợp đồng API/event/dữ liệu | Nội dung hồ sơ được Human duyệt mô tả điều sản phẩm phải đạt. Quan hệ lấy từ ID/link và mục đích liên kết trong tài liệu nguồn. |
-| 2. Triển khai | Module, class/struct, hàm, lời gọi, include, dữ liệu dùng chung, API/event thực tế, cấu hình build/deploy và test chạy được | Source/cấu hình mô tả điều thực sự được xây, có thể đang sai đặc tả. Công cụ trích xuất quan hệ khi hỗ trợ; quan hệ còn thiếu được bổ sung có căn cứ hoặc ghi rõ chưa biết. |
-| 3. Đối chiếu đặc tả ↔ triển khai | Mục đặc tả được thực hiện ở đâu, test nào kiểm tra yêu cầu nào, chiều ngược từ code/test về căn cứ | Mapping nhiều–nhiều do AI đề xuất, kiểm tra nội dung thực tế và Human review ý nghĩa tại gate liên quan; chỉ mục ngược được sinh hoặc kiểm tra đối xứng. |
+| 1. Hồ sơ đặc tả | Feature, rule, state, flow, AC, đặc tả test; yêu cầu chất lượng, UI, thiết kế vận hành, kiến trúc và hợp đồng API/event/dữ liệu | Nội dung hồ sơ được Human duyệt mô tả điều sản phẩm phải đạt. Quan hệ lấy từ ID/link và mục đích liên kết trong tài liệu nguồn. Xác định nội dung công khai/riêng tư, nhu cầu tìm kiếm và trang mục tiêu. |
+| 2. Triển khai | Module, class/struct, hàm, lời gọi, include, dữ liệu dùng chung, API/event thực tế, cấu hình build/deploy và test chạy được | Source/cấu hình mô tả điều thực sự được xây, có thể đang sai đặc tả. Công cụ trích xuất quan hệ khi hỗ trợ; quan hệ còn thiếu được bổ sung có căn cứ hoặc ghi rõ chưa biết. Đặc tả nghiệp vụ xuất bản/cập nhật/gỡ nội dung và nguồn nội dung khi áp dụng. |
+| 3. Đối chiếu đặc tả ↔ triển khai | Mục đặc tả được thực hiện ở đâu, test nào kiểm tra yêu cầu nào, chiều ngược từ code/test về căn cứ | Mapping nhiều–nhiều do AI đề xuất, kiểm tra nội dung thực tế và Human review ý nghĩa tại gate liên quan; chỉ mục ngược được sinh hoặc kiểm tra đối xứng. Chốt tiêu chí SEO/hiệu năng có thể kiểm tra và cách đo. |
 
 Không thêm bản đồ test thứ tư: đặc tả test ở bản đồ 1; test thực thi ở bản đồ 2; quan hệ giữa chúng ở bản đồ 3. Bằng chứng chạy gắn với test thực thi, đúng phiên bản code/cấu hình, đặc tả và môi trường đã kiểm tra.
 
@@ -596,7 +596,6 @@ Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải c
 | Quyết định cần chốt | Nơi xử lý trong roadmap |
 |---|---|
 | Hoàn tất ma trận phiên bản/công cụ/môi trường theo định hướng Windows, C++20/Ubuntu và native/web đã chốt; pilot và tiêu chí thành công có thể đo | [P01](KIDEA_ROADMAP.md#p01) |
-| Duyệt đề xuất tích hợp SEO vào đầu ra/gate của mười bước, rồi cập nhật các task xây hướng dẫn bị ảnh hưởng | [Đề xuất SEO](#seo-proposal), [review P01-T02](KIDEA_ROADMAP.md#p01-t02-review) |
 | Runtime của helper, cách đóng gói/cài; schema Markdown, ID, quyền ghi, approval fingerprint, checkpoint và nâng phiên bản | [P02](KIDEA_ROADMAP.md#p02) |
 | Cách phân rã nghiệp vụ, AC và chọn tập business test có thể áp dụng lặp lại | [P04](KIDEA_ROADMAP.md#p04) |
 | Hồ sơ coding rules đầu tiên, công cụ kiểm tra và cách mang đúng phiên bản qua máy mới | [P06](KIDEA_ROADMAP.md#p06) |
