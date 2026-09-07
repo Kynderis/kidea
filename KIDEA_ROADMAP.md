@@ -25,10 +25,10 @@ Nguyên tắc thực hiện:
 
 | Trường | Giá trị hiện hành |
 |---|---|
-| Gate đang chờ | Không còn gate P01-T03; Human đã duyệt `P01-T03-PILOT-r1` |
-| Phase/task đang thực hiện | P01 đang thực hiện; P01-T01–T04 DONE; chưa mở P01-T05 |
-| Việc tiếp theo | P01-T05 [H]: đề xuất tiêu chí chất lượng và mức bằng chứng tối thiểu |
-| Điều kiện để tiếp tục | Đầu vào P01-T05 đã đủ; không cần chọn thêm trước khi chuẩn bị đề xuất. Đầu ra P01-T05 phải Human duyệt trước phần phụ thuộc |
+| Gate đang chờ | Human review [P01-T05-QUALITY-r1](KIDEA_QUALITY.md); chưa duyệt |
+| Phase/task đang thực hiện | P01 đang thực hiện; P01-T05 IN_PROGRESS |
+| Việc tiếp theo | Human duyệt hoặc yêu cầu chỉnh gói tiêu chí r1; chưa mở P01-T06 |
+| Điều kiện để tiếp tục | P01-T05 [H] được duyệt trước khi đóng task và tổng hợp review P01-T06 |
 | Điểm quay lại | Chưa có |
 | Vướng mắc khác | Chưa ghi nhận; các lựa chọn triển khai còn mở được giao cho task cụ thể |
 
@@ -106,7 +106,7 @@ Mục tiêu: biết chính xác bản đầu cần làm được gì và kiểm 
 | P01-T02 [H] | Ma trận host, OS, ngôn ngữ/thành phần đầu tiên và môi trường chạy thử | Ghi cái nào cần kiểm chứng thực, cái nào chưa hỗ trợ; xác định quyền/công cụ cần mà chưa tự cài | DONE | [Gói r3 đã Human duyệt](#p01-t02-review), 2026-09-07 |
 | P01-T03 [H] | Phạm vi một sản phẩm pilot nhỏ dùng dữ liệu giả | Có nghiệp vụ dùng chung, ít nhất một dependency ngoài lời gọi trực tiếp, giao diện và nhu cầu admin/monitoring vừa đủ; môi trường phi production, chi phí và ranh giới được chốt | DONE | [Gói r1 đã Human duyệt](#p01-t03-review), 2026-09-07 |
 | P01-T04 | Danh mục kịch bản nghiệm thu Kidea, tách khỏi test của pilot | Có đường đúng, Human reject, approval cũ, dữ liệu sai, ngắt/resume qua Git, dự án cũ đi từ bước 1, thay đổi giữa MVP và sau release; mỗi case có hành vi mong đợi quan sát được | DONE | [Danh mục r1 và kiểm chứng tài liệu](#p01-t04-result), 2026-09-07 |
-| P01-T05 [H] | Tiêu chí chất lượng Kidea và mức bằng chứng tối thiểu | Chốt cách đo độ đúng trạng thái, an toàn ghi, khả năng resume, thời gian đọc/chạy trên hồ sơ đại diện; không dùng “nhanh/tốt/đầy đủ” không kiểm tra được | TODO | — |
+| P01-T05 [H] | Tiêu chí chất lượng Kidea và mức bằng chứng tối thiểu | Chốt cách đo độ đúng trạng thái, an toàn ghi, khả năng resume, thời gian đọc/chạy trên hồ sơ đại diện; không dùng “nhanh/tốt/đầy đủ” không kiểm tra được | IN_PROGRESS | [Gói r1 chờ Human review](#p01-t05-review), 2026-09-07 |
 | P01-T06 | Gói review phạm vi, pilot, acceptance và rủi ro | Mỗi yêu cầu thiết kế có task/kiểm tra dự kiến; lựa chọn chưa chốt không bị thể hiện là đã hỗ trợ | TODO | — |
 
 Gate cuối: Human duyệt phạm vi và tiêu chí nghiệm thu. Nếu không có pilot đủ nhỏ, thu gọn pilot có chủ đích trước, không bỏ kiểm tra quan trọng để giữ lịch.
@@ -182,6 +182,17 @@ Nhận diện nội dung mục 1.1 đã ghi nhận theo phản hồi Human: SHA-
 - Kiểm tra tài liệu ngày 2026-09-07 trên PowerShell/Windows: kiểm tra ID duy nhất/liên tục, 30 dòng đủ bốn cột, file/anchor nội bộ tồn tại, trạng thái 77 task và `git diff --check`. Đây là kiểm tra cấu trúc cùng review ngữ nghĩa thủ công đối với thiết kế/roadmap, không phải chạy 30 họ case hoặc chứng nhận Kidea hoạt động.
 - Rà ảnh hưởng: P01-T05 lấy danh mục này làm đầu vào chốt ngưỡng/bằng chứng; P01-T06 tổng hợp review; P02–P10 hiện thực từng nhóm tại phase sở hữu; P11 thử hành vi phiên mới/pilot thật; P12 kiểm tra bản phát hành và ma trận. Các task sau vẫn TODO, không thay scope T01/T02/T03, không tạo gate mới hoặc chọn runtime/schema.
 - Quy tắc giới thiệu mục đích và xác nhận trước task mới đã ghi tại mục 3.3 theo yêu cầu Human. P01-T04 DONE vì hoàn tất đầu ra tài liệu; P01 vẫn IN_PROGRESS.
+
+<a id="p01-t05-review"></a>
+
+### Review P01-T05 — Tiêu chí chất lượng r1
+
+- Human yêu cầu bắt đầu P01-T05 ngày 2026-09-07, sau phần giải thích mục đích. Đầu ra: [KIDEA_QUALITY.md](KIDEA_QUALITY.md), `P01-T05-QUALITY-r1`, **IN_REVIEW**; chưa có xác nhận duyệt nội dung.
+- Gói gồm KQ-01–KQ-10: trạng thái/gate/quyền, an toàn ghi, resume, impact, bằng chứng/phạm vi, view, tốc độ công cụ, phiên AI mới, chu kỳ và hồ sơ bằng chứng. Có QF-S/QF-M, phương pháp đo, số lần thử, mô hình lỗi và điều kiện chặn nghiệm thu.
+- Quyết định cần Human duyệt: không bù lỗi bắt buộc bằng điểm trung bình; ngân sách 2/5 giây cho đọc/kiểm tra/status và 3/10 giây cho sinh view trên S/M; 11 mẫu mỗi phép đo; ba lần độc lập cho biến thể AI trọng yếu; giới hạn thử chu kỳ và mức bằng chứng. Đây là ngân sách đề xuất, không phải số đo hoặc cam kết đã đạt.
+- Kiểm tra tài liệu: đối chiếu toàn bộ KA-01–KA-30 với KQ-01–KQ-10, kiểm tra ID/link/file, trạng thái 77 task và diff trên Windows/PowerShell. Chưa tạo fixture, chạy benchmark, test skill/pilot hoặc đo phiên AI; không có PASS thực thi.
+- Rà ảnh hưởng: P01-T04 giữ nguyên 30 họ case, liên kết sang tiêu chí mới; P02/P03 cần kiểm chứng ghi/state/resume; P04–P08 giữ review ngữ nghĩa và no-diff/requeue; P09 đo view; P10–P12 giữ phiên bản bằng chứng, quyền và ma trận môi trường. Không đổi ma trận nền tảng/pilot hoặc chọn runtime; những task đó chưa được bắt đầu. P01-T06 chỉ mở sau gate này.
+- Task vẫn IN_PROGRESS, phase P01 vẫn IN_PROGRESS. Xác nhận Human: **chưa có**; kiểm tra tài liệu không thay approval hoặc nghiệm thu sản phẩm.
 
 <a id="p02"></a>
 
@@ -407,4 +418,4 @@ Bảng này là chỉ mục bao phủ, không giữ thêm trạng thái task. Tr
 - Nếu test đòi môi trường/quyền chưa có: ghi blocker và yêu cầu cụ thể, không tự cài/deploy/thu thập dữ liệu ngoài quyền hoặc đổi test thành PASS.
 - Khi cập nhật tiến trình, giữ tài liệu hiện hành rõ ràng: quyết định cũ không còn hiệu lực phải được thay/migrate đủ tham chiếu; giữ bằng chứng cần thiết cho nghiệm thu và khôi phục, không tích lũy các quy tắc cũ mâu thuẫn.
 
-**Bước kế tiếp:** P01-T05 [H] — tiêu chí chất lượng và mức bằng chứng tối thiểu. P01-T04 DONE; chưa bắt đầu P01-T05. Không cần thêm lựa chọn đầu vào trước khi chuẩn bị đề xuất T05, nhưng đầu ra T05 cần Human duyệt. Ý tưởng nhiều agent vẫn ngoài phạm vi bản đầu.
+**Bước kế tiếp:** Human review `P01-T05-QUALITY-r1`. P01-T05 IN_PROGRESS, đầu ra IN_REVIEW; chưa mở P01-T06. Sau khi duyệt, P01-T06 sẽ tổng hợp phạm vi/pilot/kịch bản/tiêu chí/rủi ro để Human review toàn P01, không bắt đầu xây skill. Ý tưởng nhiều agent vẫn ngoài phạm vi bản đầu.

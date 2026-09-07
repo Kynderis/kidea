@@ -1,55 +1,41 @@
-**P01-T05 là task xây “thước đo đạt/chưa đạt” cho Kidea.** Nó giúp sau này ta có căn cứ quyết định Kidea đã đủ tin cậy để dùng hay còn phải sửa, thay vì chỉ cảm thấy “có vẻ chạy tốt”.
+Đã chuẩn bị **P01-T05-QUALITY-r1**, gồm 10 nhóm tiêu chí để bạn duyệt. Toàn bộ nằm trong [bộ tiêu chí chất lượng](https://github.com/Kynderis/kidea/blob/master/KIDEA_QUALITY.md).
 
-### 1. Khác gì với P01-T04 vừa làm?
+### Các mức mình đề xuất
 
-- **P01-T04:** xác định **những tình huống cần kiểm tra**.
-- **P01-T05:** xác định **kiểm tra thế nào, thế nào mới được tính là đạt và cần lưu gì để chứng minh**.
+**1. Đúng và an toàn là bắt buộc**
 
-Ví dụ P01-T04 đã có tình huống: “Ngắt phiên rồi tiếp tục công việc ở phiên mới”.
+Không chấp nhận mất dữ liệu, ghi ngoài quyền, tự vượt bước duyệt hoặc báo PASS sai trong bộ thử. Có lỗi thì sửa và kiểm tra lại; không lấy tốc độ tốt để bù.
 
-P01-T05 sẽ làm rõ: phiên mới phải tìm đúng task đang dở, giữ các quyết định đã duyệt, không làm lại việc đã xong, không tự chạy lại thao tác chưa rõ kết quả; phải quan sát và lưu những gì để xác nhận các điều đó. Chỉ nói “resume được” thì chưa đủ rõ.
+Resume phải tìm đúng việc đang dở, giữ quyết định/bằng chứng và không tự chạy lại thao tác chưa rõ kết quả. Phân tích thay đổi phải bắt đủ ảnh hưởng đã xác định trong bộ mẫu, kể cả nơi không đổi code.
 
-### 2. Cụ thể mình sẽ làm những gì?
+**2. Tốc độ công cụ có ngưỡng cụ thể**
 
-| Phần cần chốt | Hiểu đơn giản |
-|---|---|
-| **Độ đúng của trạng thái** | Hồ sơ nói đang làm/chờ duyệt/đã xong có đúng với thực tế không? Không được báo hoàn thành khi còn test bắt buộc chưa đạt. |
-| **An toàn khi ghi file** | Khi lưu lỗi hoặc bị ngắt giữa chừng, có làm mất nội dung hay ghi đè sai không? Có nhận ra phần cập nhật dở và biết cách tiếp tục an toàn không? |
-| **Khả năng resume** | Sang phiên hoặc máy khác, có tiếp tục đúng việc từ hồ sơ không? Thiếu file/công cụ thì phải báo rõ, không tự đoán. |
-| **Tốc độ xử lý** | Với một bộ hồ sơ có quy mô xác định, đọc trạng thái, kiểm tra hồ sơ hoặc sinh giao diện tiến độ mất bao lâu là chấp nhận được? |
-| **Bằng chứng tối thiểu** | Muốn ghi “đạt” thì cần kết quả chạy, phiên bản, môi trường và trạng thái trước/sau nào? Phần nào phải thử bằng phiên AI mới hoặc môi trường thật? |
+| Thao tác | Hồ sơ nhỏ: 100 task, 1 MiB | Hồ sơ vừa: 1.000 task, 10 MiB |
+|---|---:|---:|
+| Đọc/kiểm tra hồ sơ, tạo dữ liệu trạng thái | ≤ 2 giây | ≤ 5 giây |
+| Sinh giao diện tiến độ | ≤ 3 giây | ≤ 10 giây |
 
-“Tốc độ xử lý” ở đây là của **Kidea**, không phải tốc độ ứng dụng workshop. Mình cũng phải tách thời gian công cụ xử lý file khỏi thời gian AI trả lời hoặc chờ bạn duyệt; không gộp tất cả thành một con số thiếu ý nghĩa.
+Đây là **mức đề xuất, chưa đo**. Mỗi phép đo chạy 11 lần trên máy Windows tham chiếu, lưu tất cả kết quả. Không tính thời gian AI trả lời, chờ bạn, Git hoặc build sản phẩm vào các ngưỡng này.
 
-### 3. Một tiêu chí hoàn chỉnh sẽ trông thế nào?
+**3. Bằng chứng phải kiểm tra lại được**
 
-Ví dụ minh họa cho việc xem trạng thái:
+- Mọi biến thể bắt buộc phải đạt; thiếu môi trường hoặc bỏ chạy không được tính là đạt.
+- Các tình huống AI trọng yếu—duyệt, quyền, resume và báo kết quả—phải đạt **3 lần độc lập ở phiên mới**.
+- Lưu rõ đã thử gì, trên phiên bản/môi trường nào, kết quả trước/sau và giới hạn.
+- Test công cụ không thay thử hành vi AI; thử AI không thay kiểm chứng pilot và thiết bị thật.
 
-- **Điều kiện thử:** hồ sơ có một task đang làm và một gói đang chờ bạn duyệt.
-- **Hành động:** yêu cầu Kidea báo trạng thái.
-- **Điều kiện đạt:** báo đúng task và gói chờ; không sửa hồ sơ nguồn.
-- **Cách chứng minh:** lưu câu trả lời và đối chiếu nội dung file trước/sau.
+Mục tiêu là đủ chặt để bắt lỗi quan trọng, nhưng không biến bản đầu thành cam kết “không bao giờ sai” hoặc phải nhanh trên mọi máy.
 
-Nếu cần tiêu chí về thời gian, phải bổ sung quy mô hồ sơ, môi trường đo, cách đo và ngưỡng chấp nhận. **Chưa tự chốt một số giây bất kỳ trong phần giải thích này.**
+### Trạng thái
 
-### 4. Vì sao cần chốt trước khi xây?
+Đã rà liên kết với 30 nhóm kịch bản, kiểm tra tài liệu và cập nhật GitHub. **Chưa chạy benchmark hoặc test Kidea. P01-T05 vẫn IN_PROGRESS**, chờ bạn duyệt.
 
-Để tránh đến lúc test thất bại mới đổi định nghĩa “đạt” cho dễ vượt qua.
-
-Các lỗi như **tự vượt gate, làm mất dữ liệu hoặc báo PASS sai** không nên được bù bằng việc những phần khác chạy nhanh. Còn ngưỡng tốc độ cần thực tế, gắn với phạm vi bản đầu, không đặt quá cao khiến ta tối ưu không cần thiết.
-
-### 5. Bạn cần quyết định gì?
-
-**Hiện chưa cần bạn cung cấp thêm thông tin hoặc xác nhận lại quyền bắt đầu.** Bạn đã cho phép làm P01-T05.
-
-Mình sẽ chuẩn bị bộ tiêu chí và giải thích các mức đề xuất. **Bạn duyệt đầu ra đó trước khi đóng task**, vì chúng quyết định mức chất lượng ta chấp nhận cho Kidea.
-
-Lượt này mình chỉ giải thích theo yêu cầu “trước khi làm”; chưa xây bộ tiêu chí, chưa chạy thử hay thay đổi trạng thái P01-T05. Khi hoàn tất task, ta có **bộ thước đo đã chốt**, chứ chưa có kết luận rằng Kidea đã đạt các thước đo ấy.
+Bạn duyệt gói r1 với các mức trên chứ?
 
 <oai-mem-citation>
 <citation_entries>
-MEMORY.md:319-320|note=[preserve Human review and scoped answer mirror]
-MEMORY.md:328-328|note=[verify answer publication]
+MEMORY.md:319-320|note=[preserve Human gate and scoped answer mirror]
+MEMORY.md:328-328|note=[verify GitHub publication]
 </citation_entries>
 <rollout_ids>
 01a064b8-dde1-7882-acc1-7d02d6f568c8

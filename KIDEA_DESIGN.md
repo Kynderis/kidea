@@ -518,6 +518,8 @@ Ví dụ: code hủy đơn phát `OrderCancelled`; một tiến trình khác nh�
 
 ## 8. Từ yêu cầu đến test và bằng chứng
 
+Đề xuất thước đo nghiệm thu Kidea: [KIDEA_QUALITY.md](KIDEA_QUALITY.md), gói `P01-T05-QUALITY-r1` **chưa duyệt**. Ngân sách công cụ local tách khỏi thời gian AI và hiệu năng sản phẩm; không phải kết quả đo thực tế.
+
 Danh mục nghiệm thu **chính Kidea**, tách khỏi test sản phẩm được quản lý: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md), đầu ra P01-T04. Đây là đặc tả kịch bản chưa chạy; ngưỡng/mức bằng chứng chốt ở P01-T05 và gói P01 được Human review trước phase tiếp.
 
 Mối liên hệ cần truy được hai chiều:

@@ -4,6 +4,8 @@ Gói `P01-T04-ACCEPTANCE-r1`, ngày 2026-09-07. Đây là **đặc tả kịch b
 
 ## 1. Mục đích và cách sử dụng
 
+Tiêu chí đạt, hồ sơ đo đại diện và mức bằng chứng được đề xuất tại [KIDEA_QUALITY.md](KIDEA_QUALITY.md), gói P01-T05 đang chờ Human duyệt. Không dùng đề xuất này như ngưỡng đã có hiệu lực trước approval.
+
 Kiểm tra Kidea có điều phối, lưu trạng thái, truy ảnh hưởng và báo kết quả đúng trong phạm vi [thiết kế](KIDEA_DESIGN.md#first-release-scope). Không thay test nghiệp vụ hoặc kỹ thuật của [pilot](KIDEA_DESIGN.md#pilot-scope).
 
 Ví dụ: test pilot kiểm tra hai người tranh một chỗ chỉ một người được nhận; test Kidea kiểm tra yêu cầu ấy có đặc tả, test có assertion đúng, bằng chứng đúng phiên bản và task không DONE khi test thất bại. Ứng dụng chạy đúng không tự chứng minh Kidea làm đúng.
