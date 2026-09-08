@@ -1,17 +1,16 @@
-Mình đã soạn xong **gói chốt nơi giữ hồ sơ và điều kiện thử workshop**. Mục đích là tách ứng dụng pilot khỏi repo xây Kidea, đồng thời xác định giới hạn trước khi tạo hoặc chạy nó.
+Đã ghi nhận duyệt và **khép phần chuẩn bị pilot workshop**. Chưa tạo repo hoặc chạy pilot.
 
-Bạn cần duyệt ba đề xuất:
+Gói tiếp theo giải quyết việc: **giữ phần đang sửa tách khỏi bản tích hợp, nhưng không làm quy trình Git phức tạp**.
 
-| Nội dung | Đề xuất |
+| Quyết định | Đề xuất |
 |---|---|
-| **D1 — Nơi giữ công việc** | Một repo workshop riêng tại `D:\Code\kynderis\kidea-workshop-pilot`. Tài liệu sản phẩm trong `docs/`, tiến độ/review trong `.kidea/`, code/test cùng repo. Repo Kidea hiện tại vẫn giữ thiết kế và bộ công cụ Kidea. |
-| **D2 — Môi trường thử** | Lab phi production, chỉ dùng tài khoản/dữ liệu giả; không mở công khai hay cho lập chỉ mục. Có cấu hình/dữ liệu tách biệt và cách khôi phục trước khi thử lỗi. |
-| **D3 — Chi phí** | **0 đồng phát sinh**; tận dụng tài nguyên sẵn có khi được phép. Thiếu máy hoặc công cụ thì báo để quyết định, không tự mua/thuê hay bỏ phần kiểm chứng. |
+| **D1 — Bản đang làm** | Một nhánh tích hợp (`master` cho pilot) và một nhánh làm việc hiện hành cho mỗi thay đổi có phạm vi rõ. Tài liệu, code và test của cùng thay đổi đi cùng nhánh; không tạo nhánh cho từng thao tác hoặc thêm `develop`. |
+| **D2 — Thư mục làm việc riêng** | Mặc định dùng thư mục hiện có. Chỉ thêm **worktree** — thư mục làm việc bổ sung của cùng repo — khi cần giữ bản cũ nguyên trạng để kiểm tra/đối chiếu trong lúc sửa bản mới. |
 
-**Duyệt đề xuất chưa cấp quyền thao tác:** chưa tạo repo/thư mục, cài công cụ, nâng Mac, commit/push hoặc deploy pilot. Những quyền đó sẽ được xin trước đúng thao tác.
+Ví dụ: đổi quy tắc hủy đăng ký workshop thì đặc tả, code và test cùng nằm trên nhánh của thay đổi đó. Worktree chỉ cần nếu phải giữ riêng bản cũ để đối chiếu; không phải tạo thêm project.
 
-Đường dẫn đề xuất hiện chưa tồn tại; mình chưa tạo gì. [Gói đầy đủ trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) đã được cập nhật và xác minh.
+**Gói này chỉ chốt cách tổ chức**, chưa cho phép tạo/chuyển nhánh, tạo worktree, commit/push hoặc merge. Điều kiện nhập thay đổi vào `master` và quyền thao tác sẽ được duyệt riêng.
 
-Sau duyệt, mình sẽ khép phần chuẩn bị pilot rồi soạn đề xuất **cách tổ chức bản code đang làm (branch) và khi nào cần thư mục làm việc tách biệt (worktree)**, chưa áp dụng quyền Git mới.
+[Gói đề xuất trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) đã được cập nhật và xác minh. Sau duyệt, mình sẽ soạn phần **khi nào một thay đổi đủ điều kiện nhập vào bản tích hợp và cần kiểm tra gì sau đó**.
 
-Bạn duyệt D1–D3 này chứ?
+Bạn duyệt D1–D2 này chứ?

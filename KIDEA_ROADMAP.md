@@ -8,23 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T04-S03 — Nơi giữ hồ sơ và điều kiện thử workshop](#review-current), đang chờ duyệt đề xuất. R01-T04 chốt cách dùng workshop kiểm chứng Kidea; S01/S02 đã duyệt bài toán và luồng thử. S03 xác định nơi giữ công việc và giới hạn thử, chưa tạo hoặc chạy ứng dụng.
+Việc hiện hành: [R01-T05-S01 — Tổ chức bản code đang làm](#review-current), chờ duyệt đề xuất. R01-T04 đã khép phần chuẩn bị pilot. R01-T05 xác định cách tách công việc đang sửa khỏi bản tích hợp; S01 chọn cách dùng branch/worktree, S02 sau đó mới chốt điều kiện nhập thay đổi vào bản tích hợp.
 
 <a id="review-current"></a>
 
-### R01-T04-S03-r1 — Ba quyết định chờ duyệt
+### R01-T05-S01-r1 — Hai quyết định chờ duyệt
 
 | Quyết định | Đề xuất | Ý nghĩa và giới hạn |
 |---|---|---|
-| D1. Hồ sơ/code workshop nằm đâu? | Một repo pilot riêng, thư mục local dự kiến `D:\Code\kynderis\kidea-workshop-pilot`, bên cạnh repo Kidea. | Trong pilot: `docs/` giữ tài liệu sản phẩm, `.kidea/` giữ điều phối/review, source/test/config cùng repo. Không chuyển tài liệu thiết kế Kidea sang pilot. |
-| D2. Chạy thử theo phạm vi nào? | Lab phi production, tài khoản/dữ liệu giả; không mở công khai hoặc cho search engine lập chỉ mục. | Tách cấu hình/dữ liệu thử, có cách khôi phục trước diễn tập lỗi. Không dùng dữ liệu hoặc hệ thống đang vận hành để thử phá lỗi. |
-| D3. Chấp nhận chi phí bao nhiêu? | Ngân sách phát sinh 0 đồng; tận dụng tài nguyên sẵn có khi được phép. | Không tự thuê server/domain, mua thiết bị hay dùng dịch vụ trả phí. Thiếu nguồn lực thì báo và xin quyết định, không tự bỏ native hoặc ghi PASS. |
+| D1. Giữ bản đang làm thế nào? | Một nhánh tích hợp (`master` cho pilot) và một branch làm việc hiện hành cho mỗi thay đổi có phạm vi rõ. Không thêm `develop` hoặc nhiều nhánh thường trực. | Branch là dòng phiên bản riêng: tài liệu, code, test của cùng thay đổi đi cùng nhau. Không tạo nhánh cho từng thao tác nhỏ; nhiều bước trong cùng thay đổi có thể dùng chung nhánh. |
+| D2. Khi nào cần worktree? | Mặc định dùng thư mục làm việc hiện có. Chỉ thêm worktree khi cần giữ nguyên thư mục/bản đang kiểm tra và mở riêng bản cần sửa. | Worktree là thư mục làm việc bổ sung của cùng repo, không phải project mới. Nó tốn thêm chỗ và cần theo dõi đúng nhánh; không tạo nhiều luồng triển khai hoặc nhiều nguồn hồ sơ độc lập. |
 
-**Quyền không đi kèm approval thiết kế:** duyệt gói chưa cho tạo thư mục/repo, ghi hồ sơ pilot, commit/push, cài công cụ, nâng Mac hoặc deploy. Trước lần ghi đầu ở R03-T01, xác nhận lại root và quyền; trước chạy ở R09-T01, chốt máy đích, cấu hình cô lập, tài khoản/kết nối và khôi phục. Quyền Git riêng của repo xây Kidea không lan sang pilot.
+**Ví dụ:** khi đổi quy tắc hủy đăng ký workshop, giữ đặc tả, code và test của thay đổi trên cùng branch. Nếu cần giữ bản cũ để đối chiếu, mới đề xuất worktree riêng; không tự sao chép hồ sơ thành nguồn thứ hai.
 
-Đã kiểm tra đường dẫn đề xuất chưa tồn tại; chưa tạo gì. Chưa chọn GitHub remote, máy chủ hoặc toolchain mới. Seed cụ thể và N/A cho bằng chứng SEO ngoài lab vẫn chốt tại gói chuẩn bị pilot; chưa được duyệt kèm.
+Đây là hướng tổ chức, **không cấp quyền tạo/chuyển branch, tạo/xóa worktree hoặc commit/push/merge**. Quyền cụ thể thuộc R01-T06; cách lưu dở/checkpoint cũng được trình riêng. Chưa đổi nhánh đang dùng của repo Kidea, không ép đổi tên nhánh tích hợp của project có sẵn.
 
-**Nguồn:** [nơi giữ hồ sơ và lab](KIDEA_DESIGN.md#pilot-lab-baseline), [phân vùng hồ sơ](KIDEA_DESIGN.md#files-view). Sau duyệt, kiểm tra khép R01-T04 rồi soạn gói về cách dùng branch làm việc và điều kiện cần worktree; chưa thao tác Git trong pilot. Không tạo file tạm.
+**Nguồn:** [đề xuất G1 và giới hạn](KIDEA_DESIGN.md#git-working-layout). Chưa chốt lúc được nhập vào `master`, chưa coi `master` là production. Sau duyệt sẽ soạn S02 về điều kiện chấp nhận thay đổi vào bản tích hợp và kiểm tra sau tích hợp. Chưa thực hiện Git trong pilot; không tạo file tạm.
 
 <a id="working-rules"></a>
 
@@ -86,7 +85,8 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T03-S03 | DONE | R01-T03-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại 6f2565c; [bằng chứng và khép task](#r01-t03-result) |
 | R01-T04-S01 | DONE | R01-T04-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 4abf90b; [bằng chứng](#r01-t04-s01-result) |
 | R01-T04-S02 | DONE | R01-T04-S02-r1 — APPROVED | Human: “Tôi nhất trí.”; D1–D3 tại c8dace9; [bằng chứng](#r01-t04-s02-result) |
-| R01-T04-S03 | IN_PROGRESS | R01-T04-S03-r1 — IN_REVIEW | Human: “Ok làm đi” cho soạn đề xuất, không phải duyệt đầu ra; [gói hồ sơ/lab/chi phí](#review-current), chưa tạo root hoặc cấp quyền thao tác |
+| R01-T04-S03 | DONE | R01-T04-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại b0524f5; [bằng chứng và khép task](#r01-t04-result) |
+| R01-T05-S01 | IN_PROGRESS | R01-T05-S01-r1 — IN_REVIEW | [Gói tổ chức bản đang làm](#review-current); chưa duyệt G1 hoặc cấp quyền Git |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -165,6 +165,15 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - Đề xuất ở cb56f04 chưa được duyệt hoặc áp dụng: chỉ thêm nội dung trao đổi vào DESIGN/ROADMAP và answer.md. Nay đóng đề xuất, bỏ con trỏ trao đổi hiện hành, giữ workshop là pilot đầy đủ theo S01/S02 đã duyệt; S03 tiếp tục là việc kế tiếp chưa bắt đầu.
 - Đối chiếu ma trận nền tảng, R05/R09, ACCEPTANCE và QUALITY: chưa từng chuyển sang Thuận Thiên nên không cần hoàn tác hoặc sửa các phần này. Không đổi công nghệ, nghiệp vụ, case, ngưỡng hoặc quyền đã có; giữ nguyên bằng chứng approval.
 - Chỉ cập nhật ba file KIDEA_DESIGN.md, KIDEA_ROADMAP.md và answer.md trong repo Kidea. Không sửa repo Thuận Thiên local/remote, không tạo/xóa file tạm, không triển khai pilot.
+
+<a id="r01-t04-result"></a>
+
+### Kết quả R01-T04 — ngày 2026-09-08
+
+- S03: Human “Duyệt nhé” sau [gói D1–D3 tại b0524f5](https://github.com/Kynderis/kidea/blob/b0524f5464e5953d9d01790c54599f69465d546d/KIDEA_ROADMAP.md#review-current): repo workshop riêng ở root local đã trình, docs/.kidea/source cùng repo; lab phi production với dữ liệu giả và giới hạn cô lập/khôi phục; ngân sách phát sinh 0 đồng. Không cấp quyền tạo/ghi repo, Git, cài/nâng hoặc deploy.
+- Đối chiếu S01–S03 với DESIGN, R03-T01, R09-T01–T14 và KA-01/04/12/27/28/30: giữ đủ bài toán, chuỗi lỗi, native và ranh giới bằng chứng. Seed cụ thể, máy đích, quyền thực thi và N/A cho index thật vẫn thuộc gói chuẩn bị pilot tương ứng; chưa duyệt kèm hoặc coi đã test.
+- Đồng bộ root và căn cứ approval trong DESIGN cùng con trỏ RV-02; kiểm tra liên kết/trạng thái/diff, đủ ba subtask R01-T04 DONE. Phase R01 chưa được duyệt; chưa tạo repo/thư mục pilot, chọn remote, chạy ứng dụng hoặc thay quyền Git. Không cần sửa case/ngưỡng vì các quyết định giữ phạm vi đã trình.
+- Không tạo file tạm hoặc untracked cần dọn; giữ nguồn và bằng chứng cũ. Thuận Thiên tiếp tục ngoài công việc hiện hành.
 
 <a id="phase-overview"></a>
 
@@ -426,7 +435,7 @@ Mười bước sản phẩm không bị gộp bởi cách chia phase xây skill
 | Vấn đề | Nơi xử lý mới | Giới hạn tại lượt tái lập |
 |---|---|---|
 | RV-01 — Git G1–G6 | R01-T05/T06/T07 | Chưa duyệt, chưa mở quyền |
-| RV-02 — Nơi giữ hồ sơ pilot trước khi code | R01-T04-S03, kiểm tra lại R03-T01 | Chỉ lên kế hoạch chốt sớm; chưa tạo repo/chọn root thay Human |
+| RV-02 — Nơi giữ hồ sơ pilot trước khi code | R01-T04-S03, kiểm tra lại R03-T01 | Root theo [kết quả R01-T04](#r01-t04-result); chưa tạo repo, phải xác nhận lại root/quyền trước ghi |
 | RV-03 — Evidence không tự làm cũ chính mình | R01-T09-S01 → R02-T04 | Chưa chọn fingerprint/schema |
 | RV-04 — Ngưỡng và chi phí thử thiếu căn cứ | R01-T09-S02/S03 → R02-T10/R06-T09/R07-T04 | Các số cũ vẫn chưa duyệt; không tự hạ ngưỡng |
 | RV-05 — Pilot nhỏ nghiệp vụ nhưng rộng nền tảng | R05 từng profile; R09 từng lát cắt/nền tảng | Thay cách phân rã, không bỏ mobile hoặc chứng minh bằng mô phỏng thay thực |

@@ -207,11 +207,11 @@ Gói `P01-T03-PILOT-r1`, ngày 2026-09-07: **APPROVED, Human duyệt ngày 2026-
 
 #### Môi trường, chi phí và giới hạn
 
-Đề xuất nơi giữ hồ sơ ở vòng R2, `R01-T04-S03-r1` — **IN_REVIEW, chưa duyệt**: một repo workshop riêng tại thư mục local dự kiến `D:\Code\kynderis\kidea-workshop-pilot`, bên cạnh repo xây Kidea. Trong repo pilot, `docs/` giữ tài liệu sản phẩm, `.kidea/` giữ điều phối/review; source/test/config cùng repo. Không chuyển các file thiết kế/lộ trình Kidea sang đây. Đã kiểm tra đường dẫn chưa tồn tại ngày 2026-09-08; chưa tạo thư mục/repo, chưa chọn remote GitHub hoặc được phép ghi hồ sơ. Xác nhận lại root/quyền trước lần ghi đầu ở R03-T01; schema chi tiết vẫn thuộc R02.
+Human đã duyệt nơi giữ hồ sơ, lab và ngân sách ở vòng R2, `R01-T04-S03-r1`; [bằng chứng](KIDEA_ROADMAP.md#r01-t04-result). Chọn một repo workshop riêng tại thư mục local `D:\Code\kynderis\kidea-workshop-pilot`, bên cạnh repo xây Kidea. Trong repo pilot, `docs/` giữ tài liệu sản phẩm, `.kidea/` giữ điều phối/review; source/test/config cùng repo. Không chuyển các file thiết kế/lộ trình Kidea sang đây. Đã kiểm tra đường dẫn chưa tồn tại khi trình gói ngày 2026-09-08; chưa tạo thư mục/repo, chưa chọn remote GitHub hoặc được phép ghi hồ sơ. Xác nhận lại root/quyền trước lần ghi đầu ở R03-T01; schema chi tiết vẫn thuộc R02.
 
 - Chỉ lab phi production, tài khoản và dữ liệu giả; không public release, người dùng thật, thanh toán, email/SMS, danh sách chờ, thông báo push hoặc cộng tác nhiều agent. Không tự thuê server/domain hay dùng dịch vụ tính phí.
-- Ngân sách phát sinh được đề xuất: **0 đồng**; tận dụng thiết bị/tài nguyên sẵn có nếu được phép. Không coi tài nguyên đang có là đã được kiểm tra hoặc đã cấp quyền dùng. Nếu thiếu máy Mac, thiết bị, quyền ký/build, tài nguyên Ubuntu hoặc kết nối cần thiết, ghi blocker và xin quyết định; không âm thầm bỏ mobile hoặc ghi PASS.
-- Vòng mới đưa quyết định nơi giữ hồ sơ pilot về R01-T04-S03, kiểm tra lại ở R03-T01 trước khi ghi tài liệu; chưa chọn root/tạo repo trong lần tái lập. R09-T01 chốt máy đích, cô lập, tài khoản/kết nối, quyền cài/chạy/deploy và khôi phục trước thực thi. Quyết định cụ thể vẫn cần Human, không suy quyền tạo hồ sơ thành quyền chạy ứng dụng.
+- Ngân sách phát sinh đã duyệt: **0 đồng**; tận dụng thiết bị/tài nguyên sẵn có nếu được phép. Không coi tài nguyên đang có là đã được kiểm tra hoặc đã cấp quyền dùng. Nếu thiếu máy Mac, thiết bị, quyền ký/build, tài nguyên Ubuntu hoặc kết nối cần thiết, ghi blocker và xin quyết định; không âm thầm bỏ mobile hoặc ghi PASS.
+- Root pilot được chọn tại R01-T04-S03 như trên; kiểm tra lại ở R03-T01 trước khi ghi tài liệu, chưa tạo repo. R09-T01 chốt máy đích, cô lập, tài khoản/kết nối, quyền cài/chạy/deploy và khôi phục trước thực thi. Quyết định cụ thể vẫn cần Human, không suy quyền tạo hồ sơ thành quyền chạy ứng dụng.
 - SEO trong lab: kiểm tra HTML prerender/SSR, metadata/canonical, khả năng đọc nội dung và ranh giới public/private; không cho lập chỉ mục lab. Không có bằng chứng được search engine/AI search lập chỉ mục hoặc xếp hạng thật; phần đó cần Human duyệt N/A cho pilot nếu không xuất bản công khai, không bỏ năng lực hướng dẫn SEO của Kidea.
 - Phạm vi OS/toolchain và máy thật/mô phỏng lấy [ma trận vòng trước](#platform-matrix) làm căn cứ rà R01-T03. R01-T08/T09 rà case/cách đo Kidea; R03–R05 xây hướng dẫn đặc tả/rule/test; R08/R09 chốt và đo workload/chất lượng sản phẩm thật. Seed nhỏ không phải cam kết tải hoặc hiệu năng. Framework backend, database, event transport và schema chưa được chọn tại gate này.
 
@@ -436,6 +436,16 @@ Vòng R2: D1–D2 của `R01-T02-S02-r1` đã được Human duyệt; [bằng ch
 Ví dụ: rule “không vượt sức chứa” ở tài liệu nghiệp vụ; record review tham chiếu đúng bản rule, còn tiến trình tham chiếu record review. INDEX/HTML có thể hiển thị tóm tắt nhưng không tạo một bản rule hoặc approval độc lập; nguồn đổi phải được đối chiếu trước khi tiếp tục phần phụ thuộc.
 
 Một repo chứa tài liệu, hồ sơ điều phối và source/test/config cần quản lý phiên bản; không có repo `.kidea` riêng cho cùng sản phẩm. Các clone/worktree của cùng repo không phải project hoặc nguồn đặc tả độc lập. Quyền tạo/đổi/push Git vẫn theo chính sách đã có; đề xuất G1–G6 chưa được duyệt. Repository xây chính Kidea này chưa là project mẫu do skill quản lý: các file `KIDEA_*` ở root vẫn là nguồn thiết kế/lộ trình hiện hành, không tự di chuyển chúng sang cây pilot.
+
+<a id="git-working-layout"></a>
+
+#### Đề xuất G1 — tổ chức bản đang làm, chưa duyệt
+
+Gói [R01-T05-S01-r1](KIDEA_ROADMAP.md#review-current) tách G1 từ đề xuất Git vòng trước: một nhánh tích hợp (`master` cho pilot), một branch làm việc hiện hành cho mỗi thay đổi có phạm vi rõ, không thêm `develop` hoặc nhiều nhánh thường trực. Tài liệu/code/test của cùng thay đổi đi cùng nhánh; không tạo branch theo từng thao tác nhỏ. Với project có sẵn, giữ tên nhánh tích hợp hiện có trừ khi Human duyệt đổi.
+
+Mặc định dùng thư mục làm việc hiện có; chỉ đề xuất worktree khi cần giữ nguyên thư mục/bản đang kiểm tra và mở riêng bản cần sửa. Worktree thuộc cùng repo, không tạo project hoặc nguồn hồ sơ độc lập và không mở nhiều luồng triển khai. Phải nhận diện đúng repo/nhánh/bản nguồn khi đổi thư mục; thư mục phụ có thể cần thêm dependency/artifact và dung lượng.
+
+G1 không chốt điều kiện tích hợp G2, quyền Git G3, checkpoint/khôi phục G4 hoặc version/release G5–G6. Duyệt cách tổ chức không tự cấp quyền tạo/chuyển/xóa branch/worktree, commit/push/merge; chính sách quyền hiện hành giữ nguyên cho đến đúng gói được duyệt.
 
 Tách thư mục không tách quyền kiểm tra: Kidea phải đọc đủ nguồn liên quan ở cả `.kidea`, `docs/`, source/test/config. Helper chỉ được ghi đúng file/đường dẫn đã xác định cho hành động hiện tại; không coi “nằm trong repo” là quyền sửa toàn repo. Các link sang tài liệu sản phẩm là bình thường, nhưng link sai root/thoát phạm vi không được tự trở thành quyền đọc/ghi ngoài project.
 
