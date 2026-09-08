@@ -8,11 +8,11 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T02-S02 — Nguồn chính và phạm vi đọc/ghi](#review-current). R01-T02 chốt cách quản lý hồ sơ project; S01 đã duyệt nơi lưu, S02 chốt cách tránh mâu thuẫn và sửa ngoài phạm vi. [Sổ công việc](#work-state) giữ trạng thái.
+R01-T02 đã khép: [kết quả](#r01-t02-result), trạng thái tại [sổ công việc](#work-state). Việc kế tiếp, chưa bắt đầu: R01-T03-S01 — rà nền tảng chạy Kidea và backend sản phẩm. Đầu ra là gói quyết định về host Windows và đích Ubuntu, lấy [ma trận nền tảng](KIDEA_DESIGN.md#platform-matrix) làm căn cứ; không cần xác nhận thêm để soạn đề xuất, nhưng phải duyệt đầu ra trước phần phụ thuộc. Chưa cài/nâng cấp hoặc kiểm chứng toolchain thực.
 
 <a id="review-current"></a>
 
-### R01-T02-S02-r1 — Hai quyết định chờ Human duyệt
+### R01-T02-S02-r1 — Đã duyệt, không còn chờ phản hồi
 
 | Quyết định | Đề xuất | Hệ quả cần hiểu |
 |---|---|---|
@@ -23,7 +23,7 @@ Việc hiện hành: [R01-T02-S02 — Nguồn chính và phạm vi đọc/ghi](#
 
 **Đọc nguồn:** [Nguồn có hiệu lực và ranh giới ghi](KIDEA_DESIGN.md#source-authority-and-write-boundary). Đã đối chiếu các đường init/status/resume/view và case hồ sơ thiếu/ghi dở/nguồn cũ; đây là review tài liệu, chưa test skill.
 
-**Phạm vi duyệt:** chỉ D1–D2; chưa chọn schema, fingerprint hay cấp quyền Git/cài/deploy. Sau khi Human duyệt, S03 đồng bộ ví dụ/link và kiểm tra để khép R01-T02; không cần một lần xin phép riêng cho phần đồng bộ đó. Chưa có file tạm cần xóa.
+**Phạm vi duyệt:** Human phản hồi “Mình duyệt” đối với D1–D2 tại commit `5cf853fbc678f164f7728ddfba8922a831b3cc3c`; chưa chọn schema, fingerprint hay cấp quyền Git/cài/deploy. S03 đã đồng bộ và kiểm tra để khép R01-T02; [bằng chứng](#r01-t02-result). Không có file tạm cần xóa.
 
 <a id="working-rules"></a>
 
@@ -78,7 +78,8 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T01-S02 | DONE | [A] — không có quyết định mới | Đối chiếu DESIGN, danh mục KA và bảng bao phủ; không đổi scope hoặc ngưỡng; [kết quả](#r01-t01-result) |
 | R01-T01-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ approval, kiểm tra tài liệu và dọn tạm; [kết quả](#r01-t01-result) |
 | R01-T02-S01 | DONE | R01-T02-S01-r1 — APPROVED | Human: “Tôi duyệt”; chỉ D1–D2 tại b908696; [bằng chứng](#r01-t02-s01-result) |
-| R01-T02-S02 | IN_PROGRESS | R01-T02-S02-r1 — IN_REVIEW | Human cho chuẩn bị bằng “Ok bạn làm đi”; [gói hai quyết định](#review-current), chưa duyệt đầu ra |
+| R01-T02-S02 | DONE | R01-T02-S02-r1 — APPROVED | Human: “Mình duyệt”; D1–D2 tại 5cf853f; [bằng chứng](#r01-t02-result) |
+| R01-T02-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ/ví dụ, rà case/link/trạng thái và cleanup; [kết quả](#r01-t02-result) |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -97,7 +98,16 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 
 - Human: “Tôi duyệt”, đối với D1–D2 trong [gói tại b908696](https://github.com/Kynderis/kidea/blob/b908696144e90054738896d0ffc49b8177cc35aa/KIDEA_ROADMAP.md#review-current): tài liệu sản phẩm ngoài .kidea; hồ sơ điều phối/review trong .kidea; cùng một repo.
 - DESIGN dẫn về xác nhận này. Nội dung ranh giới không đổi so với đề xuất, nên không cần sửa case hoặc cấu trúc file; kiểm tra anchor/link và diff. Không có file tạm tạo ra hoặc cần xóa, không chuyển file project thật.
-- S02 (nguồn duy nhất và đọc/ghi), S03 (đồng bộ toàn task), schema, repo pilot và quyền Git/cài/deploy chưa được duyệt hoặc thực hiện kèm. S01 DONE không đóng R01-T02 hay phase R01; không phải test hành vi skill.
+- Xác nhận S01 tại thời điểm đó không bao gồm S02/S03, schema, repo pilot hoặc quyền Git/cài/deploy. Tiến trình sau đó nằm ở sổ công việc, không nhập trạng thái hiện hành vào bản ghi lịch sử này.
+
+<a id="r01-t02-result"></a>
+
+### Kết quả R01-T02 — ngày 2026-09-08
+
+- S02: Human “Mình duyệt” sau [gói D1–D2 tại 5cf853f](https://github.com/Kynderis/kidea/blob/5cf853fbc678f164f7728ddfba8922a831b3cc3c/KIDEA_ROADMAP.md#review-current): một nguồn có hiệu lực cho từng thông tin; đọc đủ nguồn liên quan và chỉ ghi đúng đích/phạm vi được phép. Không chốt schema/fingerprint hoặc cấp quyền Git/cài/deploy.
+- S03: DESIGN mục 5 gắn căn cứ approval và ví dụ rule → review → tiến trình; đối chiếu INDEX/work, init/status/resume/view và README tham khảo. KA-03/07/09/10/12/25/26 đã mô tả đúng nguồn/ghi/stale nên không cần đổi case; KQ-02/06 chỉ được kiểm tra tính nhất quán, không duyệt ngưỡng hoặc toàn bộ QUALITY.
+- Kiểm tra Markdown/link/anchor, sáu subtask R01-T01/T02 đã DONE, các task sau chưa mở; không có thay đổi code, schema, dữ liệu pilot hoặc cấu trúc project. Không phát hiện khoảng lệch cần mở lại S01/S02. Đây là kiểm chứng tài liệu, không phải kiểm thử hành vi Kidea.
+- Không tạo scratch hoặc file untracked cần dọn; giữ nguyên nguồn tham khảo, báo cáo nghiên cứu và bằng chứng. R01-T02 đủ ba subtask để đóng; phase R01 vẫn chưa được duyệt.
 
 <a id="phase-overview"></a>
 
