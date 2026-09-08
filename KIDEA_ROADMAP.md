@@ -8,24 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T05-S02 — Khi nào được nhận vào bản tích hợp](#review-current), chờ duyệt đề xuất. R01-T05 tổ chức bản đang sửa và bản tích hợp; S01 đã duyệt cách dùng branch/worktree. S02 chốt điều kiện chất lượng trước và sau tích hợp, không cấp quyền merge.
+Việc hiện hành: [R01-T05-S02 — Quy trình một thay đổi từ branch tới bản tích hợp](#review-current). Human đề nghị làm rõ nhịp test task nhỏ → kiểm tra toàn project → merge → build/triển khai. Gói được viết lại thành r2 để trao đổi; chưa có xác nhận duyệt G2.
 
 <a id="review-current"></a>
 
-### R01-T05-S02-r1 — Hai quyết định chờ duyệt
+### R01-T05-S02-r2 — Hai nguyên tắc được diễn giải thành quy trình
 
-| Quyết định | Đề xuất | Ý nghĩa và giới hạn |
+| Quyết định | Đề xuất | Cách hiểu |
 |---|---|---|
-| D1. Khi nào thay đổi đủ điều kiện nhập vào `master`? | Hoàn chỉnh đúng phạm vi đã chốt; tài liệu/code/test/cấu hình liên quan đồng bộ; đủ kiểm tra và Human gate bắt buộc, bằng chứng còn đúng bản. | Gói thiết kế chỉ có tài liệu vẫn được nhận khi hoàn chỉnh; thay đổi chức năng không được gọi là xong nếu còn thiếu phần bắt buộc. Không cần chờ cả sản phẩm hoàn thành, nhưng không thu nhỏ phạm vi để giấu việc dở. |
-| D2. Sau khi nhập thì xác nhận thế nào? | Kiểm tra lại bản tích hợp thực tế theo phạm vi ảnh hưởng, gồm lỗi tương tác với phần đã có; ghi đúng commit và kết quả. | Nhánh riêng PASS chưa đủ. Nếu kiểm tra lỗi hoặc chưa chạy thì bản tích hợp chưa được xác nhận đạt; giữ bằng chứng, dừng phát hành và xử lý theo quyền đã có. |
+| D1. Làm và kiểm tra thay đổi thế nào? | Chốt một đợt thêm/sửa/xóa tính năng; bắt đầu branch từ `master` mới nhất đã xác minh. Task con dùng chung branch, đồng bộ đầy đủ nơi liên quan và test phần sửa/các phụ thuộc bị ảnh hưởng. Xong cả đợt thì kiểm tra nhất quán toàn project, chạy đầy đủ bộ test bắt buộc của project và kiểm tra build trước merge. | Test nhỏ giúp phát hiện lỗi sớm; kết quả từng task chưa thay bộ hồi quy toàn project. Mỗi nơi bị ảnh hưởng phải được xử lý hoặc có căn cứ không cần sửa, kể cả nơi không đổi code. |
+| D2. Merge và phát hành thế nào? | Đủ kết quả và gate thì merge khi có quyền; xác nhận bản tích hợp thực tế. Nếu cần phát hành: tạo/kiểm tra bản build, deploy khi được phép, rồi kiểm tra luồng chính và vận hành trên môi trường đích. | Build thành công chưa có nghĩa đã triển khai. Pilot workshop dùng lab; các bài thử phá lỗi dùng môi trường cô lập. |
 
-**Ví dụ:** sửa quy tắc hủy đăng ký cần đồng bộ đặc tả, backend/client bị ảnh hưởng và test. Test trên nhánh riêng đạt vẫn phải kiểm tra lại sau tích hợp. Ngược lại, một gói thiết kế được duyệt không phải chờ viết toàn bộ ứng dụng mới được lưu vào bản tích hợp.
+**Kiểm tra sau merge:** luôn xác nhận đúng bản nguồn. Chỉ tái dùng kết quả toàn bộ test nếu chứng minh nguồn/test/cấu hình, dependency và môi trường/dữ liệu kiểm thử vẫn khớp; khi đó kiểm tra nhanh bản tích hợp. Có thay đổi thì kiểm tra lại phần bị ảnh hưởng, chạy lại toàn bộ khi phạm vi yêu cầu hoặc chưa xác định được. Không suy “một người làm” thành bằng chứng không đổi.
 
-`master` là bản tích hợp, **không mặc nhiên là bản đang chạy production**. Tích hợp không thay quyền push, tạo tag hoặc deploy. Nếu bản nguồn đổi làm ảnh hưởng căn cứ review/test, phải đối chiếu và bổ sung kiểm tra/duyệt lại phần bị ảnh hưởng trước khi nhận.
+Nguồn: [quy trình và ví dụ](KIDEA_DESIGN.md#git-integration-gate). Test thiếu/lỗi/skip chưa đạt. Việc cũ còn dở cần giữ checkpoint và xét phụ thuộc; không tự bỏ phần chưa merge.
 
-**Nguồn:** [đề xuất G2](KIDEA_DESIGN.md#git-integration-gate). Chưa chọn cách merge, CI/branch protection hoặc ngưỡng QUALITY; không duyệt quyền Git G3 hay cách checkpoint/khôi phục G4.
-
-Sau duyệt, kiểm tra khép R01-T05; tiếp đó soạn gói phân định thao tác Git nào Kidea được tự làm trên máy và thao tác nào cần quyền riêng. Chưa thao tác Git trong pilot; không tạo file tạm.
+Đây là đề xuất r2, chưa cấp quyền Git/deploy, chọn CI hoặc đổi ngưỡng. Không tạo branch, build hoặc chạy pilot trong lượt này.
 
 <a id="working-rules"></a>
 
@@ -89,7 +87,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T04-S02 | DONE | R01-T04-S02-r1 — APPROVED | Human: “Tôi nhất trí.”; D1–D3 tại c8dace9; [bằng chứng](#r01-t04-s02-result) |
 | R01-T04-S03 | DONE | R01-T04-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại b0524f5; [bằng chứng và khép task](#r01-t04-result) |
 | R01-T05-S01 | DONE | R01-T05-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 7df435b; [bằng chứng G1](#r01-t05-s01-result) |
-| R01-T05-S02 | IN_PROGRESS | R01-T05-S02-r1 — IN_REVIEW | [Gói điều kiện tích hợp](#review-current); chưa duyệt G2 hoặc cấp quyền merge |
+| R01-T05-S02 | IN_PROGRESS | R01-T05-S02-r2 — IN_REVIEW | Human đề xuất luồng một thay đổi/test từng mức và yêu cầu giải thích; [gói r2](#review-current), chưa duyệt đầu ra. r1 tại 060f87d được thay bằng r2, không ghi APPROVED |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
