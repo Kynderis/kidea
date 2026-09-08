@@ -1,14 +1,14 @@
-**R01-T03-S01 đã soạn xong, đang chờ bạn duyệt hai quyết định nền tảng:**
+Đã ghi nhận **S01 được duyệt**. Mình đã soạn tiếp **S02 — web/SEO**, hiện chờ bạn duyệt hai điểm:
 
 | Quyết định | Đề xuất |
 |---|---|
-| **D1 — Máy chạy Kidea** | Windows 11 x64 là nền tảng hỗ trợ đầu tiên; làm việc local, không cần server Kidea. Chưa công bố hỗ trợ host macOS/Linux. |
-| **D2 — Backend sản phẩm** | C++20, chạy trên Ubuntu 24.04 LTS amd64 làm nền kiểm chứng. Có thể soạn code trên Windows, nhưng build/test Linux và kiểm tra bản phát hành trên môi trường Ubuntu đích. |
+| **D1 — Cách xây web** | Giữ **SvelteKit + TypeScript**. Trang tĩnh tạo sẵn HTML; trang động cần SEO tạo HTML phía server; realtime/hiệu ứng cập nhật ở trình duyệt. Nghiệp vụ vẫn thuộc backend C++, không tạo bộ rule thứ hai ở web. |
+| **D2 — SEO trong quy trình** | Giữ SEO xuyên suốt mười bước, với hai lần duyệt riêng: **thiết kế SEO ở bước 4** và **sẵn sàng SEO ở bước 10**, trước phát hành công khai. |
 
-**Điểm dễ nhầm:** C++ là ngôn ngữ backend của sản phẩm được quản lý, không bắt Kidea phải viết bằng C++. Runtime của Kidea sẽ chốt riêng.
+SEO chỉ dành cho nội dung được phép công khai. Không mở dữ liệu riêng/admin để phục vụ tìm kiếm; không cam kết được lập chỉ mục, lên hạng hoặc được AI trích dẫn chỉ vì chọn framework này.
 
-Bạn chỉ cần đọc [gói S01 — host và backend](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Đây là giữ hướng đã chọn trước đó; chưa xác minh lại toolchain hoặc chạy build, chưa cài/nâng cấp gì.
+Bạn chỉ cần đọc [gói S02 — web và SEO](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa chọn lại phiên bản, CDN hay ngưỡng hiệu năng; chưa cài hoặc deploy.
 
-Đã cập nhật GitHub; không tạo file tạm. Sau khi bạn duyệt, mình sẽ ghi nhận S01 và chuẩn bị gói **web/SEO ở S02**, không hỏi lại quyền bắt đầu soạn.
+Đã cập nhật GitHub, không tạo file tạm. **Sau khi duyệt**, mình sẽ chuẩn bị S03 về Android/iOS và thời điểm kiểm tra thiết bị, không hỏi lại quyền soạn.
 
-Bạn duyệt D1–D2 của gói này chứ?
+Bạn duyệt D1–D2 của S02 chứ?

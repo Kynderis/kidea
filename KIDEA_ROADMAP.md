@@ -8,24 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T03-S01 — Host Kidea và backend sản phẩm](#review-current). Task R01-T03 rà nền tảng bản đầu; S01 chỉ xét hai phần dưới đây, web và mobile có gói riêng. [Sổ công việc](#work-state) giữ trạng thái.
+Việc hiện hành: [R01-T03-S02 — Web và SEO](#review-current). R01-T03 chốt nền tảng bản đầu; S01 host/backend đã được duyệt, nay S02 chỉ rà hướng web và quy trình SEO. [Sổ công việc](#work-state) giữ trạng thái.
 
 <a id="review-current"></a>
 
-### R01-T03-S01-r1 — Hai quyết định chờ duyệt
-
-**Mục đích:** phân biệt máy dùng Kidea để làm việc với môi trường chạy backend của sản phẩm. Giữ hướng đã chọn ở vòng trước, không chọn lại mọi phiên bản công cụ.
+### R01-T03-S02-r1 — Hai quyết định chờ duyệt
 
 | Quyết định | Đề xuất | Ý nghĩa và giới hạn |
 |---|---|---|
-| D1. Kidea chạy ở đâu trong bản đầu? | Windows 11 x64 là host hỗ trợ đầu tiên; hồ sơ và công cụ hỗ trợ chạy local, không cần server Kidea. | Tập trung kiểm chứng một host. Chưa công bố Kidea chạy trên macOS/Linux hoặc mọi ứng dụng AI. Ngôn ngữ/runtime của helper Kidea chốt riêng ở R02-T01. |
-| D2. Backend sản phẩm dùng gì và chạy ở đâu? | C++20, đích Ubuntu 24.04 LTS amd64 làm cấu hình nền kiểm chứng. Soạn source trên Windows; build/test Linux trong WSL2 phù hợp hoặc môi trường Linux được phép. | C++ là ngôn ngữ backend sản phẩm, không bắt Kidea phải viết bằng C++. Bản release phải được kiểm tra trên môi trường Ubuntu đích; chạy tốt trên Windows/WSL chưa đủ chứng minh release. |
+| D1. Hướng xây web bản đầu? | Giữ SvelteKit + TypeScript: tạo sẵn HTML cho trang tĩnh (prerender), tạo HTML phía server cho trang động cần SEO (SSR); realtime/hiệu ứng cập nhật ở trình duyệt sau lần tải đầu. | Nội dung chính không phụ thuộc hoàn toàn vào JavaScript phía người xem. Backend C++ vẫn sở hữu nghiệp vụ; lớp web không có bản rule riêng. Không thêm framework thứ hai hoặc chốt lại phiên bản package ở gói này. |
+| D2. Đưa SEO vào quy trình thế nào? | Giữ SEO/khả năng được tìm thấy xuyên mười bước, với hai gate: duyệt thiết kế SEO ở bước 4 trước kiến trúc; duyệt sẵn sàng SEO ở bước 10 trước phát hành công khai. | Không dồn SEO tới cuối. Chỉ áp dụng nội dung được phép công khai; không mở dữ liệu riêng/admin hoặc lab để lấy kết quả tìm kiếm. Không áp dụng thì Human duyệt lý do N/A. |
 
-**Căn cứ:** [hai dòng Host Kidea / Backend sản phẩm trong ma trận](KIDEA_DESIGN.md#host-backend-baseline). Các mốc toolchain là snapshot vòng trước; lượt này không xác minh lại bản vá/khả dụng của máy hoặc chạy build. Khi chuẩn bị môi trường phải kiểm tra tương thích, khóa phiên bản thực và xin quyền cài nếu cần.
+**Cần phân biệt:** sẵn sàng SEO là kiểm tra nội dung/cấu hình có thể kiểm chứng; không đòi đã được lập chỉ mục trước công khai. Kết quả index/thứ hạng/AI trích dẫn phải theo dõi sau phát hành, không được cam kết từ framework hoặc test PASS.
 
-**Bạn đang duyệt:** D1–D2 về phạm vi nền tảng, không phải chứng nhận đã hỗ trợ. Chưa chọn framework/database, runtime Kidea, web/mobile; chưa cho cài/nâng cấp WSL hoặc thao tác Git/deploy.
+**Đọc đúng nguồn:** [hướng render web](KIDEA_DESIGN.md#web-rendering-baseline) và [hai gate SEO](KIDEA_DESIGN.md#seo-proposal). Đây là rà lại hướng đã chọn; không xác minh phiên bản mới, benchmark hoặc build trong lượt này.
 
-Đã đối chiếu nơi kiểm chứng R02/R05/R09/R10; không tạo file tạm. Sau duyệt, ghi nhận S01 rồi chuẩn bị gói web/SEO ở S02, không cần xác nhận riêng để soạn gói đó.
+Đã đối chiếu các bước 3–4/7/8/10, nhiệm vụ R04/R05/R08/R09 và KA-27; không tạo file tạm. Duyệt gói không cấp quyền cài/deploy, không chọn CDN hoặc ngưỡng hiệu năng. Sau duyệt, ghi nhận S02 rồi chuẩn bị S03 về Android/iOS và thời điểm kiểm tra thiết bị; không hỏi lại quyền soạn đề xuất.
 
 <a id="working-rules"></a>
 
@@ -82,7 +80,8 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T02-S01 | DONE | R01-T02-S01-r1 — APPROVED | Human: “Tôi duyệt”; chỉ D1–D2 tại b908696; [bằng chứng](#r01-t02-s01-result) |
 | R01-T02-S02 | DONE | R01-T02-S02-r1 — APPROVED | Human: “Mình duyệt”; D1–D2 tại 5cf853f; [bằng chứng](#r01-t02-result) |
 | R01-T02-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ/ví dụ, rà case/link/trạng thái và cleanup; [kết quả](#r01-t02-result) |
-| R01-T03-S01 | IN_PROGRESS | R01-T03-S01-r1 — IN_REVIEW | Human yêu cầu “Làm đi”; [gói host/backend](#review-current), chưa duyệt đầu ra |
+| R01-T03-S01 | DONE | R01-T03-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 184c5c1; [bằng chứng](#r01-t03-s01-result) |
+| R01-T03-S02 | IN_PROGRESS | R01-T03-S02-r1 — IN_REVIEW | Chuẩn bị tiếp theo luồng đã thông báo; [gói web/SEO](#review-current), chưa duyệt đầu ra |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -111,6 +110,14 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - S03: DESIGN mục 5 gắn căn cứ approval và ví dụ rule → review → tiến trình; đối chiếu INDEX/work, init/status/resume/view và README tham khảo. KA-03/07/09/10/12/25/26 đã mô tả đúng nguồn/ghi/stale nên không cần đổi case; KQ-02/06 chỉ được kiểm tra tính nhất quán, không duyệt ngưỡng hoặc toàn bộ QUALITY.
 - Kiểm tra Markdown/link/anchor, sáu subtask R01-T01/T02 đã DONE, các task sau chưa mở; không có thay đổi code, schema, dữ liệu pilot hoặc cấu trúc project. Không phát hiện khoảng lệch cần mở lại S01/S02. Đây là kiểm chứng tài liệu, không phải kiểm thử hành vi Kidea.
 - Không tạo scratch hoặc file untracked cần dọn; giữ nguyên nguồn tham khảo, báo cáo nghiên cứu và bằng chứng. R01-T02 đủ ba subtask để đóng; phase R01 vẫn chưa được duyệt.
+
+<a id="r01-t03-s01-result"></a>
+
+### Kết quả R01-T03-S01 — ngày 2026-09-08
+
+- Human: “Duyệt nhé”, đối với D1–D2 của [gói tại 184c5c1](https://github.com/Kynderis/kidea/blob/184c5c1465a09b8b8c943d16a308a27bf8f2f9d4/KIDEA_ROADMAP.md#review-current): Kidea host Windows 11 x64 local; backend sản phẩm C++20, Ubuntu 24.04 LTS amd64 làm nền kiểm chứng.
+- Giữ phân biệt runtime/helper Kidea với ngôn ngữ backend, build/test Linux với xác nhận bản phát hành trên Ubuntu đích. Không duyệt công cụ cụ thể, framework/database, web/mobile hoặc quyền cài/nâng cấp/Git/deploy.
+- Đồng bộ căn cứ trong DESIGN, kiểm tra liên kết/trạng thái và không có file tạm cần xóa. Chưa kiểm tra lại phiên bản, chạy build hoặc chứng nhận hỗ trợ thực tế. S01 DONE không đóng R01-T03 hoặc phase R01.
 
 <a id="phase-overview"></a>
 
