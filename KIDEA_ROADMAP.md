@@ -23,6 +23,8 @@ Mục tiêu là bớt phải duyệt từng lần lưu, nhưng giữ quyền ki�
 
 Nguồn: [đề xuất quyền G3](KIDEA_DESIGN.md#git-permissions-proposal). Không commit secret, dữ liệu riêng hoặc file ngoài nhiệm vụ. Trước dùng worktree phải có quyền ghi đúng vị trí; quyền local không bao gồm cài công cụ hoặc tạo project mới.
 
+Trao đổi đang mở ngày 2026-09-08: Human đề xuất Kidea thực hiện merge sau đủ gate và cần quản lý xuyên suốt phát hành đa thành phần, rollout/A-B; [tư vấn và danh mục ảnh hưởng](exa-results/kidea-end-to-end-control-2026-09-08.md). Gói r1 trên chưa được duyệt; D2 và các hợp đồng liên quan cần được cập nhật theo phần sẽ chốt, không coi câu “đồng ý phần lớn” là approval toàn gói hoặc cấp quyền. Đây là con trỏ trao đổi, không thêm tracker hay một subtask triển khai song song.
+
 Bạn đang duyệt chính sách, không cấp quyền chạy pilot ngay. Sau khi chốt, mình chuẩn bị cách lưu việc dở và xử lý lỗi/khôi phục; không hỏi lại để bắt đầu chuẩn bị. Ma trận Future còn mở riêng, QUALITY và phase R01 chưa được duyệt.
 
 <a id="working-rules"></a>
