@@ -8,19 +8,23 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: **tiếp tục pilot workshop theo phạm vi đã duyệt**. Human yêu cầu để Thuận Thiên sang sau; đề xuất thay pilot đã đóng, chưa từng được áp dụng vào ma trận công nghệ hoặc kế hoạch triển khai.
+Việc hiện hành: [R01-T04-S03 — Nơi giữ hồ sơ và điều kiện thử workshop](#review-current), đang chờ duyệt đề xuất. R01-T04 chốt cách dùng workshop kiểm chứng Kidea; S01/S02 đã duyệt bài toán và luồng thử. S03 xác định nơi giữ công việc và giới hạn thử, chưa tạo hoặc chạy ứng dụng.
 
 <a id="review-current"></a>
 
-### Giữ pilot workshop — đã xác nhận hướng, chưa có gói mới chờ duyệt
+### R01-T04-S03-r1 — Ba quyết định chờ duyệt
 
-R01-T04 chọn bài toán pilot và nơi giữ hồ sơ. S01 (bài toán/MVP) và S02 (chuỗi dữ liệu, đường lỗi, thứ tự backend–web–native) vẫn DONE/APPROVED; không yêu cầu duyệt lại và không thu nhỏ workshop thành bộ fixture.
+| Quyết định | Đề xuất | Ý nghĩa và giới hạn |
+|---|---|---|
+| D1. Hồ sơ/code workshop nằm đâu? | Một repo pilot riêng, thư mục local dự kiến `D:\Code\kynderis\kidea-workshop-pilot`, bên cạnh repo Kidea. | Trong pilot: `docs/` giữ tài liệu sản phẩm, `.kidea/` giữ điều phối/review, source/test/config cùng repo. Không chuyển tài liệu thiết kế Kidea sang pilot. |
+| D2. Chạy thử theo phạm vi nào? | Lab phi production, tài khoản/dữ liệu giả; không mở công khai hoặc cho search engine lập chỉ mục. | Tách cấu hình/dữ liệu thử, có cách khôi phục trước diễn tập lỗi. Không dùng dữ liệu hoặc hệ thống đang vận hành để thử phá lỗi. |
+| D3. Chấp nhận chi phí bao nhiêu? | Ngân sách phát sinh 0 đồng; tận dụng tài nguyên sẵn có khi được phép. | Không tự thuê server/domain, mua thiết bị hay dùng dịch vụ trả phí. Thiếu nguồn lực thì báo và xin quyết định, không tự bỏ native hoặc ghi PASS. |
 
-[Phạm vi workshop](KIDEA_DESIGN.md#pilot-scope), ma trận nền tảng, kế hoạch R05/R09 và case nghiệm thu tiếp tục giữ nguyên. [Xác nhận giữ workshop](#pilot-workshop-confirmation) đóng trao đổi thay pilot; không tạo nhánh triển khai Thuận Thiên.
+**Quyền không đi kèm approval thiết kế:** duyệt gói chưa cho tạo thư mục/repo, ghi hồ sơ pilot, commit/push, cài công cụ, nâng Mac hoặc deploy. Trước lần ghi đầu ở R03-T01, xác nhận lại root và quyền; trước chạy ở R09-T01, chốt máy đích, cấu hình cô lập, tài khoản/kết nối và khôi phục. Quyền Git riêng của repo xây Kidea không lan sang pilot.
 
-**Việc kế tiếp:** R01-T04-S03 — đề xuất nơi giữ hồ sơ workshop, lab/chi phí và ranh giới quyền. Subtask này còn TODO, chưa soạn gói hoặc chốt đường dẫn/môi trường. Không cần Human duyệt lại việc giữ workshop; gói S03 sẽ được trình riêng khi soạn.
+Đã kiểm tra đường dẫn đề xuất chưa tồn tại; chưa tạo gì. Chưa chọn GitHub remote, máy chủ hoặc toolchain mới. Seed cụ thể và N/A cho bằng chứng SEO ngoài lab vẫn chốt tại gói chuẩn bị pilot; chưa được duyệt kèm.
 
-Lượt hiện tại chỉ đồng bộ tài liệu/trạng thái trong repository xây Kidea. Không sửa repo Thuận Thiên trên GitHub hoặc trên máy; không cài, tạo repo hoặc chạy pilot. Không tạo file tạm.
+**Nguồn:** [nơi giữ hồ sơ và lab](KIDEA_DESIGN.md#pilot-lab-baseline), [phân vùng hồ sơ](KIDEA_DESIGN.md#files-view). Sau duyệt, kiểm tra khép R01-T04 rồi soạn gói về cách dùng branch làm việc và điều kiện cần worktree; chưa thao tác Git trong pilot. Không tạo file tạm.
 
 <a id="working-rules"></a>
 
@@ -82,7 +86,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T03-S03 | DONE | R01-T03-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại 6f2565c; [bằng chứng và khép task](#r01-t03-result) |
 | R01-T04-S01 | DONE | R01-T04-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 4abf90b; [bằng chứng](#r01-t04-s01-result) |
 | R01-T04-S02 | DONE | R01-T04-S02-r1 — APPROVED | Human: “Tôi nhất trí.”; D1–D3 tại c8dace9; [bằng chứng](#r01-t04-s02-result) |
-| R01-T04-S03 | TODO | [H] — chưa soạn gói | Tiếp tục workshop; đề xuất nơi giữ hồ sơ, lab/chi phí/quyền theo [R01-T04](#r01), chưa chọn root hoặc cấp quyền thao tác |
+| R01-T04-S03 | IN_PROGRESS | R01-T04-S03-r1 — IN_REVIEW | Human: “Ok làm đi” cho soạn đề xuất, không phải duyệt đầu ra; [gói hồ sơ/lab/chi phí](#review-current), chưa tạo root hoặc cấp quyền thao tác |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
