@@ -451,19 +451,37 @@ G1 không chốt điều kiện tích hợp G2, quyền Git G3, checkpoint/khôi
 
 #### Đề xuất G2 — một đợt thay đổi, test theo mức và tích hợp, chưa duyệt
 
-Gói R01-T05-S02-r2 viết lại r1 theo phản hồi Human: một việc hiện hành, một branch cho đợt thêm/sửa/xóa tính năng, kiểm tra cục bộ trong từng task rồi kiểm tra toàn project khi đợt thay đổi đã hoàn chỉnh. Đây là đề xuất đang trao đổi, chưa có xác nhận duyệt G2.
+Gói R01-T05-S02-r3 thay r2 theo yêu cầu làm rõ của Human: giữ phân tích ảnh hưởng chặt và test cục bộ trong lúc làm; sau mỗi Feature thêm/sửa/xóa hoàn chỉnh, bắt buộc một lượt kiểm tra mới trên toàn dự án, bao gồm phần không thay đổi. Không dồn lượt này đến khi nhiều Feature hoặc toàn MVP cùng xong. Đây là đề xuất đang trao đổi, chưa có xác nhận duyệt G2.
 
 1. **Chốt đợt thay đổi và bản bắt đầu.** Xác định yêu cầu, phạm vi ảnh hưởng và gate cần thiết; tạo branch từ bản `master` mới nhất đã xác minh khi có quyền. Giữ tài liệu sản phẩm, hồ sơ .kidea, source/test/config trên cùng branch; các task con không tự tạo nhánh riêng. Nếu master đổi trong lúc làm, phải đưa thay đổi về bản kết hợp mới và kiểm tra lại trước merge.
 2. **Làm từng task và test ngay.** Cập nhật đủ rule, thiết kế, code, test, mapping, dữ liệu/cấu hình và vận hành bị ảnh hưởng. Test hàm/class/module cùng các phần tích hợp bị tác động; mức test theo ảnh hưởng thực tế, không chỉ theo kích thước diff. Không cần chạy toàn bộ bộ hồi quy sau mọi sửa nhỏ, nhưng không trì hoãn kiểm tra liên thành phần đã biết là cần tới tận cuối.
-3. **Khép cả đợt trước merge.** Rà nhất quán và đủ phạm vi toàn project; mỗi nơi liên quan có kết luận xử lý hoặc căn cứ không cần sửa, gồm consumer không có diff. Chạy đầy đủ bộ kiểm thử bắt buộc của project đã chốt trước đó, kiểm tra build, cùng các Human gate bắt buộc. Không dùng tổng các lần test task thay lần kiểm tra tổng thể; không thu nhỏ phạm vi, bỏ test lỗi hoặc coi thiếu môi trường/skip là PASS.
-4. **Merge và xác nhận bản tích hợp.** Khi đủ điều kiện và quyền, tích hợp rồi xác nhận đúng bản nguồn/commit thực tế. Có thể tái dùng bằng chứng hồi quy trước merge chỉ khi chứng minh source, test, cấu hình, dependency, dữ liệu/môi trường kiểm thử và những đầu vào chi phối kết quả vẫn khớp. Khi đó chạy kiểm tra nhanh bản tích hợp theo kế hoạch, không mặc định chạy lại nguyên bộ test chỉ vì đổi nhãn branch/commit. Nếu có khác biệt, conflict hoặc thay đổi bản kết hợp, chạy lại kiểm tra chịu ảnh hưởng; chạy lại toàn bộ khi phạm vi yêu cầu hoặc chưa xác định được. Cách nhận diện/cấu trúc evidence cụ thể vẫn thuộc gói của nó; không suy từ việc một người làm mà cho rằng bản nguồn chắc chắn không đổi.
+3. **Khép từng Feature trước merge.** Ngoài việc đã xử lý đủ ảnh hưởng trong từng task, thực hiện [lượt kiểm tra cuối toàn dự án](#feature-final-check) trên bản đã hoàn thiện. Chỉ ghi Feature DONE và đủ điều kiện merge khi không còn ảnh hưởng chưa xử lý, đạt mọi kiểm tra bắt buộc và đủ Human gate. Các task tài liệu/code có thể được chấp nhận riêng theo phạm vi, nhưng không được dùng việc chia nhỏ đó để bỏ lượt cuối khi Feature hoàn chỉnh.
+4. **Merge và xác nhận bản tích hợp.** Khi đủ điều kiện và quyền, tích hợp rồi xác nhận đúng bản nguồn/commit. Chỉ tái dùng bằng chứng lượt toàn dự án vừa chạy của chính Feature này khi chứng minh source, test, cấu hình, dependency, dữ liệu/môi trường kiểm thử và các đầu vào chi phối kết quả vẫn khớp; sau đó kiểm tra nhanh bản tích hợp. Nếu merge, conflict hoặc sửa lỗi làm đổi những đầu vào đó, chạy lại toàn bộ lượt kiểm tra cuối trên bản mới, không chỉ test vùng ảnh hưởng. Kết quả từ Feature trước hoặc các lượt test task không thay lượt cuối của Feature hiện tại. Cách nhận diện evidence cụ thể vẫn thuộc gói của nó; việc ghi nhận báo cáo kết quả đơn thuần không tự làm mất hiệu lực mọi kiểm tra.
 5. **Phát hành khi cần.** Từ bản tích hợp đã xác nhận, tạo gói build dùng để phát hành và kiểm tra gói đó trước deploy. Sau deploy, kiểm tra nhanh các luồng chính, phiên bản/config thực tế, dữ liệu và tín hiệu vận hành trên môi trường đích. Kiểm thử phá lỗi, tải hoặc phục hồi có thể ảnh hưởng dữ liệu chạy trong môi trường cô lập theo kế hoạch, không mặc định chạy toàn bộ test trên production. Workshop vẫn chỉ release lab. Build, deploy và xác nhận bản đang chạy là các kết quả riêng; lỗi/chưa kiểm tra thì chưa xác nhận phát hành đạt.
 
 Ví dụ cho phép hủy khi PAUSED: cập nhật rule và quyền, backend, các client, event/số chỗ và test liên quan. Task sửa backend có thể chạy unit/API test trước; task cập nhật client chạy test tương ứng. Khi toàn đợt xong, chạy bộ hồi quy project để phát hiện cả lỗi làm sai đăng ký mới, số chỗ hoặc các luồng cũ. Sau triển khai, kiểm tra luồng hủy và số chỗ trên đúng bản đang chạy.
 
 Luồng từ master ở trên là trường hợp bắt đầu đợt độc lập khi bản nền đủ dùng. Với bài thử thêm Feature giữa MVP đang dở, giữ checkpoint và xác định phần phụ thuộc trước: có thể phải điều chỉnh đợt hiện hành hoặc sắp thứ tự tiếp tục; không tự bỏ phần chưa merge để tạo branch mới thiếu căn cứ. Cơ chế lưu dở/khôi phục cụ thể thuộc G4; vẫn chỉ một việc đang triển khai.
 
-Gói thiết kế/tài liệu thuần có thể tích hợp khi tài liệu hoàn chỉnh, kiểm tra đúng loại và đủ gate; không bắt chạy test chức năng không liên quan chỉ để đủ hình thức. Nhánh tích hợp không mặc nhiên là production; gói chưa cấp quyền Git/tag/deploy, chọn thuật toán merge/CI/branch protection hoặc duyệt ngưỡng QUALITY.
+Gói thiết kế/tài liệu thuần chưa tuyên bố khép Feature có thể tích hợp khi tài liệu hoàn chỉnh, kiểm tra đúng loại và đủ gate. Ngoại lệ này không miễn lượt toàn dự án khi đóng một Feature. Nhánh tích hợp không mặc nhiên là production; gói chưa cấp quyền Git/tag/deploy, chọn thuật toán merge/CI/branch protection hoặc duyệt ngưỡng QUALITY.
+
+<a id="feature-final-check"></a>
+
+#### Đề xuất lượt kiểm tra cuối toàn dự án — thuộc G2-r3, chưa duyệt
+
+Đây là nghĩa vụ bổ sung sau mỗi Feature hoàn chỉnh, không phụ thuộc việc phân tích ảnh hưởng trước đó đã kết luận một phần là không cần sửa. Kiểm tra trên bản cuối có nhận diện rõ; xác lập danh mục cho toàn bản project hiện hành, dùng các tiêu chí đã chốt và giữ các nghĩa vụ của phần chưa đến bước triển khai ở đúng trạng thái. Không tự bỏ một mục bắt buộc hoặc gắn N/A chỉ vì thiếu công cụ, chưa chạy được hoặc phần đó không có diff.
+
+| Nhóm | Lượt cuối phải đối chiếu/chạy lại |
+|---|---|
+| Hồ sơ và tài liệu | Phạm vi, rule/AC, UI, kiến trúc, hướng dẫn vận hành, tiến trình/review .kidea; tính hiện hành, đầy đủ và nhất quán giữa chúng trên toàn dự án |
+| Ba bản đồ và ý nghĩa | Đặc tả ↔ triển khai ↔ test/bằng chứng; đối chiếu trách nhiệm, hành vi và assertion, không chỉ ID/link hợp lệ hoặc độ bao phủ số học |
+| Code và cấu hình | Toàn bộ thành phần của bản project, quy tắc code, dependency, cấu hình build/test/triển khai và các kiểm tra chất lượng/nhất quán đã định nghĩa |
+| Kiểm thử sản phẩm | Toàn bộ bộ test tự động và kiểm tra thủ công bắt buộc đã xác định: đơn vị, tích hợp, đầu-cuối, hành vi cũ/mới và các nhóm chất lượng, bảo mật, hiệu năng, phục hồi/nền tảng theo phạm vi project |
+| Build và bằng chứng | Build kiểm chứng và kết quả gắn đúng nguồn/môi trường; mọi lỗi, skip hoặc thiếu bằng chứng được nêu rõ, không chỉ giữ lần chạy đạt |
+
+Nếu lượt cuối phát hiện lỗi kể cả ở phần không đổi: xác định nguyên nhân, sửa đúng đặc tả, tìm và xử lý đầy đủ ảnh hưởng, test tập trung để xác nhận sửa; sau đó chạy lại toàn bộ lượt cuối trên bản đã sửa. Lỗi vi phạm tiêu chí bắt buộc còn tồn tại thì chưa đóng Feature. Phần sửa cần quyết định nghiệp vụ, quyền hoặc mở rộng đáng kể phải được trình đúng phạm vi, không tự refactor cả repo hoặc bỏ lỗi để thông qua.
+
+Lượt này tốn thêm thời gian nhưng chủ đích là bắt cả sai lệch ngoài tập ảnh hưởng đã dự đoán. Nó không thay phân tích mục 7.2/7.4 và không chứng minh tuyệt đối rằng không còn lỗi hoặc mọi trường hợp chưa biết đã được kiểm thử. Các công cụ/ngưỡng và biến thể nghiệm thu tương ứng phải được chốt tại task sở hữu trước áp dụng; không coi đề xuất này là đã duyệt toàn QUALITY.
 
 Tách thư mục không tách quyền kiểm tra: Kidea phải đọc đủ nguồn liên quan ở cả `.kidea`, `docs/`, source/test/config. Helper chỉ được ghi đúng file/đường dẫn đã xác định cho hành động hiện tại; không coi “nằm trong repo” là quyền sửa toàn repo. Các link sang tài liệu sản phẩm là bình thường, nhưng link sai root/thoát phạm vi không được tự trở thành quyền đọc/ghi ngoài project.
 
@@ -521,6 +539,28 @@ Ghi checkpoint công việc cũ → lập gói thay đổi hiện hành → quay
 Mỗi bước phía sau phải có kết luận: cần sửa gì hoặc đã kiểm tra và không cần sửa vì sao. Không nhất thiết viết lại toàn bộ tài liệu, nhưng không được bỏ qua một bước chỉ vì đoán rằng thay đổi nhỏ.
 
 Sửa bug đúng theo đặc tả đã duyệt có thể bắt đầu ở bước sớm nhất thực sự bị ảnh hưởng; phải xác minh đây là sửa triển khai lệch đặc tả, không phải thêm/đổi hành vi được ngụy trang thành bugfix. Không dùng đường này để bỏ vòng chốt Feature.
+
+<a id="new-request-intake-proposal"></a>
+
+#### Đề xuất tiếp nhận yêu cầu mới — đang trao đổi, chưa duyệt
+
+Phản hồi Human phân biệt lúc xây MVP với lúc sản phẩm đã có production. Đề xuất bổ sung: trước khi đổi việc, xác định cả giai đoạn, bản/đợt muốn đưa yêu cầu vào và quan hệ ngữ nghĩa với yêu cầu đã có. Giai đoạn không tự quyết định mức ưu tiên; nhãn Future chỉ việc để sau, không tự tạo cam kết kiến trúc hoặc quyền triển khai.
+
+| Tình huống | Hướng xử lý đề xuất |
+|---|---|
+| Đang MVP, yêu cầu được chọn bổ sung/sửa/xóa trong MVP | Giữ điểm dừng; quay bước 1 chốt lại phạm vi rồi rà lần lượt nghiệp vụ/AC, chất lượng, UX, vận hành/admin, kiến trúc, test và kế hoạch. Sửa đủ phần bị ảnh hưởng, giữ phần còn đúng và tiếp tục đợt hiện hành; không xóa code/tài liệu để bắt đầu trắng |
+| Đang MVP, yêu cầu để Future | Ghi mô tả đủ hiểu, mục đích, ràng buộc/điểm chưa rõ và quan hệ cần lưu ý trong Feature Map. Đánh giá sơ bộ có làm mất căn cứ quyết định hiện tại không; nếu không thì tiếp tục MVP, chưa đặc tả hoặc xây Future |
+| Future ở bất kỳ giai đoạn nào làm lộ ràng buộc kiến trúc hiện tại | Chỉ rõ quyết định khó đảo ngược, hậu quả/chi phí để sau và căn cứ từ yêu cầu; trình phần điều chỉnh tối thiểu cần làm ngay. Mở lại bước sớm nhất bị ảnh hưởng, có thể là nghiệp vụ/chất lượng trước kiến trúc. Không tự nhảy thẳng bước 7 hoặc xây sẵn Feature Future |
+| Đã có production, yêu cầu liên quan nhưng đổi hành vi/phạm vi đợt đang làm | Nếu Human chọn vào cùng đợt: quay bước 1 và cập nhật tài liệu nguồn, rà đủ chuỗi, kế hoạch và phần đã làm bị ảnh hưởng. Có liên quan nhưng được chọn để sau thì vẫn Future; không tự nới phạm vi bản sắp phát hành |
+| Đã có production, yêu cầu độc lập với đợt đang làm | Mặc định đề xuất ghi Future và hoàn tất việc hiện hành trước. Khi được chọn làm, mở đợt tiếp theo từ bản tích hợp đã xác nhận; không mặc định từ bản production cũ. Nếu Human ưu tiên đổi việc thì lưu điểm dừng và đổi thứ tự rõ ràng, vẫn chỉ một việc triển khai |
+| Yêu cầu trùng hoàn toàn nội dung đã chốt | Dẫn về yêu cầu đang có và đối chiếu trạng thái; không tạo Feature trùng hoặc chạy lại quy trình chỉ vì nhắc lại. Nếu hành vi hiện tại sai đặc tả thì phân loại bugfix |
+| Lỗi khẩn cấp ảnh hưởng bản đang chạy | Đánh giá mức khẩn cấp và ưu tiên với Human, lưu điểm dừng việc cũ rồi xử lý theo đặc tả/quyền hiện có. Không mặc định đẩy vào Future vì không liên quan; không dùng nhãn khẩn cấp để hợp thức hóa thay đổi nghiệp vụ thành bugfix |
+
+“Quay từ đầu” là mở lại quyết định phạm vi và đánh giá lại chuỗi, không hủy kết quả hợp lệ. Mỗi lần đổi phải ghi lý do, nguồn/nội dung đổi, phần đã làm bị ảnh hưởng, việc cần sửa/kiểm tra lại và approval/bằng chứng mất căn cứ; cập nhật nguồn chính và tham chiếu từ hồ sơ điều phối, không tạo một bản đặc tả thứ hai. Không cần duyệt lại phần đã chứng minh vẫn giữ nguyên ý nghĩa.
+
+“Liên quan” phải được đánh giá qua rule, dữ liệu, quyền, API/event, UX và cấu hình dùng chung; không chỉ theo tên Feature/file. “Trùng” phải là cùng hành vi/điều kiện, không phải chỉ cùng mục tiêu chung. Khi một Future được chọn triển khai, quay bước 1 chốt đợt hiện tại, không bắt đầu từ kiến trúc chỉ vì trước đó đã ghi Future.
+
+Đề xuất này cần được chốt riêng với biến thể KA-14/17/18/19 trước phần triển khai tiếp nhận/change ở R03/R06; chưa thay các case hoặc ghi toàn bộ ma trận là đã duyệt trong G2. Mỗi gói trình tiếp vẫn giữ giới hạn quyết định nhỏ của roadmap.
 
 ### 7.2. Phân tích ảnh hưởng đến khi xử lý trọn vẹn
 
@@ -630,7 +670,7 @@ Phân biệt ba lớp:
 
 Ở bước 8, có thể có test cụ thể chạy được với thành phần đã tồn tại. Test chạy trên mô phỏng chỉ chứng minh phần mô phỏng/phạm vi được kiểm tra, không thay cho tích hợp với triển khai thật. Những case còn chờ code/hạ tầng phải có nơi và thời điểm hoàn thiện trong kế hoạch.
 
-Task chỉ DONE khi phạm vi đã chốt được triển khai, tài liệu/mapping đồng bộ và mọi kiểm tra bắt buộc cho task đạt. Cuối phase chạy kiểm tra tích hợp/hồi quy cần thiết; cuối bản phát hành chạy bộ kiểm tra đủ phạm vi phát hành, không chỉ cộng kết quả test của từng task.
+Task chỉ DONE khi phạm vi đã chốt được triển khai, tài liệu/mapping đồng bộ và mọi kiểm tra bắt buộc cho task đạt. Cuối phase chạy kiểm tra tích hợp/hồi quy cần thiết; cuối bản phát hành chạy bộ kiểm tra đủ phạm vi phát hành, không chỉ cộng kết quả test của từng task. [Đề xuất G2-r3](#feature-final-check) bổ sung lượt toàn dự án sau mỗi Feature hoàn chỉnh, gồm phần không đổi; đang chờ chốt, không được diễn giải test task là thay lượt này.
 
 Test chưa chạy, thiếu môi trường, thất bại hoặc bị skip không được báo là PASS. Nếu muốn thay đổi tiêu chí chấp nhận, phải đưa tiêu chí về review; không xóa test lỗi chỉ để xanh. Với kiểm tra thủ công, lưu quy trình và kết quả thực tế; chưa có xác nhận thì vẫn chưa đủ bằng chứng.
 

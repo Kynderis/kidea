@@ -8,22 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T05-S02 — Quy trình một thay đổi từ branch tới bản tích hợp](#review-current). Human đề nghị làm rõ nhịp test task nhỏ → kiểm tra toàn project → merge → build/triển khai. Gói được viết lại thành r2 để trao đổi; chưa có xác nhận duyệt G2.
+Việc hiện hành: [R01-T05-S02 — Kiểm tra toàn dự án khi khép mỗi Feature](#review-current). Human đề nghị siết lượt kiểm tra cuối và làm rõ tiếp nhận yêu cầu mới khi đang MVP/sau production. G2 được viết lại thành r3; cách phân loại yêu cầu mới là đề xuất trao đổi riêng, chưa được duyệt kèm.
 
 <a id="review-current"></a>
 
-### R01-T05-S02-r2 — Hai nguyên tắc được diễn giải thành quy trình
+### R01-T05-S02-r3 — Hai nguyên tắc chờ chốt
 
-| Quyết định | Đề xuất | Cách hiểu |
+| Quyết định | Đề xuất | Giới hạn |
 |---|---|---|
-| D1. Làm và kiểm tra thay đổi thế nào? | Chốt một đợt thêm/sửa/xóa tính năng; bắt đầu branch từ `master` mới nhất đã xác minh. Task con dùng chung branch, đồng bộ đầy đủ nơi liên quan và test phần sửa/các phụ thuộc bị ảnh hưởng. Xong cả đợt thì kiểm tra nhất quán toàn project, chạy đầy đủ bộ test bắt buộc của project và kiểm tra build trước merge. | Test nhỏ giúp phát hiện lỗi sớm; kết quả từng task chưa thay bộ hồi quy toàn project. Mỗi nơi bị ảnh hưởng phải được xử lý hoặc có căn cứ không cần sửa, kể cả nơi không đổi code. |
-| D2. Merge và phát hành thế nào? | Đủ kết quả và gate thì merge khi có quyền; xác nhận bản tích hợp thực tế. Nếu cần phát hành: tạo/kiểm tra bản build, deploy khi được phép, rồi kiểm tra luồng chính và vận hành trên môi trường đích. | Build thành công chưa có nghĩa đã triển khai. Pilot workshop dùng lab; các bài thử phá lỗi dùng môi trường cô lập. |
+| D1. Khi nào Feature đủ điều kiện hoàn tất? | Trong lúc làm vẫn tìm, cập nhật và test đầy đủ mọi ảnh hưởng. Sau mỗi Feature thêm/sửa/xóa hoàn chỉnh, thực hiện thêm một lượt kiểm tra toàn dự án: hồ sơ, tài liệu, bản đồ, code/test/config, build và toàn bộ kiểm tra bắt buộc, kể cả phần không thay đổi. | Hai nghĩa vụ cộng dồn. Không dùng full test để buông lỏng phân tích ảnh hưởng, không dùng các lần test task hoặc Feature trước thay lượt kiểm tra cuối. |
+| D2. Bản cuối phải có bằng chứng gì? | Chỉ khép Feature và đủ điều kiện merge khi bản cuối đạt toàn bộ lượt kiểm tra. Phát hiện lỗi, sửa và đồng bộ ảnh hưởng rồi chạy lại lượt toàn dự án. Sau merge, chỉ tái dùng lượt vừa chạy nếu chứng minh đầu vào giữ nguyên; có thay đổi thì chạy lại toàn bộ. | Còn lỗi bắt buộc/thiếu môi trường/skip thì chưa đạt. Khi phát hành, kiểm tra bản build trước deploy và xác nhận môi trường đang chạy sau deploy; workshop vẫn dùng lab. |
 
-**Kiểm tra sau merge:** luôn xác nhận đúng bản nguồn. Chỉ tái dùng kết quả toàn bộ test nếu chứng minh nguồn/test/cấu hình, dependency và môi trường/dữ liệu kiểm thử vẫn khớp; khi đó kiểm tra nhanh bản tích hợp. Có thay đổi thì kiểm tra lại phần bị ảnh hưởng, chạy lại toàn bộ khi phạm vi yêu cầu hoặc chưa xác định được. Không suy “một người làm” thành bằng chứng không đổi.
+Danh mục kiểm tra toàn dự án phải được xác định rõ, bao gồm đối chiếu ý nghĩa giữa yêu cầu–code–test; không chỉ kiểm tra link. Không tự bỏ mục vì phần đó không đổi. Test có thể phát hiện thêm lỗi, không chứng minh tuyệt đối rằng mọi trường hợp đều đã được biết.
 
-Nguồn: [quy trình và ví dụ](KIDEA_DESIGN.md#git-integration-gate). Test thiếu/lỗi/skip chưa đạt. Việc cũ còn dở cần giữ checkpoint và xét phụ thuộc; không tự bỏ phần chưa merge.
+Nguồn: [lượt kiểm tra cuối](KIDEA_DESIGN.md#feature-final-check). Một task tài liệu chưa khép Feature có kiểm tra tương ứng; khi khép Feature vẫn phải qua lượt toàn dự án.
 
-Đây là đề xuất r2, chưa cấp quyền Git/deploy, chọn CI hoặc đổi ngưỡng. Không tạo branch, build hoặc chạy pilot trong lượt này.
+[Đề xuất tiếp nhận yêu cầu mới](KIDEA_DESIGN.md#new-request-intake-proposal) phân biệt giai đoạn sản phẩm, bản muốn đưa yêu cầu vào, trùng/đổi nghĩa và ảnh hưởng kiến trúc. Cần chốt riêng trước phần triển khai phụ thuộc; không gộp bốn tình huống thành approval G2. Chưa cấp quyền Git/deploy, đổi ngưỡng QUALITY hoặc chạy pilot.
 
 <a id="working-rules"></a>
 
@@ -87,7 +87,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T04-S02 | DONE | R01-T04-S02-r1 — APPROVED | Human: “Tôi nhất trí.”; D1–D3 tại c8dace9; [bằng chứng](#r01-t04-s02-result) |
 | R01-T04-S03 | DONE | R01-T04-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại b0524f5; [bằng chứng và khép task](#r01-t04-result) |
 | R01-T05-S01 | DONE | R01-T05-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 7df435b; [bằng chứng G1](#r01-t05-s01-result) |
-| R01-T05-S02 | IN_PROGRESS | R01-T05-S02-r2 — IN_REVIEW | Human đề xuất luồng một thay đổi/test từng mức và yêu cầu giải thích; [gói r2](#review-current), chưa duyệt đầu ra. r1 tại 060f87d được thay bằng r2, không ghi APPROVED |
+| R01-T05-S02 | IN_PROGRESS | R01-T05-S02-r3 — IN_REVIEW | Human đề nghị lượt cuối toàn dự án sau mỗi Feature; [gói r3](#review-current), chưa duyệt đầu ra. r2 tại 62c0381 được thay bằng r3; đề xuất tiếp nhận yêu cầu mới đang trao đổi riêng |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
