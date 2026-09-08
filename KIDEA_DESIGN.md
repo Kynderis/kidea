@@ -461,7 +461,7 @@ Gói R01-T05-S02-r3 thay r2 theo yêu cầu làm rõ của Human: giữ phân t�
 
 Ví dụ cho phép hủy khi PAUSED: cập nhật rule và quyền, backend, các client, event/số chỗ và test liên quan. Task sửa backend có thể chạy unit/API test trước; task cập nhật client chạy test tương ứng. Khi toàn đợt xong, chạy bộ hồi quy project để phát hiện cả lỗi làm sai đăng ký mới, số chỗ hoặc các luồng cũ. Sau triển khai, kiểm tra luồng hủy và số chỗ trên đúng bản đang chạy.
 
-Luồng từ master ở trên là trường hợp bắt đầu đợt độc lập khi bản nền đủ dùng. Với bài thử thêm Feature giữa MVP đang dở, giữ checkpoint và xác định phần phụ thuộc trước: có thể phải điều chỉnh đợt hiện hành hoặc sắp thứ tự tiếp tục; không tự bỏ phần chưa merge để tạo branch mới thiếu căn cứ. Cơ chế lưu dở/khôi phục cụ thể thuộc G4; vẫn chỉ một việc đang triển khai.
+Luồng từ master ở trên là trường hợp bắt đầu đợt độc lập khi bản nền đủ dùng. Với bổ sung vào chính MVP đang làm, [đề xuất làm rõ](#mvp-replanning-state) giữ tiến độ/bằng chứng rồi điều chỉnh cùng kế hoạch, không tạo một luồng tạm dừng/khôi phục riêng hoặc bỏ phần chưa merge. Với bug production, [đề xuất chọn nền sửa lỗi](#production-bugfix-flow) phân biệt master với bản thực sự đang chạy. Cơ chế lưu dở/quyền và bản phát hành cụ thể vẫn thuộc G3/G4/G6; mỗi lúc chỉ một việc triển khai.
 
 Gói thiết kế/tài liệu thuần chưa tuyên bố khép Feature có thể tích hợp khi tài liệu hoàn chỉnh, kiểm tra đúng loại và đủ gate. Ngoại lệ này không miễn lượt toàn dự án khi đóng một Feature. Nhánh tích hợp không mặc nhiên là production; gói chưa cấp quyền Git/tag/deploy, chọn thuật toán merge/CI/branch protection hoặc duyệt ngưỡng QUALITY.
 
@@ -548,19 +548,48 @@ Phản hồi Human phân biệt lúc xây MVP với lúc sản phẩm đã có p
 
 | Tình huống | Hướng xử lý đề xuất |
 |---|---|
-| Đang MVP, yêu cầu được chọn bổ sung/sửa/xóa trong MVP | Giữ điểm dừng; quay bước 1 chốt lại phạm vi rồi rà lần lượt nghiệp vụ/AC, chất lượng, UX, vận hành/admin, kiến trúc, test và kế hoạch. Sửa đủ phần bị ảnh hưởng, giữ phần còn đúng và tiếp tục đợt hiện hành; không xóa code/tài liệu để bắt đầu trắng |
+| Đang MVP, yêu cầu được chọn bổ sung/sửa/xóa trong MVP | Giữ thông tin tiến độ/bằng chứng hiện có; quay bước 1 chốt lại phạm vi rồi rà lần lượt nghiệp vụ/AC, chất lượng, UX, vận hành/admin, kiến trúc, test và kế hoạch. Cập nhật chính kế hoạch MVP, giữ phần còn đúng và tiếp tục ở task kế tiếp hợp lệ; không tạo luồng tạm dừng riêng hoặc buộc quay lại task cũ |
 | Đang MVP, yêu cầu để Future | Ghi mô tả đủ hiểu, mục đích, ràng buộc/điểm chưa rõ và quan hệ cần lưu ý trong Feature Map. Đánh giá sơ bộ có làm mất căn cứ quyết định hiện tại không; nếu không thì tiếp tục MVP, chưa đặc tả hoặc xây Future |
 | Future ở bất kỳ giai đoạn nào làm lộ ràng buộc kiến trúc hiện tại | Chỉ rõ quyết định khó đảo ngược, hậu quả/chi phí để sau và căn cứ từ yêu cầu; trình phần điều chỉnh tối thiểu cần làm ngay. Mở lại bước sớm nhất bị ảnh hưởng, có thể là nghiệp vụ/chất lượng trước kiến trúc. Không tự nhảy thẳng bước 7 hoặc xây sẵn Feature Future |
 | Đã có production, yêu cầu liên quan nhưng đổi hành vi/phạm vi đợt đang làm | Nếu Human chọn vào cùng đợt: quay bước 1 và cập nhật tài liệu nguồn, rà đủ chuỗi, kế hoạch và phần đã làm bị ảnh hưởng. Có liên quan nhưng được chọn để sau thì vẫn Future; không tự nới phạm vi bản sắp phát hành |
 | Đã có production, yêu cầu độc lập với đợt đang làm | Mặc định đề xuất ghi Future và hoàn tất việc hiện hành trước. Khi được chọn làm, mở đợt tiếp theo từ bản tích hợp đã xác nhận; không mặc định từ bản production cũ. Nếu Human ưu tiên đổi việc thì lưu điểm dừng và đổi thứ tự rõ ràng, vẫn chỉ một việc triển khai |
 | Yêu cầu trùng hoàn toàn nội dung đã chốt | Dẫn về yêu cầu đang có và đối chiếu trạng thái; không tạo Feature trùng hoặc chạy lại quy trình chỉ vì nhắc lại. Nếu hành vi hiện tại sai đặc tả thì phân loại bugfix |
-| Lỗi khẩn cấp ảnh hưởng bản đang chạy | Đánh giá mức khẩn cấp và ưu tiên với Human, lưu điểm dừng việc cũ rồi xử lý theo đặc tả/quyền hiện có. Không mặc định đẩy vào Future vì không liên quan; không dùng nhãn khẩn cấp để hợp thức hóa thay đổi nghiệp vụ thành bugfix |
+| Lỗi khẩn cấp ảnh hưởng bản đang chạy | Xác nhận lỗi và ưu tiên; nếu ngắt một Feature khác thì giữ điểm tiếp tục của Feature đó. Sửa trên nền production đã xác minh, dùng master khi nó khớp nền cần phát hành; chạy lượt cuối toàn dự án của bản vá, triển khai theo quyền và đưa bản sửa về master rồi nhánh Feature khi tiếp tục. Không tự đưa phần chưa phát hành vào bản vá |
 
 “Quay từ đầu” là mở lại quyết định phạm vi và đánh giá lại chuỗi, không hủy kết quả hợp lệ. Mỗi lần đổi phải ghi lý do, nguồn/nội dung đổi, phần đã làm bị ảnh hưởng, việc cần sửa/kiểm tra lại và approval/bằng chứng mất căn cứ; cập nhật nguồn chính và tham chiếu từ hồ sơ điều phối, không tạo một bản đặc tả thứ hai. Không cần duyệt lại phần đã chứng minh vẫn giữ nguyên ý nghĩa.
 
 “Liên quan” phải được đánh giá qua rule, dữ liệu, quyền, API/event, UX và cấu hình dùng chung; không chỉ theo tên Feature/file. “Trùng” phải là cùng hành vi/điều kiện, không phải chỉ cùng mục tiêu chung. Khi một Future được chọn triển khai, quay bước 1 chốt đợt hiện tại, không bắt đầu từ kiến trúc chỉ vì trước đó đã ghi Future.
 
 Đề xuất này cần được chốt riêng với biến thể KA-14/17/18/19 trước phần triển khai tiếp nhận/change ở R03/R06; chưa thay các case hoặc ghi toàn bộ ma trận là đã duyệt trong G2. Mỗi gói trình tiếp vẫn giữ giới hạn quyết định nhỏ của roadmap.
+
+<a id="mvp-replanning-state"></a>
+
+#### Làm rõ đề xuất: điều chỉnh cùng MVP và lưu tiến độ
+
+Human nhất trí phần lớn đề xuất nhưng hỏi liệu cần lưu điểm dừng khi sẽ rà lại MVP từ đầu. Đề xuất điều chỉnh: không tạo một công việc cũ bị tạm dừng và một luồng resume riêng khi yêu cầu mới được đưa vào chính MVP. Kế hoạch cũ được cập nhật thành kế hoạch MVP mới; sau khi rà các bước, tiếp tục task kế tiếp hợp lệ của kế hoạch mới, không máy móc quay về task từng đang làm.
+
+Vẫn bảo toàn thông tin sẵn có: đã hoàn thành gì, đang sửa dở gì, nguồn/code đang ở bản nào và kiểm tra/approval nào đã có. Ghi thay đổi phạm vi cùng phần bị ảnh hưởng trong hồ sơ hiện hành; đánh dấu phần cần sửa/kiểm tra lại và giữ phần còn đúng. Không bắt tạo file checkpoint riêng, sao chép toàn bộ project hoặc một commit mới chỉ vì đổi bước; cách lưu bằng Git vẫn theo quyền được chốt riêng. Việc lưu này phục vụ đối chiếu và tránh mất kết quả, không là thủ tục bắt Human duyệt lại mọi thứ.
+
+Nếu thực sự chuyển sang một việc độc lập, ví dụ sửa lỗi production trong khi Feature còn dở, lúc đó mới cần giữ rõ trạng thái tạm dừng/điểm tiếp tục của Feature. Nhánh đó có thể tồn tại nhưng không được tiếp tục triển khai đồng thời với việc sửa lỗi. KA-17/R09-T04 cần được đồng bộ khi phương án này được duyệt: phục hồi đúng tiến độ và áp dụng kế hoạch mới, không yêu cầu trở về một task đã bị thay thế.
+
+<a id="production-bugfix-flow"></a>
+
+#### Đề xuất: nền sửa lỗi production và đưa bản sửa về các nhánh
+
+Phần này làm rõ đề xuất G4/G6 và tiếp nhận yêu cầu mới, chưa cấp quyền tạo branch, merge hoặc deploy. Trước hết xác nhận lỗi là triển khai trái đặc tả của bản đang chạy, có cách tái hiện và test hồi quy bắt lỗi; nếu là đổi hành vi mong muốn thì đi luồng change. Xác minh đúng phiên bản/code, cấu hình, schema và gói triển khai thực tế; không chỉ đọc tên branch.
+
+| Trạng thái bản nguồn | Nền và phạm vi sửa lỗi đề xuất |
+|---|---|
+| Master khớp nền đang chạy hoặc toàn bộ thay đổi trên master đã được chọn để phát hành lần này | Tạo nhánh sửa lỗi từ master mới nhất đã xác minh, sửa và kiểm tra toàn dự án của bản ứng viên. Tích hợp khi đủ kết quả/quyền, kiểm tra bản tích hợp rồi phát hành và xác nhận vận hành |
+| Master có thay đổi chưa được chọn phát hành cùng bản vá | Tạo nhánh sửa lỗi từ commit/tag của bản production đã xác minh. Kiểm tra toàn dự án của bản vá đó, tạo/kiểm tra artifact và phát hành theo quyền; không kèm các tính năng chưa phát hành trên master. Đưa thay đổi sửa lỗi tương ứng trở lại master và kiểm tra bản kết hợp trước xác nhận đạt |
+
+Ví dụ production là 1.0, master đã chứa tính năng cho 1.1 nhưng chưa phát hành: bản vá khẩn cấp 1.0.1 cần xuất phát từ 1.0 nếu không chủ đích phát hành 1.1. “Master mới nhất” không tự là bản mới nhất phù hợp để vá production. Một dự án có thể cần đối chiếu bản từng thành phần thực tế trước khi chọn nền; chi tiết release record vẫn thuộc G6.
+
+Trên nhánh sửa lỗi: cập nhật đủ nguồn, code/test/cấu hình và mọi ảnh hưởng; chạy test tập trung rồi toàn bộ lượt kiểm tra cuối của bản project ứng viên theo G2, kể cả phần không đổi. Khi tích hợp làm đổi đầu vào, phải có lượt toàn dự án trên bản kết hợp mới. Kiểm tra bản build và môi trường sau triển khai vẫn riêng; không tuyên bố production đã được sửa chỉ vì master đã nhận commit.
+
+Đưa bản sửa về master rồi cập nhật nhánh Feature từ master là đường ưu tiên để giữ một nguồn tích hợp chung. Đây là tích hợp ý nghĩa bản sửa và test hồi quy; không buộc chép nguyên bản vá cũ nếu nhánh mới có kiến trúc/đặc tả khác hoặc đã sửa tương đương. Đối chiếu để lỗi không quay lại, bảo toàn tiến độ và đồng bộ các phần liên quan trên nhánh Feature; không để trạng thái/kế hoạch hotfix ghi đè công việc Feature trong .kidea. Cách merge/cherry-pick cụ thể chưa chọn tại đây.
+
+Nếu nhánh Feature còn dở, sau nhận bản sửa thì chạy kiểm tra hồi quy bug và các tương tác bị ảnh hưởng, ghi trạng thái chưa hoàn tất Feature rồi tiếp tục kế hoạch đã đối chiếu. Khi Feature xong vẫn bắt buộc lượt toàn dự án của chính bản đó. Không coi PASS của nhánh hotfix/master là chứng minh nhánh Feature đã hoàn chỉnh. Chỉ khi đã giữ tiến độ việc cũ và đủ quyền mới chuyển việc; việc ngắt vì bug là một luồng xử lý có điểm tiếp tục, khác cập nhật cùng kế hoạch MVP.
 
 ### 7.2. Phân tích ảnh hưởng đến khi xử lý trọn vẹn
 

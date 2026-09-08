@@ -8,7 +8,7 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T05-S02 — Kiểm tra toàn dự án khi khép mỗi Feature](#review-current). Human đề nghị siết lượt kiểm tra cuối và làm rõ tiếp nhận yêu cầu mới khi đang MVP/sau production. G2 được viết lại thành r3; cách phân loại yêu cầu mới là đề xuất trao đổi riêng, chưa được duyệt kèm.
+Việc hiện hành: [R01-T05-S02 — Kiểm tra toàn dự án khi khép mỗi Feature](#review-current). Human nhất trí phần lớn đề xuất và còn làm rõ hai điểm: lưu tiến độ khi điều chỉnh cùng MVP, và nền/đường tích hợp bugfix production. G2-r3 giữ nguyên nội dung; hai điểm làm rõ nằm ở đề xuất tiếp nhận/quyền/checkpoint/release, chưa coi toàn bộ các gói đã duyệt.
 
 <a id="review-current"></a>
 
@@ -23,7 +23,7 @@ Danh mục kiểm tra toàn dự án phải được xác định rõ, bao gồm
 
 Nguồn: [lượt kiểm tra cuối](KIDEA_DESIGN.md#feature-final-check). Một task tài liệu chưa khép Feature có kiểm tra tương ứng; khi khép Feature vẫn phải qua lượt toàn dự án.
 
-[Đề xuất tiếp nhận yêu cầu mới](KIDEA_DESIGN.md#new-request-intake-proposal) phân biệt giai đoạn sản phẩm, bản muốn đưa yêu cầu vào, trùng/đổi nghĩa và ảnh hưởng kiến trúc. Cần chốt riêng trước phần triển khai phụ thuộc; không gộp bốn tình huống thành approval G2. Chưa cấp quyền Git/deploy, đổi ngưỡng QUALITY hoặc chạy pilot.
+[Hai điểm đang làm rõ](KIDEA_DESIGN.md#mvp-replanning-state): cập nhật cùng kế hoạch MVP chỉ cần bảo toàn tiến độ; bugfix phải chọn nền thực sự phù hợp production rồi đưa bản sửa về master/Feature. Nội dung chi tiết thuộc đề xuất tiếp nhận/G4/G6, cần chốt trước triển khai phụ thuộc. Chưa cấp quyền Git/deploy, đổi ngưỡng QUALITY hoặc chạy pilot.
 
 <a id="working-rules"></a>
 
@@ -87,7 +87,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T04-S02 | DONE | R01-T04-S02-r1 — APPROVED | Human: “Tôi nhất trí.”; D1–D3 tại c8dace9; [bằng chứng](#r01-t04-s02-result) |
 | R01-T04-S03 | DONE | R01-T04-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại b0524f5; [bằng chứng và khép task](#r01-t04-result) |
 | R01-T05-S01 | DONE | R01-T05-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 7df435b; [bằng chứng G1](#r01-t05-s01-result) |
-| R01-T05-S02 | IN_PROGRESS | R01-T05-S02-r3 — IN_REVIEW | Human đề nghị lượt cuối toàn dự án sau mỗi Feature; [gói r3](#review-current), chưa duyệt đầu ra. r2 tại 62c0381 được thay bằng r3; đề xuất tiếp nhận yêu cầu mới đang trao đổi riêng |
+| R01-T05-S02 | IN_PROGRESS | R01-T05-S02-r3 — IN_REVIEW | Human “nhất trí với phần lớn” tại b9441bd, còn trao đổi tiến độ MVP/hotfix; [gói r3](#review-current) giữ nguyên, chưa suy thành approval toàn gói hoặc các gói G4/G6 |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
