@@ -1,15 +1,16 @@
-Đã ghi nhận **S02 — web/SEO được duyệt**. Gói cuối của task nền tảng là **S03 — mobile và kiểm tra thiết bị**, đang chờ bạn duyệt:
+Đã ghi nhận **S03 được duyệt và khép task nền tảng R01-T03**. Chưa cài công cụ, nâng Mac hoặc chạy thử ứng dụng.
+
+Tiếp theo là **R01-T04 — chọn pilot để kiểm chứng Kidea**. Gói S01 chờ duyệt hai điểm:
 
 | Quyết định | Đề xuất |
 |---|---|
-| **D1 — Android** | Kotlin + Jetpack Compose, native, code riêng. |
-| **D2 — iOS** | Swift + SwiftUI, native, code riêng; ưu tiên Mac/iPhone đã có. |
-| **D3 — Thời điểm kiểm tra** | Kiểm tra tương thích trước khi chuẩn bị môi trường; đến phần iOS mới kiểm tra Mac/Xcode/iPhone. Chọn thiết bị thử trước R09. |
+| **D1 — Bài toán** | Ứng dụng đăng ký workshop: người tham gia xem/đăng ký/hủy chỗ; admin quản lý workshop. |
+| **D2 — MVP ban đầu** | Xem workshop; đăng ký/hủy và xem đăng ký của mình; quản trị; cập nhật số chỗ và theo dõi vận hành. Native chỉ có danh sách và chi tiết/đăng ký/hủy; admin/vận hành nằm trên web. |
 
-Emulator/simulator không thay đo hiệu năng trên điện thoại thật. Thiếu thiết bị thì ghi **chưa kiểm chứng**, không tự bỏ yêu cầu hoặc ghi PASS.
+Biên quan trọng: mỗi người tối đa một đăng ký còn hiệu lực/workshop; chỉ đăng ký/hủy khi **OPEN**; không vượt sức chứa. Dùng dữ liệu giả, chưa có thanh toán, email/SMS, push hoặc danh sách chờ.
 
-Bạn đọc [gói S03](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa yêu cầu cài công cụ, nâng Mac hay mua thiết bị; những thao tác đó cần quyền riêng. Các phiên bản trong ma trận là căn cứ cũ, chưa được kiểm tra lại ở lượt này.
+Bạn đọc [gói S01 — bài toán và MVP](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chuỗi event/đường lỗi sẽ duyệt ở S02; nơi giữ hồ sơ, lab/chi phí/quyền ở S03. Chưa tạo repo hoặc code pilot.
 
-Đã đồng bộ tài liệu và xác minh bản GitHub; không tạo file tạm. Sau duyệt, mình sẽ kiểm tra đóng task nền tảng rồi soạn **R01-T04-S01 — bài toán pilot workshop và giới hạn MVP** để kiểm chứng Kidea, chưa code pilot.
+Đã cập nhật và xác minh bản GitHub; không tạo file tạm. Sau duyệt, mình sẽ soạn S02, không hỏi lại quyền soạn.
 
-Bạn duyệt D1–D3 của S03 chứ?
+Bạn duyệt D1–D2 của S01 chứ?

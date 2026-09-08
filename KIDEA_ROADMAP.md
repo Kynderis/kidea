@@ -8,23 +8,24 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T03-S03 — Mobile và kiểm tra thiết bị](#review-current). R01-T03 chốt nền tảng bản đầu; S01 host/backend và S02 web/SEO đã được duyệt. S03 là gói cuối của task. [Sổ công việc](#work-state) giữ trạng thái.
+Việc hiện hành: [R01-T04-S01 — Bài toán pilot và giới hạn MVP](#review-current). R01-T03 đã đủ ba subtask DONE. R01-T04 chọn sản phẩm thử để kiểm chứng Kidea và nơi giữ hồ sơ; S01 chỉ chốt bài toán/phạm vi, chưa xây ứng dụng.
 
 <a id="review-current"></a>
 
-### R01-T03-S03-r1 — Ba quyết định chờ duyệt
+### R01-T04-S01-r1 — Hai quyết định chờ duyệt
 
 | Quyết định | Đề xuất | Ý nghĩa và giới hạn |
 |---|---|---|
-| D1. Android dùng gì? | Giữ Kotlin + Jetpack Compose, app native với code riêng. | Dùng chung backend C++; không mặc định thêm nền tảng chia sẻ code hoặc NDK. |
-| D2. iOS dùng gì? | Giữ Swift + SwiftUI, app native với code riêng; ưu tiên Mac/iPhone đã có. | Không chuyển sang framework đa nền tảng. Thiết bị hiện có chưa được chứng nhận build/chạy phù hợp. |
-| D3. Kiểm tra môi trường lúc nào? | Kiểm tra phiên bản và tính tương thích trước khi tạo môi trường; đến phần iOS mới kiểm tra Mac/Xcode/iPhone. Chọn thiết bị thử trước R09. | Cài/nâng hệ điều hành, signing, mua/thuê hoặc phát hành cần quyền riêng trước thao tác. Thiếu máy thì ghi chưa kiểm chứng và xin xử lý, không tự bỏ yêu cầu. |
+| D1. Dùng bài toán nào thử Kidea? | Giữ ứng dụng đăng ký workshop: người tham gia xem, đăng ký/hủy chỗ; admin quản lý workshop. | Đủ nhỏ để đi hết quy trình, nhưng có rule dùng chung và tranh chấp chỗ cuối; không chỉ làm trang giới thiệu. |
+| D2. MVP ban đầu gồm gì? | Bốn nhóm: xem workshop; đăng ký/hủy và xem đăng ký của mình; quản trị workshop; cập nhật số chỗ và theo dõi vận hành. | Web có nội dung công khai, admin và vận hành; mỗi app native chỉ danh sách và chi tiết/đăng ký/hủy. Không thêm chức năng thương mại. |
 
-**Giới hạn bằng chứng:** emulator/simulator giúp kiểm tra hành vi, không thay đo hiệu năng trên điện thoại thật. iPhone hiện có không đại diện mọi máy yếu; model Android chưa được cung cấp. Phạm vi mobile đầu tiên là điện thoại, không mặc nhiên gồm tablet/watch/TV/XR.
+**Biên nghiệp vụ:** mỗi người tối đa một đăng ký còn hiệu lực trên một workshop; hủy rồi đăng ký lại được. Ban đầu chỉ đăng ký/hủy khi OPEN; PAUSED chặn cả hai. Không vượt sức chứa, không giảm sức chứa dưới số người đã đăng ký. Admin tạo/sửa, xuất bản và tạm dừng/mở lại; không xóa workshop hoặc tự đổi trạng thái theo giờ.
 
-**Nguồn:** [ma trận và chính sách kiểm chứng](KIDEA_DESIGN.md#platform-matrix), [nguồn lực iOS](KIDEA_DESIGN.md#mobile-device-baseline). Gói chỉ rà hướng đã chọn; số phiên bản là snapshot cũ, chưa xác minh lại. Không duyệt lại phiên bản, OS tối thiểu hoặc ngưỡng hiệu năng trong lượt này.
+Dùng dữ liệu/tài khoản giả, không người dùng thật. Chưa có thanh toán, email/SMS, push hoặc danh sách chờ. Giới hạn hai đăng ký trên toàn bộ workshop và cho hủy khi PAUSED là tình huống thay đổi sau này, **không thuộc MVP ban đầu**.
 
-Đã đối chiếu hướng mobile, môi trường và quyền trong DESIGN; chưa cài, nâng Mac hoặc chạy build; không tạo file tạm. Sau duyệt, đồng bộ và kiểm tra đóng R01-T03, rồi soạn R01-T04-S01: bài toán pilot workshop và giới hạn MVP để kiểm chứng Kidea. Chỉ chuẩn bị đề xuất, chưa code pilot; không hỏi lại quyền soạn.
+**Nguồn:** [phạm vi pilot](KIDEA_DESIGN.md#pilot-scope). Đây là rà phạm vi đã đề xuất; chưa duyệt seed cụ thể, thiết kế API/database hoặc cách triển khai event.
+
+S02 sẽ rà chuỗi event/đường lỗi và thứ tự backend–web–native; S03 rà nơi giữ hồ sơ, lab/chi phí/quyền. Duyệt S01 không cấp quyền tạo repo, cài hoặc deploy. Sau duyệt mình ghi nhận và soạn S02, không hỏi lại quyền soạn. Chưa code pilot; không tạo file tạm.
 
 <a id="working-rules"></a>
 
@@ -83,7 +84,8 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T02-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ/ví dụ, rà case/link/trạng thái và cleanup; [kết quả](#r01-t02-result) |
 | R01-T03-S01 | DONE | R01-T03-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 184c5c1; [bằng chứng](#r01-t03-s01-result) |
 | R01-T03-S02 | DONE | R01-T03-S02-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại e138999; [bằng chứng](#r01-t03-s02-result) |
-| R01-T03-S03 | IN_PROGRESS | R01-T03-S03-r1 — IN_REVIEW | Chuẩn bị tiếp theo luồng đã thông báo; [gói mobile/thiết bị](#review-current), chưa duyệt đầu ra |
+| R01-T03-S03 | DONE | R01-T03-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại 6f2565c; [bằng chứng và khép task](#r01-t03-result) |
+| R01-T04-S01 | IN_PROGRESS | R01-T04-S01-r1 — IN_REVIEW | Chuẩn bị tiếp theo luồng đã thông báo; [gói bài toán/MVP](#review-current), chưa duyệt đầu ra |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -128,6 +130,15 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - Human: “Duyệt nhé”, đối với D1–D2 của [gói tại e138999](https://github.com/Kynderis/kidea/blob/e138999214f59f0dfe5553f76b968bfd9c9c0a19/KIDEA_ROADMAP.md#review-current): SvelteKit + TypeScript với prerender/SSR và cập nhật phía trình duyệt; SEO xuyên mười bước, gate thiết kế ở bước 4 và sẵn sàng ở bước 10 trước phát hành công khai.
 - Giữ nghiệp vụ ở backend C++, ranh giới nội dung công khai/riêng tư và N/A có Human duyệt; không cam kết index/thứ hạng/AI trích dẫn. Không duyệt phiên bản mới, CDN, ngưỡng hiệu năng, mobile hoặc quyền cài/deploy.
 - Đồng bộ căn cứ trong DESIGN, kiểm tra liên kết/trạng thái và diff; không tạo file tạm, chưa chạy build/benchmark hoặc xác minh lại phiên bản. S02 DONE không đóng R01-T03 hoặc phase R01.
+
+<a id="r01-t03-result"></a>
+
+### Kết quả R01-T03 — ngày 2026-09-08
+
+- S03: Human “Duyệt nhé” sau [gói D1–D3 tại 6f2565c](https://github.com/Kynderis/kidea/blob/6f2565c300aae37eb9001be73da4c1367fca1f49/KIDEA_ROADMAP.md#review-current): Android Kotlin/Compose và iOS Swift/SwiftUI native, code riêng; kiểm tra tương thích trước chuẩn bị môi trường, Mac/Xcode/iPhone khi đến phần iOS và chọn thiết bị thử trước R09. Không duyệt phiên bản mới, OS tối thiểu, ngưỡng hiệu năng hoặc cấp quyền cài/nâng/mua/signing/deploy.
+- Đối chiếu đủ S01–S03 với DESIGN: host Kidea khác runtime sản phẩm; backend giữ nghiệp vụ; web render/SEO giữ ranh giới riêng tư; native và kiểm chứng máy thật không bị cắt. R05-T02–T05, R09 và KA-27/30 giữ nghĩa vụ kiểm chứng tương ứng; chưa có thay đổi cần mở lại các gói đã duyệt.
+- Đồng bộ căn cứ mobile trong DESIGN, kiểm tra link/anchor/trạng thái và diff. Ba subtask R01-T03 đủ điều kiện DONE; phase R01 vẫn chưa được duyệt. Không chạy build, xác minh lại phiên bản hoặc chứng nhận tương thích thực tế.
+- Không tạo file tạm hoặc có untracked cần dọn. Giữ nguyên nghiên cứu, nguồn và evidence cũ; không thay case/ngưỡng, không tạo repo hoặc code pilot.
 
 <a id="phase-overview"></a>
 

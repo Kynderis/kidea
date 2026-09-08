@@ -155,6 +155,8 @@ Kiến trúc web đã chốt phải bao gồm URL/canonical/liên kết nội b�
 
 <a id="mobile-device-baseline"></a>
 
+Vòng R2: Human xác nhận Android Kotlin/Compose, iOS Swift/SwiftUI native với code riêng và thời điểm kiểm tra môi trường ở `R01-T03-S03-r1`; [bằng chứng](KIDEA_ROADMAP.md#r01-t03-result). Chưa xác minh lại phiên bản hoặc cấp quyền cài/nâng/mua/signing/deploy; không dùng simulator thay bằng chứng hiệu năng máy thật.
+
 Nguồn lực iOS Human xác nhận: MacBook Pro 16 inch 2019 Intel, RAM 16 GB, macOS Sonoma, còn trống khoảng 512 GB; iPhone 12 Pro Max hiện có. Đây là thông tin Human cung cấp, chưa kiểm tra máy/build thực. Chưa rõ bản Sonoma 14.x cụ thể, iOS hiện tại và Xcode đã cài. Theo [ma trận Apple](https://developer.apple.com/xcode/system-requirements/) kiểm tra ngày 2026-09-07, Xcode 16.2 chạy từ Sonoma 14.5, còn Xcode 26.6 cần Tahoe 26.2–26.x. Model Mac này có trong [danh sách Tahoe](https://support.apple.com/en-us/122867); khả năng nâng cấp không đồng nghĩa đã nâng hoặc được phép cài. Ưu tiên tận dụng máy để kiểm chứng trước; chưa chốt mua/thuê Mac hoặc nâng macOS.
 
 Human đã chốt cách chuẩn bị Mac: hiện tại chỉ chốt giải pháp; đến khi làm iOS mới kiểm tra và cập nhật macOS nếu cần. Ma trận vòng trước ghi môi trường dự kiến, phần chưa kiểm chứng và thời điểm cần quyền; không lấy việc chưa nâng macOS/cài Xcode làm điều kiện bắt buộc để đóng task thiết kế. Không ghi tương thích thực tế là PASS trước khi kiểm tra.
