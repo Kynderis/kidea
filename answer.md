@@ -1,5 +1,14 @@
-Đã ghi nhận duyệt S02 và hoàn thành S03. **R01-T02 đã xong**: tài liệu được đồng bộ, liên kết đã kiểm tra; không có file tạm cần xóa. [Xem kết quả](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#r01-t02-result).
+**R01-T03-S01 đã soạn xong, đang chờ bạn duyệt hai quyết định nền tảng:**
 
-**Tiếp theo: R01-T03 — nền tảng bản đầu.** Gói đầu S01 sẽ rà hai phần: máy chạy Kidea (Windows) và môi trường backend (Ubuntu), dựa trên [ma trận nền tảng](https://github.com/Kynderis/kidea/blob/master/KIDEA_DESIGN.md#platform-matrix).
+| Quyết định | Đề xuất |
+|---|---|
+| **D1 — Máy chạy Kidea** | Windows 11 x64 là nền tảng hỗ trợ đầu tiên; làm việc local, không cần server Kidea. Chưa công bố hỗ trợ host macOS/Linux. |
+| **D2 — Backend sản phẩm** | C++20, chạy trên Ubuntu 24.04 LTS amd64 làm nền kiểm chứng. Có thể soạn code trên Windows, nhưng build/test Linux và kiểm tra bản phát hành trên môi trường Ubuntu đích. |
 
-S01 **chưa bắt đầu**. Bạn không cần xác nhận thêm để mình soạn đề xuất; chỉ cần duyệt khi mình trình gói cụ thể. Chưa cài hay nâng cấp công cụ. Bản cập nhật đã được lưu lên GitHub.
+**Điểm dễ nhầm:** C++ là ngôn ngữ backend của sản phẩm được quản lý, không bắt Kidea phải viết bằng C++. Runtime của Kidea sẽ chốt riêng.
+
+Bạn chỉ cần đọc [gói S01 — host và backend](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Đây là giữ hướng đã chọn trước đó; chưa xác minh lại toolchain hoặc chạy build, chưa cài/nâng cấp gì.
+
+Đã cập nhật GitHub; không tạo file tạm. Sau khi bạn duyệt, mình sẽ ghi nhận S01 và chuẩn bị gói **web/SEO ở S02**, không hỏi lại quyền bắt đầu soạn.
+
+Bạn duyệt D1–D2 của gói này chứ?

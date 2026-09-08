@@ -8,22 +8,24 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-R01-T02 đã khép: [kết quả](#r01-t02-result), trạng thái tại [sổ công việc](#work-state). Việc kế tiếp, chưa bắt đầu: R01-T03-S01 — rà nền tảng chạy Kidea và backend sản phẩm. Đầu ra là gói quyết định về host Windows và đích Ubuntu, lấy [ma trận nền tảng](KIDEA_DESIGN.md#platform-matrix) làm căn cứ; không cần xác nhận thêm để soạn đề xuất, nhưng phải duyệt đầu ra trước phần phụ thuộc. Chưa cài/nâng cấp hoặc kiểm chứng toolchain thực.
+Việc hiện hành: [R01-T03-S01 — Host Kidea và backend sản phẩm](#review-current). Task R01-T03 rà nền tảng bản đầu; S01 chỉ xét hai phần dưới đây, web và mobile có gói riêng. [Sổ công việc](#work-state) giữ trạng thái.
 
 <a id="review-current"></a>
 
-### R01-T02-S02-r1 — Đã duyệt, không còn chờ phản hồi
+### R01-T03-S01-r1 — Hai quyết định chờ duyệt
 
-| Quyết định | Đề xuất | Hệ quả cần hiểu |
+**Mục đích:** phân biệt máy dùng Kidea để làm việc với môi trường chạy backend của sản phẩm. Giữ hướng đã chọn ở vòng trước, không chọn lại mọi phiên bản công cụ.
+
+| Quyết định | Đề xuất | Ý nghĩa và giới hạn |
 |---|---|---|
-| D1. Một thông tin có bao nhiêu nguồn chính? | Một nguồn có hiệu lực cho từng thông tin: rule ở tài liệu sản phẩm; tiến trình ở hồ sơ công việc; xác nhận duyệt ở record review. Nơi khác dùng link hoặc bản hiển thị dẫn xuất, không nhập lại một bản độc lập. | Có thể chia nhiều file, không phải gom mọi thứ vào một file. INDEX/HTML được tóm tắt nhưng phải truy về nguồn và nhận diện bản cũ; nhãn “đã duyệt” trong docs không tự là bằng chứng approval. |
-| D2. Kidea được đọc và sửa đến đâu? | Đọc đủ nguồn/phụ thuộc cần thiết ở .kidea, tài liệu sản phẩm và code/test/config trong phạm vi được phép. Chỉ ghi các đích cần thiết đã xác định cho task/hành động được cho phép; không coi cùng repo hoặc có link là quyền sửa toàn bộ. | Status chỉ đọc; visualize chỉ ghi đầu ra do nó quản lý. Nếu thiếu/mâu thuẫn hoặc nguồn đổi sau khi đọc, dừng phần phụ thuộc để đối chiếu, không tự đoán hoặc ghi đè theo dữ liệu cũ. Không bắt đọc cả repo ở mọi lượt. |
+| D1. Kidea chạy ở đâu trong bản đầu? | Windows 11 x64 là host hỗ trợ đầu tiên; hồ sơ và công cụ hỗ trợ chạy local, không cần server Kidea. | Tập trung kiểm chứng một host. Chưa công bố Kidea chạy trên macOS/Linux hoặc mọi ứng dụng AI. Ngôn ngữ/runtime của helper Kidea chốt riêng ở R02-T01. |
+| D2. Backend sản phẩm dùng gì và chạy ở đâu? | C++20, đích Ubuntu 24.04 LTS amd64 làm cấu hình nền kiểm chứng. Soạn source trên Windows; build/test Linux trong WSL2 phù hợp hoặc môi trường Linux được phép. | C++ là ngôn ngữ backend sản phẩm, không bắt Kidea phải viết bằng C++. Bản release phải được kiểm tra trên môi trường Ubuntu đích; chạy tốt trên Windows/WSL chưa đủ chứng minh release. |
 
-**Ví dụ:** rule “không vượt sức chứa” chỉ định nghĩa ở tài liệu nghiệp vụ. Review trỏ đúng bản rule; tiến trình dẫn tới review. Đổi rule thì kiểm tra lại căn cứ, không giữ approval chỉ vì một nhãn cũ còn đó.
+**Căn cứ:** [hai dòng Host Kidea / Backend sản phẩm trong ma trận](KIDEA_DESIGN.md#host-backend-baseline). Các mốc toolchain là snapshot vòng trước; lượt này không xác minh lại bản vá/khả dụng của máy hoặc chạy build. Khi chuẩn bị môi trường phải kiểm tra tương thích, khóa phiên bản thực và xin quyền cài nếu cần.
 
-**Đọc nguồn:** [Nguồn có hiệu lực và ranh giới ghi](KIDEA_DESIGN.md#source-authority-and-write-boundary). Đã đối chiếu các đường init/status/resume/view và case hồ sơ thiếu/ghi dở/nguồn cũ; đây là review tài liệu, chưa test skill.
+**Bạn đang duyệt:** D1–D2 về phạm vi nền tảng, không phải chứng nhận đã hỗ trợ. Chưa chọn framework/database, runtime Kidea, web/mobile; chưa cho cài/nâng cấp WSL hoặc thao tác Git/deploy.
 
-**Phạm vi duyệt:** Human phản hồi “Mình duyệt” đối với D1–D2 tại commit `5cf853fbc678f164f7728ddfba8922a831b3cc3c`; chưa chọn schema, fingerprint hay cấp quyền Git/cài/deploy. S03 đã đồng bộ và kiểm tra để khép R01-T02; [bằng chứng](#r01-t02-result). Không có file tạm cần xóa.
+Đã đối chiếu nơi kiểm chứng R02/R05/R09/R10; không tạo file tạm. Sau duyệt, ghi nhận S01 rồi chuẩn bị gói web/SEO ở S02, không cần xác nhận riêng để soạn gói đó.
 
 <a id="working-rules"></a>
 
@@ -80,6 +82,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T02-S01 | DONE | R01-T02-S01-r1 — APPROVED | Human: “Tôi duyệt”; chỉ D1–D2 tại b908696; [bằng chứng](#r01-t02-s01-result) |
 | R01-T02-S02 | DONE | R01-T02-S02-r1 — APPROVED | Human: “Mình duyệt”; D1–D2 tại 5cf853f; [bằng chứng](#r01-t02-result) |
 | R01-T02-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ/ví dụ, rà case/link/trạng thái và cleanup; [kết quả](#r01-t02-result) |
+| R01-T03-S01 | IN_PROGRESS | R01-T03-S01-r1 — IN_REVIEW | Human yêu cầu “Làm đi”; [gói host/backend](#review-current), chưa duyệt đầu ra |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
