@@ -8,23 +8,25 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T04-S02 — Chuỗi dữ liệu, đường lỗi và thứ tự pilot](#review-current). R01-T04 chọn pilot để kiểm chứng Kidea; S01 bài toán/MVP đã được duyệt. S02 chốt những quan hệ và tình huống cần chứng minh, chưa chọn công cụ triển khai.
+Việc hiện hành: trao đổi [đề xuất dùng dự án thật làm pilot](#review-current). Human đã nhất trí S02; S03 về hồ sơ/lab/quyền chưa bắt đầu vì hướng pilot đang được xem xét lại. Chưa thay bài toán đã duyệt hoặc mở triển khai dự án thật.
 
 <a id="review-current"></a>
 
-### R01-T04-S02-r1 — Ba quyết định chờ duyệt
+### Đề xuất đổi hướng pilot — đang trao đổi, chưa duyệt
 
-| Quyết định | Đề xuất | Ý nghĩa và giới hạn |
-|---|---|---|
-| D1. Phải truy xuyên chuỗi nào? | Rule đăng ký → dữ liệu đăng ký → event (thông báo thay đổi) → số chỗ dẫn xuất → web/native và monitoring. | Quyết định nhận chỗ dùng dữ liệu có thẩm quyền ở backend, không dùng số chỗ hiển thị/cache. Khi rule đổi, rà cả nơi nhận dữ liệu dù không đổi code. |
-| D2. Phải chứng minh lỗi nào? | Tranh chỗ cuối không vượt sức chứa; gửi lại cùng yêu cầu không tạo tác dụng phụ lần hai; event lặp không đếm đôi, trễ/đảo thứ tự không làm lùi trạng thái; gián đoạn rồi phục hồi và đối chiếu đúng. | Theo dõi event chờ/lỗi, độ trễ và lần xử lý thành công gần nhất. Mất tín hiệu không được báo khỏe; đây là yêu cầu kiểm chứng, chưa phải kết quả PASS. |
-| D3. Làm pilot theo thứ tự nào? | Backend → lát cắt web → thử thêm Feature giữa MVP → hoàn thiện event/admin/monitoring → Android → iOS → release lab/restore. | Giữ checkpoint trước thử thay đổi; backend/web chạy được không thay nghiệm thu native hoặc toàn MVP. Mỗi bước vẫn theo kế hoạch/gate/quyền riêng. |
+Human nêu ý tưởng dùng Thuận Thiên để vừa phát triển sản phẩm đang cần, vừa hoàn thiện Kidea. Đây là câu hỏi xin đánh giá, không phải quyền sửa dự án hoặc quyết định thay toàn bộ pilot.
 
-**Cần phân biệt:** thay đổi giữa MVP là bài thử quy trình Kidea, không tự thêm giới hạn hai đăng ký vào bản đầu đã duyệt. Sau release còn bài thử đổi yêu cầu, sửa lỗi và ngắt/resume theo roadmap; không bỏ các bài thử này vì S02 tập trung chuỗi dữ liệu.
+**Khuyến nghị:** lấy một Feature nhỏ, hữu ích của dự án thật làm pilot chính; giữ các tình huống lỗi khó dưới dạng fixture/bản sao cô lập, không cần xây thêm một ứng dụng workshop hoàn chỉnh. Không coi hoàn thành toàn bộ dự án thật là điều kiện xong pilot.
 
-**Nguồn:** [chuỗi và kịch bản pilot](KIDEA_DESIGN.md#pilot-scope), [thứ tự R09](#r09). Chưa chọn database, giao thức/event broker, thuật toán, ngưỡng đo hoặc duyệt toàn bộ case nghiệm thu.
+Các phần cần chốt trước thay kế hoạch:
 
-Sau duyệt, ghi nhận S02 và soạn S03 về nơi giữ hồ sơ, lab/chi phí/quyền; không hỏi lại quyền soạn. Chưa tạo repo, cài, code hoặc chạy pilot; không tạo file tạm.
+- Phạm vi Feature, nguồn hiện có và quyền đọc/ghi. Dự án cũ chưa có hồ sơ Kidea hợp lệ vẫn bắt đầu bước 1, đối chiếu tài liệu/code; không tự coi là resume hoặc chứng nhận mọi thứ đã đúng.
+- Công nghệ thực tế và phạm vi Kidea cần kiểm chứng; không ép rewrite sản phẩm theo ma trận pilot cũ. Năng lực chưa có bằng chứng vẫn chưa được công bố hỗ trợ.
+- Cách thử Kidea từng lát cắt trước khi áp dụng phần tương ứng vào công việc thật; lỗi/resume/restore dùng môi trường cô lập và dữ liệu giả, không làm hỏng bản đang dùng.
+
+Nếu Human chọn hướng này, mở gói thay pilot và rà đúng các phần R01-T03/T04, R05/R09, case/bằng chứng bị ảnh hưởng; chưa tự đổi chúng ở lượt thảo luận. Approval S02 giữ nguyên căn cứ workshop, không chuyển sang nghiệp vụ mới.
+
+Chỉ cập nhật approval và ghi đề xuất tại repo Kidea; chưa sửa/cài/chạy/deploy dự án đích. Chi tiết nguồn riêng tư không đưa vào repo này. Không tạo file tạm.
 
 <a id="working-rules"></a>
 
@@ -85,7 +87,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T03-S02 | DONE | R01-T03-S02-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại e138999; [bằng chứng](#r01-t03-s02-result) |
 | R01-T03-S03 | DONE | R01-T03-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại 6f2565c; [bằng chứng và khép task](#r01-t03-result) |
 | R01-T04-S01 | DONE | R01-T04-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 4abf90b; [bằng chứng](#r01-t04-s01-result) |
-| R01-T04-S02 | IN_PROGRESS | R01-T04-S02-r1 — IN_REVIEW | Chuẩn bị tiếp theo luồng đã thông báo; [gói chuỗi/lỗi/thứ tự](#review-current), chưa duyệt đầu ra |
+| R01-T04-S02 | DONE | R01-T04-S02-r1 — APPROVED | Human: “Tôi nhất trí.”; D1–D3 tại c8dace9; [bằng chứng](#r01-t04-s02-result) |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -147,6 +149,14 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - Human “Duyệt nhé” sau [gói D1–D2 tại 4abf90b](https://github.com/Kynderis/kidea/blob/4abf90b31c8c3a8a9b8804433064327554344c15/KIDEA_ROADMAP.md#review-current): bài toán đăng ký workshop và bốn nhóm MVP cùng các biên nghiệp vụ đã trình; native hai màn hình, admin/vận hành trên web, dữ liệu giả. Hai đăng ký toàn hệ thống và hủy khi PAUSED vẫn là bài thử change sau này, không thuộc MVP ban đầu.
 - Không duyệt seed cụ thể, cách triển khai event/API/database, nơi giữ hồ sơ hoặc quyền tạo repo/cài/deploy. S02/S03 được rà riêng; không coi approval phạm vi là đã xây ứng dụng.
 - Đồng bộ căn cứ trong DESIGN; đối chiếu PIL-F01–F04, R09-T02–T10 và các biên MVP/change, không phát hiện thay đổi cần sửa case. Kiểm tra link/trạng thái/diff; không tạo file tạm hoặc code, chưa chạy kiểm thử pilot. S01 DONE không đóng task R01-T04.
+
+<a id="r01-t04-s02-result"></a>
+
+### Kết quả R01-T04-S02 — ngày 2026-09-08
+
+- Human mở đầu “Tôi nhất trí.” sau [gói D1–D3 tại c8dace9](https://github.com/Kynderis/kidea/blob/c8dace973cd878147dbf19bc9d44f32b756f55e9/KIDEA_ROADMAP.md#review-current): chuỗi rule/dữ liệu/event/số chỗ/client/monitoring, các đường lỗi và thứ tự pilot đã trình. Không duyệt database, công cụ event, thuật toán, ngưỡng đo hoặc quyền thực thi.
+- Cùng phản hồi, Human hỏi về dùng Thuận Thiên làm pilot. Ghi riêng đây là đề xuất đang trao đổi; không chuyển approval workshop sang nghiệp vụ mới, không xóa nguồn/case cũ hoặc đổi roadmap triển khai khi chưa chốt ảnh hưởng. S03 chưa bắt đầu trong lúc xem xét hướng pilot.
+- Đồng bộ căn cứ trong DESIGN, đối chiếu chuỗi và thứ tự R09, kiểm tra link/trạng thái/diff. Không code/chạy pilot, không tạo file tạm. S02 DONE không đóng R01-T04 hoặc phase R01.
 
 <a id="phase-overview"></a>
 

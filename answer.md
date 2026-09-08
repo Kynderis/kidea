@@ -1,15 +1,14 @@
-Đã ghi nhận **S01 — bài toán/MVP được duyệt**. S02 đang chờ duyệt ba điểm:
+Mình ủng hộ **dùng một phần nhỏ của Thuận Thiên làm pilot chính cho Kidea**. Cách này tạo giá trị thật cho cả hai: Thuận Thiên tiến lên, còn Kidea được thử với yêu cầu, tài liệu và thay đổi thực tế.
 
-| Quyết định | Đề xuất |
-|---|---|
-| **D1 — Chuỗi cần truy** | Rule đăng ký → dữ liệu → event → số chỗ hiển thị → web/native và monitoring. Backend quyết định nhận chỗ từ dữ liệu gốc, không từ cache. |
-| **D2 — Tình huống lỗi** | Tranh chỗ cuối; gửi lại yêu cầu; event lặp/trễ/đảo thứ tự; gián đoạn rồi phục hồi. Không vượt chỗ, không xử lý trùng hoặc làm lùi trạng thái; có đối chiếu dữ liệu và theo dõi lỗi. |
-| **D3 — Thứ tự pilot** | Backend → web tối thiểu → thử thêm Feature giữa MVP → event/admin/monitoring → Android → iOS → release lab và khôi phục. |
+Mình đề xuất:
 
-Bài thử thêm Feature **không tự bổ sung chức năng vào MVP đã duyệt**; phải giữ checkpoint và đi qua quy trình thay đổi. Backend/web chạy được cũng không thay nghiệm thu native.
+1. **Chọn một Feature nhỏ có ích**, không lấy toàn bộ Thuận Thiên làm pilot. Chốt đầu ra và giới hạn trước.
+2. **Tôn trọng nền tảng và nguồn hiện có.** Rà phần profile Kidea cần điều chỉnh, không viết lại dự án chỉ để khớp công nghệ pilot cũ.
+3. **Làm Kidea từng phần rồi áp dụng phần đã kiểm tra vào Feature thật.** Chưa cần chờ Kidea hoàn chỉnh, nhưng không dùng hướng dẫn chưa kiểm chứng để tự sửa/deploy sản phẩm.
+4. **Workshop chỉ giữ vai trò bộ tình huống thử lỗi cô lập**, nếu cần. Không xây thêm một ứng dụng hoàn chỉnh; cũng không đưa lỗi có chủ ý vào bản Thuận Thiên đang dùng.
 
-Bạn đọc [gói S02](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa chọn database, công cụ truyền event, thuật toán hoặc ngưỡng đo; chưa code/chạy pilot.
+Dự án đã có code vẫn cần đối chiếu và duyệt nguồn từ bước 1; không phải làm lại mọi thứ, nhưng không mặc nhiên coi code hiện tại là đặc tả đúng. Những năng lực chưa được pilot chứng minh vẫn cần bằng chứng riêng.
 
-Đã đồng bộ và xác minh bản GitHub; không tạo file tạm. Sau duyệt, mình sẽ soạn S03 về nơi giữ hồ sơ, lab/chi phí/quyền.
+“Tôi nhất trí” đã được ghi nhận cho **S02 vừa trình**. Ý tưởng dùng Thuận Thiên hiện là **đề xuất thay pilot**, chưa được áp dụng. Mình tạm chưa soạn S03 theo bài toán workshop; nếu bạn chọn hướng mới, bước kế tiếp là một gói nhỏ chốt Feature pilot và các phần kế hoạch bị ảnh hưởng.
 
-Bạn duyệt D1–D3 của S02 chứ?
+Đã cập nhật Kidea; chưa sửa Thuận Thiên. Bản công khai này lược bỏ chi tiết lấy từ nguồn riêng tư.

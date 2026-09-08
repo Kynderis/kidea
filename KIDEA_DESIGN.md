@@ -173,6 +173,8 @@ Yêu cầu SEO áp dụng cho nội dung được phép công khai. Không dùng
 
 Vòng R2: Human xác nhận bài toán và giới hạn MVP ở `R01-T04-S01-r1`; [bằng chứng](KIDEA_ROADMAP.md#r01-t04-s01-result). Phạm vi xác nhận là D1–D2 và các biên đã trình; seed cụ thể, chuỗi/đường lỗi, nơi giữ hồ sơ và quyền thực thi không được duyệt kèm.
 
+Human tiếp tục xác nhận chuỗi/đường lỗi/thứ tự pilot ở `R01-T04-S02-r1`; [bằng chứng](KIDEA_ROADMAP.md#r01-t04-s02-result). Sau đó nêu đề xuất dùng dự án thật làm pilot; đề xuất đang trao đổi, chưa thay phạm vi workshop hoặc chuyển approval sang nghiệp vụ mới. Không thay quyền thực thi.
+
 Gói `P01-T03-PILOT-r1`, ngày 2026-09-07: **APPROVED, Human duyệt ngày 2026-09-07**. [Bằng chứng vòng trước](KIDEA_ROADMAP.md#p01-t03-review); phạm vi này được rà lại tại R01-T04. Đây là phạm vi sản phẩm dùng để kiểm chứng Kidea, không phải yêu cầu xây ứng dụng ngay.
 
 **Mục tiêu:** một người dùng xem workshop, đăng ký/hủy một chỗ; quản trị viên quản lý số chỗ và trạng thái mở đăng ký. Chọn bài toán này vì nhỏ nhưng có rule dùng chung giữa các client, tranh chấp chỗ cuối và dependency qua event/dữ liệu, không chỉ lời gọi hàm.
