@@ -8,22 +8,24 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T05-S01 — Tổ chức bản code đang làm](#review-current), chờ duyệt đề xuất. R01-T04 đã khép phần chuẩn bị pilot. R01-T05 xác định cách tách công việc đang sửa khỏi bản tích hợp; S01 chọn cách dùng branch/worktree, S02 sau đó mới chốt điều kiện nhập thay đổi vào bản tích hợp.
+Việc hiện hành: [R01-T05-S02 — Khi nào được nhận vào bản tích hợp](#review-current), chờ duyệt đề xuất. R01-T05 tổ chức bản đang sửa và bản tích hợp; S01 đã duyệt cách dùng branch/worktree. S02 chốt điều kiện chất lượng trước và sau tích hợp, không cấp quyền merge.
 
 <a id="review-current"></a>
 
-### R01-T05-S01-r1 — Hai quyết định chờ duyệt
+### R01-T05-S02-r1 — Hai quyết định chờ duyệt
 
 | Quyết định | Đề xuất | Ý nghĩa và giới hạn |
 |---|---|---|
-| D1. Giữ bản đang làm thế nào? | Một nhánh tích hợp (`master` cho pilot) và một branch làm việc hiện hành cho mỗi thay đổi có phạm vi rõ. Không thêm `develop` hoặc nhiều nhánh thường trực. | Branch là dòng phiên bản riêng: tài liệu, code, test của cùng thay đổi đi cùng nhau. Không tạo nhánh cho từng thao tác nhỏ; nhiều bước trong cùng thay đổi có thể dùng chung nhánh. |
-| D2. Khi nào cần worktree? | Mặc định dùng thư mục làm việc hiện có. Chỉ thêm worktree khi cần giữ nguyên thư mục/bản đang kiểm tra và mở riêng bản cần sửa. | Worktree là thư mục làm việc bổ sung của cùng repo, không phải project mới. Nó tốn thêm chỗ và cần theo dõi đúng nhánh; không tạo nhiều luồng triển khai hoặc nhiều nguồn hồ sơ độc lập. |
+| D1. Khi nào thay đổi đủ điều kiện nhập vào `master`? | Hoàn chỉnh đúng phạm vi đã chốt; tài liệu/code/test/cấu hình liên quan đồng bộ; đủ kiểm tra và Human gate bắt buộc, bằng chứng còn đúng bản. | Gói thiết kế chỉ có tài liệu vẫn được nhận khi hoàn chỉnh; thay đổi chức năng không được gọi là xong nếu còn thiếu phần bắt buộc. Không cần chờ cả sản phẩm hoàn thành, nhưng không thu nhỏ phạm vi để giấu việc dở. |
+| D2. Sau khi nhập thì xác nhận thế nào? | Kiểm tra lại bản tích hợp thực tế theo phạm vi ảnh hưởng, gồm lỗi tương tác với phần đã có; ghi đúng commit và kết quả. | Nhánh riêng PASS chưa đủ. Nếu kiểm tra lỗi hoặc chưa chạy thì bản tích hợp chưa được xác nhận đạt; giữ bằng chứng, dừng phát hành và xử lý theo quyền đã có. |
 
-**Ví dụ:** khi đổi quy tắc hủy đăng ký workshop, giữ đặc tả, code và test của thay đổi trên cùng branch. Nếu cần giữ bản cũ để đối chiếu, mới đề xuất worktree riêng; không tự sao chép hồ sơ thành nguồn thứ hai.
+**Ví dụ:** sửa quy tắc hủy đăng ký cần đồng bộ đặc tả, backend/client bị ảnh hưởng và test. Test trên nhánh riêng đạt vẫn phải kiểm tra lại sau tích hợp. Ngược lại, một gói thiết kế được duyệt không phải chờ viết toàn bộ ứng dụng mới được lưu vào bản tích hợp.
 
-Đây là hướng tổ chức, **không cấp quyền tạo/chuyển branch, tạo/xóa worktree hoặc commit/push/merge**. Quyền cụ thể thuộc R01-T06; cách lưu dở/checkpoint cũng được trình riêng. Chưa đổi nhánh đang dùng của repo Kidea, không ép đổi tên nhánh tích hợp của project có sẵn.
+`master` là bản tích hợp, **không mặc nhiên là bản đang chạy production**. Tích hợp không thay quyền push, tạo tag hoặc deploy. Nếu bản nguồn đổi làm ảnh hưởng căn cứ review/test, phải đối chiếu và bổ sung kiểm tra/duyệt lại phần bị ảnh hưởng trước khi nhận.
 
-**Nguồn:** [đề xuất G1 và giới hạn](KIDEA_DESIGN.md#git-working-layout). Chưa chốt lúc được nhập vào `master`, chưa coi `master` là production. Sau duyệt sẽ soạn S02 về điều kiện chấp nhận thay đổi vào bản tích hợp và kiểm tra sau tích hợp. Chưa thực hiện Git trong pilot; không tạo file tạm.
+**Nguồn:** [đề xuất G2](KIDEA_DESIGN.md#git-integration-gate). Chưa chọn cách merge, CI/branch protection hoặc ngưỡng QUALITY; không duyệt quyền Git G3 hay cách checkpoint/khôi phục G4.
+
+Sau duyệt, kiểm tra khép R01-T05; tiếp đó soạn gói phân định thao tác Git nào Kidea được tự làm trên máy và thao tác nào cần quyền riêng. Chưa thao tác Git trong pilot; không tạo file tạm.
 
 <a id="working-rules"></a>
 
@@ -86,7 +88,8 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T04-S01 | DONE | R01-T04-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 4abf90b; [bằng chứng](#r01-t04-s01-result) |
 | R01-T04-S02 | DONE | R01-T04-S02-r1 — APPROVED | Human: “Tôi nhất trí.”; D1–D3 tại c8dace9; [bằng chứng](#r01-t04-s02-result) |
 | R01-T04-S03 | DONE | R01-T04-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại b0524f5; [bằng chứng và khép task](#r01-t04-result) |
-| R01-T05-S01 | IN_PROGRESS | R01-T05-S01-r1 — IN_REVIEW | [Gói tổ chức bản đang làm](#review-current); chưa duyệt G1 hoặc cấp quyền Git |
+| R01-T05-S01 | DONE | R01-T05-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 7df435b; [bằng chứng G1](#r01-t05-s01-result) |
+| R01-T05-S02 | IN_PROGRESS | R01-T05-S02-r1 — IN_REVIEW | [Gói điều kiện tích hợp](#review-current); chưa duyệt G2 hoặc cấp quyền merge |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -174,6 +177,14 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - Đối chiếu S01–S03 với DESIGN, R03-T01, R09-T01–T14 và KA-01/04/12/27/28/30: giữ đủ bài toán, chuỗi lỗi, native và ranh giới bằng chứng. Seed cụ thể, máy đích, quyền thực thi và N/A cho index thật vẫn thuộc gói chuẩn bị pilot tương ứng; chưa duyệt kèm hoặc coi đã test.
 - Đồng bộ root và căn cứ approval trong DESIGN cùng con trỏ RV-02; kiểm tra liên kết/trạng thái/diff, đủ ba subtask R01-T04 DONE. Phase R01 chưa được duyệt; chưa tạo repo/thư mục pilot, chọn remote, chạy ứng dụng hoặc thay quyền Git. Không cần sửa case/ngưỡng vì các quyết định giữ phạm vi đã trình.
 - Không tạo file tạm hoặc untracked cần dọn; giữ nguồn và bằng chứng cũ. Thuận Thiên tiếp tục ngoài công việc hiện hành.
+
+<a id="r01-t05-s01-result"></a>
+
+### Kết quả R01-T05-S01 — ngày 2026-09-08
+
+- Human “Duyệt nhé” sau [gói D1–D2 tại 7df435b](https://github.com/Kynderis/kidea/blob/7df435bf59bf82882c04941b73f7169b7e97c6d6/KIDEA_ROADMAP.md#review-current): một nhánh tích hợp và một branch làm việc hiện hành theo thay đổi có phạm vi rõ, không thêm develop/nhánh thường trực; chỉ dùng worktree khi cần giữ bản/thư mục riêng để kiểm tra và sửa. G1 là cách tổ chức, không cấp quyền Git hoặc duyệt G2–G6.
+- Đồng bộ G1 trong DESIGN và các con trỏ từng ghi toàn bộ G1–G6 chưa duyệt; giữ nguyên điều kiện quyền ở KA-12 và toàn bộ ngưỡng QUALITY. Chưa tạo/chuyển branch, worktree hoặc repo pilot; không kiểm chứng thao tác Git thực tế trong pilot.
+- Kiểm tra liên kết/trạng thái/diff và không có file tạm cần dọn. S01 DONE không đóng R01-T05; S02 tiếp tục rà điều kiện tích hợp.
 
 <a id="phase-overview"></a>
 
@@ -434,7 +445,7 @@ Mười bước sản phẩm không bị gộp bởi cách chia phase xây skill
 
 | Vấn đề | Nơi xử lý mới | Giới hạn tại lượt tái lập |
 |---|---|---|
-| RV-01 — Git G1–G6 | R01-T05/T06/T07 | Chưa duyệt, chưa mở quyền |
+| RV-01 — Git G1–G6 | R01-T05/T06/T07 | G1 theo [bằng chứng S01](#r01-t05-s01-result); G2–G6 còn mở, chưa cấp quyền thao tác |
 | RV-02 — Nơi giữ hồ sơ pilot trước khi code | R01-T04-S03, kiểm tra lại R03-T01 | Root theo [kết quả R01-T04](#r01-t04-result); chưa tạo repo, phải xác nhận lại root/quyền trước ghi |
 | RV-03 — Evidence không tự làm cũ chính mình | R01-T09-S01 → R02-T04 | Chưa chọn fingerprint/schema |
 | RV-04 — Ngưỡng và chi phí thử thiếu căn cứ | R01-T09-S02/S03 → R02-T10/R06-T09/R07-T04 | Các số cũ vẫn chưa duyệt; không tự hạ ngưỡng |
@@ -461,7 +472,7 @@ Mười bước sản phẩm không bị gộp bởi cách chia phase xây skill
 | P01-T03-PILOT-r1 | Workshop pilot được duyệt, chưa tạo ứng dụng; [bằng chứng pilot](https://github.com/Kynderis/kidea/blob/ec462eb/KIDEA_ROADMAP.md#p01-t03-review). Nay R01-T04 |
 | PROJECT-FILES-r1 | Một repo, tài liệu sản phẩm ngoài .kidea và điều phối trong .kidea đã được duyệt; [bằng chứng ranh giới](https://github.com/Kynderis/kidea/blob/ec462eb/KIDEA_ROADMAP.md#project-files-review). Không phải approval Git/QUALITY; nay R01-T02 |
 | ACCEPTANCE-r2 và QUALITY-r2 | Đã có danh mục 30 họ case nhưng chưa chạy; QUALITY chưa duyệt. Nay rà từng nhóm R01-T08/T09, không coi draft hoặc kiểm tra Markdown là PASS hành vi |
-| Git G1–G6 | [Đề xuất chưa duyệt](https://github.com/Kynderis/kidea/blob/b0a825f/answer.md); nay tách R01-T05/T06/T07, không tự áp dụng |
+| Git G1–G6 | [Đề xuất vòng trước](https://github.com/Kynderis/kidea/blob/b0a825f/answer.md); vòng R2 duyệt từng phần ở R01-T05/T06/T07, xem sổ công việc; không tự áp dụng quyền |
 | Nghiên cứu, tham khảo và Idea | Giữ nguồn gốc, báo cáo theo thời điểm, đề xuất nhiều agent vẫn ngoài bản đầu. Không nghiên cứu lại mọi phiên bản trong lần tái lập kế hoạch này |
 
 Không thêm file archive/tracker thứ hai. Các anchor P01 ở đây chỉ giúp liên kết bằng chứng cũ không bị đứt; mọi việc đang làm nằm ở mã Rxx và sổ hiện hành.

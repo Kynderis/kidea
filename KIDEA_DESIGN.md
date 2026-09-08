@@ -10,7 +10,7 @@ Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ
 
 Tài liệu này là nguồn thiết kế; roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào; `answer.md` là bản sao câu trả lời để đọc từ xa. Human yêu cầu bắt đầu vòng rà soát R2 từ đầu ngày 2026-09-08: lựa chọn đã duyệt là căn cứ để xác nhận/điều chỉnh từng phần, không tự chuyển DONE/APPROVED của vòng trước sang vòng mới. [Chỉ đọc gói hiện tại](KIDEA_ROADMAP.md#review-current); [đối chiếu lộ trình cũ → mới](KIDEA_ROADMAP.md#coverage). Các mã gói P01 còn giữ dưới đây là nhận diện bằng chứng lịch sử, không phải task đang chạy.
 
-Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). Đề xuất thay đổi quyền Git/branch/release G1–G6 vẫn chưa được duyệt; không suy approval thư mục thành approval Git hoặc tiêu chí chất lượng.
+Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). Cách tổ chức branch/worktree G1 đã được duyệt theo [bằng chứng](KIDEA_ROADMAP.md#r01-t05-s01-result); G2–G6 còn mở, chưa cấp quyền Git; không suy approval thư mục thành approval Git hoặc tiêu chí chất lượng.
 
 [Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đã được Human duyệt tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Human đã duyệt Kotlin + Jetpack Compose, Swift + SwiftUI và [cách tích hợp SEO vào gate quy trình](#seo-proposal); ma trận phiên bản/môi trường r3 đã được duyệt; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
 
@@ -435,17 +435,27 @@ Vòng R2: D1–D2 của `R01-T02-S02-r1` đã được Human duyệt; [bằng ch
 
 Ví dụ: rule “không vượt sức chứa” ở tài liệu nghiệp vụ; record review tham chiếu đúng bản rule, còn tiến trình tham chiếu record review. INDEX/HTML có thể hiển thị tóm tắt nhưng không tạo một bản rule hoặc approval độc lập; nguồn đổi phải được đối chiếu trước khi tiếp tục phần phụ thuộc.
 
-Một repo chứa tài liệu, hồ sơ điều phối và source/test/config cần quản lý phiên bản; không có repo `.kidea` riêng cho cùng sản phẩm. Các clone/worktree của cùng repo không phải project hoặc nguồn đặc tả độc lập. Quyền tạo/đổi/push Git vẫn theo chính sách đã có; đề xuất G1–G6 chưa được duyệt. Repository xây chính Kidea này chưa là project mẫu do skill quản lý: các file `KIDEA_*` ở root vẫn là nguồn thiết kế/lộ trình hiện hành, không tự di chuyển chúng sang cây pilot.
+Một repo chứa tài liệu, hồ sơ điều phối và source/test/config cần quản lý phiên bản; không có repo `.kidea` riêng cho cùng sản phẩm. Các clone/worktree của cùng repo không phải project hoặc nguồn đặc tả độc lập. Quyền tạo/đổi/push Git vẫn theo chính sách đã có; G1 chỉ chốt cách tổ chức, G2–G6 còn mở và chưa cấp quyền thao tác. Repository xây chính Kidea này chưa là project mẫu do skill quản lý: các file `KIDEA_*` ở root vẫn là nguồn thiết kế/lộ trình hiện hành, không tự di chuyển chúng sang cây pilot.
 
 <a id="git-working-layout"></a>
 
-#### Đề xuất G1 — tổ chức bản đang làm, chưa duyệt
+#### G1 — tổ chức bản đang làm
 
-Gói [R01-T05-S01-r1](KIDEA_ROADMAP.md#review-current) tách G1 từ đề xuất Git vòng trước: một nhánh tích hợp (`master` cho pilot), một branch làm việc hiện hành cho mỗi thay đổi có phạm vi rõ, không thêm `develop` hoặc nhiều nhánh thường trực. Tài liệu/code/test của cùng thay đổi đi cùng nhánh; không tạo branch theo từng thao tác nhỏ. Với project có sẵn, giữ tên nhánh tích hợp hiện có trừ khi Human duyệt đổi.
+Human đã duyệt G1 tại [R01-T05-S01-r1](KIDEA_ROADMAP.md#r01-t05-s01-result): một nhánh tích hợp (`master` cho pilot), một branch làm việc hiện hành cho mỗi thay đổi có phạm vi rõ, không thêm `develop` hoặc nhiều nhánh thường trực. Tài liệu/code/test của cùng thay đổi đi cùng nhánh; không tạo branch theo từng thao tác nhỏ. Với project có sẵn, giữ tên nhánh tích hợp hiện có trừ khi Human duyệt đổi.
 
 Mặc định dùng thư mục làm việc hiện có; chỉ đề xuất worktree khi cần giữ nguyên thư mục/bản đang kiểm tra và mở riêng bản cần sửa. Worktree thuộc cùng repo, không tạo project hoặc nguồn hồ sơ độc lập và không mở nhiều luồng triển khai. Phải nhận diện đúng repo/nhánh/bản nguồn khi đổi thư mục; thư mục phụ có thể cần thêm dependency/artifact và dung lượng.
 
 G1 không chốt điều kiện tích hợp G2, quyền Git G3, checkpoint/khôi phục G4 hoặc version/release G5–G6. Duyệt cách tổ chức không tự cấp quyền tạo/chuyển/xóa branch/worktree, commit/push/merge; chính sách quyền hiện hành giữ nguyên cho đến đúng gói được duyệt.
+
+<a id="git-integration-gate"></a>
+
+#### Đề xuất G2 — điều kiện nhận vào bản tích hợp, chưa duyệt
+
+Gói R01-T05-S02-r1 đề xuất chỉ nhận thay đổi hoàn chỉnh đúng phạm vi đã chốt vào nhánh tích hợp: đồng bộ tài liệu/code/test/cấu hình liên quan, đủ kiểm tra và Human gate bắt buộc, căn cứ còn đúng bản. Giai đoạn thiết kế có thể nhận gói tài liệu hoàn chỉnh mà chưa có code; thay đổi chức năng phải đủ các phần bắt buộc của chính thay đổi đó. Không đợi toàn sản phẩm xong, cũng không đổi phạm vi để che công việc chưa hoàn tất.
+
+Sau tích hợp, kiểm tra lại bản thực tế theo phạm vi ảnh hưởng, gồm tương tác với phần đã có; gắn kết quả với commit tích hợp, không chỉ dùng PASS trên nhánh riêng. Nguồn đổi ảnh hưởng căn cứ thì phải đối chiếu, kiểm tra và duyệt lại phần bị ảnh hưởng. Khi kiểm tra lỗi/chưa chạy, chưa xác nhận bản tích hợp đạt; giữ bằng chứng, dừng phát hành và xử lý theo quyền đã có, không tự rollback/reset hoặc bỏ test để xanh.
+
+Nhánh tích hợp không mặc nhiên là production; đạt kiểm tra không tự cấp quyền push/tag/deploy. Gói không chọn thuật toán merge, CI/branch protection, ngưỡng QUALITY hoặc quyền Git/checkpoint; các nội dung đó vẫn theo gate riêng.
 
 Tách thư mục không tách quyền kiểm tra: Kidea phải đọc đủ nguồn liên quan ở cả `.kidea`, `docs/`, source/test/config. Helper chỉ được ghi đúng file/đường dẫn đã xác định cho hành động hiện tại; không coi “nằm trong repo” là quyền sửa toàn repo. Các link sang tài liệu sản phẩm là bình thường, nhưng link sai root/thoát phạm vi không được tự trở thành quyền đọc/ghi ngoài project.
 
@@ -744,7 +754,7 @@ Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải c
 |---|---|
 | Xác nhận mục tiêu/ranh giới và nguồn tài liệu từng phần; không coi approval vòng trước là đã qua vòng mới | [R01-T01/T02](KIDEA_ROADMAP.md#r01) |
 | Nền tảng và pilot, gồm nơi giữ hồ sơ trước khi ghi | [R01-T03/T04](KIDEA_ROADMAP.md#r01) |
-| Git G1–G6 còn là đề xuất: bản làm việc/tích hợp, quyền/checkpoint, version/release | Ba task riêng [R01-T05/T06/T07](KIDEA_ROADMAP.md#r01); không tự mở quyền |
+| Git: G1 đã chốt cách tổ chức; G2–G6 còn mở về tích hợp, quyền/checkpoint, version/release | Ba task riêng [R01-T05/T06/T07](KIDEA_ROADMAP.md#r01); không tự mở quyền |
 | Case, tiêu chí đúng/an toàn, evidence và cách chốt số đo | [R01-T08/T09](KIDEA_ROADMAP.md#r01); số cũ trong QUALITY vẫn chưa duyệt |
 | Runtime, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
 | Phân rã nghiệp vụ, AC và chọn business test | [R03](KIDEA_ROADMAP.md#r03) |
