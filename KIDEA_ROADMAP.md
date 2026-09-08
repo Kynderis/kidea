@@ -8,24 +8,23 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T04-S01 — Bài toán pilot và giới hạn MVP](#review-current). R01-T03 đã đủ ba subtask DONE. R01-T04 chọn sản phẩm thử để kiểm chứng Kidea và nơi giữ hồ sơ; S01 chỉ chốt bài toán/phạm vi, chưa xây ứng dụng.
+Việc hiện hành: [R01-T04-S02 — Chuỗi dữ liệu, đường lỗi và thứ tự pilot](#review-current). R01-T04 chọn pilot để kiểm chứng Kidea; S01 bài toán/MVP đã được duyệt. S02 chốt những quan hệ và tình huống cần chứng minh, chưa chọn công cụ triển khai.
 
 <a id="review-current"></a>
 
-### R01-T04-S01-r1 — Hai quyết định chờ duyệt
+### R01-T04-S02-r1 — Ba quyết định chờ duyệt
 
 | Quyết định | Đề xuất | Ý nghĩa và giới hạn |
 |---|---|---|
-| D1. Dùng bài toán nào thử Kidea? | Giữ ứng dụng đăng ký workshop: người tham gia xem, đăng ký/hủy chỗ; admin quản lý workshop. | Đủ nhỏ để đi hết quy trình, nhưng có rule dùng chung và tranh chấp chỗ cuối; không chỉ làm trang giới thiệu. |
-| D2. MVP ban đầu gồm gì? | Bốn nhóm: xem workshop; đăng ký/hủy và xem đăng ký của mình; quản trị workshop; cập nhật số chỗ và theo dõi vận hành. | Web có nội dung công khai, admin và vận hành; mỗi app native chỉ danh sách và chi tiết/đăng ký/hủy. Không thêm chức năng thương mại. |
+| D1. Phải truy xuyên chuỗi nào? | Rule đăng ký → dữ liệu đăng ký → event (thông báo thay đổi) → số chỗ dẫn xuất → web/native và monitoring. | Quyết định nhận chỗ dùng dữ liệu có thẩm quyền ở backend, không dùng số chỗ hiển thị/cache. Khi rule đổi, rà cả nơi nhận dữ liệu dù không đổi code. |
+| D2. Phải chứng minh lỗi nào? | Tranh chỗ cuối không vượt sức chứa; gửi lại cùng yêu cầu không tạo tác dụng phụ lần hai; event lặp không đếm đôi, trễ/đảo thứ tự không làm lùi trạng thái; gián đoạn rồi phục hồi và đối chiếu đúng. | Theo dõi event chờ/lỗi, độ trễ và lần xử lý thành công gần nhất. Mất tín hiệu không được báo khỏe; đây là yêu cầu kiểm chứng, chưa phải kết quả PASS. |
+| D3. Làm pilot theo thứ tự nào? | Backend → lát cắt web → thử thêm Feature giữa MVP → hoàn thiện event/admin/monitoring → Android → iOS → release lab/restore. | Giữ checkpoint trước thử thay đổi; backend/web chạy được không thay nghiệm thu native hoặc toàn MVP. Mỗi bước vẫn theo kế hoạch/gate/quyền riêng. |
 
-**Biên nghiệp vụ:** mỗi người tối đa một đăng ký còn hiệu lực trên một workshop; hủy rồi đăng ký lại được. Ban đầu chỉ đăng ký/hủy khi OPEN; PAUSED chặn cả hai. Không vượt sức chứa, không giảm sức chứa dưới số người đã đăng ký. Admin tạo/sửa, xuất bản và tạm dừng/mở lại; không xóa workshop hoặc tự đổi trạng thái theo giờ.
+**Cần phân biệt:** thay đổi giữa MVP là bài thử quy trình Kidea, không tự thêm giới hạn hai đăng ký vào bản đầu đã duyệt. Sau release còn bài thử đổi yêu cầu, sửa lỗi và ngắt/resume theo roadmap; không bỏ các bài thử này vì S02 tập trung chuỗi dữ liệu.
 
-Dùng dữ liệu/tài khoản giả, không người dùng thật. Chưa có thanh toán, email/SMS, push hoặc danh sách chờ. Giới hạn hai đăng ký trên toàn bộ workshop và cho hủy khi PAUSED là tình huống thay đổi sau này, **không thuộc MVP ban đầu**.
+**Nguồn:** [chuỗi và kịch bản pilot](KIDEA_DESIGN.md#pilot-scope), [thứ tự R09](#r09). Chưa chọn database, giao thức/event broker, thuật toán, ngưỡng đo hoặc duyệt toàn bộ case nghiệm thu.
 
-**Nguồn:** [phạm vi pilot](KIDEA_DESIGN.md#pilot-scope). Đây là rà phạm vi đã đề xuất; chưa duyệt seed cụ thể, thiết kế API/database hoặc cách triển khai event.
-
-S02 sẽ rà chuỗi event/đường lỗi và thứ tự backend–web–native; S03 rà nơi giữ hồ sơ, lab/chi phí/quyền. Duyệt S01 không cấp quyền tạo repo, cài hoặc deploy. Sau duyệt mình ghi nhận và soạn S02, không hỏi lại quyền soạn. Chưa code pilot; không tạo file tạm.
+Sau duyệt, ghi nhận S02 và soạn S03 về nơi giữ hồ sơ, lab/chi phí/quyền; không hỏi lại quyền soạn. Chưa tạo repo, cài, code hoặc chạy pilot; không tạo file tạm.
 
 <a id="working-rules"></a>
 
@@ -85,7 +84,8 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T03-S01 | DONE | R01-T03-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 184c5c1; [bằng chứng](#r01-t03-s01-result) |
 | R01-T03-S02 | DONE | R01-T03-S02-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại e138999; [bằng chứng](#r01-t03-s02-result) |
 | R01-T03-S03 | DONE | R01-T03-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại 6f2565c; [bằng chứng và khép task](#r01-t03-result) |
-| R01-T04-S01 | IN_PROGRESS | R01-T04-S01-r1 — IN_REVIEW | Chuẩn bị tiếp theo luồng đã thông báo; [gói bài toán/MVP](#review-current), chưa duyệt đầu ra |
+| R01-T04-S01 | DONE | R01-T04-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 4abf90b; [bằng chứng](#r01-t04-s01-result) |
+| R01-T04-S02 | IN_PROGRESS | R01-T04-S02-r1 — IN_REVIEW | Chuẩn bị tiếp theo luồng đã thông báo; [gói chuỗi/lỗi/thứ tự](#review-current), chưa duyệt đầu ra |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -139,6 +139,14 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - Đối chiếu đủ S01–S03 với DESIGN: host Kidea khác runtime sản phẩm; backend giữ nghiệp vụ; web render/SEO giữ ranh giới riêng tư; native và kiểm chứng máy thật không bị cắt. R05-T02–T05, R09 và KA-27/30 giữ nghĩa vụ kiểm chứng tương ứng; chưa có thay đổi cần mở lại các gói đã duyệt.
 - Đồng bộ căn cứ mobile trong DESIGN, kiểm tra link/anchor/trạng thái và diff. Ba subtask R01-T03 đủ điều kiện DONE; phase R01 vẫn chưa được duyệt. Không chạy build, xác minh lại phiên bản hoặc chứng nhận tương thích thực tế.
 - Không tạo file tạm hoặc có untracked cần dọn. Giữ nguyên nghiên cứu, nguồn và evidence cũ; không thay case/ngưỡng, không tạo repo hoặc code pilot.
+
+<a id="r01-t04-s01-result"></a>
+
+### Kết quả R01-T04-S01 — ngày 2026-09-08
+
+- Human “Duyệt nhé” sau [gói D1–D2 tại 4abf90b](https://github.com/Kynderis/kidea/blob/4abf90b31c8c3a8a9b8804433064327554344c15/KIDEA_ROADMAP.md#review-current): bài toán đăng ký workshop và bốn nhóm MVP cùng các biên nghiệp vụ đã trình; native hai màn hình, admin/vận hành trên web, dữ liệu giả. Hai đăng ký toàn hệ thống và hủy khi PAUSED vẫn là bài thử change sau này, không thuộc MVP ban đầu.
+- Không duyệt seed cụ thể, cách triển khai event/API/database, nơi giữ hồ sơ hoặc quyền tạo repo/cài/deploy. S02/S03 được rà riêng; không coi approval phạm vi là đã xây ứng dụng.
+- Đồng bộ căn cứ trong DESIGN; đối chiếu PIL-F01–F04, R09-T02–T10 và các biên MVP/change, không phát hiện thay đổi cần sửa case. Kiểm tra link/trạng thái/diff; không tạo file tạm hoặc code, chưa chạy kiểm thử pilot. S01 DONE không đóng task R01-T04.
 
 <a id="phase-overview"></a>
 
