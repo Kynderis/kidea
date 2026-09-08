@@ -10,7 +10,7 @@ Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ
 
 Tài liệu này là nguồn thiết kế; roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào; `answer.md` là bản sao câu trả lời để đọc từ xa. Human yêu cầu bắt đầu vòng rà soát R2 từ đầu ngày 2026-09-08: lựa chọn đã duyệt là căn cứ để xác nhận/điều chỉnh từng phần, không tự chuyển DONE/APPROVED của vòng trước sang vòng mới. [Chỉ đọc gói hiện tại](KIDEA_ROADMAP.md#review-current); [đối chiếu lộ trình cũ → mới](KIDEA_ROADMAP.md#coverage). Các mã gói P01 còn giữ dưới đây là nhận diện bằng chứng lịch sử, không phải task đang chạy.
 
-Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). Cách tổ chức branch/worktree G1 đã được duyệt theo [bằng chứng](KIDEA_ROADMAP.md#r01-t05-s01-result); G2–G6 còn mở, chưa cấp quyền Git; không suy approval thư mục thành approval Git hoặc tiêu chí chất lượng.
+Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). Cách tổ chức branch/worktree G1 đã được duyệt theo [bằng chứng](KIDEA_ROADMAP.md#r01-t05-s01-result); G2 đã chốt theo [kết quả T05](KIDEA_ROADMAP.md#r01-t05-result); G3–G6 còn phần chưa duyệt, chưa cấp quyền Git; không suy approval thư mục thành approval Git hoặc tiêu chí chất lượng.
 
 [Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đã được Human duyệt tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Human đã duyệt Kotlin + Jetpack Compose, Swift + SwiftUI và [cách tích hợp SEO vào gate quy trình](#seo-proposal); ma trận phiên bản/môi trường r3 đã được duyệt; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
 
@@ -350,6 +350,16 @@ Chỉnh format, bổ sung test theo đặc tả đã chốt hoặc code theo thi
 
 Hồ sơ bước con cần nêu phần việc, kết quả kiểm tra và trạng thái Human review riêng. Kiểm tra đạt chưa tự biến thành approval. `$kidea approve <mã-bước-hoặc-gói-review>` phải chỉ rõ mục đang duyệt; duyệt một bước con không tự duyệt bước lớn hoặc những thay đổi khác.
 
+<a id="git-permissions-proposal"></a>
+
+### Đề xuất G3 — quyền Git theo phạm vi, chưa duyệt
+
+Gói R01-T06-S01-r1 trình hai quyết định: (D1) sau khi Human cho phép Git local cho đúng repo/đợt, được tạo/chuyển branch làm việc, commit phần nhiệm vụ và dùng worktree khi cần theo G1, không hỏi lại từng lần lưu; (D2) push cần phép rõ remote/nhánh và nội dung chia sẻ, có thể cho cả đợt đã xác định; merge master, tag và deploy cần phép rõ từng thao tác/đợt phát hành. Duyệt chính sách này không tự cấp quyền cho repo pilot. Khi chưa có quyền tương ứng, quy tắc hiện hành ở mục 4.4 vẫn áp dụng.
+
+Trước thao tác, xác minh repo/nền/nhánh và thay đổi đang có; chỉ stage/commit phần thuộc nhiệm vụ, không cuốn file của Human, secret hoặc dữ liệu riêng vào commit. Nếu không thể tách an toàn thì hỏi. Worktree cần quyền ghi đúng vị trí; không bao gồm tạo project hoặc cài công cụ. Không tự ghi trực tiếp master, xóa branch/worktree, reset, force-push, sửa lịch sử hoặc giải conflict bằng cách bỏ nội dung. Tình huống vượt phạm vi cần quyết định riêng. Commit còn dở không là nghiệm thu; hợp đồng WIP/khôi phục chi tiết ở G4.
+
+Phép push không bao hàm merge/tag/deploy; remote công khai/riêng tư phải rõ, không mặc định giống repo xây Kidea. Khi đợt công việc hoặc đích thay đổi, đối chiếu lại phạm vi quyền. Cách ghi/thu hồi quyền sẽ được cụ thể hóa ở hợp đồng R02, chưa chọn schema tại đây. Yêu cầu riêng lưu và push answer.md trong repo xây Kidea vẫn giữ nguyên.
+
 ### 4.4. Quyền thao tác không đi kèm approval nội dung
 
 Quy tắc dưới đây áp dụng khi Kidea làm việc trong project được quản lý, không thay thế yêu cầu lưu/push câu trả lời tại repo xây dựng Kidea.
@@ -435,7 +445,7 @@ Vòng R2: D1–D2 của `R01-T02-S02-r1` đã được Human duyệt; [bằng ch
 
 Ví dụ: rule “không vượt sức chứa” ở tài liệu nghiệp vụ; record review tham chiếu đúng bản rule, còn tiến trình tham chiếu record review. INDEX/HTML có thể hiển thị tóm tắt nhưng không tạo một bản rule hoặc approval độc lập; nguồn đổi phải được đối chiếu trước khi tiếp tục phần phụ thuộc.
 
-Một repo chứa tài liệu, hồ sơ điều phối và source/test/config cần quản lý phiên bản; không có repo `.kidea` riêng cho cùng sản phẩm. Các clone/worktree của cùng repo không phải project hoặc nguồn đặc tả độc lập. Quyền tạo/đổi/push Git vẫn theo chính sách đã có; G1 chỉ chốt cách tổ chức, G2–G6 còn mở và chưa cấp quyền thao tác. Repository xây chính Kidea này chưa là project mẫu do skill quản lý: các file `KIDEA_*` ở root vẫn là nguồn thiết kế/lộ trình hiện hành, không tự di chuyển chúng sang cây pilot.
+Một repo chứa tài liệu, hồ sơ điều phối và source/test/config cần quản lý phiên bản; không có repo `.kidea` riêng cho cùng sản phẩm. Các clone/worktree của cùng repo không phải project hoặc nguồn đặc tả độc lập. G1/G2 đã chốt cách tổ chức và điều kiện tích hợp; G3–G6 còn phần chưa duyệt, chưa cấp quyền thao tác. Repository xây chính Kidea này chưa là project mẫu do skill quản lý: các file `KIDEA_*` ở root vẫn là nguồn thiết kế/lộ trình hiện hành, không tự di chuyển chúng sang cây pilot.
 
 <a id="git-working-layout"></a>
 
@@ -449,9 +459,9 @@ G1 không chốt điều kiện tích hợp G2, quyền Git G3, checkpoint/khôi
 
 <a id="git-integration-gate"></a>
 
-#### Đề xuất G2 — một đợt thay đổi, test theo mức và tích hợp, chưa duyệt
+#### G2 — một đợt thay đổi, test theo mức và tích hợp
 
-Gói R01-T05-S02-r3 thay r2 theo yêu cầu làm rõ của Human: giữ phân tích ảnh hưởng chặt và test cục bộ trong lúc làm; sau mỗi Feature thêm/sửa/xóa hoàn chỉnh, bắt buộc một lượt kiểm tra mới trên toàn dự án, bao gồm phần không thay đổi. Không dồn lượt này đến khi nhiều Feature hoặc toàn MVP cùng xong. Đây là đề xuất đang trao đổi, chưa có xác nhận duyệt G2.
+Human đã duyệt R01-T05-S02-r3 cùng hai điểm làm rõ MVP/bugfix tại [kết quả R01-T05](KIDEA_ROADMAP.md#r01-t05-result). Giữ phân tích ảnh hưởng chặt và test cục bộ trong lúc làm; sau mỗi Feature thêm/sửa/xóa hoàn chỉnh, bắt buộc một lượt kiểm tra mới trên toàn dự án, bao gồm phần không thay đổi. Không dồn lượt này đến khi nhiều Feature hoặc toàn MVP cùng xong.
 
 1. **Chốt đợt thay đổi và bản bắt đầu.** Xác định yêu cầu, phạm vi ảnh hưởng và gate cần thiết; tạo branch từ bản `master` mới nhất đã xác minh khi có quyền. Giữ tài liệu sản phẩm, hồ sơ .kidea, source/test/config trên cùng branch; các task con không tự tạo nhánh riêng. Nếu master đổi trong lúc làm, phải đưa thay đổi về bản kết hợp mới và kiểm tra lại trước merge.
 2. **Làm từng task và test ngay.** Cập nhật đủ rule, thiết kế, code, test, mapping, dữ liệu/cấu hình và vận hành bị ảnh hưởng. Test hàm/class/module cùng các phần tích hợp bị tác động; mức test theo ảnh hưởng thực tế, không chỉ theo kích thước diff. Không cần chạy toàn bộ bộ hồi quy sau mọi sửa nhỏ, nhưng không trì hoãn kiểm tra liên thành phần đã biết là cần tới tận cuối.
@@ -461,13 +471,13 @@ Gói R01-T05-S02-r3 thay r2 theo yêu cầu làm rõ của Human: giữ phân t�
 
 Ví dụ cho phép hủy khi PAUSED: cập nhật rule và quyền, backend, các client, event/số chỗ và test liên quan. Task sửa backend có thể chạy unit/API test trước; task cập nhật client chạy test tương ứng. Khi toàn đợt xong, chạy bộ hồi quy project để phát hiện cả lỗi làm sai đăng ký mới, số chỗ hoặc các luồng cũ. Sau triển khai, kiểm tra luồng hủy và số chỗ trên đúng bản đang chạy.
 
-Luồng từ master ở trên là trường hợp bắt đầu đợt độc lập khi bản nền đủ dùng. Với bổ sung vào chính MVP đang làm, [đề xuất làm rõ](#mvp-replanning-state) giữ tiến độ/bằng chứng rồi điều chỉnh cùng kế hoạch, không tạo một luồng tạm dừng/khôi phục riêng hoặc bỏ phần chưa merge. Với bug production, [đề xuất chọn nền sửa lỗi](#production-bugfix-flow) phân biệt master với bản thực sự đang chạy. Cơ chế lưu dở/quyền và bản phát hành cụ thể vẫn thuộc G3/G4/G6; mỗi lúc chỉ một việc triển khai.
+Luồng từ master ở trên là trường hợp bắt đầu đợt độc lập khi bản nền đủ dùng. Với bổ sung vào chính MVP đang làm, [nguyên tắc đã chốt](#mvp-replanning-state) giữ tiến độ/bằng chứng rồi điều chỉnh cùng kế hoạch, không tạo một luồng tạm dừng/khôi phục riêng hoặc bỏ phần chưa merge. Với bug production, [cách chọn nền sửa lỗi](#production-bugfix-flow) phân biệt master với bản thực sự đang chạy. Chi tiết còn lại về lưu dở/quyền và bản phát hành vẫn thuộc G3/G4/G6; mỗi lúc chỉ một việc triển khai.
 
 Gói thiết kế/tài liệu thuần chưa tuyên bố khép Feature có thể tích hợp khi tài liệu hoàn chỉnh, kiểm tra đúng loại và đủ gate. Ngoại lệ này không miễn lượt toàn dự án khi đóng một Feature. Nhánh tích hợp không mặc nhiên là production; gói chưa cấp quyền Git/tag/deploy, chọn thuật toán merge/CI/branch protection hoặc duyệt ngưỡng QUALITY.
 
 <a id="feature-final-check"></a>
 
-#### Đề xuất lượt kiểm tra cuối toàn dự án — thuộc G2-r3, chưa duyệt
+#### Lượt kiểm tra cuối toàn dự án — thuộc G2-r3 đã duyệt
 
 Đây là nghĩa vụ bổ sung sau mỗi Feature hoàn chỉnh, không phụ thuộc việc phân tích ảnh hưởng trước đó đã kết luận một phần là không cần sửa. Kiểm tra trên bản cuối có nhận diện rõ; xác lập danh mục cho toàn bản project hiện hành, dùng các tiêu chí đã chốt và giữ các nghĩa vụ của phần chưa đến bước triển khai ở đúng trạng thái. Không tự bỏ một mục bắt buộc hoặc gắn N/A chỉ vì thiếu công cụ, chưa chạy được hoặc phần đó không có diff.
 
@@ -481,7 +491,7 @@ Gói thiết kế/tài liệu thuần chưa tuyên bố khép Feature có thể 
 
 Nếu lượt cuối phát hiện lỗi kể cả ở phần không đổi: xác định nguyên nhân, sửa đúng đặc tả, tìm và xử lý đầy đủ ảnh hưởng, test tập trung để xác nhận sửa; sau đó chạy lại toàn bộ lượt cuối trên bản đã sửa. Lỗi vi phạm tiêu chí bắt buộc còn tồn tại thì chưa đóng Feature. Phần sửa cần quyết định nghiệp vụ, quyền hoặc mở rộng đáng kể phải được trình đúng phạm vi, không tự refactor cả repo hoặc bỏ lỗi để thông qua.
 
-Lượt này tốn thêm thời gian nhưng chủ đích là bắt cả sai lệch ngoài tập ảnh hưởng đã dự đoán. Nó không thay phân tích mục 7.2/7.4 và không chứng minh tuyệt đối rằng không còn lỗi hoặc mọi trường hợp chưa biết đã được kiểm thử. Các công cụ/ngưỡng và biến thể nghiệm thu tương ứng phải được chốt tại task sở hữu trước áp dụng; không coi đề xuất này là đã duyệt toàn QUALITY.
+Lượt này tốn thêm thời gian nhưng chủ đích là bắt cả sai lệch ngoài tập ảnh hưởng đã dự đoán. Nó không thay phân tích mục 7.2/7.4 và không chứng minh tuyệt đối rằng không còn lỗi hoặc mọi trường hợp chưa biết đã được kiểm thử. Các công cụ/ngưỡng và biến thể nghiệm thu tương ứng phải được chốt tại task sở hữu trước áp dụng; không coi approval G2 là đã duyệt toàn QUALITY.
 
 Tách thư mục không tách quyền kiểm tra: Kidea phải đọc đủ nguồn liên quan ở cả `.kidea`, `docs/`, source/test/config. Helper chỉ được ghi đúng file/đường dẫn đã xác định cho hành động hiện tại; không coi “nằm trong repo” là quyền sửa toàn repo. Các link sang tài liệu sản phẩm là bình thường, nhưng link sai root/thoát phạm vi không được tự trở thành quyền đọc/ghi ngoài project.
 
@@ -534,7 +544,7 @@ Máy đích vẫn cần Kidea khả dụng và đúng phiên bản công cụ/pr
 
 ### 7.1. Thêm Feature
 
-Ghi checkpoint công việc cũ → lập gói thay đổi hiện hành → quay về bước 1 → duyệt Feature → đi tiếp qua các gate của đợt thay đổi.
+Bảo toàn tiến độ hiện có → xác định yêu cầu thuộc cùng kế hoạch hay một việc độc lập → quay về bước 1 chốt phạm vi → rà các bước và cập nhật kế hoạch → tiếp tục task hợp lệ. Bổ sung vào chính MVP không tạo luồng tạm dừng/khôi phục riêng; chỉ giữ điểm tiếp tục của việc cũ khi thực sự ngắt để xử lý một việc độc lập.
 
 Mỗi bước phía sau phải có kết luận: cần sửa gì hoặc đã kiểm tra và không cần sửa vì sao. Không nhất thiết viết lại toàn bộ tài liệu, nhưng không được bỏ qua một bước chỉ vì đoán rằng thay đổi nhỏ.
 
@@ -560,25 +570,25 @@ Phản hồi Human phân biệt lúc xây MVP với lúc sản phẩm đã có p
 
 “Liên quan” phải được đánh giá qua rule, dữ liệu, quyền, API/event, UX và cấu hình dùng chung; không chỉ theo tên Feature/file. “Trùng” phải là cùng hành vi/điều kiện, không phải chỉ cùng mục tiêu chung. Khi một Future được chọn triển khai, quay bước 1 chốt đợt hiện tại, không bắt đầu từ kiến trúc chỉ vì trước đó đã ghi Future.
 
-Đề xuất này cần được chốt riêng với biến thể KA-14/17/18/19 trước phần triển khai tiếp nhận/change ở R03/R06; chưa thay các case hoặc ghi toàn bộ ma trận là đã duyệt trong G2. Mỗi gói trình tiếp vẫn giữ giới hạn quyết định nhỏ của roadmap.
+Hai nguyên tắc điều chỉnh cùng MVP và bugfix bên dưới đã được duyệt riêng cùng G2; KA-17/19 được đồng bộ đúng phần đó. Các hàng còn lại về Future, ưu tiên và phân loại yêu cầu vẫn là đề xuất cần chốt riêng trước triển khai tiếp nhận/change ở R03/R06; không ghi toàn bộ ma trận là đã duyệt. Mỗi gói trình tiếp vẫn giữ giới hạn quyết định nhỏ của roadmap.
 
 <a id="mvp-replanning-state"></a>
 
-#### Làm rõ đề xuất: điều chỉnh cùng MVP và lưu tiến độ
+#### Đã chốt: điều chỉnh cùng MVP và lưu tiến độ
 
-Human nhất trí phần lớn đề xuất nhưng hỏi liệu cần lưu điểm dừng khi sẽ rà lại MVP từ đầu. Đề xuất điều chỉnh: không tạo một công việc cũ bị tạm dừng và một luồng resume riêng khi yêu cầu mới được đưa vào chính MVP. Kế hoạch cũ được cập nhật thành kế hoạch MVP mới; sau khi rà các bước, tiếp tục task kế tiếp hợp lệ của kế hoạch mới, không máy móc quay về task từng đang làm.
+Human đã xác nhận tại [kết quả R01-T05](KIDEA_ROADMAP.md#r01-t05-result): không tạo một công việc cũ bị tạm dừng và một luồng resume riêng khi yêu cầu mới được đưa vào chính MVP. Kế hoạch cũ được cập nhật thành kế hoạch MVP mới; sau khi rà các bước, tiếp tục task kế tiếp hợp lệ của kế hoạch mới, không máy móc quay về task từng đang làm.
 
 Vẫn bảo toàn thông tin sẵn có: đã hoàn thành gì, đang sửa dở gì, nguồn/code đang ở bản nào và kiểm tra/approval nào đã có. Ghi thay đổi phạm vi cùng phần bị ảnh hưởng trong hồ sơ hiện hành; đánh dấu phần cần sửa/kiểm tra lại và giữ phần còn đúng. Không bắt tạo file checkpoint riêng, sao chép toàn bộ project hoặc một commit mới chỉ vì đổi bước; cách lưu bằng Git vẫn theo quyền được chốt riêng. Việc lưu này phục vụ đối chiếu và tránh mất kết quả, không là thủ tục bắt Human duyệt lại mọi thứ.
 
-Nếu thực sự chuyển sang một việc độc lập, ví dụ sửa lỗi production trong khi Feature còn dở, lúc đó mới cần giữ rõ trạng thái tạm dừng/điểm tiếp tục của Feature. Nhánh đó có thể tồn tại nhưng không được tiếp tục triển khai đồng thời với việc sửa lỗi. KA-17/R09-T04 cần được đồng bộ khi phương án này được duyệt: phục hồi đúng tiến độ và áp dụng kế hoạch mới, không yêu cầu trở về một task đã bị thay thế.
+Nếu thực sự chuyển sang một việc độc lập, ví dụ sửa lỗi production trong khi Feature còn dở, lúc đó mới cần giữ rõ trạng thái tạm dừng/điểm tiếp tục của Feature. Nhánh đó có thể tồn tại nhưng không được tiếp tục triển khai đồng thời với việc sửa lỗi. KA-17/R09-T04 kiểm chứng bảo toàn tiến độ và áp dụng kế hoạch mới, không yêu cầu trở về một task đã bị thay thế.
 
 <a id="production-bugfix-flow"></a>
 
-#### Đề xuất: nền sửa lỗi production và đưa bản sửa về các nhánh
+#### Đã chốt: nền sửa lỗi production và đưa bản sửa về các nhánh
 
-Phần này làm rõ đề xuất G4/G6 và tiếp nhận yêu cầu mới, chưa cấp quyền tạo branch, merge hoặc deploy. Trước hết xác nhận lỗi là triển khai trái đặc tả của bản đang chạy, có cách tái hiện và test hồi quy bắt lỗi; nếu là đổi hành vi mong muốn thì đi luồng change. Xác minh đúng phiên bản/code, cấu hình, schema và gói triển khai thực tế; không chỉ đọc tên branch.
+Nguyên tắc này đã được Human duyệt tại [kết quả R01-T05](KIDEA_ROADMAP.md#r01-t05-result), là ràng buộc cho G4/G6 và tiếp nhận yêu cầu mới, chưa duyệt toàn bộ các gói đó hoặc cấp quyền tạo branch, merge/deploy. Trước hết xác nhận lỗi là triển khai trái đặc tả của bản đang chạy, có cách tái hiện và test hồi quy bắt lỗi; nếu là đổi hành vi mong muốn thì đi luồng change. Xác minh đúng phiên bản/code, cấu hình, schema và gói triển khai thực tế; không chỉ đọc tên branch.
 
-| Trạng thái bản nguồn | Nền và phạm vi sửa lỗi đề xuất |
+| Trạng thái bản nguồn | Nền và phạm vi sửa lỗi đã chốt |
 |---|---|
 | Master khớp nền đang chạy hoặc toàn bộ thay đổi trên master đã được chọn để phát hành lần này | Tạo nhánh sửa lỗi từ master mới nhất đã xác minh, sửa và kiểm tra toàn dự án của bản ứng viên. Tích hợp khi đủ kết quả/quyền, kiểm tra bản tích hợp rồi phát hành và xác nhận vận hành |
 | Master có thay đổi chưa được chọn phát hành cùng bản vá | Tạo nhánh sửa lỗi từ commit/tag của bản production đã xác minh. Kiểm tra toàn dự án của bản vá đó, tạo/kiểm tra artifact và phát hành theo quyền; không kèm các tính năng chưa phát hành trên master. Đưa thay đổi sửa lỗi tương ứng trở lại master và kiểm tra bản kết hợp trước xác nhận đạt |
@@ -831,7 +841,7 @@ Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải c
 |---|---|
 | Xác nhận mục tiêu/ranh giới và nguồn tài liệu từng phần; không coi approval vòng trước là đã qua vòng mới | [R01-T01/T02](KIDEA_ROADMAP.md#r01) |
 | Nền tảng và pilot, gồm nơi giữ hồ sơ trước khi ghi | [R01-T03/T04](KIDEA_ROADMAP.md#r01) |
-| Git: G1 đã chốt cách tổ chức; G2–G6 còn mở về tích hợp, quyền/checkpoint, version/release | Ba task riêng [R01-T05/T06/T07](KIDEA_ROADMAP.md#r01); không tự mở quyền |
+| Git: G1 đã chốt cách tổ chức; G2 đã chốt theo [kết quả T05](KIDEA_ROADMAP.md#r01-t05-result); G3–G6 còn phần chưa duyệt về tích hợp, quyền/checkpoint, version/release | Ba task riêng [R01-T05/T06/T07](KIDEA_ROADMAP.md#r01); không tự mở quyền |
 | Case, tiêu chí đúng/an toàn, evidence và cách chốt số đo | [R01-T08/T09](KIDEA_ROADMAP.md#r01); số cũ trong QUALITY vẫn chưa duyệt |
 | Runtime, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
 | Phân rã nghiệp vụ, AC và chọn business test | [R03](KIDEA_ROADMAP.md#r03) |
