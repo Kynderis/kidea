@@ -1,3 +1,21 @@
+# Kidea — Giải thích vận hành lớn, rollout, A/B và lựa chọn triển khai
+
+Ngày: 2026-09-08.
+
+Trạng thái: TƯ VẤN VÀ GIẢI THÍCH — KHÔNG PHẢI APPROVAL G3/G4/G5/G6 HAY CHỌN NỀN TẢNG.
+
+## Phạm vi và căn cứ
+
+Human hỏi chín nhóm vấn đề: khoảng trống vận hành chuyên nghiệp; ví dụ rollout và A/B kể cả khi lỗi; vai trò thư viện C++; deploy linh hoạt theo sản phẩm/thành phần; đầu vào full gate khi merge; mobile update/rollback; desired/actual/freshness; ranh giới nền tảng thực thi; tích hợp và bằng chứng.
+
+Yêu cầu được ghi nhận: chọn phương án triển khai theo từng sản phẩm và thành phần, có thể hỗn hợp hoặc đổi theo quy mô. Đây là yêu cầu thiết kế cần cụ thể hóa, chưa chốt VM, container, Kubernetes, nhà cung cấp, profile triển khai hoặc cấp quyền cài/deploy. Quy mô lớn cần được xét ngay trong yêu cầu, kiến trúc và hợp đồng; không đồng nghĩa xây trước mọi loại hạ tầng.
+
+Nguồn hiện hành: [thiết kế](../KIDEA_DESIGN.md), [G2 đã duyệt](../KIDEA_DESIGN.md#git-integration-gate), [gate hiện tại](../KIDEA_ROADMAP.md#review-current), [tư vấn kiến trúc trước](kidea-end-to-end-control-2026-09-08.md). Thiết kế đã nêu tải, bảo mật, dữ liệu, monitoring và phục hồi; cần làm chúng thành tiêu chí đo, trách nhiệm, gate và ca kiểm chứng. Không coi các mục đó hoàn toàn vắng mặt. [QUALITY](../KIDEA_QUALITY.md) là tiêu chí của chính Kidea, không thay SLO và yêu cầu của từng sản phẩm.
+
+Giữ nguyên: R01-T06-S01-r1 đang IN_PROGRESS / IN_REVIEW; chưa duyệt phase R01, ngưỡng QUALITY hoặc pilot. G2 cho phép Feature DONE/đủ điều kiện merge sau full gate và đủ Human gate; trạng thái đã tích hợp và đã phát hành là kết quả riêng, không sửa định nghĩa này trong bản tư vấn. Không tạo tracker hoặc bản đồ thứ tư.
+
+## Bản giải thích
+
 Có những phần cần làm rõ thêm để Kidea hướng dẫn vận hành ở quy mô lớn. Phần lớn đã có chỗ trong thiết kế; việc còn thiếu là chuyển chúng thành **điều kiện cụ thể, cách đo, người chịu trách nhiệm và cách xử lý khi không đạt**. Còn mong muốn chọn cách deploy theo từng sản phẩm, từng service của bạn là hợp lý.
 
 Mình đã dùng Exa đối chiếu 60 kết quả tìm kiếm qua 4 hướng nghiên cứu; dùng tài liệu của Google SRE, AWS, Microsoft và các nền tảng liên quan để kiểm chứng. Dưới đây mình giải thích bằng ví dụ; các số liệu ví dụ là giả định, không phải số đo của các công ty đó.
@@ -263,4 +281,105 @@ Ví dụ hồ sơ của một lệnh phải cho bạn đọc được: “DEP-42
 
 Nếu gửi lệnh rồi mất kết nối, Kidea dùng mã DEP-42 để hỏi lại tình trạng. Không gửi lại mù quáng và vô tình chạy migration hai lần. Bằng chứng cũng cần có nguồn đáng tin và liên kết đúng phiên bản; một file log bất kỳ không đủ chứng minh tất cả kiểm tra đều đạt.
 
-Mình đã lưu [bản giải thích và các điểm cần cụ thể hóa](https://github.com/Kynderis/kidea/blob/master/exa-results/kidea-production-rollout-ab-explained-2026-09-08.md). Yêu cầu chọn phương án deploy theo từng sản phẩm/thành phần đã được ghi nhận trong phần tư vấn; các ví dụ VM, Docker, Kubernetes chưa được biến thành lựa chọn triển khai cố định.
+
+## Nơi cần cụ thể hóa trong lộ trình hiện hành
+
+Các dòng dưới là danh mục ảnh hưởng để chuẩn bị gói quyết định, không tự thêm task đang chạy hoặc xác nhận triển khai.
+
+| Nội dung | Nơi đã sở hữu trách nhiệm | Khi chốt cần làm rõ |
+|---|---|---|
+| Merge không bỏ gate, quyền và phục hồi khi thao tác lỗi | R01 G3/G4/G5/G6; R02; R08 | Phạm vi quyền, bản đầu vào, nhận diện evidence, phân biệt đủ điều kiện / tích hợp / phát hành |
+| Chất lượng dịch vụ, tải, bảo mật, vận hành và phục hồi sản phẩm | R04; profile/test R05; release R08 | Mục tiêu đo, người chịu trách nhiệm, chi phí/tài nguyên, cửa sổ tương thích, kiểm tra sẵn sàng vận hành |
+| Deploy linh hoạt theo sản phẩm/thành phần | R04 kiến trúc; R05 môi trường; R08 triển khai | Cách đóng gói/nơi chạy/công cụ điều phối riêng; giao diện triển khai, sức khỏe, scaling, rollback và migration nền chạy |
+| Release nhiều thành phần, rollout, flag và A/B | R04; R06 change/map; R08 | Release chung nhận diện các bản thành phần; đơn vị rollout, điều kiện mở rộng/dừng; assignment/exposure/outcome; quyền từng thao tác |
+| Bằng chứng và thực tế vận hành | R02; R07 giao diện; R08 | Nguồn đáng tin, thời gian đọc, operation ID, desired/actual/stale/unknown và phát hiện sự khác biệt |
+| Học từ lỗi và thử nghiệm | R06; ca lỗi R09; nghiệm thu Kidea R10 | Liên kết sự cố/kết luận A-B về đúng requirement, đặc tả, code, test, vận hành; không chỉ lưu log rời |
+
+Giao diện điều khiển trực tuyến và nền tảng thực thi bền vững vẫn là hướng đề xuất mở rộng cần chốt ranh giới/quyền. Bản tư vấn không biến HTML chỉ đọc đã có trong phạm vi thành cổng điều khiển production được duyệt sẵn.
+
+## Ghi chú kỹ thuật và giới hạn
+
+- Các tỷ lệ và số người/request trong ví dụ là giả định, không phải lịch rollout của Google/AWS và không phải tiêu chí chất lượng được duyệt. Tỷ lệ user, request, instance, client được phép nhận và client đã cài là các đại lượng khác nhau.
+- Không dùng trung bình toàn hệ thống che lỗi một nhóm; không coi hai bản cùng hỏng là canary đạt; không coi thiếu dữ liệu là 0 lỗi. Chỉ số và lỗi phân tích của công cụ phải có cách xử lý rõ. Ví dụ Argo có nhánh successful/failed/inconclusive/error và các giá trị dữ liệu rỗng/NaN cần chính sách: [Argo Analysis](https://argo-rollouts.readthedocs.io/en/stable/features/analysis/).
+- A/B cần chốt trước đơn vị phân nhóm, danh tính, chỉ số, cỡ mẫu/phương pháp thống kê, thời gian, quyền và quy tắc dừng. Assignment khác exposure; không tự loại người chưa tiếp xúc khỏi mẫu phân tích nếu việc đó phá thiết kế phân nhóm hoặc gây thiên lệch. Đổi biến thể/quy tắc/đường đo phải có revision và quyết định về khả năng dùng dữ liệu cũ.
+- Thư viện C++ chỉ là một phần của hệ thống thử nghiệm; ví dụ LaunchDarkly là minh họa được xác minh từ tài liệu, không phải nền tảng đã chọn. Chế độ đồng bộ nền có đánh giá tại chỗ; không khẳng định không có độ trễ hoặc không bao giờ mất sự kiện. Khi mất nguồn quy tắc, phải có hành vi an toàn theo nghiệp vụ, không mặc định mọi luồng đều tiếp tục bằng cấu hình cũ.
+- App Store phased release điều khiển cập nhật tự động, không chặn cập nhật thủ công. Google Play dừng phân phối không hạ version của người đã cài; tính năng halt full release có điều kiện và ngoại lệ, không là khôi phục nguyên tử mọi thiết bị. Remote flag không tức thì với thiết bị offline hoặc app crash trước khi đọc flag.
+- Quy tắc tương thích schema/API, xử lý dữ liệu sai, hàng đợi, tác động bên ngoài và rollback chính nó bị lỗi cần được kiểm chứng trên từng sản phẩm. Code rollback không tự undo các tác động đó.
+- Full gate là nghĩa vụ của chính Feature/bản đầu vào; PASS task, Feature trước hoặc build của nền khác không thay lượt cuối. Cần kiểm bản kết hợp trước merge rồi xác nhận sau merge; gói build và môi trường production có kiểm tra riêng. Việc chỉ ghi báo cáo kết quả không được tạo vòng lặp evidence tự làm cũ chính nó.
+- Chưa chạy thử runtime, benchmark C++, rollout thật hoặc A/B trên sản phẩm. Những đề xuất kiến trúc là suy luận từ tài liệu và yêu cầu, không phải năng lực hiện có của Kidea.
+
+## Phương pháp và danh mục phát hiện nguồn
+
+Tổng numResults của các lời gọi Exa trong lượt này: **60**, thuộc **4 hướng**, **58 URL khác nhau sau khử trùng chính xác**. Đây là số kết quả tìm kiếm, không phải 60 bài độc lập đã được đọc toàn văn; một số là bản tài liệu cũ hoặc trùng nội dung. Các nguồn bổ sung được mở trực tiếp để kiểm chứng không cộng vào số này. Chỉ tài liệu chính thức/nguồn tác giả gốc được dùng để làm căn cứ cho kết luận kỹ thuật; blog tổng hợp, podcast, Stack Overflow và các trang chỉ xuất hiện khi tìm kiếm không tự trở thành bằng chứng.
+
+### merge/build inputs — 10 kết quả
+
+- [docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue)
+- [docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks)
+- [github.com/github/docs/blob/main/content/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue.md](https://github.com/github/docs/blob/main/content/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue.md)
+- [docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request-with-a-merge-queue](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request-with-a-merge-queue)
+- [docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-a-pull-request-with-a-merge-queue](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-a-pull-request-with-a-merge-queue)
+- [slsa.dev/spec/v1.2/build-provenance](https://slsa.dev/spec/v1.2/build-provenance)
+- [slsa.dev/spec/draft/build-provenance](https://slsa.dev/spec/draft/build-provenance)
+- [slsa.dev/spec/v1.1/provenance](https://slsa.dev/spec/v1.1/provenance)
+- [slsa.dev/spec/v1.0/provenance](https://slsa.dev/spec/v1.0/provenance)
+- [slsa.dev/spec/v1.2-rc2/build-provenance](https://slsa.dev/spec/v1.2-rc2/build-provenance)
+
+### rollout — 15 kết quả
+
+- [sre.google/workbook/canarying-releases/](https://sre.google/workbook/canarying-releases/)
+- [sre.google/sre-book/release-engineering/](https://sre.google/sre-book/release-engineering/)
+- [cloud.google.com/blog/products/gcp/how-release-canaries-can-save-your-bacon-cre-life-lessons](https://cloud.google.com/blog/products/gcp/how-release-canaries-can-save-your-bacon-cre-life-lessons)
+- [sre.google/resources/book-update/release-engineering/](https://sre.google/resources/book-update/release-engineering/)
+- [sre.google/sre-book/service-best-practices/](https://sre.google/sre-book/service-best-practices/)
+- [builder.aws.com/content/3ErTKQOTKc5NIw031UePBPxTQ6I/automating-safe-hands-off-deployments](https://builder.aws.com/content/3ErTKQOTKc5NIw031UePBPxTQ6I/automating-safe-hands-off-deployments)
+- [builder.aws.com/learn/topics/builders-library](https://builder.aws.com/learn/topics/builders-library)
+- [nikcreate.com/2020/11/28/builders-library-notes-1-continuous-delivery/](https://nikcreate.com/2020/11/28/builders-library-notes-1-continuous-delivery/)
+- [www.infoq.com/podcasts/clare-liguori-aws-deployments/](https://www.infoq.com/podcasts/clare-liguori-aws-deployments/)
+- [www.youtube.com/watch?v=ngnMj1zbMPY](https://www.youtube.com/watch?v=ngnMj1zbMPY)
+- [argo-rollouts.readthedocs.io/en/stable/features/analysis/](https://argo-rollouts.readthedocs.io/en/stable/features/analysis/)
+- [github.com/argoproj/argo-rollouts/issues/1905](https://github.com/argoproj/argo-rollouts/issues/1905)
+- [github.com/argoproj/argo-rollouts/issues/3850](https://github.com/argoproj/argo-rollouts/issues/3850)
+- [github.com/argoproj/argo-rollouts/issues/3015](https://github.com/argoproj/argo-rollouts/issues/3015)
+- [github.com/argoproj/argo-rollouts/issues/4743](https://github.com/argoproj/argo-rollouts/issues/4743)
+
+### AB C++ mobile — 20 kết quả
+
+- [www.microsoft.com/en-us/research/articles/diagnosing-sample-ratio-mismatch-in-a-b-testing/](https://www.microsoft.com/en-us/research/articles/diagnosing-sample-ratio-mismatch-in-a-b-testing/)
+- [exp-platform.com/Documents/IEEE2010ExP.pdf](https://exp-platform.com/Documents/IEEE2010ExP.pdf)
+- [www.microsoft.com/en-us/research/articles/alerting-in-microsofts-experimentation-platform-exp/](https://www.microsoft.com/en-us/research/articles/alerting-in-microsofts-experimentation-platform-exp/)
+- [exp-platform.com/2017abtestingtutorial/](https://exp-platform.com/2017abtestingtutorial/)
+- [exp-platform.com/2018strataabtutorial/](https://exp-platform.com/2018strataabtutorial/)
+- [launchdarkly.com/docs/sdk/server-side/c-c--.md](https://launchdarkly.com/docs/sdk/server-side/c-c--.md)
+- [launchdarkly.github.io/cpp-sdks/libs/server-sdk/docs/html/classlaunchdarkly_1_1server__side_1_1Client.html](https://launchdarkly.github.io/cpp-sdks/libs/server-sdk/docs/html/classlaunchdarkly_1_1server__side_1_1Client.html)
+- [launchdarkly.github.io/cpp-sdks/libs/server-sdk/docs/html/classlaunchdarkly_1_1server__side_1_1config_1_1builders_1_1DataSystemBuilder.html](https://launchdarkly.github.io/cpp-sdks/libs/server-sdk/docs/html/classlaunchdarkly_1_1server__side_1_1config_1_1builders_1_1DataSystemBuilder.html)
+- [launchdarkly.github.io/cpp-sdks/libs/server-sdk/docs/html/classlaunchdarkly_1_1config_1_1shared_1_1built_1_1Events.html](https://launchdarkly.github.io/cpp-sdks/libs/server-sdk/docs/html/classlaunchdarkly_1_1config_1_1shared_1_1built_1_1Events.html)
+- [launchdarkly.github.io/cpp-sdks/libs/server-sdk/docs/html/classlaunchdarkly_1_1server__side_1_1IClient.html](https://launchdarkly.github.io/cpp-sdks/libs/server-sdk/docs/html/classlaunchdarkly_1_1server__side_1_1IClient.html)
+- [developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases/](https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases/)
+- [support.google.com/googleplay/android-developer/answer/6346149](https://support.google.com/googleplay/android-developer/answer/6346149)
+- [www.susatest.com/blog/phased-rollouts-done-right](https://www.susatest.com/blog/phased-rollouts-done-right)
+- [montemagno.com/using-phased-releases-on-google-play-and-app-store-connect/](https://montemagno.com/using-phased-releases-on-google-play-and-app-store-connect/)
+- [stackoverflow.com/questions/45073264/what-happens-when-i-do-an-itunes-connect-phased-release](https://stackoverflow.com/questions/45073264/what-happens-when-i-do-an-itunes-connect-phased-release)
+- [support.google.com/googleplay/android-developer/answer/16285429?hl=en](https://support.google.com/googleplay/android-developer/answer/16285429?hl=en)
+- [android-developers.googleblog.com/2025/05/io-2025-whats-new-in-google-play.html](https://android-developers.googleblog.com/2025/05/io-2025-whats-new-in-google-play.html)
+- [support.google.com/googleplay/android-developer/answer/16285429?hl=en-GB](https://support.google.com/googleplay/android-developer/answer/16285429?hl=en-GB)
+- [support.google.com/googleplay/android-developer/answer/16285429?hl=en-GB_sg](https://support.google.com/googleplay/android-developer/answer/16285429?hl=en-GB_sg)
+- [support.google.com/googleplay/android-developer/answer/6346149](https://support.google.com/googleplay/android-developer/answer/6346149)
+
+### professional operations and deployment — 15 kết quả
+
+- [sre.google/sre-book/launch-checklist/](https://sre.google/sre-book/launch-checklist/)
+- [sre.google/sre-book/evolving-sre-engagement-model/](https://sre.google/sre-book/evolving-sre-engagement-model/)
+- [sre.google/sre-book/reliable-product-launches/](https://sre.google/sre-book/reliable-product-launches/)
+- [sre.google/resources/practices-and-processes/production-launch-planning/](https://sre.google/resources/practices-and-processes/production-launch-planning/)
+- [sre.google/sre-book/service-best-practices/](https://sre.google/sre-book/service-best-practices/)
+- [docs.aws.amazon.com/wellarchitected/latest/framework/the-pillars-of-the-framework.html](https://docs.aws.amazon.com/wellarchitected/latest/framework/the-pillars-of-the-framework.html)
+- [docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)
+- [docs.aws.amazon.com/pdfs/wellarchitected/latest/framework/wellarchitected-framework.pdf](https://docs.aws.amazon.com/pdfs/wellarchitected/latest/framework/wellarchitected-framework.pdf)
+- [aws.amazon.com/architecture/well-architected/](https://aws.amazon.com/architecture/well-architected/)
+- [docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html)
+- [kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/)
+- [kubernetes.io/docs/concepts/workloads/resource-managers/](https://kubernetes.io/docs/concepts/workloads/resource-managers/)
+- [kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/](https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/)
+- [kubernetes.io/docs/tasks/administer-cluster/topology-manager/](https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/)
+- [v1-36.docs.kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/](https://v1-36.docs.kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/)
