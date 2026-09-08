@@ -1,14 +1,15 @@
-Đã ghi nhận **S01 được duyệt**. Mình đã soạn tiếp **S02 — web/SEO**, hiện chờ bạn duyệt hai điểm:
+Đã ghi nhận **S02 — web/SEO được duyệt**. Gói cuối của task nền tảng là **S03 — mobile và kiểm tra thiết bị**, đang chờ bạn duyệt:
 
 | Quyết định | Đề xuất |
 |---|---|
-| **D1 — Cách xây web** | Giữ **SvelteKit + TypeScript**. Trang tĩnh tạo sẵn HTML; trang động cần SEO tạo HTML phía server; realtime/hiệu ứng cập nhật ở trình duyệt. Nghiệp vụ vẫn thuộc backend C++, không tạo bộ rule thứ hai ở web. |
-| **D2 — SEO trong quy trình** | Giữ SEO xuyên suốt mười bước, với hai lần duyệt riêng: **thiết kế SEO ở bước 4** và **sẵn sàng SEO ở bước 10**, trước phát hành công khai. |
+| **D1 — Android** | Kotlin + Jetpack Compose, native, code riêng. |
+| **D2 — iOS** | Swift + SwiftUI, native, code riêng; ưu tiên Mac/iPhone đã có. |
+| **D3 — Thời điểm kiểm tra** | Kiểm tra tương thích trước khi chuẩn bị môi trường; đến phần iOS mới kiểm tra Mac/Xcode/iPhone. Chọn thiết bị thử trước R09. |
 
-SEO chỉ dành cho nội dung được phép công khai. Không mở dữ liệu riêng/admin để phục vụ tìm kiếm; không cam kết được lập chỉ mục, lên hạng hoặc được AI trích dẫn chỉ vì chọn framework này.
+Emulator/simulator không thay đo hiệu năng trên điện thoại thật. Thiếu thiết bị thì ghi **chưa kiểm chứng**, không tự bỏ yêu cầu hoặc ghi PASS.
 
-Bạn chỉ cần đọc [gói S02 — web và SEO](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa chọn lại phiên bản, CDN hay ngưỡng hiệu năng; chưa cài hoặc deploy.
+Bạn đọc [gói S03](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa yêu cầu cài công cụ, nâng Mac hay mua thiết bị; những thao tác đó cần quyền riêng. Các phiên bản trong ma trận là căn cứ cũ, chưa được kiểm tra lại ở lượt này.
 
-Đã cập nhật GitHub, không tạo file tạm. **Sau khi duyệt**, mình sẽ chuẩn bị S03 về Android/iOS và thời điểm kiểm tra thiết bị, không hỏi lại quyền soạn.
+Đã đồng bộ tài liệu và xác minh bản GitHub; không tạo file tạm. Sau duyệt, mình sẽ kiểm tra đóng task nền tảng rồi soạn **R01-T04-S01 — bài toán pilot workshop và giới hạn MVP** để kiểm chứng Kidea, chưa code pilot.
 
-Bạn duyệt D1–D2 của S02 chứ?
+Bạn duyệt D1–D3 của S03 chứ?

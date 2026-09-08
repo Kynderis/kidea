@@ -8,22 +8,23 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: [R01-T03-S02 — Web và SEO](#review-current). R01-T03 chốt nền tảng bản đầu; S01 host/backend đã được duyệt, nay S02 chỉ rà hướng web và quy trình SEO. [Sổ công việc](#work-state) giữ trạng thái.
+Việc hiện hành: [R01-T03-S03 — Mobile và kiểm tra thiết bị](#review-current). R01-T03 chốt nền tảng bản đầu; S01 host/backend và S02 web/SEO đã được duyệt. S03 là gói cuối của task. [Sổ công việc](#work-state) giữ trạng thái.
 
 <a id="review-current"></a>
 
-### R01-T03-S02-r1 — Hai quyết định chờ duyệt
+### R01-T03-S03-r1 — Ba quyết định chờ duyệt
 
 | Quyết định | Đề xuất | Ý nghĩa và giới hạn |
 |---|---|---|
-| D1. Hướng xây web bản đầu? | Giữ SvelteKit + TypeScript: tạo sẵn HTML cho trang tĩnh (prerender), tạo HTML phía server cho trang động cần SEO (SSR); realtime/hiệu ứng cập nhật ở trình duyệt sau lần tải đầu. | Nội dung chính không phụ thuộc hoàn toàn vào JavaScript phía người xem. Backend C++ vẫn sở hữu nghiệp vụ; lớp web không có bản rule riêng. Không thêm framework thứ hai hoặc chốt lại phiên bản package ở gói này. |
-| D2. Đưa SEO vào quy trình thế nào? | Giữ SEO/khả năng được tìm thấy xuyên mười bước, với hai gate: duyệt thiết kế SEO ở bước 4 trước kiến trúc; duyệt sẵn sàng SEO ở bước 10 trước phát hành công khai. | Không dồn SEO tới cuối. Chỉ áp dụng nội dung được phép công khai; không mở dữ liệu riêng/admin hoặc lab để lấy kết quả tìm kiếm. Không áp dụng thì Human duyệt lý do N/A. |
+| D1. Android dùng gì? | Giữ Kotlin + Jetpack Compose, app native với code riêng. | Dùng chung backend C++; không mặc định thêm nền tảng chia sẻ code hoặc NDK. |
+| D2. iOS dùng gì? | Giữ Swift + SwiftUI, app native với code riêng; ưu tiên Mac/iPhone đã có. | Không chuyển sang framework đa nền tảng. Thiết bị hiện có chưa được chứng nhận build/chạy phù hợp. |
+| D3. Kiểm tra môi trường lúc nào? | Kiểm tra phiên bản và tính tương thích trước khi tạo môi trường; đến phần iOS mới kiểm tra Mac/Xcode/iPhone. Chọn thiết bị thử trước R09. | Cài/nâng hệ điều hành, signing, mua/thuê hoặc phát hành cần quyền riêng trước thao tác. Thiếu máy thì ghi chưa kiểm chứng và xin xử lý, không tự bỏ yêu cầu. |
 
-**Cần phân biệt:** sẵn sàng SEO là kiểm tra nội dung/cấu hình có thể kiểm chứng; không đòi đã được lập chỉ mục trước công khai. Kết quả index/thứ hạng/AI trích dẫn phải theo dõi sau phát hành, không được cam kết từ framework hoặc test PASS.
+**Giới hạn bằng chứng:** emulator/simulator giúp kiểm tra hành vi, không thay đo hiệu năng trên điện thoại thật. iPhone hiện có không đại diện mọi máy yếu; model Android chưa được cung cấp. Phạm vi mobile đầu tiên là điện thoại, không mặc nhiên gồm tablet/watch/TV/XR.
 
-**Đọc đúng nguồn:** [hướng render web](KIDEA_DESIGN.md#web-rendering-baseline) và [hai gate SEO](KIDEA_DESIGN.md#seo-proposal). Đây là rà lại hướng đã chọn; không xác minh phiên bản mới, benchmark hoặc build trong lượt này.
+**Nguồn:** [ma trận và chính sách kiểm chứng](KIDEA_DESIGN.md#platform-matrix), [nguồn lực iOS](KIDEA_DESIGN.md#mobile-device-baseline). Gói chỉ rà hướng đã chọn; số phiên bản là snapshot cũ, chưa xác minh lại. Không duyệt lại phiên bản, OS tối thiểu hoặc ngưỡng hiệu năng trong lượt này.
 
-Đã đối chiếu các bước 3–4/7/8/10, nhiệm vụ R04/R05/R08/R09 và KA-27; không tạo file tạm. Duyệt gói không cấp quyền cài/deploy, không chọn CDN hoặc ngưỡng hiệu năng. Sau duyệt, ghi nhận S02 rồi chuẩn bị S03 về Android/iOS và thời điểm kiểm tra thiết bị; không hỏi lại quyền soạn đề xuất.
+Đã đối chiếu hướng mobile, môi trường và quyền trong DESIGN; chưa cài, nâng Mac hoặc chạy build; không tạo file tạm. Sau duyệt, đồng bộ và kiểm tra đóng R01-T03, rồi soạn R01-T04-S01: bài toán pilot workshop và giới hạn MVP để kiểm chứng Kidea. Chỉ chuẩn bị đề xuất, chưa code pilot; không hỏi lại quyền soạn.
 
 <a id="working-rules"></a>
 
@@ -81,7 +82,8 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T02-S02 | DONE | R01-T02-S02-r1 — APPROVED | Human: “Mình duyệt”; D1–D2 tại 5cf853f; [bằng chứng](#r01-t02-result) |
 | R01-T02-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ/ví dụ, rà case/link/trạng thái và cleanup; [kết quả](#r01-t02-result) |
 | R01-T03-S01 | DONE | R01-T03-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 184c5c1; [bằng chứng](#r01-t03-s01-result) |
-| R01-T03-S02 | IN_PROGRESS | R01-T03-S02-r1 — IN_REVIEW | Chuẩn bị tiếp theo luồng đã thông báo; [gói web/SEO](#review-current), chưa duyệt đầu ra |
+| R01-T03-S02 | DONE | R01-T03-S02-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại e138999; [bằng chứng](#r01-t03-s02-result) |
+| R01-T03-S03 | IN_PROGRESS | R01-T03-S03-r1 — IN_REVIEW | Chuẩn bị tiếp theo luồng đã thông báo; [gói mobile/thiết bị](#review-current), chưa duyệt đầu ra |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -118,6 +120,14 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - Human: “Duyệt nhé”, đối với D1–D2 của [gói tại 184c5c1](https://github.com/Kynderis/kidea/blob/184c5c1465a09b8b8c943d16a308a27bf8f2f9d4/KIDEA_ROADMAP.md#review-current): Kidea host Windows 11 x64 local; backend sản phẩm C++20, Ubuntu 24.04 LTS amd64 làm nền kiểm chứng.
 - Giữ phân biệt runtime/helper Kidea với ngôn ngữ backend, build/test Linux với xác nhận bản phát hành trên Ubuntu đích. Không duyệt công cụ cụ thể, framework/database, web/mobile hoặc quyền cài/nâng cấp/Git/deploy.
 - Đồng bộ căn cứ trong DESIGN, kiểm tra liên kết/trạng thái và không có file tạm cần xóa. Chưa kiểm tra lại phiên bản, chạy build hoặc chứng nhận hỗ trợ thực tế. S01 DONE không đóng R01-T03 hoặc phase R01.
+
+<a id="r01-t03-s02-result"></a>
+
+### Kết quả R01-T03-S02 — ngày 2026-09-08
+
+- Human: “Duyệt nhé”, đối với D1–D2 của [gói tại e138999](https://github.com/Kynderis/kidea/blob/e138999214f59f0dfe5553f76b968bfd9c9c0a19/KIDEA_ROADMAP.md#review-current): SvelteKit + TypeScript với prerender/SSR và cập nhật phía trình duyệt; SEO xuyên mười bước, gate thiết kế ở bước 4 và sẵn sàng ở bước 10 trước phát hành công khai.
+- Giữ nghiệp vụ ở backend C++, ranh giới nội dung công khai/riêng tư và N/A có Human duyệt; không cam kết index/thứ hạng/AI trích dẫn. Không duyệt phiên bản mới, CDN, ngưỡng hiệu năng, mobile hoặc quyền cài/deploy.
+- Đồng bộ căn cứ trong DESIGN, kiểm tra liên kết/trạng thái và diff; không tạo file tạm, chưa chạy build/benchmark hoặc xác minh lại phiên bản. S02 DONE không đóng R01-T03 hoặc phase R01.
 
 <a id="phase-overview"></a>
 
