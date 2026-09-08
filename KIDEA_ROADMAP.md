@@ -8,25 +8,19 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Việc hiện hành: trao đổi [đề xuất dùng dự án thật làm pilot](#review-current). Human đã nhất trí S02; S03 về hồ sơ/lab/quyền chưa bắt đầu vì hướng pilot đang được xem xét lại. Chưa thay bài toán đã duyệt hoặc mở triển khai dự án thật.
+Việc hiện hành: **tiếp tục pilot workshop theo phạm vi đã duyệt**. Human yêu cầu để Thuận Thiên sang sau; đề xuất thay pilot đã đóng, chưa từng được áp dụng vào ma trận công nghệ hoặc kế hoạch triển khai.
 
 <a id="review-current"></a>
 
-### Đề xuất đổi hướng pilot — đang trao đổi, chưa duyệt
+### Giữ pilot workshop — đã xác nhận hướng, chưa có gói mới chờ duyệt
 
-Human nêu ý tưởng dùng Thuận Thiên để vừa phát triển sản phẩm đang cần, vừa hoàn thiện Kidea. Đây là câu hỏi xin đánh giá, không phải quyền sửa dự án hoặc quyết định thay toàn bộ pilot.
+R01-T04 chọn bài toán pilot và nơi giữ hồ sơ. S01 (bài toán/MVP) và S02 (chuỗi dữ liệu, đường lỗi, thứ tự backend–web–native) vẫn DONE/APPROVED; không yêu cầu duyệt lại và không thu nhỏ workshop thành bộ fixture.
 
-**Khuyến nghị:** lấy một Feature nhỏ, hữu ích của dự án thật làm pilot chính; giữ các tình huống lỗi khó dưới dạng fixture/bản sao cô lập, không cần xây thêm một ứng dụng workshop hoàn chỉnh. Không coi hoàn thành toàn bộ dự án thật là điều kiện xong pilot.
+[Phạm vi workshop](KIDEA_DESIGN.md#pilot-scope), ma trận nền tảng, kế hoạch R05/R09 và case nghiệm thu tiếp tục giữ nguyên. [Xác nhận giữ workshop](#pilot-workshop-confirmation) đóng trao đổi thay pilot; không tạo nhánh triển khai Thuận Thiên.
 
-Các phần cần chốt trước thay kế hoạch:
+**Việc kế tiếp:** R01-T04-S03 — đề xuất nơi giữ hồ sơ workshop, lab/chi phí và ranh giới quyền. Subtask này còn TODO, chưa soạn gói hoặc chốt đường dẫn/môi trường. Không cần Human duyệt lại việc giữ workshop; gói S03 sẽ được trình riêng khi soạn.
 
-- Phạm vi Feature, nguồn hiện có và quyền đọc/ghi. Dự án cũ chưa có hồ sơ Kidea hợp lệ vẫn bắt đầu bước 1, đối chiếu tài liệu/code; không tự coi là resume hoặc chứng nhận mọi thứ đã đúng.
-- Công nghệ thực tế và phạm vi Kidea cần kiểm chứng; không ép rewrite sản phẩm theo ma trận pilot cũ. Năng lực chưa có bằng chứng vẫn chưa được công bố hỗ trợ.
-- Cách thử Kidea từng lát cắt trước khi áp dụng phần tương ứng vào công việc thật; lỗi/resume/restore dùng môi trường cô lập và dữ liệu giả, không làm hỏng bản đang dùng.
-
-Nếu Human chọn hướng này, mở gói thay pilot và rà đúng các phần R01-T03/T04, R05/R09, case/bằng chứng bị ảnh hưởng; chưa tự đổi chúng ở lượt thảo luận. Approval S02 giữ nguyên căn cứ workshop, không chuyển sang nghiệp vụ mới.
-
-Chỉ cập nhật approval và ghi đề xuất tại repo Kidea; chưa sửa/cài/chạy/deploy dự án đích. Chi tiết nguồn riêng tư không đưa vào repo này. Không tạo file tạm.
+Lượt hiện tại chỉ đồng bộ tài liệu/trạng thái trong repository xây Kidea. Không sửa repo Thuận Thiên trên GitHub hoặc trên máy; không cài, tạo repo hoặc chạy pilot. Không tạo file tạm.
 
 <a id="working-rules"></a>
 
@@ -88,6 +82,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T03-S03 | DONE | R01-T03-S03-r1 — APPROVED | Human: “Duyệt nhé”; D1–D3 tại 6f2565c; [bằng chứng và khép task](#r01-t03-result) |
 | R01-T04-S01 | DONE | R01-T04-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 4abf90b; [bằng chứng](#r01-t04-s01-result) |
 | R01-T04-S02 | DONE | R01-T04-S02-r1 — APPROVED | Human: “Tôi nhất trí.”; D1–D3 tại c8dace9; [bằng chứng](#r01-t04-s02-result) |
+| R01-T04-S03 | TODO | [H] — chưa soạn gói | Tiếp tục workshop; đề xuất nơi giữ hồ sơ, lab/chi phí/quyền theo [R01-T04](#r01), chưa chọn root hoặc cấp quyền thao tác |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -155,8 +150,17 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 ### Kết quả R01-T04-S02 — ngày 2026-09-08
 
 - Human mở đầu “Tôi nhất trí.” sau [gói D1–D3 tại c8dace9](https://github.com/Kynderis/kidea/blob/c8dace973cd878147dbf19bc9d44f32b756f55e9/KIDEA_ROADMAP.md#review-current): chuỗi rule/dữ liệu/event/số chỗ/client/monitoring, các đường lỗi và thứ tự pilot đã trình. Không duyệt database, công cụ event, thuật toán, ngưỡng đo hoặc quyền thực thi.
-- Cùng phản hồi, Human hỏi về dùng Thuận Thiên làm pilot. Ghi riêng đây là đề xuất đang trao đổi; không chuyển approval workshop sang nghiệp vụ mới, không xóa nguồn/case cũ hoặc đổi roadmap triển khai khi chưa chốt ảnh hưởng. S03 chưa bắt đầu trong lúc xem xét hướng pilot.
+- Cùng phản hồi, Human hỏi về dùng Thuận Thiên làm pilot. Tại thời điểm đó chỉ ghi đề xuất, chưa chuyển approval workshop sang nghiệp vụ mới hoặc đổi kế hoạch triển khai. Sau đó Human yêu cầu giữ workshop; [trao đổi thay pilot đã đóng](#pilot-workshop-confirmation). Trạng thái S03 xem sổ công việc.
 - Đồng bộ căn cứ trong DESIGN, đối chiếu chuỗi và thứ tự R09, kiểm tra link/trạng thái/diff. Không code/chạy pilot, không tạo file tạm. S02 DONE không đóng R01-T04 hoặc phase R01.
+
+<a id="pilot-workshop-confirmation"></a>
+
+### Xác nhận tiếp tục pilot workshop — ngày 2026-09-08
+
+- Human: “Thế thôi dùng tiếp pilot nhé, Thuận thiên để sau đi.”; yêu cầu đồng bộ lại Kidea nếu đã chuyển hướng, đồng thời nói rõ không cập nhật repo Thuận Thiên trên GitHub.
+- Đề xuất ở cb56f04 chưa được duyệt hoặc áp dụng: chỉ thêm nội dung trao đổi vào DESIGN/ROADMAP và answer.md. Nay đóng đề xuất, bỏ con trỏ trao đổi hiện hành, giữ workshop là pilot đầy đủ theo S01/S02 đã duyệt; S03 tiếp tục là việc kế tiếp chưa bắt đầu.
+- Đối chiếu ma trận nền tảng, R05/R09, ACCEPTANCE và QUALITY: chưa từng chuyển sang Thuận Thiên nên không cần hoàn tác hoặc sửa các phần này. Không đổi công nghệ, nghiệp vụ, case, ngưỡng hoặc quyền đã có; giữ nguyên bằng chứng approval.
+- Chỉ cập nhật ba file KIDEA_DESIGN.md, KIDEA_ROADMAP.md và answer.md trong repo Kidea. Không sửa repo Thuận Thiên local/remote, không tạo/xóa file tạm, không triển khai pilot.
 
 <a id="phase-overview"></a>
 
