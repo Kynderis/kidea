@@ -1,15 +1,54 @@
-Đã ghi nhận phần bạn vừa duyệt và đồng bộ vào thiết kế, lộ trình cùng các kịch bản nghiệm thu. Các bổ sung đã có nơi triển khai và kiểm chứng; chưa xây skill hoặc chọn hạ tầng.
+Hiểu đơn giản: **quyền 1 cho Kidea tự lưu công việc đang làm; quyền 2 cho Kidea đưa phần đã hoàn thiện vào bản tích hợp chung.** Cả hai đều không tự cho phép đưa thay đổi tới người dùng thật.
 
-**Tiếp theo là khép gói đang mở: quyền tự lưu và merge của Kidea.** Phần phân loại vừa duyệt xác định *cần làm gì*; gói này xác định *Kidea được tự thao tác đến đâu*.
+Lấy ví dụ bạn giao: **“Thêm tính năng hủy đăng ký workshop.”**
 
-Mình đề xuất hai điểm:
+### 1. Quyền tự lưu: làm đến đâu, lưu tiến độ đến đó
 
-1. **Tự lưu trong phạm vi được giao.** Khi bạn cho phép Git local cho một repo và đợt công việc, Kidea được tạo/chuyển nhánh, dùng worktree khi cần và commit phần nhiệm vụ, không hỏi lại từng lần lưu. Phải giữ nguyên thay đổi có sẵn; không tự commit trực tiếp lên master, xóa nhánh hoặc viết lại lịch sử.
+Kidea làm trên một **nhánh riêng** — nơi giữ thay đổi của tính năng này, tách khỏi nhánh tích hợp chung `master`.
 
-2. **Tự thực hiện merge sau đủ điều kiện.** Khi bạn đã cấp quyền merge cho đợt đó và nhánh đích cụ thể, Kidea thực hiện sau đủ review, kiểm tra toàn dự án và các gate cần bạn duyệt; không hỏi thêm chỉ để bấm merge. Bản kết hợp phải được kiểm chứng trước, xác nhận sau merge; đầu vào thay đổi thì chạy lại toàn lượt theo G2.
+Nếu bạn đã cho phép tự lưu trong đợt này, Kidea có thể:
 
-**Push, tag, deploy và thay đổi production vẫn cần quyền riêng.** Quyền merge local không cho push; merge qua dịch vụ remote còn cần quyền đưa nội dung tới đích đó. Duyệt chính sách này chưa cấp quyền chạy pilot.
+- Sửa đặc tả rồi lưu một mốc.
+- Viết backend rồi lưu một mốc.
+- Sửa giao diện và test rồi lưu tiếp.
 
-Sau khi chốt, mình sẽ chuẩn bị **cách giữ việc dở/khôi phục**, rồi **version và hồ sơ phát hành đa thành phần** theo thứ tự hiện hành.
+Các mốc đó gọi là **commit**: ghi lại một phiên bản của những file thuộc công việc, giúp biết đã thay đổi gì và tiếp tục sau này. Kidea không phải hỏi “Cho mình lưu nhé?” sau mỗi lần.
 
-[Gói cần duyệt: R01-T06-S01-r2](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Bạn duyệt hai nguyên tắc quyền trên chứ?
+**Lưu được không có nghĩa làm xong.** Ví dụ backend đã làm nhưng giao diện chưa xong, Kidea vẫn được lưu tiến độ, nhưng phải ghi rõ tính năng còn dở.
+
+Quyền này cũng không cho Kidea tự xóa hoặc ghi đè thay đổi có sẵn của bạn, sửa lịch sử, hay commit trực tiếp vào master.
+
+### 2. Quyền merge: đủ điều kiện thì đưa vào bản tích hợp chung
+
+**Merge** là ghép thay đổi từ nhánh tính năng vào `master`.
+
+Nếu bạn đã cho phép merge cho đợt “hủy đăng ký workshop”, Kidea chỉ thực hiện khi:
+
+1. Đặc tả, code, test và các phần bị ảnh hưởng đã được xử lý đầy đủ.
+2. Mọi review, kiểm tra toàn dự án và các điểm cần bạn duyệt đều đã đạt.
+3. Bản kết hợp giữa tính năng mới và master hiện tại đã được kiểm chứng.
+
+Khi đủ các điều kiện đó, Kidea tự merge rồi xác nhận kết quả; **không hỏi thêm chỉ để bạn đồng ý bấm nút merge**.
+
+Ví dụ có tình huống phát sinh:
+
+- Tính năng đã qua test, nhưng master vừa nhận một bản sửa khác.
+- Khi ghép lại, ta có một bản kết hợp mới.
+- Nếu đầu vào kiểm chứng thay đổi, Kidea phải chạy lại toàn bộ lượt kiểm tra theo G2. Có lỗi hoặc thiếu căn cứ thì dừng, không lấy kết quả cũ để thông qua.
+
+**Không cấp quyền merge thì dù test đạt, Kidea vẫn phải chờ. Cấp quyền merge rồi nhưng test chưa đạt thì cũng phải chờ.**
+
+### Bạn đang giao quyền gì, và chưa giao quyền gì?
+
+| Cho phép | Kidea được làm | Chưa được suy ra |
+|---|---|---|
+| Tự lưu | Lưu tiến độ trên nhánh làm việc ở máy đang dùng | Đưa vào master hoặc gửi lên GitHub |
+| Merge | Ghép bản đủ điều kiện vào nhánh tích hợp đã chỉ định | Phát hành cho người dùng |
+| Push — quyền riêng | Gửi thay đổi tới remote, chẳng hạn GitHub, đúng phạm vi cho phép | Tự deploy |
+| Deploy — quyền riêng | Triển khai lên môi trường được chỉ định | Tự mở rộng sang môi trường khác hoặc sửa dữ liệu thật ngoài quyền |
+
+Lưu ý: nếu merge trực tiếp trên GitHub thì thao tác đó thay đổi repository trên GitHub, nên còn cần quyền ghi tới remote/nhánh đích. Nếu push hoặc merge kích hoạt tự động deploy, Kidea cũng phải kiểm tra quyền cho tác động đó; không được dùng quyền Git để lách quyền production.
+
+**Tóm lại: bạn không phải duyệt từng lần lưu hoặc từng cú bấm merge, nhưng vẫn giữ quyền chốt nội dung, điều kiện chất lượng và việc phát hành.**
+
+Hiện ta đang chốt **chính sách Kidea sẽ tuân theo**; chưa cấp quyền thao tác trên pilot hay production cụ thể.
