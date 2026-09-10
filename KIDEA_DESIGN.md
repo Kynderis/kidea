@@ -2,7 +2,7 @@
 
 Trạng thái: `CĂN CỨ THIẾT KẾ VÒNG TRƯỚC — ĐANG XÁC NHẬN TỪNG PHẦN Ở VÒNG R2 — CHƯA TRIỂN KHAI`
 
-Ngày cập nhật: 2026-09-08
+Ngày cập nhật: 2026-09-10
 
 Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); chưa tạo/cài skill hoặc triển khai code.
 
@@ -13,6 +13,8 @@ Tài liệu này là nguồn thiết kế; roadmap là nguồn trạng thái xâ
 Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). Cách tổ chức branch/worktree G1 đã được duyệt theo [bằng chứng](KIDEA_ROADMAP.md#r01-t05-s01-result); G2 đã chốt theo [kết quả T05](KIDEA_ROADMAP.md#r01-t05-result); G3–G6 còn phần chưa duyệt, chưa cấp quyền Git; không suy approval thư mục thành approval Git hoặc tiêu chí chất lượng.
 
 [Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đã được Human duyệt tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Human đã duyệt Kotlin + Jetpack Compose, Swift + SwiftUI và [cách tích hợp SEO vào gate quy trình](#seo-proposal); ma trận phiên bản/môi trường r3 đã được duyệt; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
+
+Bổ sung ngày 2026-09-10: Human đã duyệt [phạm vi phát hành/vận hành và ba nhóm ưu tiên](#production-capabilities), theo [bằng chứng](KIDEA_ROADMAP.md#production-scope-result). Đây là yêu cầu đích được bổ sung, không phải approval G3–G6, schema/công cụ, QUALITY hoặc quyền chạy pilot/production.
 
 <a id="scope"></a>
 
@@ -70,6 +72,7 @@ Căn cứ `P01-T01-SCOPE-r2`, được Human duyệt ngày 2026-09-07 cùng các
 | Truy xuất và thay đổi | Đủ ba bản đồ, đối chiếu hai chiều; tìm ảnh hưởng theo ngữ nghĩa, kể cả event/dữ liệu/cấu hình và trường hợp không có diff trung gian; không coi thiếu mapping là không ảnh hưởng | [Ba bản đồ](#three-maps), [change](#change) |
 | Code và kiểm chứng | Profile rule theo tổ hợp đã chốt; test specification, test chạy được và bằng chứng gắn phiên bản/môi trường; có kiểm tra hành vi Kidea và pilot chạy thật | [Coding rules](#code-rules), [test](#testing), [cấu tạo skill](#skill-structure) |
 | Xem tiến độ | HTML offline, chỉ đọc, tổng quan/chi tiết task, gate/blocker và nguồn; thể hiện đúng dữ liệu chưa biết hoặc snapshot cũ | [Giao diện tiến độ](#files-view) |
+| Phát hành và vận hành | Hồ sơ release đa thành phần, lựa chọn deploy theo thành phần, sẵn sàng vận hành, xử lý lỗi, trạng thái/bằng chứng thật và vòng change sau release; định hướng A/B theo nhu cầu | [Bổ sung đã duyệt 2026-09-10](#production-capabilities) |
 | Dùng và bàn giao | Có bản cài, hướng dẫn, giới hạn hỗ trợ, kiểm tra tương thích/nâng cấp và bằng chứng nghiệm thu trong phạm vi được Human cho phép | [R10](KIDEA_ROADMAP.md#r10) |
 
 Một hạng mục không áp dụng cho sản phẩm cụ thể có thể được Human duyệt `N/A` theo thiết kế; điều đó không xóa năng lực hướng dẫn hạng mục ấy khỏi Kidea. Ví dụ pilot không cần mobile không có nghĩa Kidea bỏ bước xác định nền tảng hoặc mặc nhiên đã hỗ trợ triển khai mobile.
@@ -86,13 +89,36 @@ Một hạng mục không áp dụng cho sản phẩm cụ thể có thể đư�
 #### Những việc chưa làm trong bản đầu
 
 - Nền tảng cộng tác nhiều người: Human không có định hướng xây chức năng này; không ghi thành cam kết tương lai. Cụm nhiều agent cho một Human là ý tưởng riêng, ngoài bản đầu, chưa có kế hoạch triển khai.
-- Server Kidea, graph database, dịch vụ đồng bộ riêng hoặc dashboard tiến độ online có thao tác approve/deploy: Human chưa có ý định xây dịch vụ Kidea online. Chuyển hồ sơ/source giữa các máy dùng Git theo [quy tắc resume](#resume), không cần một dịch vụ đồng bộ Kidea.
+- Bản đầu không có server Kidea, graph database hoặc dịch vụ đồng bộ riêng; chuyển hồ sơ/source giữa các máy dùng Git theo [quy tắc resume](#resume). Giao diện online điều khiển tập trung được xếp nhóm triển khai có điều kiện ở [phạm vi bổ sung](#production-capabilities), chưa duyệt xây hoặc thay HTML offline thành cổng có quyền production.
 - Kho coding rules/adapter bao phủ mọi ngôn ngữ, hệ điều hành và framework; hoặc tự động nhập/chứng nhận mọi dự án cũ chưa có hồ sơ.
 - Tự quyết định nghiệp vụ, tự duyệt nội dung, tự thao tác Git/production; bảo đảm tuyệt đối không còn lỗi, không sót dependency hoặc đạt hiệu năng tốt nhất trong mọi môi trường.
 
 Những giới hạn này không loại bỏ monitoring/admin của sản phẩm, hướng dẫn deploy/khôi phục, hay yêu cầu xử lý thay đổi sau release. Kidea vẫn hướng dẫn và kiểm chứng các phần đó trong phạm vi đã chốt; thao tác có tác dụng phụ chỉ được làm khi có quyền tương ứng.
 
 Phạm vi này không duyệt trước ma trận phiên bản/công cụ, lựa chọn framework, pilot, runtime hoặc schema. Các đề xuất mới tiếp tục ở đúng gate của chúng.
+
+<a id="production-capabilities"></a>
+
+### 1.1a. Phát hành/vận hành — phạm vi bổ sung đã duyệt ngày 2026-09-10
+
+Human đồng ý với ba nhóm ưu tiên và thứ tự trong câu trả lời ngày 2026-09-10; [căn cứ đúng bản và kết quả đồng bộ](KIDEA_ROADMAP.md#production-scope-result). Kidea phải quản lý toàn chuỗi từ bản đầu, nhưng chỉ công bố thực thi trên tổ hợp đã chọn và kiểm chứng. Phần đã có được cụ thể hóa, không bỏ mười bước, G2, ba bản đồ, resume/change hoặc web/native/backend đã chốt.
+
+| Năng lực phải có trong bản đầu | Nội dung và ranh giới | Nơi thiết kế/kiểm chứng |
+|---|---|---|
+| Release đa thành phần | Một hồ sơ release liên kết đúng bản web/backend/mobile, dữ liệu và cấu hình; thứ tự triển khai, tương thích cũ–mới và phương án khi chỉ một phần thành công. Không đồng nhất merge/build/deploy/mở tính năng; không hứa mọi mobile cập nhật hoặc rollback nguyên tử. | R01-T07; R08-T04/T05; KA-28 |
+| Deploy theo sản phẩm/thành phần | Chọn cách đóng gói, nơi chạy và cách quản lý riêng, có căn cứ; ghi khởi động/dừng, sức khỏe, scaling, dữ liệu và phục hồi. Có thể hỗn hợp hoặc đổi theo quy mô, nhưng đổi nền chạy phải phân tích ảnh hưởng và kiểm chứng lại. Không chọn sẵn VM/container/Kubernetes hay nhà cung cấp cho mọi project. | R04-T05; R05; R08-T03; KA-23/28 |
+| Sẵn sàng vận hành | Chốt mục tiêu dịch vụ và cách đo, tải/công suất/chi phí, bảo mật, cảnh báo, người xử lý sự cố và giới hạn mất dữ liệu/thời gian phục hồi; chuẩn bị từ thiết kế và kiểm tra thực tế trước phát hành. | Bước 3/5/7/8/10; R04/R05/R08; KA-23/28 |
+| Phát hành có kiểm soát | Chọn chiến lược phù hợp sản phẩm, điều kiện tiếp tục/dừng và giảm tác hại; phân biệt pause, tắt tính năng, rollback, phát hành bản sửa. Cần xử lý việc đang dở/dữ liệu/tác động bên ngoài; thiếu quan sát hoặc rollback lỗi không được báo an toàn. Không bắt mọi project dùng canary/flag. | R01-T07; R08-T04–T06; R09-T08; KA-28 |
+| Thực thi và bằng chứng | Kidea điều phối theo quyền; hệ thống thực thi phù hợp duy trì job/cảnh báo cần chạy dài khi phiên AI đóng. Nhận diện yêu cầu/thao tác, bản và môi trường; tra lại kết quả khi mất kết nối, không replay mù. Tách mong muốn, thực tế quan sát và thời điểm/độ mới dữ liệu. Không cần portal online để thực hiện nghĩa vụ này. | R02-T02/T04/T09; R07; R08; KA-13/25/28 |
+| Khép vòng sau release | Sự cố, thay đổi cấu hình và kết quả thử nghiệm liên kết về yêu cầu/đặc tả/code/test/vận hành; có điều kiện dọn flag/API/schema cũ, giữ bằng chứng/phục hồi cần thiết. Dùng ba bản đồ và nguồn hồ sơ hiện có, không thêm tracker độc lập. | R03/R06/R08; KA-15/18/19/22/28 |
+
+Ngay trong quy trình bản đầu phải xác định sản phẩm có cần A/B không; khi cần, chốt giả thuyết, đơn vị chia nhóm, hành vi, dữ liệu đo và quy tắc dừng trước phần triển khai phụ thuộc. Không ép mọi sản phẩm chạy A/B. Tích hợp đầy đủ phải có trước thử nghiệm thực đầu tiên, không gọi mô phỏng là bằng chứng A/B thật.
+
+**Nhóm thiết kế ranh giới ngay, triển khai theo nhu cầu:** tích hợp nền tảng A/B đã chọn; tự động mở rộng rollout theo số liệu; thêm đường kết nối Kubernetes/VM chuyên biệt; giao diện online điều khiển tập trung. Điều kiện mở là nhu cầu sản phẩm và thiết kế/quyền được chốt, không là một thời hạn mặc định. Nếu sản phẩm đầu cần một nền triển khai thì phải làm đường đó trước phát hành; hoãn tự động hóa không hoãn an toàn. Online cần duyệt riêng quyền, bảo mật và trách nhiệm vận hành, không là phần đã được cấp quyền xây.
+
+**Nhóm xa hoặc không chủ trương tự xây:** không phủ sẵn mọi hạ tầng; đa cloud/nhiều vùng/chuyển vùng phức tạp chỉ khi mục tiêu đã chốt đòi hỏi (có thể cần sớm); không chủ trương AI tự quyết nghiệp vụ/kết quả A/B hoặc tự sửa production ngoài quyền; không tự viết CI/CD, rollout controller, feature flag hoặc thống kê khi chưa chứng minh khoảng trống cần tự xây. Cộng tác nhiều người không là cam kết tương lai.
+
+Thứ tự chuẩn bị: (1) release đa thành phần, deploy linh hoạt, trạng thái/bằng chứng; (2) sẵn sàng vận hành, phát hành an toàn, sự cố; (3) quy trình A/B và ranh giới tích hợp, nâng cao theo nhu cầu. Không mở song song nhiều subtask; chốt chi tiết qua các gói nhỏ tại nơi sở hữu. Bản đầu phải có luồng thực thi đầu–cuối và ca lỗi/gián đoạn/phục hồi trên môi trường được phép; template không thay nghiệm thu. Pilot vẫn lab kín, dữ liệu giả, ngân sách 0 đồng và quyền riêng; QUALITY vẫn chưa duyệt.
 
 <a id="platform-matrix"></a>
 
@@ -231,6 +257,8 @@ Môi trường đích, chi phí, nền tảng được hỗ trợ và hạn ch�
 
 Bước cuối vẫn riêng biệt: kiểm chứng toàn bộ quy trình triển khai, cấu hình, nâng cấp dữ liệu, khôi phục, monitoring và thao tác vận hành. Chạy local được chưa phải sẵn sàng production.
 
+Áp dụng [phạm vi phát hành/vận hành đã duyệt](#production-capabilities): lựa chọn triển khai thuộc từng sản phẩm/thành phần; release nhận diện cả tổ hợp tương thích, không chỉ một commit. Mọi kết quả phải gắn trạng thái thực tế và thời điểm quan sát, với đường xử lý sự cố không phụ thuộc phiên AI.
+
 ### 2.3. Tách duyệt kế hoạch khỏi thực hiện kế hoạch
 
 Trong bước “lên kế hoạch + code”, Human duyệt lộ trình trước khi AI bắt đầu code theo lộ trình đó. Task/phase có điều kiện hoàn thành rõ; không chờ đến khi viết xong toàn sản phẩm mới kiểm tra chéo.
@@ -298,6 +326,8 @@ flowchart TD
     L -->|"Thêm / đổi Feature"| A
 ```
 
+[Phạm vi phát hành/vận hành](#production-capabilities) bổ sung xuyên mười bước: bước 1–2 nhận diện nhu cầu A/B và hành vi; bước 3/5 chốt mục tiêu đo, cảnh báo và ứng phó; bước 7 chọn deploy từng thành phần cùng hợp đồng release/thực thi; bước 8 kiểm chứng; bước 9–10 thực hiện, xác nhận và khép vòng sự cố/thay đổi. Không tạo bước 11 hoặc dồn mọi thiết kế vận hành đến cuối.
+
 Mỗi bước lớn kết thúc bằng Human review và approval, không phải tự động đi qua các mũi tên. Nếu phát hiện đầu vào sai ở bước trước, quay lại bước sớm nhất bị ảnh hưởng, sửa và duyệt lại các phần liên quan. Đây là quy trình có thứ tự nhưng cho phép sửa sai, không ép thực tế đi theo đường thẳng bất chấp bằng chứng.
 
 Trong lúc đang xây MVP, yêu cầu thêm Feature cũng quay về bước 1; lưu điểm công việc bị ngắt trước khi đổi bước. Không tự chuyển yêu cầu mới sang Idea để né việc phân tích, cũng không triển khai ngay vì Human vừa nhắc đến nó: làm rõ Human đang muốn đưa vào đợt hiện tại hay chỉ ghi nhận để sau.
@@ -354,9 +384,11 @@ Hồ sơ bước con cần nêu phần việc, kết quả kiểm tra và trạn
 
 ### Đề xuất G3 — quyền Git theo phạm vi, chưa duyệt
 
-Gói R01-T06-S01-r1 trình hai quyết định: (D1) sau khi Human cho phép Git local cho đúng repo/đợt, được tạo/chuyển branch làm việc, commit phần nhiệm vụ và dùng worktree khi cần theo G1, không hỏi lại từng lần lưu; (D2) push cần phép rõ remote/nhánh và nội dung chia sẻ, có thể cho cả đợt đã xác định; merge master, tag và deploy cần phép rõ từng thao tác/đợt phát hành. Duyệt chính sách này không tự cấp quyền cho repo pilot. Khi chưa có quyền tương ứng, quy tắc hiện hành ở mục 4.4 vẫn áp dụng.
+Gói R01-T06-S01-r2 trình hai quyết định, cập nhật hướng Human muốn Kidea thực hiện merge mà không bỏ gate: (D1) sau khi Human cho phép Git local cho đúng repo/đợt, được tạo/chuyển branch làm việc, commit phần nhiệm vụ và dùng worktree khi cần theo G1, không hỏi lại từng lần lưu; (D2) Human có thể cho phép Kidea thực hiện merge vào nhánh tích hợp đã chỉ định trong đợt đó sau đủ G2 và Human gate, không hỏi lại chỉ để bấm merge. Bản kết hợp phải được kiểm chứng trước merge và xác nhận sau merge; đầu vào đổi thì kiểm tra lại toàn lượt theo G2. Chưa đủ điều kiện/quyền thì dừng, không tự duyệt hoặc bỏ kiểm tra.
 
-Trước thao tác, xác minh repo/nền/nhánh và thay đổi đang có; chỉ stage/commit phần thuộc nhiệm vụ, không cuốn file của Human, secret hoặc dữ liệu riêng vào commit. Nếu không thể tách an toàn thì hỏi. Worktree cần quyền ghi đúng vị trí; không bao gồm tạo project hoặc cài công cụ. Không tự ghi trực tiếp master, xóa branch/worktree, reset, force-push, sửa lịch sử hoặc giải conflict bằng cách bỏ nội dung. Tình huống vượt phạm vi cần quyết định riêng. Commit còn dở không là nghiệm thu; hợp đồng WIP/khôi phục chi tiết ở G4.
+Push vẫn cần phép rõ remote/nhánh/nội dung chia sẻ; tag/deploy và đổi production cần phép đúng thao tác/đợt phát hành. Quyền merge local không bao gồm push; merge qua dịch vụ remote cần cả quyền đưa nội dung tới remote/nhánh đích. Phê duyệt phạm vi phát hành/vận hành ngày 2026-09-10 không duyệt thay gói G3 này. Duyệt chính sách G3 cũng không tự cấp quyền cho repo pilot; khi chưa có quyền, mục 4.4 vẫn áp dụng.
+
+Trước thao tác, xác minh repo/nền/nhánh và thay đổi đang có; chỉ stage/commit phần thuộc nhiệm vụ, không cuốn file của Human, secret hoặc dữ liệu riêng vào commit. Nếu không thể tách an toàn thì hỏi. Worktree cần quyền ghi đúng vị trí; không bao gồm tạo project hoặc cài công cụ. Quyền local không cho commit trực tiếp lên master; merge chỉ theo D2 nếu được duyệt/cấp quyền. Không tự xóa branch/worktree, reset, force-push, sửa lịch sử hoặc giải conflict bằng cách bỏ nội dung. Tình huống vượt phạm vi cần quyết định riêng. Commit còn dở không là nghiệm thu; hợp đồng WIP/khôi phục chi tiết ở G4.
 
 Phép push không bao hàm merge/tag/deploy; remote công khai/riêng tư phải rõ, không mặc định giống repo xây Kidea. Khi đợt công việc hoặc đích thay đổi, đối chiếu lại phạm vi quyền. Cách ghi/thu hồi quyền sẽ được cụ thể hóa ở hợp đồng R02, chưa chọn schema tại đây. Yêu cầu riêng lưu và push answer.md trong repo xây Kidea vẫn giữ nguyên.
 
@@ -636,6 +668,8 @@ Không thể yêu cầu code luôn đã theo tài liệu mới ngay tại thời
 Ví dụ: tài liệu của bản kế tiếp cho phép hủy thêm một trạng thái đơn, nhưng production vẫn chạy bản trước. Kidea phải ghi rõ target mới, phần code/test còn thiếu và bản đang triển khai; không nói production đã có hành vi mới.
 
 Giữ một bộ đặc tả làm việc hiện hành, phân biệt trạng thái duyệt nội dung với tình trạng đã triển khai. Bản đang chạy được nhận diện bằng mã bản phát hành và gói triển khai có thể truy xuất, chứa căn cứ cấu hình/đặc tả và bằng chứng của bản đó. Gói này chỉ cần tạo khi thực sự phát hành, không sao chép toàn bộ tài liệu sau mỗi lần sửa và không đòi Kidea tự commit.
+
+Theo [phạm vi bổ sung](#production-capabilities), hồ sơ release nhận diện các thành phần và tổ hợp cũ–mới; tách bản mong muốn, bản thực tế đã quan sát và thời điểm quan sát. Lệnh được nhận hoặc một thành phần thành công không xác nhận cả release đạt. Sự cố, kết quả thử nghiệm và thay đổi cấu hình quay qua cùng cơ chế impact/change; không lưu chúng thành thông tin rời khỏi nguồn yêu cầu/test/vận hành.
 
 Tài liệu làm việc sạch không đồng nghĩa xóa dữ liệu cần khôi phục production. Bản triển khai trước, backup và bằng chứng vận hành có thời hạn giữ được chốt riêng; không trộn chúng thành các rule cũ còn hiệu lực trong tài liệu hiện hành.
 
