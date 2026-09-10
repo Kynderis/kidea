@@ -27,6 +27,8 @@ Push vẫn cần phép đúng remote/nhánh/nội dung; merge local không cho p
 
 Nguồn: [quyền G3 đề xuất](KIDEA_DESIGN.md#git-permissions-proposal), [G2 đã chốt](KIDEA_DESIGN.md#git-integration-gate), [phạm vi bổ sung đã chốt](KIDEA_DESIGN.md#production-capabilities).
 
+Trao đổi ngày 2026-09-10: Human đang cân nhắc một master và quyền sửa/commit/push/deploy dev mặc định khi giao Feature; xem [tư vấn, đánh đổi CI/hotfix và ảnh hưởng cần đồng bộ](exa-results/kidea-single-master-workflow-2026-09-10.md). Đây là phương án đang thảo luận để có thể thay cách branch/merge của gói r2, chưa phải approval G1 sửa đổi/G3 hoặc quyền thực thi; giữ nguyên nghĩa vụ chất lượng G2 đã chốt và trạng thái IN_REVIEW hiện hành.
+
 <a id="working-rules"></a>
 
 ## 2. Cách làm mới
