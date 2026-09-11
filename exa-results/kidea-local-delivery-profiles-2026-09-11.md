@@ -274,4 +274,3 @@ Các khuyến nghị local-only, giới hạn template và ranh giới quyền l
 - [Git tag](https://git-scm.com/docs/git-tag).
 
 URL `https://slsa.dev/spec/v1.2/levels` không fetch được, không dùng làm bằng chứng; đã thay bằng trang stable Build Track ở trên. Twelve-Factor là nguồn lâu đời dùng cho nguyên tắc build/config/release, không dùng để khẳng định phiên bản công cụ hôm nay.
-
