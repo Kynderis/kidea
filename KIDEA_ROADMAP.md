@@ -8,23 +8,23 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã khép [T07 — version/release](#r01-t07-result) và hoàn tất [tổng quan/rà soát](#overall-review). Theo yêu cầu “Tiếp tục công việc nhé”, mở **R01-T08-S01**: chọn phạm vi kịch bản điều phối/quyền/ghi/resume và điều kiện chặn nghiệm thu. Đây là đề xuất kiểm chứng, chưa thay chính sách đã duyệt hoặc chạy thử Kidea.
+Đã chốt [nhóm điều phối/quyền/lưu–resume](#r01-t08-s01-result). Tiếp tục **R01-T08-S02** về kịch bản nghiệp vụ, bản đồ và phân tích ảnh hưởng; hai quyết định dưới đây chưa được duyệt.
 
 <a id="review-current"></a>
-<a id="control-acceptance-proposal"></a>
+<a id="change-acceptance-proposal"></a>
 
-### R01-T08-S01-r1 — Kiểm tra điều phối, quyền và lưu/tiếp tục
+### R01-T08-S02-r1 — Kiểm tra nghiệp vụ, bản đồ và thay đổi
 
-T08 xác định Kidea phải vượt qua những bài thử nào trước nghiệm thu. S01 chỉ rà nhóm điều phối/hồ sơ, không hỏi lại chính sách Git/deploy đã chốt.
+S01 đã chốt nhóm điều phối/hồ sơ. S02 chọn bài thử KA-14–22 và cách kết luận; không duyệt thuật toán nghiệp vụ hoặc hỏi lại nguyên tắc MVP/hotfix/G2.
 
-1. **D1 — Phạm vi bài thử.** Đề xuất giữ KA-01–03 và KA-05–13: init mới/cũ, status/lệnh sai; từ chối, duyệt sai/cũ và quyền thiếu/đủ; hồ sơ sai, ghi lỗi, sửa chen vào; resume qua phiên/máy, thiếu file và thao tác chưa rõ kết quả. Thử cả đường được phép tiếp tục, không chỉ tình huống phải dừng. Bổ sung một biến thể: tài liệu/comment tự ghi “Human đã duyệt” hoặc yêu cầu bỏ gate; Kidea phải đối chiếu nguồn xác nhận hợp lệ, không tự coi văn bản ấy là approval/quyền. KA-04 đầu–cuối vẫn giữ cho tích hợp, không nhận đạt từ nhóm này.
-2. **D2 — Điều kiện đạt/chặn của nhóm.** Đề xuất mỗi biến thể bắt buộc phải đúng cả phản hồi, hồ sơ và hành động thực: không vượt gate/quyền, mất nội dung đã lưu hợp lệ, replay nguy hiểm hoặc báo DONE/PASS sai. Có một lỗi như vậy thì chặn nghiệm thu nhóm; sửa, kiểm tra lại và giữ bằng chứng lỗi. Thiếu dữ liệu/công cụ phải báo đúng và dừng phần phụ thuộc, không tự thành PASS/N/A. Mô hình thử ghi gồm lỗi quyền, ngắt tiến trình và sửa ngoài luồng; không nhận chống hỏng ổ đĩa/mất điện vật lý.
+1. **D1 — Phạm vi bài thử.** Đề xuất thử: rule/state dùng chung, điểm mơ hồ và AC/test có kết quả mong đợi; truy đặc tả ↔ code/test qua cả API/event/dữ liệu/cấu hình; map thiếu/cũ, link đúng nhưng sai nghĩa hoặc test thiếu assertion; thêm Feature giữa MVP, đổi sau release, phân biệt bugfix với đổi yêu cầu; ảnh hưởng qua phần không có diff, chu kỳ, nguồn đổi giữa lượt, di chuyển/xóa/đổi tên. Giữ các biến thể hotfix/dòng bảo trì đã ghi trong KA-19/22. Phải thử cả trường hợp có ảnh hưởng và phần được chứng minh không cần sửa.
+2. **D2 — Chuẩn đối chiếu hữu hạn.** Trước chạy, chuẩn bị mẫu có tập ảnh hưởng/kết quả mong đợi được review, đối chiếu độc lập với kết quả Kidea. Đạt khi không bỏ sót đích bắt buộc, kết luận đúng bản/có căn cứ và không đóng sớm khi còn việc hoặc thiếu thông tin. Tìm thêm quan hệ hợp lệ được phép; không ép mọi nơi thành “cần sửa”. Link/graph hợp lệ không thay kiểm tra ngữ nghĩa. Kết quả đúng trên mẫu không chứng minh tìm hết mọi dependency của project bất kỳ; pilot vẫn cần kiểm chứng thật.
 
-Ví dụ: đã gửi migration rồi mất kết nối → tra lần thực thi trước retry; ghi lại lệnh lần hai ngay là lỗi dù ứng dụng cuối cùng chạy được.
+Ví dụ B đổi cách làm tròn, A gọi B nhưng không sửa code, D dùng kết quả A: phải xét cả D; một nhãn “A không diff” không đủ loại ảnh hưởng.
 
-Nguồn mở thêm: [điều phối](KIDEA_ACCEPTANCE.md#acceptance-control), [hồ sơ/resume](KIDEA_ACCEPTANCE.md#acceptance-storage), [tiêu chí an toàn đề xuất](KIDEA_QUALITY.md#quality-safety).
+Nguồn mở thêm: [KA-14–22](KIDEA_ACCEPTANCE.md#acceptance-change), [ba bản đồ](KIDEA_DESIGN.md#three-maps), [KQ-04 đề xuất](KIDEA_QUALITY.md#quality-safety).
 
-**D1–D2 đang IN_REVIEW.** Chưa duyệt toàn QUALITY, số lần chạy/ngưỡng hoặc schema; chưa chạy case/pilot. Sau approval mới đồng bộ phần được chốt rồi trình S02 về nghiệp vụ/map/change.
+**D1–D2 đang IN_REVIEW.** Chưa chốt fixture/adapter/thuật toán, số lần chạy hoặc giới hạn cycle; chưa chạy case. Duyệt xong mới đồng bộ và trình S03 về rule/evidence/view/release.
 
 <a id="working-rules"></a>
 
@@ -97,9 +97,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T07-S02 | DONE | R01-T07-S02-r1 — APPROVED | Human “Duyệt nhé” sau answer 3ea08d1; D1–D2 về version thành phần/tag, không toàn release; [kết quả](#r01-t07-s02-result) |
 | R01-T07-S04 | DONE | R01-T07-S04-r1 — APPROVED | Human “Mình duyệt nhé.” sau answer 76b8a5c; D1–D2 về hồ sơ release/revision và từng lần triển khai; [kết quả](#r01-t07-result) |
 | R01-T07-S03 | DONE | [A] — đồng bộ và rà soát | Khép G5/G6, sửa caller/case lệch, kiểm tra toàn chuỗi tài liệu; không đổi ngưỡng hoặc mở task tiếp theo; [kết quả](#r01-t07-result) |
-| R01-T08-S01 | IN_PROGRESS | R01-T08-S01-r1 — IN_REVIEW | Đề xuất phạm vi bài thử và điều kiện đạt/chặn nhóm điều phối/quyền/ghi/resume; [gói hiện hành](#review-current). Chưa có approval; chưa chạy case |
+| R01-T08-S01 | DONE | R01-T08-S01-r1 — APPROVED | Human “Duyệt nhé” sau answer 1f67790; đồng bộ đúng phạm vi case/tiêu chí, chưa chạy; [kết quả](#r01-t08-s01-result) |
+| R01-T08-S02 | IN_PROGRESS | R01-T08-S02-r1 — IN_REVIEW | Phạm vi KA-14–22 và chuẩn đối chiếu hữu hạn; [gói hiện hành](#review-current). Chưa duyệt/chạy |
 
-Các subtask R01 còn lại mặc định TODO; chỉ R01-T08-S01 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
+Các subtask R01 còn lại mặc định TODO; chỉ R01-T08-S02 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
 <a id="r01-t01-result"></a>
 
@@ -262,6 +263,15 @@ Các subtask R01 còn lại mặc định TODO; chỉ R01-T08-S01 đang IN_PROGR
 - Đồng bộ nhận diện hồ sơ/revision/từng lần triển khai, retry và dữ liệu chia sẻ vào task/case liên quan; giữ 30 họ KA và toàn bộ nội dung/ngưỡng/trạng thái đề xuất QUALITY. Các case chưa chạy; chuẩn G2 không đổi. [Bảng đối chiếu](#overall-review) chỉ dẫn tới nguồn/owner, không thêm tracker hoặc thiết kế thứ hai.
 - Kiểm tra Markdown/link/anchor, task/subtask, trạng thái, Mermaid và diff. Đủ S01/S02/S04/S03 của T07 DONE; không tạo/xóa file tạm, skill/runtime hoặc pilot, không thao tác Thuận Thiên/PROD. Dừng trước T08 theo yêu cầu Human; R01 chưa APPROVED, không tự mở phase kế.
 
+<a id="control-acceptance-proposal"></a>
+<a id="r01-t08-s01-result"></a>
+
+### Kết quả R01-T08-S01
+
+- Human “Duyệt nhé” sau [answer 1f67790](https://github.com/Kynderis/kidea/blob/1f677909935d92bc94c210d32e52bd6e8cd24596/answer.md), xác nhận hai điểm của [gói S01-r1](https://github.com/Kynderis/kidea/blob/1f677909935d92bc94c210d32e52bd6e8cd24596/KIDEA_ROADMAP.md#review-current): phạm vi KA-01–03/05–13, biến thể tự nhận approval và điều kiện đúng/an toàn trong mô hình lỗi đã trình.
+- Đồng bộ KA-06, căn cứ DESIGN và [phần tiêu chí đã duyệt](KIDEA_QUALITY.md#control-acceptance-approved). Không suy thành duyệt toàn KQ-01–03/QUALITY, KA-04 đầu–cuối, số lần chạy/ngưỡng, schema hoặc quyền thực thi.
+- Kiểm tra link/anchor/trạng thái/diff; giữ 30 họ KA, G2 và các giá trị đo đề xuất. Chưa chạy skill/pilot, không tạo/xóa file tạm. S01 DONE; T08 chưa khép, S02 tiếp tục theo gói riêng.
+
 <a id="phase-overview"></a>
 
 ## 4. Tổng quan 10 phase xây Kidea
@@ -325,7 +335,7 @@ Riêng R01-T07, thứ tự phụ thuộc là S01 → S02 → S04 → S03: S04 đ
 
 R01-T08/T09 không gom nhiều thay đổi tiêu chí vào hai dòng hình thức: mỗi lần chỉ chốt tối đa 3 quyết định còn mở. Nếu các nhóm trên phát sinh thêm lựa chọn độc lập, tách thêm ID con trước khi trình.
 
-Phần đóng [A] của một subtask [H] gồm đồng bộ đúng quyết định đã duyệt, kiểm tra và cleanup; không cần thêm task cleanup. Các giá trị QUALITY cũ vẫn chưa có hiệu lực; thời điểm chốt ngưỡng thực thi sẽ theo quyết định R01-T09, trước nghiệm thu phần liên quan.
+Phần đóng [A] của một subtask [H] gồm đồng bộ đúng quyết định đã duyệt, kiểm tra và cleanup; không cần thêm task cleanup. Các số đề xuất về hiệu năng, số lần chạy và giới hạn cycle vẫn chưa có hiệu lực; thời điểm chốt ngưỡng thực thi sẽ theo quyết định R01-T09, trước nghiệm thu phần liên quan.
 
 <a id="r02"></a>
 

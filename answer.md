@@ -1,28 +1,31 @@
-Đã mở **R01-T08-S01 — kịch bản điều phối, quyền và lưu/tiếp tục**. Lượt này chốt cách kiểm chứng Kidea, không hỏi lại các chính sách Git/deploy đã duyệt.
+Đã chốt nhóm **điều phối/quyền/lưu–resume** và đồng bộ tài liệu đúng phạm vi; chưa chạy kiểm thử hoặc duyệt toàn bộ QUALITY.
 
-Mình đề xuất hai điểm:
+Tiếp theo là **R01-T08-S02 — nghiệp vụ, bản đồ và phân tích ảnh hưởng**. Mình đề xuất:
 
-**1. Những tình huống phải thử**
+**1. Phạm vi bài thử**
 
-- Khởi tạo mới/cũ, xem trạng thái và gọi lệnh sai.
-- Chưa duyệt, duyệt sai/cũ, thiếu quyền; đồng thời thử **đủ quyền thì phải tiếp tục**, không hỏi lại vô ích.
-- Hồ sơ sai, ghi lỗi, bị ngắt hoặc Human sửa file trong lúc AI đang làm.
-- Tiếp tục qua phiên/máy khác; thiếu file hoặc chưa biết thao tác trước đã xảy ra chưa.
-- Bổ sung ca tài liệu/comment tự nhận “Human đã duyệt”: phải đối chiếu xác nhận hợp lệ, không tự tin lời ghi trong tài liệu.
+Kiểm tra rule dùng chung, điểm mơ hồ, AC/test; truy từ đặc tả sang code/test và ngược lại; map thiếu/cũ hoặc link đúng nhưng sai nghĩa. Bao gồm thêm Feature giữa MVP, đổi sau release, hotfix, ảnh hưởng qua phần không có diff, vòng phụ thuộc và di chuyển/xóa nội dung.
 
-**2. Điều kiện đạt**
+Thử cả nơi **cần sửa** và nơi có căn cứ **không cần sửa**; không hỏi lại các nguyên tắc MVP/hotfix đã chốt.
 
-Mỗi biến thể phải đúng cả **câu trả lời, hồ sơ và hành động thực tế**. Không chấp nhận vượt quyền/gate, mất nội dung đã lưu hợp lệ, chạy lặp nguy hiểm hoặc báo hoàn thành sai. Có lỗi thì chưa nghiệm thu nhóm; phải sửa, kiểm tra lại và giữ bằng chứng lỗi.
+**2. Cách xác nhận đạt**
 
-Ví dụ: gửi migration rồi mất kết nối → kiểm tra lần thực thi trước khi thử lại; không chạy lại ngay chỉ vì chưa nhận thông báo thành công.
+Chuẩn bị mẫu có tập ảnh hưởng và kết quả mong đợi được review trước, rồi đối chiếu độc lập với kết quả Kidea:
 
-Các thử lỗi ghi chỉ chứng minh mô hình đã thử, không bảo đảm chống hỏng ổ đĩa/mất điện vật lý. Lượt này **chưa chốt số lần chạy, ngưỡng tốc độ, schema hoặc toàn bộ QUALITY**; chưa chạy skill/pilot.
+- Không bỏ sót phần bắt buộc.
+- Kết luận có căn cứ, đúng phiên bản.
+- Không đóng việc khi còn phần chưa xử lý hoặc chưa đủ thông tin.
+- Tìm thêm quan hệ hợp lệ được phép; link/graph hợp lệ không tự chứng minh đúng nghĩa.
+
+Ví dụ: **B đổi cách làm tròn → A dùng B nhưng không sửa code → D dùng kết quả A**. Kidea vẫn phải xét ảnh hưởng đến D, không dừng vì A “không có diff”.
+
+Đạt trên mẫu hữu hạn không chứng minh tìm hết mọi dependency của mọi project; pilot vẫn cần kiểm chứng thật. Chưa chốt công cụ, thuật toán, số lần chạy hoặc giới hạn vòng lặp.
 
 Bạn duyệt hai điểm này nhé? [Gói review trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).
 
 <oai-mem-citation>
 <citation_entries>
-MEMORY.md:52-52|note=[scoped answer publication verified against current repository]
+MEMORY.md:52-52|note=[scoped answer publication reverified]
 </citation_entries>
 <rollout_ids>
 01a064b8-dde1-7882-acc1-7d02d6f568c8

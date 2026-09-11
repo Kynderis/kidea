@@ -1,6 +1,14 @@
 # Kidea — Tiêu chí chất lượng và bằng chứng nghiệm thu
 
-Căn cứ `P01-T05-QUALITY-r2` ngày 2026-09-07: **ĐỀ XUẤT VÒNG TRƯỚC — CHƯA DUYỆT, CHƯA ĐO/CHẠY**. Ngày 2026-09-08 chỉ đồng bộ điều hướng sang vòng R2, không đổi các giá trị đề xuất. Không còn một gate chờ duyệt cả file: [R01-T08/T09](KIDEA_ROADMAP.md#r01) chia theo nhóm nhỏ. [Roadmap](KIDEA_ROADMAP.md#work-state) giữ tiến trình; tài liệu này không thay thiết kế hoặc test pilot. Các số 2/5/3/10 giây, 11 mẫu, 3 lần AI và giới hạn cycle bên dưới chưa có hiệu lực trước đúng approval.
+Căn cứ `P01-T05-QUALITY-r2` ngày 2026-09-07: **CHỈ MỘT PHẦN ĐÃ DUYỆT — CHƯA ĐO/CHẠY**. Ngày 2026-09-08 chỉ đồng bộ điều hướng sang vòng R2, không đổi các giá trị đề xuất. Không còn một gate chờ duyệt cả file: [R01-T08/T09](KIDEA_ROADMAP.md#r01) chia theo nhóm nhỏ. [Roadmap](KIDEA_ROADMAP.md#work-state) giữ tiến trình; tài liệu này không thay thiết kế hoặc test pilot. Các số 2/5/3/10 giây, 11 mẫu, 3 lần AI và giới hạn cycle bên dưới chưa có hiệu lực trước đúng approval.
+
+<a id="control-acceptance-approved"></a>
+
+### Phần đã duyệt — điều phối, quyền và lưu/tiếp tục
+
+Theo [R01-T08-S01](KIDEA_ROADMAP.md#r01-t08-s01-result), phạm vi KA-01–03 và KA-05–13 cùng biến thể tài liệu/comment tự nhận approval đã được duyệt; KA-04 đầu–cuối không được coi đạt từ nhóm này. Mỗi biến thể bắt buộc phải đúng cả phản hồi, hồ sơ và hành động: không vượt gate/quyền, mất nội dung đã lưu hợp lệ, replay nguy hiểm hoặc báo DONE/PASS sai. Có lỗi thì chặn nghiệm thu nhóm, sửa/kiểm tra lại và giữ bằng chứng lỗi. Thiếu dữ liệu/công cụ phải báo đúng, dừng phần phụ thuộc, không tự PASS/N/A.
+
+Thử cả quyền đủ thì tiếp tục và quyền thiếu thì dừng. Mô hình lỗi ghi gồm lỗi quyền, ngắt tiến trình và sửa ngoài luồng; không nhận chống hỏng ổ đĩa/mất điện vật lý. Approval này chưa chốt fixture/schema, số lần chạy, ngưỡng hoặc toàn bộ KQ-01–03 cho các nhóm case khác; các phương pháp đo còn đề xuất bên dưới vẫn phải qua gate tương ứng. Chưa thực thi case.
 
 ## 1. Quy tắc kết luận
 

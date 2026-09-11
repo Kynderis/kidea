@@ -118,7 +118,7 @@ Ngay trong quy trình bản đầu phải xác định sản phẩm có cần A/
 
 **Nhóm xa hoặc không chủ trương tự xây:** không phủ sẵn mọi hạ tầng; đa cloud/nhiều vùng/chuyển vùng phức tạp chỉ khi mục tiêu đã chốt đòi hỏi (có thể cần sớm); không chủ trương AI tự quyết nghiệp vụ/kết quả A/B hoặc tự sửa production ngoài quyền; không tự viết CI/CD, rollout controller, feature flag hoặc thống kê khi chưa chứng minh khoảng trống cần tự xây. Cộng tác nhiều người không là cam kết tương lai.
 
-Thứ tự chuẩn bị: (1) release đa thành phần, deploy linh hoạt, trạng thái/bằng chứng; (2) sẵn sàng vận hành, phát hành an toàn, sự cố; (3) quy trình A/B và ranh giới tích hợp, nâng cao theo nhu cầu. Không mở song song nhiều subtask; chốt chi tiết qua các gói nhỏ tại nơi sở hữu. Bản đầu phải có luồng thực thi đầu–cuối và ca lỗi/gián đoạn/phục hồi trên môi trường được phép; template không thay nghiệm thu. Pilot vẫn lab kín, dữ liệu giả, ngân sách 0 đồng và quyền riêng; QUALITY vẫn chưa duyệt.
+Thứ tự chuẩn bị: (1) release đa thành phần, deploy linh hoạt, trạng thái/bằng chứng; (2) sẵn sàng vận hành, phát hành an toàn, sự cố; (3) quy trình A/B và ranh giới tích hợp, nâng cao theo nhu cầu. Không mở song song nhiều subtask; chốt chi tiết qua các gói nhỏ tại nơi sở hữu. Bản đầu phải có luồng thực thi đầu–cuối và ca lỗi/gián đoạn/phục hồi trên môi trường được phép; template không thay nghiệm thu. Pilot vẫn lab kín, dữ liệu giả, ngân sách 0 đồng và quyền riêng; QUALITY chưa được duyệt toàn bộ; phần đã chốt xem [tiêu chí điều phối/hồ sơ](KIDEA_QUALITY.md#control-acceptance-approved).
 
 <a id="platform-matrix"></a>
 
@@ -789,9 +789,9 @@ Ví dụ: code hủy đơn phát `OrderCancelled`; một tiến trình khác nh�
 
 ## 8. Từ yêu cầu đến test và bằng chứng
 
-Đề xuất thước đo nghiệm thu Kidea: [KIDEA_QUALITY.md](KIDEA_QUALITY.md), gói `P01-T05-QUALITY-r2` **chưa duyệt**. Ngân sách công cụ local tách khỏi thời gian AI và hiệu năng sản phẩm; không phải kết quả đo thực tế. Kết quả đối chiếu quyết định đã duyệt và các phần còn mở ở [rà soát tổng quan](KIDEA_ROADMAP.md#overall-review); không coi phần còn đề xuất là đã được duyệt.
+Đề xuất thước đo nghiệm thu Kidea: [KIDEA_QUALITY.md](KIDEA_QUALITY.md), phát triển từ gói `P01-T05-QUALITY-r2`; [phần điều phối/hồ sơ](KIDEA_QUALITY.md#control-acceptance-approved) đã duyệt, phần còn lại vẫn là đề xuất. Ngân sách công cụ local tách khỏi thời gian AI và hiệu năng sản phẩm; không phải kết quả đo thực tế. Kết quả đối chiếu quyết định đã duyệt và các phần còn mở ở [rà soát tổng quan](KIDEA_ROADMAP.md#overall-review); không coi phần còn đề xuất là đã được duyệt.
 
-Danh mục nghiệm thu **chính Kidea**, tách khỏi test sản phẩm: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md). Danh mục vòng trước chưa chạy, nay rà từng nhóm R01-T08/T09; ngưỡng/mức bằng chứng chỉ có hiệu lực sau đúng gate, không phải approval mặc định của cả file.
+Danh mục nghiệm thu **chính Kidea**, tách khỏi test sản phẩm: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md). Nhóm điều phối/quyền/ghi/resume đã chốt phạm vi và điều kiện nghiệm thu tại [S01](KIDEA_ROADMAP.md#r01-t08-s01-result), chưa chạy; các nhóm còn lại tiếp tục R01-T08/T09; ngưỡng/mức bằng chứng chỉ có hiệu lực sau đúng gate, không phải approval mặc định của cả file.
 
 Mối liên hệ cần truy được hai chiều:
 
