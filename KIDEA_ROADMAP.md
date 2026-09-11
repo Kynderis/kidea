@@ -8,24 +8,21 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã chốt [T09-S02 — chính sách đo và ngưỡng](#r01-t09-s02-result). Tiếp tục **R01-T09-S03**, phần cuối về tổ chức các lần thử; ba lựa chọn mới dưới đây đang chờ duyệt.
+Đã khép [T09](#r01-t09-result) và hoàn tất [rà tích hợp tài liệu R01-T10](#r01-t10-check). **R01-T10-S03** là gate cuối của phase căn cứ; chỉ hai quyết định dưới đây chờ Human.
 
 <a id="review-current"></a>
-<a id="trial-policy-proposal"></a>
+<a id="r01-close-proposal"></a>
 
-### R01-T09-S03-r1 — Danh sách lần thử, lặp độc lập và dừng vòng lặp
+### R01-T10-S03-r1 — Khép căn cứ và cho mở phần lõi
 
-Hai phần đầu đã chốt hồ sơ bằng chứng và chính sách đo. S03 chọn cách tổ chức bài thử; không chốt ngầm các số 3 lần/20 lượt của bản nháp.
+R01 là phần chốt Kidea cần làm gì, giữ quyền/gate ra sao và kiểm chứng thế nào. Chưa phải bản skill dùng được.
 
-1. **D1 — Có danh sách từng biến thể trước chạy.** Đề xuất mỗi tình huống con có ID, bài gốc, đầu vào, kết quả mong đợi, nơi chạy và trạng thái/kết quả riêng. Bao phủ đủ các họ áp dụng, không thử một tình huống rồi nhận cả họ đạt. Một luồng có thể kiểm tra nhiều mục nếu truy được kết quả từng mục; danh sách là chỉ mục bằng chứng, không tracker công việc thứ hai.
-2. **D2 — Thử lại độc lập các hành vi AI trọng yếu.** Với quyền, approval, resume và báo kết quả, lặp ở phiên mới từ bản đầu vào cố định, không mang lời sửa sai của lần trước hoặc sửa hộ hồ sơ để đạt. Chốt nhóm/biến thể và số lần trước chạy tại task sở hữu; giữ mọi lần lỗi, sửa có căn cứ rồi hồi quy. Không dùng “một lần làm đúng” hoặc chọn lần đẹp để chứng nhận ổn định; số lần thử không tự là xác suất tin cậy.
-3. **D3 — Có giới hạn bảo vệ bài thử chu kỳ.** Với mẫu phụ thuộc vòng, chốt dấu hiệu không tiến triển và giới hạn thử trước chạy ở R06-T09. Chạm giới hạn thì dừng bài thử, giữ trạng thái/bằng chứng và ghi chưa đạt để điều tra; không tự coi phân tích ảnh hưởng đã hoàn tất hoặc cắt graph sản phẩm thật theo số cố định.
+1. **D1 — Chấp nhận kết quả chuẩn bị R01.** Đề xuất khép phase căn cứ: thiết kế, danh mục 30 họ tình huống thử, chính sách bằng chứng và lộ trình đã đối chiếu với nhau. Giữ đủ sáu hành động, mười bước sản phẩm, ba bản đồ, nền tảng/pilot và kiểm tra G2 đã duyệt. Đã sửa các câu còn dẫn về việc chờ duyệt cũ; không đổi quyết định của bạn. Đây chỉ là kiểm tra tài liệu, không phải test hành vi, đo tốc độ hay chứng nhận tương thích. Các số nháp, fixture, runtime/schema và nhánh Future/ưu tiên còn mở được giữ đúng nơi xử lý, không được duyệt kèm.
+2. **D2 — Cho mở R02 theo từng lát cắt.** R02 xây lõi đọc/ghi hồ sơ, trạng thái, duyệt và tiếp tục công việc. Sau approval này, trước tiên mình phân rã R02 rồi trình lựa chọn runtime, dependency và vị trí/quyền cài thử ở T01; chưa tự chọn hoặc cài. Sau khi từng hợp đồng được duyệt mới làm/test phần phụ thuộc, kết thúc R02 vẫn cần gate riêng. R03–R10 giữ thứ tự và gate: nghiệp vụ → thiết kế/rule → maps/change → view → phát hành → pilot → nghiệm thu; không mở tất cả cùng lúc.
 
-Ví dụ hai lần vượt quyền và một lần đúng: giữ cả ba, không chỉ báo lần đúng. Con số này chỉ minh họa.
+Nguồn mở thêm: [kết quả rà](#r01-t10-check), [lõi R02](#r02), [phần chưa chốt](KIDEA_DESIGN.md#open-decisions).
 
-Nguồn mở thêm: [biến thể](KIDEA_ACCEPTANCE.md), [lặp AI/chu kỳ](KIDEA_QUALITY.md#quality-ai-impact).
-
-**D1–D3 đang IN_REVIEW.** Chưa duyệt số lần/giới hạn cụ thể, fixture hoặc quyền chạy. Sau approval, đồng bộ khép T09 rồi rà tích hợp R01-T10, chưa tự mở R02.
+**D1–D2 đang IN_REVIEW.** Chưa đóng R01 hoặc mở R02; không cấp quyền cài/nâng môi trường, tạo/chạy pilot hay deploy. Bạn có duyệt hai điểm trên không?
 
 <a id="working-rules"></a>
 
@@ -103,9 +100,12 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T08-S03 | DONE | R01-T08-S03-r1 — APPROVED | Human “tôi duyệt” sau answer b42032c; đủ ba nhóm T08 và đồng bộ, chưa chạy; [kết quả](#r01-t08-result) |
 | R01-T09-S01 | DONE | R01-T09-S01-r1 — APPROVED | Human “duyệt nhé” sau answer 6cb8d3b; đồng bộ hồ sơ/hiệu lực, chưa chạy; [kết quả](#r01-t09-s01-result) |
 | R01-T09-S02 | DONE | R01-T09-S02-r1 — APPROVED | Human “duyệt” sau answer aabc9ec; đồng bộ chính sách đo/ngưỡng, chưa đo; [kết quả](#r01-t09-s02-result) |
-| R01-T09-S03 | IN_PROGRESS | R01-T09-S03-r1 — IN_REVIEW | Danh sách biến thể, lặp AI độc lập và dừng bài thử chu kỳ; [gói hiện hành](#review-current). Chưa chốt số cụ thể |
+| R01-T09-S03 | DONE | R01-T09-S03-r1 — APPROVED | Human “duyệt nhé” sau giải thích 063bf73; đồng bộ chính sách tổ chức thử, chưa chạy; [kết quả](#r01-t09-result) |
+| R01-T10-S01 | DONE | [A] — đồng bộ căn cứ | Đồng bộ bốn nguồn, phân biệt chính sách được duyệt với chi tiết chờ task sở hữu; [kết quả](#r01-t10-check) |
+| R01-T10-S02 | DONE | [A] — rà tích hợp tài liệu | Đối chiếu nghĩa vụ/caller, link, trạng thái và cleanup; chưa kiểm chứng skill; [kết quả](#r01-t10-check) |
+| R01-T10-S03 | IN_PROGRESS | R01-T10-S03-r1 — IN_REVIEW | Chấp nhận căn cứ/giới hạn và cho mở R02 đúng phạm vi; [gói hiện hành](#review-current) |
 
-Các subtask R01 còn lại mặc định TODO; chỉ R01-T09-S03 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
+Chỉ R01-T10-S03 đang IN_PROGRESS, chờ Human review gói trên; 30 subtask còn lại của R01 đã DONE, phase chưa APPROVED. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Kiểm tra tài liệu không được cộng thành nghiệm thu năng lực Kidea.
 
 <a id="r01-t01-result"></a>
 
@@ -313,6 +313,24 @@ Các subtask R01 còn lại mặc định TODO; chỉ R01-T09-S03 đang IN_PROGR
 - Đồng bộ QUALITY, DESIGN và ACCEPTANCE; R02-T10/R07-T04 là nơi thực hiện và trình số cụ thể. Không duyệt ngầm kích thước mẫu, 2/5/3/10 giây, số lần chạy hoặc sửa số nháp theo kết quả.
 - Kiểm tra link/trạng thái/diff, giữ G2; chưa benchmark hoặc chạy pilot, không tạo/xóa file tạm. S02 DONE; S03 còn chờ, R01 chưa APPROVED.
 
+<a id="trial-policy-proposal"></a>
+<a id="r01-t09-result"></a>
+
+### Kết quả R01-T09
+
+- Human “duyệt nhé” sau [giải thích 063bf73](https://github.com/Kynderis/kidea/blob/063bf73a441f1f684779e3a87c878e85b954278f/answer.md), xác nhận D1–D3 của [S03-r1 tại 93a8eb7](https://github.com/Kynderis/kidea/blob/93a8eb75dc11bb310697d04ab2c88ffd04987072/KIDEA_ROADMAP.md#review-current): danh sách biến thể, thử AI độc lập và dừng thử chu kỳ khi vượt giới hạn đã chốt.
+- Đồng bộ [QUALITY](KIDEA_QUALITY.md#trial-policy-approved), DESIGN/ACCEPTANCE và task sở hữu. Chỉ chốt chính sách, không duyệt số lần/giới hạn cụ thể, fixture hoặc quyền chạy; không coi 3 lần/20 lượt là chuẩn đã có hiệu lực. Giữ G2 và bằng chứng lỗi.
+- Đủ ba subtask T09 DONE; chưa chạy test/benchmark/skill/pilot. Kiểm tra tài liệu và cleanup; không tạo/xóa file tạm. R01 vẫn cần gate tích hợp T10, chưa mở R02.
+
+<a id="r01-t10-check"></a>
+
+### Kết quả rà tích hợp R01-T10-S01/S02
+
+- Đọc toàn bộ DESIGN/ROADMAP/ACCEPTANCE/QUALITY hiện hành, đối chiếu căn cứ và các nơi dùng: sáu hành động → R02/R06/R07; mười bước → R03–R05/R08/R09; ba bản đồ/no-diff/cycle → R06/R09; G1–G6, release/quyền/khôi phục → R02/R05/R06/R08–R10; nền tảng và workshop → R03/R05/R09/R10. Giữ 30 họ KA, 10 nhóm KQ và nghĩa vụ G2; không kết luận case đã PASS.
+- Sửa các con trỏ còn ghi phần đã chốt là chờ T08/T09, chuyển chốt giới hạn KA-21 về R06-T09; nhãn rõ 3 lần AI/20 lượt và số benchmark vẫn đề xuất. Chính sách nghiệm thu có nguồn ở QUALITY, case ở ACCEPTANCE, thiết kế ở DESIGN; roadmap chỉ giữ trạng thái và điều hướng.
+- Các phần mở không bị bỏ: runtime/schema/fingerprint/ghi/backup ở R02; số đo/lần thử ở R02-T10/R07-T04/R06-T09/R10-T06; phương pháp/Future/ưu tiên ở R03/R06; công cụ/profile/môi trường và thực thi ở task sở hữu. Thứ tự phase và gate sản phẩm riêng giữ nguyên, không tự cấp quyền hoặc sửa phạm vi.
+- Kiểm tra link/anchor, cấu trúc Markdown/Mermaid dạng văn bản, mã/cây task, bao phủ và diff; không render sơ đồ hoặc chạy skill/pilot/benchmark. Không tạo file tạm, không có untracked cần dọn; nguồn tham khảo/nghiên cứu/Idea giữ nguyên. S01/S02 đủ đầu ra tài liệu, S03 chờ Human xác nhận kết quả và phạm vi mở R02.
+
 <a id="phase-overview"></a>
 
 ## 4. Tổng quan 10 phase xây Kidea
@@ -397,7 +415,7 @@ Subtask: **chưa phân rã**. Trước mở từng task, ghi lát cắt/đầu r
 | R02-T07 — Init | Ba file tối thiểu hoặc dùng nguồn cũ đã đối chiếu; tách ý Human/gợi ý AI. | Không init đè; dự án cũ bắt đầu bước 1, không tự chứng nhận từ code. |
 | R02-T08 — Approve | Hành động ghi đúng xác nhận Human cho gói đủ điều kiện. | Thử đúng/sai ID, reject, nội dung cũ, gate con khác gate cha. |
 | R02-T09 — Resume cơ bản | Đọc đủ nguồn, task, quy ước thực thi và chuỗi điểm quay lại; kiểm tra thực tế trước tiếp tục, gồm kết quả Human chạy phát hành. | Phiên mới không cần kể lại; thiếu docs/công cụ hoặc side effect chưa rõ phải dừng đúng chỗ. Job/cảnh báo đã được phép duy trì độc lập phiên AI/laptop; truy lần triển khai, đúng hồ sơ/revision và bản thực chạy trước retry, không ghi đè lần lỗi. |
-| R02-T10 — Đo sớm và thử luồng lõi | Manifest biến thể, benchmark đọc/status và phiên AI mới dùng bản cài thử. | Trình ngưỡng đọc/status theo chính sách R01; giữ toàn bộ mẫu, không tự nâng chuẩn để đạt. |
+| R02-T10 — Đo sớm và thử luồng lõi | Manifest biến thể, benchmark đọc/status và phiên AI mới dùng bản cài thử. | Trình ngưỡng đọc/status, manifest và số lần AI theo chính sách R01 trước chạy nghiệm thu; giữ toàn bộ mẫu, không tự nâng chuẩn để đạt. |
 | R02-T11 — Khép lõi | Hồi quy init → status → reject/sửa/approve → ngắt/resume. | Human review tích hợp; change/visualize chưa có phải báo chưa hỗ trợ. |
 
 <a id="r03"></a>
@@ -472,7 +490,7 @@ Subtask: **chưa phân rã**. Trước mở từng task, ghi lát cắt/đầu r
 | R06-T06 — Đối chiếu hai chiều | Spec → code/test/assertion và chiều ngược, gồm event/shared data/config. | Phát hiện/đưa review link đúng nhưng sai nghĩa, snapshot cũ, thiếu assertion. Đối chiếu cả đường release/vận hành; không tạo bản trạng thái thực thi nhập tay thứ hai. |
 | R06-T07 — Change hay bugfix | Feature giữa MVP/sau release, bugfix giữ đặc tả và ý định chưa rõ. Nhận cả sự cố, đổi cấu hình/luật mở tính năng và kết quả thử nghiệm về đúng change/gate. | Bảo toàn tiến độ, cập nhật cùng kế hoạch MVP; chỉ lưu điểm tiếp tục khi ngắt việc độc lập. Bugfix chọn master phù hợp hoặc nhánh bảo trì đúng production, đối chiếu fix trên master; không đổi rule để hợp thức hóa code hoặc bỏ bước 1 của change. |
 | R06-T08 — Hàng đợi impact | Input revision, kết luận có căn cứ, điểm quay lại, đóng/mở lại và tìm ngoài mapping. | Không coi quét hết cạnh là đủ; nguồn đổi phải xét lại kết luận phụ thuộc. |
-| R06-T09 — No-diff, chu kỳ và requeue | Mẫu B đổi → A không diff → D vẫn bị ảnh hưởng; cycle và input đổi giữa lượt. | Đủ ảnh hưởng, không lặp vô ích/đóng sớm; kiểm tra ngưỡng đã duyệt đúng fixture. |
+| R06-T09 — No-diff, chu kỳ và requeue | Mẫu B đổi → A không diff → D vẫn bị ảnh hưởng; cycle và input đổi giữa lượt. | Trình dấu hiệu không tiến triển/giới hạn trước chạy theo chính sách T09; đủ ảnh hưởng, không lặp vô ích/đóng sớm. Chạm giới hạn giữ trạng thái và ghi chưa đạt, không đóng impact. |
 | R06-T10 — Di chuyển và resume sâu | Migrate ID/link/symbol giữa docs/source/review; resume qua Git, thiếu bản rule, conflict và đổi master/nhánh bảo trì theo công việc. | Không giữ hai nguồn có hiệu lực hoặc để hồ sơ hotfix ghi đè tiến độ Feature. Quyền Git theo project đã chốt; không replay mù hoặc dọn branch khi còn nghĩa vụ giữ nguồn/bằng chứng. |
 | R06-T11 — Khép maps/change | Hồi quy helper và phiên AI mới trên bộ đối chứng cùng hồ sơ pilot. | Map pilot chưa có code vẫn ghi chờ; Human review ngữ nghĩa và giới hạn. |
 
@@ -549,7 +567,7 @@ Subtask: **chưa phân rã**. Trước mở từng task, ghi lát cắt/đầu r
 | R10-T03 — Nâng cấp và rollback lỗi | Từng đường nâng cấp được hỗ trợ, lỗi giữa chừng và khôi phục. | Bảo toàn nguồn/bằng chứng, chạy kiểm tra sau phục hồi. |
 | R10-T04 — Ma trận môi trường cuối | Chia subtask từng host/đích được cam kết, gồm Git/resume, docs khác vị trí mặc định và quy ước thực thi đã chọn. | Máy thật/mô phỏng tách rõ; local điều khiển không miễn nền đích. Thiếu một mục bắt buộc vẫn là khoảng trống; không coi một template là hỗ trợ mọi môi trường. |
 | R10-T05 — Hướng dẫn tiếng Việt | Bắt đầu/gate/resume/change/view, xử lý lỗi, backup/giới hạn và SEO; bộ lệnh local, AI DEV/Human PROD, cấu hình/credential, hồ sơ release/từng lần triển khai, nhánh bảo trì và quyền dọn. | Ví dụ/link thực; chỉ nêu đường deploy đã kiểm chứng và cách theo dõi/xử lý khi phiên AI/laptop đóng. SKILL.md gọn, không cần nhớ hội thoại hoặc tự xây thư viện template. |
-| R10-T06 — Bản ứng viên và review độc lập | Chạy nghiệm thu đúng bản cố định: helper, AI, map/change/view/install và tích hợp, gồm phương án local/DEV/phát hành do Human và nhánh bảo trì trên lab. | Rà secrets/quyền/link; mọi case áp dụng có kết quả còn hiệu lực, không chọn lần chạy đẹp. Nghiệm thu đầu–cuối và đường lỗi theo toàn phạm vi đã chốt, không dùng template có đủ nội dung thay bằng chứng thực thi. |
+| R10-T06 — Bản ứng viên và review độc lập | Chạy nghiệm thu đúng bản cố định: helper, AI, map/change/view/install và tích hợp, gồm phương án local/DEV/phát hành do Human và nhánh bảo trì trên lab. | Rà secrets/quyền/link; chốt manifest/số lần nhóm AI trước chạy theo chính sách T09, mọi case áp dụng có kết quả còn hiệu lực, không chọn lần chạy đẹp. Nghiệm thu đầu–cuối và đường lỗi theo toàn phạm vi đã chốt, không dùng template có đủ nội dung thay bằng chứng thực thi. |
 | R10-T07 — Bàn giao | Version, phạm vi chứng minh, kết quả/giới hạn và hướng dùng. | Human nghiệm thu; publication/cài thật vẫn cần quyền riêng, không tự mở phạm vi mới. Nêu adapter nào đã chạy, A/B/rollout tự động/online nào chưa triển khai; không ngoại suy mọi hạ tầng. |
 
 <a id="coverage"></a>
@@ -610,7 +628,7 @@ Mười bước sản phẩm không bị gộp bởi cách chia phase xây skill
 
 | Phần còn lại | Nơi xử lý / giới hạn |
 |---|---|
-| Case, mức bằng chứng, đầu vào chi phối kết quả, benchmark và số lần AI | R01-T08/T09; ngưỡng QUALITY cũ vẫn chưa duyệt, chưa đo/chạy |
+| Fixture, số lần AI, ngưỡng và giới hạn chu kỳ cụ thể | R02-T10/R07-T04/R06-T09/R10-T06; chính sách T08/T09 đã chốt, số nháp chưa duyệt, chưa đo/chạy |
 | Schema/fingerprint, runtime, an toàn ghi và liên kết release/lần thực thi | R02; không suy approval G4/G6 thành cơ chế đã triển khai |
 | Chi tiết Future/ưu tiên, phương pháp nghiệp vụ, profile/toolchain và cách deploy theo project | R03–R06/R08; giữ các nguyên tắc đã duyệt, không chọn sẵn mọi công cụ/hạ tầng |
 | Môi trường/quyền/thiết bị thực và hiệu quả đầu–cuối | Kiểm tra đúng lúc tại R03-T01/R05/R09/R10; workshop lab dữ liệu giả, 0 đồng. Mock/build nhỏ không thay máy thật hoặc release lab; Thuận Thiên ngoài phạm vi |

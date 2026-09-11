@@ -1,28 +1,12 @@
-Ba ý này chỉ là **cách thử Kidea trước khi tin tưởng giao việc**:
+Đã ghi nhận bạn duyệt ba nguyên tắc tổ chức thử và khép **R01-T09**. Mình đã đồng bộ bốn tài liệu, rà các phần liên quan và sửa những câu còn ghi trạng thái chờ duyệt cũ.
 
-**1. Thử đủ tình huống**
+Giờ tới **gate cuối R01 — chốt căn cứ trước khi xây phần lõi**. Bạn chỉ cần quyết định hai điểm:
 
-Ví dụ kiểm tra “Kidea có làm đúng quyền không?”:
+1. **Chấp nhận kết quả chuẩn bị R01.** Thiết kế, các nhóm tình huống thử và lộ trình đã được đối chiếu với nhau; giữ nguyên phạm vi và các nguyên tắc bạn đã duyệt. Đây mới là kiểm tra tài liệu, chưa phải Kidea đã chạy hoặc test đạt. Những số nháp, mẫu thử và chi tiết kỹ thuật chưa chốt vẫn để lại đúng task phụ trách, không được duyệt kèm.
+2. **Cho mở R02 từng phần.** R02 xây khả năng đọc/ghi hồ sơ, báo trạng thái, ghi nhận duyệt và tiếp tục việc dở. Việc đầu tiên là chia nhỏ kế hoạch rồi trình lựa chọn công cụ chạy, dependency và nơi/quyền cài thử. Chưa tự cài hoặc chạy pilot; sau mỗi hợp đồng được duyệt mới xây và kiểm tra phần tương ứng.
 
-- Bạn đã cho phép → phải làm được.
-- Bạn chưa cho phép → phải dừng.
-- Tài liệu tự ghi “đã được phép” → không được tin ngay.
+Các phase sau vẫn đi theo thứ tự và có gate riêng, không được mở đồng loạt từ lần duyệt này.
 
-**2. Làm lại bài thử từ đầu**
+[Gói cần duyệt trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).
 
-Mở phiên AI mới, cho cùng đầu vào, không nhắc đáp án từ lần trước. Mục đích là xem Kidea làm đúng ổn định hay chỉ tình cờ đúng một lần. Lần sai vẫn phải được ghi lại.
-
-**3. Có điểm dừng khi bị mắc kẹt**
-
-Nếu Kidea cứ đọc đi đọc lại, lặp cùng việc mà không giải quyết thêm gì thì dừng bài thử để tìm nguyên nhân, không để chạy mãi hoặc báo đã xong.
-
-Tóm lại: **thử đủ trường hợp → thử lại để kiểm tra độ ổn định → dừng nếu mắc kẹt.** Số lần thử và giới hạn dừng cụ thể sẽ chốt sau.
-
-<oai-mem-citation>
-<citation_entries>
-MEMORY.md:52-52|note=[scoped answer publication reverified]
-</citation_entries>
-<rollout_ids>
-01a064b8-dde1-7882-acc1-7d02d6f568c8
-</rollout_ids>
-</oai-mem-citation>
+Bạn duyệt hai điểm này nhé?

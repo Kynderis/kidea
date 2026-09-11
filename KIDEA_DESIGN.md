@@ -789,9 +789,9 @@ Ví dụ: code hủy đơn phát `OrderCancelled`; một tiến trình khác nh�
 
 ## 8. Từ yêu cầu đến test và bằng chứng
 
-Đề xuất thước đo nghiệm thu Kidea: [KIDEA_QUALITY.md](KIDEA_QUALITY.md), phát triển từ gói `P01-T05-QUALITY-r2`; [phần điều phối/hồ sơ](KIDEA_QUALITY.md#control-acceptance-approved) đã duyệt, phần còn lại vẫn là đề xuất. Ngân sách công cụ local tách khỏi thời gian AI và hiệu năng sản phẩm; không phải kết quả đo thực tế. Kết quả đối chiếu quyết định đã duyệt và các phần còn mở ở [rà soát tổng quan](KIDEA_ROADMAP.md#overall-review); không coi phần còn đề xuất là đã được duyệt.
+Đề xuất thước đo nghiệm thu Kidea: [KIDEA_QUALITY.md](KIDEA_QUALITY.md), phát triển từ gói `P01-T05-QUALITY-r2`; [phần điều phối/hồ sơ](KIDEA_QUALITY.md#control-acceptance-approved) và các nhóm còn lại đã duyệt đúng phạm vi tại R01-T08/T09; fixture, số lần/ngưỡng và cơ chế chi tiết vẫn chưa chốt. Ngân sách công cụ local tách khỏi thời gian AI và hiệu năng sản phẩm; không phải kết quả đo thực tế. Kết quả đối chiếu quyết định đã duyệt và các phần còn mở ở [rà soát tổng quan](KIDEA_ROADMAP.md#overall-review); không coi phần còn đề xuất là đã được duyệt.
 
-Danh mục nghiệm thu **chính Kidea**, tách khỏi test sản phẩm: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md). Nhóm điều phối/quyền/ghi/resume đã chốt phạm vi và điều kiện nghiệm thu tại [S01](KIDEA_ROADMAP.md#r01-t08-s01-result), chưa chạy; nhóm nghiệp vụ/bản đồ/ảnh hưởng đã chốt tại [S02](KIDEA_ROADMAP.md#r01-t08-s02-result), chưa chạy; nhóm chất lượng/hiển thị/phát hành đã chốt tại [kết quả T08](KIDEA_ROADMAP.md#r01-t08-result), chưa chạy; hồ sơ/hiệu lực bằng chứng đã chốt tại [T09-S01](KIDEA_ROADMAP.md#r01-t09-s01-result), chính sách đo/chốt ngưỡng đã chốt tại [T09-S02](KIDEA_ROADMAP.md#r01-t09-s02-result), tổ chức các lần thử tiếp tục S03; ngưỡng/mức bằng chứng chỉ có hiệu lực sau đúng gate, không phải approval mặc định của cả file.
+Danh mục nghiệm thu **chính Kidea**, tách khỏi test sản phẩm: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md). Nhóm điều phối/quyền/ghi/resume đã chốt phạm vi và điều kiện nghiệm thu tại [S01](KIDEA_ROADMAP.md#r01-t08-s01-result), chưa chạy; nhóm nghiệp vụ/bản đồ/ảnh hưởng đã chốt tại [S02](KIDEA_ROADMAP.md#r01-t08-s02-result), chưa chạy; nhóm chất lượng/hiển thị/phát hành đã chốt tại [kết quả T08](KIDEA_ROADMAP.md#r01-t08-result), chưa chạy; hồ sơ/hiệu lực bằng chứng đã chốt tại [T09-S01](KIDEA_ROADMAP.md#r01-t09-s01-result), chính sách đo/chốt ngưỡng đã chốt tại [T09-S02](KIDEA_ROADMAP.md#r01-t09-s02-result), tổ chức các lần thử đã chốt tại [kết quả T09](KIDEA_ROADMAP.md#r01-t09-result); ngưỡng/mức bằng chứng chỉ có hiệu lực sau đúng gate, không phải approval mặc định của cả file.
 
 Mối liên hệ cần truy được hai chiều:
 
@@ -939,11 +939,11 @@ Với web/mobile, giữ cùng cơ chế nhưng thay tiêu chí theo nơi chạy:
 
 Tài liệu về nghiệp vụ được giữ nguyên trong [references/business-spec/](references/business-spec/README.md). Đây là tài sản tham khảo cho bước 2, không phải đặc tả đã duyệt cho toàn Kidea. Không bỏ những quyết định đã được Human thống nhất; khi tích hợp phải đối chiếu với cuộc trao đổi và giải quyết phần chưa chốt.
 
-Đích/phạm vi, ranh giới hồ sơ, nền tảng, pilot và G1–G6 đã qua các gate R01-T01–T07; [sổ công việc](KIDEA_ROADMAP.md#work-state) giữ trạng thái/bằng chứng duy nhất. Các lựa chọn còn mở dưới đây phải được chốt tại nơi sở hữu trước triển khai phụ thuộc; không coi thiếu quyết định là được phép bỏ khi nghiệm thu.
+Đích/phạm vi, ranh giới hồ sơ, nền tảng, pilot, G1–G6 và chính sách nghiệm thu đã qua các gate R01-T01–T09; [sổ công việc](KIDEA_ROADMAP.md#work-state) giữ trạng thái/bằng chứng duy nhất. Các lựa chọn còn mở dưới đây phải được chốt tại nơi sở hữu trước triển khai phụ thuộc; không coi thiếu quyết định là được phép bỏ khi nghiệm thu.
 
 | Quyết định cần chốt | Nơi xử lý trong roadmap mới |
 |---|---|
-| Case, tiêu chí đúng/an toàn, evidence và cách chốt số đo | [R01-T08/T09](KIDEA_ROADMAP.md#r01); số cũ trong QUALITY vẫn chưa duyệt |
+| Fixture, số lần AI, ngưỡng đo và giới hạn bài thử chu kỳ cụ thể | R02-T10/R07-T04/R06-T09/R10-T06 theo chính sách R01-T08/T09 đã duyệt; số nháp QUALITY chưa có hiệu lực |
 | Runtime, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
 | Phân rã nghiệp vụ, AC, chọn business test và các nhánh tiếp nhận Future/ưu tiên còn đề xuất | [R03](KIDEA_ROADMAP.md#r03), [R06-T07](KIDEA_ROADMAP.md#r06); không mở lại nguyên tắc MVP/bugfix đã duyệt |
 | Chất lượng/UX/SEO/ops/admin và kiến trúc sản phẩm | [R04](KIDEA_ROADMAP.md#r04) |

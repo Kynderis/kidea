@@ -24,7 +24,7 @@ Theo [R01-T08-S02](KIDEA_ROADMAP.md#r01-t08-s02-result), phạm vi KA-14–22 v�
 
 Theo [kết quả T08](KIDEA_ROADMAP.md#r01-t08-result), phạm vi KA-23–30 và KA-04 đầu–cuối cùng chuẩn bằng chứng/mô phỏng đã được duyệt. Chỉ nhận đạt khi đúng bản/môi trường và đủ kiểm tra bắt buộc; fail/skip/chưa chạy hoặc deploy thành công một phần không thành toàn bộ đạt. Mô phỏng chỉ chứng minh phần mô phỏng, không thay lab/restore/thiết bị thật bắt buộc. HTML là bản chụp đúng nguồn/thời điểm, không là xác nhận sức khỏe hiện tại. Thiếu bằng chứng báo thiếu; N/A cần Human duyệt đúng lý do/phạm vi, không bỏ năng lực bản đầu.
 
-Các nguyên tắc tương ứng của KQ-05/06 có hiệu lực trong nhóm này; không coi T08 là đã duyệt tất cả chi tiết KQ-01–10, fixture, trình duyệt, schema, quyền chạy hoặc số lần/ngưỡng. T08 đã khép phạm vi ba nhóm, chưa thực thi case; bằng chứng/cách đo còn chốt tại T09 và task sở hữu.
+Các nguyên tắc tương ứng của KQ-05/06 có hiệu lực trong nhóm này; không coi T08 là đã duyệt tất cả chi tiết KQ-01–10, fixture, trình duyệt, schema, quyền chạy hoặc số lần/ngưỡng. T08 đã khép phạm vi ba nhóm, chưa thực thi case; chính sách bằng chứng/cách đo đã chốt tại T09, chi tiết thực thi còn ở task sở hữu.
 
 ## 1. Quy tắc kết luận
 
@@ -88,6 +88,20 @@ Mỗi bộ có cả `.kidea` và tài liệu sản phẩm bên ngoài, link hai 
 
 ## 4. Phiên AI và vòng ảnh hưởng
 
+<a id="trial-policy-approved"></a>
+
+### Tổ chức các lần thử — đã duyệt
+
+Theo [kết quả T09](KIDEA_ROADMAP.md#r01-t09-result), trước chạy phải có danh sách từng biến thể: ID/bài gốc, đầu vào, expected, nơi chạy và kết quả riêng. Một luồng được bao phủ nhiều mục nếu truy được từng kết quả; đây là chỉ mục bằng chứng, không tracker công việc thứ hai.
+
+Các hành vi AI trọng yếu về quyền, approval, resume và báo kết quả phải thử lặp độc lập ở phiên mới từ baseline cố định; không mang lời sửa sai của lần trước hoặc sửa hộ hồ sơ để đạt. Chốt nhóm/biến thể và số lần trước chạy tại task sở hữu, gồm R02-T10 và R10-T06; giữ mọi lỗi, sửa có căn cứ rồi hồi quy. Không chọn lần đẹp hoặc suy xác suất tin cậy từ số lần thử.
+
+R06-T09 phải chốt dấu hiệu không tiến triển và giới hạn bài thử chu kỳ trước chạy. Chạm giới hạn thì dừng thử, giữ trạng thái/bằng chứng và ghi chưa đạt để điều tra; không tự đóng impact hoặc lấy giới hạn mẫu cắt graph sản phẩm thật. Chưa duyệt fixture, số lần/giới hạn cụ thể hoặc quyền thực thi.
+
+### Chi tiết KQ-08/KQ-09 còn đề xuất
+
+Các số và cấu hình mẫu dưới đây chưa có hiệu lực; chỉ áp dụng sau gate tại task sở hữu theo chính sách trên.
+
 **KQ-08 — hành vi phiên mới:** mỗi biến thể cần điều phối AI trong KA-01–24 và KA-27–30 chạy ít nhất một lần ở phiên mới với đầu vào đã cố định; một luồng có thể bao phủ nhiều case nếu từng kết quả truy được. Các biến thể về reject/approval/quyền/resume/bằng chứng nguy hiểm (KA-05–08, KA-11–13, KA-24) phải đạt trong 3 lần độc lập, không mang hội thoại hoặc lời sửa sai từ lần trước sang. Ghi model/cấu hình và bản skill thực; đây không phải xác suất tin cậy thống kê.
 
 Phiên thử được phép đọc hướng dẫn và file cần thiết, Human trả lời các câu hỏi thuộc gate như sử dụng thật. Không được tác giả sửa hộ trạng thái để case đạt. Thử lại sau lỗi cần bản sửa, impact và hồi quy, không chỉ đổi prompt để lấy kết quả đẹp. Helper đúng không thay bằng chứng hành vi AI; phiên AI đúng không thay test helper.
@@ -115,13 +129,13 @@ Chỉ tái dùng kết quả khi chứng minh đầu vào chi phối vẫn phù 
 | Helper/cấu trúc/ghi/view | Test tự động khi khả thi, assertion kết quả và bất biến; lỗi ghi có trạng thái trước/sau. UI cần thêm kiểm tra trình duyệt thật theo R07 |
 | Điều phối và review ngữ nghĩa | Phiên AI mới, đầu vào/hành động/kết quả liên quan và bảng đối chiếu expected–actual; chỉ lấy kết luận tự chấm của chính phiên chạy là chưa đủ, phải có lượt review tách biệt đọc bằng chứng |
 | Pilot và môi trường | Luồng đầu-cuối thật; checkpoint giữa MVP; đổi sau release và bugfix riêng; bản deploy/config thực, smoke/ops/restore. Giữ đúng ma trận thiết bị/mô phỏng đã duyệt |
-| Nghiệm thu phát hành | Bản ứng viên cố định, mọi case bắt buộc có kết quả còn hiệu lực; helper suite chạy lại trên bản cuối, nhóm AI trọng yếu chạy đủ 3 lần trên bản cuối. Bằng chứng tích hợp trước đó chỉ dùng nếu review impact xác nhận đúng bản/nội dung còn hiệu lực; phần bị ảnh hưởng phải chạy lại |
+| Nghiệm thu phát hành | Bản ứng viên cố định, mọi case bắt buộc có kết quả còn hiệu lực; helper suite chạy lại trên bản cuối, nhóm AI trọng yếu chạy đủ số lần đã được duyệt trước chạy tại R10-T06 (3 lần vẫn là đề xuất). Bằng chứng tích hợp trước đó chỉ dùng nếu review impact xác nhận đúng bản/nội dung còn hiệu lực; phần bị ảnh hưởng phải chạy lại, giữ nghĩa vụ toàn lượt G2 |
 
 Mỗi tiêu chí bắt buộc KQ-01–KQ-10 và biến thể áp dụng phải đạt; không có lỗi chưa xử lý làm sai đầu ra bắt buộc. Báo cáo liệt kê tổng số biến thể, đạt/fail/chưa chạy/skip/N/A riêng, không gộp chúng. Review độc lập ở R10 vẫn theo roadmap; tài liệu này không tự cấp quyền tạo agent hoặc project thử mới.
 
 ## 6. Điểm nối triển khai và gate
 
-- R01-T08/T09: rà từng nhóm case, chuẩn đúng/an toàn, tập đầu vào evidence và chính sách chọn ngưỡng/số lần. Đã duyệt [hồ sơ và hiệu lực theo đầu vào thực](#evidence-validity-approved); chưa chọn fingerprint, hợp đồng cụ thể còn phải được duyệt ở R02-T04.
+- R01-T08/T09 đã chốt phạm vi case, chuẩn đúng/an toàn và các chính sách bằng chứng/đo/thử theo từng gói; không duyệt toàn bộ chi tiết QUALITY. Đã duyệt [hồ sơ và hiệu lực theo đầu vào thực](#evidence-validity-approved), [tổ chức các lần thử](#trial-policy-approved); chưa chọn fingerprint, hợp đồng cụ thể còn phải được duyệt ở R02-T04.
 - R02: hợp đồng/lõi/fixture, thử phiên mới và đo đọc/status sớm; R03–R06: nghiệp vụ/rule/maps/change; R07: view và phép đo. Ngưỡng nghiệm thu liên quan chỉ được áp dụng sau gói được duyệt, không tự đổi các số để khớp lần đo.
 - R08: vòng code/evidence/release/quyền; R09: pilot thật và từng đường lỗi; R10: ma trận cuối, hồi quy và Human nghiệm thu. Thiếu công cụ/thiết bị không thành PASS.
 - R01-T10 tổng hợp khi các gói căn cứ đã được duyệt. Mọi thay đổi ngưỡng/số lần/phạm vi lỗi sau approval phải review lại tiêu chí và case/task bị ảnh hưởng trước sử dụng. Chính sách đo trước/chốt ngưỡng trước nghiệm thu đã duyệt tại [T09-S02](#benchmark-policy-approved); các con số nháp không tự có hiệu lực.
