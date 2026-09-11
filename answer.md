@@ -1,14 +1,13 @@
-Đã khép **R01**, mở bước chuẩn bị **R02** và ghi yêu cầu giải thích dễ hiểu vào quy tắc review.
+Đã ghi nhận bạn duyệt **Node.js 24 LTS và khung phụ trợ tối giản**.
 
-Lần này mình cần bạn duyệt **công cụ chạy các chương trình phụ trợ của Kidea**, chưa phải cài đặt.
+Giờ cần chốt **đặt các phần ở đâu và cho phép mình bắt đầu tạo/thử khung**. Đề xuất ba điểm:
 
-Có thể hiểu Kidea gồm: **hướng dẫn cho AI** và **chương trình nhỏ làm việc cố định**. Ví dụ bạn hỏi tiến độ: chương trình đọc, kiểm tra hồ sơ; AI giải thích kết quả. Chương trình không tự duyệt thay bạn. Cách tách này phù hợp hướng dẫn [OpenAI về skill](https://learn.chatgpt.com/docs/build-skills).
+1. **Skill nằm ngay trong repo Kidea**, tại `.agents/skills/kidea/`. Chỉ giữ một bản mã nguồn; sửa ở đây rồi lưu lên GitHub. Codex có cơ chế tìm skill theo repo, nên chưa cần cài vào nơi dùng chung cho mọi project. [Tài liệu OpenAI](https://learn.chatgpt.com/docs/build-skills).
+2. **Node chạy riêng, không thay bản đang dùng.** Tải bản **24.21.0 cho Windows x64** vào `.tools/node-v24.21.0-win-x64/`, kiểm tra dấu nhận diện file tải về rồi mới chạy. Không dùng bộ cài, không sửa cấu hình tìm lệnh của máy; Node 22 hiện có giữ nguyên. Bản Node này chỉ nằm local, không đẩy lên GitHub. [Nguồn Node chính thức](https://nodejs.org/en/blog/release/v24.21.0).
+3. **Cho mình tạo và thử khung ban đầu trong repo này.** Mã/hướng dẫn ở thư mục skill; bài thử và bằng chứng ở `tests/`; file sinh ở `.test-output/`; thêm cấu hình chạy/loại trừ Git khi cần. Thử bằng dữ liệu giả, kiểm tra các lệnh chưa xây phải báo “chưa hỗ trợ”, không tự sửa hồ sơ thật. Chỉ lưu nguồn/bằng chứng cần giữ lên GitHub và dọn đúng file tạm của lượt thử.
 
-Hai đề xuất:
+**Khác lần trước:** duyệt lần này sẽ cho phép mình tải Node, viết khung và chạy thử trong phạm vi trên. Vẫn không cài toàn máy, tạo/chạy pilot, sửa project khác hoặc deploy.
 
-1. **Dùng JavaScript chạy bằng Node.js 24 LTS.** Node là phần mềm chạy JavaScript ngoài trình duyệt; LTS là dòng hỗ trợ dài hạn. Mình chọn vì phù hợp xử lý file và cùng ngôn ngữ với phần tương tác HTML sau này. Python cũng làm được, không phải Node luôn nhanh hơn. Đánh đổi: cần chuẩn bị đúng bản Node; không đổi backend C++ hay công nghệ sản phẩm. [Trạng thái LTS chính thức](https://nodejs.org/en/about/previous-releases).
-2. **Bắt đầu với ít thành phần phải cài thêm.** Khung chương trình dùng chức năng và [bộ chạy test có sẵn của Node](https://nodejs.org/docs/latest-v24.x/api/test.html), chưa thêm framework/thư viện ngoài. Nếu về sau cần thư viện, mình sẽ giải thích lợi ích và trình lựa chọn; không tự viết một hệ thống phức tạp để cố tránh thư viện.
+Mình đã kiểm tra các vị trí dự kiến chưa có dữ liệu; chưa tải hoặc tạo gì. [Gói duyệt trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).
 
-**Duyệt lần này chưa cho phép cài/nâng công cụ.** Gói kế tiếp mới chốt bản cụ thể, nơi cài thử và quyền thao tác, bảo toàn công cụ bạn đang dùng.
-
-[Gói review trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Bạn đồng ý hai lựa chọn này nhé?
+Bạn duyệt ba điểm này nhé?

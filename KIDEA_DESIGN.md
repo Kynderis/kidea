@@ -2,7 +2,7 @@
 
 Trạng thái: `CĂN CỨ R01 ĐÃ DUYỆT — CHI TIẾT TRIỂN KHAI QUA GATE TẠI TASK SỞ HỮU — CHƯA CÓ SKILL CHẠY ĐƯỢC`
 
-Ngày cập nhật: 2026-09-11
+Ngày cập nhật: 2026-09-12
 
 Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); chưa tạo/cài skill hoặc triển khai code.
 
@@ -147,7 +147,7 @@ Vòng R2: Human đã xác nhận hướng host/backend ở `R01-T03-S01-r1`; [b�
 - Dùng bản stable/LTS còn được hỗ trợ tại thời điểm thực hiện; không dùng beta/RC làm nền nghiệm thu. Các mốc ở bảng là snapshot ngày 2026-09-07, không phải lệnh cài hoặc đóng băng vô thời hạn. Trước khi tạo môi trường, kiểm tra lại bản vá, cảnh báo bảo mật, registry/release chính thức và tương thích toàn tổ hợp; khóa phiên bản thực vào lockfile/Gradle Wrapper, cấu hình build và evidence của project.
 - Không lấy từng gói `latest` rồi giả định chúng tương thích: metadata SvelteKit được kiểm tra nhận TypeScript 5/6, không nhận TypeScript 7 đang là latest ở registry. Tương tự, Compose BOM không khóa Compose compiler; compiler phải theo phiên bản Kotlin thực tế của build.
 - Đổi major, deployment target, host, adapter hoặc hợp đồng/runtime phải mở review ảnh hưởng trước phần việc phụ thuộc. Thay patch cũng cần test hồi quy và cập nhật evidence; nếu có breaking change/cảnh báo ảnh hưởng phạm vi thì xin Human quyết định, không giữ approval cũ cho nội dung đã đổi.
-- Runtime/helper của **Kidea** vẫn quyết định ở R02-T01; Node trong dòng web là runtime **sản phẩm**, không tự quyết định ngôn ngữ helper. Trên Windows hiện có Node 22.18.0/npm 10.9.3 không có nghĩa đã cài Node 24 hoặc cần thay global ngay.
+- Runtime/helper của **Kidea** đã chốt JavaScript/Node.js 24 LTS theo [R02-T01-S01](KIDEA_ROADMAP.md#r02-t01-s01-result); bản cụ thể/vị trí/quyền cài còn ở S02. Node trong dòng web là runtime **sản phẩm**, không tự quyết định hay đồng bộ phiên bản helper. Node 22.18.0 đang có không chứng minh đã cài Node 24 hoặc cho phép thay global.
 
 #### Môi trường và bằng chứng cần có trước khi công bố hỗ trợ
 
@@ -546,7 +546,7 @@ Không lưu mật khẩu, token, dữ liệu cá nhân hoặc log sản xuất n
 
 Mục tiêu đã được Human yêu cầu: một flowchart tổng quan các bước lớn, mở được chi tiết tên/trạng thái bước con và task, nhìn rõ đang làm MVP hay bổ sung tính năng nào cho hệ thống đã chạy production.
 
-`$kidea visualize` gọi một script đọc dữ liệu điều phối có cấu trúc trong `.kidea` và các nguồn sản phẩm cần để đối chiếu link/phiên bản theo schema, kiểm tra tính hợp lệ rồi sinh `.kidea/views/progress.html`. Không cần đọc toàn bộ code để dựng tiến độ, nhưng cũng không bỏ qua việc nguồn `docs/` mà approval viện dẫn đã thay đổi. Một file HTML mở trực tiếp bằng trình duyệt, hoạt động offline, không cần server hay tải thư viện từ mạng. Có thể dùng các khối HTML/SVG và mở/thu gọn chi tiết; không cần kéo cả framework frontend vào bản đầu. Chọn Python hoặc Node.js ở bước thiết kế triển khai Kidea dựa trên môi trường cài đặt được hỗ trợ, không buộc sản phẩm sử dụng Kidea phải viết bằng cùng ngôn ngữ.
+`$kidea visualize` gọi một script đọc dữ liệu điều phối có cấu trúc trong `.kidea` và các nguồn sản phẩm cần để đối chiếu link/phiên bản theo schema, kiểm tra tính hợp lệ rồi sinh `.kidea/views/progress.html`. Không cần đọc toàn bộ code để dựng tiến độ, nhưng cũng không bỏ qua việc nguồn `docs/` mà approval viện dẫn đã thay đổi. Một file HTML mở trực tiếp bằng trình duyệt, hoạt động offline, không cần server hay tải thư viện từ mạng. Có thể dùng các khối HTML/SVG và mở/thu gọn chi tiết; không cần kéo cả framework frontend vào bản đầu. Helper dùng [JavaScript/Node.js 24 LTS đã duyệt](#helper-runtime), vị trí/cách cài và renderer cụ thể tiếp tục qua gate, không buộc sản phẩm sử dụng Kidea phải viết bằng cùng ngôn ngữ.
 
 Đường dữ liệu: hồ sơ nguồn → kiểm tra/đọc cấu trúc → HTML. Không để AI vẽ lại tiến độ theo trí nhớ, không đọc ngược HTML để xác định trạng thái và không thêm bản trạng thái JSON được sửa độc lập với Markdown. Metadata/bảng trạng thái trong các file nguồn cần có định dạng cố định, ID, quan hệ cha-con, nhãn và trạng thái hợp lệ; schema cụ thể sẽ được thiết kế tiếp. Các câu giải thích tự do vẫn là Markdown, không phải đầu vào để script tự suy diễn trạng thái.
 
@@ -891,6 +891,14 @@ Không cần thêm command riêng cho mỗi thao tác Git; thực thi thường 
 
 ## 11. Cấu tạo skill: hướng tối giản
 
+<a id="helper-runtime"></a>
+
+### Runtime/helper — lựa chọn đã duyệt
+
+Human “duyệt” sau gói R02-T01-S01-r1; [căn cứ](KIDEA_ROADMAP.md#r02-t01-s01-result). Chương trình phụ trợ Kidea dùng JavaScript chạy trên Node.js 24 LTS. Khung ban đầu dùng JavaScript trực tiếp, chức năng và bộ chạy test tích hợp; chưa thêm framework/thư viện ngoài. Khi thật sự cần dependency, trình lý do/phạm vi/phiên bản tại task sở hữu; không tự viết bộ xử lý phức tạp để giữ số dependency bằng không.
+
+Đây là công nghệ của helper, không đổi backend C++ hoặc công nghệ web/native của sản phẩm. Một skill vẫn gồm hướng dẫn và helper có tác dụng xác định; helper không tự duyệt nghiệp vụ hoặc chứng minh mọi dependency. Bản Node cụ thể, vị trí nguồn/nạp, quyền chuẩn bị/chạy và kiểm chứng còn thuộc R02-T01-S02–S04; chưa cài hoặc có skill chạy được.
+
 Một skill Kidea, không tạo một skill riêng cho mỗi bước:
 
 - `SKILL.md` ngắn: phạm vi, cách gọi, cách đọc trạng thái, một việc hiện hành, gate Human và ranh giới quyền project/Git/DEV/PROD đã chốt.
@@ -948,7 +956,7 @@ Tài liệu về nghiệp vụ được giữ nguyên trong [references/business
 | Quyết định cần chốt | Nơi xử lý trong roadmap mới |
 |---|---|
 | Fixture, số lần AI, ngưỡng đo và giới hạn bài thử chu kỳ cụ thể | R02-T10/R07-T04/R06-T09/R10-T06 theo chính sách R01-T08/T09 đã duyệt; số nháp QUALITY chưa có hiệu lực |
-| Runtime, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
+| Bản/cách cài runtime đã chọn, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
 | Phân rã nghiệp vụ, AC, chọn business test và các nhánh tiếp nhận Future/ưu tiên còn đề xuất | [R03](KIDEA_ROADMAP.md#r03), [R06-T07](KIDEA_ROADMAP.md#r06); không mở lại nguyên tắc MVP/bugfix đã duyệt |
 | Chất lượng/UX/SEO/ops/admin và kiến trúc sản phẩm | [R04](KIDEA_ROADMAP.md#r04) |
 | Coding rules từng nền tảng và technical test | [R05](KIDEA_ROADMAP.md#r05) |

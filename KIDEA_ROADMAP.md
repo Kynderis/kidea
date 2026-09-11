@@ -1,6 +1,6 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
-Ngày cập nhật: 2026-09-11.
+Ngày cập nhật: 2026-09-12.
 
 Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đầu vòng rà soát mới từ đầu, mỗi lần đọc/duyệt chỉ vài đầu mục. **Chưa xây/cài skill hoặc code pilot.** R01 đã được duyệt làm căn cứ, R02 mở phần lựa chọn thiết kế; các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
@@ -8,21 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã khép [R01](#r01-result) theo xác nhận của bạn. **R02-T01** chuẩn bị nền để các chương trình phụ trợ của Kidea chạy được; **S01** chỉ chọn công nghệ và mức thư viện ban đầu, đang chờ duyệt.
+Đã chốt [công nghệ helper](#r02-t01-s01-result). **R02-T01-S02** quyết định đặt các phần ở đâu và cho phép làm gì để tạo/thử khung ban đầu; chưa thực hiện.
 
 <a id="review-current"></a>
-<a id="runtime-proposal"></a>
+<a id="local-install-proposal"></a>
 
-### R02-T01-S01-r1 — Chọn công cụ chạy phần phụ trợ
+### R02-T01-S02-r1 — Nơi lưu và quyền thử khung Kidea
 
-Kidea có hai phần: hướng dẫn để AI biết làm gì và chương trình nhỏ làm việc cố định. Ví dụ bạn hỏi tiến độ: chương trình đọc/kiểm tra hồ sơ, AI giải thích kết quả; chương trình không tự duyệt thay bạn.
+Đề xuất ba điểm, tất cả trong repo `D:\Code\kynderis\kidea`:
 
-1. **D1 — Dùng JavaScript chạy bằng Node.js 24 LTS cho chương trình phụ trợ.** Node là phần mềm chạy JavaScript ngoài trình duyệt; LTS là dòng được hỗ trợ dài hạn. Mình chọn hướng này vì phù hợp đọc/ghi file và cùng ngôn ngữ với phần tương tác HTML sau này. Python cũng làm được; không khẳng định Node nhanh hơn. Đánh đổi là cần chuẩn bị đúng bản Node, không lấy Node 22 đang có làm bằng chứng đã chạy được Node 24. Quyết định này không đổi backend C++ hay công nghệ web/mobile của sản phẩm.
-2. **D2 — Bắt đầu gọn, dùng chức năng có sẵn.** Với khung helper ban đầu, dùng JavaScript trực tiếp và bộ kiểm tra sẵn của Node, chưa thêm framework hoặc thư viện ngoài. Ít thứ phải cài/khóa phiên bản; khi cần thư viện đọc Markdown chẳng hạn, mình sẽ trình lý do và lựa chọn tại task liên quan, không tự viết bộ xử lý phức tạp chỉ để giữ “không dependency”.
+1. **D1 — Giữ một bản skill ở `.agents/skills/kidea/`.** Đây vừa là mã nguồn được lưu trên GitHub, vừa là nơi Codex tìm skill cho repo này. Không sao chép vào thư mục skill dùng chung của tài khoản. Lợi ích: sửa một nơi, chưa làm Kidea xuất hiện ở project khác. Đây chỉ là bản đang phát triển; không tự áp nó để quản lý tài liệu xây Kidea.
+2. **D2 — Dùng Node 24.21.0 chạy riêng.** Tải `node.exe` Windows x64 từ Node.js vào `.tools/node-v24.21.0-win-x64/`, đối chiếu SHA-256 chính thức trước chạy. SHA-256 là dấu nhận diện nội dung file tải về. Gọi bằng đường dẫn riêng, không chạy bộ cài hoặc sửa PATH — danh sách nơi máy tìm lệnh. Node 22 hiện có giữ nguyên; máy khác phải chuẩn bị runtime riêng, không nhận binary này qua Git.
+3. **D3 — Cho tạo và thử khung ở T01-S03/S04.** Ghi mã/hướng dẫn tại D1, bài thử/bằng chứng trong `tests/`, file sinh tại `.test-output/`; thêm `package.json` và `.gitignore` khi cần. Cho tải/chạy D2, kiểm tra helper và thử nạp/gọi skill bằng phiên AI mới trên dữ liệu giả. Commit/push nguồn và bằng chứng đã rà, không binary/file tạm. Chỉ dọn file tạm do lượt thử tạo sau khi giữ kết quả; không đè nội dung khác.
 
-Nguồn mở thêm: [đối chiếu máy/tài liệu chính thức](#r02-t01-evidence), [kế hoạch R02](#r02-subtasks).
+Nguồn mở thêm: [kiểm tra và ranh giới](#r02-t01-install-check).
 
-**Bạn đang duyệt hai lựa chọn trên, chưa duyệt cài đặt.** Sau đó S02 sẽ trình bản cụ thể, vị trí và quyền cài thử, bảo toàn công cụ đang có. Chưa xây/chạy pilot hoặc đổi cấu hình máy; S01 đang IN_REVIEW.
+**D1–D3 đang IN_REVIEW.** Chưa cài/tạo gì. Duyệt gói này cho phép mình làm S03/S04, không chỉ ghi nhận hướng; không cấp quyền pilot, project khác, cài global, deploy hoặc tự triển khai phần lõi chưa chốt.
 
 <a id="working-rules"></a>
 
@@ -105,9 +106,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T10-S01 | DONE | [A] — đồng bộ căn cứ | Đồng bộ bốn nguồn, phân biệt chính sách được duyệt với chi tiết chờ task sở hữu; [kết quả](#r01-t10-check) |
 | R01-T10-S02 | DONE | [A] — rà tích hợp tài liệu | Đối chiếu nghĩa vụ/caller, link, trạng thái và cleanup; chưa kiểm chứng skill; [kết quả](#r01-t10-check) |
 | R01-T10-S03 | DONE | R01-T10-S03-r1 — APPROVED | Human “Duyệt nhé” sau answer b666308; chấp nhận căn cứ và cho mở R02 từng phần; [kết quả](#r01-result) |
-| R02-T01-S01 | IN_PROGRESS | R02-T01-S01-r1 — IN_REVIEW | Chọn công cụ chạy helper và mức dependency ban đầu; [gói hiện hành](#review-current). Chưa có quyền cài thử |
+| R02-T01-S01 | DONE | R02-T01-S01-r1 — APPROVED | Human “duyệt” sau answer 485eb46; JavaScript/Node 24 LTS và khung tối giản, chưa cài; [kết quả](#r02-t01-s01-result) |
+| R02-T01-S02 | IN_PROGRESS | R02-T01-S02-r1 — IN_REVIEW | Nguồn skill, Node riêng và quyền tạo/chạy khung trong vùng thử; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). Chỉ R02-T01-S01 đang IN_PROGRESS, chờ Human review; các subtask R02 khác mặc định TODO. R03–R10 chưa mở/chưa phân rã; không có code/runtime/pilot mới. Kiểm tra tài liệu không được cộng thành nghiệm thu năng lực Kidea.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01-S01 DONE; chỉ R02-T01-S02 đang IN_PROGRESS, chờ Human review; các subtask R02 khác mặc định TODO. R03–R10 chưa mở/chưa phân rã; không có code/runtime/pilot mới. Kiểm tra tài liệu không được cộng thành nghiệm thu năng lực Kidea.
 
 <a id="r01-t01-result"></a>
 
@@ -343,6 +345,15 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Ghi yêu cầu giải thích dễ hiểu vào quy tắc review và DESIGN. Phân rã 11 task R02 tại nguồn kế hoạch, mở duy nhất T01-S01 để trình lựa chọn; chưa tạo skill, helper, fixture hoặc thư mục cài.
 - Kiểm tra tài liệu/link/trạng thái/diff và cleanup, giữ nguồn tham khảo/QUALITY/case/G2; không có file tạm cần xóa. Phần thiết kế chi tiết được duyệt dần tại task sở hữu, không mở rộng quyền từ gate phase.
 
+<a id="runtime-proposal"></a>
+<a id="r02-t01-s01-result"></a>
+
+### Kết quả R02-T01-S01 — ngày 2026-09-12
+
+- Human “duyệt” ngay sau [answer 485eb46](https://github.com/Kynderis/kidea/blob/485eb46f73cffb47644786163ad6db595c178e93/answer.md), xác nhận D1–D2 của S01-r1 cùng bản: helper JavaScript/Node.js 24 LTS và khung đầu dùng chức năng/test tích hợp, chưa thêm thư viện ngoài.
+- Đồng bộ [DESIGN](KIDEA_DESIGN.md#helper-runtime), con trỏ runtime ở ma trận/view và quyết định còn mở. Không đổi công nghệ sản phẩm, schema, tiêu chí/ngưỡng hoặc G2; chưa cấp quyền tải/cài/chạy từ S01.
+- Kiểm tra tài liệu/link/trạng thái/diff và đường dẫn dự kiến chỉ đọc; chưa tạo skill/helper/runtime/vùng thử, không có file tạm cần xóa. S02 trình vị trí/quyền riêng; T01 chưa khép.
+
 <a id="phase-overview"></a>
 
 ## 4. Tổng quan 10 phase xây Kidea
@@ -460,6 +471,17 @@ Phiên AI ở từng task chỉ chạy sau khi chốt đầu vào/biến thể, 
 - [Node Releases](https://nodejs.org/en/about/previous-releases) ghi dòng 24 là LTS; [trang 24.21.0](https://nodejs.org/en/blog/release/v24.21.0) là bản ứng viên để kiểm tra ở S02, không phải đã được duyệt/cài. [Test runner Node 24](https://nodejs.org/docs/latest-v24.x/api/test.html) có bộ chạy test tích hợp; chọn công nghệ không chứng minh tốc độ hoặc độ an toàn ghi.
 - [OpenAI — Build skills](https://learn.chatgpt.com/docs/build-skills) mô tả một thư mục SKILL.md với scripts/references tùy nhu cầu và phân biệt hướng dẫn với mã thực thi. Dùng skill-creator để giữ entrypoint gọn, chỉ thêm helper có tác dụng xác định; chưa tạo plugin/server hoặc gọi API riêng. Nơi nạp thực tế và quyền cài phải xác minh ở S02/S04, không suy từ tài liệu rằng phiên hiện tại đã nhận Kidea.
 - So sánh cho phạm vi này: Python cũng phù hợp helper file và đã có trên máy; chọn Node giúp helper và phần view JavaScript sau này không cần hai ngôn ngữ. Đánh đổi: phải chuẩn bị bản Node được chọn và ghi nhận tương thích thực, không dùng bản global cũ làm bằng chứng Node 24. Không tuyên bố Node nhanh hơn Python hoặc đổi ngôn ngữ backend C++/web/native của sản phẩm.
+
+<a id="r02-t01-install-check"></a>
+
+### Kiểm tra trước đề xuất cài thử — ngày 2026-09-12
+
+- Host trả Windows build 26200, x64; lệnh Node hiện tại vẫn 22.18.0. Các đích `.agents/skills/kidea`, `.tools`, `tests`, `.test-output`, `package.json`, `.gitignore` trong repo chưa tồn tại; root repo không là link theo lần kiểm tra. Hai đích người dùng `C:\Users\vuhoa\.codex\skills\kidea` và `C:\Users\vuhoa\.agents\skills\kidea` cũng chưa tồn tại, nhưng không đề xuất ghi vào đó. Đây không là kiểm kê mọi skill trên máy.
+- [OpenAI — Build skills](https://learn.chatgpt.com/docs/build-skills) mô tả nạp skill từ `.agents/skills` trong repo. Đề xuất một nguồn tại đây để tránh bản cài trùng/cũ; thử khả năng nhận thực tế tại S04, không nhận docs là bằng chứng app đã nạp. Giữ cơ chế chọn skill thông thường; mô tả trigger/gate không cho tự init hoặc sửa repo. Không đổi cấu hình Codex/global hay tạo plugin.
+- [Node 24.21.0](https://nodejs.org/en/blog/release/v24.21.0) có Windows x64 binary; đã đọc [SHASUMS256.txt](https://nodejs.org/dist/v24.21.0/SHASUMS256.txt), mục `win-x64/node.exe`: `ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32`. Chưa tải binary hoặc xác minh file thực. Tải từ HTTPS chính thức và kiểm tra lại bản/hash trước chạy; hash lệch hoặc có cảnh báo mới ảnh hưởng thì dừng, không tự đổi phiên bản được duyệt. Chỉ cần node.exe cho khung không dependency, chưa chạy npm install.
+- Vùng quyền đề xuất đều dưới `D:\Code\kynderis\kidea`: nguồn `.agents/skills/kidea/`; test/fixture và bằng chứng giữ lại `tests/`; runtime cùng thông tin tải/xác minh `.tools/node-v24.21.0-win-x64/`; đầu ra tạm `.test-output/`; cấu hình lệnh/loại trừ tại `package.json`/`.gitignore`. Tài liệu KIDEA_* và answer tiếp tục theo quyền repo đã có. Không tạo toàn bộ cây rỗng, không quét/xóa theo tên; đích xuất hiện hoặc có thay đổi chen vào phải đối chiếu trước ghi.
+- S03 kiểm tra cấu trúc skill, routing/lệnh sai và helper khung, các hành động chưa có phải báo chưa hỗ trợ, không ghi hồ sơ thật. S04 là một phép thử nạp/gọi ban đầu trong phiên AI mới với root dữ liệu giả tại vùng thử, kiểm tra không tự init/duyệt hoặc nhận lõi đã xong. Đây không là loạt chứng nhận ổn định AI, số lần/case trọng yếu ở task sở hữu vẫn phải chốt riêng; lỗi giữ bằng chứng trước sửa và kiểm tra lại. Nếu cần quyền/công cụ ngoài gói để mở phiên thì báo thiếu, không tự tạo task của Human hoặc đổi cấu hình máy.
+- Kết quả/hồ sơ lỗi cần giữ chuyển vào nguồn bằng chứng trước dọn đúng file tạm của lượt thử; binary và đầu ra sinh không push. Không init `.kidea` ở root repo xây Kidea, không đụng pilot/Thuận Thiên, credential, production hoặc nguồn khác. Nạp skill, test helper và hành vi đúng là ba kết quả riêng; thiếu kết quả nào không nhận đã đủ T01.
 
 <a id="r03"></a>
 
