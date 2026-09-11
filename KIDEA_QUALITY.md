@@ -9,6 +9,8 @@ Căn cứ `P01-T05-QUALITY-r2` ngày 2026-09-07: **ĐỀ XUẤT VÒNG TRƯỚC �
 - “Không lỗi trong bộ thử” không có nghĩa bảo đảm không lỗi trong mọi tình huống. Chỉ công bố đúng mô hình lỗi, dữ liệu và môi trường đã kiểm chứng. Phạm vi ngoài bộ thử phải nêu giới hạn.
 - Các gói R01-T08/T09 chỉ chốt đúng phạm vi case/cách đo được trình, không duyệt ngầm toàn bộ bảng. Fixture thực thi, schema, runtime và cơ chế ghi/khôi phục được thiết kế ở phase sở hữu; không cài/chạy skill hoặc tạo pilot tại đây.
 
+Các quy tắc tái dùng bằng chứng/chạy lại nhóm liên quan tại đây không thay [lượt kiểm tra cuối toàn dự án sau mỗi Feature theo G2](KIDEA_DESIGN.md#feature-final-check); khi đầu vào chi phối kết quả đổi, chạy lại toàn bộ lượt đó. Câu đối chiếu này không duyệt các ngưỡng hoặc phương pháp nghiệm thu còn đề xuất bên dưới.
+
 Trong các tiêu chí dưới đây, **hồ sơ đầu vào** gồm cả trạng thái/review ở `.kidea` và tài liệu sản phẩm ở `docs/` hoặc nguồn project xác định, cùng source/test/config có liên quan. Nội dung sản phẩm, mapping và bằng chứng không được sao chép vào .kidea để tạo một nguồn thứ hai. Approval đối chiếu đúng bản nội dung được duyệt: tài liệu sản phẩm ở ngoài .kidea, còn kế hoạch/hồ sơ điều phối ở nguồn .kidea tương ứng; record review chỉ tham chiếu, không sao chép.
 
 <a id="quality-safety"></a>
