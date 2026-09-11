@@ -1,29 +1,26 @@
-Đã ghi nhận duyệt cách đánh số phiên bản và đồng bộ tài liệu.
+Đã chốt hai quy ước về **version từng thành phần và tag phát hành**, đồng thời đồng bộ tài liệu.
 
-**Tiếp theo có hai quy ước nhỏ cần chốt:**
+**Tiếp theo: thống nhất cách lưu hồ sơ phát hành.** Mình đề xuất tách hai phần:
 
-**1. Thành phần phát hành độc lập có version riêng.**
+**1. Hồ sơ của bản định phát hành — “Chúng ta chọn đưa bản nào lên?”**
 
-Ví dụ bản sản phẩm **1.1.0** gồm:
+Mỗi bản sản phẩm, chẳng hạn **1.1.0**, có một hồ sơ chỉ rõ:
 
-- Web **1.1.0** — vừa thêm chức năng.
-- Backend **1.0.0** — giữ nguyên vì không thay đổi.
+- Đúng gói web/backend/app nào, lấy từ bản nguồn nào.
+- Cấu hình, bộ script và phần cập nhật dữ liệu sẽ dùng.
+- Kết quả kiểm tra, xác nhận của bạn, thứ tự triển khai và cách xử lý nếu lỗi.
 
-Mình đề xuất dùng cùng nguyên tắc lớn.nhỏ.vá cho từng thành phần, theo những gì thành phần đó cam kết giữ tương thích. Không bắt tất cả tăng số theo sản phẩm.
+Hồ sơ dẫn đến tài liệu/bằng chứng đã có, không sao chép mọi thứ hoặc chứa mật khẩu. Khi bạn đã duyệt, không được âm thầm đổi gói hay cấu hình; thay đổi phải được ghi nhận và kiểm tra lại đúng phạm vi.
 
-Ngoài version, mỗi gói build cần dấu nhận diện riêng để biết chính xác file nào đã kiểm tra. Với Android/iOS, số build tuân theo quy định của nền tảng; không ép mọi nơi dùng cùng một định dạng.
+**2. Nhật ký từng lần triển khai — “Thực tế đã xảy ra chuyện gì?”**
 
-**2. Tag bản phát hành đặt theo dạng `v<version>`.**
+Mỗi lần chạy ghi rõ triển khai đến đâu, dùng bản nào, lúc nào, bước nào thành công/thất bại/chưa xác nhận và kết quả kiểm tra sau triển khai. Giữ cả lần lỗi và lần thử tiếp, không xóa dấu vết để chỉ còn kết quả đẹp.
 
-Ví dụ `v1.1.0` là “dấu mốc” trong Git cho bản nguồn được chọn phát hành sản phẩm 1.1.0.
+Ví dụ: **chọn bản 1.1.0, web cập nhật thành công nhưng backend lỗi** → ghi đúng tình trạng từng bên, không báo cả hệ thống đã lên 1.1.0. Nếu mất kết nối, kiểm tra thực tế trước khi chạy lại.
 
-Chỉ tạo khi bạn đã chọn bản, đủ kiểm chứng và có quyền thao tác; không tạo sau mỗi lần sửa. Tag đã phát hành không được chuyển sang nội dung khác.
+Nói ngắn gọn: **hồ sơ bản phát hành ghi điều được chọn; nhật ký triển khai ghi điều đã xảy ra.**
 
-**Tag đánh dấu source, không thay gói build và không có nghĩa production đã cập nhật.** Hồ sơ phát hành vẫn phải ghi đúng gói web, backend, cấu hình và kết quả triển khai.
-
-Bạn duyệt hai quy ước này nhé? Sau đó mình trình phần hồ sơ phát hành: cần ghi những gì để không nhầm bản đã kiểm tra với bản thực sự đang chạy.
-
-[Gói đang trình trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Hiện chỉ cập nhật tài liệu, chưa tạo tag hoặc deploy.
+Bạn duyệt cách tổ chức này nhé? [Gói đang trình trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Hiện chưa tạo tag hoặc triển khai hệ thống.
 
 <oai-mem-citation>
 <citation_entries>
