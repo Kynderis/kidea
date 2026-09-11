@@ -791,7 +791,7 @@ Ví dụ: code hủy đơn phát `OrderCancelled`; một tiến trình khác nh�
 
 Đề xuất thước đo nghiệm thu Kidea: [KIDEA_QUALITY.md](KIDEA_QUALITY.md), phát triển từ gói `P01-T05-QUALITY-r2`; [phần điều phối/hồ sơ](KIDEA_QUALITY.md#control-acceptance-approved) đã duyệt, phần còn lại vẫn là đề xuất. Ngân sách công cụ local tách khỏi thời gian AI và hiệu năng sản phẩm; không phải kết quả đo thực tế. Kết quả đối chiếu quyết định đã duyệt và các phần còn mở ở [rà soát tổng quan](KIDEA_ROADMAP.md#overall-review); không coi phần còn đề xuất là đã được duyệt.
 
-Danh mục nghiệm thu **chính Kidea**, tách khỏi test sản phẩm: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md). Nhóm điều phối/quyền/ghi/resume đã chốt phạm vi và điều kiện nghiệm thu tại [S01](KIDEA_ROADMAP.md#r01-t08-s01-result), chưa chạy; nhóm nghiệp vụ/bản đồ/ảnh hưởng đã chốt tại [S02](KIDEA_ROADMAP.md#r01-t08-s02-result), chưa chạy; các nhóm còn lại tiếp tục R01-T08/T09; ngưỡng/mức bằng chứng chỉ có hiệu lực sau đúng gate, không phải approval mặc định của cả file.
+Danh mục nghiệm thu **chính Kidea**, tách khỏi test sản phẩm: [KIDEA_ACCEPTANCE.md](KIDEA_ACCEPTANCE.md). Nhóm điều phối/quyền/ghi/resume đã chốt phạm vi và điều kiện nghiệm thu tại [S01](KIDEA_ROADMAP.md#r01-t08-s01-result), chưa chạy; nhóm nghiệp vụ/bản đồ/ảnh hưởng đã chốt tại [S02](KIDEA_ROADMAP.md#r01-t08-s02-result), chưa chạy; nhóm chất lượng/hiển thị/phát hành đã chốt tại [kết quả T08](KIDEA_ROADMAP.md#r01-t08-result), chưa chạy; bằng chứng/cách đo tiếp tục T09; ngưỡng/mức bằng chứng chỉ có hiệu lực sau đúng gate, không phải approval mặc định của cả file.
 
 Mối liên hệ cần truy được hai chiều:
 

@@ -1,28 +1,22 @@
-Đã ghi nhận bạn duyệt và đồng bộ tài liệu.
+Đã ghi nhận bạn duyệt, đồng bộ tài liệu và **khép T08 — các nhóm bài kiểm tra Kidea**. Chưa chạy kiểm thử thực tế.
 
-Tiếp theo là **nhóm kiểm tra cuối của T08: Kidea có báo đúng kết quả thực tế không?**
+Tiếp theo là **T09: lưu kết quả kiểm tra thế nào để tin và dùng lại được?**
 
-**1. Cho Kidea làm bài gì?**
+**1. Không chỉ ghi “đã đạt”**
 
-Thử các tình huống như:
+Mỗi lần kiểm tra cần ghi: kiểm tra gì, trên bản nào, chạy ra sao, kết quả thực tế và bằng chứng ở đâu. Giữ cả lỗi hoặc phần chưa chạy.
 
-- Test bị lỗi hoặc chưa chạy.
-- Màn hình tiến độ đang hiện dữ liệu cũ.
-- Deploy chỉ thành công một phần.
-- Cài/nâng cấp hoặc khôi phục bị lỗi.
-- Đi trọn quy trình từ ý tưởng đến bản chạy thử.
+**2. Biết khi nào phải kiểm tra lại**
 
-**2. Chấm đạt như thế nào?**
+- Chỉ ghi thêm báo cáo kết quả → không tự làm kết quả cũ mất hiệu lực.
+- Đổi code, quy tắc, cấu hình hoặc đầu vào ảnh hưởng kết quả → phải kiểm tra lại.
+- Vẫn giữ quy tắc đã chốt: mỗi Feature có lượt kiểm tra cuối toàn dự án; đầu vào lượt đó đổi thì chạy lại toàn lượt.
 
-Kidea phải **báo đúng điều đã kiểm chứng**, không nói “xong” khi còn thiếu hoặc lỗi.
+Ví dụ: kiểm tra tính giá đã đạt, sau đó ghi báo cáo thì không cần chạy lại chỉ vì vừa ghi báo cáo. Nhưng sửa cách tính giá thì kết quả trước không chứng minh bản mới đúng.
 
-Ví dụ: web lên bản mới nhưng backend lỗi → phải báo rõ từng phần, không báo cả hệ thống đã triển khai thành công.
+**Mục đích: không dùng kết quả cũ sai bản, cũng không chạy lại vô ích chỉ vì lưu kết quả.**
 
-Bài thử mô phỏng chỉ chứng minh phần mô phỏng; không được dùng thay việc chạy và kiểm tra thật khi bắt buộc.
-
-Nói gọn: **chọn các tình huống dễ báo nhầm “đã xong”, rồi kiểm tra Kidea có báo trung thực và đủ bằng chứng không.**
-
-Bạn duyệt hai điểm này nhé? [Gói chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa chạy thử hoặc chốt ngưỡng/số lần kiểm tra trong lượt này.
+Bạn duyệt hai điểm này nhé? [Gói chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa chốt số lần chạy, ngưỡng tốc độ hoặc cách lưu dữ liệu cụ thể.
 
 <oai-mem-citation>
 <citation_entries>

@@ -18,6 +18,14 @@ Theo [R01-T08-S02](KIDEA_ROADMAP.md#r01-t08-s02-result), phạm vi KA-14–22 v�
 
 Đây là căn cứ hiệu lực của KQ-04 trong phạm vi nhóm này. Đạt mẫu hữu hạn không chứng minh tìm hết dependency của mọi project; pilot vẫn phải kiểm chứng thật. Chưa duyệt fixture/adapter/thuật toán, số lần chạy, giới hạn cycle/KQ-09 hoặc toàn QUALITY; chưa chạy case.
 
+<a id="delivery-acceptance-approved"></a>
+
+### Phần đã duyệt — chất lượng, hiển thị và phát hành
+
+Theo [kết quả T08](KIDEA_ROADMAP.md#r01-t08-result), phạm vi KA-23–30 và KA-04 đầu–cuối cùng chuẩn bằng chứng/mô phỏng đã được duyệt. Chỉ nhận đạt khi đúng bản/môi trường và đủ kiểm tra bắt buộc; fail/skip/chưa chạy hoặc deploy thành công một phần không thành toàn bộ đạt. Mô phỏng chỉ chứng minh phần mô phỏng, không thay lab/restore/thiết bị thật bắt buộc. HTML là bản chụp đúng nguồn/thời điểm, không là xác nhận sức khỏe hiện tại. Thiếu bằng chứng báo thiếu; N/A cần Human duyệt đúng lý do/phạm vi, không bỏ năng lực bản đầu.
+
+Các nguyên tắc tương ứng của KQ-05/06 có hiệu lực trong nhóm này; không coi T08 là đã duyệt tất cả chi tiết KQ-01–10, fixture, trình duyệt, schema, quyền chạy hoặc số lần/ngưỡng. T08 đã khép phạm vi ba nhóm, chưa thực thi case; bằng chứng/cách đo còn chốt tại T09 và task sở hữu.
+
 ## 1. Quy tắc kết luận
 
 - Đề xuất nghiệm thu: tất cả biến thể bắt buộc trong phạm vi đã duyệt phải đạt trên bản được nghiệm thu; không dùng điểm trung bình để bù lỗi. N/A chỉ được loại khỏi mẫu số khi Human duyệt đúng phạm vi và lý do; thiếu môi trường/skip/chưa chạy không tự thành N/A.
