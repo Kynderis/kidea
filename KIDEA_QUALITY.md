@@ -10,6 +10,14 @@ Theo [R01-T08-S01](KIDEA_ROADMAP.md#r01-t08-s01-result), phạm vi KA-01–03 v�
 
 Thử cả quyền đủ thì tiếp tục và quyền thiếu thì dừng. Mô hình lỗi ghi gồm lỗi quyền, ngắt tiến trình và sửa ngoài luồng; không nhận chống hỏng ổ đĩa/mất điện vật lý. Approval này chưa chốt fixture/schema, số lần chạy, ngưỡng hoặc toàn bộ KQ-01–03 cho các nhóm case khác; các phương pháp đo còn đề xuất bên dưới vẫn phải qua gate tương ứng. Chưa thực thi case.
 
+<a id="change-acceptance-approved"></a>
+
+### Phần đã duyệt — nghiệp vụ, bản đồ và thay đổi
+
+Theo [R01-T08-S02](KIDEA_ROADMAP.md#r01-t08-s02-result), phạm vi KA-14–22 và chuẩn đối chiếu hữu hạn đã được duyệt: chuẩn bị mẫu có tập ảnh hưởng/kết quả mong đợi được review trước, đối chiếu độc lập với kết quả Kidea. Không bỏ sót đích bắt buộc, kết luận đúng bản/có căn cứ, không đóng khi còn việc hoặc thiếu thông tin. Thử cả đích có ảnh hưởng và đích được chứng minh không cần sửa; quan hệ hợp lệ tìm thêm được phép, không ép mọi nơi thành cần sửa. Link/graph hợp lệ không chứng minh đúng nghĩa.
+
+Đây là căn cứ hiệu lực của KQ-04 trong phạm vi nhóm này. Đạt mẫu hữu hạn không chứng minh tìm hết dependency của mọi project; pilot vẫn phải kiểm chứng thật. Chưa duyệt fixture/adapter/thuật toán, số lần chạy, giới hạn cycle/KQ-09 hoặc toàn QUALITY; chưa chạy case.
+
 ## 1. Quy tắc kết luận
 
 - Đề xuất nghiệm thu: tất cả biến thể bắt buộc trong phạm vi đã duyệt phải đạt trên bản được nghiệm thu; không dùng điểm trung bình để bù lỗi. N/A chỉ được loại khỏi mẫu số khi Human duyệt đúng phạm vi và lý do; thiếu môi trường/skip/chưa chạy không tự thành N/A.

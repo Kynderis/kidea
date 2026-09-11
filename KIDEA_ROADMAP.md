@@ -8,23 +8,23 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã chốt [nhóm điều phối/quyền/lưu–resume](#r01-t08-s01-result). Tiếp tục **R01-T08-S02** về kịch bản nghiệp vụ, bản đồ và phân tích ảnh hưởng; hai quyết định dưới đây chưa được duyệt.
+Đã chốt [S02 — nghiệp vụ và ảnh hưởng](#r01-t08-s02-result). Tiếp tục **R01-T08-S03**, nhóm cuối về chất lượng, hiển thị và phát hành; đây là gói mới chờ duyệt, chưa chạy kiểm thử.
 
 <a id="review-current"></a>
-<a id="change-acceptance-proposal"></a>
+<a id="delivery-acceptance-proposal"></a>
 
-### R01-T08-S02-r1 — Kiểm tra nghiệp vụ, bản đồ và thay đổi
+### R01-T08-S03-r1 — Kiểm tra chất lượng, hiển thị và phát hành
 
-S01 đã chốt nhóm điều phối/hồ sơ. S02 chọn bài thử KA-14–22 và cách kết luận; không duyệt thuật toán nghiệp vụ hoặc hỏi lại nguyên tắc MVP/hotfix/G2.
+Hai nhóm đầu đã chốt đề bài/cách chấm. Nhóm cuối kiểm tra Kidea có báo đúng chất lượng và kết quả thực tế, không nhận hoàn tất chỉ vì hồ sơ trông đầy đủ.
 
-1. **D1 — Phạm vi bài thử.** Đề xuất thử: rule/state dùng chung, điểm mơ hồ và AC/test có kết quả mong đợi; truy đặc tả ↔ code/test qua cả API/event/dữ liệu/cấu hình; map thiếu/cũ, link đúng nhưng sai nghĩa hoặc test thiếu assertion; thêm Feature giữa MVP, đổi sau release, phân biệt bugfix với đổi yêu cầu; ảnh hưởng qua phần không có diff, chu kỳ, nguồn đổi giữa lượt, di chuyển/xóa/đổi tên. Giữ các biến thể hotfix/dòng bảo trì đã ghi trong KA-19/22. Phải thử cả trường hợp có ảnh hưởng và phần được chứng minh không cần sửa.
-2. **D2 — Chuẩn đối chiếu hữu hạn.** Trước chạy, chuẩn bị mẫu có tập ảnh hưởng/kết quả mong đợi được review, đối chiếu độc lập với kết quả Kidea. Đạt khi không bỏ sót đích bắt buộc, kết luận đúng bản/có căn cứ và không đóng sớm khi còn việc hoặc thiếu thông tin. Tìm thêm quan hệ hợp lệ được phép; không ép mọi nơi thành “cần sửa”. Link/graph hợp lệ không thay kiểm tra ngữ nghĩa. Kết quả đúng trên mẫu không chứng minh tìm hết mọi dependency của project bất kỳ; pilot vẫn cần kiểm chứng thật.
+1. **D1 — Đề bài cần thử.** Đề xuất giữ KA-23–30 và KA-04 đầu–cuối: quy tắc code/môi trường đúng phạm vi; test lỗi/chưa chạy hoặc sai bản; giao diện tiến độ đúng nguồn, offline và không lộ dữ liệu; SEO; release/khôi phục; cài/nâng cấp/gỡ và giới hạn hỗ trợ. Thử cả đường đạt lẫn thiếu điều kiện. Luồng đầu–cuối phải đi đủ mười bước/gate, không cộng kết quả rời rồi nhận toàn hệ thống đạt.
+2. **D2 — Cách chấm và giới hạn mô phỏng.** Đề xuất chỉ nhận đạt khi có bằng chứng đúng bản/môi trường và đủ kiểm tra bắt buộc. Test fail/skip/chưa chạy, màn hình đẹp hoặc lệnh deploy thành công không thay kết quả thực. Mô phỏng được dùng để thử phần đã mô phỏng; không thay triển khai lab, phục hồi hoặc thiết bị thật bắt buộc. HTML chỉ phản ánh bản chụp dữ liệu, không chứng nhận sức khỏe hiện tại. Thiếu bằng chứng phải báo thiếu; N/A cần Human duyệt đúng lý do/phạm vi, không miễn năng lực bản đầu.
 
-Ví dụ B đổi cách làm tròn, A gọi B nhưng không sửa code, D dùng kết quả A: phải xét cả D; một nhãn “A không diff” không đủ loại ảnh hưởng.
+Ví dụ web đã deploy nhưng backend lỗi: phải ghi kết quả từng bên và chưa nhận cả release đạt; giữ lần lỗi để đối chiếu trước thử lại.
 
-Nguồn mở thêm: [KA-14–22](KIDEA_ACCEPTANCE.md#acceptance-change), [ba bản đồ](KIDEA_DESIGN.md#three-maps), [KQ-04 đề xuất](KIDEA_QUALITY.md#quality-safety).
+Nguồn mở thêm: [KA-23–30](KIDEA_ACCEPTANCE.md#acceptance-delivery), [KA-04](KIDEA_ACCEPTANCE.md#acceptance-control), [tiêu chí đề xuất](KIDEA_QUALITY.md#quality-evidence).
 
-**D1–D2 đang IN_REVIEW.** Chưa chốt fixture/adapter/thuật toán, số lần chạy hoặc giới hạn cycle; chưa chạy case. Duyệt xong mới đồng bộ và trình S03 về rule/evidence/view/release.
+**D1–D2 đang IN_REVIEW.** Không hỏi lại G2/G3/G6; chưa duyệt mọi ngưỡng/số lần/fixture hoặc quyền chạy. Sau approval, khép T08 nếu đủ đồng bộ và chuyển T09 về bằng chứng/cách đo.
 
 <a id="working-rules"></a>
 
@@ -98,9 +98,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T07-S04 | DONE | R01-T07-S04-r1 — APPROVED | Human “Mình duyệt nhé.” sau answer 76b8a5c; D1–D2 về hồ sơ release/revision và từng lần triển khai; [kết quả](#r01-t07-result) |
 | R01-T07-S03 | DONE | [A] — đồng bộ và rà soát | Khép G5/G6, sửa caller/case lệch, kiểm tra toàn chuỗi tài liệu; không đổi ngưỡng hoặc mở task tiếp theo; [kết quả](#r01-t07-result) |
 | R01-T08-S01 | DONE | R01-T08-S01-r1 — APPROVED | Human “Duyệt nhé” sau answer 1f67790; đồng bộ đúng phạm vi case/tiêu chí, chưa chạy; [kết quả](#r01-t08-s01-result) |
-| R01-T08-S02 | IN_PROGRESS | R01-T08-S02-r1 — IN_REVIEW | Phạm vi KA-14–22 và chuẩn đối chiếu hữu hạn; [gói hiện hành](#review-current). Chưa duyệt/chạy |
+| R01-T08-S02 | DONE | R01-T08-S02-r1 — APPROVED | Human “à tôi hiểu rồi, duyệt nhé” sau giải thích 7a2381b; phạm vi/cách chấm đã đồng bộ, chưa chạy; [kết quả](#r01-t08-s02-result) |
+| R01-T08-S03 | IN_PROGRESS | R01-T08-S03-r1 — IN_REVIEW | Đề bài chất lượng/view/release và mức bằng chứng/mô phỏng; [gói hiện hành](#review-current). Chưa duyệt/chạy |
 
-Các subtask R01 còn lại mặc định TODO; chỉ R01-T08-S02 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
+Các subtask R01 còn lại mặc định TODO; chỉ R01-T08-S03 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
 <a id="r01-t01-result"></a>
 
@@ -271,6 +272,15 @@ Các subtask R01 còn lại mặc định TODO; chỉ R01-T08-S02 đang IN_PROGR
 - Human “Duyệt nhé” sau [answer 1f67790](https://github.com/Kynderis/kidea/blob/1f677909935d92bc94c210d32e52bd6e8cd24596/answer.md), xác nhận hai điểm của [gói S01-r1](https://github.com/Kynderis/kidea/blob/1f677909935d92bc94c210d32e52bd6e8cd24596/KIDEA_ROADMAP.md#review-current): phạm vi KA-01–03/05–13, biến thể tự nhận approval và điều kiện đúng/an toàn trong mô hình lỗi đã trình.
 - Đồng bộ KA-06, căn cứ DESIGN và [phần tiêu chí đã duyệt](KIDEA_QUALITY.md#control-acceptance-approved). Không suy thành duyệt toàn KQ-01–03/QUALITY, KA-04 đầu–cuối, số lần chạy/ngưỡng, schema hoặc quyền thực thi.
 - Kiểm tra link/anchor/trạng thái/diff; giữ 30 họ KA, G2 và các giá trị đo đề xuất. Chưa chạy skill/pilot, không tạo/xóa file tạm. S01 DONE; T08 chưa khép, S02 tiếp tục theo gói riêng.
+
+<a id="change-acceptance-proposal"></a>
+<a id="r01-t08-s02-result"></a>
+
+### Kết quả R01-T08-S02
+
+- Human “à tôi hiểu rồi, duyệt nhé” sau [giải thích 7a2381b](https://github.com/Kynderis/kidea/blob/7a2381b08dc43d1984df0a498f551e5acb30a8da/answer.md), xác nhận hai điểm của [S02-r1 tại 85f8a56](https://github.com/Kynderis/kidea/blob/85f8a560c6d09a3e5492f50d5d577c378905a047/KIDEA_ROADMAP.md#review-current): phạm vi KA-14–22 và cách chấm bằng mẫu hữu hạn được review/đối chiếu độc lập.
+- Đồng bộ DESIGN/ACCEPTANCE và phần KQ-04 hiệu lực; không đổi G2, nghiệp vụ MVP/hotfix hoặc 30 họ KA. Không duyệt fixture/adapter/thuật toán, số lần/ngưỡng cycle hay toàn QUALITY; chưa thực thi case.
+- Kiểm tra liên kết/trạng thái/diff, không tạo/xóa file tạm hoặc chạy pilot. S02 DONE, T08 còn S03 chờ duyệt; chưa mở T09 hoặc phase R02.
 
 <a id="phase-overview"></a>
 

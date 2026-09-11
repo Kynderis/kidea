@@ -4,7 +4,7 @@ Cập nhật ngày 2026-09-11: giữ 30 họ KA của danh mục vòng R2, bổ 
 
 ## 1. Mục đích và cách sử dụng
 
-Tiêu chí đạt, hồ sơ đo đại diện và mức bằng chứng được đề xuất tại [KIDEA_QUALITY.md](KIDEA_QUALITY.md), phần điều phối/hồ sơ đã duyệt tại [tiêu chí đúng phạm vi](KIDEA_QUALITY.md#control-acceptance-approved), phần còn lại tiếp tục theo gói nhỏ R01-T08/T09. Không dùng đề xuất này như ngưỡng đã có hiệu lực trước approval.
+Tiêu chí đạt, hồ sơ đo đại diện và mức bằng chứng được đề xuất tại [KIDEA_QUALITY.md](KIDEA_QUALITY.md), phần [điều phối/hồ sơ](KIDEA_QUALITY.md#control-acceptance-approved) và [nghiệp vụ/ảnh hưởng](KIDEA_QUALITY.md#change-acceptance-approved) đã duyệt đúng phạm vi, phần còn lại tiếp tục theo gói nhỏ R01-T08/T09. Không dùng đề xuất này như ngưỡng đã có hiệu lực trước approval.
 
 Ranh giới thử: `.kidea` là hồ sơ điều phối/review; `docs/` hoặc vị trí nguồn của project là tài liệu sản phẩm; source/test/config/script ở vị trí chuẩn, cùng một repo. Case phải kiểm tra link, phiên bản và quyền qua các vùng này, không giả định mọi hồ sơ đều nằm dưới `.kidea`. Quy ước thực thi project được lưu ở hồ sơ hiện có, không tạo hệ thống profile hoặc nguồn sự thật song song. Nội dung Git/thực thi phản ánh quyết định đã chốt; [G4 lưu/khôi phục](KIDEA_DESIGN.md#git-checkpoint) đã chốt theo [kết quả T06](KIDEA_ROADMAP.md#r01-t06-result), [G5 version/tag và G6 hồ sơ release](KIDEA_DESIGN.md#product-version) đã chốt theo [kết quả T07](KIDEA_ROADMAP.md#r01-t07-result); cơ chế/biến thể thử và ngưỡng QUALITY vẫn phải qua gate tương ứng. Mock hợp lệ ở lớp được kiểm tra không thay bằng chứng tích hợp/triển khai thật. Phạm vi KA-01–03/05–13, biến thể tự nhận approval và điều kiện đạt/chặn đã duyệt tại [kết quả S01](KIDEA_ROADMAP.md#r01-t08-s01-result); chưa chạy case hoặc duyệt các nhóm còn lại.
 
@@ -53,6 +53,8 @@ Nguồn: [hồ sơ](KIDEA_DESIGN.md#files-view), [resume](KIDEA_DESIGN.md#resume
 <a id="acceptance-change"></a>
 
 ## 4. Nghiệp vụ, bản đồ và thay đổi
+
+Phạm vi KA-14–22 và cách chấm trên mẫu hữu hạn đã duyệt tại [S02](KIDEA_ROADMAP.md#r01-t08-s02-result); [tiêu chí hiệu lực](KIDEA_QUALITY.md#change-acceptance-approved). Các case chưa chạy; fixture/công cụ/số lần/giới hạn cycle còn phải chốt.
 
 Nguồn: [nghiệp vụ](KIDEA_DESIGN.md#business-method), [ba bản đồ](KIDEA_DESIGN.md#three-maps), [change](KIDEA_DESIGN.md#change), [test](KIDEA_DESIGN.md#testing).
 
