@@ -2,7 +2,7 @@
 
 Trạng thái: `CĂN CỨ THIẾT KẾ VÒNG TRƯỚC — ĐANG XÁC NHẬN TỪNG PHẦN Ở VÒNG R2 — CHƯA TRIỂN KHAI`
 
-Ngày cập nhật: 2026-09-10
+Ngày cập nhật: 2026-09-11
 
 Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); chưa tạo/cài skill hoặc triển khai code.
 
@@ -382,15 +382,18 @@ Hồ sơ bước con cần nêu phần việc, kết quả kiểm tra và trạn
 
 <a id="git-permissions-proposal"></a>
 
-### Đề xuất G3 — quyền Git theo phạm vi, chưa duyệt
+### Đề xuất G3 — thực thi theo project; hai điểm còn mở
 
-Gói R01-T06-S01-r2 trình hai quyết định, cập nhật hướng Human muốn Kidea thực hiện merge mà không bỏ gate: (D1) sau khi Human cho phép Git local cho đúng repo/đợt, được tạo/chuyển branch làm việc, commit phần nhiệm vụ và dùng worktree khi cần theo G1, không hỏi lại từng lần lưu; (D2) Human có thể cho phép Kidea thực hiện merge vào nhánh tích hợp đã chỉ định trong đợt đó sau đủ G2 và Human gate, không hỏi lại chỉ để bấm merge. Bản kết hợp phải được kiểm chứng trước merge và xác nhận sau merge; đầu vào đổi thì kiểm tra lại toàn lượt theo G2. Chưa đủ điều kiện/quyền thì dừng, không tự duyệt hoặc bỏ kiểm tra.
+Human đã đồng ý các điểm khác trong bản tư vấn ngày 2026-09-10, trừ hai nội dung đang làm rõ; [phản hồi và gói R01-T06-S01-r3](KIDEA_ROADMAP.md#review-current) giữ đúng phạm vi đó. Hướng được đồng ý gồm một master phát triển chính, không branch riêng cho mỗi Feature; quyền kỹ thuật thường lệ được chốt cho project; giữ đủ review/test/Human gate và duyệt đúng bản phát hành. Không trình lại các điểm này như chưa có phản hồi. Gói r3 chưa khép toàn G3/G4/G5/G6 hoặc cấp quyền thực thi cho một project cụ thể.
 
-Push vẫn cần phép rõ remote/nhánh/nội dung chia sẻ; tag/deploy và đổi production cần phép đúng thao tác/đợt phát hành. Quyền merge local không bao gồm push; merge qua dịch vụ remote cần cả quyền đưa nội dung tới remote/nhánh đích. Phê duyệt phạm vi phát hành/vận hành ngày 2026-09-10 không duyệt thay gói G3 này. Duyệt chính sách G3 cũng không tự cấp quyền cho repo pilot; khi chưa có quyền, mục 4.4 vẫn áp dụng.
+Ranh giới cần cụ thể hóa: Kidea quy định đầu ra, điều kiện kiểm chứng và điểm Human quyết định; project chọn cách tổ chức Git, công cụ/nơi chạy kiểm tra và cách triển khai. Template là điểm bắt đầu, không cho ngầm bỏ bước, giảm tiêu chí hoặc mở quyền. Lựa chọn ở hồ sơ sản phẩm hiện có; script/config ở source; review chỉ tham chiếu, không tạo thêm kho profile hoặc nguồn hiệu lực thứ hai.
 
-Trước thao tác, xác minh repo/nền/nhánh và thay đổi đang có; chỉ stage/commit phần thuộc nhiệm vụ, không cuốn file của Human, secret hoặc dữ liệu riêng vào commit. Nếu không thể tách an toàn thì hỏi. Worktree cần quyền ghi đúng vị trí; không bao gồm tạo project hoặc cài công cụ. Quyền local không cho commit trực tiếp lên master; merge chỉ theo D2 nếu được duyệt/cấp quyền. Không tự xóa branch/worktree, reset, force-push, sửa lịch sử hoặc giải conflict bằng cách bỏ nội dung. Tình huống vượt phạm vi cần quyết định riêng. Commit còn dở không là nghiệm thu; hợp đồng WIP/khôi phục chi tiết ở G4.
+1. **D1 — phương án đầu điều khiển từ local, không cần dịch vụ CI.** Đề xuất dùng bộ lệnh kiểm tra/build theo project; AI được sửa/commit/push và deploy dev trong phạm vi đã chốt khi đạt điều kiện của bước đó. Các bài cần dev chạy sau deploy; lượt cuối toàn dự án sau mỗi Feature theo G2 vẫn đầy đủ. Local là nơi điều khiển, không miễn build/test trên nền đích hoặc thiết bị bắt buộc trong ma trận. Human trực tiếp chạy bộ script production đã xác minh với đúng gói/config/target được chọn; script đọc lại kết quả, không coi nhận lệnh là thành công.
+2. **D2 — nhánh bảo trì khi cần vá production độc lập.** Đề xuất sửa master khi nó khớp nền production hoặc các thay đổi đi cùng đã được chọn; nếu không, tạo nhánh từ đúng bản production cho dòng còn hỗ trợ, phát hành patch mới mà không sửa tag cũ. Mỗi fix phải có kết luận và bằng chứng trên master: áp dụng tương đương hoặc không còn áp dụng với lý do. Dọn nhánh khi hết hỗ trợ và đủ điều kiện bảo toàn tag/source/artifact/evidence/phục hồi; đây chưa là quyền xóa tự động.
 
-Phép push không bao hàm merge/tag/deploy; remote công khai/riêng tư phải rõ, không mặc định giống repo xây Kidea. Khi đợt công việc hoặc đích thay đổi, đối chiếu lại phạm vi quyền. Cách ghi/thu hồi quyền sẽ được cụ thể hóa ở hợp đồng R02, chưa chọn schema tại đây. Yêu cầu riêng lưu và push answer.md trong repo xây Kidea vẫn giữ nguyên.
+Trước thao tác phải xác minh repo/nền/target, thay đổi có sẵn và quyền. Không cuốn nội dung của Human, secret hoặc dữ liệu riêng vào commit; không tự force-push/reset/xóa lịch sử, bỏ kiểm tra hoặc đổi nghiệp vụ để lấy PASS. Quyền dev không cho production hoặc dữ liệu thật. Human chạy script chỉ là ranh giới quy trình nếu AI vẫn đọc được credential hoặc sửa bản script sau xác minh; cần kiểm soát truy cập thực tế phù hợp. Job/cảnh báo cần chạy dài vẫn phải hoạt động ở môi trường thực thi phù hợp khi phiên AI/laptop đóng.
+
+Khi hai điểm còn mở được chốt, đồng bộ phần tổ chức G1, vị trí kiểm chứng/tích hợp G2, quyền/checkpoint G3/G4 và release/hotfix G5/G6 cùng các caller/case. Giữ nguyên nghĩa vụ chất lượng G2 đã duyệt; chưa áp mô hình Git mới hoặc đổi ngưỡng QUALITY/pilot từ lượt tư vấn này. Quyền ghi/push answer.md riêng của repo xây Kidea vẫn giữ nguyên. [Căn cứ nghiên cứu và ảnh hưởng](exa-results/kidea-local-delivery-profiles-2026-09-11.md).
 
 ### 4.4. Quyền thao tác không đi kèm approval nội dung
 

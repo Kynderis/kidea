@@ -1,164 +1,159 @@
-Tôi nghiêng về phương án bạn đề xuất: **một nhánh phát triển chính `master`, AI tự làm việc và triển khai dev trong phạm vi được giao; Human quyết định bản nào được lên production.** Không cần nhánh riêng cho từng Feature.
+**Tôi khuyên chọn hướng bạn vừa nêu: Kidea giữ quy trình và điều kiện chất lượng bắt buộc; cách dùng Git, chạy kiểm tra và deploy được chọn cho từng project. Bản đầu có thể dùng script điều khiển từ local, chưa cần dịch vụ CI.**
 
-Nhưng tôi khuyên dùng quy tắc **“một nhánh thường trực”**, không phải “cấm mọi nhánh khác”: nên giữ ngoại lệ nhánh hotfix tạm khi cần vá production mà master đang chứa việc chưa được phát hành.
+Bạn đang đưa cuộc trao đổi trở lại đúng mục tiêu, không phải nghĩ quá. Điểm cần điều chỉnh trong tư vấn trước của tôi là **không đặt CI hay một nền tảng deploy thành mặc định bắt buộc** trước khi project cần nó.
 
-Tôi dùng skill Search với Exa để đối chiếu 35 kết quả qua ba hướng nghiên cứu. Khuyến nghị dưới đây ưu tiên giảm thao tác, giữ nguyên các nghĩa vụ chất lượng đã chốt. Chất lượng cao đến từ các kiểm soát này, không từ số lượng nhánh; không quy trình nào bảo đảm tuyệt đối không còn lỗi.
+Tôi đã đối chiếu 35 kết quả qua ba hướng nghiên cứu bằng skill Search/Exa. Dưới đây là phương án tôi thấy phù hợp nhất với Kidea hiện tại.
 
-### 1. “Đầu vào kiểm chứng” và “G2” là gì?
+### 1. Kidea chuẩn hóa điều phải đạt, không ép một bộ công cụ
 
-**“Đầu vào kiểm chứng” đơn giản là: đúng bộ thứ chúng ta đem ra kiểm tra.** Không chỉ là dữ liệu nhập vào ứng dụng.
+Tách hai phần như sau:
 
-Ví dụ kiểm tra chức năng “mỗi người đăng ký tối đa hai workshop”:
-
-| Thứ được kiểm tra hoặc ảnh hưởng đến kết quả | Ví dụ |
+| Kidea bắt buộc giữ | Project được lựa chọn |
 |---|---|
-| Yêu cầu | Giới hạn là hai lượt đăng ký đang hiệu lực, hay hai lượt trong cả đời tài khoản? |
-| Code và test | Backend tính số lượt thế nào; test có thực sự kiểm tra giới hạn không? |
-| Thư viện và cách build | Dùng thư viện, compiler và tùy chọn build nào? |
-| Cấu hình, dữ liệu và môi trường thử | Có bật giới hạn không; dữ liệu thử có người đã đăng ký đủ hai lượt không? |
+| Yêu cầu rõ; các điểm Human quyết định; xử lý đầy đủ ảnh hưởng | Công nghệ, bố cục hợp lý, công cụ hỗ trợ |
+| Review/test đúng phạm vi; lượt cuối toàn dự án sau mỗi Feature; không bỏ kiểm tra bắt buộc | Lệnh kiểm tra, công cụ và máy phù hợp để chạy |
+| Biết đúng bản nguồn, gói build, cấu hình và bằng chứng | Cách tổ chức branch/tag và lưu gói build |
+| Đủ điều kiện trước deploy, đúng quyền, xác nhận sau deploy và cách xử lý lỗi | Script local, nền tảng triển khai hoặc CI/CD khi cần |
+| Giữ thông tin thống nhất, tiếp tục được công việc, quản lý thay đổi sau release | Cách thực thi cụ thể trong phạm vi đã chọn và kiểm chứng |
 
-Nếu hôm nay bộ này đạt, nhưng sau đó đổi giới hạn, code, thư viện hoặc cấu hình có ảnh hưởng, thì **kết quả hôm nay chưa chứng minh bản đã đổi cũng đạt**. Vì vậy phải kiểm tra lại đúng bản mới. Việc nhận diện nguồn và các thành phần tạo ra bản build cũng là nguyên tắc của [SLSA build provenance](https://slsa.dev/spec/v1.2/build-provenance); Kidea không cần bê toàn bộ chuẩn đó vào chỉ để diễn đạt nguyên tắc này.
+**Template là điểm bắt đầu, không phải một quy trình khác được phép bỏ điều kiện.** Project có thể thay công cụ, không được âm thầm biến “test bắt buộc chưa chạy” thành “không cần test”.
 
-**G2 chỉ là mã của nhóm quy tắc kiểm tra và tích hợp trong thiết kế Kidea.** Nó không phải công cụ hay lệnh Git. Với cách làm mới, nên gọi dễ hiểu là **“quy tắc kiểm tra để hoàn tất một Feature”**; mã G2 chỉ giữ để tra cứu.
+Cũng không cần xây thêm một “hệ thống profile” phức tạp. Trước mắt, đây chỉ là **bộ quy ước thực thi của project**: dùng Git thế nào, chạy lệnh nào, ở đâu, ai được deploy và bằng chứng nằm đâu. Lưu ở hồ sơ hiện có; script/config nằm trong source, không tạo thêm nguồn sự thật song song.
 
-Phần chất lượng [chúng ta đã chốt](https://github.com/Kynderis/kidea/blob/eefce84a10bd1d35f0560d535ca58a64395e6786/KIDEA_DESIGN.md#feature-final-check) là:
+Hướng này khớp [mục tiêu và ranh giới Kidea đã có](https://github.com/Kynderis/kidea/blob/87b3ba70eb6083a780a411537fbce5446ae6a777/KIDEA_DESIGN.md#scope), không phải đổi Kidea thành sản phẩm mới.
 
-- Trong lúc làm: sửa phần nào, kiểm tra phần đó và các nơi bị ảnh hưởng.
-- Khi một Feature thêm/sửa/xóa đã hoàn chỉnh: review và kiểm tra lại **toàn dự án hiện hành, kể cả phần không sửa**, theo đầy đủ yêu cầu bắt buộc đã xác định.
-- Nếu lượt cuối phát hiện lỗi: sửa, kiểm tra bản sửa, rồi chạy lại toàn bộ lượt cuối. Không lấy lượt test cục bộ thay thế.
-- Có kiểm tra bắt buộc bị lỗi, bỏ qua hoặc thiếu bằng chứng: chưa được báo Feature hoàn tất.
+### 2. Có thể không dùng CI — nhưng không bỏ việc kiểm tra tự động
 
-**Không phải sửa một dòng cũng chạy lại toàn dự án.** Lượt toàn dự án nằm ở lúc khép Feature; nếu sửa thứ có ảnh hưởng sau lượt đó thì phải làm mới kết quả. Chỉ ghi thêm báo cáo test không khiến quy trình rơi vào vòng kiểm tra vô tận.
+**Tôi đồng ý chưa cần một dịch vụ CI riêng ở bản đầu.** Tuy nhiên, không nên kết luận CI chỉ chạy lại những test thừa: nó còn giúp tự chạy nhất quán trên các lần thay đổi, công khai kết quả và giảm phụ thuộc vào môi trường một máy. Đó là các lợi ích cần cân nhắc khi nhu cầu tăng. [DORA về CI](https://dora.dev/capabilities/continuous-integration/).
 
-### 2. Một master là hợp lý, nhưng master không đồng nghĩa production
+Với một Human + Kidea và một công việc hiện hành, ta có thể bắt đầu bằng:
 
-Mô hình này phù hợp hướng phát triển trên một nhánh chính, đặc biệt với nhóm nhỏ và các phần thay đổi nhỏ được kiểm tra thường xuyên. Không bắt buộc có nhánh Feature dài hạn. [DORA](https://dora.dev/capabilities/trunk-based-development/), [Trunk-Based Development](https://trunkbaseddevelopment.com/).
+- Một bộ lệnh kiểm tra/build chuẩn, chạy từ local.
+- Bản nguồn cuối được cố định; build sạch, phiên bản công cụ và thư viện rõ.
+- Lưu kết quả thật, gồm cả fail/skip và phần thiếu.
+- Chỉ đưa bản đạt điều kiện tương ứng lên dev hoặc trình Human.
 
-Tôi đề xuất phân biệt bốn điều:
+**“Local điều khiển toàn bộ” không có nghĩa “mọi kiểm tra chỉ chạy trên Windows”.** Với phạm vi chúng ta đã chọn:
 
-| Trạng thái | Ý nghĩa |
+- Backend C++ phải có bằng chứng build/chạy đúng trên Ubuntu đích.
+- iOS vẫn cần Mac và kiểm chứng thiết bị phù hợp.
+- Kiểm tra tích hợp có thể gọi hệ thống dev; kiểm tra sau deploy phải đối chiếu bản thực chạy trên server.
+
+Không có CI không miễn những yêu cầu này. Một laptop chạy unit test đạt chưa chứng minh toàn bộ hệ thống production đạt.
+
+Tôi cũng không khuyên chỉ dựa vào trí nhớ AI để gõ từng lệnh. **Các phần tự động hóa được nên nằm trong bộ lệnh dùng lại; review ngữ nghĩa và Human gate vẫn được thực hiện riêng.** Sau này cần CI, chuyển chính bộ lệnh đó sang runner, không đổi ý nghĩa của PASS hay viết lại quy trình.
+
+### 3. Một script chính gọi script phụ là phương án tốt
+
+Tôi đề xuất **một điểm vào deploy cho project**, gọi các bước hoặc script phụ khi cần. DEV/PROD dùng chung cách triển khai đối với cùng loại thành phần; khác target, cấu hình và quyền.
+
+Không tạo hàng loạt script gần giống nhau chỉ vì đổi địa chỉ server. Chỉ tách cách triển khai khi bản chất khác, chẳng hạn backend dạng service khác với phát hành ứng dụng mobile.
+
+DORA cũng khuyến nghị dùng chung quy trình triển khai giữa các môi trường, tách cấu hình và giữ việc tự động hóa đơn giản. Đây là căn cứ cho cách tổ chức script, không phải yêu cầu phải dùng một dịch vụ CI. [Deployment automation](https://dora.dev/capabilities/deployment-automation/).
+
+**Đầu vào deploy không nên chỉ có file config.** Nó cần xác định được:
+
+1. **Gói nào được triển khai:** phiên bản và dấu nhận diện nội dung của từng thành phần.
+2. **Triển khai đến đâu:** config đích, môi trường và các giá trị cần dùng.
+3. **Dùng cách triển khai nào:** đúng bản script chính, script phụ và migration đã được review/kiểm tra.
+
+Ví dụ về ý nghĩa: “Đưa gói release R12 lên các server trong config PROD này, bằng bộ script S7.” Không phải “lấy master mới nhất rồi tự build và triển khai”.
+
+File config được tùy chỉnh, nhưng **phải kiểm tra hợp lệ và đúng phạm vi**. Không có target rõ thì dừng; tên file `dev` không đủ nếu bên trong lại trỏ tới database production.
+
+Quy trình bên trong script chỉ cần những phần thực sự cần thiết:
+
+| Thời điểm | Việc cần làm |
 |---|---|
-| Đã commit/push lên master | Đã lưu một phần thay đổi đủ điều kiện đưa lên nhánh chung; chưa có nghĩa cả Feature đã xong. |
-| Đã triển khai dev | Một bản xác định đang chạy ở dev để kiểm tra; chưa đủ điều kiện production. |
-| Feature đã kiểm chứng đầy đủ | Đã đạt toàn bộ nghĩa vụ cuối Feature và có bằng chứng gắn đúng bản. |
-| Đã phát hành production | Human đã duyệt đúng bản; đã triển khai và xác minh kết quả trên production. |
+| Trước thay đổi | Xác minh máy/môi trường/quyền, bản đang chạy, gói/config, điều kiện dữ liệu và phục hồi; hiển thị bản cũ → bản mới cùng các thay đổi quan trọng |
+| Khi triển khai | Thực hiện đúng thứ tự, tránh hai lần chạy chồng, ghi bước đã làm/chưa xác nhận; dừng đúng khi lỗi |
+| Sau triển khai | Đọc lại phiên bản/config thực tế, kiểm tra service và các luồng chính, ghi kết quả để Kidea đối chiếu |
 
-**Master có thể chứa Feature chưa hoàn chỉnh, nhưng không nên là nơi đẩy code hỏng tùy ý.** Ví dụ backend đã có API mới được test, UI chưa dùng đến: có thể là một phần hợp lệ. Ngược lại, code không build được hoặc migration thay dở thì chưa nên push chỉ để lưu tiến độ.
+**Copy file xong hoặc script trả mã thành công chưa đủ để xác nhận release thành công.** Mất kết nối sau migration phải kiểm tra thực tế trước khi chạy lại; rollback ứng dụng không được giấu thao tác khôi phục database có thể làm mất dữ liệu.
 
-Chia nhỏ thay đổi và giữ tính năng mới chưa mở là cách hỗ trợ luồng này. Tuy nhiên, “flag đang OFF” không tự bảo đảm an toàn: database, dependency, tác vụ nền và khởi động vẫn có thể bị ảnh hưởng. [DORA về thay đổi nhỏ](https://dora.dev/capabilities/working-in-small-batches/).
+Đây là độ chặt cần có ngay cả với script nhỏ, không đòi phải xây một nền tảng triển khai.
 
-Một nhánh giúp bỏ phần lớn chuyện đồng bộ/merge nhánh, **không loại bỏ việc bản đang kiểm tra tiếp tục thay đổi**. Chính AI có thể test commit C100 rồi sửa thêm thành C101; kết quả C100 không tự áp dụng cho C101.
+### 4. AI chạy DEV, Human chạy PROD: tôi ủng hộ cách này
 
-### 3. Quy trình tối giản tôi khuyên dùng
+Luồng đề xuất:
 
-**Bước 1 — Chốt phạm vi project và quyền thường lệ một lần.**
+1. Human giao Feature trong phạm vi và quyền project đã chốt.
+2. Kidea cập nhật đủ tài liệu, code, test và các phần ảnh hưởng; kiểm tra trong lúc làm, commit/push theo quy ước.
+3. Đạt điều kiện trước deploy dev thì AI tự triển khai dev; sau đó chạy các kiểm tra cần hệ thống đang hoạt động.
+4. Feature hoàn chỉnh thì chạy **toàn bộ lượt kiểm chứng cuối đã thống nhất**, gồm review và phần không sửa. Có lỗi/skip/thiếu bằng chứng bắt buộc thì chưa trình là bản đạt.
+5. Kidea báo Human đúng bản đề nghị phát hành, kết quả, thay đổi, giới hạn và phương án xử lý sự cố.
+6. Human chọn bản và config production, trực tiếp chạy bộ script đã xác minh.
+7. Script kiểm tra sau deploy và ghi kết quả; Kidea đọc/đối chiếu bằng chứng được phép để cập nhật trạng thái thực tế.
 
-Xác định repo, remote, master, môi trường dev, loại dữ liệu được dùng và giới hạn chi phí. Sau đó, khi Human thực sự giao việc thêm/sửa/xóa Feature trong phạm vi này, AI mặc định được sửa file, chạy kiểm tra, commit, push và deploy dev; không hỏi lại từng thao tác.
+**Quyết định phát hành và tự tay chạy script có thể nằm trong cùng một lần thao tác của Human**, không cần bắt bạn xác nhận nhiều lần cho các bước máy móc. Nhưng việc đó vẫn phải gắn đúng bản, target và phạm vi đã chọn.
 
-Một câu hỏi tư vấn hoặc ý tưởng đang bàn chưa tự trở thành lệnh triển khai. Thay repo, đích deploy, quyền nhạy cảm hoặc vượt ngân sách vẫn phải xác nhận.
+Có ba ranh giới quan trọng:
 
-**Bước 2 — Hiểu yêu cầu và xử lý ảnh hưởng trước khi viết code phụ thuộc vào quyết định đó.**
+**Gói build được giữ nguyên, cấu hình DEV/PROD không nhất thiết giống nhau.** Phải kiểm tra khác biệt cấu hình đích; không mang secret production vào dev. Nếu thay version hoặc cấu hình build khiến binary thay đổi, cần kiểm chứng gói mới. Tách build–release–run giúp tránh nhầm “cùng commit” với “cùng bản đang chạy”. [Twelve-Factor](https://12factor.net/build-release-run).
 
-Giữ luồng từ yêu cầu → nghiệp vụ/tiêu chí → thiết kế → triển khai → kiểm chứng. Chỗ đã rõ thì AI làm; chỗ cần Human chọn nghiệp vụ, kiến trúc hoặc mức chấp nhận rủi ro thì trình đúng điểm đó.
+**Human chạy PROD chưa tự tạo ra một hàng rào kỹ thuật.** Nếu AI cùng tài khoản máy vẫn đọc được SSH key/token hoặc sửa bộ script sau khi Human kiểm tra, quyền production chưa thực sự được cách ly. Cần bảo vệ credential và chạy đúng bộ script đã chốt; mức cách ly cụ thể chọn theo project. Không nên gọi file `human-only` là đã bảo vệ được quyền. [OWASP về quản lý secret](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html).
 
-Tôi **không khuyên hiểu “Human duyệt production ở cuối” là bỏ hết các điểm duyệt quan trọng ở giữa**. Có thể gom quyết định thành gói ngắn; không nên để AI tự chọn một nghiệp vụ khác rồi đợi đến production mới hỏi.
+**Production phải tiếp tục vận hành khi Kidea hoặc laptop tắt.** Service, cảnh báo và tác vụ vận hành cần thiết phải sống ở môi trường phù hợp. Local là nơi khởi chạy/điều khiển, không trở thành điều kiện để sản phẩm duy trì hoạt động.
 
-**Bước 3 — Làm từng phần nhỏ, kiểm tra rồi push master.**
+Như vậy, ta giảm hạ tầng điều phối, **không cắt phần vận hành đã thống nhất**.
 
-AI cập nhật đồng bộ code, tài liệu, test và thông tin theo dõi trong phạm vi; chạy review/kiểm tra cần thiết cho phần đó trước push. Việc còn dở chưa đạt kiểm tra tối thiểu được giữ ở checkpoint local có nhận diện, không tự đưa lên dev.
+### 5. Cách hotfix bạn nêu hợp lý; chỉ cần chỉnh ba chi tiết
 
-Việc ghi/tích hợp cần có một đầu mối; không để một thay đổi khác chen vào bản đang được xác nhận cuối mà vẫn giữ kết quả cũ.
+**Hai trường hợp chính giữ đúng như bạn đề xuất:**
 
-**Bước 4 — Đạt kiểm tra trước deploy thì tự đưa đúng bản đó lên dev, kiểm tra và sửa lỗi.**
+- Master đúng nền production cần sửa: sửa trực tiếp trên master, đủ review/test rồi Human phát hành bản mới.
+- Master có thay đổi chưa muốn đưa cùng bản vá: tạo nhánh từ đúng bản production và sửa riêng.
 
-CI là hệ thống chạy kiểm tra tự động trên máy thực thi. Trước deploy dev, phải đạt nhóm kiểm tra dành cho bước đó; những bài cần bản đang chạy ở dev được thực hiện sau deploy. Điều này không thay lượt kiểm chứng đầy đủ cuối Feature. Không nhất thiết deploy mọi commit: thay nội dung trao đổi thuần túy thường không cần dựng lại ứng dụng; tiêu chí bỏ deploy phải rõ, không được dùng để bỏ kiểm tra tài liệu cần thiết.
+Bản vá và bản kết hợp trên master phải được kiểm chứng theo quy tắc đã chốt; không dùng PASS của nhánh này thay bằng chứng cho nhánh kia.
 
-Nếu build/test/deploy thất bại, giữ rõ trạng thái thất bại; dev đang chạy bản cũ thì phải ghi là bản cũ. Không được thấy pipeline “đã chạy” rồi báo “bản mới đã lên dev”.
+“Đúng nền production” phải đối chiếu cả thành phần bị lỗi, gói đang chạy, config/schema liên quan; không chỉ nhìn tên tag. Nếu master chỉ đi trước vài thay đổi tài liệu được phép đi cùng, không nhất thiết phải tạo nhánh.
 
-**Bước 5 — Hoàn tất Feature, chạy toàn bộ lượt kiểm chứng cuối.**
+**Chi tiết thứ nhất: giữ nhánh theo dòng bảo trì, không theo một version bất biến.**
 
-Không bỏ review, test hay Human gate bắt buộc. Thiếu công cụ, test bị skip hoặc chỉ có lời AI nói “đã kiểm tra” đều chưa đủ.
+Ví dụ:
 
-Kết quả phải gắn với commit cụ thể, gói build cụ thể và cấu hình liên quan. Với sản phẩm nhiều thành phần, ghi đủ bản của web/backend/app cùng điều kiện database/cấu hình, không chỉ một tên version chung.
+- Tag `v1.0.1`: giữ nguyên bản đã phát hành.
+- Nhánh bảo trì dòng `1.0.x`: tiếp tục nhận bản vá.
+- Vá lỗi A → phát hành `v1.0.2`.
+- Vá lỗi B → phát hành `v1.0.3`, kế thừa bản vá A.
 
-**Bước 6 — Báo Human một bản cụ thể để quyết định phát hành.**
+Không sửa nội dung dưới tag `v1.0.1`, và không cứ rẽ lại từ `v1.0.1` để rồi mất các bản vá trước. Nếu dùng SemVer, sửa lỗi tương thích ngược tăng phần PATCH; thay đổi phá tương thích không mặc nhiên được gọi là patch. [SemVer](https://semver.org/spec/v2.0.0.html).
 
-Ví dụ: “Feature đã hoàn tất; đề nghị phát hành commit C123, gói build B456; các kiểm tra bắt buộc đạt; đây là thay đổi, rủi ro còn lại và cách rollback.”
+Nếu bản mới bị thu hồi hoặc hệ thống đang rollback, chọn nền theo tình trạng thực tế, không máy móc lấy số version lớn nhất.
 
-Đó chính là **bản đề nghị phát hành**, hay “candidate”; không cần tạo thêm một nhánh cho nó.
+**Chi tiết thứ hai: “đẩy fix sang master nếu cần” phải có kết luận bắt buộc.**
 
-Human có thể duyệt phát hành, chưa phát hành, hoặc yêu cầu đổi. Feature đạt không bắt buộc phải release ngay. Nếu master đã đi tới C124 trong lúc chờ, approval cho C123 **không tự trở thành approval cho C124**.
+Mỗi bản vá phải được đối chiếu với master và ghi một trong hai kết quả:
 
-**Bước 7 — Gắn version/tag đúng bản đã duyệt, triển khai, kiểm tra production và theo dõi.**
+- Đã đưa bản sửa hoặc giải pháp tương đương vào master, có kiểm chứng.
+- Không còn áp dụng hoặc đã được sửa tương đương, có lý do và bằng chứng.
 
-Dùng đúng gói đã kiểm chứng, triển khai/rollout theo kế hoạch và quyền được duyệt; kiểm tra phiên bản thực chạy, luồng chính và tín hiệu vận hành. Có lỗi thì dừng tăng rollout, rollback hoặc sửa tiếp theo phương án đã chốt — không mặc định tự làm mọi thao tác production.
+Không bắt chép nguyên patch nếu master đã đổi kiến trúc. Nhưng không được để “nếu cần” trở thành “quên kiểm tra”, khiến bản phát hành sau tái xuất hiện lỗi cũ. Việc tạo nhánh khi cần vá bản cũ và kiểm soát đường đưa fix giữa các dòng được đề cập trong [Trunk-Based Development](https://trunkbaseddevelopment.com/branch-for-release/).
 
-Nếu số version được nhúng vào ứng dụng lúc build, phải đưa số đó vào bản build được kiểm tra từ trước. Không đợi Human duyệt rồi đổi version, build một gói khác và coi nó vẫn là gói đã test. Nếu Human chọn số khác làm thay đổi gói, phải build và kiểm chứng lại trước production.
+**Chi tiết thứ ba: xóa nhánh khi hết hỗ trợ dòng đó, không xóa lịch sử phát hành cần giữ.**
 
-### 4. Điểm đánh đổi cần nói thẳng: push trực tiếp và CI
+Trước khi xóa, xác nhận không còn việc vá/cam kết hỗ trợ cần nhánh, các fix đã có kết luận trên master, và vẫn giữ được tag, source, gói build, bằng chứng cùng dữ liệu cần phục hồi.
 
-Nếu luồng là:
+Xóa nhánh không đồng nghĩa xóa tag, release, server hoặc database. Cũng không làm các app cũ trên máy người dùng biến mất. Chính sách hỗ trợ và khả năng tương thích vẫn cần được xử lý riêng.
 
-**Kiểm tra local → push master → CI chạy → deploy dev khi đạt**
+### 6. Cách giữ Kidea không bị lan man
 
-thì có thể xảy ra: kiểm tra local đạt nhưng CI thất bại. Lúc ấy **master đã nhận commit lỗi theo kết quả CI**, dù dev và production chưa nhận bản đó.
+Tôi đề xuất giới hạn công việc tiếp theo ở **một phương án thực thi đầu tiên**:
 
-Tôi vẫn thấy luồng này hợp lý cho mô hình một người + AI, nếu:
+> Một master phát triển chính; nhánh bảo trì chỉ tạo khi cần. Kiểm tra/build được điều khiển từ local bằng bộ lệnh chuẩn. AI deploy DEV trong phạm vi; Human chạy PROD. Tất cả vẫn đi qua các điều kiện và bằng chứng chung của Kidea.
 
-- Kiểm tra trước push nghiêm túc; master lỗi thì ưu tiên sửa, không tiếp tục chồng Feature.
-- CI thất bại hoặc thiếu kiểm tra thì không publish bản đạt/deploy bản mới.
-- Production chỉ nhận bản có đủ bằng chứng và được Human duyệt.
+Chưa cần thiết kế cả thư viện template cho mọi kiểu Git, mọi cloud hoặc mọi công cụ deploy. Làm mẫu đầu đủ dùng, chạy thử cả đường thành công và đường lỗi; chỉ tách phần dùng chung khi đã thấy nhu cầu thực tế.
 
-Nhưng nếu bạn yêu cầu **“server tuyệt đối không nhận commit vào master trước khi CI đạt”**, thì phải cho CI kiểm tra commit trước ở một ref/nhánh tạm hoặc cơ chế preflight tương đương. Không thể vừa chạy CI chỉ sau push vừa nói CI đã chặn chính lần push đó. GitHub cũng mô tả ràng buộc kiểm tra trước cập nhật nhánh trong [quy tắc required status checks](https://docs.github.com/en/rest/orgs/rules).
+Sau này bổ sung CI, công cụ quản lý cấu hình hay nền tảng triển khai khi xuất hiện lý do cụ thể: phụ thuộc máy cá nhân gây gián đoạn, thời gian kiểm tra quá dài, cần nhiều nền build, cần kiểm soát quyền độc lập hoặc quy mô vận hành vượt khả năng script hiện tại. Không nâng cấp chỉ vì tên công cụ nghe “chuyên nghiệp hơn”.
 
-**Đề xuất của tôi:** bắt đầu bằng direct-to-master có kiểm tra local và chặn deploy bằng CI; không dựng thêm hệ thống chỉ để tránh một tên nhánh tạm. Nếu project có yêu cầu bảo vệ master chặt hơn hoặc đã có rule đó, dùng nhánh ngắn/preflight phù hợp, không âm thầm bypass hoặc tắt bảo vệ.
+**Tôi ghi nhận các điểm khác bạn đã đồng ý, không yêu cầu duyệt lại.** Phần cần chốt tiếp chỉ còn cách thực thi local/DEV/PROD và vòng đời nhánh bảo trì. Tôi đã cập nhật gói đang review theo hai điểm này; không mở thêm một dự án xây CI/CD, không giảm chuẩn kiểm chứng và chưa cấp quyền chạy pilot/production.
 
-### 5. Vì sao tôi giữ ngoại lệ hotfix?
-
-Giả sử:
-
-- Production đang chạy `v1.0.0`.
-- Master đã có một phần Feature cho `v1.1.0`, chưa được phép phát hành.
-- Production cần vá gấp thành `v1.0.1`.
-
-**Tag v1.0.0 giúp tìm lại đúng bản cũ, nhưng không tự giải quyết cách sửa nó mà không kéo theo Feature đang dở.**
-
-Cách đơn giản, rõ ràng nhất lúc đó là:
-
-1. Tạo nhánh hotfix tạm từ đúng bản production.
-2. Sửa và kiểm chứng đầy đủ bản vá; Human duyệt phát hành.
-3. Bảo đảm bản sửa được đưa phù hợp về master và kiểm chứng bản kết hợp, rồi tiếp tục Feature đang làm.
-
-Việc tạo nhánh từ tag chỉ khi cần vá bản cũ được mô tả trong [hướng dẫn phát hành của Trunk-Based Development](https://trunkbaseddevelopment.com/branch-for-release/). Không cần thêm nhánh dev/prod thường trực.
-
-Nếu master đã đủ an toàn và Human đồng ý phát hành toàn bộ nội dung của nó, vá và phát hành ngay từ master là đủ. Chỉ dùng nhánh hotfix khi cần tách bản sửa khỏi phần chưa được phát hành.
-
-Cấm tuyệt đối nhánh tạm vẫn có cách xoay xở — sửa ở trạng thái detached hoặc gỡ rồi đưa lại các thay đổi đang dở — nhưng không làm công việc đơn giản hơn. Tôi không khuyên chọn cách đó chỉ để giữ con số nhánh bằng một.
-
-### 6. Quyền AI cần rộng ở dev, nhưng ranh giới production phải thật
-
-Sau khi cấu hình và duyệt chính sách cho project, **giao Feature nên bao hàm các quyền kỹ thuật thường lệ bạn vừa nêu**. Nhưng không bao hàm:
-
-- Force-push, reset/xóa lịch sử hoặc xóa công việc ngoài phạm vi.
-- Đẩy secret/dữ liệu riêng lên remote, kể cả repo đã được phép push.
-- Tự đổi nghiệp vụ quan trọng, giảm tiêu chí hoặc bỏ kiểm tra để lấy PASS.
-- Tự phát hành, sửa dữ liệu production, mua dịch vụ hoặc tăng chi phí ngoài phạm vi.
-
-Dev cũng cần được nhận diện đúng: dữ liệu giả/đã làm sạch, tài khoản thử và cách ly các tác dụng phụ như gửi thư thật, thu tiền thật.
-
-Quan trọng hơn, nếu AI vừa sửa được pipeline vừa dùng được toàn quyền production, thì câu “đợi Human duyệt” mới chỉ là lời dặn. **Cổng phát hành và quyền production phải được bảo vệ ngoài quyền sửa thông thường của AI.** Có thể do nền tảng triển khai hoặc cấu hình kiểm soát truy cập thực thi; phải kiểm tra khả năng thực tế của công cụ/gói dịch vụ, không mặc định một nút “Run workflow” là cổng Human-only. [GitHub về bảo vệ môi trường](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments), [an toàn workflow và runner](https://docs.github.com/en/actions/reference/security/secure-use).
-
-Tag/version cũng cần được bảo vệ: Git cho phép thay tag bằng force, nên phải có quy tắc và quyền ngăn thay/xóa nhãn đã phát hành. Đồng thời giữ gói build và nhận diện nội dung của nó; **tag không phải bản backup và không hoàn tác database**. [Git tag](https://git-scm.com/docs/git-tag.html).
-
-**Tóm lại, tôi khuyên chốt hướng: một master thường trực; AI tự sửa–kiểm tra–commit–push–deploy dev trong phạm vi; kiểm chứng đầy đủ mỗi Feature; Human duyệt đúng bản để phát hành; chỉ dùng nhánh hotfix tạm khi thật sự cần.**
-
-Điều này đơn giản hơn đề xuất nhánh Feature trước đây mà không phải giảm yêu cầu chất lượng. Tuy nhiên, cần sửa đồng bộ phần tổ chức Git, vị trí kiểm tra cuối và quyền thực thi — không chỉ sửa một dòng “được push master”. Tôi chưa coi trao đổi này là approval hay quyền triển khai mới; G3-r2 vẫn đang review.
-
-[Bản tư vấn đầy đủ, nguồn và phạm vi tài liệu cần điều chỉnh](https://github.com/Kynderis/kidea/blob/master/exa-results/kidea-single-master-workflow-2026-09-10.md).
+[Bản tư vấn, nguồn và phạm vi đồng bộ tài liệu](https://github.com/Kynderis/kidea/blob/master/exa-results/kidea-local-delivery-profiles-2026-09-11.md).
 
 <oai-mem-citation>
 <citation_entries>
-MEMORY.md:31-33|note=[repo scoped answer publication and approval boundaries reverified]
+MEMORY.md:52-52|note=[repository scoped answer publication reverified]
+MEMORY.md:62-63|note=[previous release advice and evidence boundaries checked against current sources]
 </citation_entries>
 <rollout_ids>
 01a064b8-dde1-7882-acc1-7d02d6f568c8

@@ -1,6 +1,6 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
-Ngày cập nhật: 2026-09-10.
+Ngày cập nhật: 2026-09-11.
 
 Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đầu vòng rà soát mới từ đầu, mỗi lần đọc/duyệt chỉ vài đầu mục. **Chưa xây/cài skill hoặc code pilot.** R01 chuẩn bị lại căn cứ; kế hoạch triển khai R02–R10 chỉ được mở sau gate R01. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
@@ -8,26 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã ghi nhận [phạm vi phát hành/vận hành và ba nhóm ưu tiên được duyệt](#production-scope-result). Task hiện hành R01-T06 chốt **quyền Git và cách giữ việc dở**; subtask S01 đang chuẩn bị quyền lưu/merge. Chưa mở triển khai skill hoặc pilot.
+Đã ghi nhận [phạm vi phát hành/vận hành và ba nhóm ưu tiên được duyệt](#production-scope-result). Task hiện hành R01-T06 chốt **quyền Git và cách giữ việc dở**; subtask S01 đang làm rõ cách thực thi local/DEV/PROD và nhánh bảo trì, giữ các điểm Human đã đồng ý. Chưa mở triển khai skill hoặc pilot.
 
 <a id="review-current"></a>
 
-### R01-T06-S01-r2 — Kidea tự lưu và thực hiện merge trong phạm vi được giao
+### R01-T06-S01-r3 — Thực thi local và nhánh bảo trì
 
-Gói này chỉ chốt quyền thao tác, không duyệt lại phạm vi vừa chốt:
+Human: “Các điểm khác tôi thấy ok rồi, chỉ có 2 điểm này tôi phân vân”, phản hồi [bản tư vấn 87b3ba7](https://github.com/Kynderis/kidea/blob/87b3ba70eb6083a780a411537fbce5446ae6a777/answer.md). Giữ phần đã đồng ý: một master chính, quyền thường lệ theo project, đủ kiểm chứng/Human gate và duyệt đúng bản. Không yêu cầu duyệt lại các điểm đó; r3 thay gói branch/merge r2, chỉ còn hai lựa chọn:
 
-| Quyết định | Đề xuất | Giới hạn |
+| Quyết định | Đề xuất | Điều kiện giữ |
 |---|---|---|
-| D1. Tự lưu trong đợt được giao | Khi Human cho phép Git local cho đúng repo/đợt, Kidea được tạo/chuyển branch, dùng worktree khi cần theo G1 và commit phần nhiệm vụ; không hỏi lại từng lần lưu. | Bảo toàn thay đổi có sẵn; không commit trực tiếp master, xóa branch/worktree, reset hoặc viết lại lịch sử. Commit dở không là DONE/PASS. |
-| D2. Thực hiện merge sau đủ gate | Human có thể cấp quyền merge cho đợt và nhánh tích hợp cụ thể. Khi đủ mọi review/test/Human gate theo G2, Kidea tự thực hiện merge, không hỏi lại chỉ để bấm nút. | Kiểm chứng bản kết hợp trước merge, xác nhận sau merge; đầu vào đổi thì chạy lại toàn lượt G2. Thiếu quyền, kiểm tra hoặc căn cứ thì dừng. |
+| D1. Điều khiển từ local | Chưa dùng dịch vụ CI; bộ lệnh kiểm tra/build theo project. AI deploy dev trong quyền; Human trực tiếp chạy script production với gói/config/target đã chọn. | Không miễn test trên nền đích; giữ toàn lượt G2 mỗi Feature. Đúng bản script/gói, kiểm tra trước–sau deploy, quyền thực tế và đường xử lý lỗi; cảnh báo/job cần thiết không phụ thuộc phiên AI. |
+| D2. Nhánh bảo trì | Master phù hợp thì vá master; cần tách phần chưa phát hành thì tạo nhánh từ production cho dòng còn hỗ trợ, ra patch mới. | Mỗi fix có kết luận trên master. Hết hỗ trợ mới xét dọn nhánh; giữ tag/source/artifact/bằng chứng/phục hồi. Chưa cấp quyền xóa tự động. |
 
-Push vẫn cần phép đúng remote/nhánh/nội dung; merge local không cho push. Merge qua dịch vụ remote cần cả quyền đưa nội dung tới đích đó. Tag/deploy và thay đổi production vẫn cần phép riêng; không chọn công cụ Git tại gói này.
+Template có thể custom cách làm, không bỏ điều kiện chung hoặc thêm nguồn trạng thái khác. **Hai điểm này đang IN_REVIEW; S01 chưa DONE.** Chưa khép toàn G3/G4/G5/G6, duyệt QUALITY hoặc mở quyền pilot/production. Sau khi chốt, đồng bộ tổ chức Git/quyền và các phần phụ thuộc, tiếp tục checkpoint rồi version/release; không chọn sẵn nền tảng hoặc xây thư viện template.
 
-**Bạn cần phản hồi D1–D2 của r2.** Đây là duyệt chính sách, chưa cấp quyền cho pilot. Sau khi duyệt, AI đồng bộ và chuẩn bị G4 về lưu việc dở/khôi phục; tiếp đó R01-T07 chốt version và hồ sơ phát hành đa thành phần. QUALITY, ma trận tiếp nhận Future của sản phẩm và phase R01 vẫn chưa được duyệt.
-
-Nguồn: [quyền G3 đề xuất](KIDEA_DESIGN.md#git-permissions-proposal), [G2 đã chốt](KIDEA_DESIGN.md#git-integration-gate), [phạm vi bổ sung đã chốt](KIDEA_DESIGN.md#production-capabilities).
-
-Trao đổi ngày 2026-09-10: Human đang cân nhắc một master và quyền sửa/commit/push/deploy dev mặc định khi giao Feature; xem [tư vấn, đánh đổi CI/hotfix và ảnh hưởng cần đồng bộ](exa-results/kidea-single-master-workflow-2026-09-10.md). Đây là phương án đang thảo luận để có thể thay cách branch/merge của gói r2, chưa phải approval G1 sửa đổi/G3 hoặc quyền thực thi; giữ nguyên nghĩa vụ chất lượng G2 đã chốt và trạng thái IN_REVIEW hiện hành.
+Nguồn: [đề xuất và ranh giới](KIDEA_DESIGN.md#git-permissions-proposal), [tư vấn/ảnh hưởng đầy đủ](exa-results/kidea-local-delivery-profiles-2026-09-11.md).
 
 <a id="working-rules"></a>
 
@@ -93,7 +89,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T05-S01 | DONE | R01-T05-S01-r1 — APPROVED | Human: “Duyệt nhé”; D1–D2 tại 7df435b; [bằng chứng G1](#r01-t05-s01-result) |
 | R01-T05-S02 | DONE | R01-T05-S02-r3 — APPROVED | Human “mình nhất trí nhé” sau phần làm rõ tại 17df9e1; G2 và hai nguyên tắc MVP/bugfix, không toàn ma trận Future/G4/G6; [kết quả](#r01-t05-result) |
 | R01-T05-S03 | DONE | [A] — đồng bộ phần được duyệt | DESIGN, KA-17/19/24, R06/R08/R09 và giới hạn quyền; [kết quả](#r01-t05-result) |
-| R01-T06-S01 | IN_PROGRESS | R01-T06-S01-r2 — IN_REVIEW | Chuẩn bị quyền tự lưu và thực hiện merge sau đủ gate; [gói hiện hành](#review-current). Phạm vi phát hành/vận hành đã duyệt riêng, chưa duyệt G3 hoặc cấp quyền pilot |
+| R01-T06-S01 | IN_PROGRESS | R01-T06-S01-r3 — IN_REVIEW | Human đồng ý các điểm khác ở bản tư vấn 87b3ba7; còn cách thực thi local/DEV/PROD và nhánh bảo trì tại [gói hiện hành](#review-current). Chưa khép toàn G3 hoặc cấp quyền pilot/production |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
