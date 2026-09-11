@@ -2,27 +2,27 @@
 
 Ngày cập nhật: 2026-09-11.
 
-Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đầu vòng rà soát mới từ đầu, mỗi lần đọc/duyệt chỉ vài đầu mục. **Chưa xây/cài skill hoặc code pilot.** R01 chuẩn bị lại căn cứ; kế hoạch triển khai R02–R10 chỉ được mở sau gate R01. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
+Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đầu vòng rà soát mới từ đầu, mỗi lần đọc/duyệt chỉ vài đầu mục. **Chưa xây/cài skill hoặc code pilot.** R01 đã được duyệt làm căn cứ, R02 mở phần lựa chọn thiết kế; các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
 <a id="current"></a>
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã khép [T09](#r01-t09-result) và hoàn tất [rà tích hợp tài liệu R01-T10](#r01-t10-check). **R01-T10-S03** là gate cuối của phase căn cứ; chỉ hai quyết định dưới đây chờ Human.
+Đã khép [R01](#r01-result) theo xác nhận của bạn. **R02-T01** chuẩn bị nền để các chương trình phụ trợ của Kidea chạy được; **S01** chỉ chọn công nghệ và mức thư viện ban đầu, đang chờ duyệt.
 
 <a id="review-current"></a>
-<a id="r01-close-proposal"></a>
+<a id="runtime-proposal"></a>
 
-### R01-T10-S03-r1 — Khép căn cứ và cho mở phần lõi
+### R02-T01-S01-r1 — Chọn công cụ chạy phần phụ trợ
 
-R01 là phần chốt Kidea cần làm gì, giữ quyền/gate ra sao và kiểm chứng thế nào. Chưa phải bản skill dùng được.
+Kidea có hai phần: hướng dẫn để AI biết làm gì và chương trình nhỏ làm việc cố định. Ví dụ bạn hỏi tiến độ: chương trình đọc/kiểm tra hồ sơ, AI giải thích kết quả; chương trình không tự duyệt thay bạn.
 
-1. **D1 — Chấp nhận kết quả chuẩn bị R01.** Đề xuất khép phase căn cứ: thiết kế, danh mục 30 họ tình huống thử, chính sách bằng chứng và lộ trình đã đối chiếu với nhau. Giữ đủ sáu hành động, mười bước sản phẩm, ba bản đồ, nền tảng/pilot và kiểm tra G2 đã duyệt. Đã sửa các câu còn dẫn về việc chờ duyệt cũ; không đổi quyết định của bạn. Đây chỉ là kiểm tra tài liệu, không phải test hành vi, đo tốc độ hay chứng nhận tương thích. Các số nháp, fixture, runtime/schema và nhánh Future/ưu tiên còn mở được giữ đúng nơi xử lý, không được duyệt kèm.
-2. **D2 — Cho mở R02 theo từng lát cắt.** R02 xây lõi đọc/ghi hồ sơ, trạng thái, duyệt và tiếp tục công việc. Sau approval này, trước tiên mình phân rã R02 rồi trình lựa chọn runtime, dependency và vị trí/quyền cài thử ở T01; chưa tự chọn hoặc cài. Sau khi từng hợp đồng được duyệt mới làm/test phần phụ thuộc, kết thúc R02 vẫn cần gate riêng. R03–R10 giữ thứ tự và gate: nghiệp vụ → thiết kế/rule → maps/change → view → phát hành → pilot → nghiệm thu; không mở tất cả cùng lúc.
+1. **D1 — Dùng JavaScript chạy bằng Node.js 24 LTS cho chương trình phụ trợ.** Node là phần mềm chạy JavaScript ngoài trình duyệt; LTS là dòng được hỗ trợ dài hạn. Mình chọn hướng này vì phù hợp đọc/ghi file và cùng ngôn ngữ với phần tương tác HTML sau này. Python cũng làm được; không khẳng định Node nhanh hơn. Đánh đổi là cần chuẩn bị đúng bản Node, không lấy Node 22 đang có làm bằng chứng đã chạy được Node 24. Quyết định này không đổi backend C++ hay công nghệ web/mobile của sản phẩm.
+2. **D2 — Bắt đầu gọn, dùng chức năng có sẵn.** Với khung helper ban đầu, dùng JavaScript trực tiếp và bộ kiểm tra sẵn của Node, chưa thêm framework hoặc thư viện ngoài. Ít thứ phải cài/khóa phiên bản; khi cần thư viện đọc Markdown chẳng hạn, mình sẽ trình lý do và lựa chọn tại task liên quan, không tự viết bộ xử lý phức tạp chỉ để giữ “không dependency”.
 
-Nguồn mở thêm: [kết quả rà](#r01-t10-check), [lõi R02](#r02), [phần chưa chốt](KIDEA_DESIGN.md#open-decisions).
+Nguồn mở thêm: [đối chiếu máy/tài liệu chính thức](#r02-t01-evidence), [kế hoạch R02](#r02-subtasks).
 
-**D1–D2 đang IN_REVIEW.** Chưa đóng R01 hoặc mở R02; không cấp quyền cài/nâng môi trường, tạo/chạy pilot hay deploy. Bạn có duyệt hai điểm trên không?
+**Bạn đang duyệt hai lựa chọn trên, chưa duyệt cài đặt.** Sau đó S02 sẽ trình bản cụ thể, vị trí và quyền cài thử, bảo toàn công cụ đang có. Chưa xây/chạy pilot hoặc đổi cấu hình máy; S01 đang IN_REVIEW.
 
 <a id="working-rules"></a>
 
@@ -33,6 +33,7 @@ Nguồn mở thêm: [kết quả rà](#r01-t10-check), [lõi R02](#r02), [phần
 - **Phase:** một nhóm năng lực có thể kiểm chứng tích hợp; cuối phase có Human gate.
 - **Task:** một đầu ra cụ thể. **Subtask:** một lát cắt đủ nhỏ để làm, kiểm tra và nếu cần thì duyệt độc lập.
 - Gói review tối đa **3 quyết định thực sự độc lập**, thường 2; một quyết định thì chỉ hỏi một. Không giấu sáu lựa chọn trong một dòng “duyệt cả gói”. Mỗi quyết định có đề xuất, hệ quả và link đúng đoạn.
+- Theo yêu cầu Human ngày 2026-09-11, mỗi quyết định giải thích dễ hiểu: việc này giải quyết vấn đề gì, đề xuất cách nào, vì sao/lợi ích và đánh đổi, bạn đang duyệt điều gì và điều gì chưa duyệt. Giải nghĩa thuật ngữ bằng lời thường hoặc ví dụ; không dùng mã task hay danh sách từ kỹ thuật thay giải thích.
 - Phần bắt buộc Human đọc khoảng 200–350 từ tiếng Việt, tối đa 3 đầu mục quyết định và 3 mục nguồn ngắn. Nếu chưa đủ để hiểu mà phải mở nhiều đoạn dài, chia tiếp trước khi trình; không dùng giới hạn chữ để lược mất rủi ro quan trọng. Nội dung chuyên sâu là phần mở thêm, không là quyết định ngầm.
 - AI vẫn đọc đủ nguồn/phụ thuộc, kiểm tra ngữ nghĩa và ảnh hưởng xuyên chuỗi. Bản tóm tắt cho Human không thay đầu vào phân tích của AI.
 - Phân rã chi tiết **phase gần nhất**; các phase xa có task/đầu ra/kiểm chứng, subtask ghi **chưa phân rã**, không phải đã hoàn tất. Trước khi mở task ở đó, ghi các subtask, test và gate tại đúng hàng nguồn; không dùng task lớn làm giấy phép thực hiện một lượt.
@@ -103,9 +104,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T09-S03 | DONE | R01-T09-S03-r1 — APPROVED | Human “duyệt nhé” sau giải thích 063bf73; đồng bộ chính sách tổ chức thử, chưa chạy; [kết quả](#r01-t09-result) |
 | R01-T10-S01 | DONE | [A] — đồng bộ căn cứ | Đồng bộ bốn nguồn, phân biệt chính sách được duyệt với chi tiết chờ task sở hữu; [kết quả](#r01-t10-check) |
 | R01-T10-S02 | DONE | [A] — rà tích hợp tài liệu | Đối chiếu nghĩa vụ/caller, link, trạng thái và cleanup; chưa kiểm chứng skill; [kết quả](#r01-t10-check) |
-| R01-T10-S03 | IN_PROGRESS | R01-T10-S03-r1 — IN_REVIEW | Chấp nhận căn cứ/giới hạn và cho mở R02 đúng phạm vi; [gói hiện hành](#review-current) |
+| R01-T10-S03 | DONE | R01-T10-S03-r1 — APPROVED | Human “Duyệt nhé” sau answer b666308; chấp nhận căn cứ và cho mở R02 từng phần; [kết quả](#r01-result) |
+| R02-T01-S01 | IN_PROGRESS | R02-T01-S01-r1 — IN_REVIEW | Chọn công cụ chạy helper và mức dependency ban đầu; [gói hiện hành](#review-current). Chưa có quyền cài thử |
 
-Chỉ R01-T10-S03 đang IN_PROGRESS, chờ Human review gói trên; 30 subtask còn lại của R01 đã DONE, phase chưa APPROVED. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Kiểm tra tài liệu không được cộng thành nghiệm thu năng lực Kidea.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). Chỉ R02-T01-S01 đang IN_PROGRESS, chờ Human review; các subtask R02 khác mặc định TODO. R03–R10 chưa mở/chưa phân rã; không có code/runtime/pilot mới. Kiểm tra tài liệu không được cộng thành nghiệm thu năng lực Kidea.
 
 <a id="r01-t01-result"></a>
 
@@ -331,11 +333,21 @@ Chỉ R01-T10-S03 đang IN_PROGRESS, chờ Human review gói trên; 30 subtask c
 - Các phần mở không bị bỏ: runtime/schema/fingerprint/ghi/backup ở R02; số đo/lần thử ở R02-T10/R07-T04/R06-T09/R10-T06; phương pháp/Future/ưu tiên ở R03/R06; công cụ/profile/môi trường và thực thi ở task sở hữu. Thứ tự phase và gate sản phẩm riêng giữ nguyên, không tự cấp quyền hoặc sửa phạm vi.
 - Kiểm tra link/anchor, cấu trúc Markdown/Mermaid dạng văn bản, mã/cây task, bao phủ và diff; không render sơ đồ hoặc chạy skill/pilot/benchmark. Không tạo file tạm, không có untracked cần dọn; nguồn tham khảo/nghiên cứu/Idea giữ nguyên. S01/S02 đủ đầu ra tài liệu, S03 chờ Human xác nhận kết quả và phạm vi mở R02.
 
+<a id="r01-close-proposal"></a>
+<a id="r01-result"></a>
+
+### Kết quả khép R01 và mở R02
+
+- Human: “Duyệt nhé. Nhưng từ sau bạn giải thích thêm các việc cần duyệt dễ hiểu hơn nhé”, ngay sau [answer b666308](https://github.com/Kynderis/kidea/blob/b666308d10b1da4dd1343a458915622ad3dde088/answer.md). Duyệt D1–D2 của R01-T10-S03-r1 cùng bản: chấp nhận kết quả tích hợp/giới hạn R01 và cho mở R02 từng lát cắt.
+- Đủ 31 subtask R01 DONE, phase APPROVED; không chuyển số nháp/fixture/runtime/schema/Future còn đề xuất thành quyết định, không coi tài liệu đạt là skill/pilot đã PASS. R03–R10 giữ thứ tự/gate riêng; quyền cài/nâng/chạy pilot/deploy chưa được cấp.
+- Ghi yêu cầu giải thích dễ hiểu vào quy tắc review và DESIGN. Phân rã 11 task R02 tại nguồn kế hoạch, mở duy nhất T01-S01 để trình lựa chọn; chưa tạo skill, helper, fixture hoặc thư mục cài.
+- Kiểm tra tài liệu/link/trạng thái/diff và cleanup, giữ nguồn tham khảo/QUALITY/case/G2; không có file tạm cần xóa. Phần thiết kế chi tiết được duyệt dần tại task sở hữu, không mở rộng quyền từ gate phase.
+
 <a id="phase-overview"></a>
 
 ## 4. Tổng quan 10 phase xây Kidea
 
-Lộ trình hiện định nghĩa **83 task**; R01 đã phân rã **31 subtask**, R02–R10 chưa phân rã. Số lượng chỉ cho biết phạm vi công việc đã biết, không phải ước tính thời gian hoặc phần trăm Kidea hoàn thành. Trạng thái thực xem [sổ công việc](#work-state); không có code/skill/pilot được nghiệm thu chỉ từ approval thiết kế.
+Lộ trình hiện định nghĩa **83 task**; R01 có **31 subtask**, R02 có **38 subtask**, R03–R10 chưa phân rã. Số lượng chỉ cho biết phạm vi công việc đã biết, không phải ước tính thời gian hoặc phần trăm Kidea hoàn thành. Trạng thái thực xem [sổ công việc](#work-state); không có code/skill/pilot được nghiệm thu chỉ từ approval thiết kế.
 
 ```mermaid
 flowchart TD
@@ -365,7 +377,7 @@ Mũi tên chỉ phụ thuộc, không là lệnh tự động bắt đầu: cầ
 | [R09 — 14](#r09) | Workshop thật: backend–web, đổi giữa MVP, event/admin, Android/iOS, release lab và thay đổi sau release | Đi đầu–cuối và thử reject, gián đoạn, hotfix, lỗi một phần, tương thích, khôi phục; dữ liệu giả |
 | [R10 — 7](#r10) | Gói cài/nâng cấp/gỡ, ma trận hỗ trợ, hướng dẫn và bản Kidea bàn giao | Hồi quy đúng bản ứng viên, review độc lập và Human nghiệm thu; chỉ công bố phần đã chứng minh |
 
-R01 mở theo yêu cầu tái lập; R02 chỉ mở sau R01 APPROVED và quyền cụ thể. Từ R03 trở đi cần phase trước APPROVED; R09 còn cần gate/quyền pilot riêng. Mặc định task sau cần task trước trong phase; ngoại lệ/quay lại phải ghi rõ. Test helper/phiên AI bắt đầu ngay khi lát cắt làm được, không dồn đến R09.
+R01 đã APPROVED và cho mở phần thiết kế R02; cài/chạy/ghi ngoài phạm vi vẫn cần quyền cụ thể. Từ R03 trở đi cần phase trước APPROVED; R09 còn cần gate/quyền pilot riêng. Mặc định task sau cần task trước trong phase; ngoại lệ/quay lại phải ghi rõ. Test helper/phiên AI bắt đầu ngay khi lát cắt làm được, không dồn đến R09.
 
 **Không nhầm hai lộ trình:** đây là 10 phase xây công cụ Kidea. [Mười bước phát triển sản phẩm](KIDEA_DESIGN.md#workflow) là quy trình Kidea sẽ hướng dẫn cho workshop và project sau này; có đối chiếu ở [bảng bao phủ](#coverage).
 
@@ -402,7 +414,7 @@ Phần đóng [A] của một subtask [H] gồm đồng bộ đúng quyết đ�
 
 Chốt hợp đồng nhỏ trước phần code phụ thuộc; thử helper và hành vi phiên AI mới ngay khi lát cắt có thể chạy. Không chờ hoàn thiện mọi schema mới thử lõi.
 
-Subtask: **chưa phân rã**. Trước mở từng task, ghi lát cắt/đầu ra/test và các gói [H] ≤3 quyết định; không dùng một hàng để làm hoặc duyệt cả cụm.
+Subtask đã phân rã tại [bảng R02](#r02-subtasks). Phân rã là kế hoạch, không phải đã duyệt trước các hợp đồng hoặc quyền cài/chạy. Trước mỗi [H], trình riêng tối đa 3 quyết định, giải thích dễ hiểu; nếu còn quá rộng thì tách tiếp trước làm.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|
@@ -417,6 +429,37 @@ Subtask: **chưa phân rã**. Trước mở từng task, ghi lát cắt/đầu r
 | R02-T09 — Resume cơ bản | Đọc đủ nguồn, task, quy ước thực thi và chuỗi điểm quay lại; kiểm tra thực tế trước tiếp tục, gồm kết quả Human chạy phát hành. | Phiên mới không cần kể lại; thiếu docs/công cụ hoặc side effect chưa rõ phải dừng đúng chỗ. Job/cảnh báo đã được phép duy trì độc lập phiên AI/laptop; truy lần triển khai, đúng hồ sơ/revision và bản thực chạy trước retry, không ghi đè lần lỗi. |
 | R02-T10 — Đo sớm và thử luồng lõi | Manifest biến thể, benchmark đọc/status và phiên AI mới dùng bản cài thử. | Trình ngưỡng đọc/status, manifest và số lần AI theo chính sách R01 trước chạy nghiệm thu; giữ toàn bộ mẫu, không tự nâng chuẩn để đạt. |
 | R02-T11 — Khép lõi | Hồi quy init → status → reject/sửa/approve → ngắt/resume. | Human review tích hợp; change/visualize chưa có phải báo chưa hỗ trợ. |
+
+<a id="r02-subtasks"></a>
+
+### Phân rã R02 — kế hoạch theo từng lát cắt
+
+Mỗi ô có mã con đầy đủ, đầu ra và kiểm tra. Trong mỗi task làm S01 → S02 → S03 → S04 nếu có; task sau mặc định phụ thuộc task trước. [H] phải dừng chờ duyệt đúng gói, [A] chỉ thực hiện trong hợp đồng/quyền đã có. Các lựa chọn chưa chốt không biến thành quyền từ bảng này; không có subtask nào mặc nhiên DONE.
+
+| Task | S01 | S02 | S03 | S04 |
+|---|---|---|---|---|
+| R02-T01 | **R02-T01-S01 [H]** Công cụ chạy helper và dependency tối thiểu; đối chiếu khả dụng/giới hạn | **R02-T01-S02 [H]** Bản runtime, nguồn/vị trí skill và quyền cài thử; kiểm tra đích không đè bản có sẵn | **R02-T01-S03 [A]** Tạo khung một skill/helper tối thiểu theo lựa chọn; kiểm tra metadata, link và lệnh sai, chưa giả có lõi hoàn chỉnh | **R02-T01-S04 [A]** Thử nạp/gọi trong phiên mới trên vùng thử được phép; ghi khả năng thực, giới hạn và cleanup |
+| R02-T02 | **R02-T02-S01 [H]** ID/cây công việc và dữ liệu chưa phân rã; ví dụ không nhầm chưa có task với DONE | **R02-T02-S02 [H]** Nguồn INDEX/work/review và tham chiếu target/release; so ví dụ hai vùng, không bản sao dữ kiện | **R02-T02-S03 [A]** Mẫu hợp lệ/thiếu/trùng/sai link theo schema đã chốt; expected từng mẫu | **R02-T02-S04 [A]** Đối chiếu schema/mẫu với KA-03/09/25 và caller; ghi giới hạn, không nhận validator đã tồn tại |
+| R02-T03 | **R02-T03-S01 [H]** Hợp đồng duyệt/reject/N/A và gate con/cha; bảng tình huống đúng/sai phạm vi | **R02-T03-S02 [H]** Căn cứ nội dung/đầu vào và hiệu lực approval; so đổi nghĩa với sửa trình bày | **R02-T03-S03 [A]** Mẫu quyền đủ/thiếu, giả chỉ thị và approval cũ; giữ G3, expected không vượt quyền | **R02-T03-S04 [A]** Diễn tập/đối chiếu hợp đồng với schema và KA-05–08; chưa thay bằng chứng approve thực thi |
+| R02-T04 | **R02-T04-S01 [H]** Nhận diện bản nguồn/đầu vào và skill/schema/profile; hồ sơ release/revision/lần thực thi, chốt từng gói nếu quá 3 lựa chọn | **R02-T04-S02 [H]** Hợp đồng ghi dở/checkpoint/phục hồi và backup trong mô hình lỗi; quyền/bản trước/nguồn sửa thêm | **R02-T04-S03 [A]** Mẫu trước/giữa/sau ghi, side effect chưa rõ và evidence; đối chiếu G4/G6/KQ-10 | **R02-T04-S04 [A]** Rà đồng bộ schema/approval/case/giới hạn phục hồi; chưa chứng nhận cơ chế ghi an toàn |
+| R02-T05 | **R02-T05-S01 [H]** Hợp đồng đọc/validator/status: đầu vào, lỗi/đầu ra và ranh giới chỉ đọc; chốt parser/dependency nếu cần | **R02-T05-S02 [A]** Viết bộ đọc và status cho schema đã chốt; test mẫu hợp lệ/thiếu/sai và lệnh sai | **R02-T05-S03 [A]** Thử UTF-8/CRLF/đường dẫn khác mặc định, nguồn đổi và phiên AI; so file trước/sau, không sửa nguồn | — |
+| R02-T06 | **R02-T06-S01 [H]** Thiết kế cơ chế ghi/phục hồi thực thi theo T04; chốt cách phát hiện nguồn đổi và giới hạn | **R02-T06-S02 [A]** Hiện thực từng đường ghi và tiêm lỗi; kiểm tra đích/bản trước/không đè thay đổi | **R02-T06-S03 [A]** Thử lỗi giữa cập nhật/lỗi phục hồi, ngoài quyền và phiên AI; đối chiếu nội dung thật với KA-10 | — |
+| R02-T07 | **R02-T07-S01 [H]** Hợp đồng init mới/cũ và template tối thiểu; ví dụ vị trí tài liệu khác mặc định | **R02-T07-S02 [A]** Hiện thực init trên vùng thử; test không ghi đè, nguồn đã có và lỗi giữa tạo hồ sơ | **R02-T07-S03 [A]** Phiên AI mới thử đủ/thiếu quyền, ý Human/gợi ý AI và init lặp; hồi quy đọc/ghi | — |
+| R02-T08 | **R02-T08-S01 [H]** Giao diện ghi approval đúng gói/xác nhận và xử lý sai args; không thay ngữ nghĩa T03 | **R02-T08-S02 [A]** Hiện thực approve/reject theo hợp đồng; test sai ID, cũ, thiếu điều kiện, gate con/cha | **R02-T08-S03 [A]** Phiên mới thử giả approval/quyền và lời góp ý; đối chiếu lời báo–record–hành động, hồi quy | — |
+| R02-T09 | **R02-T09-S01 [H]** Hợp đồng resume/điểm quay lại và tra tác dụng phụ chưa rõ; mẫu đủ/thiếu căn cứ | **R02-T09-S02 [A]** Hiện thực đọc/checkpoint/đối chiếu; test thiếu file/conflict/khác bản và không replay mù | **R02-T09-S03 [A]** Phiên mới từ hồ sơ dở/nguồn đổi, có và chưa có kết quả operation; giữ bằng chứng lỗi, không diễn tập PROD | — |
+| R02-T10 | **R02-T10-S01 [H]** Chốt manifest/fixture, loạt đo thăm dò và số lần AI trọng yếu trước chạy; không lấy số nháp làm chuẩn | **R02-T10-S02 [A]** Đo đọc/status sớm và thử độc lập trên bản cố định được phép; giữ toàn bộ số/lỗi/điều kiện | **R02-T10-S03 [H]** Trình ngưỡng từ nhu cầu/máy/số đo, chốt bộ nghiệm thu trước lượt kết luận | **R02-T10-S04 [A]** Chạy theo chuẩn đã duyệt; nếu sửa thì hồi quy/đo lại, không nâng chuẩn để lấy đạt |
+| R02-T11 | **R02-T11-S01 [A]** Kiểm chứng tích hợp lõi trên bản cuối, cả đường lỗi; phân biệt helper/AI và hiệu lực evidence | **R02-T11-S02 [A]** Rà nguồn/schema/skill/giới hạn/cleanup; action chưa xây báo chưa hỗ trợ, không nhận toàn Kidea xong | **R02-T11-S03 [H]** Review kết quả/giới hạn R02 và cho mở R03 đúng phạm vi; quyền hồ sơ pilot riêng | — |
+
+Phiên AI ở từng task chỉ chạy sau khi chốt đầu vào/biến thể, quyền và số lần theo T09; T10 tổng hợp không hoãn mọi thử đến cuối. Nếu còn lựa chọn fixture/số lần chưa chốt khi tới [A], bổ sung gói [H] ở chính task đó trước chạy. Không dùng tên [A] để bỏ gate nghiệm thu.
+
+<a id="r02-t01-evidence"></a>
+
+### Căn cứ lựa chọn đầu R02-T01 — kiểm tra ngày 2026-09-11
+
+- Read-only local: `node --version` trả `v22.18.0`, `python --version` trả `Python 3.12.10`; đây chỉ là phiên bản lệnh hiện tại, không quét mọi bản đã cài hoặc chứng minh helper Kidea. Chưa cài/nâng runtime.
+- [Node Releases](https://nodejs.org/en/about/previous-releases) ghi dòng 24 là LTS; [trang 24.21.0](https://nodejs.org/en/blog/release/v24.21.0) là bản ứng viên để kiểm tra ở S02, không phải đã được duyệt/cài. [Test runner Node 24](https://nodejs.org/docs/latest-v24.x/api/test.html) có bộ chạy test tích hợp; chọn công nghệ không chứng minh tốc độ hoặc độ an toàn ghi.
+- [OpenAI — Build skills](https://learn.chatgpt.com/docs/build-skills) mô tả một thư mục SKILL.md với scripts/references tùy nhu cầu và phân biệt hướng dẫn với mã thực thi. Dùng skill-creator để giữ entrypoint gọn, chỉ thêm helper có tác dụng xác định; chưa tạo plugin/server hoặc gọi API riêng. Nơi nạp thực tế và quyền cài phải xác minh ở S02/S04, không suy từ tài liệu rằng phiên hiện tại đã nhận Kidea.
+- So sánh cho phạm vi này: Python cũng phù hợp helper file và đã có trên máy; chọn Node giúp helper và phần view JavaScript sau này không cần hai ngôn ngữ. Đánh đổi: phải chuẩn bị bản Node được chọn và ghi nhận tương thích thực, không dùng bản global cũ làm bằng chứng Node 24. Không tuyên bố Node nhanh hơn Python hoặc đổi ngôn ngữ backend C++/web/native của sản phẩm.
 
 <a id="r03"></a>
 
