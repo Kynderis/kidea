@@ -10,7 +10,7 @@ Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ
 
 Tài liệu này là nguồn thiết kế; roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào; `answer.md` là bản sao câu trả lời để đọc từ xa. Human yêu cầu bắt đầu vòng rà soát R2 từ đầu ngày 2026-09-08: lựa chọn đã duyệt là căn cứ để xác nhận/điều chỉnh từng phần, không tự chuyển DONE/APPROVED của vòng trước sang vòng mới. [Chỉ đọc gói hiện tại](KIDEA_ROADMAP.md#review-current); [đối chiếu lộ trình cũ → mới](KIDEA_ROADMAP.md#coverage). Các mã gói P01 còn giữ dưới đây là nhận diện bằng chứng lịch sử, không phải task đang chạy.
 
-Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). [G1](#git-working-layout), vị trí kiểm chứng/tích hợp [G2](#git-integration-gate) và chính sách [G3](#git-permissions) đã đồng bộ theo [approval ngày 2026-09-11](KIDEA_ROADMAP.md#r01-t06-s01-result); nghĩa vụ kiểm tra cuối G2 theo [kết quả T05](KIDEA_ROADMAP.md#r01-t05-result) giữ nguyên. Chi tiết checkpoint G4 và version/release G5–G6 còn phần chưa duyệt; approval thiết kế không cấp quyền thực thi cho project/pilot cụ thể.
+Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). [G1](#git-working-layout), vị trí kiểm chứng/tích hợp [G2](#git-integration-gate) và chính sách [G3](#git-permissions) đã đồng bộ theo [approval ngày 2026-09-11](KIDEA_ROADMAP.md#r01-t06-s01-result); nghĩa vụ kiểm tra cuối G2 theo [kết quả T05](KIDEA_ROADMAP.md#r01-t05-result) giữ nguyên. [G4 lưu/khôi phục việc dở](#git-checkpoint) đã được duyệt theo [kết quả T06](KIDEA_ROADMAP.md#r01-t06-result); version/release G5–G6 còn phần chưa duyệt. Approval thiết kế không cấp quyền thực thi cho project/pilot cụ thể.
 
 [Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đã được Human duyệt tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Human đã duyệt Kotlin + Jetpack Compose, Swift + SwiftUI và [cách tích hợp SEO vào gate quy trình](#seo-proposal); ma trận phiên bản/môi trường r3 đã được duyệt; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
 
@@ -399,7 +399,7 @@ Human đã duyệt phương án tại [R01-T06-S01-r3 ngày 2026-09-11](KIDEA_RO
 
 Trước mọi thao tác phải xác minh repo/nền/target, thay đổi có sẵn và quyền. Không cuốn nội dung của Human, secret hoặc dữ liệu riêng vào commit; không tự force-push/reset/xóa lịch sử, bỏ kiểm tra hoặc đổi nghiệp vụ để lấy PASS. Quyền dev không cho production/dữ liệu thật, gửi thông báo hoặc phát sinh chi phí ngoài phạm vi. Service, cảnh báo và job cần chạy dài phải hoạt động ở môi trường thực thi phù hợp khi phiên AI/laptop đóng.
 
-[Nhánh bảo trì](#production-bugfix-flow) có vòng đời theo dòng được hỗ trợ; xóa nhánh cần quyền và bảo toàn các bản phát hành/bằng chứng/phục hồi. Chi tiết checkpoint G4 và version/release G5–G6 tiếp tục ở đúng gói; không coi đã duyệt toàn bộ chúng hoặc ngưỡng QUALITY. Quyền ghi/push answer.md riêng của repo xây Kidea giữ nguyên. [Căn cứ nghiên cứu](exa-results/kidea-local-delivery-profiles-2026-09-11.md).
+[Nhánh bảo trì](#production-bugfix-flow) có vòng đời theo dòng được hỗ trợ; xóa nhánh cần quyền và bảo toàn các bản phát hành/bằng chứng/phục hồi. G4 theo [chính sách lưu/khôi phục đã duyệt](#git-checkpoint); version/release G5–G6 tiếp tục ở đúng gói, không coi đã duyệt toàn bộ chúng hoặc ngưỡng QUALITY. Quyền ghi/push answer.md riêng của repo xây Kidea giữ nguyên. [Căn cứ nghiên cứu](exa-results/kidea-local-delivery-profiles-2026-09-11.md).
 
 ### 4.4. Quyền thao tác không đi kèm approval nội dung
 
@@ -486,7 +486,7 @@ Vòng R2: D1–D2 của `R01-T02-S02-r1` đã được Human duyệt; [bằng ch
 
 Ví dụ: rule “không vượt sức chứa” ở tài liệu nghiệp vụ; record review tham chiếu đúng bản rule, còn tiến trình tham chiếu record review. INDEX/HTML có thể hiển thị tóm tắt nhưng không tạo một bản rule hoặc approval độc lập; nguồn đổi phải được đối chiếu trước khi tiếp tục phần phụ thuộc.
 
-Một repo chứa tài liệu, hồ sơ điều phối và source/test/config cần quản lý phiên bản; không có repo `.kidea` riêng cho cùng sản phẩm. Các clone/worktree của cùng repo không phải project hoặc nguồn đặc tả độc lập. G1/G2/G3 đã chốt tổ chức, kiểm chứng và chính sách quyền; G4–G6 còn chi tiết chưa duyệt, quyền thực thi vẫn phải gắn project cụ thể. Repository xây chính Kidea này chưa là project mẫu do skill quản lý: các file `KIDEA_*` ở root vẫn là nguồn thiết kế/lộ trình hiện hành, không tự di chuyển chúng sang cây pilot.
+Một repo chứa tài liệu, hồ sơ điều phối và source/test/config cần quản lý phiên bản; không có repo `.kidea` riêng cho cùng sản phẩm. Các clone/worktree của cùng repo không phải project hoặc nguồn đặc tả độc lập. G1–G4 đã chốt tổ chức, kiểm chứng, chính sách quyền và lưu/khôi phục việc dở; G5–G6 còn chi tiết chưa duyệt, quyền thực thi vẫn phải gắn project cụ thể. Repository xây chính Kidea này chưa là project mẫu do skill quản lý: các file `KIDEA_*` ở root vẫn là nguồn thiết kế/lộ trình hiện hành, không tự di chuyển chúng sang cây pilot.
 
 <a id="git-working-layout"></a>
 
@@ -496,7 +496,7 @@ Theo [approval cập nhật ngày 2026-09-11](KIDEA_ROADMAP.md#r01-t06-s01-resul
 
 Mặc định dùng thư mục làm việc hiện có; chỉ đề xuất worktree khi cần giữ nguyên thư mục/bản đang kiểm tra và mở riêng bản cần sửa. Worktree thuộc cùng repo, không tạo project hoặc nguồn hồ sơ độc lập và không mở nhiều luồng triển khai. Phải nhận diện đúng repo/nhánh/bản nguồn khi đổi thư mục; thư mục phụ có thể cần thêm dependency/artifact và dung lượng.
 
-G1 không thay nghĩa vụ kiểm chứng G2 hoặc quyền project G3. Checkpoint/khôi phục G4 và version/release G5–G6 còn chi tiết phải chốt; approval phương án không tự cấp quyền tạo/chuyển/xóa branch/worktree hoặc thao tác Git trên một project thực tế.
+G1 không thay nghĩa vụ kiểm chứng G2 hoặc quyền project G3. Checkpoint/khôi phục theo [G4 đã duyệt](#git-checkpoint); version/release G5–G6 còn chi tiết phải chốt. Approval phương án không tự cấp quyền tạo/chuyển/xóa branch/worktree hoặc thao tác Git trên một project thực tế.
 
 <a id="git-integration-gate"></a>
 
@@ -512,7 +512,7 @@ Human đã duyệt nghĩa vụ chất lượng R01-T05-S02-r3 cùng hai điểm 
 
 Ví dụ cho phép hủy khi PAUSED: cập nhật rule và quyền, backend, các client, event/số chỗ và test liên quan. Task sửa backend có thể chạy unit/API test trước; task cập nhật client chạy test tương ứng. Khi toàn đợt xong, chạy bộ hồi quy project để phát hiện cả lỗi làm sai đăng ký mới, số chỗ hoặc các luồng cũ. Sau triển khai, kiểm tra luồng hủy và số chỗ trên đúng bản đang chạy.
 
-Luồng từ master ở trên là trường hợp bắt đầu đợt độc lập khi bản nền đủ dùng. Với bổ sung vào chính MVP đang làm, [nguyên tắc đã chốt](#mvp-replanning-state) giữ tiến độ/bằng chứng rồi điều chỉnh cùng kế hoạch, không tạo luồng tạm dừng/khôi phục riêng hoặc bỏ phần chưa commit. Với bug production, [cách chọn nền sửa lỗi](#production-bugfix-flow) phân biệt master với bản thực sự đang chạy. Chi tiết lưu dở và bản phát hành còn lại thuộc G4–G6; mỗi lúc chỉ một việc triển khai.
+Luồng từ master ở trên là trường hợp bắt đầu đợt độc lập khi bản nền đủ dùng. Với bổ sung vào chính MVP đang làm, [nguyên tắc đã chốt](#mvp-replanning-state) giữ tiến độ/bằng chứng rồi điều chỉnh cùng kế hoạch, không tạo luồng tạm dừng/khôi phục riêng hoặc bỏ phần chưa commit. Với bug production, [cách chọn nền sửa lỗi](#production-bugfix-flow) phân biệt master với bản thực sự đang chạy. Lưu dở theo [G4](#git-checkpoint), chi tiết bản phát hành còn lại thuộc G5–G6; mỗi lúc chỉ một việc triển khai.
 
 Gói thiết kế/tài liệu thuần chưa tuyên bố khép Feature có thể commit/push khi tài liệu hoàn chỉnh, kiểm tra đúng loại, đủ gate/quyền; không buộc deploy dev khi không ảnh hưởng bản chạy. Ngoại lệ này không miễn lượt toàn dự án khi đóng một Feature. Master không mặc nhiên là production; phương án không duyệt ngưỡng QUALITY, thuật toán tích hợp hoặc cơ chế bảo vệ cụ thể. Nếu phát hiện master lỗi sau push, chặn xác nhận đạt/deploy phụ thuộc, sửa và kiểm chứng bản mới; không gọi kiểm tra trước push là bảo đảm tuyệt đối master luôn đúng.
 
@@ -566,6 +566,22 @@ Nội dung đọc từ hồ sơ phải được chèn vào HTML như dữ liệu
 
 ## 6. Resume qua phiên hoặc máy khác
 
+<a id="git-checkpoint"></a>
+
+### 6.1. G4 — lưu và phục hồi việc dở đã duyệt
+
+Human đã duyệt hai quy tắc sau tại [kết quả R01-T06](KIDEA_ROADMAP.md#r01-t06-result). Đây là trách nhiệm của Kidea, không phải yêu cầu Human tự ghi nhật ký hoặc commit liên tục.
+
+**Lưu theo mốc:** sau mỗi task, trước đổi việc/đổi bản nền và trước chủ động kết thúc phiên, lưu các file đang làm cùng điểm tiếp tục: bản nền, nội dung chưa commit, phần đã/chưa xong, kết quả kiểm tra/approval còn hiệu lực, blocker và việc kế tiếp. Hồ sơ điều phối tham chiếu nội dung thực ở đúng nguồn; không chỉ ghi tên commit hoặc trạng thái mà bỏ file đang sửa. Dùng hồ sơ/cách lưu project đã có, không ép branch/file checkpoint riêng hay commit từng lần chỉnh sửa. Việc dở chưa đạt vẫn được giữ local; lưu không biến nó thành DONE hoặc bản đủ điều kiện push/deploy. Ngắt bất ngờ phải đối chiếu file/thực tế từ mốc đã lưu, không giả đã kịp lưu phần chưa có.
+
+**Phục hồi lỗi ghi local:** mặc định đối chiếu rồi sửa tiếp. Trong quyền ghi project đã chốt, Kidea được tự hoàn tác một bước ghi lỗi do chính nó gây ra khi có bản ngay trước đã xác minh, đúng file thuộc nhiệm vụ và chứng minh file chưa bị Human/thao tác khác sửa thêm; sau đó kiểm tra lại. Nếu thiếu bản/căn cứ, có conflict hoặc không tách được nội dung thì giữ nguyên và hỏi, không lấy bản cũ đè lên thay đổi của Human. Không tự reset lịch sử Git, hoàn tác commit đã chia sẻ, replay migration hoặc phục hồi database/môi trường ngoài repo theo quyền này.
+
+Ví dụ đang làm chức năng hủy: backend đã đạt, giao diện chưa xong thì lưu đủ file và ghi tiếp tục giao diện, không nhận cả Feature đã đạt. Nếu AI ghi mất đoạn trong file được giao, chỉ phục hồi từ bản trước đã xác minh khi không có sửa thêm; nếu Human cũng sửa file thì dừng hỏi.
+
+G4 không chọn schema, công cụ backup hoặc thuật toán ghi/khôi phục; các cơ chế và mô hình lỗi phải được thiết kế/kiểm chứng ở R02. Không nhận đã chống mất điện/hỏng ổ đĩa hoặc khôi phục được việc chưa chuyển sang máy khác chỉ từ quy tắc này. Không cấp quyền pilot hoặc thay G2, ngưỡng QUALITY và giới hạn production.
+
+### 6.2. Đối chiếu trước khi tiếp tục
+
 1. Tìm root project và `.kidea/INDEX.md`; không tự init lại nếu đã có trạng thái.
 2. Đọc điểm vào, phiên bản định dạng, bước hiện hành và `.kidea/work.md`; theo link tới mục tiêu/phạm vi nguồn.
 3. Đọc đầy đủ tài liệu sản phẩm trong `docs/` hoặc vị trí nguồn được chỉ định, hồ sơ review trong `.kidea` và các dependency cần cho mục đang xử lý; không lấy bản tóm tắt thay cho nội dung cần phân tích.
@@ -577,7 +593,7 @@ Resume không cần đọc toàn bộ project mỗi lần, nhưng khi phân tíc
 
 Human chọn Git để chuyển công việc giữa máy: lưu `.kidea`, tài liệu sản phẩm (`docs/` hoặc nguồn được chỉ định), source/test/config và các file cần để khôi phục công việc trong cùng repo; sau khi máy đích pull, `resume` tự đọc hồ sơ trên đĩa để xác định việc đang dở và quyền tiếp tục. Chỉ chuyển `.kidea` là không đủ. Không yêu cầu một dịch vụ đồng bộ Kidea. Không đưa secret, dữ liệu riêng tư hoặc đầu ra không được phép chia sẻ vào Git.
 
-Máy đích vẫn cần Kidea khả dụng và đúng phiên bản công cụ/profile. Resume kiểm tra source/hồ sơ có khớp nhau, thiếu file hoặc conflict, thay đổi ngoài luồng và hiệu lực approval; không tin riêng một dòng trạng thái đã được push. Checkpoint local không phụ thuộc việc đã commit; phần chưa push không có ở máy khác. Quyền đọc/tiếp tục không tự cấp quyền clone/pull/push, chuyển branch hoặc xử lý conflict: đối chiếu quyền project trước thực hiện, không ghi đè thay đổi có sẵn hoặc giả khôi phục được file chưa chuyển sang. Chi tiết lưu dở/khôi phục còn được chốt ở [G4](KIDEA_ROADMAP.md#git-checkpoint-proposal).
+Máy đích vẫn cần Kidea khả dụng và đúng phiên bản công cụ/profile. Resume kiểm tra source/hồ sơ có khớp nhau, thiếu file hoặc conflict, thay đổi ngoài luồng và hiệu lực approval; không tin riêng một dòng trạng thái đã được push. Checkpoint local không phụ thuộc việc đã commit; phần chưa push không có ở máy khác. Quyền đọc/tiếp tục không tự cấp quyền clone/pull/push, chuyển branch hoặc xử lý conflict: đối chiếu quyền project trước thực hiện, không ghi đè thay đổi có sẵn hoặc giả khôi phục được file chưa chuyển sang. Lưu và phục hồi việc dở theo [G4 đã duyệt](#git-checkpoint); không coi checkpoint local là backup ở máy khác.
 
 <a id="change"></a>
 
@@ -627,7 +643,7 @@ Nếu thực sự chuyển sang một việc độc lập, ví dụ sửa lỗi 
 
 #### Đã chốt: nền sửa lỗi production và dòng bảo trì
 
-Nguyên tắc nền sửa lỗi tại [kết quả R01-T05](KIDEA_ROADMAP.md#r01-t05-result) và phương án bảo trì tại [approval ngày 2026-09-11](KIDEA_ROADMAP.md#r01-t06-s01-result) là ràng buộc cho G4/G6 và tiếp nhận yêu cầu mới; chưa duyệt toàn bộ chi tiết các gói đó hoặc cấp quyền project cụ thể. Trước hết xác nhận lỗi là triển khai trái đặc tả của bản đang chạy, có cách tái hiện và test hồi quy bắt lỗi; nếu là đổi hành vi mong muốn thì đi luồng change. Xác minh đúng phiên bản/code, cấu hình, schema và gói triển khai thực tế; không chỉ đọc tên branch/tag.
+Nguyên tắc nền sửa lỗi tại [kết quả R01-T05](KIDEA_ROADMAP.md#r01-t05-result) và phương án bảo trì tại [approval ngày 2026-09-11](KIDEA_ROADMAP.md#r01-t06-s01-result) cùng [G4](#git-checkpoint) là ràng buộc cho G6 và tiếp nhận yêu cầu mới; chưa duyệt toàn bộ chi tiết release hoặc cấp quyền project cụ thể. Trước hết xác nhận lỗi là triển khai trái đặc tả của bản đang chạy, có cách tái hiện và test hồi quy bắt lỗi; nếu là đổi hành vi mong muốn thì đi luồng change. Xác minh đúng phiên bản/code, cấu hình, schema và gói triển khai thực tế; không chỉ đọc tên branch/tag.
 
 | Trạng thái bản nguồn | Nền và phạm vi sửa lỗi đã chốt |
 |---|---|
@@ -888,7 +904,7 @@ Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải c
 |---|---|
 | Xác nhận mục tiêu/ranh giới và nguồn tài liệu từng phần; không coi approval vòng trước là đã qua vòng mới | [R01-T01/T02](KIDEA_ROADMAP.md#r01) |
 | Nền tảng và pilot, gồm nơi giữ hồ sơ trước khi ghi | [R01-T03/T04](KIDEA_ROADMAP.md#r01) |
-| Git: G1/G2/G3 đã đồng bộ theo [approval 2026-09-11](KIDEA_ROADMAP.md#r01-t06-s01-result), giữ chất lượng G2; còn chi tiết checkpoint G4 và version/release G5–G6 | [R01-T06/T07](KIDEA_ROADMAP.md#r01); chính sách thiết kế không tự cấp quyền project |
+| Git: G1–G4 đã đồng bộ theo [kết quả T06](KIDEA_ROADMAP.md#r01-t06-result), giữ chất lượng G2; còn version/release G5–G6 | [R01-T07](KIDEA_ROADMAP.md#r01); schema/cơ chế ghi ở R02, không tự cấp quyền project |
 | Case, tiêu chí đúng/an toàn, evidence và cách chốt số đo | [R01-T08/T09](KIDEA_ROADMAP.md#r01); số cũ trong QUALITY vẫn chưa duyệt |
 | Runtime, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
 | Phân rã nghiệp vụ, AC và chọn business test | [R03](KIDEA_ROADMAP.md#r03) |
