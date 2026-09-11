@@ -1,27 +1,18 @@
-Đã chốt nhóm **điều phối/quyền/lưu–resume** và đồng bộ tài liệu đúng phạm vi; chưa chạy kiểm thử hoặc duyệt toàn bộ QUALITY.
+Hai mục này để **kiểm tra Kidea có tìm đúng những phần cần sửa khi yêu cầu thay đổi hay không**.
 
-Tiếp theo là **R01-T08-S02 — nghiệp vụ, bản đồ và phân tích ảnh hưởng**. Mình đề xuất:
+**1. Phạm vi bài thử = Cho Kidea làm bài gì?**
 
-**1. Phạm vi bài thử**
+Ví dụ tạo một bài mẫu: đổi mức giảm giá từ 10% lên 15%. Yêu cầu Kidea tìm những phần cần xem lại: quy định giảm giá, tính tiền, hiển thị giá và bài kiểm tra liên quan.
 
-Kiểm tra rule dùng chung, điểm mơ hồ, AC/test; truy từ đặc tả sang code/test và ngược lại; map thiếu/cũ hoặc link đúng nhưng sai nghĩa. Bao gồm thêm Feature giữa MVP, đổi sau release, hotfix, ảnh hưởng qua phần không có diff, vòng phụ thuộc và di chuyển/xóa nội dung.
+**2. Cách xác nhận đạt = Chấm bài đó thế nào?**
 
-Thử cả nơi **cần sửa** và nơi có căn cứ **không cần sửa**; không hỏi lại các nguyên tắc MVP/hotfix đã chốt.
+Chuẩn bị đáp án của bài mẫu trước, rồi so với kết quả Kidea:
 
-**2. Cách xác nhận đạt**
+- Có tìm thiếu phần cần sửa không?
+- Có bắt sửa phần không liên quan không?
+- Có báo xong khi vẫn còn việc chưa xử lý không?
 
-Chuẩn bị mẫu có tập ảnh hưởng và kết quả mong đợi được review trước, rồi đối chiếu độc lập với kết quả Kidea:
-
-- Không bỏ sót phần bắt buộc.
-- Kết luận có căn cứ, đúng phiên bản.
-- Không đóng việc khi còn phần chưa xử lý hoặc chưa đủ thông tin.
-- Tìm thêm quan hệ hợp lệ được phép; link/graph hợp lệ không tự chứng minh đúng nghĩa.
-
-Ví dụ: **B đổi cách làm tròn → A dùng B nhưng không sửa code → D dùng kết quả A**. Kidea vẫn phải xét ảnh hưởng đến D, không dừng vì A “không có diff”.
-
-Đạt trên mẫu hữu hạn không chứng minh tìm hết mọi dependency của mọi project; pilot vẫn cần kiểm chứng thật. Chưa chốt công cụ, thuật toán, số lần chạy hoặc giới hạn vòng lặp.
-
-Bạn duyệt hai điểm này nhé? [Gói review trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).
+Nói ngắn gọn: **mục 1 chọn đề bài, mục 2 đặt cách chấm.** Đây là kiểm tra chính Kidea, chưa phải xây tính năng sản phẩm hay chạy thử ngay.
 
 <oai-mem-citation>
 <citation_entries>
