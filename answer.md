@@ -1,20 +1,23 @@
-Đã chốt phương án và đồng bộ thiết kế, lộ trình cùng các ca nghiệm thu: **một master chính, kiểm chứng điều khiển từ local, AI chạy DEV, Human chạy PROD; nhánh bảo trì khi cần.** Giữ nguyên toàn bộ nghĩa vụ review/test sau mỗi Feature.
+Đây là **hai quy tắc dành cho AI**, không phải hai việc bạn phải tự làm.
 
-**Tiếp theo: chốt cách lưu và phục hồi việc dang dở** — gói `R01-T06-S02-r1`. Mình đề xuất hai điểm:
+**1. Trước khi dừng hoặc chuyển việc, AI phải lưu đủ để lần sau làm tiếp.**
 
-1. **Lưu theo mốc công việc.** Cập nhật điểm tiếp tục sau mỗi task, trước đổi việc/đổi bản nguồn và trước chủ động kết thúc phiên. Giữ cả nội dung chưa commit, bản nền, việc đã/chưa làm, kết quả kiểm tra và bước tiếp theo. Không ép tạo nhánh/file riêng hoặc commit mỗi lần sửa; phần chưa đạt vẫn giữ local, không tự đẩy lên master hay deploy.
+Ví dụ AI đang làm chức năng hủy đăng ký:
 
-2. **Chỉ tự phục hồi lỗi ghi local trong giới hạn rõ.** AI có thể hoàn tác bước ghi lỗi của chính mình khi có bản trước đã xác minh, đúng file thuộc nhiệm vụ/quyền project và chưa bị bạn hoặc thao tác khác sửa thêm; sau đó kiểm tra lại. Nếu thiếu căn cứ, có xung đột hoặc không tách được phần thay đổi thì giữ nguyên và hỏi. Quyền này **không** cho tự reset lịch sử Git, hoàn tác commit đã chia sẻ, chạy lại migration hoặc khôi phục database/môi trường.
+- Backend đã xong và đã kiểm tra.
+- Giao diện đang làm dở.
+- Việc tiếp theo là hoàn thiện nút hủy rồi kiểm tra cả luồng.
 
-Bạn đồng ý hai điểm này chứ? Sau đó mình sẽ khép phần lưu/khôi phục và chuyển sang quy tắc version cùng hồ sơ bản phát hành.
+AI phải **lưu các file đang làm và ghi lại tình trạng trên**. Lần sau mở lại, AI biết tiếp tục từ đâu, không bắt bạn kể lại hoặc làm lại từ đầu.
 
-[Gói cần duyệt trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Đã kiểm tra liên kết, trạng thái và giữ đủ 30 họ kịch bản; hiện chỉ cập nhật tài liệu, chưa xây skill hoặc chạy pilot.
+Việc này thực hiện sau mỗi task, trước chuyển việc và trước chủ động kết thúc phiên; không cần ghi chép sau từng dòng code. **Lưu việc dở không có nghĩa công việc đã đạt hoặc được phép deploy.**
 
-<oai-mem-citation>
-<citation_entries>
-MEMORY.md:52-52|note=[repository scoped answer publication reverified]
-</citation_entries>
-<rollout_ids>
-01a064b8-dde1-7882-acc1-7d02d6f568c8
-</rollout_ids>
-</oai-mem-citation>
+**2. Nếu AI làm hỏng file do thao tác ghi của chính nó, cho phép nó sửa lại một cách an toàn.**
+
+Ví dụ AI cập nhật một file nhưng vô tình ghi mất một đoạn. Nếu AI còn bản ngay trước khi ghi và chắc chắn chưa có ai sửa thêm file đó, nó được khôi phục đoạn bị mất rồi kiểm tra lại — trong phạm vi file đã được phép sửa.
+
+Nhưng nếu bạn cũng vừa sửa file đó, AI **không được lấy bản cũ đè lên**, vì có thể mất phần bạn làm. Nó phải giữ nguyên và hỏi cách xử lý.
+
+Quyền này chỉ nhằm sửa lỗi ghi file trên máy đang làm việc; **không phải quyền tự lùi cả dự án, sửa lịch sử Git đã chia sẻ hay khôi phục database/production**.
+
+Nói ngắn gọn: **điểm 1 để không mất dấu việc đang làm; điểm 2 để AI sửa lỗi của mình mà không làm mất việc của bạn.**
