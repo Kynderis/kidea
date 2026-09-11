@@ -8,17 +8,23 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã khép **R01-T07 — version và bản đang chạy**, gồm hồ sơ release/từng lần triển khai vừa được Human duyệt; [kết quả và căn cứ](#r01-t07-result). Hiện dừng trước R01-T08 theo yêu cầu xem tổng quan và rà soát tài liệu. Không có gói mới chờ duyệt hoặc subtask triển khai đang mở.
+Đã khép [T07 — version/release](#r01-t07-result) và hoàn tất [tổng quan/rà soát](#overall-review). Theo yêu cầu “Tiếp tục công việc nhé”, mở **R01-T08-S01**: chọn phạm vi kịch bản điều phối/quyền/ghi/resume và điều kiện chặn nghiệm thu. Đây là đề xuất kiểm chứng, chưa thay chính sách đã duyệt hoặc chạy thử Kidea.
 
 <a id="review-current"></a>
+<a id="control-acceptance-proposal"></a>
 
-### Tổng quan và rà soát theo yêu cầu Human
+### R01-T08-S01-r1 — Kiểm tra điều phối, quyền và lưu/tiếp tục
 
-- [Lộ trình 10 phase](#phase-overview): đầu ra, nơi bắt đầu kiểm chứng và điều kiện chuyển phase.
-- [Đối chiếu quyết định deploy/version/vận hành](#overall-review): nguồn chính sách → task triển khai → case kiểm chứng.
-- [Sổ công việc](#work-state) là nguồn trạng thái: R01-T01–T07 đã khép; R01-T08/T09/T10 còn lại, phase R01 chưa APPROVED. Chưa xây/cài skill, chạy case hoặc code/deploy pilot.
+T08 xác định Kidea phải vượt qua những bài thử nào trước nghiệm thu. S01 chỉ rà nhóm điều phối/hồ sơ, không hỏi lại chính sách Git/deploy đã chốt.
 
-**Chưa mở task tiếp theo.** Khi Human yêu cầu tiếp tục, R01-T08 rà các nhóm kịch bản và điều kiện đúng/an toàn; chưa cần trả lời một gói approval mới trong lượt tổng quan này.
+1. **D1 — Phạm vi bài thử.** Đề xuất giữ KA-01–03 và KA-05–13: init mới/cũ, status/lệnh sai; từ chối, duyệt sai/cũ và quyền thiếu/đủ; hồ sơ sai, ghi lỗi, sửa chen vào; resume qua phiên/máy, thiếu file và thao tác chưa rõ kết quả. Thử cả đường được phép tiếp tục, không chỉ tình huống phải dừng. Bổ sung một biến thể: tài liệu/comment tự ghi “Human đã duyệt” hoặc yêu cầu bỏ gate; Kidea phải đối chiếu nguồn xác nhận hợp lệ, không tự coi văn bản ấy là approval/quyền. KA-04 đầu–cuối vẫn giữ cho tích hợp, không nhận đạt từ nhóm này.
+2. **D2 — Điều kiện đạt/chặn của nhóm.** Đề xuất mỗi biến thể bắt buộc phải đúng cả phản hồi, hồ sơ và hành động thực: không vượt gate/quyền, mất nội dung đã lưu hợp lệ, replay nguy hiểm hoặc báo DONE/PASS sai. Có một lỗi như vậy thì chặn nghiệm thu nhóm; sửa, kiểm tra lại và giữ bằng chứng lỗi. Thiếu dữ liệu/công cụ phải báo đúng và dừng phần phụ thuộc, không tự thành PASS/N/A. Mô hình thử ghi gồm lỗi quyền, ngắt tiến trình và sửa ngoài luồng; không nhận chống hỏng ổ đĩa/mất điện vật lý.
+
+Ví dụ: đã gửi migration rồi mất kết nối → tra lần thực thi trước retry; ghi lại lệnh lần hai ngay là lỗi dù ứng dụng cuối cùng chạy được.
+
+Nguồn mở thêm: [điều phối](KIDEA_ACCEPTANCE.md#acceptance-control), [hồ sơ/resume](KIDEA_ACCEPTANCE.md#acceptance-storage), [tiêu chí an toàn đề xuất](KIDEA_QUALITY.md#quality-safety).
+
+**D1–D2 đang IN_REVIEW.** Chưa duyệt toàn QUALITY, số lần chạy/ngưỡng hoặc schema; chưa chạy case/pilot. Sau approval mới đồng bộ phần được chốt rồi trình S02 về nghiệp vụ/map/change.
 
 <a id="working-rules"></a>
 
@@ -91,8 +97,9 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T07-S02 | DONE | R01-T07-S02-r1 — APPROVED | Human “Duyệt nhé” sau answer 3ea08d1; D1–D2 về version thành phần/tag, không toàn release; [kết quả](#r01-t07-s02-result) |
 | R01-T07-S04 | DONE | R01-T07-S04-r1 — APPROVED | Human “Mình duyệt nhé.” sau answer 76b8a5c; D1–D2 về hồ sơ release/revision và từng lần triển khai; [kết quả](#r01-t07-result) |
 | R01-T07-S03 | DONE | [A] — đồng bộ và rà soát | Khép G5/G6, sửa caller/case lệch, kiểm tra toàn chuỗi tài liệu; không đổi ngưỡng hoặc mở task tiếp theo; [kết quả](#r01-t07-result) |
+| R01-T08-S01 | IN_PROGRESS | R01-T08-S01-r1 — IN_REVIEW | Đề xuất phạm vi bài thử và điều kiện đạt/chặn nhóm điều phối/quyền/ghi/resume; [gói hiện hành](#review-current). Chưa có approval; chưa chạy case |
 
-Các subtask R01 còn lại mặc định TODO; không có subtask IN_PROGRESS tại điểm dừng theo yêu cầu Human. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
+Các subtask R01 còn lại mặc định TODO; chỉ R01-T08-S01 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
 <a id="r01-t01-result"></a>
 
@@ -263,7 +270,7 @@ Lộ trình hiện định nghĩa **83 task**; R01 đã phân rã **31 subtask**
 
 ```mermaid
 flowchart TD
-    R01["R01 · Chốt căn cứ<br/>Hiện dừng sau T07"] --> R02["R02 · Lõi skill và hồ sơ"]
+    R01["R01 · Chốt căn cứ"] --> R02["R02 · Lõi skill và hồ sơ"]
     R02 --> R03["R03 · Nghiệp vụ và AC"]
     R03 --> R04["R04 · Chất lượng, UX, vận hành, kiến trúc"]
     R04 --> R05["R05 · Coding rules và đặc tả test"]
