@@ -10,7 +10,7 @@ Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ
 
 Tài liệu này là nguồn thiết kế; roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào; `answer.md` là bản sao câu trả lời để đọc từ xa. Human yêu cầu bắt đầu vòng rà soát R2 từ đầu ngày 2026-09-08: lựa chọn đã duyệt là căn cứ để xác nhận/điều chỉnh từng phần, không tự chuyển DONE/APPROVED của vòng trước sang vòng mới. [Chỉ đọc gói hiện tại](KIDEA_ROADMAP.md#review-current); [đối chiếu lộ trình cũ → mới](KIDEA_ROADMAP.md#coverage). Các mã gói P01 còn giữ dưới đây là nhận diện bằng chứng lịch sử, không phải task đang chạy.
 
-Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). [G1](#git-working-layout), vị trí kiểm chứng/tích hợp [G2](#git-integration-gate) và chính sách [G3](#git-permissions) đã đồng bộ theo [approval ngày 2026-09-11](KIDEA_ROADMAP.md#r01-t06-s01-result); nghĩa vụ kiểm tra cuối G2 theo [kết quả T05](KIDEA_ROADMAP.md#r01-t05-result) giữ nguyên. [G4 lưu/khôi phục việc dở](#git-checkpoint) đã được duyệt theo [kết quả T06](KIDEA_ROADMAP.md#r01-t06-result); version/release G5–G6 còn phần chưa duyệt. Approval thiết kế không cấp quyền thực thi cho project/pilot cụ thể.
+Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). [G1](#git-working-layout), vị trí kiểm chứng/tích hợp [G2](#git-integration-gate) và chính sách [G3](#git-permissions) đã đồng bộ theo [approval ngày 2026-09-11](KIDEA_ROADMAP.md#r01-t06-s01-result); nghĩa vụ kiểm tra cuối G2 theo [kết quả T05](KIDEA_ROADMAP.md#r01-t05-result) giữ nguyên. [G4 lưu/khôi phục việc dở](#git-checkpoint) đã được duyệt theo [kết quả T06](KIDEA_ROADMAP.md#r01-t06-result); [cách đánh số sản phẩm](#product-version) đã chốt theo [T07-S01](KIDEA_ROADMAP.md#r01-t07-s01-result); quy ước từng nền/tag và phần release G5–G6 còn chưa duyệt. Approval thiết kế không cấp quyền thực thi cho project/pilot cụ thể.
 
 [Phạm vi bản đầu](#first-release-scope) đã được Human đồng ý cùng các điều chỉnh ngày 2026-09-07. [Ma trận công nghệ](#platform-matrix) đã được Human duyệt tại `P01-T02`; Human đã chốt SvelteKit + TypeScript với prerender/SSR và realtime cho web. Human đã duyệt Kotlin + Jetpack Compose, Swift + SwiftUI và [cách tích hợp SEO vào gate quy trình](#seo-proposal); ma trận phiên bản/môi trường r3 đã được duyệt; chưa phải năng lực đã được triển khai hoặc kiểm chứng.
 
@@ -654,7 +654,7 @@ Ví dụ production là 1.0, master đã chứa tính năng cho 1.1 nhưng chưa
 
 Trên nền được chọn: cập nhật đủ nguồn, code/test/cấu hình và mọi ảnh hưởng; chạy test tập trung rồi toàn bộ lượt kiểm tra cuối của bản project ứng viên theo G2, kể cả phần không đổi. Khi tích hợp làm đổi đầu vào, phải có lượt toàn dự án trên bản kết hợp mới. Kiểm tra bản build và môi trường sau triển khai vẫn riêng; không tuyên bố production đã được sửa chỉ vì master đã nhận commit.
 
-Nhánh bảo trì đi theo dòng hỗ trợ, ví dụ `1.0.x`; tag `v1.0.1` giữ nguyên, lần vá tiếp phát hành `v1.0.2` rồi `v1.0.3` kế thừa các fix còn hợp lệ. Không luôn rẽ lại từ tag đầu làm mất bản vá trước; nếu bản mới bị thu hồi/rollback, chọn nền theo trạng thái thực tế chứ không lấy số version lớn nhất máy móc. Quy ước đặt version chi tiết thuộc G5/G6; thay đổi phá tương thích không tự là một patch an toàn.
+Nhánh bảo trì đi theo dòng hỗ trợ, ví dụ `1.0.x`; tag `v1.0.1` giữ nguyên, lần vá tiếp phát hành `v1.0.2` rồi `v1.0.3` kế thừa các fix còn hợp lệ. Không luôn rẽ lại từ tag đầu làm mất bản vá trước; nếu bản mới bị thu hồi/rollback, chọn nền theo trạng thái thực tế chứ không lấy số version lớn nhất máy móc. Số version sản phẩm theo [quy tắc đã duyệt](#product-version); quy ước từng nền/tag và hồ sơ release tiếp tục ở G5/G6. Thay đổi phá tương thích không tự là một patch an toàn.
 
 Mỗi fix bắt buộc có kết luận trên master: đã áp dụng bản sửa/giải pháp tương đương có kiểm chứng, hoặc không còn áp dụng/đã được sửa với lý do và bằng chứng. Không buộc chép nguyên patch nếu kiến trúc/đặc tả khác, cũng không để “nếu cần” thành quên kiểm tra. Tích hợp ý nghĩa bản sửa và test hồi quy, bảo toàn tiến độ và đồng bộ các phần liên quan; không để trạng thái/kế hoạch hotfix ghi đè công việc Feature trong .kidea. Cách merge/cherry-pick cụ thể chưa chọn tại đây.
 
@@ -701,6 +701,18 @@ Giữ một bộ đặc tả làm việc hiện hành, phân biệt trạng thá
 Theo [phạm vi bổ sung](#production-capabilities), hồ sơ release nhận diện các thành phần và tổ hợp cũ–mới; tách bản mong muốn, bản thực tế đã quan sát và thời điểm quan sát. Lệnh được nhận hoặc một thành phần thành công không xác nhận cả release đạt. Sự cố, kết quả thử nghiệm và thay đổi cấu hình quay qua cùng cơ chế impact/change; không lưu chúng thành thông tin rời khỏi nguồn yêu cầu/test/vận hành.
 
 Tài liệu làm việc sạch không đồng nghĩa xóa dữ liệu cần khôi phục production. Bản triển khai trước, backup và bằng chứng vận hành có thời hạn giữ được chốt riêng; không trộn chúng thành các rule cũ còn hiệu lực trong tài liệu hiện hành.
+
+<a id="product-version"></a>
+
+#### Cách đánh số phiên bản sản phẩm — đã duyệt
+
+Human đã duyệt tại [R01-T07-S01-r1](KIDEA_ROADMAP.md#r01-t07-s01-result). Mặc định cho project mới dùng ba số lớn.nhỏ.vá theo [SemVer 2.0.0](https://semver.org/spec/v2.0.0.html); project có quy ước phù hợp được giữ sau đối chiếu, không tự chuyển đổi hoặc tạo version/tag.
+
+Từ khi hợp đồng sử dụng ổn định: sửa lỗi tương thích tăng số vá (1.0.0 → 1.0.1); thêm chức năng giữ tương thích tăng số nhỏ, đưa số vá về 0 (1.0.1 → 1.1.0); phá tương thích tăng số lớn, đưa hai số sau về 0 (1.1.0 → 2.0.0). Project phải xác định hợp đồng công khai/cách dùng, API, dữ liệu/giao thức hoặc hành vi được cam kết; không phân loại theo số dòng code hoặc tên “bugfix”. Trước bản ổn định có thể dùng 0.x.y, không miễn kiểm chứng hay yêu cầu tương thích đã chốt.
+
+Version chung nhận diện tổ hợp sản phẩm, không bắt mọi thành phần build lại hoặc cùng số. Hồ sơ vẫn trỏ đúng bản/gói từng thành phần; web đổi nhưng backend không đổi thì giữ đúng gói backend cũ. Bản phát hành giữ nội dung bất biến; số version không tự chứng minh tương thích, chất lượng hoặc trạng thái triển khai. Đổi version nhúng/config làm gói khác phải kiểm chứng gói mới theo G2/G3.
+
+Quy ước version/build number từng nền, tên tag và phần release còn lại được trình riêng tại [T07](KIDEA_ROADMAP.md#review-current). Hợp đồng dữ liệu nhận diện thuộc R02, kiểm chứng thực thi thuộc R08–R10; approval này không cấp quyền tag/deploy hoặc duyệt QUALITY.
 
 <a id="three-maps"></a>
 
@@ -904,7 +916,7 @@ Những lựa chọn dưới đây còn mở; roadmap xác định nơi phải c
 |---|---|
 | Xác nhận mục tiêu/ranh giới và nguồn tài liệu từng phần; không coi approval vòng trước là đã qua vòng mới | [R01-T01/T02](KIDEA_ROADMAP.md#r01) |
 | Nền tảng và pilot, gồm nơi giữ hồ sơ trước khi ghi | [R01-T03/T04](KIDEA_ROADMAP.md#r01) |
-| Git: G1–G4 đã đồng bộ theo [kết quả T06](KIDEA_ROADMAP.md#r01-t06-result), giữ chất lượng G2; còn version/release G5–G6 | [R01-T07](KIDEA_ROADMAP.md#r01); schema/cơ chế ghi ở R02, không tự cấp quyền project |
+| Git: G1–G4 đã đồng bộ theo [kết quả T06](KIDEA_ROADMAP.md#r01-t06-result), giữ chất lượng G2; [số version sản phẩm](#product-version) đã chốt, còn quy ước từng nền/tag và release G5–G6 | [R01-T07](KIDEA_ROADMAP.md#r01); schema/cơ chế ghi ở R02, không tự cấp quyền project |
 | Case, tiêu chí đúng/an toàn, evidence và cách chốt số đo | [R01-T08/T09](KIDEA_ROADMAP.md#r01); số cũ trong QUALITY vẫn chưa duyệt |
 | Runtime, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
 | Phân rã nghiệp vụ, AC và chọn business test | [R03](KIDEA_ROADMAP.md#r03) |

@@ -1,22 +1,29 @@
-Đã ghi nhận duyệt hai quy tắc và khép phần **lưu/khôi phục việc dang dở**. Thiết kế, lộ trình và các ca kiểm tra liên quan đã được đồng bộ; chưa chạy skill hoặc pilot.
+Đã ghi nhận duyệt cách đánh số phiên bản và đồng bộ tài liệu.
 
-**Tiếp theo là cách đánh số phiên bản sản phẩm.** Lần này chỉ cần chốt một lựa chọn.
+**Tiếp theo có hai quy ước nhỏ cần chốt:**
 
-Mình đề xuất dùng ba số, ví dụ `1.0.0`:
+**1. Thành phần phát hành độc lập có version riêng.**
 
-| Loại thay đổi | Ví dụ phiên bản mới |
-|---|---|
-| Sửa lỗi, vẫn giữ cách dùng/kết nối cũ | `1.0.0 → 1.0.1` |
-| Thêm chức năng, vẫn tương thích với bản cũ | `1.0.1 → 1.1.0` |
-| Thay đổi khiến cách dùng/kết nối cũ không còn hoạt động | `1.1.0 → 2.0.0` |
+Ví dụ bản sản phẩm **1.1.0** gồm:
 
-Đây là nguyên tắc của [SemVer](https://semver.org/spec/v2.0.0.html). Ví dụ bỏ API mà ứng dụng cũ đang dùng là thay đổi phá tương thích; sửa nhiều dòng code chưa chắc là thay đổi loại này. Project cần xác định rõ những gì cam kết giữ tương thích.
+- Web **1.1.0** — vừa thêm chức năng.
+- Backend **1.0.0** — giữ nguyên vì không thay đổi.
 
-**Số phiên bản chung không bắt mọi thành phần phải build lại.** Chẳng hạn bản sản phẩm 1.1.0 chỉ đổi web thì hồ sơ phát hành ghi web mới đi cùng đúng gói backend cũ. Các quy tắc nhận diện gói, tag và phiên bản riêng từng nền sẽ được trình tiếp.
+Mình đề xuất dùng cùng nguyên tắc lớn.nhỏ.vá cho từng thành phần, theo những gì thành phần đó cam kết giữ tương thích. Không bắt tất cả tăng số theo sản phẩm.
 
-Đây là phương án mặc định cho project mới; project có quy ước phù hợp vẫn có thể giữ sau đối chiếu. Bản thử ban đầu có thể dùng `0.x.y`, nhưng không được bỏ các kiểm tra đã chốt.
+Ngoài version, mỗi gói build cần dấu nhận diện riêng để biết chính xác file nào đã kiểm tra. Với Android/iOS, số build tuân theo quy định của nền tảng; không ép mọi nơi dùng cùng một định dạng.
 
-Bạn duyệt cách đánh số này nhé? [Gói đang trình trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).
+**2. Tag bản phát hành đặt theo dạng `v<version>`.**
+
+Ví dụ `v1.1.0` là “dấu mốc” trong Git cho bản nguồn được chọn phát hành sản phẩm 1.1.0.
+
+Chỉ tạo khi bạn đã chọn bản, đủ kiểm chứng và có quyền thao tác; không tạo sau mỗi lần sửa. Tag đã phát hành không được chuyển sang nội dung khác.
+
+**Tag đánh dấu source, không thay gói build và không có nghĩa production đã cập nhật.** Hồ sơ phát hành vẫn phải ghi đúng gói web, backend, cấu hình và kết quả triển khai.
+
+Bạn duyệt hai quy ước này nhé? Sau đó mình trình phần hồ sơ phát hành: cần ghi những gì để không nhầm bản đã kiểm tra với bản thực sự đang chạy.
+
+[Gói đang trình trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Hiện chỉ cập nhật tài liệu, chưa tạo tag hoặc deploy.
 
 <oai-mem-citation>
 <citation_entries>

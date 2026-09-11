@@ -8,26 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã khép [R01-T06: quyền và lưu/khôi phục việc dở](#r01-t06-result). Task tiếp theo R01-T07 chốt **version và nhận diện bản phát hành**; hiện chỉ trình một lựa chọn mới về cách đánh số. Chưa mở triển khai skill hoặc pilot.
+Đã duyệt [cách đánh số phiên bản sản phẩm](#r01-t07-s01-result). Task R01-T07 tiếp tục với **version từng thành phần và tag phát hành**; chỉ hai lựa chọn dưới đây cần Human phản hồi. Chưa xây skill hoặc chạy pilot.
 
 <a id="review-current"></a>
 
-<a id="version-numbering-proposal"></a>
+<a id="component-tag-proposal"></a>
 
-### R01-T07-S01-r1 — Cách đánh số phiên bản
+### R01-T07-S02-r1 — Version từng thành phần và tag phát hành
 
-Task R01-T07 giúp nhận diện bản phát hành và các thành phần thực sự đi cùng nó. Phần đã chốt vẫn giữ: bản đã phát hành không đổi nội dung; Human chọn đúng gói/config; version chung không chứng minh mọi thành phần đã deploy thành công.
+Đã chốt cách tăng số phiên bản sản phẩm; không hỏi lại quy tắc đó. Gói này chỉ chọn hai quy ước nhận diện, chưa chốt toàn bộ hồ sơ/quy trình phát hành.
 
-**D1 — Đề xuất dùng ba số cho phiên bản sản phẩm: lớn.nhỏ.vá.** Theo SemVer, từ khi hợp đồng sử dụng ổn định:
-- `1.0.0 → 1.0.1`: sửa lỗi, không phá cách dùng/kết nối đã cam kết.
-- `1.0.1 → 1.1.0`: thêm chức năng nhưng vẫn giữ tương thích cũ.
-- `1.1.0 → 2.0.0`: thay đổi phá tương thích, chẳng hạn bỏ API mà client cũ còn dùng.
+1. **D1 — Mỗi thành phần có version riêng khi được phát hành riêng.** Đề xuất dùng cùng nguyên tắc lớn.nhỏ.vá theo hợp đồng của thành phần; không bắt tăng theo số sản phẩm nếu nó không đổi. Lần build được nhận diện riêng theo quy tắc nền tảng, gắn nguồn và dấu nhận diện nội dung gói; version hiển thị không đủ phân biệt hai lần build. Với native, giữ quy tắc version/build number của nền tảng được kiểm tra tại profile, không ép một chuỗi dùng được ở mọi trường. Ví dụ sản phẩm 1.1.0 gồm web 1.1.0 mới và backend 1.0.0 giữ nguyên; hồ sơ dẫn đúng gói của từng bên.
+2. **D2 — Tag sản phẩm có tên `v<version>`.** Ví dụ `v1.1.0` đánh dấu bản nguồn được chọn cho sản phẩm 1.1.0 trong repo; tạo sau khi Human chọn đúng bản và đủ kiểm chứng/quyền, không tự tạo sau mỗi commit. Tag đã phát hành không được dời sang nội dung mới. Không bắt thêm tag cho từng component nếu chưa có nhu cầu phát hành độc lập.
 
-Trước khi áp dụng, project phải chỉ rõ hợp đồng nào được cam kết giữ tương thích: API, dữ liệu/giao thức hoặc hành vi được đặc tả; không tăng số lớn chỉ vì sửa nhiều dòng code. Trước bản ổn định có thể dùng `0.x.y`, nhưng điều đó không cho bỏ kiểm chứng hoặc yêu cầu tương thích đã chốt.
+Tag là mốc source, không chứa thay gói build/config hoặc xác nhận production đã cập nhật. Hồ sơ release vẫn trỏ đúng commit/gói từng thành phần, kể cả thành phần giữ bản cũ; không tự lấy “latest”. Nếu version nhúng làm gói đổi thì kiểm chứng gói mới, không mượn bằng chứng cũ.
 
-Version sản phẩm nhận diện một tổ hợp phát hành; hồ sơ vẫn trỏ đúng bản/gói từng thành phần. Ví dụ sản phẩm 1.1.0 có web mới và backend không đổi thì giữ đúng gói backend cũ, không buộc build lại mọi thành phần để cùng số. Quy tắc build number của từng nền và định dạng tag được cụ thể hóa ở gói kế tiếp, chưa chọn tại đây.
-
-**Chỉ D1 đang IN_REVIEW.** Đây là phương án mặc định cho project mới; project có quy ước hợp lệ có thể giữ sau đối chiếu. Chưa tạo version/tag, phát hành hoặc duyệt toàn G5/G6. Nguồn: [SemVer 2.0.0](https://semver.org/spec/v2.0.0.html), [bản đang làm và bản đang chạy](KIDEA_DESIGN.md#change).
+**D1–D2 đang IN_REVIEW.** Đây là phương án mặc định; quy ước project có sẵn phải được đối chiếu. Sau gói này trình hồ sơ release tại S04 trước khép S03. Chưa tạo tag, build, deploy, chọn định dạng schema hoặc cấp quyền pilot. Nguồn: [version đã chốt](KIDEA_DESIGN.md#product-version), [quyền và gói được chọn](KIDEA_DESIGN.md#git-permissions).
 
 <a id="working-rules"></a>
 
@@ -96,7 +92,8 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T06-S01 | DONE | R01-T06-S01-r3 — APPROVED | Human: “Tôi đồng ý với các đề xuất của bạn nhé” sau answer tại ca8e7faf; chính sách master/local, AI DEV/Human PROD, template theo project và nhánh bảo trì; [kết quả đúng phạm vi](#r01-t06-s01-result) |
 | R01-T06-S02 | DONE | R01-T06-S02-r1 — APPROVED | Human “Tôi duyệt nhé” sau giải thích tại a1d8eb8; lưu việc dở theo mốc và phục hồi lỗi ghi local có giới hạn; [kết quả](#r01-t06-result) |
 | R01-T06-S03 | DONE | [A] — đồng bộ đúng phần đã duyệt | Đồng bộ DESIGN/caller/case và kiểm tra tài liệu, không thay G2/QUALITY hoặc chạy pilot; [kết quả](#r01-t06-result) |
-| R01-T07-S01 | IN_PROGRESS | R01-T07-S01-r1 — IN_REVIEW | D1: cách đánh số version sản phẩm; [gói hiện hành](#review-current). Chưa duyệt; quy ước từng nền/tag và release vẫn còn gói sau |
+| R01-T07-S01 | DONE | R01-T07-S01-r1 — APPROVED | Human “Duyệt nhé” sau answer b820a33; cách đánh số sản phẩm và giới hạn đúng gói; [kết quả](#r01-t07-s01-result) |
+| R01-T07-S02 | IN_PROGRESS | R01-T07-S02-r1 — IN_REVIEW | Hai lựa chọn version từng thành phần và tên tag; [gói hiện hành](#review-current). Phần release S04 và đồng bộ khép task S03 chưa hoàn tất |
 
 Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
@@ -232,6 +229,15 @@ Các subtask R01 khác mặc định TODO. R02–R10 chưa mở và chưa phân 
 - Đã đối chiếu liên kết, trạng thái, diff và phạm vi cập nhật; đây là kiểm tra tài liệu, chưa thực thi case hoặc thử khôi phục file. Không tạo/xóa file tạm, không cài skill hoặc thao tác project pilot/Thuận Thiên.
 - Đủ S01/S02/S03 của T06 DONE; chuyển sang T07-S01. Schema/cơ chế ghi/backup và kiểm chứng lỗi còn thuộc R02; G5/G6, cách đo/case chi tiết, ma trận Future và phase R01 chưa được duyệt. Nguồn chính sách hiện hành ở DESIGN; kết quả này không cấp quyền thực thi cho một project cụ thể.
 
+<a id="version-numbering-proposal"></a>
+<a id="r01-t07-s01-result"></a>
+
+### Kết quả R01-T07-S01 — ngày 2026-09-11
+
+- Human “Duyệt nhé” ngay sau [answer tại b820a33](https://github.com/Kynderis/kidea/blob/b820a33a82c411f1ab86ceac10b0619bbbde25d3/answer.md), xác nhận D1 của S01-r1: mặc định ba số lớn.nhỏ.vá cho sản phẩm theo hợp đồng tương thích rõ, cho phép giữ quy ước project phù hợp; 0.x.y không miễn kiểm chứng.
+- Đồng bộ [DESIGN](KIDEA_DESIGN.md#product-version), ca version/tương thích tại KA-28 và các task sở hữu. Giữ nguyên số gói thực của thành phần không đổi; không buộc build lại chỉ để cùng số sản phẩm. G2, QUALITY, 30 họ KA, ma trận và quyền pilot giữ nguyên.
+- Chỉ kiểm tra tài liệu/link/trạng thái/diff; không tạo version/tag, chạy build/deploy hoặc xóa file tạm. S01 DONE, trình S02 về version từng nền/tag; phần hồ sơ release ở S04 trước S03. Chưa duyệt toàn G5/G6 hoặc phase R01.
+
 <a id="phase-overview"></a>
 
 ## 4. Tổng quan 10 phase mới
@@ -265,10 +271,12 @@ Bảng dưới là phân rã cụ thể của phase gần nhất. Mã con có d�
 | R01-T04 — Pilot và nơi giữ hồ sơ | [H] Bài toán workshop và MVP giới hạn | [H] Chuỗi event/đường lỗi cần chứng minh; thứ tự backend–web rồi native | [H] Nơi giữ tài liệu trước khi ghi; lab/chi phí/quyền (tách tiếp nếu cần lựa chọn môi trường cụ thể) |
 | R01-T05 — Git: bản đang làm và bản tích hợp | [H] G1: tổ chức nguồn; mô hình hiện hành được điều chỉnh thành master chính và nhánh bảo trì khi cần theo [S01-r3](#r01-t06-s01-result) | [H] G2: kiểm chứng từng task, toàn dự án mỗi Feature và bản kết hợp; tách master với production | [A] Đồng bộ đúng phần được duyệt; không đổi nghĩa vụ chất lượng hoặc tự cấp quyền project |
 | R01-T06 — Git: quyền và checkpoint | [H] G3: quyền thường lệ theo project, điều khiển local, AI DEV/Human PROD và nhánh bảo trì | [H] G4: mốc checkpoint, bảo toàn việc dở và phục hồi ghi local có giới hạn | [A] Đồng bộ hợp đồng và case; không dùng Git để giả undo dữ liệu/tác dụng phụ ngoài repo |
-| R01-T07 — Git: version và bản đang chạy | [H] G5: cách đánh số phiên bản sản phẩm | [H] Phần còn lại G5/G6: quy ước phiên bản từng nền/tag, hồ sơ release đa thành phần, thứ tự/tương thích, artifact/config/schema/operation và hotfix/restore; chia gói nhỏ trước trình nếu quá 3 quyết định | [A] Đồng bộ kế hoạch release/test và nguồn bằng chứng theo phạm vi đã chốt, không tạo tag/deploy |
+| R01-T07 — Git: version và bản đang chạy | [H] G5: cách đánh số phiên bản sản phẩm | [H] S02: version từng thành phần/tag; S04: hồ sơ release đa thành phần, thứ tự/tương thích, artifact/config/schema/operation và hotfix/restore; chia tiếp nếu quá 3 quyết định | [A] Đồng bộ kế hoạch release/test và nguồn bằng chứng theo phạm vi đã chốt, không tạo tag/deploy |
 | R01-T08 — Kịch bản và chuẩn đúng/an toàn | [H] Nhóm điều phối/quyền/ghi/resume: phạm vi case và điều kiện chặn | [H] Nhóm nghiệp vụ/map/change: phạm vi case và giới hạn chứng minh | [H] Nhóm rule/evidence/view/release: phạm vi case và cách dùng mock đúng mức |
 | R01-T09 — Bằng chứng và cách chốt số đo | [H] Đầu vào chi phối kết quả; trường bằng chứng và việc ghi output không tự làm cũ kết quả | [H] Chính sách benchmark sớm rồi chốt ngưỡng; fixture đại diện (không duyệt ngầm 2/5/3/10 giây) | [H] Manifest biến thể/lặp AI; watchdog cycle (không duyệt ngầm 3 lần/20 lượt) |
 | R01-T10 — Khép căn cứ | [A] Đồng bộ DESIGN/ACCEPTANCE/QUALITY và toàn bộ dependency/gate theo quyết định thực | [A] Rà bao phủ, link, trạng thái và file tạm; chưa chạy skill | [H] Duyệt căn cứ cùng thứ tự/gate R02–R10; cho mở R02 đúng phạm vi, không cấp quyền cài/deploy ngầm |
+
+Riêng R01-T07, thứ tự phụ thuộc là S01 → S02 → S04 → S03: S04 được tách để hồ sơ release có gói review riêng, còn S03 chỉ khép đồng bộ sau đủ các gate. S04 chưa mở; không coi S02 duyệt version/tag là đã duyệt hồ sơ release.
 
 Ở R01-T03, Human không phải duyệt lại từng số phiên bản trong ma trận dài: trình hướng và rủi ro/thay đổi có hệ quả; số phiên bản được kiểm tra lại khi thực hiện theo chính sách đã chốt. Phát hiện thay đổi lớn thì mở gói riêng.
 
@@ -403,7 +411,7 @@ Subtask: **chưa phân rã**. Trước mở từng task, ghi lát cắt/đầu r
 | R08-T01 — Phân rã kế hoạch sản phẩm | Phase/task/subtask nhỏ, dependency/output/test/gate và gói review 2–3 quyết định. | Duyệt plan khác bắt đầu code; bao phủ backend/web/native/ops/admin/SEO. |
 | R08-T02 — Vòng code và bằng chứng | Tiến độ → code/rule/test → map/evidence → review và dọn tạm; kiểm tra đúng bước trước push/deploy DEV, test cần DEV sau deploy. | Test task/ảnh hưởng trong lúc làm; thêm lượt cuối toàn dự án mỗi Feature theo G2 và chạy lại toàn lượt sau sửa/đổi đầu vào. Thiếu/fail/skip kiểm tra bắt buộc thì chưa DONE; master/WIP không tự là bản đủ điều kiện phát hành. Kiểm chứng bản kết hợp/build/release riêng. |
 | R08-T03 — Build/kiểm chứng và môi trường sớm | Bộ lệnh build/test dùng lại, nguồn sạch/công cụ/config/version rõ; điều khiển từ local, chưa cần dịch vụ CI. Một điểm vào deploy gọi script phụ, dùng chung logic cùng cơ chế và tách config DEV/PROD; chọn đường thực thi đầu tiên theo thành phần. | Kiểm chứng Ubuntu/Mac/thiết bị đích theo ma trận, không chỉ Windows; đúng artifact/config/bản script và có đọc lại kết quả. Lab kín không mở index; không đợi code xong mới chuẩn bị deploy hoặc tự xây thư viện template cho mọi nền. |
-| R08-T04 — Release và phục hồi | Release đa thành phần theo Git/version R01; migration/rollback/restore, quyền, thứ tự/tương thích/readiness và phương án giảm tác hại. AI DEV trong quyền; Human chọn đúng bản/config/target và trực tiếp chạy bộ script PROD đã xác minh; không bắt buộc tự động canary. | Kiểm soát credential/quyền thực tế, giữ đúng artifact và script phụ/migration; đổi đầu vào phải kiểm chứng lại. Git không khôi phục tác dụng phụ ngoài repo; giữ gate sẵn sàng SEO và điều kiện dừng. |
+| R08-T04 — Release và phục hồi | Release đa thành phần theo Git/version R01, số sản phẩm theo hợp đồng tương thích đã chốt; không buộc build lại thành phần giữ nguyên; migration/rollback/restore, quyền, thứ tự/tương thích/readiness và phương án giảm tác hại. AI DEV trong quyền; Human chọn đúng bản/config/target và trực tiếp chạy bộ script PROD đã xác minh; không bắt buộc tự động canary. | Kiểm soát credential/quyền thực tế, giữ đúng artifact và script phụ/migration; đổi đầu vào phải kiểm chứng lại. Git không khôi phục tác dụng phụ ngoài repo; giữ gate sẵn sàng SEO và điều kiện dừng. |
 | R08-T05 — Xác nhận bản đang chạy | Artifact/config/schema thật, smoke, admin/monitor/alert và dữ liệu sau restore; Kidea đọc/đối chiếu bằng chứng được phép sau khi Human chạy phát hành. | Build/tag, mã thành công hay receipt không thay bản thực chạy; thành công một phần không thành toàn release đạt. Có thời điểm/nguồn bằng chứng; mất tín hiệu hoặc chưa có dữ liệu SEO không thành PASS. |
 | R08-T06 — Khép hướng dẫn | Diễn tập sai target/quyền/bản script, deploy lỗi và tác dụng phụ chưa rõ; job/cảnh báo độc lập phiên AI/laptop. | Giữ gate plan/code/deploy; Human review, không production thật. Hướng dẫn dọn API/schema/flag và nhánh hết hỗ trợ theo quyền, giữ bằng chứng/phục hồi; khép incident/experiment về nguồn. |
 
@@ -491,7 +499,7 @@ Mười bước sản phẩm không bị gộp bởi cách chia phase xây skill
 
 | Vấn đề | Nơi xử lý mới | Giới hạn tại lượt tái lập |
 |---|---|---|
-| RV-01 — Git G1–G6 | R01-T05/T06/T07 | Giữ nghĩa vụ chất lượng [G2](#r01-t05-result); tổ chức/quyền theo [chính sách S01-r3](#r01-t06-s01-result). [G4 đã chốt](#r01-t06-result), G5/G6 còn phần chưa duyệt; không suy approval chính sách thành quyền project hoặc bỏ ràng buộc MVP/bugfix |
+| RV-01 — Git G1–G6 | R01-T05/T06/T07 | Giữ nghĩa vụ chất lượng [G2](#r01-t05-result); tổ chức/quyền theo [chính sách S01-r3](#r01-t06-s01-result). [G4 đã chốt](#r01-t06-result), [số version sản phẩm đã chốt](#r01-t07-s01-result); quy ước từng nền/tag và G6 còn phần chưa duyệt; không suy approval chính sách thành quyền project hoặc bỏ ràng buộc MVP/bugfix |
 | RV-02 — Nơi giữ hồ sơ pilot trước khi code | R01-T04-S03, kiểm tra lại R03-T01 | Root theo [kết quả R01-T04](#r01-t04-result); chưa tạo repo, phải xác nhận lại root/quyền trước ghi |
 | RV-03 — Evidence không tự làm cũ chính mình | R01-T09-S01 → R02-T04 | Chưa chọn fingerprint/schema |
 | RV-04 — Ngưỡng và chi phí thử thiếu căn cứ | R01-T09-S02/S03 → R02-T10/R06-T09/R07-T04 | Các số cũ vẫn chưa duyệt; không tự hạ ngưỡng |
