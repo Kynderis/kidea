@@ -8,23 +8,23 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã khép [R01-T08 — phạm vi kịch bản và chuẩn đúng/an toàn](#r01-t08-result). Mở **R01-T09-S01**, cách ghi và đối chiếu bằng chứng; hai lựa chọn mới dưới đây chưa được duyệt. Chưa chạy skill/pilot.
+Đã chốt [T09-S01 — hồ sơ và hiệu lực bằng chứng](#r01-t09-s01-result). Tiếp tục **R01-T09-S02**, cách đo sớm/chốt ngưỡng; hai lựa chọn mới dưới đây đang chờ duyệt.
 
 <a id="review-current"></a>
-<a id="evidence-input-proposal"></a>
+<a id="benchmark-policy-proposal"></a>
 
-### R01-T09-S01-r1 — Lưu bằng chứng và nhận biết kết quả còn dùng được
+### R01-T09-S02-r1 — Đo sớm rồi chốt ngưỡng tốc độ
 
-T08 đã chốt các nhóm bài thử. T09 xác định cách lưu/đối chiếu kết quả và cách chốt số đo; S01 chỉ chọn hai nguyên tắc dưới đây.
+S01 đã chốt cách ghi bằng chứng và xét kết quả còn hiệu lực. S02 chọn cách đặt tiêu chuẩn tốc độ công cụ Kidea, chưa chốt một số giây cụ thể.
 
-1. **D1 — Mỗi lần kiểm tra có hồ sơ đủ đối chiếu.** Đề xuất ghi bài/biến thể và kết quả mong đợi; đúng bản Kidea, tài liệu/code/test/cấu hình cùng môi trường/đầu vào liên quan; quyền, cách chạy và thời điểm; kết quả thực, lỗi/skip/thiếu điều kiện, đường dẫn bằng chứng và giới hạn. Có thay đổi file thì giữ căn cứ trước/sau phù hợp. Tham chiếu nguồn thật, không sao chép mọi tài liệu hoặc chứa secret. Không chỉ ghi một chữ PASS.
-2. **D2 — Xét hiệu lực theo đầu vào thực, không theo mọi file đổi.** Kết quả chỉ được dùng lại khi chứng minh các đầu vào chi phối bài kiểm tra vẫn phù hợp; có thay đổi làm mất căn cứ thì kiểm tra lại. Việc thêm báo cáo kết quả đơn thuần không tự làm kết quả ấy hết hạn. Ngược lại, cùng commit không đủ nếu gói build/config/môi trường đã đổi. Không miễn G2: mỗi Feature có lượt cuối riêng; đầu vào lượt đó đổi phải chạy lại toàn lượt, không chỉ vùng ảnh hưởng.
+1. **D1 — Đo trước, duyệt ngưỡng trước nghiệm thu.** Đề xuất khi có lát cắt chạy được thì đo đọc/status ở R02 và sinh giao diện ở R07; dùng số đo, nhu cầu sử dụng và giới hạn máy để trình mức thời gian chấp nhận. Human duyệt ngưỡng trước nghiệm thu phần đó. Không tự lấy các số 2/5/3/10 giây trong bản nháp làm chuẩn; cũng không lấy lần chạy chậm làm lý do tự nới chuẩn. Sau chốt, nếu không đạt thì sửa/đo lại hoặc trình thay đổi có căn cứ trước kết luận.
+2. **D2 — Dùng dữ liệu đại diện, đo cùng điều kiện.** Đề xuất có bộ hồ sơ nhỏ, bộ lớn hơn và hồ sơ pilot thật khi sẵn có; đủ tài liệu/trạng thái/link có ý nghĩa, không nhồi file rỗng cho đủ số. Trước đo chốt bản mẫu, máy/môi trường, đầu vào và cách đo; giữ cả kết quả chậm/lỗi, không chọn lần đẹp. Thời gian đọc/status/sinh view gồm xử lý và đọc/ghi cần thiết; thời gian chờ AI, Human, mạng hay build sản phẩm ghi riêng, không trộn vào tốc độ helper.
 
-Ví dụ: kiểm tra giá 90.000 đồng đã đạt, sau đó chỉ ghi báo cáo → không cần chạy lại vì riêng việc ghi ấy. Nếu đổi quy tắc giảm giá hoặc code tính tiền → kết quả cũ không chứng minh bản mới đúng.
+Ví dụ: mở tiến độ trên hồ sơ nhỏ nhanh nhưng hồ sơ lớn chậm → báo riêng hai kết quả, không lấy trung bình che trường hợp chậm.
 
-Nguồn mở thêm: [KQ-10](KIDEA_QUALITY.md#quality-evidence), [G2](KIDEA_DESIGN.md#feature-final-check).
+Nguồn mở thêm: [ngân sách còn đề xuất](KIDEA_QUALITY.md#quality-performance), [đo lõi R02](#r02), [đo view R07](#r07).
 
-**D1–D2 đang IN_REVIEW.** Chưa chọn schema/fingerprint, số lần chạy hoặc ngưỡng tốc độ; không coi ghi báo cáo là ngoại lệ cho thay đổi test/code. Sau approval mới đồng bộ và trình S02 về cách đo sớm/chốt ngưỡng.
+**D1–D2 đang IN_REVIEW.** Kích thước mẫu/số lần chạy/ngưỡng cụ thể chưa được duyệt; chưa chạy benchmark. S03 tiếp tục cách tổ chức các biến thể/lặp AI và giới hạn thử chu kỳ.
 
 <a id="working-rules"></a>
 
@@ -100,9 +100,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T08-S01 | DONE | R01-T08-S01-r1 — APPROVED | Human “Duyệt nhé” sau answer 1f67790; đồng bộ đúng phạm vi case/tiêu chí, chưa chạy; [kết quả](#r01-t08-s01-result) |
 | R01-T08-S02 | DONE | R01-T08-S02-r1 — APPROVED | Human “à tôi hiểu rồi, duyệt nhé” sau giải thích 7a2381b; phạm vi/cách chấm đã đồng bộ, chưa chạy; [kết quả](#r01-t08-s02-result) |
 | R01-T08-S03 | DONE | R01-T08-S03-r1 — APPROVED | Human “tôi duyệt” sau answer b42032c; đủ ba nhóm T08 và đồng bộ, chưa chạy; [kết quả](#r01-t08-result) |
-| R01-T09-S01 | IN_PROGRESS | R01-T09-S01-r1 — IN_REVIEW | Hồ sơ bằng chứng và hiệu lực theo đầu vào thực; [gói hiện hành](#review-current). Chưa duyệt |
+| R01-T09-S01 | DONE | R01-T09-S01-r1 — APPROVED | Human “duyệt nhé” sau answer 6cb8d3b; đồng bộ hồ sơ/hiệu lực, chưa chạy; [kết quả](#r01-t09-s01-result) |
+| R01-T09-S02 | IN_PROGRESS | R01-T09-S02-r1 — IN_REVIEW | Cách đo sớm và dữ liệu đại diện, chưa chốt số; [gói hiện hành](#review-current) |
 
-Các subtask R01 còn lại mặc định TODO; chỉ R01-T09-S01 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
+Các subtask R01 còn lại mặc định TODO; chỉ R01-T09-S02 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
 <a id="r01-t01-result"></a>
 
@@ -291,6 +292,15 @@ Các subtask R01 còn lại mặc định TODO; chỉ R01-T09-S01 đang IN_PROGR
 - Human “tôi duyệt” sau [answer b42032c](https://github.com/Kynderis/kidea/blob/b42032c9b860c1adee8387cdd3334b2afac1abf0/answer.md), xác nhận D1–D2 của S03-r1 cùng bản: phạm vi KA-23–30/KA-04 và chuẩn bằng chứng/mô phỏng.
 - Đồng bộ DESIGN/ACCEPTANCE/QUALITY, đối chiếu đủ ba nhóm bao phủ 30 họ KA, giữ G2 và quyền theo project. Ba subtask S01–S03 DONE; đây là chốt phạm vi/điều kiện, không phải 30 case đã PASS hoặc toàn QUALITY được duyệt.
 - Kiểm tra liên kết/trạng thái/diff; không tạo/xóa file tạm hoặc chạy skill/pilot. T09 tiếp tục bằng chứng/cách đo, fixture/công cụ chi tiết thuộc nơi triển khai; R01 chưa APPROVED và R02 chưa mở.
+
+<a id="evidence-input-proposal"></a>
+<a id="r01-t09-s01-result"></a>
+
+### Kết quả R01-T09-S01
+
+- Human “duyệt nhé” sau [answer 6cb8d3b](https://github.com/Kynderis/kidea/blob/6cb8d3b67fc2346d68b5ade7282072f955ba40b1/answer.md), xác nhận D1–D2 của S01-r1 cùng bản: hồ sơ mỗi lần kiểm tra và hiệu lực theo đầu vào thực, không tự làm cũ kết quả bởi báo cáo.
+- Đồng bộ QUALITY/KQ-10, ACCEPTANCE và DESIGN; giữ nguyên G2, số đo/số lần và giới hạn chưa duyệt. Không coi cùng commit là đủ hoặc dùng báo cáo để miễn thay đổi code/test; schema/fingerprint vẫn thuộc R02.
+- Kiểm tra link/trạng thái/diff; chưa chạy test/benchmark, không tạo/xóa file tạm hoặc mở pilot. S01 DONE, T09 còn S02/S03; R01 chưa APPROVED.
 
 <a id="phase-overview"></a>
 

@@ -92,7 +92,15 @@ Phiên thử được phép đọc hướng dẫn và file cần thiết, Human 
 
 ## 5. Bằng chứng tối thiểu và kết luận cuối
 
-**KQ-10 — mỗi lần chạy cần đủ:** ID case/biến thể và tiêu chí KQ; baseline/expected result; bản Kidea, source/hồ sơ/config/profile; môi trường/model nếu có; quyền đã cấp; quy trình/lệnh thực và thời điểm; kết quả thực tế; nội dung trước/sau hoặc diff/hash khi liên quan; đường dẫn log/kết quả; kết luận và giới hạn. Hash chỉ chứng minh đồng nhất nội dung, không chứng minh ngữ nghĩa đúng. Không lưu secret/hội thoại nhạy cảm vào repo public.
+<a id="evidence-validity-approved"></a>
+
+### Hồ sơ và hiệu lực bằng chứng — đã duyệt
+
+Theo [R01-T09-S01](KIDEA_ROADMAP.md#r01-t09-s01-result), mỗi lần kiểm tra phải ghi đủ bài/biến thể, expected, bản Kidea/tài liệu/code/test/config/môi trường và đầu vào liên quan; quyền/cách chạy/thời điểm; kết quả thật, lỗi/skip/thiếu điều kiện, link bằng chứng và giới hạn. Giữ căn cứ trước/sau khi liên quan, không chỉ PASS hoặc chép secret/toàn tài liệu.
+
+Chỉ tái dùng kết quả khi chứng minh đầu vào chi phối vẫn phù hợp; ghi báo cáo đơn thuần không tự làm kết quả mất hiệu lực. Cùng commit chưa đủ nếu artifact/config/môi trường đổi. Giữ G2: mỗi Feature có lượt cuối riêng, đầu vào lượt đó đổi phải chạy lại toàn lượt. Không dùng nhãn “output” để miễn kiểm tra thay đổi code/test. Schema/fingerprint, công cụ và số lần/ngưỡng chưa được duyệt theo gói này.
+
+**KQ-10 — các nhóm thông tin mỗi lần chạy đã duyệt theo phạm vi trên:** ID case/biến thể và tiêu chí KQ; baseline/expected result; bản Kidea, source/hồ sơ/config/profile; môi trường/model nếu có; quyền đã cấp; quy trình/lệnh thực và thời điểm; kết quả thực tế; nội dung trước/sau hoặc diff/hash khi liên quan; đường dẫn log/kết quả; kết luận và giới hạn. Hash chỉ chứng minh đồng nhất nội dung, không chứng minh ngữ nghĩa đúng. Không lưu secret/hội thoại nhạy cảm vào repo public.
 
 | Lớp kiểm tra | Bằng chứng không thể thiếu |
 |---|---|
@@ -105,7 +113,7 @@ Mỗi tiêu chí bắt buộc KQ-01–KQ-10 và biến thể áp dụng phải �
 
 ## 6. Điểm nối triển khai và gate
 
-- R01-T08/T09: rà từng nhóm case, chuẩn đúng/an toàn, tập đầu vào evidence và chính sách chọn ngưỡng/số lần. Đề xuất cần review: tách đầu vào chi phối kết quả khỏi output ghi nhận để tránh evidence tự làm cũ chính mình; chưa chọn fingerprint, hợp đồng cụ thể còn phải được duyệt ở R02-T04.
+- R01-T08/T09: rà từng nhóm case, chuẩn đúng/an toàn, tập đầu vào evidence và chính sách chọn ngưỡng/số lần. Đã duyệt [hồ sơ và hiệu lực theo đầu vào thực](#evidence-validity-approved); chưa chọn fingerprint, hợp đồng cụ thể còn phải được duyệt ở R02-T04.
 - R02: hợp đồng/lõi/fixture, thử phiên mới và đo đọc/status sớm; R03–R06: nghiệp vụ/rule/maps/change; R07: view và phép đo. Ngưỡng nghiệm thu liên quan chỉ được áp dụng sau gói được duyệt, không tự đổi các số để khớp lần đo.
 - R08: vòng code/evidence/release/quyền; R09: pilot thật và từng đường lỗi; R10: ma trận cuối, hồi quy và Human nghiệm thu. Thiếu công cụ/thiết bị không thành PASS.
 - R01-T10 tổng hợp khi các gói căn cứ đã được duyệt. Mọi thay đổi ngưỡng/số lần/phạm vi lỗi sau approval phải review lại tiêu chí và case/task bị ảnh hưởng trước sử dụng. Chính sách benchmark trước khi chốt ngưỡng vẫn là quyết định chờ R01-T09, không được tự áp dụng từ bảng lộ trình.

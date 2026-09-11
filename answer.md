@@ -1,22 +1,22 @@
-Đã ghi nhận bạn duyệt, đồng bộ tài liệu và **khép T08 — các nhóm bài kiểm tra Kidea**. Chưa chạy kiểm thử thực tế.
+Đã chốt cách **lưu bằng chứng và biết khi nào phải kiểm tra lại**, đồng thời đồng bộ tài liệu.
 
-Tiếp theo là **T09: lưu kết quả kiểm tra thế nào để tin và dùng lại được?**
+Tiếp theo: **làm sao biết Kidea chạy đủ nhanh?** Mình đề xuất:
 
-**1. Không chỉ ghi “đã đạt”**
+**1. Đo thực tế rồi mới chốt mức yêu cầu**
 
-Mỗi lần kiểm tra cần ghi: kiểm tra gì, trên bản nào, chạy ra sao, kết quả thực tế và bằng chứng ở đâu. Giữ cả lỗi hoặc phần chưa chạy.
+Khi phần đọc hồ sơ hoặc tạo màn hình tiến độ chạy được, đo thử rồi trình bạn duyệt thời gian chấp nhận được **trước khi nghiệm thu**.
 
-**2. Biết khi nào phải kiểm tra lại**
+Chưa dùng các số giây trong bản nháp làm chuẩn. Sau khi chốt, nếu chạy chậm thì phải sửa hoặc xin điều chỉnh có căn cứ, không tự nới chuẩn để đạt.
 
-- Chỉ ghi thêm báo cáo kết quả → không tự làm kết quả cũ mất hiệu lực.
-- Đổi code, quy tắc, cấu hình hoặc đầu vào ảnh hưởng kết quả → phải kiểm tra lại.
-- Vẫn giữ quy tắc đã chốt: mỗi Feature có lượt kiểm tra cuối toàn dự án; đầu vào lượt đó đổi thì chạy lại toàn lượt.
+**2. Thử với hồ sơ nhỏ và lớn**
 
-Ví dụ: kiểm tra tính giá đã đạt, sau đó ghi báo cáo thì không cần chạy lại chỉ vì vừa ghi báo cáo. Nhưng sửa cách tính giá thì kết quả trước không chứng minh bản mới đúng.
+Dùng dữ liệu có ý nghĩa, đo trên máy/điều kiện được ghi rõ và giữ cả kết quả chậm hoặc lỗi. Khi có pilot thật thì đo thêm trên hồ sơ đó.
 
-**Mục đích: không dùng kết quả cũ sai bản, cũng không chạy lại vô ích chỉ vì lưu kết quả.**
+Ví dụ: hồ sơ nhỏ mở nhanh nhưng hồ sơ lớn mất nhiều thời gian → báo riêng, không lấy trung bình để che trường hợp chậm.
 
-Bạn duyệt hai điểm này nhé? [Gói chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa chốt số lần chạy, ngưỡng tốc độ hoặc cách lưu dữ liệu cụ thể.
+Nói gọn: **đo bằng dữ liệu thực dụng, rồi thống nhất tiêu chuẩn dựa trên nhu cầu và số đo.** Thời gian chờ AI hoặc bạn trả lời được tách khỏi tốc độ công cụ.
+
+Bạn duyệt hai điểm này nhé? [Gói chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa chốt số giây, kích thước mẫu hoặc số lần chạy cụ thể.
 
 <oai-mem-citation>
 <citation_entries>
