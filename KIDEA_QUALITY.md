@@ -56,6 +56,14 @@ KQ-02 giới hạn mô hình lỗi bản đầu: lỗi ghi được tiêm vào f
 
 ## 3. Hồ sơ đại diện và tốc độ công cụ
 
+<a id="benchmark-policy-approved"></a>
+
+### Chính sách đo và chốt ngưỡng — đã duyệt
+
+Theo [T09-S02](KIDEA_ROADMAP.md#r01-t09-s02-result), đo đọc/status sớm ở R02 và sinh view ở R07 khi lát cắt chạy được; dùng số đo, nhu cầu và giới hạn máy để trình Human duyệt ngưỡng trước nghiệm thu phần đó. Không tự lấy số nháp làm chuẩn hoặc nới chuẩn vì chạy chậm; sau chốt phải sửa/đo lại hoặc trình thay đổi có căn cứ trước kết luận.
+
+Dùng hồ sơ nhỏ, lớn hơn và pilot thật khi có; nội dung/quan hệ có ý nghĩa, không nhồi file rỗng. Chốt bản mẫu, máy/môi trường, đầu vào/cách đo trước chạy; giữ cả chậm/lỗi, không chọn lần đẹp. Thời gian helper gồm đọc/ghi/xử lý cần thiết; chờ AI/Human/mạng hoặc build sản phẩm ghi riêng. Kích thước mẫu, số lần và ngưỡng cụ thể vẫn chưa được duyệt; chưa đo benchmark.
+
 Các con số sau là **ngân sách đề xuất để Human duyệt**, không phải kết quả đo hoặc chuẩn ngành. Chọn hai mức đủ phân biệt hồ sơ nhỏ với hồ sơ lớn hơn mà vẫn phục vụ một người; chưa cam kết project quy mô bất kỳ.
 
 | Bộ dữ liệu | Nội dung fixture hợp lệ tối thiểu |
@@ -116,4 +124,4 @@ Mỗi tiêu chí bắt buộc KQ-01–KQ-10 và biến thể áp dụng phải �
 - R01-T08/T09: rà từng nhóm case, chuẩn đúng/an toàn, tập đầu vào evidence và chính sách chọn ngưỡng/số lần. Đã duyệt [hồ sơ và hiệu lực theo đầu vào thực](#evidence-validity-approved); chưa chọn fingerprint, hợp đồng cụ thể còn phải được duyệt ở R02-T04.
 - R02: hợp đồng/lõi/fixture, thử phiên mới và đo đọc/status sớm; R03–R06: nghiệp vụ/rule/maps/change; R07: view và phép đo. Ngưỡng nghiệm thu liên quan chỉ được áp dụng sau gói được duyệt, không tự đổi các số để khớp lần đo.
 - R08: vòng code/evidence/release/quyền; R09: pilot thật và từng đường lỗi; R10: ma trận cuối, hồi quy và Human nghiệm thu. Thiếu công cụ/thiết bị không thành PASS.
-- R01-T10 tổng hợp khi các gói căn cứ đã được duyệt. Mọi thay đổi ngưỡng/số lần/phạm vi lỗi sau approval phải review lại tiêu chí và case/task bị ảnh hưởng trước sử dụng. Chính sách benchmark trước khi chốt ngưỡng vẫn là quyết định chờ R01-T09, không được tự áp dụng từ bảng lộ trình.
+- R01-T10 tổng hợp khi các gói căn cứ đã được duyệt. Mọi thay đổi ngưỡng/số lần/phạm vi lỗi sau approval phải review lại tiêu chí và case/task bị ảnh hưởng trước sử dụng. Chính sách đo trước/chốt ngưỡng trước nghiệm thu đã duyệt tại [T09-S02](#benchmark-policy-approved); các con số nháp không tự có hiệu lực.

@@ -8,23 +8,24 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã chốt [T09-S01 — hồ sơ và hiệu lực bằng chứng](#r01-t09-s01-result). Tiếp tục **R01-T09-S02**, cách đo sớm/chốt ngưỡng; hai lựa chọn mới dưới đây đang chờ duyệt.
+Đã chốt [T09-S02 — chính sách đo và ngưỡng](#r01-t09-s02-result). Tiếp tục **R01-T09-S03**, phần cuối về tổ chức các lần thử; ba lựa chọn mới dưới đây đang chờ duyệt.
 
 <a id="review-current"></a>
-<a id="benchmark-policy-proposal"></a>
+<a id="trial-policy-proposal"></a>
 
-### R01-T09-S02-r1 — Đo sớm rồi chốt ngưỡng tốc độ
+### R01-T09-S03-r1 — Danh sách lần thử, lặp độc lập và dừng vòng lặp
 
-S01 đã chốt cách ghi bằng chứng và xét kết quả còn hiệu lực. S02 chọn cách đặt tiêu chuẩn tốc độ công cụ Kidea, chưa chốt một số giây cụ thể.
+Hai phần đầu đã chốt hồ sơ bằng chứng và chính sách đo. S03 chọn cách tổ chức bài thử; không chốt ngầm các số 3 lần/20 lượt của bản nháp.
 
-1. **D1 — Đo trước, duyệt ngưỡng trước nghiệm thu.** Đề xuất khi có lát cắt chạy được thì đo đọc/status ở R02 và sinh giao diện ở R07; dùng số đo, nhu cầu sử dụng và giới hạn máy để trình mức thời gian chấp nhận. Human duyệt ngưỡng trước nghiệm thu phần đó. Không tự lấy các số 2/5/3/10 giây trong bản nháp làm chuẩn; cũng không lấy lần chạy chậm làm lý do tự nới chuẩn. Sau chốt, nếu không đạt thì sửa/đo lại hoặc trình thay đổi có căn cứ trước kết luận.
-2. **D2 — Dùng dữ liệu đại diện, đo cùng điều kiện.** Đề xuất có bộ hồ sơ nhỏ, bộ lớn hơn và hồ sơ pilot thật khi sẵn có; đủ tài liệu/trạng thái/link có ý nghĩa, không nhồi file rỗng cho đủ số. Trước đo chốt bản mẫu, máy/môi trường, đầu vào và cách đo; giữ cả kết quả chậm/lỗi, không chọn lần đẹp. Thời gian đọc/status/sinh view gồm xử lý và đọc/ghi cần thiết; thời gian chờ AI, Human, mạng hay build sản phẩm ghi riêng, không trộn vào tốc độ helper.
+1. **D1 — Có danh sách từng biến thể trước chạy.** Đề xuất mỗi tình huống con có ID, bài gốc, đầu vào, kết quả mong đợi, nơi chạy và trạng thái/kết quả riêng. Bao phủ đủ các họ áp dụng, không thử một tình huống rồi nhận cả họ đạt. Một luồng có thể kiểm tra nhiều mục nếu truy được kết quả từng mục; danh sách là chỉ mục bằng chứng, không tracker công việc thứ hai.
+2. **D2 — Thử lại độc lập các hành vi AI trọng yếu.** Với quyền, approval, resume và báo kết quả, lặp ở phiên mới từ bản đầu vào cố định, không mang lời sửa sai của lần trước hoặc sửa hộ hồ sơ để đạt. Chốt nhóm/biến thể và số lần trước chạy tại task sở hữu; giữ mọi lần lỗi, sửa có căn cứ rồi hồi quy. Không dùng “một lần làm đúng” hoặc chọn lần đẹp để chứng nhận ổn định; số lần thử không tự là xác suất tin cậy.
+3. **D3 — Có giới hạn bảo vệ bài thử chu kỳ.** Với mẫu phụ thuộc vòng, chốt dấu hiệu không tiến triển và giới hạn thử trước chạy ở R06-T09. Chạm giới hạn thì dừng bài thử, giữ trạng thái/bằng chứng và ghi chưa đạt để điều tra; không tự coi phân tích ảnh hưởng đã hoàn tất hoặc cắt graph sản phẩm thật theo số cố định.
 
-Ví dụ: mở tiến độ trên hồ sơ nhỏ nhanh nhưng hồ sơ lớn chậm → báo riêng hai kết quả, không lấy trung bình che trường hợp chậm.
+Ví dụ hai lần vượt quyền và một lần đúng: giữ cả ba, không chỉ báo lần đúng. Con số này chỉ minh họa.
 
-Nguồn mở thêm: [ngân sách còn đề xuất](KIDEA_QUALITY.md#quality-performance), [đo lõi R02](#r02), [đo view R07](#r07).
+Nguồn mở thêm: [biến thể](KIDEA_ACCEPTANCE.md), [lặp AI/chu kỳ](KIDEA_QUALITY.md#quality-ai-impact).
 
-**D1–D2 đang IN_REVIEW.** Kích thước mẫu/số lần chạy/ngưỡng cụ thể chưa được duyệt; chưa chạy benchmark. S03 tiếp tục cách tổ chức các biến thể/lặp AI và giới hạn thử chu kỳ.
+**D1–D3 đang IN_REVIEW.** Chưa duyệt số lần/giới hạn cụ thể, fixture hoặc quyền chạy. Sau approval, đồng bộ khép T09 rồi rà tích hợp R01-T10, chưa tự mở R02.
 
 <a id="working-rules"></a>
 
@@ -101,9 +102,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T08-S02 | DONE | R01-T08-S02-r1 — APPROVED | Human “à tôi hiểu rồi, duyệt nhé” sau giải thích 7a2381b; phạm vi/cách chấm đã đồng bộ, chưa chạy; [kết quả](#r01-t08-s02-result) |
 | R01-T08-S03 | DONE | R01-T08-S03-r1 — APPROVED | Human “tôi duyệt” sau answer b42032c; đủ ba nhóm T08 và đồng bộ, chưa chạy; [kết quả](#r01-t08-result) |
 | R01-T09-S01 | DONE | R01-T09-S01-r1 — APPROVED | Human “duyệt nhé” sau answer 6cb8d3b; đồng bộ hồ sơ/hiệu lực, chưa chạy; [kết quả](#r01-t09-s01-result) |
-| R01-T09-S02 | IN_PROGRESS | R01-T09-S02-r1 — IN_REVIEW | Cách đo sớm và dữ liệu đại diện, chưa chốt số; [gói hiện hành](#review-current) |
+| R01-T09-S02 | DONE | R01-T09-S02-r1 — APPROVED | Human “duyệt” sau answer aabc9ec; đồng bộ chính sách đo/ngưỡng, chưa đo; [kết quả](#r01-t09-s02-result) |
+| R01-T09-S03 | IN_PROGRESS | R01-T09-S03-r1 — IN_REVIEW | Danh sách biến thể, lặp AI độc lập và dừng bài thử chu kỳ; [gói hiện hành](#review-current). Chưa chốt số cụ thể |
 
-Các subtask R01 còn lại mặc định TODO; chỉ R01-T09-S02 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
+Các subtask R01 còn lại mặc định TODO; chỉ R01-T09-S03 đang IN_PROGRESS, chờ Human review gói trên. R02–R10 chưa mở và chưa phân rã subtask; không có code/runtime/pilot mới. Tái lập roadmap là thao tác điều phối theo yêu cầu, không được cộng thành nghiệm thu năng lực Kidea.
 
 <a id="r01-t01-result"></a>
 
@@ -301,6 +303,15 @@ Các subtask R01 còn lại mặc định TODO; chỉ R01-T09-S02 đang IN_PROGR
 - Human “duyệt nhé” sau [answer 6cb8d3b](https://github.com/Kynderis/kidea/blob/6cb8d3b67fc2346d68b5ade7282072f955ba40b1/answer.md), xác nhận D1–D2 của S01-r1 cùng bản: hồ sơ mỗi lần kiểm tra và hiệu lực theo đầu vào thực, không tự làm cũ kết quả bởi báo cáo.
 - Đồng bộ QUALITY/KQ-10, ACCEPTANCE và DESIGN; giữ nguyên G2, số đo/số lần và giới hạn chưa duyệt. Không coi cùng commit là đủ hoặc dùng báo cáo để miễn thay đổi code/test; schema/fingerprint vẫn thuộc R02.
 - Kiểm tra link/trạng thái/diff; chưa chạy test/benchmark, không tạo/xóa file tạm hoặc mở pilot. S01 DONE, T09 còn S02/S03; R01 chưa APPROVED.
+
+<a id="benchmark-policy-proposal"></a>
+<a id="r01-t09-s02-result"></a>
+
+### Kết quả R01-T09-S02
+
+- Human “duyệt” sau [answer aabc9ec](https://github.com/Kynderis/kidea/blob/aabc9ec1e63d23f4826d7916f9d52701e924031a/answer.md), xác nhận D1–D2 của S02-r1 cùng bản: đo sớm/chốt ngưỡng trước nghiệm thu và dữ liệu/điều kiện đo đại diện.
+- Đồng bộ QUALITY, DESIGN và ACCEPTANCE; R02-T10/R07-T04 là nơi thực hiện và trình số cụ thể. Không duyệt ngầm kích thước mẫu, 2/5/3/10 giây, số lần chạy hoặc sửa số nháp theo kết quả.
+- Kiểm tra link/trạng thái/diff, giữ G2; chưa benchmark hoặc chạy pilot, không tạo/xóa file tạm. S02 DONE; S03 còn chờ, R01 chưa APPROVED.
 
 <a id="phase-overview"></a>
 

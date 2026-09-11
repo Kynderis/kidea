@@ -1,22 +1,24 @@
-Đã chốt cách **lưu bằng chứng và biết khi nào phải kiểm tra lại**, đồng thời đồng bộ tài liệu.
+Đã chốt cách **đo thực tế rồi duyệt ngưỡng trước nghiệm thu** và đồng bộ tài liệu.
 
-Tiếp theo: **làm sao biết Kidea chạy đủ nhanh?** Mình đề xuất:
+Phần cuối T09 là **tổ chức các lần thử cho đáng tin**. Mình đề xuất ba điểm:
 
-**1. Đo thực tế rồi mới chốt mức yêu cầu**
+**1. Liệt kê rõ từng tình huống cần thử**
 
-Khi phần đọc hồ sơ hoặc tạo màn hình tiến độ chạy được, đo thử rồi trình bạn duyệt thời gian chấp nhận được **trước khi nghiệm thu**.
+Ví dụ “tiếp tục công việc” phải thử cả đủ file, thiếu file và file bị sửa — không thử một trường hợp rồi báo cả nhóm đạt.
 
-Chưa dùng các số giây trong bản nháp làm chuẩn. Sau khi chốt, nếu chạy chậm thì phải sửa hoặc xin điều chỉnh có căn cứ, không tự nới chuẩn để đạt.
+**2. Thử độc lập những việc quan trọng**
 
-**2. Thử với hồ sơ nhỏ và lớn**
+Các việc như kiểm tra quyền, nhận approval và tiếp tục công việc cần thử lại ở phiên AI mới. Giữ cả lần sai, không chỉ chọn lần đúng; không sửa hộ hồ sơ để bài thử đạt.
 
-Dùng dữ liệu có ý nghĩa, đo trên máy/điều kiện được ghi rõ và giữ cả kết quả chậm hoặc lỗi. Khi có pilot thật thì đo thêm trên hồ sơ đó.
+Số lần cụ thể sẽ được chốt trước khi chạy.
 
-Ví dụ: hồ sơ nhỏ mở nhanh nhưng hồ sơ lớn mất nhiều thời gian → báo riêng, không lấy trung bình để che trường hợp chậm.
+**3. Dừng nếu bài thử cứ lặp mà không tiến triển**
 
-Nói gọn: **đo bằng dữ liệu thực dụng, rồi thống nhất tiêu chuẩn dựa trên nhu cầu và số đo.** Thời gian chờ AI hoặc bạn trả lời được tách khỏi tốc độ công cụ.
+Đặt giới hạn cho bài thử có quan hệ phụ thuộc vòng. Chạm giới hạn thì dừng, giữ bằng chứng và tìm lỗi — không báo “đã xử lý xong”.
 
-Bạn duyệt hai điểm này nhé? [Gói chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa chốt số giây, kích thước mẫu hoặc số lần chạy cụ thể.
+Nói gọn: **không bỏ sót bài, không chọn kết quả đẹp và không để bài thử chạy vòng vô tận.**
+
+Bạn duyệt ba điểm này nhé? [Gói chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Chưa chốt số lần/giới hạn cụ thể hoặc chạy thử trong lượt này.
 
 <oai-mem-citation>
 <citation_entries>
