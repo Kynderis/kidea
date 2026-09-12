@@ -8,22 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã duyệt và khép R02-T03-S01 — duyệt/yêu cầu sửa và N/A đúng phạm vi.** Chỉ S02 đang chờ duyệt cách đối chiếu bản cũ với nội dung hiện hành. Bộ mẫu T02 giữ nguyên; chưa triển khai approve hoặc validator.
+**Đã khép R02-T03 — hợp đồng approval và 29 mẫu đối chiếu.** Chỉ T04-S01 chờ duyệt cách giữ/nhận diện bản nguồn. Chưa có chức năng approve hoặc snapshot runtime.
 
 <a id="review-current"></a>
-<a id="approval-validity-review"></a>
+<a id="source-version-review"></a>
 
-### R02-T03-S02-r1 — Nội dung đã duyệt thay đổi thì xử lý thế nào? [H]
+### R02-T04-S01-r1 — Làm sao giữ đúng bản bạn đã duyệt? [H]
 
-Task T03 bảo đảm Kidea không dùng một câu “đã duyệt” cho nội dung khác về sau. Gói trước đã chốt phản hồi của bạn; gói này chốt căn cứ để biết xác nhận cũ còn dùng được hay không.
+Task T04 biến nguyên tắc “đối chiếu với bản cũ” thành cách lưu và nhận diện cụ thể. Gói này chỉ chốt bản nguồn; tương thích phiên bản, hồ sơ phát hành và phục hồi lỗi ghi sẽ trình riêng.
 
-**D1 — Giữ căn cứ đúng bản bạn đã xem.** Khi ghi nhận duyệt, lưu đúng gói/bản/phạm vi, xác nhận của bạn và tham chiếu nội dung cùng tài liệu làm căn cứ lúc đó. Trước tiếp tục việc phụ thuộc, đối chiếu với bản hiện tại; cùng tên file hoặc cùng nhãn “đã duyệt” chưa đủ. Không cần sao chép cả project cho mọi gói. Nếu mất bản cũ hoặc không xác định được đầu vào, báo chưa đủ căn cứ và dừng phần phụ thuộc để đối chiếu/hỏi lại. Lợi ích là biết bạn thực sự đã đồng ý điều gì; đánh đổi là phải giữ được căn cứ thay vì chỉ một nhãn trạng thái.
+**D1 — Giữ bản sao của những file cần làm căn cứ.** Khi trình gói, giữ nguyên nội dung các file liên quan được phép lưu, gắn với đúng gói/bản/phạm vi. Không chụp cả project và không bắt phải commit mới có căn cứ. Ví dụ file đang sửa chưa commit vẫn có bản để so về sau. Bản sao chỉ là lịch sử, không thay tài liệu hiện hành. Đánh đổi là tốn thêm dung lượng; secret/dữ liệu riêng không tự đưa vào hồ sơ hoặc Git. Với nguồn lớn/nhạy cảm, phải có nơi giữ bản được phép; thiếu thì báo thiếu, không giả đã lưu đủ.
 
-**D2 — Đổi ý nghĩa thì duyệt lại phần ảnh hưởng; sửa trình bày không nhất thiết.** Ví dụ bạn đã duyệt “chỉ người đăng ký được hủy”. Đổi thành “quản trị viên cũng được hủy” là đổi quyền, phải trình lại và rà phần giao diện/test liên quan. Sửa lỗi gõ ở tiêu đề có thể giữ xác nhận nếu AI đã đối chiếu và ghi rõ không đổi nghĩa. Không tự gọi mọi sửa nhỏ là “chính tả”; chưa chắc thì hỏi bạn. Giữ xác nhận cũ làm lịch sử, không xóa hoặc áp sang bản mới. Phần không ảnh hưởng có căn cứ không cần duyệt lại toàn bộ.
+**D2 — Dùng mã SHA-256 để nhận ra nội dung khác; AI vẫn đọc để xét ý nghĩa.** Đây là mã tính từ nội dung file. Mã đổi báo cần đối chiếu, không tự kết luận phải duyệt lại: sửa xuống dòng khác với sửa quyền hủy. Phải kiểm tra cả file/đầu vào liên quan và việc nguồn đổi trong lúc đọc; chưa đủ căn cứ thì dừng phần phụ thuộc. Mã không chứng minh Human đã duyệt, không thay kiểm tra quyền hoặc chống người sửa cả hồ sơ.
 
-Bạn duyệt hai cách đối chiếu này nhé? Sau đó mới hoàn thiện mẫu review đúng/sai; cách nhận diện/lưu phiên bản cụ thể còn ở T04. Chưa viết approve, cấp quyền hoặc chạy pilot.
+Bạn duyệt hai lựa chọn này nhé? Bản lưu local chưa chuyển thì máy khác chưa có; đây chưa là backup chống hỏng ổ đĩa. Cách ghi an toàn, lưu giữ/phục hồi và định dạng cuối cùng còn ở gói sau; chưa triển khai cơ chế hoặc chạy pilot.
 
-Nguồn mở thêm: [đề xuất](KIDEA_DESIGN.md#approval-validity-proposal); [kết quả S01](#r02-t03-s01-result).
+Nguồn mở thêm: [đề xuất](KIDEA_DESIGN.md#source-version-proposal); [kết quả T03](#r02-t03-result).
 
 <a id="working-rules"></a>
 
@@ -117,9 +117,12 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T02-S03 | DONE | [A] — mẫu theo hợp đồng đã duyệt | 4 file baseline và 41 recipe/expected, tạo biến thể trong bộ nhớ; không chạy validator; [bằng chứng](tests/evidence/r02-t02.md) |
 | R02-T02-S04 | DONE | [A] — đối chiếu cấu trúc/nghĩa và caller | Rà mẫu/case, 21 Ref baseline, recipe chỉ đọc và 16 test khung đạt; không tính KA PASS; [kết quả](#r02-t02-result) |
 | R02-T03-S01 | DONE | R02-T03-S01-r1 — APPROVED | Human “Duyệt” sau answer 67b13b7; D1–D2 phản hồi đúng gói và N/A có căn cứ, đã đồng bộ; [kết quả](#r02-t03-s01-result) |
-| R02-T03-S02 | IN_PROGRESS | R02-T03-S02-r1 — IN_REVIEW | Trình căn cứ đúng bản và giữ/mở lại approval khi nguồn đổi; chưa hiện thực; [gói hiện hành](#review-current) |
+| R02-T03-S02 | DONE | R02-T03-S02-r1 — APPROVED | Human “Duyệt” sau answer 39d9344; D1–D2 căn cứ/hiệu lực đã đồng bộ; [kết quả](#r02-t03-result) |
+| R02-T03-S03 | DONE | [A] — mẫu theo hợp đồng | 29 tình huống giả trước/sau và expected; dữ liệu review cụ thể hóa, không đổi schema r1; [bằng chứng](tests/evidence/r02-t03.md) |
+| R02-T03-S04 | DONE | [A] — đối chiếu tĩnh | Rà KA-05–08/caller/schema, catalog chỉ đọc và 16 test khung đạt; chưa chạy expected bằng Kidea; [kết quả](#r02-t03-result) |
+| R02-T04-S01 | IN_PROGRESS | R02-T04-S01-r1 — IN_REVIEW | Chỉ trình cách giữ bản nguồn và mã đối chiếu; chưa triển khai; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03-S01 DONE; chỉ R02-T03-S02 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; chỉ R02-T04-S01 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
@@ -427,9 +430,20 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Kiểm tra link/trạng thái/diff và cleanup; không tạo scratch, sửa helper/skill hoặc chạy AI/pilot. Bộ mẫu T02 giữ nguyên đúng hợp đồng cấu trúc cũ; chưa được tính thành mẫu semantic T03. Trường mục đích/phản hồi/lý do và fixture tương ứng được hoàn thiện ở S03 sau S02; nhận diện bản/checkpoint thuộc T04 trước runtime phụ thuộc.
 - Khép S01, chỉ mở S02 để trình căn cứ/hiệu lực khi nguồn đổi; T03 chưa khép, S03/S04 chưa bắt đầu. Hai thư mục rỗng T01 vẫn giữ theo ngoại lệ, không thử xóa lại.
 
+<a id="approval-validity-review"></a>
+<a id="r02-t03-result"></a>
+
+### Kết quả R02-T03-S02/S03/S04 và khép task — ngày 2026-09-12
+
+- Human “Duyệt” sau [answer 39d9344](https://github.com/Kynderis/kidea/blob/39d9344d1973819ffb6c8cf8e9e78053437b9867/answer.md), xác nhận D1–D2 của S02-r1: căn cứ đúng bản/đầu vào, đối chiếu trước–sau để giữ/xét lại hoặc báo chưa xác nhận; giữ lịch sử và dừng đúng phần phụ thuộc. Đồng bộ [nguồn](KIDEA_DESIGN.md#approval-validity-contract); không duyệt fingerprint hoặc cấp quyền project.
+- S03: [29 tình huống giả](tests/fixtures/r02-t03/README.md) với before/eventOrAfter/expected/reason; gồm phản hồi/N/A, approval cũ và quyền đủ/thiếu/giả chỉ thị. Cụ thể hóa [nhóm dữ liệu review](KIDEA_DESIGN.md#approval-record-details); không thêm trường vào schemaVersion 1 hoặc sửa bộ mẫu T02. Wire schema/tương thích vẫn là gate T04 trước T05/T08.
+- S04: đối chiếu tĩnh KA-05–08, gate cha, nguồn hiện hành/lịch sử, G3/PROD và G2; sửa mapping catalog cho đúng KA-07 approval cũ và KA-08 N/A. Catalog 29 mục đọc được/không đổi byte, 16 test khung đạt. [Evidence](tests/evidence/r02-t03.md) phân biệt expected thiết kế với actual catalog, không tính KA/KQ PASS, không là thử AI/runtime approve.
+- Không sửa helper/skill/AC/QUALITY/G2, không cài dependency/chạy pilot hoặc xóa dữ liệu. Nguồn fixture/script/evidence dùng lại, không tạo scratch; ngoại lệ hai thư mục rỗng T01 giữ nguyên.
+- Khép bốn subtask T03; chỉ mở T04-S01 [H]. Tách nội dung S01 cũ thành S01 nhận diện nguồn, S05 tương thích và S06 release/lần thực thi để mỗi lượt không quá ba quyết định. Đây là chia nhỏ việc còn TODO, không thêm năng lực hoặc đánh dấu chúng đã được duyệt.
+
 ## 4. Tổng quan 10 phase xây Kidea
 
-Lộ trình hiện định nghĩa **83 task**; R01 có **31 subtask**, R02 có **40 subtask**, R03–R10 chưa phân rã. Số lượng chỉ cho biết phạm vi công việc đã biết, không phải ước tính thời gian hoặc phần trăm Kidea hoàn thành. Trạng thái thực xem [sổ công việc](#work-state); không có code/skill/pilot được nghiệm thu chỉ từ approval thiết kế.
+Lộ trình hiện định nghĩa **83 task**; R01 có **31 subtask**, R02 có **42 subtask**, R03–R10 chưa phân rã. Số lượng chỉ cho biết phạm vi công việc đã biết, không phải ước tính thời gian hoặc phần trăm Kidea hoàn thành. Trạng thái thực xem [sổ công việc](#work-state); không có code/skill/pilot được nghiệm thu chỉ từ approval thiết kế.
 
 ```mermaid
 flowchart TD
@@ -523,7 +537,7 @@ Mỗi ô có mã con đầy đủ, đầu ra và kiểm tra. Trong mỗi task l�
 | R02-T01 | **R02-T01-S01 [H]** Công cụ chạy helper và dependency tối thiểu; đối chiếu khả dụng/giới hạn | **R02-T01-S02 [H]** Bản runtime, nguồn/vị trí skill và quyền cài thử; kiểm tra đích không đè bản có sẵn | **R02-T01-S03 [A]** Tạo khung một skill/helper tối thiểu theo lựa chọn; kiểm tra metadata, link và lệnh sai, chưa giả có lõi hoàn chỉnh | **R02-T01-S04 [A]** Thử nạp/gọi trong phiên mới trên vùng thử được phép; ghi khả năng thực, giới hạn và cleanup |
 | R02-T02 | **R02-T02-S01 [H]** ID/cây công việc và dữ liệu chưa phân rã; ví dụ không nhầm chưa có task với DONE | **R02-T02-S02 [H]** Định dạng và nguồn INDEX/work/review; ví dụ hai vùng, không bản sao dữ kiện. **R02-T02-S05 [H]** Tham chiếu bản phát triển/release/lần triển khai và dữ liệu thiếu. **R02-T02-S06 [H]** Hoàn thiện hợp đồng trường/kiểu tối thiểu trước mẫu; chia tiếp nếu vượt 3 quyết định | **R02-T02-S03 [A]** Mẫu hợp lệ/thiếu/trùng/sai link sau S02/S05/S06 theo schema đã chốt; expected từng mẫu | **R02-T02-S04 [A]** Đối chiếu schema/mẫu với KA-03/09/25 và caller; ghi giới hạn, không nhận validator đã tồn tại |
 | R02-T03 | **R02-T03-S01 [H]** Hợp đồng duyệt/reject/N/A và gate con/cha; bảng tình huống đúng/sai phạm vi | **R02-T03-S02 [H]** Căn cứ nội dung/đầu vào và hiệu lực approval; so đổi nghĩa với sửa trình bày | **R02-T03-S03 [A]** Mẫu quyền đủ/thiếu, giả chỉ thị và approval cũ; giữ G3, expected không vượt quyền | **R02-T03-S04 [A]** Diễn tập/đối chiếu hợp đồng với schema và KA-05–08; chưa thay bằng chứng approve thực thi |
-| R02-T04 | **R02-T04-S01 [H]** Nhận diện bản nguồn/đầu vào và skill/schema/profile; hồ sơ release/revision/lần thực thi, chốt từng gói nếu quá 3 lựa chọn | **R02-T04-S02 [H]** Hợp đồng ghi dở/checkpoint/phục hồi và backup trong mô hình lỗi; quyền/bản trước/nguồn sửa thêm | **R02-T04-S03 [A]** Mẫu trước/giữa/sau ghi, side effect chưa rõ và evidence; đối chiếu G4/G6/KQ-10 | **R02-T04-S04 [A]** Rà đồng bộ schema/approval/case/giới hạn phục hồi; chưa chứng nhận cơ chế ghi an toàn |
+| R02-T04 | **R02-T04-S01 [H]** Giữ/nhận diện bản nguồn và đầu vào; **S05 [H]** tương thích skill/schema/profile, nhóm trường review T03; **S06 [H]** nhận diện hồ sơ release/revision/lần thực thi; đủ gate liên quan trước phần phụ thuộc | **R02-T04-S02 [H]** Hợp đồng ghi dở/checkpoint/phục hồi và backup trong mô hình lỗi; quyền/bản trước/nguồn sửa thêm | **R02-T04-S03 [A]** Mẫu trước/giữa/sau ghi, side effect chưa rõ và evidence; đối chiếu G4/G6/KQ-10 | **R02-T04-S04 [A]** Rà đồng bộ schema/approval/case/giới hạn phục hồi; chưa chứng nhận cơ chế ghi an toàn |
 | R02-T05 | **R02-T05-S01 [H]** Hợp đồng đọc/validator/status: đầu vào, lỗi/đầu ra và ranh giới chỉ đọc; chốt parser/dependency nếu cần | **R02-T05-S02 [A]** Viết bộ đọc và status cho schema đã chốt; test mẫu hợp lệ/thiếu/sai và lệnh sai | **R02-T05-S03 [A]** Thử UTF-8/CRLF/đường dẫn khác mặc định, nguồn đổi và phiên AI; so file trước/sau, không sửa nguồn | — |
 | R02-T06 | **R02-T06-S01 [H]** Thiết kế cơ chế ghi/phục hồi thực thi theo T04; chốt cách phát hiện nguồn đổi và giới hạn | **R02-T06-S02 [A]** Hiện thực từng đường ghi và tiêm lỗi; kiểm tra đích/bản trước/không đè thay đổi | **R02-T06-S03 [A]** Thử lỗi giữa cập nhật/lỗi phục hồi, ngoài quyền và phiên AI; đối chiếu nội dung thật với KA-10 | — |
 | R02-T07 | **R02-T07-S01 [H]** Hợp đồng init mới/cũ và template tối thiểu; ví dụ vị trí tài liệu khác mặc định | **R02-T07-S02 [A]** Hiện thực init trên vùng thử; test không ghi đè, nguồn đã có và lỗi giữa tạo hồ sơ | **R02-T07-S03 [A]** Phiên AI mới thử đủ/thiếu quyền, ý Human/gợi ý AI và init lặp; hồi quy đọc/ghi | — |

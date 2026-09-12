@@ -401,13 +401,14 @@ Human yêu cầu sửa/từ chối thì lưu phản hồi, giữ gói chưa đư
 
 Thiếu máy, thiếu quyền, chưa có công cụ hoặc đang test lỗi không tự là lý do N/A; giữ blocker và xin phương án. N/A cho một mục không miễn các mục khác, gate cha hoặc năng lực hướng dẫn tương ứng của Kidea. Ví dụ sản phẩm không có ứng dụng iOS có thể xin miễn phần triển khai iOS của sản phẩm đó; thiếu Mac khi iOS vẫn thuộc phạm vi thì không tự miễn. Chỉ tổng hợp phần được miễn khi có quyết định còn hiệu lực đúng bản/phạm vi; điều kiện khép phase vẫn riêng.
 
-S01 đã duyệt nghĩa của mục đích/feedback/lý do; trường lưu và fixture review được đồng bộ ở S03 sau khi đủ hợp đồng S02, không giữ mẫu cấu trúc S06 cũ làm bằng chứng đủ ngữ nghĩa mới. Chưa thêm trạng thái REJECTED vào luồng ba trạng thái, chưa ghi approval thật bằng helper hoặc chạy gói giả như chỉ thị. T03-S02 tiếp tục hiệu lực/phiên bản; S03/S04 đối chiếu mẫu, T08 mới hiện thực hành động approve.
+S01 đã duyệt nghĩa của mục đích/feedback/lý do; S02 đã chốt hiệu lực và S03/S04 đã đồng bộ nhóm dữ liệu/mẫu tại [phần cụ thể hóa](#approval-record-details), không giữ mẫu cấu trúc S06 cũ làm bằng chứng đủ ngữ nghĩa mới. Chưa thêm trạng thái REJECTED vào luồng ba trạng thái, chưa ghi approval thật bằng helper hoặc chạy gói giả như chỉ thị. T04 tiếp tục cơ chế phiên bản/tương thích; T08 mới hiện thực hành động approve.
 
 <a id="approval-validity-proposal"></a>
+<a id="approval-validity-contract"></a>
 
-#### Đề xuất R02-T03-S02-r1 — căn cứ và hiệu lực khi nguồn đổi, chưa duyệt
+#### R02-T03-S02-r1 — căn cứ và hiệu lực khi nguồn đổi, đã duyệt
 
-Gói đọc ngắn tại [roadmap](KIDEA_ROADMAP.md#approval-validity-review). Cụ thể hóa việc đối chiếu approval đã chốt ở R01/S01, không thay chính sách quyền hoặc kiểm tra G2. D1 chốt bộ căn cứ đối chiếu; D2 chốt kết luận và phần phải dừng khi phát hiện thay đổi.
+Human “Duyệt” sau [answer 39d9344](https://github.com/Kynderis/kidea/blob/39d9344d1973819ffb6c8cf8e9e78053437b9867/answer.md), xác nhận D1–D2 của S02-r1; [kết quả](KIDEA_ROADMAP.md#r02-t03-result). Cụ thể hóa việc đối chiếu approval đã chốt ở R01/S01, không thay chính sách quyền hoặc kiểm tra G2. D1 chốt bộ căn cứ đối chiếu; D2 chốt kết luận và phần phải dừng khi phát hiện thay đổi.
 
 **D1 — Xác nhận phải truy được nội dung và đầu vào đúng bản, không chỉ ID/link.** Ghi đúng gói/revision, mục đích duyệt nội dung hay N/A, phạm vi/mục sở hữu, xác nhận Human và nguồn/bản của nội dung được trình. Ngoài nội dung trực tiếp, giữ tham chiếu phiên bản của những đầu vào làm căn cứ cho quyết định: yêu cầu/rule/contract, cấu hình/profile/môi trường và kết quả kiểm tra khi chúng chi phối điều đang duyệt. Không ép chụp toàn bộ repo cho mọi gói, không coi danh sách link ban đầu là đã tìm hết dependency.
 
@@ -415,7 +416,7 @@ Trước dùng approval để làm phần phụ thuộc, đối chiếu nguồn 
 
 **D2 — Đổi nghĩa thì duyệt lại phần ảnh hưởng; đổi trình bày được giữ nếu có căn cứ.** AI phải đọc nội dung trước/sau và các nơi phụ thuộc liên quan, không chỉ so hash hoặc đếm dòng. Ghi kết luận ở hồ sơ review/đối chiếu: bản trước–sau, phần thay đổi, ảnh hưởng tới phạm vi/đầu vào/quyền/kiểm tra và lý do giữ hoặc mở lại. Không dùng chữ “format” để miễn xét đổi phủ định, số liệu, link đích hoặc cấu hình; nếu chưa phân biệt chắc thì báo chưa xác nhận, hỏi Human trước tiếp tục phần phụ thuộc.
 
-| Trường hợp | Cách xử lý đề xuất |
+| Trường hợp | Cách xử lý đã duyệt |
 |---|---|
 | Đúng nội dung và đầu vào, điều kiện không đổi | Có thể dùng approval trong đúng phạm vi/quyền; không mở gate mới chỉ vì sang phiên hoặc ghi thêm báo cáo. |
 | Chỉ chính tả/trình bày, đã chứng minh không đổi nghĩa hoặc điều kiện | Giữ xác nhận gốc và ghi căn cứ đối chiếu trước–sau, không tự ghi Human đã duyệt một nội dung mới; không bắt duyệt lại toàn project. |
@@ -426,7 +427,41 @@ Ví dụ đổi “chỉ người đăng ký được hủy” thành “quản 
 
 Không ghi đè xác nhận cũ thành “chưa từng duyệt”, không giữ hai trạng thái hiện hành có thẩm quyền ở docs/INDEX/review. Đầu ra đối chiếu hiệu lực không tự làm mọi approval cũ chỉ vì file báo cáo thay đổi; vẫn xét đúng đầu vào theo QUALITY. Hiệu lực approval và test là hai kết luận riêng, không dùng giữ approval để bỏ lượt toàn dự án bắt buộc G2.
 
-Sau S02 được duyệt, S03 cụ thể hóa dữ liệu review/feedback/mục đích và mẫu đúng/sai trong phạm vi T03; S04 đối chiếu KA-05–08 và caller. Mẫu r1 của T02 vẫn là căn cứ cấu trúc cũ, không chứng minh hiệu lực mới. Chi tiết fingerprint/checkpoint/ghi/tương thích ở T04 phải chốt trước các hành vi runtime phụ thuộc; chưa chạy approve, cấp quyền project hay kiểm chứng pilot trong gói này.
+S03/S04 đã cụ thể hóa [dữ liệu và mẫu dưới đây](#approval-record-details), đối chiếu KA-05–08 và caller. Mẫu r1 của T02 vẫn là căn cứ cấu trúc cũ, không chứng minh hiệu lực mới. Chi tiết fingerprint/checkpoint/ghi/tương thích ở T04 phải chốt trước các hành vi runtime phụ thuộc; chưa chạy approve, cấp quyền project hay kiểm chứng pilot trong gói này.
+
+<a id="approval-record-details"></a>
+
+#### Dữ liệu review cần giữ — cụ thể hóa S01/S02, không đổi wire schema r1
+
+Các nhóm dưới đây diễn đạt thông tin đã duyệt, không tạo một nguồn trạng thái thứ hai. Tên trường biểu diễn để T04 hoàn thiện schema tương thích; **chưa cho phép đưa thêm trường vào schemaVersion 1** vốn từ chối trường lạ. Bộ mẫu T03 là tình huống trước–sau, không giả là record runtime hoàn chỉnh.
+
+| Nhóm thông tin | Biểu diễn và điều kiện |
+|---|---|
+| Gói hiện hành | Giữ id/revision/ownerIds/subjectRefs/status/confirmationRef của T02; đúng bản/phạm vi và chỉ một record hiện hành cho mỗi ID. |
+| Mục đích | `purpose`: duyệt nội dung hoặc miễn áp dụng; không tự mặc định khi thiếu. |
+| Phản hồi | `feedbackRef`: tham chiếu phản hồi Human đúng gói/bản, có thể chưa có trước phản hồi; yêu cầu sửa phải giữ nội dung phản hồi. Không lấy câu trong tài liệu tự nhận là phản hồi thật. |
+| Miễn áp dụng | `waiverReasonRef`: lý do, mục miễn, điều kiện/phạm vi và nghĩa vụ còn giữ; bắt buộc với mục đích N/A, không có ở duyệt nội dung thông thường. Phải có xác nhận Human còn hiệu lực mới dùng N/A. |
+| Căn cứ đã trình/duyệt | `basisRefs`: nội dung trực tiếp và đầu vào chi phối đúng phiên bản, nối đúng xác nhận Human; Ref đường dẫn thường của T02 không thay nhận diện phiên bản. |
+| Đối chiếu hiệu lực | `validityRef`: bản trước/sau, thay đổi, dependency/ảnh hưởng, kết luận giữ/xét lại/chưa xác nhận và lý do. Không có đủ đối chiếu thì không tự giữ hiệu lực; không dùng kết luận này thành approval hoặc quyền mới. |
+| Lịch sử | Giữ bản đã trình/đã duyệt và phản hồi theo revision; liên kết từ record hiện hành, không sửa lời xác nhận cũ hoặc tạo hai trạng thái hiện hành. Cách lưu/định danh chi tiết thuộc T04. |
+
+[29 mẫu giả](tests/fixtures/r02-t03/README.md) cụ thể hóa cả dữ liệu thiếu, approval cũ, N/A và quyền đủ/thiếu. [Đối chiếu và giới hạn](tests/evidence/r02-t03.md) chỉ là kiểm tra thiết kế/catalog; chưa thực hiện các kết quả expected bằng Kidea. T04 phải chốt cách mã hóa các nhóm mới và version/tương thích trước T05/T08; không lặng lẽ nâng schema hoặc nhận record cũ là đủ ngữ nghĩa.
+
+<a id="source-version-proposal"></a>
+
+#### Đề xuất R02-T04-S01-r1 — giữ và nhận diện bản nguồn, chưa duyệt
+
+T04 giải quyết cách giữ căn cứ trên đĩa và phát hiện bản đã đổi. S01 chỉ chốt hai lựa chọn dưới đây; tương thích schema/skill/profile ở S05, nhận diện release/lần thực thi ở S06, ghi dở/backup ở S02. [Gói đọc ngắn](KIDEA_ROADMAP.md#source-version-review).
+
+**D1 — Giữ bản nội dung cần đối chiếu cùng hồ sơ, không phụ thuộc đã commit.** Với file văn bản local được phép lưu, giữ một bản byte nguyên vẹn của các file làm căn cứ trực tiếp/đầu vào chi phối khi trình gói; ghi rõ file nguồn, phạm vi/anchor được xét và liên kết revision. Lưu tại vùng hồ sơ quản lý `.kidea` theo đường dẫn được chốt ở hợp đồng ghi, không sửa snapshot cũ thành bản mới. Đây là bằng chứng lịch sử, không là nguồn đặc tả hiện hành thứ hai. Chỉ giữ file cần thiết, không chụp toàn repo; giữ nguyên file giúp không bỏ ngữ cảnh ngoài đoạn trích, đánh đổi bằng dung lượng. S02 chốt ghi an toàn/lưu giữ/phục hồi trước triển khai, chưa cho tự dọn bản cũ.
+
+Không sao chép secret/dữ liệu riêng tư vào hồ sơ/Git. File lớn, nhạy cảm hoặc bằng chứng ngoài repo phải có nơi giữ bản được phép và tham chiếu phiên bản truy lại được; chưa có cách đó thì báo thiếu căn cứ và dừng phần phụ thuộc, không tự upload hoặc giả snapshot đầy đủ. Git commit có thể bổ sung truy xuất/chuyển máy nhưng không thay file chưa commit; snapshot local chưa chuyển không có ở máy khác. Không là backup chống hỏng ổ đĩa hoặc bảo đảm giữ mọi công việc chưa lưu.
+
+**D2 — Dùng SHA-256 cho byte thực để phát hiện khác biệt, AI vẫn xét ý nghĩa.** Mỗi mục căn cứ ghi đường dẫn nguồn, phạm vi, độ dài byte, SHA-256 và tham chiếu bản lưu; không chuẩn hóa khoảng trắng/newline trước tính mã. Còn phải đối chiếu tập file/đích, đầu vào và điều kiện liên quan: file bị xóa, thêm dependency hoặc đích link đổi không được bỏ qua. Mã không là chữ ký Human, không chứng minh đủ dependency, không phân biệt chính tả với nghiệp vụ và không bảo vệ khỏi người có quyền sửa cả hồ sơ.
+
+Đọc byte để lưu/tính mã từ cùng dữ liệu; kiểm tra lại nguồn và tập đầu vào trước hoàn tất trình/ghi nhận/tiếp tục thao tác phụ thuộc. Phát hiện thay đổi hoặc không kiểm tra được thì báo chưa xác nhận, đọc/đối chiếu lại; không ghi APPROVED dựa trên lượt đọc trộn bản. Kiểm tra trước/sau không là khóa giao dịch toàn repo hay chống mọi ghi đồng thời; hợp đồng ghi S02 phải xác định giới hạn và cách dừng trước runtime. Mã khác chỉ kích hoạt đối chiếu đã chốt tại T03: thay newline có thể không đổi nghĩa, đổi một chữ có thể đổi quyền. Không tự giữ hoặc hủy approval chỉ từ mã.
+
+Chưa chọn cấu trúc manifest/schemaVersion, đường dẫn snapshot cuối cùng, migration, khóa ghi, backup, chữ ký hay nhận diện artifact vận hành. Đây là đề xuất, chưa code cơ chế hoặc tạo snapshot project.
 
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>
