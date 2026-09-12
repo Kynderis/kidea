@@ -467,29 +467,48 @@ Không sao chép secret/dữ liệu riêng tư vào hồ sơ/Git. File lớn, nh
 Chưa chọn cấu trúc manifest/schemaVersion, đường dẫn snapshot cuối cùng, migration, khóa ghi, backup, chữ ký hay nhận diện artifact vận hành. Chỉ hợp đồng S01 đã duyệt; chưa code cơ chế hoặc tạo snapshot project.
 
 <a id="interrupted-write-proposal"></a>
+<a id="interrupted-write-contract"></a>
 
-#### Đề xuất R02-T04-S02-r1 — căn cứ trước ghi và đối chiếu khi bị ngắt, chưa duyệt
+#### R02-T04-S02-r1 — căn cứ trước ghi và đối chiếu khi bị ngắt, đã duyệt và làm rõ
 
-G4 đã cho lưu việc dở và phục hồi có điều kiện; gói này cụ thể hóa thông tin phải giữ và cách phân loại một lượt cập nhật local nhiều file. Không thêm quyền ghi/khôi phục. [Gói đọc ngắn](KIDEA_ROADMAP.md#interrupted-write-review). T06 còn gate cơ chế thực thi/khóa ghi/giới hạn hệ thống file trước code, không suy thiết kế này là bảo đảm ghi nguyên khối.
+Human “Ok, Tôi duyệt cả 2 nhé” ngày 2026-09-13, sau [gói tại 24a3b61](https://github.com/Kynderis/kidea/blob/24a3b61a66d7024b6480aeeb7ca74a23f85a0222/answer.md) và phần làm rõ trong hội thoại về tận dụng Git, bảo vệ nội dung chưa commit và dọn bản tạm; [phạm vi/bằng chứng](KIDEA_ROADMAP.md#r02-t04-s02-result). G4 đã cho lưu việc dở và phục hồi có điều kiện; gói này cụ thể hóa căn cứ/lượt cập nhật local và việc tự dọn bản tạm đúng phạm vi được phép, không mở quyền ghi/phục hồi khác. T06 còn gate cơ chế thực thi/khóa ghi/giới hạn hệ thống file trước code, không suy thiết kế này là bảo đảm ghi nguyên khối.
 
 **D1 — Chuẩn bị đủ căn cứ trước thay file đích.** Với mỗi lượt ghi nằm trong quyền, ghi nhận nhiệm vụ, đích đã xác minh, nguồn/điều kiện đầu vào, bản trước và nội dung dự định sau; giữ bản byte trước của file sẽ thay cùng mã đối chiếu S01. Ghi rõ đích trước đó chưa tồn tại nếu tạo mới, không dùng file rỗng thay cho chưa tồn tại. Chỉ giữ dữ liệu được phép, không sao chép toàn repo. Nếu không lưu/đọc lại được căn cứ hợp lệ thì chưa thay file đích. Bản ngay trước khi ghi dùng phục hồi khác với bản lúc trình review; không lấy bản từng được duyệt lâu trước đó đè lên việc đang làm.
 
+**Tận dụng Git, không bắt sao chép trùng:** nếu đúng nội dung ngay trước thao tác đã có đầy đủ trong Git và đọc lại/đối chiếu được, có thể tham chiếu đúng bản đó làm căn cứ phục hồi. Phải đối chiếu byte thực tế, không lấy tên branch, HEAD hoặc trạng thái “đã commit” thay cho đúng nội dung cần giữ. Nếu file hiện tại có sửa chưa commit, bản Git cũ không đủ: giữ phần hiện tại trước khi sửa. Không bắt commit trước mỗi lần ghi hoặc đổi quy ước Git của project. Tham chiếu Git cần truy được trong thời gian còn cần phục hồi; mất nguồn thì dừng, không đoán hoặc tự reset. Lựa chọn tận dụng Git này áp dụng bản trước thao tác của S02, không âm thầm thay cách giữ bản trình đã chốt ở S01.
+
 Hồ sơ lượt ghi có nhận diện riêng và bằng chứng từng đích: dự định gì, đã kiểm tra được gì, chỗ nào chưa xác nhận. Không chỉ ghi “đang làm” hoặc tên commit. Nội dung mới được chuẩn bị/kiểm tra trước khi áp dụng; ngay trước thay phải đối chiếu đích/nguồn/quyền, sau ghi đọc lại nội dung thực tế. Chỉ báo toàn lượt đã cập nhật khi đủ mọi đích và quan hệ liên quan; còn một đích lỗi thì giữ lượt dở, không cập nhật nhãn DONE để che lỗi. Một lượt nhiều file có thể bị ngắt giữa chừng, không nhận chúng đổi đồng thời. Trường/kiểu và nơi lưu cụ thể được chốt khi hoàn thiện hợp đồng dữ liệu; bản bằng chứng không là nguồn trạng thái task thứ hai.
 
-Đây là phần hồ sơ phục hồi cần giữ, không coi như cache để xóa theo tuổi/số bản. Chỉ dọn đúng dữ liệu tạm đã xác định sau khi không còn cần đối chiếu/phục hồi và có quyền; không tự xóa bản lịch sử review hoặc mốc phục hồi còn được tham chiếu. Chưa đặt chính sách tự động dọn backup. Không bảo đảm chống mất điện/hỏng ổ đĩa, không khôi phục nội dung chưa lưu hoặc chưa chuyển sang máy khác; giữ nghĩa vụ thử lỗi ghi/dừng tiến trình/thay đổi ngoài luồng của KA-10.
+**Tự dọn bản tạm khi đã an toàn:** bản tạm trước thao tác do Kidea tạo được dọn khi việc đã hoàn tất, kiểm tra bắt buộc đạt, không còn lỗi/ghi dở cần nó và đã xác minh không còn nhu cầu đối chiếu/phục hồi hoặc tham chiếu buộc giữ bản đó. Kidea tự dọn đúng danh sách/đường dẫn thuộc nó trong phạm vi được phép, không bắt Human dọn thủ công hoặc xin lại mỗi file đã đủ điều kiện. Không quét xóa theo tên thư mục/tuổi/số bản; chưa rõ sở hữu/quyền/nhu cầu thì giữ và hỏi. Lỗi dọn phải báo còn file nào, không nhận đã dọn xong.
+
+Bản lịch sử làm căn cứ Human duyệt, mốc phục hồi còn cần và log/bằng chứng kết quả cần lưu không là bản tạm được xóa chỉ vì task DONE. Giữ dấu vết lượt ghi và kết quả kiểm tra cần thiết, ghi rõ bản tạm đã dọn và căn cứ cho việc dọn; không để record còn khẳng định bản phục hồi đã xóa vẫn khả dụng. Việc tận dụng Git không cấp quyền xóa commit/tag/lịch sử. Chính sách này không là lệnh dọn dữ liệu thật ngay trong repo hiện tại. Không bảo đảm chống mất điện/hỏng ổ đĩa, không khôi phục nội dung chưa lưu hoặc chưa chuyển sang máy khác; giữ nghĩa vụ thử lỗi ghi/dừng tiến trình/thay đổi ngoài luồng của KA-10.
 
 **D2 — Tiếp tục từ nội dung thực tế, không chạy lại mù.** Sau gián đoạn, đối chiếu từng file với bản trước và bản dự định, đối chiếu đầu vào/quyền còn hiệu lực; log riêng không chứng minh thao tác đã xảy ra.
 
-| Thực tế sau đọc lại | Xử lý đề xuất |
+| Thực tế sau đọc lại | Xử lý đã duyệt |
 |---|---|
 | Mọi đích còn đúng bản trước | Lượt chưa được xác nhận áp dụng; chỉ tiếp tục sau kiểm tra lại quyền/đầu vào và yêu cầu hiện hành. Không suy log thiếu là chưa từng có tác dụng phụ ngoài file. |
 | Mọi đích đúng bản dự định | Kiểm tra quan hệ và điều kiện đầu ra; có thể ghi nhận kết quả đã xác minh, không ghi lại nội dung chỉ để khớp log. Không tự duyệt gate hoặc đóng task còn thiếu test. |
 | Một phần đúng bản trước, một phần đúng bản dự định | Giữ lượt chưa hoàn tất; ưu tiên sửa tiếp đúng yêu cầu sau đối chiếu. Chỉ tiếp tục phần còn lại nếu xác định được phần đã xảy ra, đủ quyền/đầu vào và không có sửa ngoài luồng; không nhận cả lượt đạt. |
 | Đích khác cả hai, mất/hỏng bản căn cứ hoặc chưa rõ ai sửa | Giữ nguyên và dừng phần phụ thuộc để hỏi/đối chiếu; không coi là lỗi của Kidea chỉ vì log nói đang ghi. |
 
-Tự hoàn tác vẫn chỉ trong G4: một bước ghi lỗi của chính Kidea, đúng file/phạm vi và bản ngay trước đã xác minh, chứng minh không có sửa thêm, kiểm tra lại trước/sau phục hồi. Nếu chưa chứng minh được thì hỏi, không lấy khớp hash riêng lẻ làm bằng chứng đủ về quyền/nguồn gốc. Gói này không cấp quyền tự xóa file tạo mới, reset Git, hoàn tác commit đã chia sẻ, replay deploy/migration hoặc restore database. Tác dụng phụ ngoài file local chưa rõ phải đối chiếu bằng chứng thực tại nguồn được phép trước quyết định, không thử lại để dò.
+Tự hoàn tác vẫn chỉ trong G4: một bước ghi lỗi của chính Kidea, đúng file/phạm vi và bản ngay trước đã xác minh, chứng minh không có sửa thêm, kiểm tra lại trước/sau phục hồi. Nếu chưa chứng minh được thì hỏi, không lấy khớp hash riêng lẻ làm bằng chứng đủ về quyền/nguồn gốc. Quyền dọn bản tạm trên không cấp quyền tự xóa file sản phẩm/hồ sơ nguồn mới tạo, reset Git, hoàn tác commit đã chia sẻ, replay deploy/migration hoặc restore database. Tác dụng phụ ngoài file local chưa rõ phải đối chiếu bằng chứng thực tại nguồn được phép trước quyết định, không thử lại để dò.
 
-S03/S04 sẽ tạo mẫu trước/giữa/sau ghi và thiếu căn cứ theo hợp đồng được duyệt, sau khi đủ S05/S06 liên quan. Chưa triển khai journal/backup hoặc thử lỗi ghi trong gói trình này; T06 phải chứng minh cơ chế không đè sửa ngoài luồng trong mô hình lỗi được chốt.
+S03/S04 sẽ tạo mẫu trước/giữa/sau ghi, thiếu căn cứ, Git đúng/sai bản và dọn/giữ bản tạm theo hợp đồng được duyệt, sau khi đủ các gate dữ liệu liên quan. Chưa triển khai journal/backup/cleanup hoặc thử lỗi ghi trong lượt này; T06 phải chứng minh cơ chế không đè sửa ngoài luồng trong mô hình lỗi được chốt.
+
+<a id="compatibility-proposal"></a>
+
+#### Đề xuất R02-T04-S05-r1 — phiên bản hồ sơ và khả năng đọc, chưa duyệt
+
+[Gói đọc ngắn](KIDEA_ROADMAP.md#compatibility-review). T04-S05 chốt cách xử lý khác phiên bản, không chốt hàng loạt trường dữ liệu; phần trường/tham chiếu/nơi lưu tách S07 trước S03/S04 và code. Không sửa mẫu r1 hoặc tự chuyển đổi dữ liệu trong lượt trình này.
+
+**D1 — Ghi riêng phiên bản công cụ, định dạng hồ sơ và bộ quy tắc project; chỉ dùng tổ hợp đã xác nhận hỗ trợ.** Chúng khác nhau: nâng Kidea không tự đổi số phiên bản sản phẩm hoặc chứng minh đọc được mọi hồ sơ. Bản helper/skill phải khai báo khả năng đọc/ghi định dạng và cấu hình/quy tắc project liên quan; đối chiếu với bản thực tế trước hành động. Bộ quy tắc tiếp tục ở nguồn project hiện có, không tạo kho profile mới. Giống số version nhưng nội dung khác vẫn phải đối chiếu theo S01/T03; thiếu hoặc không xác định được khả năng hỗ trợ thì báo rõ, dừng phần phụ thuộc, không đoán tương thích hay điền mặc định.
+
+Thông báo chỉ rõ bản tìm thấy, bản được hỗ trợ và cách tiếp tục cần chọn. Có thể đọc thông tin nhận diện để chẩn đoán, nhưng chưa hỗ trợ thì không suy trạng thái/approval từ phần dữ liệu không hiểu, không ghi lại file hoặc tự cài/nâng/hạ công cụ. Nâng công cụ không tự làm approval mất hiệu lực; vẫn xét thay đổi thực tế của đầu vào/điều kiện, không lấy số version thay đánh giá nghĩa.
+
+**D2 — Dùng định dạng hồ sơ thử số 2 cho bộ dữ liệu mở rộng, giữ mẫu số 1 nguyên trạng.** Hợp đồng số 1 từ T02 chưa đủ mục đích N/A, căn cứ theo bản và lượt ghi; không thêm trường lạ vào số 1 để né quy tắc đã duyệt. Đề xuất parser đầu tiên ở T05 chỉ đọc/ghi số 2 sau khi S06/S07 chốt đủ trường và fixture. Mẫu số 1 giữ làm bằng chứng lịch sử/đầu vào không hỗ trợ, không nhận nó là project số 2 hợp lệ. Số này là phiên bản định dạng thử, không là số phiên bản Kidea phát hành hoặc sản phẩm.
+
+Gặp hồ sơ số 1, số lạ hoặc các file trộn định dạng: giữ nguyên, báo không hỗ trợ/chưa nhất quán, không tự chuyển đổi hay sửa riêng một file. Khi có nhu cầu chuyển hồ sơ thực, phải có kế hoạch chuyển đổi, bảo toàn/đối chiếu dữ liệu và quyền riêng; không buộc Human nhập lại dữ liệu hoặc coi đó là N/A. Đánh đổi của bản đầu là không tương thích ngược tự động; lợi ích là hợp đồng rõ và không đọc sai rồi ghi hỏng dữ liệu. Chưa có project runtime được chuyển trong gói này.
 
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>

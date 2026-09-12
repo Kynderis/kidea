@@ -1,6 +1,6 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
-Ngày cập nhật: 2026-09-12.
+Ngày cập nhật: 2026-09-13.
 
 Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đầu vòng rà soát mới từ đầu, mỗi lần đọc/duyệt chỉ vài đầu mục. **Đã có khung thử skill/helper, chưa có lõi Kidea hoặc code pilot.** R01 đã được duyệt làm căn cứ, R02 triển khai từng lát cắt trong quyền; các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
@@ -8,22 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã duyệt và khép R02-T04-S01 — giữ đúng bản đã trình và phát hiện thay đổi.** Chỉ S02 chờ duyệt cách giữ căn cứ trước sửa file và tiếp tục khi bị ngắt; chưa có cơ chế ghi/khôi phục runtime.
+**Đã duyệt và khép R02-T04-S02 — giữ căn cứ trước ghi, tận dụng Git và dọn bản tạm khi an toàn.** Chỉ S05 chờ duyệt cách xử lý phiên bản hồ sơ; chưa viết cơ chế ghi, phục hồi hoặc dọn file.
 
 <a id="review-current"></a>
-<a id="interrupted-write-review"></a>
+<a id="compatibility-review"></a>
 
-### R02-T04-S02-r1 — Đang sửa file mà bị ngắt thì làm sao? [H]
+### R02-T04-S05-r1 — Nếu Kidea gặp hồ sơ khác phiên bản thì sao? [H]
 
-Task T04 giúp Kidea giữ đủ căn cứ để tiếp tục đúng. Gói trước xử lý bản bạn đã xem; gói này xử lý bản ngay trước khi Kidea sửa file — hai bản có thể khác nhau.
+Task T04 giúp giữ đúng dữ liệu để tiếp tục công việc. Gói này xử lý một rủi ro khác: công cụ đọc hồ sơ theo cách nó chưa hiểu, rồi ghi sai dữ liệu.
 
-**D1 — Giữ bản trước và ghi rõ định sửa gì.** Ví dụ cần sửa hai file A/B: trước khi thay nội dung, giữ bản hiện tại của những file sẽ sửa và nội dung dự định ghi. Lưu căn cứ không được thì chưa sửa. Nhờ vậy, khi bị ngắt vẫn biết đã định làm gì và còn bản đối chiếu. Chỉ lưu file trong phạm vi/quyền, không sao chép cả project hay tự lưu dữ liệu nhạy cảm. Đánh đổi là thêm dung lượng và bước kiểm tra; đây không phải backup chống hỏng ổ đĩa.
+**D1 — Chỉ làm tiếp khi xác định được công cụ hiểu hồ sơ.** Ghi riêng bản Kidea, phiên bản định dạng hồ sơ và bộ quy tắc project đang dùng; kiểm tra chúng có được hỗ trợ cùng nhau không. Ví dụ Kidea cũ gặp kiểu hồ sơ mới: báo rõ chưa đọc được, giữ nguyên dữ liệu và chỉ ra điều cần giải quyết, không tự nâng công cụ hoặc đoán trạng thái. Cách này có thể khiến phải dừng để xử lý tương thích, nhưng tránh đọc sai rồi ghi hỏng hồ sơ.
 
-**D2 — Quay lại thì kiểm tra file thật, không làm lại từ đầu.** Nếu A đã sửa còn B chưa sửa, giữ trạng thái “chưa hoàn tất” và kiểm tra trước khi làm tiếp phần còn lại. Nếu bạn sửa thêm B trong lúc đó, Kidea không lấy bản cũ đè lên mà dừng hỏi. Chỉ tự hoàn tác lỗi ghi do chính Kidea gây ra khi có bản ngay trước đáng tin cậy, đủ quyền và chắc chắn không có sửa thêm; trường hợp chưa rõ thì giữ nguyên.
+**D2 — Đánh số 2 cho định dạng thử đã bổ sung, không sửa ngầm mẫu số 1.** Mẫu số 1 trước đây chưa có đủ thông tin về căn cứ duyệt và lần ghi. Đề xuất bộ đọc đầu tiên chỉ hỗ trợ số 2 sau khi chốt đủ chi tiết; mẫu số 1 vẫn giữ làm lịch sử. Gặp số 1, số lạ hoặc các file lẫn nhiều định dạng thì báo rõ, không tự chuyển đổi. Khi cần chuyển hồ sơ thật, sẽ có phương án bảo toàn dữ liệu và quyền riêng.
 
-Bạn duyệt cách xử lý này nhé? Không tự chạy lại deploy, sửa database hoặc reset Git. Gói này chốt cách xử lý, chưa triển khai cơ chế; định dạng hồ sơ, cách ghi an toàn cụ thể và kiểm thử lỗi vẫn ở các phần tiếp theo.
+Bạn duyệt hai lựa chọn này nhé? Đánh đổi là bản đầu chưa tự hỗ trợ hồ sơ cũ. “Số 2” chỉ là cách đánh số định dạng thử, không phải Kidea 2.0 hoặc phiên bản sản phẩm của bạn. Các trường cụ thể được trình riêng; lượt này chưa đổi mẫu hoặc viết bộ đọc.
 
-Nguồn mở thêm: [đề xuất](KIDEA_DESIGN.md#interrupted-write-proposal); [kết quả S01](#r02-t04-s01-result).
+Nguồn mở thêm: [đề xuất](KIDEA_DESIGN.md#compatibility-proposal); [kết quả S02](#r02-t04-s02-result).
 
 <a id="working-rules"></a>
 
@@ -121,9 +121,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T03-S03 | DONE | [A] — mẫu theo hợp đồng | 29 tình huống giả trước/sau và expected; dữ liệu review cụ thể hóa, không đổi schema r1; [bằng chứng](tests/evidence/r02-t03.md) |
 | R02-T03-S04 | DONE | [A] — đối chiếu tĩnh | Rà KA-05–08/caller/schema, catalog chỉ đọc và 16 test khung đạt; chưa chạy expected bằng Kidea; [kết quả](#r02-t03-result) |
 | R02-T04-S01 | DONE | R02-T04-S01-r1 — APPROVED | Human “Ok tôi hiểu rồi. Duyêt nhé” sau giải thích gói e463a7b; chỉ D1–D2 giữ/nhận diện bản trình, đã đồng bộ; [kết quả](#r02-t04-s01-result) |
-| R02-T04-S02 | IN_PROGRESS | R02-T04-S02-r1 — IN_REVIEW | Trình căn cứ trước ghi và đối chiếu khi bị ngắt, chưa hiện thực; [gói hiện hành](#review-current) |
+| R02-T04-S02 | DONE | R02-T04-S02-r1 — APPROVED với làm rõ Git/cleanup | Human “Ok, Tôi duyệt cả 2 nhé” sau gói 24a3b61 và giải thích trong hội thoại; [kết quả](#r02-t04-s02-result) |
+| R02-T04-S05 | IN_PROGRESS | R02-T04-S05-r1 — IN_REVIEW | Trình chính sách tương thích/định dạng thử số 2, chưa đổi schema hoặc mẫu; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04-S01 DONE; chỉ R02-T04-S02 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04-S01/S02 DONE; chỉ R02-T04-S05 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
@@ -453,9 +454,20 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Kiểm tra tài liệu/link/trạng thái và cleanup; chỉ sửa DESIGN/ROADMAP/answer, không tạo scratch, xóa dữ liệu, sửa helper/skill, cài dependency hoặc chạy pilot. Ngoại lệ hai thư mục rỗng T01 giữ nguyên.
 - Khép S01, chỉ mở S02 [H] để trình căn cứ trước ghi/cách đối chiếu khi ngắt. T04 chưa khép; S03/S04 chưa bắt đầu, chờ đủ hợp đồng liên quan.
 
+<a id="interrupted-write-review"></a>
+<a id="r02-t04-s02-result"></a>
+
+### Kết quả R02-T04-S02 — ngày 2026-09-13
+
+- Human “Ok, Tôi duyệt cả 2 nhé” sau [gói D1–D2 tại 24a3b61](https://github.com/Kynderis/kidea/blob/24a3b61a66d7024b6480aeeb7ca74a23f85a0222/answer.md) và hai phần làm rõ trong hội thoại: (1) tận dụng Git nếu có đúng nội dung trước thao tác, giữ riêng phần chưa commit, không commit từng lần sửa; (2) tự dọn bản tạm do Kidea tạo khi việc xong/kiểm tra đạt/không còn cần phục hồi, giữ bản làm căn cứ đã duyệt và bản còn cần cho lỗi/ghi dở. Đây là nội dung xác nhận mới có cả phần làm rõ, không nói toàn bộ đã nằm trong commit cũ.
+- Đồng bộ [hợp đồng](KIDEA_DESIGN.md#interrupted-write-contract): căn cứ ngay trước ghi, đối chiếu từng đích sau gián đoạn, không đè sửa ngoài luồng hoặc replay tác dụng phụ. Git phải truy được đúng byte cần phục hồi; không lấy commit cũ làm mất việc chưa commit. Cleanup theo danh sách/đường dẫn/quyền và nhu cầu thực, không xóa lịch sử/evidence bắt buộc hoặc làm mất căn cứ approval.
+- Rà S01/T03, G4/resume, quy tắc cleanup và KA-07/10–12/22, KQ-02/03/10; giữ yêu cầu kiểm chứng runtime và G2. Thêm biến thể Git đúng/sai bản, bản tạm còn cần/đủ điều kiện dọn/lỗi dọn vào phần mẫu T04-S03; chưa tạo/chạy mẫu vì còn hợp đồng dữ liệu chưa chốt.
+- Chỉ sửa DESIGN/ROADMAP/answer; kiểm tra link/anchor/trạng thái/diff. Không thay helper/skill/schema r1, fixture, AC/QUALITY; không chạy test mới hoặc nhận đã triển khai cleanup. Không tạo scratch/xóa file, kể cả hai thư mục rỗng T01 được giữ theo ngoại lệ.
+- Khép S02; chỉ mở S05 [H]. Tách trường/kiểu/tham chiếu/nơi lưu từ S05 sang S07 để không gộp chúng vào hai quyết định tương thích; giữ S06 hồ sơ vận hành trước S07 và mẫu phụ thuộc. Đây là phân rã phần còn lại, không mở thêm quyền hoặc duyệt ngầm định dạng mới.
+
 ## 4. Tổng quan 10 phase xây Kidea
 
-Lộ trình hiện định nghĩa **83 task**; R01 có **31 subtask**, R02 có **42 subtask**, R03–R10 chưa phân rã. Số lượng chỉ cho biết phạm vi công việc đã biết, không phải ước tính thời gian hoặc phần trăm Kidea hoàn thành. Trạng thái thực xem [sổ công việc](#work-state); không có code/skill/pilot được nghiệm thu chỉ từ approval thiết kế.
+Lộ trình hiện định nghĩa **83 task**; R01 có **31 subtask**, R02 có **43 subtask**, R03–R10 chưa phân rã. Số lượng chỉ cho biết phạm vi công việc đã biết, không phải ước tính thời gian hoặc phần trăm Kidea hoàn thành. Trạng thái thực xem [sổ công việc](#work-state); không có code/skill/pilot được nghiệm thu chỉ từ approval thiết kế.
 
 ```mermaid
 flowchart TD
@@ -549,7 +561,7 @@ Mỗi ô có mã con đầy đủ, đầu ra và kiểm tra. Trong mỗi task l�
 | R02-T01 | **R02-T01-S01 [H]** Công cụ chạy helper và dependency tối thiểu; đối chiếu khả dụng/giới hạn | **R02-T01-S02 [H]** Bản runtime, nguồn/vị trí skill và quyền cài thử; kiểm tra đích không đè bản có sẵn | **R02-T01-S03 [A]** Tạo khung một skill/helper tối thiểu theo lựa chọn; kiểm tra metadata, link và lệnh sai, chưa giả có lõi hoàn chỉnh | **R02-T01-S04 [A]** Thử nạp/gọi trong phiên mới trên vùng thử được phép; ghi khả năng thực, giới hạn và cleanup |
 | R02-T02 | **R02-T02-S01 [H]** ID/cây công việc và dữ liệu chưa phân rã; ví dụ không nhầm chưa có task với DONE | **R02-T02-S02 [H]** Định dạng và nguồn INDEX/work/review; ví dụ hai vùng, không bản sao dữ kiện. **R02-T02-S05 [H]** Tham chiếu bản phát triển/release/lần triển khai và dữ liệu thiếu. **R02-T02-S06 [H]** Hoàn thiện hợp đồng trường/kiểu tối thiểu trước mẫu; chia tiếp nếu vượt 3 quyết định | **R02-T02-S03 [A]** Mẫu hợp lệ/thiếu/trùng/sai link sau S02/S05/S06 theo schema đã chốt; expected từng mẫu | **R02-T02-S04 [A]** Đối chiếu schema/mẫu với KA-03/09/25 và caller; ghi giới hạn, không nhận validator đã tồn tại |
 | R02-T03 | **R02-T03-S01 [H]** Hợp đồng duyệt/reject/N/A và gate con/cha; bảng tình huống đúng/sai phạm vi | **R02-T03-S02 [H]** Căn cứ nội dung/đầu vào và hiệu lực approval; so đổi nghĩa với sửa trình bày | **R02-T03-S03 [A]** Mẫu quyền đủ/thiếu, giả chỉ thị và approval cũ; giữ G3, expected không vượt quyền | **R02-T03-S04 [A]** Diễn tập/đối chiếu hợp đồng với schema và KA-05–08; chưa thay bằng chứng approve thực thi |
-| R02-T04 | **R02-T04-S01 [H]** Giữ/nhận diện bản nguồn và đầu vào; **R02-T04-S05 [H]** tương thích skill/schema/profile, nhóm trường review T03; **R02-T04-S06 [H]** nhận diện hồ sơ release/revision/lần thực thi; đủ gate liên quan trước phần phụ thuộc | **R02-T04-S02 [H]** Hợp đồng ghi dở/checkpoint/phục hồi và backup trong mô hình lỗi; quyền/bản trước/nguồn sửa thêm | **R02-T04-S03 [A]** Mẫu trước/giữa/sau ghi, side effect chưa rõ và evidence; đối chiếu G4/G6/KQ-10 | **R02-T04-S04 [A]** Rà đồng bộ schema/approval/case/giới hạn phục hồi; chưa chứng nhận cơ chế ghi an toàn |
+| R02-T04 | **R02-T04-S01 [H]** Giữ/nhận diện bản nguồn và đầu vào; **R02-T04-S05 [H]** chính sách tương thích skill/schema/profile; **R02-T04-S06 [H]** nhận diện hồ sơ release/revision/lần thực thi; **R02-T04-S07 [H]** trường/kiểu/tham chiếu/nơi lưu review và lượt ghi, chia tiếp nếu quá 3 quyết định; đủ gate trước mẫu/code phụ thuộc | **R02-T04-S02 [H]** Hợp đồng ghi dở/checkpoint/phục hồi và backup trong mô hình lỗi; quyền/bản trước/nguồn sửa thêm | **R02-T04-S03 [A]** Mẫu trước/giữa/sau ghi, Git đúng/sai bản, bản tạm giữ/dọn/lỗi dọn, side effect chưa rõ và evidence; đối chiếu G4/G6/KQ-10 | **R02-T04-S04 [A]** Rà đồng bộ schema/approval/case/giới hạn phục hồi; chưa chứng nhận cơ chế ghi an toàn |
 | R02-T05 | **R02-T05-S01 [H]** Hợp đồng đọc/validator/status: đầu vào, lỗi/đầu ra và ranh giới chỉ đọc; chốt parser/dependency nếu cần | **R02-T05-S02 [A]** Viết bộ đọc và status cho schema đã chốt; test mẫu hợp lệ/thiếu/sai và lệnh sai | **R02-T05-S03 [A]** Thử UTF-8/CRLF/đường dẫn khác mặc định, nguồn đổi và phiên AI; so file trước/sau, không sửa nguồn | — |
 | R02-T06 | **R02-T06-S01 [H]** Thiết kế cơ chế ghi/phục hồi thực thi theo T04; chốt cách phát hiện nguồn đổi và giới hạn | **R02-T06-S02 [A]** Hiện thực từng đường ghi và tiêm lỗi; kiểm tra đích/bản trước/không đè thay đổi | **R02-T06-S03 [A]** Thử lỗi giữa cập nhật/lỗi phục hồi, ngoài quyền và phiên AI; đối chiếu nội dung thật với KA-10 | — |
 | R02-T07 | **R02-T07-S01 [H]** Hợp đồng init mới/cũ và template tối thiểu; ví dụ vị trí tài liệu khác mặc định | **R02-T07-S02 [A]** Hiện thực init trên vùng thử; test không ghi đè, nguồn đã có và lỗi giữa tạo hồ sơ | **R02-T07-S03 [A]** Phiên AI mới thử đủ/thiếu quyền, ý Human/gợi ý AI và init lặp; hồi quy đọc/ghi | — |
@@ -560,7 +572,7 @@ Mỗi ô có mã con đầy đủ, đầu ra và kiểm tra. Trong mỗi task l�
 
 Riêng R02-T02 làm S01 → S02 → S05 → S06 → S03 → S04. S05 tách phần tham chiếu target/release khỏi S02; S06 tách hợp đồng trường/kiểu còn lại để không gom vào hai quyết định của S05. Không bỏ đầu ra gốc hoặc coi phân rã là đã duyệt các gói. Chi tiết trường/kiểu phải đủ rõ trước tạo mẫu phụ thuộc; quyết định mới vượt gói phải chia tiếp, không coi nhiệm vụ tạo mẫu [A] là quyền tự chốt hợp đồng.
 
-Riêng R02-T04 làm S01 → S02 → S05 → S06 → S03 → S04; S05/S06 là phần tách từ S01 cũ, không bỏ hợp đồng dữ liệu/nhận diện cần thiết trước tạo mẫu và code phụ thuộc. S05 hoàn thiện trường/kiểu/tham chiếu bản/lượt ghi và tương thích; T06-S01 còn cơ chế ghi thực thi/giới hạn hệ thống file, không coi T04 là đã chứng nhận ghi an toàn.
+Riêng R02-T04 làm S01 → S02 → S05 → S06 → S07 → S03 → S04; S05/S06 tách từ S01 cũ, S07 tách chi tiết dữ liệu khỏi S05, không bỏ hợp đồng cần thiết trước mẫu/code phụ thuộc. S05 chốt tương thích; S07 hoàn thiện trường/kiểu/tham chiếu bản/lượt ghi/nơi lưu, chia tiếp nếu có hơn ba quyết định độc lập. T06-S01 còn cơ chế ghi thực thi/giới hạn hệ thống file, không coi T04 là đã chứng nhận ghi an toàn.
 
 Phiên AI ở từng task chỉ chạy sau khi chốt đầu vào/biến thể, quyền và số lần theo T09; T10 tổng hợp không hoãn mọi thử đến cuối. Nếu còn lựa chọn fixture/số lần chưa chốt khi tới [A], bổ sung gói [H] ở chính task đó trước chạy. Không dùng tên [A] để bỏ gate nghiệm thu.
 
