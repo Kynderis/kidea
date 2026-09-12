@@ -11,7 +11,8 @@ AI viết xong chức năng hủy và kiểm tra đạt trên máy làm việc. 
 
 Kidea phải báo:
 
-> Chức năng hủy: đã làm và kiểm tra xong.  
+> Chức năng hủy: đã làm và kiểm tra xong.
+>
 > Website thật: lần kiểm tra gần nhất vẫn là bản chưa có chức năng hủy.
 
 Không được báo “người dùng đã hủy được” chỉ vì code đã xong.
