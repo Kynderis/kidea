@@ -1,10 +1,12 @@
-Đã ghi nhận duyệt và khép phần hợp đồng approval. Đã bổ sung 29 tình huống đối chiếu; đây là mẫu thiết kế, chưa phải chức năng approve chạy được. 16 test khung vẫn đạt.
+Đã ghi nhận duyệt nhé bro.
 
-Tiếp theo là **cách giữ đúng bản bạn đã duyệt**. Mình đề xuất:
+Tiếp theo: **nếu Kidea đang sửa file mà bị ngắt giữa chừng thì sao?** Mình đề xuất:
 
-1. **Giữ bản sao những file cần làm căn cứ**, gắn với đúng gói và phạm vi. Nhờ vậy, kể cả file chưa commit vẫn có bản cũ để so sánh. Không sao chép cả project; bản lưu chỉ là lịch sử, không thay tài liệu hiện hành. Đánh đổi là thêm dung lượng, và không được tự đưa secret/dữ liệu riêng vào hồ sơ hoặc Git.
-2. **Dùng SHA-256 — mã tính từ nội dung file — để phát hiện thay đổi.** Mã khác chỉ báo cần đối chiếu; AI vẫn phải đọc để phân biệt sửa lỗi gõ với đổi yêu cầu. Kiểm tra cả đầu vào liên quan; nếu nguồn đổi trong lúc đọc hoặc thiếu căn cứ thì dừng phần phụ thuộc.
+1. **Trước khi sửa, giữ bản hiện tại và ghi rõ định sửa gì.** Đây là bản ngay trước thao tác, khác với bản từng gửi bạn duyệt. Nếu không giữ được căn cứ thì chưa sửa. Chỉ lưu file liên quan được phép, không sao chép cả project; sẽ tốn thêm chút dung lượng.
+2. **Khi quay lại, xem việc nào thực sự đã làm rồi mới tiếp tục.** Ví dụ cần sửa A và B nhưng mới xong A: kiểm tra rồi làm tiếp B, không chạy lại cả hai một cách mù quáng. Nếu bạn đã sửa thêm B, Kidea dừng hỏi, không lấy bản cũ đè lên.
 
-Bản lưu local chưa chuyển thì máy khác chưa có; đây chưa là backup chống hỏng ổ đĩa. Cách ghi an toàn, phục hồi và tương thích phiên bản sẽ trình riêng, chưa triển khai trong gói này.
+Nếu chính Kidea ghi lỗi, chỉ tự khôi phục khi có bản ngay trước đáng tin cậy, đủ quyền và chắc chắn không có ai sửa thêm. Chưa rõ thì giữ nguyên và hỏi bạn.
 
-Bạn duyệt hai lựa chọn này nhé? [Gói chi tiết và kết quả đã lưu trên repo](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).
+Cách này không bảo đảm cứu dữ liệu khi hỏng ổ đĩa, và không cho tự chạy lại deploy hoặc sửa database. **Hiện chỉ chốt cách xử lý, chưa triển khai chức năng.**
+
+Bạn duyệt cách xử lý này nhé? [Chi tiết đã lưu trên repo](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).

@@ -448,10 +448,13 @@ Các nhóm dưới đây diễn đạt thông tin đã duyệt, không tạo m�
 [29 mẫu giả](tests/fixtures/r02-t03/README.md) cụ thể hóa cả dữ liệu thiếu, approval cũ, N/A và quyền đủ/thiếu. [Đối chiếu và giới hạn](tests/evidence/r02-t03.md) chỉ là kiểm tra thiết kế/catalog; chưa thực hiện các kết quả expected bằng Kidea. T04 phải chốt cách mã hóa các nhóm mới và version/tương thích trước T05/T08; không lặng lẽ nâng schema hoặc nhận record cũ là đủ ngữ nghĩa.
 
 <a id="source-version-proposal"></a>
+<a id="source-version-contract"></a>
 
-#### Đề xuất R02-T04-S01-r1 — giữ và nhận diện bản nguồn, chưa duyệt
+#### R02-T04-S01-r1 — giữ và nhận diện bản nguồn, đã duyệt
 
-T04 giải quyết cách giữ căn cứ trên đĩa và phát hiện bản đã đổi. S01 chỉ chốt hai lựa chọn dưới đây; tương thích schema/skill/profile ở S05, nhận diện release/lần thực thi ở S06, ghi dở/backup ở S02. [Gói đọc ngắn](KIDEA_ROADMAP.md#source-version-review).
+Human “Ok tôi hiểu rồi. Duyêt nhé” sau hai lượt giải thích trong hội thoại về [gói tại e463a7b](https://github.com/Kynderis/kidea/blob/e463a7b2910349fb4e704b69bc1ffa63e2bd6983/answer.md); [phạm vi xác nhận](KIDEA_ROADMAP.md#r02-t04-s01-result). S01 chỉ chốt hai lựa chọn dưới đây; tương thích schema/skill/profile ở S05, nhận diện release/lần thực thi ở S06, ghi dở/backup ở S02.
+
+Làm rõ đã trình trước xác nhận: giữ đúng nội dung lúc gửi Human xem, rồi gắn lời duyệt với bản đó nếu Human xác nhận. Giữ bản khi trình không làm gói thành APPROVED; bản lịch sử không là tài liệu hiện hành thứ hai hoặc yêu cầu Human tự quản lý hai bản. Mã nội dung chỉ phát hiện khác biệt, AI vẫn đối chiếu ý nghĩa theo T03.
 
 **D1 — Giữ bản nội dung cần đối chiếu cùng hồ sơ, không phụ thuộc đã commit.** Với file văn bản local được phép lưu, giữ một bản byte nguyên vẹn của các file làm căn cứ trực tiếp/đầu vào chi phối khi trình gói; ghi rõ file nguồn, phạm vi/anchor được xét và liên kết revision. Lưu tại vùng hồ sơ quản lý `.kidea` theo đường dẫn được chốt ở hợp đồng ghi, không sửa snapshot cũ thành bản mới. Đây là bằng chứng lịch sử, không là nguồn đặc tả hiện hành thứ hai. Chỉ giữ file cần thiết, không chụp toàn repo; giữ nguyên file giúp không bỏ ngữ cảnh ngoài đoạn trích, đánh đổi bằng dung lượng. S02 chốt ghi an toàn/lưu giữ/phục hồi trước triển khai, chưa cho tự dọn bản cũ.
 
@@ -461,7 +464,32 @@ Không sao chép secret/dữ liệu riêng tư vào hồ sơ/Git. File lớn, nh
 
 Đọc byte để lưu/tính mã từ cùng dữ liệu; kiểm tra lại nguồn và tập đầu vào trước hoàn tất trình/ghi nhận/tiếp tục thao tác phụ thuộc. Phát hiện thay đổi hoặc không kiểm tra được thì báo chưa xác nhận, đọc/đối chiếu lại; không ghi APPROVED dựa trên lượt đọc trộn bản. Kiểm tra trước/sau không là khóa giao dịch toàn repo hay chống mọi ghi đồng thời; hợp đồng ghi S02 phải xác định giới hạn và cách dừng trước runtime. Mã khác chỉ kích hoạt đối chiếu đã chốt tại T03: thay newline có thể không đổi nghĩa, đổi một chữ có thể đổi quyền. Không tự giữ hoặc hủy approval chỉ từ mã.
 
-Chưa chọn cấu trúc manifest/schemaVersion, đường dẫn snapshot cuối cùng, migration, khóa ghi, backup, chữ ký hay nhận diện artifact vận hành. Đây là đề xuất, chưa code cơ chế hoặc tạo snapshot project.
+Chưa chọn cấu trúc manifest/schemaVersion, đường dẫn snapshot cuối cùng, migration, khóa ghi, backup, chữ ký hay nhận diện artifact vận hành. Chỉ hợp đồng S01 đã duyệt; chưa code cơ chế hoặc tạo snapshot project.
+
+<a id="interrupted-write-proposal"></a>
+
+#### Đề xuất R02-T04-S02-r1 — căn cứ trước ghi và đối chiếu khi bị ngắt, chưa duyệt
+
+G4 đã cho lưu việc dở và phục hồi có điều kiện; gói này cụ thể hóa thông tin phải giữ và cách phân loại một lượt cập nhật local nhiều file. Không thêm quyền ghi/khôi phục. [Gói đọc ngắn](KIDEA_ROADMAP.md#interrupted-write-review). T06 còn gate cơ chế thực thi/khóa ghi/giới hạn hệ thống file trước code, không suy thiết kế này là bảo đảm ghi nguyên khối.
+
+**D1 — Chuẩn bị đủ căn cứ trước thay file đích.** Với mỗi lượt ghi nằm trong quyền, ghi nhận nhiệm vụ, đích đã xác minh, nguồn/điều kiện đầu vào, bản trước và nội dung dự định sau; giữ bản byte trước của file sẽ thay cùng mã đối chiếu S01. Ghi rõ đích trước đó chưa tồn tại nếu tạo mới, không dùng file rỗng thay cho chưa tồn tại. Chỉ giữ dữ liệu được phép, không sao chép toàn repo. Nếu không lưu/đọc lại được căn cứ hợp lệ thì chưa thay file đích. Bản ngay trước khi ghi dùng phục hồi khác với bản lúc trình review; không lấy bản từng được duyệt lâu trước đó đè lên việc đang làm.
+
+Hồ sơ lượt ghi có nhận diện riêng và bằng chứng từng đích: dự định gì, đã kiểm tra được gì, chỗ nào chưa xác nhận. Không chỉ ghi “đang làm” hoặc tên commit. Nội dung mới được chuẩn bị/kiểm tra trước khi áp dụng; ngay trước thay phải đối chiếu đích/nguồn/quyền, sau ghi đọc lại nội dung thực tế. Chỉ báo toàn lượt đã cập nhật khi đủ mọi đích và quan hệ liên quan; còn một đích lỗi thì giữ lượt dở, không cập nhật nhãn DONE để che lỗi. Một lượt nhiều file có thể bị ngắt giữa chừng, không nhận chúng đổi đồng thời. Trường/kiểu và nơi lưu cụ thể được chốt khi hoàn thiện hợp đồng dữ liệu; bản bằng chứng không là nguồn trạng thái task thứ hai.
+
+Đây là phần hồ sơ phục hồi cần giữ, không coi như cache để xóa theo tuổi/số bản. Chỉ dọn đúng dữ liệu tạm đã xác định sau khi không còn cần đối chiếu/phục hồi và có quyền; không tự xóa bản lịch sử review hoặc mốc phục hồi còn được tham chiếu. Chưa đặt chính sách tự động dọn backup. Không bảo đảm chống mất điện/hỏng ổ đĩa, không khôi phục nội dung chưa lưu hoặc chưa chuyển sang máy khác; giữ nghĩa vụ thử lỗi ghi/dừng tiến trình/thay đổi ngoài luồng của KA-10.
+
+**D2 — Tiếp tục từ nội dung thực tế, không chạy lại mù.** Sau gián đoạn, đối chiếu từng file với bản trước và bản dự định, đối chiếu đầu vào/quyền còn hiệu lực; log riêng không chứng minh thao tác đã xảy ra.
+
+| Thực tế sau đọc lại | Xử lý đề xuất |
+|---|---|
+| Mọi đích còn đúng bản trước | Lượt chưa được xác nhận áp dụng; chỉ tiếp tục sau kiểm tra lại quyền/đầu vào và yêu cầu hiện hành. Không suy log thiếu là chưa từng có tác dụng phụ ngoài file. |
+| Mọi đích đúng bản dự định | Kiểm tra quan hệ và điều kiện đầu ra; có thể ghi nhận kết quả đã xác minh, không ghi lại nội dung chỉ để khớp log. Không tự duyệt gate hoặc đóng task còn thiếu test. |
+| Một phần đúng bản trước, một phần đúng bản dự định | Giữ lượt chưa hoàn tất; ưu tiên sửa tiếp đúng yêu cầu sau đối chiếu. Chỉ tiếp tục phần còn lại nếu xác định được phần đã xảy ra, đủ quyền/đầu vào và không có sửa ngoài luồng; không nhận cả lượt đạt. |
+| Đích khác cả hai, mất/hỏng bản căn cứ hoặc chưa rõ ai sửa | Giữ nguyên và dừng phần phụ thuộc để hỏi/đối chiếu; không coi là lỗi của Kidea chỉ vì log nói đang ghi. |
+
+Tự hoàn tác vẫn chỉ trong G4: một bước ghi lỗi của chính Kidea, đúng file/phạm vi và bản ngay trước đã xác minh, chứng minh không có sửa thêm, kiểm tra lại trước/sau phục hồi. Nếu chưa chứng minh được thì hỏi, không lấy khớp hash riêng lẻ làm bằng chứng đủ về quyền/nguồn gốc. Gói này không cấp quyền tự xóa file tạo mới, reset Git, hoàn tác commit đã chia sẻ, replay deploy/migration hoặc restore database. Tác dụng phụ ngoài file local chưa rõ phải đối chiếu bằng chứng thực tại nguồn được phép trước quyết định, không thử lại để dò.
+
+S03/S04 sẽ tạo mẫu trước/giữa/sau ghi và thiếu căn cứ theo hợp đồng được duyệt, sau khi đủ S05/S06 liên quan. Chưa triển khai journal/backup hoặc thử lỗi ghi trong gói trình này; T06 phải chứng minh cơ chế không đè sửa ngoài luồng trong mô hình lỗi được chốt.
 
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>
