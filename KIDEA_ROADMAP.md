@@ -8,20 +8,20 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã bổ sung công cụ kiểm tra đúng gói bạn duyệt; kiểm tra cấu trúc skill và 16 bài thử helper đạt. **R02-T01-S03 chưa DONE vì cleanup còn bị chặn**; chưa mở schema T02.
+Đã bổ sung công cụ kiểm tra đúng gói bạn duyệt; kiểm tra cấu trúc skill và 16 bài thử helper đạt. **R02-T01-S03 chưa đóng; năm log đã xóa, còn thư mục rỗng**; chưa mở schema T02.
 
 <a id="review-current"></a>
 <a id="validation-tool-proposal"></a>
 
-### R02-T01-S03 — Kiểm tra đã đạt, còn dọn log tạm
+### R02-T01-S03 — Kiểm tra đã đạt, đã xóa log tạm
 
 Human “Duyệt” sau [answer f5f23ee](https://github.com/Kynderis/kidea/blob/f5f23eea9cd3bb4bdd5f3974574cc34bbd11a1b8/answer.md), xác nhận **S03-r1 D1**: PyYAML 6.0.3 chỉ dùng cho bộ kiểm tra, local tại `.tools/skill-validation/`, không cài toàn máy hoặc đổi runtime Kidea.
 
 Đã tải đúng wheel Windows x64/Python 3.12, SHA-256 khớp PyPI và giá trị đã trình trước khi dùng. `quick_validate.py` trả `Skill is valid!`, exit 0; 16/16 bài thử helper đạt, không skip. Không sửa skill/helper nên bằng chứng nạp/gọi từ phiên mới vẫn gắn đúng hash; không chạy thêm phiên AI hoặc tính kết quả này thành nghiệm thu lõi.
 
-**Không còn quyết định dependency cần duyệt.** Vướng mắc hiện tại là môi trường đã chặn lệnh dọn năm file log, không phải thiếu đồng ý của Human. Mình không đổi công cụ để vượt chặn. Theo quy tắc cleanup đã chốt, chưa đóng S03/S04 hoặc mở T02.
+**Không còn quyết định dependency cần duyệt.** Sau Human yêu cầu rõ “Tôi cho bạn quyền xoá đấy, xoá đi bạn”, lệnh xóa tường minh đúng năm file bằng PowerShell đã được thực thi thành công. Kiểm tra lại thư mục con có 0 file; bằng chứng cần giữ còn nguyên. Đây là lượt xử lý cleanup, chưa đóng S03/S04 hoặc mở T02.
 
-Bạn có thể xóa thủ công đúng thư mục `D:\Code\kynderis\kidea\.test-output\r02-t01-s04` sau khi đối chiếu nó chỉ chứa `before.json`, `after.json`, `stdout.jsonl`, `stderr.txt`, `summary.json`, rồi báo mình. Bằng chứng cần giữ đã ở [hồ sơ kiểm tra](tests/evidence/r02-t01.md); không xóa `.tools`, `tests` hoặc nguồn skill. Khi nhận xác nhận mình sẽ kiểm tra lại trên đĩa và tiếp tục; không cần duyệt lại lựa chọn đã chốt.
+Lệnh dọn thư mục rỗng tiếp theo bị môi trường chặn trước chạy; `.test-output/r02-t01-s04/` còn rỗng, `.test-output/` chỉ chứa thư mục con này. Không còn log phải nhờ Human xóa, không yêu cầu duyệt lại PyYAML. [Bằng chứng](tests/evidence/r02-t01.md) giữ kết quả và giới hạn; không đổi công cụ để vượt chặn hoặc xóa `.tools`/`tests`.
 
 <a id="working-rules"></a>
 
@@ -106,7 +106,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T10-S03 | DONE | R01-T10-S03-r1 — APPROVED | Human “Duyệt nhé” sau answer b666308; chấp nhận căn cứ và cho mở R02 từng phần; [kết quả](#r01-result) |
 | R02-T01-S01 | DONE | R02-T01-S01-r1 — APPROVED | Human “duyệt” sau answer 485eb46; JavaScript/Node 24 LTS và khung tối giản, chưa cài; [kết quả](#r02-t01-s01-result) |
 | R02-T01-S02 | DONE | R02-T01-S02-r1 — APPROVED | Human “duyệt” sau answer fb3bf51; D1–D3 đúng phạm vi; [kết quả](#r02-t01-scaffold-result) |
-| R02-T01-S03 | IN_PROGRESS | R02-T01-S03-r1 — APPROVED | Human “Duyệt” sau answer f5f23ee; PyYAML local và validator đạt, 16 test đạt; còn blocker cleanup; [hiện hành](#review-current) |
+| R02-T01-S03 | IN_PROGRESS | R02-T01-S03-r1 — APPROVED | Human “Duyệt” sau answer f5f23ee; PyYAML local và validator đạt, 16 test đạt; đã xóa năm log, còn thư mục rỗng bị chặn xóa; [hiện hành](#review-current) |
 
 R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01-S01/S02 DONE; chỉ S03 đang IN_PROGRESS. S04 đã có phép thử nạp/gọi sơ bộ nhưng chưa đóng trước S03; các subtask R02 khác mặc định TODO. R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
@@ -364,7 +364,7 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Đã tạo [skill](.agents/skills/kidea/SKILL.md), helper không có thao tác file/network, test và fixture dùng lại. Node tải từ nguồn chính thức, SHA-256 khớp trước chạy; Node global vẫn 22.18.0. Helper chỉ có `--help`, sáu hành động sản phẩm đều chưa triển khai và trả mã lỗi; không tạo schema/template giả.
 - 16/16 unit test đạt, không skip. Phép thử sơ bộ bằng Codex CLI 0.153.4 trong phiên mới ephemeral/read-only tìm được skill và gọi helper status đúng; 27 file đối chiếu trước/sau không đổi. Đây không phải test UI desktop hoặc chứng nhận ổn định nhiều lần, không tính KA PASS.
 - Lỗi đầu `quick_validate.py`: thiếu yaml trên cả Python hệ thống/bundled, đã giữ bằng chứng. Sau Human duyệt S03-r1 tại [answer f5f23ee](https://github.com/Kynderis/kidea/blob/f5f23eea9cd3bb4bdd5f3974574cc34bbd11a1b8/answer.md), đã bổ sung PyYAML 6.0.3 trong `.tools/skill-validation/lib`, xác minh wheel trước dùng; validator trả `Skill is valid!`, exit 0. Python global vẫn không tìm thấy yaml. Hash skill/helper không đổi; S04 giữ phép thử đã có nhưng chỉ đóng sau S03 đủ điều kiện/cleanup.
-- [Hồ sơ bằng chứng](tests/evidence/r02-t01.md) giữ phiên bản, hash, lệnh, expected/actual, lỗi và giới hạn. File tạm sở hữu S03/S04: đúng năm file trong `.test-output/r02-t01-s04/` được liệt kê ở hồ sơ. Lệnh cleanup bị môi trường chặn trước chạy; năm file còn local/ignored, chưa xóa gì, cleanup còn thiếu trước đóng S03/S04. Runtime cùng SHASUMS là phần local cần giữ, không phải rác; test/fixture là nguồn dùng lại. Không sửa AC/QUALITY/G2 hoặc mở T02.
+- [Hồ sơ bằng chứng](tests/evidence/r02-t01.md) giữ phiên bản, hash, lệnh, expected/actual, lỗi và giới hạn. File tạm sở hữu S03/S04: đúng năm file trong `.test-output/r02-t01-s04/` được liệt kê ở hồ sơ. Lệnh đầu bị chặn; sau yêu cầu xóa tường minh mới của Human, đã xóa đúng năm file bằng PowerShell và xác minh thư mục con rỗng. Lệnh xóa thư mục rỗng bị chặn; còn hai thư mục, không còn log. Runtime cùng SHASUMS là phần local cần giữ, không phải rác; test/fixture là nguồn dùng lại. Không sửa AC/QUALITY/G2 hoặc mở T02.
 
 ## 4. Tổng quan 10 phase xây Kidea
 
