@@ -497,18 +497,39 @@ Tự hoàn tác vẫn chỉ trong G4: một bước ghi lỗi của chính Kidea
 S03/S04 sẽ tạo mẫu trước/giữa/sau ghi, thiếu căn cứ, Git đúng/sai bản và dọn/giữ bản tạm theo hợp đồng được duyệt, sau khi đủ các gate dữ liệu liên quan. Chưa triển khai journal/backup/cleanup hoặc thử lỗi ghi trong lượt này; T06 phải chứng minh cơ chế không đè sửa ngoài luồng trong mô hình lỗi được chốt.
 
 <a id="compatibility-proposal"></a>
+<a id="compatibility-contract"></a>
 
-#### Đề xuất R02-T04-S05-r1 — phiên bản hồ sơ và khả năng đọc, chưa duyệt
+#### R02-T04-S05-r1 — phiên bản hồ sơ và khả năng đọc, đã duyệt
 
-[Gói đọc ngắn](KIDEA_ROADMAP.md#compatibility-review). T04-S05 chốt cách xử lý khác phiên bản, không chốt hàng loạt trường dữ liệu; phần trường/tham chiếu/nơi lưu tách S07 trước S03/S04 và code. Không sửa mẫu r1 hoặc tự chuyển đổi dữ liệu trong lượt trình này.
+Human “Hay quá, mình duyệt nhé” sau [giải thích dc266ea](https://github.com/Kynderis/kidea/blob/dc266eab84d912290fa356baf92fa17555d2c1b7/answer.md), xác nhận gói D1–D2 [e136a0e](https://github.com/Kynderis/kidea/blob/e136a0edea2fa3f609d143807c605e0826be07f1/KIDEA_ROADMAP.md#review-current); [kết quả](KIDEA_ROADMAP.md#r02-t04-s05-result). T04-S05 chốt cách xử lý khác phiên bản, không chốt hàng loạt trường dữ liệu; phần trường/tham chiếu/nơi lưu tách S07 trước S03/S04 và code. Không sửa mẫu r1 hoặc tự chuyển đổi dữ liệu trong lượt này.
 
 **D1 — Ghi riêng phiên bản công cụ, định dạng hồ sơ và bộ quy tắc project; chỉ dùng tổ hợp đã xác nhận hỗ trợ.** Chúng khác nhau: nâng Kidea không tự đổi số phiên bản sản phẩm hoặc chứng minh đọc được mọi hồ sơ. Bản helper/skill phải khai báo khả năng đọc/ghi định dạng và cấu hình/quy tắc project liên quan; đối chiếu với bản thực tế trước hành động. Bộ quy tắc tiếp tục ở nguồn project hiện có, không tạo kho profile mới. Giống số version nhưng nội dung khác vẫn phải đối chiếu theo S01/T03; thiếu hoặc không xác định được khả năng hỗ trợ thì báo rõ, dừng phần phụ thuộc, không đoán tương thích hay điền mặc định.
 
 Thông báo chỉ rõ bản tìm thấy, bản được hỗ trợ và cách tiếp tục cần chọn. Có thể đọc thông tin nhận diện để chẩn đoán, nhưng chưa hỗ trợ thì không suy trạng thái/approval từ phần dữ liệu không hiểu, không ghi lại file hoặc tự cài/nâng/hạ công cụ. Nâng công cụ không tự làm approval mất hiệu lực; vẫn xét thay đổi thực tế của đầu vào/điều kiện, không lấy số version thay đánh giá nghĩa.
 
-**D2 — Dùng định dạng hồ sơ thử số 2 cho bộ dữ liệu mở rộng, giữ mẫu số 1 nguyên trạng.** Hợp đồng số 1 từ T02 chưa đủ mục đích N/A, căn cứ theo bản và lượt ghi; không thêm trường lạ vào số 1 để né quy tắc đã duyệt. Đề xuất parser đầu tiên ở T05 chỉ đọc/ghi số 2 sau khi S06/S07 chốt đủ trường và fixture. Mẫu số 1 giữ làm bằng chứng lịch sử/đầu vào không hỗ trợ, không nhận nó là project số 2 hợp lệ. Số này là phiên bản định dạng thử, không là số phiên bản Kidea phát hành hoặc sản phẩm.
+**D2 — Dùng định dạng hồ sơ thử số 2 cho bộ dữ liệu mở rộng, giữ mẫu số 1 nguyên trạng.** Hợp đồng số 1 từ T02 chưa đủ mục đích N/A, căn cứ theo bản và lượt ghi; không thêm trường lạ vào số 1 để né quy tắc đã duyệt. Bộ đọc đầu tiên ở T05 chỉ hỗ trợ số 2 sau khi S06/S07 chốt đủ trường và fixture; hành động ghi chỉ hiện thực tại task ghi tương ứng trong quyền. Mẫu số 1 giữ làm bằng chứng lịch sử/đầu vào không hỗ trợ, không nhận nó là project số 2 hợp lệ. Số này là phiên bản định dạng thử, không là số phiên bản Kidea phát hành hoặc sản phẩm.
 
 Gặp hồ sơ số 1, số lạ hoặc các file trộn định dạng: giữ nguyên, báo không hỗ trợ/chưa nhất quán, không tự chuyển đổi hay sửa riêng một file. Khi có nhu cầu chuyển hồ sơ thực, phải có kế hoạch chuyển đổi, bảo toàn/đối chiếu dữ liệu và quyền riêng; không buộc Human nhập lại dữ liệu hoặc coi đó là N/A. Đánh đổi của bản đầu là không tương thích ngược tự động; lợi ích là hợp đồng rõ và không đọc sai rồi ghi hỏng dữ liệu. Chưa có project runtime được chuyển trong gói này.
+
+Làm rõ trước approval: số 1/số 2 là nhãn hai mẫu đang thiết kế trong repo, không yêu cầu Human chuyển một project đang chạy. Chuyển mẫu không chỉ sửa số: phải bổ sung/đối chiếu dữ liệu thiếu. Chính sách số 2 đã duyệt không có nghĩa schema số 2 đã đầy đủ hoặc parser đã tồn tại; mẫu T02/T03 vẫn nguyên trạng, các nhóm dữ liệu S07 còn chờ chốt.
+
+<a id="release-identity-proposal"></a>
+
+#### Đề xuất R02-T04-S06-r1 — nhận diện gói phát hành và lần thực thi, chưa duyệt
+
+[Gói đọc ngắn](KIDEA_ROADMAP.md#release-identity-review). G6 đã chốt hồ sơ release/revision và giữ mỗi lần triển khai; S06 cụ thể hóa cách nhận diện để không chỉ tin tên version hoặc link. Không cấp quyền triển khai/PROD, không chọn runner/công cụ đóng gói; trường/kiểu/tham chiếu hoàn thiện ở S07.
+
+**D1 — Hồ sơ bản phát hành tham chiếu danh sách thành phần có nhận diện nội dung cố định.** Với mỗi thành phần dự định triển khai, ghi ID/version, nguồn đúng bản, đích lấy gói và mã nhận diện nội dung của chính gói đã kiểm chứng. Với file thông thường dùng SHA-256/độ dài byte theo S01; với kho gói có định danh nội dung bất biến, giữ định danh đó và phương thức kiểm tra theo loại gói, không nhận nhãn có thể đổi như latest hoặc tên tag riêng lẻ. Không áp SHA-256 của file ZIP lên cây thư mục giải nén rồi gọi là cùng đối tượng. Profile project phải chỉ ra kiểm tra đối tượng nào; loại gói chưa có cách đối chiếu thì báo thiếu căn cứ, không tự chọn cơ chế để cho qua.
+
+Danh sách còn gắn đúng cấu hình đích không nhạy cảm, schema dữ liệu, toàn bộ script/migration liên quan, thứ tự/điều kiện và bằng chứng kiểm chứng/approval. Nguồn cấu hình nhạy cảm chỉ tham chiếu phiên bản tại nơi được phép, không lưu giá trị secret hoặc hash trực tiếp của secret vào hồ sơ public. Không giả đã kiểm tra cấu hình thực nếu thiếu quyền đọc/đối chiếu. Có bản hồ sơ/revision cố định để truy lại; đổi tổ hợp thì lập revision mới và xét lại theo G6/T03, không sửa bản đã được chọn. Trước thực thi phải đối chiếu gói/config/script thực với danh sách; mismatch thì dừng. Mã đồng nhất không tự là chất lượng đạt hoặc quyền chạy.
+
+Đây là chỉ mục ở nguồn vận hành của sản phẩm, không sao chép artifact lớn vào `.kidea` hoặc giữ lịch sử release thứ hai. ReleaseRef của T02 phải được bổ sung căn cứ phiên bản phù hợp ở S07, không coi `{path,id,revision}` riêng lẻ là bằng chứng bất biến. Giữ quy tắc G6: revision không cho thay nội dung gói đã phát hành dưới cùng version/tag.
+
+**D2 — Mỗi lần thực sự chạy có ID riêng; đọc lại kết quả không tạo lần chạy giả.** ID duy nhất trong project, gắn đúng release/revision/căn cứ nội dung, người/công cụ chạy, target thực và thời điểm. Nếu thực sự thử chạy lại, tạo ID lần mới nối tới lần trước, giữ kết quả lỗi/chưa xác nhận cũ. Đọc lại/nhận thêm bằng chứng của chính lần cũ là quan sát bổ sung của ID cũ, ghi thời điểm/nguồn và giữ dấu vết kết quả trước; không ghi đè mất thông tin hoặc cộng thành hai lần triển khai.
+
+Mỗi lần giữ mục tiêu, phần đã thực thi, kết quả từng bước/thành phần và bản/config thực tế quan sát được. Đủ bằng chứng mới xác nhận thành công; web đạt/backend lỗi hoặc mất liên lạc không thành cả bản đã triển khai. Trước retry phải đối chiếu lần cũ và quyền, không tạo ID mới để được replay mù. Nguồn OperationRef phải khớp ID/release/target và bằng chứng, không lấy tên DEV thay kiểm tra đích thực. Hồ sơ ở nguồn vận hành, `.kidea` chỉ tham chiếu; kết quả theo thời điểm không chứng minh sức khỏe hiện tại.
+
+S03/S04 sẽ đối chiếu mẫu gói cùng tên khác nội dung, cấu hình/script đổi, lần chạy lại và quan sát thêm; chưa build/deploy/đọc credential hoặc tạo hồ sơ vận hành thật trong gói này.
 
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>
@@ -669,6 +690,8 @@ S05 chỉ chốt hợp đồng tham chiếu/ý nghĩa dữ liệu thiếu. S06 h
 <a id="schema-fields-contract"></a>
 
 #### R02-T02-S06-r1 — thông tin tối thiểu và cách báo thiếu, đã duyệt
+
+Đây là hợp đồng số 1 và căn cứ bộ mẫu lịch sử T02. [S05 của T04 đã duyệt](#compatibility-contract) bộ đọc đầu tiên chỉ hỗ trợ số 2 khi đủ hợp đồng trường/mẫu; chưa nâng những trường dưới đây hoặc mẫu cũ thành số 2, không dùng thiếu hợp đồng mới để tự đọc/ghi số 1 như đã hỗ trợ.
 
 Human “Duyệt nhé” sau [answer 207cb5d](https://github.com/Kynderis/kidea/blob/207cb5dce8620521f75efee1a393353c9cf6ea24/answer.md), xác nhận D1–D2 của S06-r1; [kết quả](KIDEA_ROADMAP.md#r02-t02-result). Đây là hợp đồng cấu trúc để tạo mẫu S03, không là triển khai parser, chứng nhận approval hoặc quyền ghi. D1 chốt các nhóm thông tin/quan hệ dưới đây; D2 chốt không tự sửa/điền mặc định khi thiếu hoặc sai. Các tên trường chỉ biểu diễn hai quyết định, không thay nghĩa chính sách đã duyệt.
 

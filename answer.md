@@ -1,12 +1,10 @@
-Ý 2 chỉ là **đánh dấu mẫu hồ sơ mới để không nhầm với mẫu cũ**, bro. Mình giải thích hơi kỹ thuật quá.
+Đã ghi nhận duyệt nhé bro. Mẫu hồ sơ mới đã được chốt về nguyên tắc; chưa đổi mẫu thử hoặc viết bộ đọc.
 
-Ví dụ một mẫu phiếu:
+Tiếp theo: **làm sao biết đã triển khai đúng bản và không nhầm các lần chạy?** Mình đề xuất:
 
-- **Mẫu cũ:** ghi việc gì và đã duyệt hay chưa.
-- **Mẫu mới:** ghi thêm đã duyệt nội dung nào, dựa trên bản nào và căn cứ phục hồi khi sửa lỗi.
+1. **Không chỉ nhìn tên file hoặc số phiên bản.** Hai file cùng tên “web-1.0.zip” có thể chứa nội dung khác nhau. Kidea phải nhận diện đúng gói đã kiểm tra, kèm cấu hình và script tương ứng; trước triển khai đối chiếu lại, khác thì dừng. Đổi tổ hợp phải ghi bản hồ sơ mới, không sửa âm thầm bản đã chọn.
+2. **Mỗi lần thực sự triển khai có mã riêng.** Lần đầu lỗi, chạy lại thì ghi lần mới và giữ lỗi cũ. Còn chỉ vào kiểm tra lần đầu đã thành công chưa thì bổ sung kết quả cho lần đầu, không tính thành một lần triển khai khác. Mất kết nối không có nghĩa được chạy lại ngay.
 
-Mình gọi mẫu cũ là “số 1”, mẫu mới là “số 2” để Kidea phân biệt. **Con số này chỉ là nhãn của cách tổ chức thông tin.**
+Cách này cần thêm thông tin đối chiếu, nhưng giúp tránh triển khai nhầm hoặc che mất lần lỗi. Không đưa mật khẩu/token vào hồ sơ.
 
-Đề xuất cụ thể là: **bộ đọc sắp viết sẽ dùng mẫu mới**. Các mẫu thử cũ vẫn giữ để đối chiếu, nhưng không tự coi chúng là hồ sơ mới đầy đủ. Nếu cần chuyển mẫu cũ sang mẫu mới thì phải bổ sung/kiểm tra thông tin còn thiếu, không chỉ đổi nhãn 1 thành 2.
-
-Hiện đây đều là mẫu đang thiết kế trong repo, **không phải yêu cầu bạn chuyển một project đang sử dụng Kidea**.
+Bạn duyệt hai cách này nhé? [Gói chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) vẫn chỉ là thiết kế, chưa build/deploy hoặc cấp quyền chạy PROD.

@@ -8,22 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã duyệt và khép R02-T04-S02 — giữ căn cứ trước ghi, tận dụng Git và dọn bản tạm khi an toàn.** Chỉ S05 chờ duyệt cách xử lý phiên bản hồ sơ; chưa viết cơ chế ghi, phục hồi hoặc dọn file.
+**Đã duyệt và khép R02-T04-S05 — mẫu hồ sơ mới và cách xử lý khác phiên bản.** Chỉ S06 chờ duyệt cách nhận diện gói phát hành/lần chạy; mẫu cũ giữ nguyên, chưa có schema số 2 hoàn chỉnh hoặc bộ đọc.
 
 <a id="review-current"></a>
-<a id="compatibility-review"></a>
+<a id="release-identity-review"></a>
 
-### R02-T04-S05-r1 — Nếu Kidea gặp hồ sơ khác phiên bản thì sao? [H]
+### R02-T04-S06-r1 — Làm sao biết đã triển khai đúng bản? [H]
 
-Task T04 giúp giữ đúng dữ liệu để tiếp tục công việc. Gói này xử lý một rủi ro khác: công cụ đọc hồ sơ theo cách nó chưa hiểu, rồi ghi sai dữ liệu.
+Task T04 giữ căn cứ để không nhầm bản hoặc kết quả. G6 trước đây đã chốt lưu hồ sơ phát hành; gói này chốt cách phân biệt gói thực tế và từng lần chạy.
 
-**D1 — Chỉ làm tiếp khi xác định được công cụ hiểu hồ sơ.** Ghi riêng bản Kidea, phiên bản định dạng hồ sơ và bộ quy tắc project đang dùng; kiểm tra chúng có được hỗ trợ cùng nhau không. Ví dụ Kidea cũ gặp kiểu hồ sơ mới: báo rõ chưa đọc được, giữ nguyên dữ liệu và chỉ ra điều cần giải quyết, không tự nâng công cụ hoặc đoán trạng thái. Cách này có thể khiến phải dừng để xử lý tương thích, nhưng tránh đọc sai rồi ghi hỏng hồ sơ.
+**D1 — Nhận diện bằng nội dung gói, không chỉ tên phiên bản.** Ví dụ có hai file cùng tên “web-1.0.zip” nhưng bên trong khác nhau. Hồ sơ phải chỉ đúng file đã kiểm tra bằng mã nhận diện nội dung, kèm cấu hình và bộ script tương ứng. Trước triển khai đối chiếu lại; không khớp thì dừng. Đổi tổ hợp phải có bản hồ sơ mới và xét lại, không sửa âm thầm bản đã chọn. Lợi ích là tránh triển khai nhầm dù tên giống; đánh đổi là cần giữ thêm thông tin đối chiếu. Không đưa mật khẩu/token hoặc gói lớn vào hồ sơ public.
 
-**D2 — Đánh số 2 cho định dạng thử đã bổ sung, không sửa ngầm mẫu số 1.** Mẫu số 1 trước đây chưa có đủ thông tin về căn cứ duyệt và lần ghi. Đề xuất bộ đọc đầu tiên chỉ hỗ trợ số 2 sau khi chốt đủ chi tiết; mẫu số 1 vẫn giữ làm lịch sử. Gặp số 1, số lạ hoặc các file lẫn nhiều định dạng thì báo rõ, không tự chuyển đổi. Khi cần chuyển hồ sơ thật, sẽ có phương án bảo toàn dữ liệu và quyền riêng.
+**D2 — Phân biệt chạy lại với chỉ kiểm tra kết quả cũ.** Lần triển khai thứ nhất lỗi, thực sự chạy lần nữa thì có mã lần mới nối tới lần trước; giữ cả lỗi cũ. Nhưng chỉ vào xem lần thứ nhất đã thành công chưa thì bổ sung kết quả cho chính lần ấy, không tính thành lần triển khai mới. Trước chạy lại phải xác minh việc đã xảy ra, không chạy lặp chỉ vì mất kết nối.
 
-Bạn duyệt hai lựa chọn này nhé? Đánh đổi là bản đầu chưa tự hỗ trợ hồ sơ cũ. “Số 2” chỉ là cách đánh số định dạng thử, không phải Kidea 2.0 hoặc phiên bản sản phẩm của bạn. Các trường cụ thể được trình riêng; lượt này chưa đổi mẫu hoặc viết bộ đọc.
+Bạn duyệt hai cách nhận diện này nhé? Web lên thành công nhưng backend lỗi vẫn chưa phải cả bản triển khai đạt. Đây chỉ là hợp đồng hồ sơ; chưa build/deploy, chưa cấp quyền chạy PROD, và các trường cụ thể còn trình ở S07.
 
-Nguồn mở thêm: [đề xuất](KIDEA_DESIGN.md#compatibility-proposal); [kết quả S02](#r02-t04-s02-result).
+Nguồn mở thêm: [đề xuất](KIDEA_DESIGN.md#release-identity-proposal); [kết quả S05](#r02-t04-s05-result).
 
 <a id="working-rules"></a>
 
@@ -122,9 +122,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T03-S04 | DONE | [A] — đối chiếu tĩnh | Rà KA-05–08/caller/schema, catalog chỉ đọc và 16 test khung đạt; chưa chạy expected bằng Kidea; [kết quả](#r02-t03-result) |
 | R02-T04-S01 | DONE | R02-T04-S01-r1 — APPROVED | Human “Ok tôi hiểu rồi. Duyêt nhé” sau giải thích gói e463a7b; chỉ D1–D2 giữ/nhận diện bản trình, đã đồng bộ; [kết quả](#r02-t04-s01-result) |
 | R02-T04-S02 | DONE | R02-T04-S02-r1 — APPROVED với làm rõ Git/cleanup | Human “Ok, Tôi duyệt cả 2 nhé” sau gói 24a3b61 và giải thích trong hội thoại; [kết quả](#r02-t04-s02-result) |
-| R02-T04-S05 | IN_PROGRESS | R02-T04-S05-r1 — IN_REVIEW | Trình chính sách tương thích/định dạng thử số 2, chưa đổi schema hoặc mẫu; [gói hiện hành](#review-current) |
+| R02-T04-S05 | DONE | R02-T04-S05-r1 — APPROVED | Human “Hay quá, mình duyệt nhé” sau giải thích dc266ea cho gói e136a0e; [kết quả](#r02-t04-s05-result) |
+| R02-T04-S06 | IN_PROGRESS | R02-T04-S06-r1 — IN_REVIEW | Trình nhận diện nội dung gói và ID từng lần thực thi/quan sát, chưa triển khai; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04-S01/S02 DONE; chỉ R02-T04-S05 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04-S01/S02/S05 DONE; chỉ R02-T04-S06 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
@@ -464,6 +465,17 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Rà S01/T03, G4/resume, quy tắc cleanup và KA-07/10–12/22, KQ-02/03/10; giữ yêu cầu kiểm chứng runtime và G2. Thêm biến thể Git đúng/sai bản, bản tạm còn cần/đủ điều kiện dọn/lỗi dọn vào phần mẫu T04-S03; chưa tạo/chạy mẫu vì còn hợp đồng dữ liệu chưa chốt.
 - Chỉ sửa DESIGN/ROADMAP/answer; kiểm tra link/anchor/trạng thái/diff. Không thay helper/skill/schema r1, fixture, AC/QUALITY; không chạy test mới hoặc nhận đã triển khai cleanup. Không tạo scratch/xóa file, kể cả hai thư mục rỗng T01 được giữ theo ngoại lệ.
 - Khép S02; chỉ mở S05 [H]. Tách trường/kiểu/tham chiếu/nơi lưu từ S05 sang S07 để không gộp chúng vào hai quyết định tương thích; giữ S06 hồ sơ vận hành trước S07 và mẫu phụ thuộc. Đây là phân rã phần còn lại, không mở thêm quyền hoặc duyệt ngầm định dạng mới.
+
+<a id="compatibility-review"></a>
+<a id="r02-t04-s05-result"></a>
+
+### Kết quả R02-T04-S05 — ngày 2026-09-13
+
+- Human “Hay quá, mình duyệt nhé” sau [giải thích dc266ea](https://github.com/Kynderis/kidea/blob/dc266eab84d912290fa356baf92fa17555d2c1b7/answer.md), xác nhận gói D1–D2 [e136a0e](https://github.com/Kynderis/kidea/blob/e136a0edea2fa3f609d143807c605e0826be07f1/KIDEA_ROADMAP.md#review-current). Human trước đó nói hiểu D1, yêu cầu giải thích D2; giải thích làm rõ nhãn mẫu cũ/mới, không chỉ sửa số để chuyển đổi, không yêu cầu chuyển project đang sử dụng.
+- Đồng bộ [hợp đồng](KIDEA_DESIGN.md#compatibility-contract): đối chiếu khả năng hỗ trợ bản công cụ/định dạng/quy tắc, giữ nguyên khi không hiểu; bộ đọc đầu tiên chỉ hỗ trợ định dạng thử số 2 sau đủ gate trường/mẫu. Không chuyển đổi ngầm số 1/số lạ/trộn định dạng, không đổi version sản phẩm hoặc tự cài công cụ.
+- Mẫu số 1 T02 vẫn giữ lịch sử, mẫu tình huống T03 vẫn nguyên trạng; chưa có schema số 2 hoàn chỉnh hoặc parser. Trường/tham chiếu/nơi lưu còn thuộc S07, không coi approval chính sách là đã duyệt mọi trường.
+- Rà nguồn schema/approval/resume/view và KA-02/03/09/13, KQ-03/05/06; giữ AC/QUALITY/G2 và nghĩa vụ kiểm chứng. Chỉ kiểm tra tài liệu/link/trạng thái/diff; không chạy test mới, sửa helper/skill/fixture, cài dependency, xóa dữ liệu hoặc chạy pilot.
+- Khép S05; chỉ mở S06 [H] về nhận diện nội dung release và lần thực thi. S07/S03/S04 chưa bắt đầu; T04 chưa khép, ngoại lệ hai thư mục rỗng T01 giữ nguyên.
 
 ## 4. Tổng quan 10 phase xây Kidea
 
