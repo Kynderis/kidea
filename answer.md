@@ -1,10 +1,26 @@
-Đã ghi nhận duyệt và khép phần mã/cây công việc, mức phân rã.
+Nói đơn giản: **mình đang chọn cách làm “sổ công việc” cho Kidea**, để phiên AI sau mở lại vẫn biết đúng đang làm đến đâu.
 
-Gói tiếp theo [R02-T02-S02-r1](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) đề xuất hai điểm:
+### 1. Trong cùng một file, có phần cho bạn đọc và phần cho máy đọc
 
-1. **Giữ Markdown, đặt dữ liệu máy đọc trong một khối JSON bên trong.** Markdown dùng giải thích; JSON ghi rõ mã việc, trạng thái và quan hệ. Không thêm file trạng thái song song. Cách này giúp máy đọc chính xác, nhưng sửa tay kém tiện hơn bảng. AI lo cập nhật trong quyền; bạn vẫn đọc bản giải thích, không phải sửa JSON.
-2. **Mỗi loại thông tin chỉ có một nơi lưu chính.** INDEX là mục lục/link; work giữ việc hiện hành và cây công việc; review giữ gói/xác nhận duyệt. Cây lớn mới tách sang plans, không sao chép. Tài liệu nghiệp vụ ở đâu thì tham chiếu đúng đó, không ép chuyển vào thư mục mặc định.
+Ví dụ công việc “Làm màn hình đăng nhập” đang thực hiện:
 
-Phần bản dự kiến phát hành/bản đã triển khai được tách thành gói riêng kế tiếp. Chưa tạo schema thực thi, bộ đọc hoặc hồ sơ pilot.
+- Phần bạn đọc: “Đang làm màn hình đăng nhập, còn thiếu kiểm tra lỗi mật khẩu.”
+- Phần máy đọc: các ô thông tin cố định như **mã việc = W-002**, **trạng thái = đang làm**.
 
-Bạn duyệt hai lựa chọn về định dạng và nơi lưu này nhé?
+Đề xuất dùng **JSON** để ghi các ô thông tin đó ngay trong file Markdown. Máy đọc phần này, không phải đoán trạng thái từ câu văn.
+
+Bạn không phải tự viết JSON; AI cập nhật trong phạm vi được phép. Điểm bất tiện là phần dữ liệu này trông kỹ thuật hơn bảng thông thường. Phần giải thích cho bạn chỉ diễn đạt lại dữ liệu, không có trạng thái riêng để sửa khác đi.
+
+### 2. Mỗi thông tin chỉ ghi chính thức ở một chỗ
+
+Hình dung một bộ sổ:
+
+| Nơi lưu | Vai trò |
+|---|---|
+| **INDEX** | Trang mục lục: mở từ đây để tìm đúng hồ sơ |
+| **work** | Sổ công việc: đang làm gì, xong gì, còn gì |
+| **review** | Phiếu duyệt: bạn đã duyệt nội dung nào, bản nào |
+
+Ví dụ bạn duyệt thiết kế đăng nhập: xác nhận được lưu ở **review**; **work** dẫn tới xác nhận đó, không ghi một bản duyệt thứ hai. Khi danh sách công việc quá dài mới tách sang **plans**, không giữ hai danh sách trùng nhau.
+
+**Bạn đang được hỏi có đồng ý hai cách tổ chức này không.** Chưa phải duyệt xây chức năng, phát hành hay cấp thêm quyền thao tác. [Gói đề xuất đầy đủ](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) vẫn đang chờ duyệt.
