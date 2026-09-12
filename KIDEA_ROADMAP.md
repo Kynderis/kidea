@@ -2,28 +2,26 @@
 
 Ngày cập nhật: 2026-09-12.
 
-Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đầu vòng rà soát mới từ đầu, mỗi lần đọc/duyệt chỉ vài đầu mục. **Chưa xây/cài skill hoặc code pilot.** R01 đã được duyệt làm căn cứ, R02 mở phần lựa chọn thiết kế; các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
+Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đầu vòng rà soát mới từ đầu, mỗi lần đọc/duyệt chỉ vài đầu mục. **Đã có khung thử skill/helper, chưa có lõi Kidea hoặc code pilot.** R01 đã được duyệt làm căn cứ, R02 triển khai từng lát cắt trong quyền; các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
 <a id="current"></a>
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã chốt [công nghệ helper](#r02-t01-s01-result). **R02-T01-S02** quyết định đặt các phần ở đâu và cho phép làm gì để tạo/thử khung ban đầu; chưa thực hiện.
+Đã ghi nhận approval S02 và tạo/thử khung trong quyền. **R02-T01-S03** còn thiếu điều kiện chạy bộ kiểm tra cấu trúc skill, nên chưa DONE; chưa mở schema T02.
 
 <a id="review-current"></a>
-<a id="local-install-proposal"></a>
+<a id="validation-tool-proposal"></a>
 
-### R02-T01-S02-r1 — Nơi lưu và quyền thử khung Kidea
+### R02-T01-S03-r1 — Bổ sung công cụ kiểm tra, không đổi runtime Kidea
 
-Đề xuất ba điểm, tất cả trong repo `D:\Code\kynderis\kidea`:
+Khung đã được tạo đúng vị trí; Node riêng đã kiểm tra dấu nhận diện file và chạy đúng bản. 16 bài thử helper đạt. Một phiên Codex mới tìm được skill, gọi `status` và báo đúng “chưa triển khai”, không tự tạo hồ sơ hoặc nhận dự án đã xong. Tuy vậy, đây chưa là Kidea hoạt động đầy đủ.
 
-1. **D1 — Giữ một bản skill ở `.agents/skills/kidea/`.** Đây vừa là mã nguồn được lưu trên GitHub, vừa là nơi Codex tìm skill cho repo này. Không sao chép vào thư mục skill dùng chung của tài khoản. Lợi ích: sửa một nơi, chưa làm Kidea xuất hiện ở project khác. Đây chỉ là bản đang phát triển; không tự áp nó để quản lý tài liệu xây Kidea.
-2. **D2 — Dùng Node 24.21.0 chạy riêng.** Tải `node.exe` Windows x64 từ Node.js vào `.tools/node-v24.21.0-win-x64/`, đối chiếu SHA-256 chính thức trước chạy. SHA-256 là dấu nhận diện nội dung file tải về. Gọi bằng đường dẫn riêng, không chạy bộ cài hoặc sửa PATH — danh sách nơi máy tìm lệnh. Node 22 hiện có giữ nguyên; máy khác phải chuẩn bị runtime riêng, không nhận binary này qua Git.
-3. **D3 — Cho tạo và thử khung ở T01-S03/S04.** Ghi mã/hướng dẫn tại D1, bài thử/bằng chứng trong `tests/`, file sinh tại `.test-output/`; thêm `package.json` và `.gitignore` khi cần. Cho tải/chạy D2, kiểm tra helper và thử nạp/gọi skill bằng phiên AI mới trên dữ liệu giả. Commit/push nguồn và bằng chứng đã rà, không binary/file tạm. Chỉ dọn file tạm do lượt thử tạo sau khi giữ kết quả; không đè nội dung khác.
+**Chỉ cần duyệt một điểm — D1:** cho tải **PyYAML 6.0.3** từ PyPI vào vùng local riêng `.tools/skill-validation/`, kiểm tra SHA-256 của gói trước dùng, rồi dùng Python 3.12 hiện có chạy bộ kiểm tra `quick_validate.py`. PyYAML giúp công cụ này đọc phần tên/mô tả ở đầu file skill; cả Python hiện có và Python đi kèm Codex đều đang thiếu nó. Không có thư viện này thì công cụ dừng trước khi kiểm tra, nên mình chưa thể báo phần đó đạt.
 
-Nguồn mở thêm: [kiểm tra và ranh giới](#r02-t01-install-check).
+Đây là **phụ trợ lúc kiểm tra**, không đưa Python/PyYAML vào chương trình Kidea, không thêm dependency npm, không cài toàn máy hoặc sửa PATH. Đánh đổi là thêm một gói cần lưu nguồn/phiên bản/hash; lợi ích là chạy đúng công cụ kiểm tra sẵn có, không viết bản thay thế. Chỉ lưu bằng chứng lên GitHub; gói tải và file sinh giữ local/loại khỏi Git, dọn đúng file tạm sau kiểm tra.
 
-**D1–D3 đang IN_REVIEW.** Chưa cài/tạo gì. Duyệt gói này cho phép mình làm S03/S04, không chỉ ghi nhận hướng; không cấp quyền pilot, project khác, cài global, deploy hoặc tự triển khai phần lõi chưa chốt.
+**D1 đang IN_REVIEW; chưa tải/cài PyYAML.** Duyệt sẽ cho hoàn tất kiểm tra S03/S04; không duyệt schema, chức năng lõi, pilot hoặc project khác. [Bằng chứng/giới hạn](tests/evidence/r02-t01.md) và [nguồn gói](https://pypi.org/project/PyYAML/6.0.3/) là phần mở thêm.
 
 <a id="working-rules"></a>
 
@@ -107,9 +105,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T10-S02 | DONE | [A] — rà tích hợp tài liệu | Đối chiếu nghĩa vụ/caller, link, trạng thái và cleanup; chưa kiểm chứng skill; [kết quả](#r01-t10-check) |
 | R01-T10-S03 | DONE | R01-T10-S03-r1 — APPROVED | Human “Duyệt nhé” sau answer b666308; chấp nhận căn cứ và cho mở R02 từng phần; [kết quả](#r01-result) |
 | R02-T01-S01 | DONE | R02-T01-S01-r1 — APPROVED | Human “duyệt” sau answer 485eb46; JavaScript/Node 24 LTS và khung tối giản, chưa cài; [kết quả](#r02-t01-s01-result) |
-| R02-T01-S02 | IN_PROGRESS | R02-T01-S02-r1 — IN_REVIEW | Nguồn skill, Node riêng và quyền tạo/chạy khung trong vùng thử; [gói hiện hành](#review-current) |
+| R02-T01-S02 | DONE | R02-T01-S02-r1 — APPROVED | Human “duyệt” sau answer fb3bf51; D1–D3 đúng phạm vi; [kết quả](#r02-t01-scaffold-result) |
+| R02-T01-S03 | IN_PROGRESS | R02-T01-S03-r1 — IN_REVIEW | Khung/helper và 16 test đạt; validator thiếu PyYAML, chờ quyền phụ trợ; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01-S01 DONE; chỉ R02-T01-S02 đang IN_PROGRESS, chờ Human review; các subtask R02 khác mặc định TODO. R03–R10 chưa mở/chưa phân rã; không có code/runtime/pilot mới. Kiểm tra tài liệu không được cộng thành nghiệm thu năng lực Kidea.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01-S01/S02 DONE; chỉ S03 đang IN_PROGRESS. S04 đã có phép thử nạp/gọi sơ bộ nhưng chưa đóng trước S03; các subtask R02 khác mặc định TODO. R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
@@ -355,6 +354,17 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Kiểm tra tài liệu/link/trạng thái/diff và đường dẫn dự kiến chỉ đọc; chưa tạo skill/helper/runtime/vùng thử, không có file tạm cần xóa. S02 trình vị trí/quyền riêng; T01 chưa khép.
 
 <a id="phase-overview"></a>
+
+<a id="local-install-proposal"></a>
+<a id="r02-t01-scaffold-result"></a>
+
+### Kết quả R02-T01-S02 và kiểm tra khung đang làm — ngày 2026-09-12
+
+- Human “duyệt” sau [answer fb3bf51](https://github.com/Kynderis/kidea/blob/fb3bf516523c93ee5c3a46e7eaf95b9b807d1bc2/answer.md), xác nhận D1–D3 của S02-r1: nguồn skill repo-local, Node 24.21.0 riêng, tạo/thử khung và lưu nguồn/bằng chứng trong các vùng đã chỉ định. Không mở quyền global/pilot/project khác hoặc lõi chưa chốt.
+- Đã tạo [skill](.agents/skills/kidea/SKILL.md), helper không có thao tác file/network, test và fixture dùng lại. Node tải từ nguồn chính thức, SHA-256 khớp trước chạy; Node global vẫn 22.18.0. Helper chỉ có `--help`, sáu hành động sản phẩm đều chưa triển khai và trả mã lỗi; không tạo schema/template giả.
+- 16/16 unit test đạt, không skip. Phép thử sơ bộ bằng Codex CLI 0.153.4 trong phiên mới ephemeral/read-only tìm được skill và gọi helper status đúng; 27 file đối chiếu trước/sau không đổi. Đây không phải test UI desktop hoặc chứng nhận ổn định nhiều lần, không tính KA PASS.
+- `quick_validate.py` không chạy được vì `ModuleNotFoundError: No module named 'yaml'` trên cả Python hệ thống và Python bundled. Chưa cài dependency. S03 chuyển sang chờ [một quyết định về công cụ kiểm tra](#review-current); S04 chỉ được đóng sau S03 đủ điều kiện, giữ phép thử đã có nếu nguồn liên quan không đổi.
+- [Hồ sơ bằng chứng](tests/evidence/r02-t01.md) giữ phiên bản, hash, lệnh, expected/actual, lỗi và giới hạn. File tạm sở hữu S03/S04: đúng năm file trong `.test-output/r02-t01-s04/` được liệt kê ở hồ sơ. Lệnh cleanup bị môi trường chặn trước chạy; năm file còn local/ignored, chưa xóa gì, cleanup còn thiếu trước đóng S03/S04. Runtime cùng SHASUMS là phần local cần giữ, không phải rác; test/fixture là nguồn dùng lại. Không sửa AC/QUALITY/G2 hoặc mở T02.
 
 ## 4. Tổng quan 10 phase xây Kidea
 

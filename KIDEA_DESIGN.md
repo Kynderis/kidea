@@ -1,10 +1,10 @@
 # Kidea — Thiết kế cách hoạt động
 
-Trạng thái: `CĂN CỨ R01 ĐÃ DUYỆT — CHI TIẾT TRIỂN KHAI QUA GATE TẠI TASK SỞ HỮU — CHƯA CÓ SKILL CHẠY ĐƯỢC`
+Trạng thái: `CĂN CỨ R01 ĐÃ DUYỆT — ĐÃ CÓ KHUNG THỬ R02-T01, CHƯA CÓ LÕI KIDEA`
 
 Ngày cập nhật: 2026-09-12
 
-Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); chưa tạo/cài skill hoặc triển khai code.
+Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); đã tạo khung skill/helper để thử, chưa triển khai sáu chức năng sản phẩm hoặc pilot.
 
 Human đã duyệt kết quả tích hợp R01 và cho mở R02 từng phần tại [gate khép căn cứ](KIDEA_ROADMAP.md#r01-result). Không coi đây là duyệt mọi chi tiết còn đề xuất, số đo/fixture, runtime/schema hoặc quyền cài/chạy pilot/deploy.
 
@@ -881,7 +881,7 @@ Bộ cách gọi mục tiêu gồm sáu hành động:
 | `$kidea change <yêu cầu>` | Ghi nhận thay đổi, phân tích phạm vi và dẫn qua quy trình phù hợp. |
 | `$kidea visualize` | Đọc hồ sơ, kiểm tra dữ liệu và sinh HTML tiến độ chỉ để xem; không tự thay trạng thái, approve hoặc publish. |
 
-Sau khi init/resume, Human và AI trao đổi bằng ngôn ngữ bình thường; không cần biến mọi phản hồi thành một command. Các args trên do Kidea quy ước, chưa phải lệnh đã cài trong Codex.
+Sau khi init/resume, Human và AI trao đổi bằng ngôn ngữ bình thường; không cần biến mọi phản hồi thành một command. Các args trên do Kidea quy ước. Khung R02-T01 đã nhận diện tên sáu hành động nhưng đều trả chưa triển khai, không phải chức năng đã hoạt động.
 
 Về ký hiệu: tài liệu chính thức mô tả Codex CLI/IDE dùng `$` để nhắc skill hoặc `/skills` để chọn. Vì vậy thiết kế không nên giả định tạo skill tên `kidea` là tự đăng ký được slash command `/kidea`; cần kiểm tra hỗ trợ trên ứng dụng đích khi triển khai. [OpenAI — Build skills](https://learn.chatgpt.com/docs/build-skills).
 
@@ -897,7 +897,7 @@ Không cần thêm command riêng cho mỗi thao tác Git; thực thi thường 
 
 Human “duyệt” sau gói R02-T01-S01-r1; [căn cứ](KIDEA_ROADMAP.md#r02-t01-s01-result). Chương trình phụ trợ Kidea dùng JavaScript chạy trên Node.js 24 LTS. Khung ban đầu dùng JavaScript trực tiếp, chức năng và bộ chạy test tích hợp; chưa thêm framework/thư viện ngoài. Khi thật sự cần dependency, trình lý do/phạm vi/phiên bản tại task sở hữu; không tự viết bộ xử lý phức tạp để giữ số dependency bằng không.
 
-Đây là công nghệ của helper, không đổi backend C++ hoặc công nghệ web/native của sản phẩm. Một skill vẫn gồm hướng dẫn và helper có tác dụng xác định; helper không tự duyệt nghiệp vụ hoặc chứng minh mọi dependency. Bản Node cụ thể, vị trí nguồn/nạp, quyền chuẩn bị/chạy và kiểm chứng còn thuộc R02-T01-S02–S04; chưa cài hoặc có skill chạy được.
+Đây là công nghệ của helper, không đổi backend C++ hoặc công nghệ web/native của sản phẩm. Một skill vẫn gồm hướng dẫn và helper có tác dụng xác định; helper không tự duyệt nghiệp vụ hoặc chứng minh mọi dependency. Human đã duyệt R02-T01-S02: một nguồn tại `.agents/skills/kidea/`, Node 24.21.0 Windows x64 riêng trong `.tools/node-v24.21.0-win-x64/`, quyền tạo/thử khung và lưu nguồn/bằng chứng trong repo này; không cài global, sửa PATH, tạo pilot hoặc tự triển khai lõi. [Kết quả và giới hạn hiện tại](KIDEA_ROADMAP.md#r02-t01-scaffold-result): đã tải/xác minh/chạy Node, thử helper và nạp skill; kiểm tra cấu trúc bằng công cụ đi kèm còn thiếu dependency, chưa khép T01. PyYAML cho công cụ kiểm tra chỉ đang đề xuất, không là dependency runtime Kidea đã duyệt.
 
 Một skill Kidea, không tạo một skill riêng cho mỗi bước:
 
@@ -956,7 +956,7 @@ Tài liệu về nghiệp vụ được giữ nguyên trong [references/business
 | Quyết định cần chốt | Nơi xử lý trong roadmap mới |
 |---|---|
 | Fixture, số lần AI, ngưỡng đo và giới hạn bài thử chu kỳ cụ thể | R02-T10/R07-T04/R06-T09/R10-T06 theo chính sách R01-T08/T09 đã duyệt; số nháp QUALITY chưa có hiệu lực |
-| Bản/cách cài runtime đã chọn, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
+| Hoàn tất kiểm tra khung/runtime đã duyệt, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
 | Phân rã nghiệp vụ, AC, chọn business test và các nhánh tiếp nhận Future/ưu tiên còn đề xuất | [R03](KIDEA_ROADMAP.md#r03), [R06-T07](KIDEA_ROADMAP.md#r06); không mở lại nguyên tắc MVP/bugfix đã duyệt |
 | Chất lượng/UX/SEO/ops/admin và kiến trúc sản phẩm | [R04](KIDEA_ROADMAP.md#r04) |
 | Coding rules từng nền tảng và technical test | [R05](KIDEA_ROADMAP.md#r05) |

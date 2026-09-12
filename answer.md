@@ -1,13 +1,13 @@
-Đã ghi nhận bạn duyệt **Node.js 24 LTS và khung phụ trợ tối giản**.
+Đã tạo khung Kidea và Node chạy riêng theo phần bạn duyệt:
 
-Giờ cần chốt **đặt các phần ở đâu và cho phép mình bắt đầu tạo/thử khung**. Đề xuất ba điểm:
+- SHA-256 của Node khớp nguồn chính thức; Node đang dùng trên máy không bị thay đổi.
+- **16/16 bài thử helper đạt.** Sáu chức năng chưa xây đều báo “chưa triển khai”, không giả báo thành công.
+- Phiên Codex mới đã tìm thấy skill và gọi helper đúng; 27 file đối chiếu trước/sau không đổi.
 
-1. **Skill nằm ngay trong repo Kidea**, tại `.agents/skills/kidea/`. Chỉ giữ một bản mã nguồn; sửa ở đây rồi lưu lên GitHub. Codex có cơ chế tìm skill theo repo, nên chưa cần cài vào nơi dùng chung cho mọi project. [Tài liệu OpenAI](https://learn.chatgpt.com/docs/build-skills).
-2. **Node chạy riêng, không thay bản đang dùng.** Tải bản **24.21.0 cho Windows x64** vào `.tools/node-v24.21.0-win-x64/`, kiểm tra dấu nhận diện file tải về rồi mới chạy. Không dùng bộ cài, không sửa cấu hình tìm lệnh của máy; Node 22 hiện có giữ nguyên. Bản Node này chỉ nằm local, không đẩy lên GitHub. [Nguồn Node chính thức](https://nodejs.org/en/blog/release/v24.21.0).
-3. **Cho mình tạo và thử khung ban đầu trong repo này.** Mã/hướng dẫn ở thư mục skill; bài thử và bằng chứng ở `tests/`; file sinh ở `.test-output/`; thêm cấu hình chạy/loại trừ Git khi cần. Thử bằng dữ liệu giả, kiểm tra các lệnh chưa xây phải báo “chưa hỗ trợ”, không tự sửa hồ sơ thật. Chỉ lưu nguồn/bằng chứng cần giữ lên GitHub và dọn đúng file tạm của lượt thử.
+**Còn một việc cần bạn duyệt:** bổ sung **PyYAML 6.0.3**, chỉ để chạy bộ kiểm tra cấu trúc skill. Công cụ này cần PyYAML để đọc phần tên/mô tả trong file; cả hai Python sẵn có đều thiếu nên bước kiểm tra chưa chạy được. Mình chưa đánh dấu khung hoàn tất.
 
-**Khác lần trước:** duyệt lần này sẽ cho phép mình tải Node, viết khung và chạy thử trong phạm vi trên. Vẫn không cài toàn máy, tạo/chạy pilot, sửa project khác hoặc deploy.
+Đề xuất tải gói từ [PyPI](https://pypi.org/project/PyYAML/6.0.3/), kiểm tra dấu nhận diện SHA-256 rồi đặt riêng tại `.tools/skill-validation/` trong repo. **Không cài toàn máy, không sửa PATH, không đưa Python/PyYAML vào runtime Kidea** và không đẩy gói tải lên GitHub. Đánh đổi là thêm một thư viện cho công cụ kiểm tra; lợi ích là dùng đúng bộ kiểm tra sẵn có, không tự viết bản thay thế.
 
-Mình đã kiểm tra các vị trí dự kiến chưa có dữ liệu; chưa tải hoặc tạo gì. [Gói duyệt trên GitHub](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).
+Mình dùng **skill-creator** để tạo/kiểm tra khung và **OpenAI Docs** để xác minh cách nạp, gọi thử. Bằng chứng đã được giữ; log tạm còn local vì thao tác dọn bị môi trường chặn. Chưa có lõi Kidea hoặc pilot.
 
-Bạn duyệt ba điểm này nhé?
+[Gói duyệt và bằng chứng](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current). Bạn cho phép bổ sung riêng công cụ kiểm tra này nhé?
