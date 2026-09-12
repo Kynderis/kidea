@@ -1,26 +1,10 @@
-Nói đơn giản: **mình đang chọn cách làm “sổ công việc” cho Kidea**, để phiên AI sau mở lại vẫn biết đúng đang làm đến đâu.
+Đã ghi nhận duyệt cách lưu dữ liệu và phân chia hồ sơ.
 
-### 1. Trong cùng một file, có phần cho bạn đọc và phần cho máy đọc
+Gói tiếp theo giải quyết việc **không nhầm bản đang xây với bản người dùng đã được ghi nhận sử dụng**:
 
-Ví dụ công việc “Làm màn hình đăng nhập” đang thực hiện:
+1. **Giữ riêng hai thông tin.** Ví dụ đang làm bản **1.2**, nhưng lần kiểm tra gần nhất thấy production chạy **1.1**. Kidea phải thể hiện cả hai. Mỗi lần triển khai dẫn tới đúng hồ sơ/bản được chọn và môi trường, không chỉ ghi một số version chung. Khi mới có ý tưởng, chưa cần đặt version hoặc tạo hồ sơ phát hành.
+2. **Không biết thì báo chưa biết.** Thiếu hồ sơ không có nghĩa “chưa từng triển khai”. Nếu web đã lên 1.2 nhưng backend lỗi, phải báo từng phần, không ghi toàn bộ sản phẩm đã lên 1.2. Kết quả có thời điểm kiểm tra; ghi nhận hôm qua không chứng minh hệ thống đang khỏe hôm nay.
 
-- Phần bạn đọc: “Đang làm màn hình đăng nhập, còn thiếu kiểm tra lỗi mật khẩu.”
-- Phần máy đọc: các ô thông tin cố định như **mã việc = W-002**, **trạng thái = đang làm**.
+Cách này cần lưu tham chiếu và bằng chứng rõ hơn, nhưng tránh báo sai bản hoặc báo thành công quá sớm.
 
-Đề xuất dùng **JSON** để ghi các ô thông tin đó ngay trong file Markdown. Máy đọc phần này, không phải đoán trạng thái từ câu văn.
-
-Bạn không phải tự viết JSON; AI cập nhật trong phạm vi được phép. Điểm bất tiện là phần dữ liệu này trông kỹ thuật hơn bảng thông thường. Phần giải thích cho bạn chỉ diễn đạt lại dữ liệu, không có trạng thái riêng để sửa khác đi.
-
-### 2. Mỗi thông tin chỉ ghi chính thức ở một chỗ
-
-Hình dung một bộ sổ:
-
-| Nơi lưu | Vai trò |
-|---|---|
-| **INDEX** | Trang mục lục: mở từ đây để tìm đúng hồ sơ |
-| **work** | Sổ công việc: đang làm gì, xong gì, còn gì |
-| **review** | Phiếu duyệt: bạn đã duyệt nội dung nào, bản nào |
-
-Ví dụ bạn duyệt thiết kế đăng nhập: xác nhận được lưu ở **review**; **work** dẫn tới xác nhận đó, không ghi một bản duyệt thứ hai. Khi danh sách công việc quá dài mới tách sang **plans**, không giữ hai danh sách trùng nhau.
-
-**Bạn đang được hỏi có đồng ý hai cách tổ chức này không.** Chưa phải duyệt xây chức năng, phát hành hay cấp thêm quyền thao tác. [Gói đề xuất đầy đủ](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) vẫn đang chờ duyệt.
+Bạn duyệt hai nguyên tắc này nhé? [Gói R02-T02-S05-r1](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) chỉ chốt cách ghi nhận; chưa cấp quyền triển khai. Sau đó sẽ chốt các trường dữ liệu cụ thể trước khi tạo mẫu.

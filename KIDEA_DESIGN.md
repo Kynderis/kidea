@@ -495,18 +495,19 @@ Ví dụ: “Xây giao diện” chưa liệt kê màn hình → chưa phân rã
 Approval S01 không duyệt định dạng file/parser, schema target/release, hợp đồng approval, fixture hay quyền ghi/chạy. Định dạng/nguồn được trình ở S02, tham chiếu bản phát triển/phát hành ở S05; sau đủ gate mới đối chiếu mẫu ở S03/S04 với KA-03/09/25, KQ-03/06. Không coi review thiết kế là đã có validator/status/view.
 
 <a id="record-format-proposal"></a>
+<a id="record-format-contract"></a>
 
-#### Đề xuất R02-T02-S02-r1 — định dạng và nơi lưu dữ kiện, chưa duyệt
+#### R02-T02-S02-r1 — định dạng và nơi lưu dữ kiện, đã duyệt
 
-Gói Human review tại [roadmap](KIDEA_ROADMAP.md#record-format-review). Cụ thể hóa nguyên tắc một nguồn đã duyệt ở R01, không yêu cầu chuyển hồ sơ repo xây Kidea hoặc tạo hồ sơ pilot.
+Human “Duyệt nhé” sau [giải thích 2264faa](https://github.com/Kynderis/kidea/blob/2264faae7809426086ce6b1373ad18b56152a63e/answer.md), xác nhận D1–D2 của [S02-r1 tại 8d840f0](https://github.com/Kynderis/kidea/blob/8d840f03da277132e62ba5af9c8b1389621444a9/KIDEA_ROADMAP.md#review-current); [kết quả](KIDEA_ROADMAP.md#r02-t02-s02-result). Cụ thể hóa nguyên tắc một nguồn đã duyệt ở R01, không yêu cầu chuyển hồ sơ repo xây Kidea hoặc tạo hồ sơ pilot.
 
-**D1 — Dữ liệu có cấu trúc nằm ngay trong Markdown.** Đề xuất mỗi file hồ sơ điều phối có một khối fenced code `json` được đánh dấu riêng bằng hai dòng `<!-- kidea:data:start -->` và `<!-- kidea:data:end -->`; chỉ khối này là dữ liệu máy đọc. Giữ phần giải thích/link Markdown bên ngoài. Đây là lựa chọn định dạng nguồn, không thêm file JSON trạng thái độc lập, YAML runtime hoặc database. Khối có phiên bản định dạng và loại hồ sơ; bộ đọc sau này chỉ nhận các trường theo schema được chốt, không đoán trạng thái từ văn xuôi/bảng tóm tắt.
+**D1 — Dữ liệu có cấu trúc nằm ngay trong Markdown.** Mỗi file hồ sơ điều phối có một khối fenced code `json` được đánh dấu riêng bằng hai dòng `<!-- kidea:data:start -->` và `<!-- kidea:data:end -->`; chỉ khối này là dữ liệu máy đọc. Giữ phần giải thích/link Markdown bên ngoài. Đây là lựa chọn định dạng nguồn, không thêm file JSON trạng thái độc lập, YAML runtime hoặc database. Khối có phiên bản định dạng và loại hồ sơ; bộ đọc sau này chỉ nhận các trường theo schema được chốt, không đoán trạng thái từ văn xuôi/bảng tóm tắt.
 
 - Dùng JSON chuẩn UTF-8, không comment hoặc dấu phẩy thừa trong khối. Thiếu/trùng dấu mốc, nhiều khối có thẩm quyền, cú pháp sai, khóa trùng hoặc phiên bản/loại không hỗ trợ phải báo đúng vị trí và dừng phần phụ thuộc, không chọn bản cuối hoặc sửa nguồn ngầm. Cách phát hiện/parser/dependency cụ thể chốt ở T05 trước code; không nhận chỉ gọi JSON.parse là đã xử lý mọi lỗi này.
 - AI cập nhật khối trong quyền và tạo/đối chiếu phần trình bày khi cần; Human đọc gói giải thích ngắn, không phải tự sửa JSON. Bảng/nhãn dẫn xuất phải thể hiện nguồn; nếu lệch thì báo cần đồng bộ, không tự chọn văn xuôi thay dữ liệu. Đánh đổi là JSON kém thuận tiện hơn bảng khi sửa tay, nhưng ranh giới máy đọc rõ và không cần diễn giải mọi biến thể Markdown.
 - Chỉ hồ sơ do Kidea quản lý dùng khối này. Tài liệu nghiệp vụ/code/bằng chứng ngoài `.kidea` giữ định dạng phù hợp hiện có; tham chiếu đến chúng không ép chuyển đổi hoặc tạo bản sao.
 
-**D2 — Chỉ định nguồn theo chức năng, tách khi có nhu cầu.** Các nhóm dữ kiện sau có đúng một nơi sở hữu; tên trường, kiểu, bắt buộc/tùy chọn và mẫu hoàn chỉnh được cụ thể hóa cùng S05 trước S03, không tự lấp quyết định lớn còn thiếu khi viết mẫu.
+**D2 — Chỉ định nguồn theo chức năng, tách khi có nhu cầu.** Các nhóm dữ kiện sau có đúng một nơi sở hữu; tên trường, kiểu, bắt buộc/tùy chọn và mẫu hoàn chỉnh được cụ thể hóa tại S06 sau S05, trước S03, không tự lấp quyết định lớn còn thiếu khi viết mẫu.
 
 | Hồ sơ | Dữ kiện nguồn và ranh giới |
 |---|---|
@@ -519,7 +520,25 @@ Tham chiếu nội bộ dùng đường dẫn tương đối theo root project �
 
 Ví dụ hồ sơ nghiệp vụ ở `specs/features.md`: INDEX trỏ đúng nguồn này, work ghi việc đang xử lý, review trỏ đúng phần nội dung/bản được duyệt. Không tạo thêm `docs/features.md` để sao chép. Khi đưa cây sang plans, giữ ID và nguồn duy nhất; thiếu nguồn mới hoặc còn hai record cùng ID phải báo lỗi.
 
-S02 không duyệt schema bản phát triển/release/lần triển khai: S05 trình riêng, giữ G6 và nơi sở hữu ngoài `.kidea`. S03/S04 chỉ bắt đầu sau S02/S05; T05 mới hiện thực đọc/validator/status. Không thêm dependency, thay chuẩn chất lượng hoặc mở quyền thao tác trong lượt thiết kế này.
+S02 không duyệt schema bản phát triển/release/lần triển khai: S05 trình riêng, giữ G6 và nơi sở hữu ngoài `.kidea`. S03/S04 chỉ bắt đầu sau S02/S05/S06; T05 mới hiện thực đọc/validator/status. Không thêm dependency, thay chuẩn chất lượng hoặc mở quyền thao tác trong lượt thiết kế này.
+
+<a id="release-reference-proposal"></a>
+
+#### Đề xuất R02-T02-S05-r1 — tham chiếu bản phát triển và bản triển khai, chưa duyệt
+
+Gói nhỏ tại [roadmap](KIDEA_ROADMAP.md#release-reference-review). Cụ thể hóa đường tham chiếu theo G6, không duyệt lại chính sách version/release hoặc cấp quyền deploy. Hợp đồng trường/kiểu của toàn bộ hồ sơ điều phối được tách sang S06 [H] trước tạo mẫu S03.
+
+**D1 — Tham chiếu đúng đối tượng, không dùng một nhãn version chung.** Trong work, đợt phát triển giữ mục tiêu thay đổi và tham chiếu nội dung phạm vi ở nguồn sản phẩm; số version dự kiến có thể chưa chốt, không ép tạo hồ sơ release lúc mới có ý tưởng. Khi có hồ sơ release, tham chiếu tới đúng hồ sơ/revision ở nguồn vận hành ngoài `.kidea`. INDEX chỉ dẫn tới nguồn của các thông tin này; không lưu bản mục tiêu/version hay bản triển khai nhập tay thứ hai.
+
+Một tham chiếu nội bộ đề xuất có đường dẫn tương đối từ root project và ID đích; tham chiếu release thêm revision hồ sơ, tham chiếu lần triển khai thêm ID lần thực hiện và môi trường/đích tương ứng. Đây là các nhóm thông tin cần truy đúng, chưa chọn tên trường/kiểu lưu ở S06. Nơi sở hữu release/operation vẫn ở nguồn vận hành, không tạo tracker deployment trong work. Không chọn bản theo tên file mới nhất, `latest`, nhánh master hoặc version hiển thị đơn lẻ. Cơ chế xác minh bản nội dung, đầu vào và hiệu lực ở T03/T04; link đúng không tự chứng minh gói đã được duyệt hoặc đã chạy.
+
+**D2 — Không đồng nhất không có hồ sơ với chưa từng triển khai.** Khi hỏi bản đã triển khai, dữ liệu phải phân biệt: có ghi nhận xác nhận chưa triển khai; có quan sát/bằng chứng về bản thực tế; hoặc chưa đủ thông tin để kết luận. Trạng thái này lấy từ nguồn vận hành và căn cứ của nó, không mặc định từ chỗ trống trong INDEX. Đọc không được nguồn, tham chiếu sai hoặc thiếu thời điểm thì báo thiếu/sai/chưa xác nhận, không chọn bản cũ rồi gọi là hiện tại.
+
+- Có quan sát phải truy được môi trường/đích, từng thành phần, bản được quan sát, nguồn bằng chứng và thời điểm. Kết quả theo thời điểm không là giám sát live. DEV và PROD riêng; một project có thể có nhiều đích, không một biến version chung cho tất cả.
+- Lần thực hiện giữ đúng hồ sơ/revision và kết quả từng bước, gồm lỗi/chưa xác nhận; quan sát từ lần sau không xóa lần trước. Retry/restore vẫn theo quyền và đối chiếu tác dụng phụ G6/T04/T09; không suy một lần hoàn tất là hiện trạng vĩnh viễn.
+- Ví dụ đang xây 1.2 nhưng lần kiểm tra gần nhất thấy PROD 1.1: giữ cả hai. Nếu web lên 1.2 còn backend lỗi, báo kết quả từng bên và thời điểm; không báo toàn bộ PROD 1.2. Nếu chưa có hồ sơ vận hành để đọc thì báo chưa biết, không báo “chưa triển khai”.
+
+S05 chỉ chốt hợp đồng tham chiếu/ý nghĩa dữ liệu thiếu. S06 hoàn thiện trường/kiểu và quy tắc cấu trúc tối thiểu; T03/T04 chốt nội dung approval/checkpoint/nhận diện bản còn mở, T05 mới xây bộ đọc. Không tạo release/pilot, sửa hồ sơ sản phẩm hoặc chạy/đo deployment trong lượt này. Đối chiếu mẫu sau đúng gate với KA-09/13/25/28 và KQ-05/06/10; không nhận mock/link hợp lệ là bằng chứng vận hành thật.
 
 <a id="source-authority-and-write-boundary"></a>
 
