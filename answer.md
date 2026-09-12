@@ -1,34 +1,15 @@
-Ý chính là: **Kidea phải phân biệt “đang làm”, “đã đưa vào sử dụng” và “chưa kiểm tra nên chưa biết”.**
+Đã ghi nhận duyệt. Tiếp theo là chốt **mỗi công việc cần ghi những thông tin gì**, trước khi tạo hồ sơ mẫu.
 
-Ví dụ bạn có một website đăng ký workshop:
+Ví dụ với việc **“Thêm chức năng hủy đăng ký”**, phiếu công việc cần cho biết:
 
-- Website người dùng đang dùng **chỉ cho đăng ký**, chưa cho hủy.
-- Bạn yêu cầu AI **bổ sung chức năng hủy đăng ký**.
+- **Làm gì:** thêm chức năng nào, thuộc nhóm công việc nào.
+- **Dựa vào đâu:** đọc yêu cầu ở tài liệu nào, phải chờ việc nào.
+- **Thế nào là xong:** phải đạt đầu ra và kiểm tra nào; có cần bạn duyệt không.
+- **Đang đến đâu:** đang làm, đã xong hay đang vướng gì; kết quả nằm ở đâu và tiếp theo làm gì.
 
-### 1. Làm xong chưa có nghĩa người dùng đã dùng được
+Mình đề xuất hai điểm:
 
-AI viết xong chức năng hủy và kiểm tra đạt trên máy làm việc. Nhưng chưa đưa bản mới lên website thật.
+1. **Lưu đủ các thông tin trên, dẫn tới tài liệu gốc thay vì chép lại.** Phiên AI sau mở hồ sơ sẽ biết tiếp tục từ đâu. Khi tạm chuyển sang xử lý việc phụ thuộc, vẫn giữ phần đang dở và điểm quay lại.
+2. **Thiếu thông tin quan trọng thì báo rõ, không tự đoán.** Chưa đặt số phiên bản có thể để chưa chốt. Nhưng thiếu yêu cầu hoặc điều kiện hoàn tất thì phải bổ sung trước phần việc phụ thuộc; không tự đánh dấu xong. Link đứt hay mã trùng cũng phải báo đúng chỗ.
 
-Kidea phải báo:
-
-> Chức năng hủy: đã làm và kiểm tra xong.
->
-> Website thật: lần kiểm tra gần nhất vẫn là bản chưa có chức năng hủy.
-
-Không được báo “người dùng đã hủy được” chỉ vì code đã xong.
-
-Sau khi đưa bản mới lên website thật, cần kiểm tra lại rồi mới ghi nhận kết quả. **Mỗi lần đưa bản lên có một phiếu ghi: đưa bản nào, lên đâu, lúc nào, thành công hay lỗi.** Sổ công việc chỉ dẫn tới phiếu đó, không chép một bản khác dễ bị lệch.
-
-### 2. Chưa kiểm tra thì không được đoán
-
-Giả sử hôm sau mở phiên AI mới, nhưng thiếu phiếu ghi hoặc không kiểm tra được website.
-
-Kidea phải nói:
-
-> Chưa đủ thông tin để xác nhận website đang dùng bản nào.
-
-Không tự nói “chưa đưa bản mới lên”, cũng không tự nói “đã đưa lên thành công”.
-
-Tương tự, nếu giao diện đã có nút Hủy nhưng phần xử lý phía máy chủ cập nhật lỗi, phải báo **cập nhật chưa hoàn tất**, không báo cả chức năng đã dùng được. Kết quả kiểm tra hôm qua cũng không chứng minh website vẫn hoạt động tốt hôm nay.
-
-**Bạn đang được hỏi có đồng ý để Kidea ghi nhận công việc theo cách này không.** Đây chỉ là cách lưu và báo thông tin cho đúng; không phải xin quyền đưa website lên hoặc yêu cầu bạn tự ghi các phiếu này. [Đề xuất vẫn chờ duyệt](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).
+Bạn duyệt bộ thông tin và cách xử lý này nhé? [Gói chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) có tên trường kỹ thuật để triển khai nhất quán; bạn không phải tự điền chúng. Sau duyệt mới tạo mẫu đúng/sai để đối chiếu, chưa chạy pilot.
