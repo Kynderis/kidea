@@ -8,22 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã duyệt và khép R02-T02-S05 — bản đang làm và bản đã triển khai.** Chỉ S06 đang chờ duyệt bộ thông tin tối thiểu trước khi tạo mẫu. Khung T01 đã có bằng chứng; chưa có bộ đọc, ghi hoặc lõi Kidea.
+**Đã khép R02-T02 — hợp đồng hồ sơ và bộ mẫu.** Có 41 biến thể với expected riêng, kiểm tra recipe và đối chiếu nội dung; chưa chạy validator Kidea. Chỉ R02-T03-S01 đang chờ duyệt cách ghi kết quả Human review.
 
 <a id="review-current"></a>
-<a id="schema-fields-review"></a>
+<a id="approval-transitions-review"></a>
 
-### R02-T02-S06-r1 — Phiếu công việc cần ghi những gì? [H]
+### R02-T03-S01-r1 — Khi bạn duyệt, yêu cầu sửa hoặc cho phép bỏ một mục [H]
 
-Task T02 đang hoàn thiện cách lưu hồ sơ. Sau các nguyên tắc đã duyệt, gói này chốt thông tin cụ thể để AI phiên sau tiếp tục đúng việc. Bạn không cần đọc tên trường kỹ thuật; chúng nằm ở phần mở thêm.
+Task T03 chốt cách Kidea ghi nhận quyết định của bạn để không làm vượt phần đã được đồng ý. Bộ hồ sơ T02 đã có mẫu; lần này chưa viết chức năng approve.
 
-**D1 — Mỗi việc có một phiếu đủ đầu vào, điều kiện xong và điểm tiếp tục.** Phiếu ghi mã/tên, thuộc nhóm nào, cần làm gì, cần đọc tài liệu nào, phải chờ việc nào, kiểm tra gì mới được tính xong, đang ở trạng thái nào và link kết quả/gói duyệt. Sổ work chỉ rõ việc hiện hành, chỗ vướng và bước tiếp theo. Nhóm lớn tổng hợp từ các việc con và gate, không ghi trạng thái cha độc lập. INDEX/review vẫn đúng vai trò đã duyệt, không sao chép nghiệp vụ. Ví dụ “Thêm hủy đăng ký” phải dẫn tới yêu cầu và cách kiểm tra, không chỉ ghi “đang làm”. Lợi ích: phiên sau biết phải làm gì; đánh đổi: phải giữ những link này đúng và cập nhật khi thay đổi.
+**D1 — Chỉ duyệt đúng gói đang trình; yêu cầu sửa thì vẫn chưa được duyệt.** Gói đi từ nháp → đang chờ bạn xem → đã duyệt. Chỉ khi gói đủ điều kiện và bạn xác nhận rõ đúng bản/phạm vi mới sang đã duyệt. Nếu bạn yêu cầu sửa, ghi lại lý do, đưa về nháp và trình bản sửa; không mất phản hồi hoặc dùng xác nhận cũ cho nội dung khác. Nếu bạn chỉ hỏi “giải thích thêm”, vẫn giữ chờ duyệt. Ví dụ duyệt quy tắc hủy không có nghĩa duyệt luôn giao diện hoặc cho phép đưa website lên. Cách này giữ ranh giới rõ, nhưng câu duyệt mơ hồ khi có nhiều mục sẽ cần hỏi lại.
 
-**D2 — Thiếu thông tin quan trọng thì báo thiếu, không tự điền cho đủ.** Được để chưa chốt số phiên bản hoặc chưa có hồ sơ phát hành, nhưng không được bỏ mã việc, phạm vi hoặc điều kiện hoàn tất. Sai tên trường, trạng thái không hợp lệ, link đứt, mã trùng hay hai việc cùng đang thực hiện đều phải chỉ rõ lỗi, giữ nguyên nguồn và dừng phần phụ thuộc. Không tự gán “chưa làm” hoặc “đã xong” để hồ sơ nhìn hợp lệ. Cách này có thể phải sửa hồ sơ trước khi tiếp tục, nhưng tránh làm nhầm hoặc báo xong sai.
+**D2 — “Không áp dụng” phải là một quyết định riêng có lý do.** Ví dụ sản phẩm đã chốt chỉ có web thì có thể xin không làm phần ứng dụng iOS. Sau khi bạn đồng ý, vẫn giữ mục đó và lý do, hiển thị “không áp dụng”, không ghi thành đã làm xong. Ngược lại, iOS vẫn thuộc phạm vi nhưng thiếu máy Mac thì ghi đang vướng, không tự bỏ. Miễn một mục không miễn cả bước hoặc các nghĩa vụ khác. Lợi ích là bạn thấy rõ phần được bỏ và vì sao; đổi lại cần ghi căn cứ thay vì xóa dòng khỏi danh sách.
 
-Bạn duyệt bộ thông tin và cách xử lý thiếu/sai này nhé? Sau đó tạo mẫu đúng/sai và đối chiếu; chưa viết bộ đọc, tự duyệt nội dung hoặc chạy pilot.
+Bạn duyệt hai cách xử lý này nhé? Sau đó chốt cách xét lại approval khi nội dung đổi; chưa chạy approve hoặc pilot.
 
-Nguồn mở thêm: [trường/kiểu và điều kiện](KIDEA_DESIGN.md#schema-fields-proposal); [kết quả S05](#r02-t02-s05-result).
+Nguồn mở thêm: [đề xuất thiết kế](KIDEA_DESIGN.md#approval-transitions-proposal); [kết quả T02](#r02-t02-result).
 
 <a id="working-rules"></a>
 
@@ -113,9 +113,12 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T02-S01 | DONE | R02-T02-S01-r1 — APPROVED | Human “Duyệt” sau answer 0065415; D1–D2 mã/cây công việc và mức phân rã, đã đồng bộ/đối chiếu; [kết quả](#r02-t02-s01-result) |
 | R02-T02-S02 | DONE | R02-T02-S02-r1 — APPROVED | Human “Duyệt nhé” sau giải thích 2264faa; D1–D2 của gói 8d840f0 về định dạng/nơi sở hữu, đã đồng bộ; [kết quả](#r02-t02-s02-result) |
 | R02-T02-S05 | DONE | R02-T02-S05-r1 — APPROVED | Human “Duyệt nhé” sau giải thích 0d69201; D1–D2 của gói 4816342, đã đồng bộ bản phát triển/triển khai và dữ liệu thiếu; [kết quả](#r02-t02-s05-result) |
-| R02-T02-S06 | IN_PROGRESS | R02-T02-S06-r1 — IN_REVIEW | Trình bộ trường/kiểu tối thiểu và xử lý thiếu/sai, chưa tạo mẫu/schema thực thi; [gói hiện hành](#review-current) |
+| R02-T02-S06 | DONE | R02-T02-S06-r1 — APPROVED | Human “Duyệt nhé” sau answer 207cb5d; bộ trường/kiểu và xử lý thiếu/sai đã đồng bộ; [kết quả](#r02-t02-result) |
+| R02-T02-S03 | DONE | [A] — mẫu theo hợp đồng đã duyệt | 4 file baseline và 41 recipe/expected, tạo biến thể trong bộ nhớ; không chạy validator; [bằng chứng](tests/evidence/r02-t02.md) |
+| R02-T02-S04 | DONE | [A] — đối chiếu cấu trúc/nghĩa và caller | Rà mẫu/case, 21 Ref baseline, recipe chỉ đọc và 16 test khung đạt; không tính KA PASS; [kết quả](#r02-t02-result) |
+| R02-T03-S01 | IN_PROGRESS | R02-T03-S01-r1 — IN_REVIEW | Trình D1–D2 duyệt/yêu cầu sửa và N/A đúng phạm vi; chưa thực thi; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, T02-S01/S02/S05 DONE; chỉ R02-T02-S06 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE; chỉ R02-T03-S01 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
@@ -401,6 +404,17 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Human “Duyệt nhé” sau [giải thích 0d69201](https://github.com/Kynderis/kidea/blob/0d69201cb3dac8e8d29bc54fd84a83f2ef042492/answer.md), xác nhận D1–D2 của [S05-r1 tại 4816342](https://github.com/Kynderis/kidea/blob/48163428fecf690891e25b3d5f41d0ba3adf3717/KIDEA_ROADMAP.md#review-current): tham chiếu riêng mục tiêu/hồ sơ release/revision/lần thực hiện và phân biệt thiếu thông tin với chưa triển khai. Không cấp quyền deploy, duyệt bộ đọc hoặc mọi trường schema.
 - Đồng bộ [nguồn thiết kế](KIDEA_DESIGN.md#release-reference-contract), giữ G6 và dữ kiện nguồn vận hành ngoài .kidea. Rà INDEX/work, target version tùy thời điểm, từng môi trường/thành phần, resume khi kết quả chưa rõ và view theo thời điểm; đối chiếu KA-09/13/25/28, KQ-05/06/10. Không đổi AC/QUALITY/G2 hoặc nhận bằng chứng triển khai thật.
 - Kiểm tra tài liệu/link/trạng thái và cleanup; không tạo scratch, chạy AI/pilot, sửa skill/helper hoặc xóa thư mục. Khép S05; chỉ mở S06 [H] để trình trường/kiểu và mẫu đủ/sai trước S03/S04. T02 chưa khép; hợp đồng approval/checkpoint/nhận diện bản thuộc T03/T04 trước code phụ thuộc.
+
+<a id="schema-fields-review"></a>
+<a id="r02-t02-result"></a>
+
+### Kết quả R02-T02-S06/S03/S04 và khép task — ngày 2026-09-12
+
+- Human “Duyệt nhé” sau [answer 207cb5d](https://github.com/Kynderis/kidea/blob/207cb5dce8620521f75efee1a393353c9cf6ea24/answer.md), xác nhận D1–D2 của S06-r1 cùng bản: các trường/kiểu tối thiểu, một việc hiện hành nhưng giữ việc dở, không tự sửa/điền dữ liệu thiếu hoặc sai. Đồng bộ [nguồn hợp đồng](KIDEA_DESIGN.md#schema-fields-contract); không duyệt cơ chế approval/N/A/fingerprint/checkpoint/parser hoặc quyền pilot.
+- S03: tạo [bộ mẫu](tests/fixtures/r02-t02/README.md) gồm baseline 4 file/5 Item và 41 biến thể tái tạo trong bộ nhớ; manifest giữ expected, lý do và liên kết KA của từng biến thể. Có Unicode/đường dẫn khác mặc định, plan tách không sao chép, thiếu/trùng/sai link, cây dở, việc đang dở có điểm quay lại và giới hạn approval/deploy.
+- S04: rà nội dung theo S01/S02/S05/S06 và KA-03/09/11/25 cùng caller review/release; giảm bản phác ôm mười bước thành lát cắt có scope/gate rõ. Kiểm tra 21 Ref baseline đủ file/anchor, 41 recipe dựng được và SHA-256/tập 7 file không đổi trước/sau; 16 test khung cũ đạt. Đây là kiểm tra fixture và hồi quy khung, chưa có 41 actual từ validator. [Bằng chứng](tests/evidence/r02-t02.md) giữ số, hash và giới hạn; không tính KA/KQ PASS hoặc hỗ trợ init toàn quy trình.
+- Đã đối chiếu nguồn hồ sơ, current/returnStack, state/gate, view, G6 và nghĩa vụ chất lượng; không đổi AC/QUALITY/G2, không sửa skill/helper, không chạy AI mới/pilot hoặc thêm dependency. Mẫu/script/evidence là nguồn dùng lại, không scratch; không tạo thư mục biến thể trên đĩa hoặc xóa hai thư mục rỗng T01.
+- Đủ sáu subtask T02 DONE; R02 chưa khép. Chỉ mở T03-S01 để trình hợp đồng Human review; T03/T04 phải chốt nghĩa/hiệu lực trước T05/T08. Việc có schema/mẫu không cấp quyền tự duyệt nội dung hoặc triển khai.
 
 ## 4. Tổng quan 10 phase xây Kidea
 

@@ -1,0 +1,942 @@
+{
+  "fixtureVersion": 1,
+  "contract": "R02-T02-S06-r1",
+  "contractSource": "https://github.com/Kynderis/kidea/blob/207cb5dce8620521f75efee1a393353c9cf6ea24/KIDEA_DESIGN.md#schema-fields-proposal",
+  "base": "base",
+  "scope": "Synthetic document fixtures only. Expected results are NOT Kidea execution results.",
+  "cases": [
+    {
+      "id": "S-01",
+      "title": "Mẫu gốc: nhóm dở, việc DONE còn giữ, chuyển dependency",
+      "expected": "VALID_STRUCTURE",
+      "reason": "W-013 hiện hành; W-012 vẫn IN_PROGRESS có điểm quay lại; W-001 PARTIAL không xong dù W-011 DONE. Thiếu operations không chứng minh chưa triển khai.",
+      "ka": [
+        "KA-03",
+        "KA-11",
+        "KA-25"
+      ],
+      "mutations": []
+    },
+    {
+      "id": "S-02",
+      "title": "Chuyển cây sang plan, không bản sao",
+      "expected": "VALID_STRUCTURE",
+      "reason": "Cây chỉ ở một plan được work liệt kê; giữ ID/current/returnStack.",
+      "ka": [
+        "KA-03",
+        "KA-09",
+        "KA-25"
+      ],
+      "mutations": [
+        {
+          "op": "addFile",
+          "file": ".kidea/plans/part-1.md",
+          "content": "# Plan giả\n\nDỮ LIỆU GIẢ, không triển khai.\n\n<!-- kidea:data:start -->\n```json\n{\n  \"schemaVersion\": 1,\n  \"kind\": \"plan\",\n  \"projectId\": \"fixture-r02-t02\",\n  \"items\": [\n    {\n      \"id\": \"W-001\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Ý tưởng và phạm vi\",\n      \"kind\": \"STEP\",\n      \"parentId\": null,\n      \"shape\": \"GROUP\",\n      \"decomposition\": \"PARTIAL\",\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"step-1\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-1\"\n      },\n      \"dependencyIds\": [],\n      \"gateIds\": [\n        \"RV-001\"\n      ],\n      \"resultRefs\": [],\n      \"executionStatus\": null\n    },\n    {\n      \"id\": \"W-002\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Nhóm việc còn cần phân rã\",\n      \"kind\": \"TASK\",\n      \"parentId\": \"W-001\",\n      \"shape\": \"GROUP\",\n      \"decomposition\": \"UNEXPANDED\",\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"later-group\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-later-group\"\n      },\n      \"dependencyIds\": [],\n      \"gateIds\": [],\n      \"resultRefs\": [],\n      \"executionStatus\": null\n    },\n    {\n      \"id\": \"W-011\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Lập ví dụ phạm vi\",\n      \"kind\": \"TASK\",\n      \"parentId\": \"W-001\",\n      \"shape\": \"LEAF\",\n      \"decomposition\": null,\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"task-011\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-011\"\n      },\n      \"dependencyIds\": [],\n      \"gateIds\": [],\n      \"resultRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"example-result\"\n        }\n      ],\n      \"executionStatus\": \"DONE\"\n    },\n    {\n      \"id\": \"W-012\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Soạn quy tắc hủy\",\n      \"kind\": \"TASK\",\n      \"parentId\": \"W-001\",\n      \"shape\": \"LEAF\",\n      \"decomposition\": null,\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"task-012\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-012\"\n      },\n      \"dependencyIds\": [\n        \"W-013\"\n      ],\n      \"gateIds\": [],\n      \"resultRefs\": [],\n      \"executionStatus\": \"IN_PROGRESS\"\n    },\n    {\n      \"id\": \"W-013\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Làm rõ người được hủy\",\n      \"kind\": \"TASK\",\n      \"parentId\": \"W-001\",\n      \"shape\": \"LEAF\",\n      \"decomposition\": null,\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"task-013\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-013\"\n      },\n      \"dependencyIds\": [],\n      \"gateIds\": [],\n      \"resultRefs\": [],\n      \"executionStatus\": \"IN_PROGRESS\"\n    }\n  ]\n}\n```\n<!-- kidea:data:end -->\n"
+        },
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items"
+          ],
+          "value": []
+        },
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "planRefs"
+          ],
+          "value": [
+            {
+              "path": ".kidea/plans/part-1.md",
+              "anchor": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S-03",
+      "title": "Nhóm đang review là việc hiện hành",
+      "expected": "VALID_STRUCTURE",
+      "reason": "W-012 có returnStack, W-013 có blocker; currentItem có thể là GROUP đang review, không phải nhiều task active.",
+      "ka": [
+        "KA-03",
+        "KA-11"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "currentItemId"
+          ],
+          "value": "W-001"
+        },
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "blockers"
+          ],
+          "value": [
+            {
+              "itemId": "W-013",
+              "reason": "Đang chờ review phạm vi.",
+              "needed": "Xử lý gói RV-001 trước phần phụ thuộc."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S-04",
+      "title": "Chưa chọn việc hiện hành không là hoàn tất",
+      "expected": "VALID_STRUCTURE",
+      "reason": "Null chỉ không có mục được chọn; không xóa việc dở/DONE hoặc nhận cả nhóm xong.",
+      "ka": [
+        "KA-03",
+        "KA-25"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "currentItemId"
+          ],
+          "value": null
+        },
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "blockers"
+          ],
+          "value": [
+            {
+              "itemId": "W-013",
+              "reason": "Chưa chọn việc tiếp tục, giữ phần đã bắt đầu.",
+              "needed": "Đối chiếu trước chọn lại việc hiện hành."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S-05",
+      "title": "APPROVED đủ trường nhưng xác nhận giả",
+      "expected": "STRUCTURE_ONLY_NOT_AUTHORIZATION",
+      "reason": "Cấu trúc đủ trường không chứng minh xác nhận thật/nội dung đúng bản; không được mở gate từ mẫu giả.",
+      "ka": [
+        "KA-06",
+        "KA-07"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/reviews/RV-001.md",
+          "path": [
+            "status"
+          ],
+          "value": "APPROVED"
+        },
+        {
+          "op": "set",
+          "file": ".kidea/reviews/RV-001.md",
+          "path": [
+            "confirmationRef"
+          ],
+          "value": {
+            "path": "tài liệu/đặc tả.md",
+            "anchor": "fake-confirmation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "S-06",
+      "title": "Tham chiếu release có revision, không là đã deploy",
+      "expected": "STRUCTURE_ONLY_NOT_DEPLOYED",
+      "reason": "Nguồn release giả ở ngoài .kidea, không thay bằng chứng operation; chưa có nội dung đầy đủ/hiệu lực G6.",
+      "ka": [
+        "KA-25",
+        "KA-28"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "rounds",
+            0,
+            "targetVersion"
+          ],
+          "value": "1.2.0"
+        },
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "rounds",
+            0,
+            "releaseRef"
+          ],
+          "value": {
+            "path": "tài liệu/đặc tả.md",
+            "id": "REL-001",
+            "revision": 1
+          }
+        },
+        {
+          "op": "set",
+          "file": ".kidea/INDEX.md",
+          "path": [
+            "sources"
+          ],
+          "value": [
+            {
+              "role": "features",
+              "ref": {
+                "path": "tài liệu/đặc tả.md",
+                "anchor": "scope"
+              }
+            },
+            {
+              "role": "operations",
+              "ref": {
+                "path": "tài liệu/đặc tả.md",
+                "anchor": "REL-001"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S-07",
+      "title": "COMPLETE nhưng nhóm rỗng",
+      "expected": "INSUFFICIENT_FOR_COMPLETION",
+      "reason": "W-002 không có con; không suy DONE/APPROVED. Cần phân rã đúng hoặc xử lý N/A tại T03.",
+      "ka": [
+        "KA-25"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            1,
+            "decomposition"
+          ],
+          "value": "COMPLETE"
+        }
+      ]
+    },
+    {
+      "id": "S-08",
+      "title": "Cập nhật thành công một phần — ví dụ văn bản",
+      "expected": "INSUFFICIENT_FOR_DEPLOYMENT",
+      "reason": "Đọc OP-001 tại nguồn giả: backend lỗi/chưa xác nhận, không coi cả 1.2.0 thành công; không coi nguồn giả là quan sát thật.",
+      "ka": [
+        "KA-13",
+        "KA-25",
+        "KA-28"
+      ],
+      "mutations": []
+    },
+    {
+      "id": "E-01",
+      "title": "Thiếu INDEX",
+      "expected": "REJECT",
+      "reason": "Thiếu điểm vào; không init/ghi đè.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "removeFile",
+          "file": ".kidea/INDEX.md"
+        }
+      ]
+    },
+    {
+      "id": "E-02",
+      "title": "Thiếu nguồn sản phẩm Unicode",
+      "expected": "REJECT",
+      "reason": "Link nguồn sản phẩm thiếu; không chép hoặc suy diễn nội dung.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "removeFile",
+          "file": "tài liệu/đặc tả.md"
+        }
+      ]
+    },
+    {
+      "id": "E-03",
+      "title": "Thiếu completionRef",
+      "expected": "REJECT",
+      "reason": "Báo trường bắt buộc W-013.completionRef thiếu; không tự điền.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "remove",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "completionRef"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E-04",
+      "title": "Trùng Item ID",
+      "expected": "REJECT",
+      "reason": "Hai record cùng ID, current W-013 cũng không còn đích; không chọn record cuối.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "id"
+          ],
+          "value": "W-012"
+        }
+      ]
+    },
+    {
+      "id": "E-05",
+      "title": "Link nguồn không tồn tại",
+      "expected": "REJECT",
+      "reason": "Báo path không tồn tại.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "scopeRef",
+            "path"
+          ],
+          "value": "tài liệu/không có.md"
+        }
+      ]
+    },
+    {
+      "id": "E-06",
+      "title": "Anchor không tồn tại",
+      "expected": "REJECT",
+      "reason": "Có file chưa đủ, mục đích không tồn tại.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "scopeRef",
+            "anchor"
+          ],
+          "value": "not-found"
+        }
+      ]
+    },
+    {
+      "id": "E-07",
+      "title": "Path vượt root",
+      "expected": "REJECT",
+      "reason": "Không theo đường vượt root; không đọc/tạo file ngoài fixture.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "scopeRef",
+            "path"
+          ],
+          "value": "../outside.md"
+        }
+      ]
+    },
+    {
+      "id": "E-08",
+      "title": "Path tuyệt đối",
+      "expected": "REJECT",
+      "reason": "Không theo path tuyệt đối, không truy file thực.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "scopeRef",
+            "path"
+          ],
+          "value": "C:/outside.md"
+        }
+      ]
+    },
+    {
+      "id": "E-09",
+      "title": "Sai enum trạng thái",
+      "expected": "REJECT",
+      "reason": "Không tự đổi hoa-thường để sửa dữ liệu.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "executionStatus"
+          ],
+          "value": "in_progress"
+        }
+      ]
+    },
+    {
+      "id": "E-10",
+      "title": "Trường lạ làm nguồn active thứ hai",
+      "expected": "REJECT",
+      "reason": "Trường lạ không được bỏ qua hoặc dùng làm current khác.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "active"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "E-11",
+      "title": "Version cấu trúc không hỗ trợ",
+      "expected": "REJECT",
+      "reason": "Không đọc như version 1.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/INDEX.md",
+          "path": [
+            "schemaVersion"
+          ],
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "E-12",
+      "title": "Sai projectId",
+      "expected": "REJECT",
+      "reason": "Không ghép hồ sơ project khác.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "projectId"
+          ],
+          "value": "other-project"
+        }
+      ]
+    },
+    {
+      "id": "E-13",
+      "title": "Cha không tồn tại",
+      "expected": "REJECT",
+      "reason": "Báo dangling parent.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "parentId"
+          ],
+          "value": "W-MISSING"
+        }
+      ]
+    },
+    {
+      "id": "E-14",
+      "title": "Tự làm cha",
+      "expected": "REJECT",
+      "reason": "Tự làm cha đồng thời tạo LEAF có con; không dựng cây giả.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "parentId"
+          ],
+          "value": "W-013"
+        }
+      ]
+    },
+    {
+      "id": "E-15",
+      "title": "Vòng cha-con hai nhóm",
+      "expected": "REJECT",
+      "reason": "Phát hiện vòng cây, không coi là dependency hợp lệ.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            0,
+            "parentId"
+          ],
+          "value": "W-002"
+        },
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            1,
+            "parentId"
+          ],
+          "value": "W-001"
+        }
+      ]
+    },
+    {
+      "id": "E-16",
+      "title": "GROUP ghi DONE nhập tay",
+      "expected": "REJECT",
+      "reason": "GROUP phải null, trạng thái là dẫn xuất.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            0,
+            "executionStatus"
+          ],
+          "value": "DONE"
+        }
+      ]
+    },
+    {
+      "id": "E-17",
+      "title": "LEAF có con",
+      "expected": "REJECT",
+      "reason": "W-012 là LEAF, không được chứa W-011.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            2,
+            "parentId"
+          ],
+          "value": "W-012"
+        }
+      ]
+    },
+    {
+      "id": "E-18",
+      "title": "DONE thiếu kết quả",
+      "expected": "REJECT",
+      "reason": "W-011 không đủ điều kiện ghi DONE.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            2,
+            "resultRefs"
+          ],
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "E-19",
+      "title": "APPROVED thiếu confirmationRef",
+      "expected": "REJECT",
+      "reason": "Confirmation null không hợp lệ cho APPROVED; không tự tạo xác nhận.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/reviews/RV-001.md",
+          "path": [
+            "status"
+          ],
+          "value": "APPROVED"
+        }
+      ]
+    },
+    {
+      "id": "E-20",
+      "title": "CurrentItem không tồn tại",
+      "expected": "REJECT",
+      "reason": "Không tự chọn một mục khác.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "currentItemId"
+          ],
+          "value": "W-MISSING"
+        }
+      ]
+    },
+    {
+      "id": "E-21",
+      "title": "CurrentRound không tồn tại",
+      "expected": "REJECT",
+      "reason": "Không suy round từ ID hiện hành.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "currentRoundId"
+          ],
+          "value": "D-MISSING"
+        }
+      ]
+    },
+    {
+      "id": "E-22",
+      "title": "Bỏ mất điểm quay lại việc dở",
+      "expected": "REJECT",
+      "reason": "W-012 IN_PROGRESS không hiện hành, không có blocker/điểm quay lại.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "returnStack"
+          ],
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "E-23",
+      "title": "Chép cây vào plan thay vì chuyển",
+      "expected": "REJECT",
+      "reason": "Hai chủ sở hữu cùng Item ID, không dùng bản đầu/cuối.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "addFile",
+          "file": ".kidea/plans/part-1.md",
+          "content": "# Plan giả\n\nDỮ LIỆU GIẢ, không triển khai.\n\n<!-- kidea:data:start -->\n```json\n{\n  \"schemaVersion\": 1,\n  \"kind\": \"plan\",\n  \"projectId\": \"fixture-r02-t02\",\n  \"items\": [\n    {\n      \"id\": \"W-001\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Ý tưởng và phạm vi\",\n      \"kind\": \"STEP\",\n      \"parentId\": null,\n      \"shape\": \"GROUP\",\n      \"decomposition\": \"PARTIAL\",\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"step-1\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-1\"\n      },\n      \"dependencyIds\": [],\n      \"gateIds\": [\n        \"RV-001\"\n      ],\n      \"resultRefs\": [],\n      \"executionStatus\": null\n    },\n    {\n      \"id\": \"W-002\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Nhóm việc còn cần phân rã\",\n      \"kind\": \"TASK\",\n      \"parentId\": \"W-001\",\n      \"shape\": \"GROUP\",\n      \"decomposition\": \"UNEXPANDED\",\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"later-group\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-later-group\"\n      },\n      \"dependencyIds\": [],\n      \"gateIds\": [],\n      \"resultRefs\": [],\n      \"executionStatus\": null\n    },\n    {\n      \"id\": \"W-011\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Lập ví dụ phạm vi\",\n      \"kind\": \"TASK\",\n      \"parentId\": \"W-001\",\n      \"shape\": \"LEAF\",\n      \"decomposition\": null,\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"task-011\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-011\"\n      },\n      \"dependencyIds\": [],\n      \"gateIds\": [],\n      \"resultRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"example-result\"\n        }\n      ],\n      \"executionStatus\": \"DONE\"\n    },\n    {\n      \"id\": \"W-012\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Soạn quy tắc hủy\",\n      \"kind\": \"TASK\",\n      \"parentId\": \"W-001\",\n      \"shape\": \"LEAF\",\n      \"decomposition\": null,\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"task-012\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-012\"\n      },\n      \"dependencyIds\": [\n        \"W-013\"\n      ],\n      \"gateIds\": [],\n      \"resultRefs\": [],\n      \"executionStatus\": \"IN_PROGRESS\"\n    },\n    {\n      \"id\": \"W-013\",\n      \"roundId\": \"D-001\",\n      \"name\": \"Làm rõ người được hủy\",\n      \"kind\": \"TASK\",\n      \"parentId\": \"W-001\",\n      \"shape\": \"LEAF\",\n      \"decomposition\": null,\n      \"scopeRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"task-013\"\n      },\n      \"inputRefs\": [\n        {\n          \"path\": \"tài liệu/đặc tả.md\",\n          \"anchor\": \"scope\"\n        }\n      ],\n      \"completionRef\": {\n        \"path\": \"tài liệu/đặc tả.md\",\n        \"anchor\": \"done-013\"\n      },\n      \"dependencyIds\": [],\n      \"gateIds\": [],\n      \"resultRefs\": [],\n      \"executionStatus\": \"IN_PROGRESS\"\n    }\n  ]\n}\n```\n<!-- kidea:data:end -->\n"
+        },
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "planRefs"
+          ],
+          "value": [
+            {
+              "path": ".kidea/plans/part-1.md",
+              "anchor": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E-24",
+      "title": "Khóa JSON trùng",
+      "expected": "REJECT",
+      "reason": "Cần phát hiện khóa trùng; JSON.parse đơn thuần nuốt một giá trị không là kiểm chứng đạt.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "replaceText",
+          "file": ".kidea/work.md",
+          "find": "\"currentItemId\": \"W-013\",",
+          "replace": "\"currentItemId\": \"W-012\",\n  \"currentItemId\": \"W-013\","
+        }
+      ]
+    },
+    {
+      "id": "E-25",
+      "title": "Thiếu marker nguồn",
+      "expected": "REJECT",
+      "reason": "Không tìm trong văn xuôi để đoán dữ liệu.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "replaceText",
+          "file": ".kidea/work.md",
+          "find": "<!-- kidea:data:end -->",
+          "replace": ""
+        }
+      ]
+    },
+    {
+      "id": "E-26",
+      "title": "Hai khối có thẩm quyền",
+      "expected": "REJECT",
+      "reason": "Không chọn khối cuối hoặc gộp hai nguồn.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "replaceText",
+          "file": ".kidea/work.md",
+          "find": "<!-- kidea:data:end -->",
+          "replace": "<!-- kidea:data:end -->\n<!-- kidea:data:start -->\n```json\n{}\n```\n<!-- kidea:data:end -->"
+        }
+      ]
+    },
+    {
+      "id": "E-27",
+      "title": "JSON sai cú pháp",
+      "expected": "REJECT",
+      "reason": "Dừng đúng khối sai; không sửa dấu phẩy ngầm.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "replaceText",
+          "file": ".kidea/work.md",
+          "find": "\"schemaVersion\": 1,",
+          "replace": "\"schemaVersion\": 1,,"
+        }
+      ]
+    },
+    {
+      "id": "E-28",
+      "title": "Sai kiểu currentItem",
+      "expected": "REJECT",
+      "reason": "Không có hai mục hiện hành hoặc chọn một phần tử mặc định.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "currentItemId"
+          ],
+          "value": [
+            "W-012",
+            "W-013"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E-29",
+      "title": "Mảng scopeRefs rỗng",
+      "expected": "REJECT",
+      "reason": "Không đủ phạm vi đợt phát triển.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "rounds",
+            0,
+            "scopeRefs"
+          ],
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "E-30",
+      "title": "Plan rỗng",
+      "expected": "REJECT",
+      "reason": "Không tạo plan rỗng để quản lý thư mục.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "addFile",
+          "file": ".kidea/plans/part-1.md",
+          "content": "# Plan giả\n\nDỮ LIỆU GIẢ, không triển khai.\n\n<!-- kidea:data:start -->\n```json\n{\n  \"schemaVersion\": 1,\n  \"kind\": \"plan\",\n  \"projectId\": \"fixture-r02-t02\",\n  \"items\": []\n}\n```\n<!-- kidea:data:end -->\n"
+        },
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "planRefs"
+          ],
+          "value": [
+            {
+              "path": ".kidea/plans/part-1.md",
+              "anchor": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E-31",
+      "title": "Dependency tự tham chiếu",
+      "expected": "REJECT",
+      "reason": "Không tự phụ thuộc.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            4,
+            "dependencyIds"
+          ],
+          "value": [
+            "W-013"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E-32",
+      "title": "Gate không có trong danh mục",
+      "expected": "REJECT",
+      "reason": "Thiếu gate nguồn, không tự coi không cần duyệt.",
+      "ka": [
+        "KA-09"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "items",
+            0,
+            "gateIds"
+          ],
+          "value": [
+            "RV-MISSING"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E-33",
+      "title": "ReleaseRef thiếu revision",
+      "expected": "REJECT",
+      "reason": "Không suy revision mới nhất.",
+      "ka": [
+        "KA-09",
+        "KA-28"
+      ],
+      "mutations": [
+        {
+          "op": "set",
+          "file": ".kidea/work.md",
+          "path": [
+            "rounds",
+            0,
+            "releaseRef"
+          ],
+          "value": {
+            "path": "tài liệu/đặc tả.md",
+            "id": "REL-001"
+          }
+        }
+      ]
+    }
+  ]
+}

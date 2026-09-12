@@ -386,6 +386,22 @@ Chỉnh format, bổ sung test theo đặc tả đã chốt hoặc code theo thi
 
 Hồ sơ bước con cần nêu phần việc, kết quả kiểm tra và trạng thái Human review riêng. Kiểm tra đạt chưa tự biến thành approval. `$kidea approve <mã-bước-hoặc-gói-review>` phải chỉ rõ mục đang duyệt; duyệt một bước con không tự duyệt bước lớn hoặc những thay đổi khác.
 
+<a id="approval-transitions-proposal"></a>
+
+#### Đề xuất R02-T03-S01-r1 — duyệt, yêu cầu sửa và không áp dụng, chưa duyệt
+
+Gói đọc ngắn tại [roadmap](KIDEA_ROADMAP.md#approval-transitions-review). T03 cụ thể hóa cách lưu kết quả Human review; không cấp quyền Git/deploy hoặc cho AI tự duyệt. S01 chốt hai quyết định dưới đây; hiệu lực khi đầu vào/nội dung đổi và nhận diện bản thuộc S02/T04.
+
+**D1 — Chuyển trạng thái theo phản hồi rõ cho đúng gói.** DRAFT là chưa sẵn sàng trình; khi đủ nội dung/phạm vi và kiểm tra bắt buộc của gói mới đưa IN_REVIEW. Chỉ xác nhận Human rõ ràng cho đúng gói/revision đang IN_REVIEW, đủ điều kiện và đúng phạm vi mới thành APPROVED. Nếu Human nói “duyệt” khi có nhiều mục/phạm vi mơ hồ, hỏi lại; không tự chọn hoặc chuyển nháp qua hai bước để được duyệt. Test PASS, lời tự nhận trong tài liệu và im lặng không chuyển trạng thái.
+
+Human yêu cầu sửa/từ chối thì lưu phản hồi, giữ gói chưa được duyệt và đưa về DRAFT để xử lý. Khi thay nội dung trình revision mới, giữ căn cứ bản đã trình/phản hồi cũ; không sửa âm thầm bản từng được chấp thuận. Nếu chỉ xin giải thích mà không yêu cầu sửa nội dung, gói vẫn IN_REVIEW; lời giải thích không thành approval. Căn cứ hiệu lực approval khi sửa nghĩa hoặc chỉ trình bày được chốt ở S02, không tự bắt mọi lỗi chính tả thành revision nghiệp vụ mới.
+
+**D2 — N/A là một quyết định miễn áp dụng có phạm vi, không phải hoàn thành việc.** Gói xin miễn áp dụng phải chỉ rõ mục nào, lý do tại sao không cần trong sản phẩm này, hệ quả/phần nghĩa vụ vẫn giữ; Human xác nhận đúng gói trước khi dùng. Gói review phân biệt mục đích duyệt nội dung với miễn áp dụng, dù cả hai đều dùng DRAFT/IN_REVIEW/APPROVED. Trong cây công việc giữ mục và tham chiếu quyết định N/A; hiển thị “không áp dụng — đã được Human chấp nhận”, không biến thành DONE hoặc xóa để làm đẹp tiến độ.
+
+Thiếu máy, thiếu quyền, chưa có công cụ hoặc đang test lỗi không tự là lý do N/A; giữ blocker và xin phương án. N/A cho một mục không miễn các mục khác, gate cha hoặc năng lực hướng dẫn tương ứng của Kidea. Ví dụ sản phẩm không có ứng dụng iOS có thể xin miễn phần triển khai iOS của sản phẩm đó; thiếu Mac khi iOS vẫn thuộc phạm vi thì không tự miễn. Chỉ tổng hợp phần được miễn khi có quyết định còn hiệu lực đúng bản/phạm vi; điều kiện khép phase vẫn riêng.
+
+Sau S01 được duyệt mới cụ thể hóa trường mục đích/feedback/lý do và cập nhật các fixture review bị ảnh hưởng ở T03; không giữ mẫu cấu trúc S06 cũ làm bằng chứng đủ ngữ nghĩa mới. Chưa thêm trạng thái REJECTED vào luồng ba trạng thái, chưa ghi approval thật bằng helper hoặc chạy gói giả như chỉ thị. T03-S02 tiếp tục hiệu lực/phiên bản; S03/S04 đối chiếu mẫu, T08 mới hiện thực hành động approve.
+
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>
 
@@ -542,10 +558,11 @@ Một tham chiếu nội bộ có đường dẫn tương đối từ root proje
 S05 chỉ chốt hợp đồng tham chiếu/ý nghĩa dữ liệu thiếu. S06 hoàn thiện trường/kiểu và quy tắc cấu trúc tối thiểu; T03/T04 chốt nội dung approval/checkpoint/nhận diện bản còn mở, T05 mới xây bộ đọc. Không tạo release/pilot, sửa hồ sơ sản phẩm hoặc chạy/đo deployment trong lượt này. Đối chiếu mẫu sau đúng gate với KA-09/13/25/28 và KQ-05/06/10; không nhận mock/link hợp lệ là bằng chứng vận hành thật.
 
 <a id="schema-fields-proposal"></a>
+<a id="schema-fields-contract"></a>
 
-#### Đề xuất R02-T02-S06-r1 — thông tin tối thiểu và cách báo thiếu, chưa duyệt
+#### R02-T02-S06-r1 — thông tin tối thiểu và cách báo thiếu, đã duyệt
 
-Gói đọc ngắn tại [roadmap](KIDEA_ROADMAP.md#schema-fields-review). Đây là hợp đồng cấu trúc để tạo mẫu S03, không là triển khai parser, chứng nhận approval hoặc quyền ghi. D1 chốt các nhóm thông tin/quan hệ dưới đây; D2 chốt không tự sửa/điền mặc định khi thiếu hoặc sai. Các tên trường chỉ biểu diễn hai quyết định, không thay nghĩa chính sách đã duyệt.
+Human “Duyệt nhé” sau [answer 207cb5d](https://github.com/Kynderis/kidea/blob/207cb5dce8620521f75efee1a393353c9cf6ea24/answer.md), xác nhận D1–D2 của S06-r1; [kết quả](KIDEA_ROADMAP.md#r02-t02-result). Đây là hợp đồng cấu trúc để tạo mẫu S03, không là triển khai parser, chứng nhận approval hoặc quyền ghi. D1 chốt các nhóm thông tin/quan hệ dưới đây; D2 chốt không tự sửa/điền mặc định khi thiếu hoặc sai. Các tên trường chỉ biểu diễn hai quyết định, không thay nghĩa chính sách đã duyệt.
 
 **D1 — Phiếu công việc đủ để tiếp tục và đối chiếu điều kiện xong.** Mỗi việc giữ tên/mã/cha, phần cần làm, đầu vào cần đọc, điều kiện đầu ra–kiểm tra, dependency, trạng thái/mức phân rã và link gate/kết quả. Việc hiện hành, blocker và đường quay lại nằm trong work. INDEX là điểm vào; review giữ gói/căn cứ duyệt. Trường tham chiếu thay cho sao chép nội dung sản phẩm. Giữ record công việc đã hoàn thành và các đợt đã biết; không dùng thu gọn để làm đứt truy xuất.
 
@@ -553,7 +570,7 @@ Gói đọc ngắn tại [roadmap](KIDEA_ROADMAP.md#schema-fields-review). Đây
 
 Dấu `[]` là mảng; mọi trường được liệt kê đều phải có trong loại record tương ứng. Chỉ chỗ ghi rõ nullable được dùng `null`; trường khác không được bỏ để helper tự đoán. Các mảng được rỗng trừ nơi có điều kiện khác.
 
-| Record | Trường và kiểu đề xuất | Ý nghĩa/điều kiện |
+| Record | Trường và kiểu đã duyệt | Ý nghĩa/điều kiện |
 |---|---|---|
 | Phần đầu mọi hồ sơ điều phối | `schemaVersion: 1`, `kind: index/work/plan/review`, `projectId: ID` | Phiên bản cấu trúc thử, không version sản phẩm hoặc bản Kidea phát hành. projectId của file phải khớp INDEX; không tạo project khác cho clone/worktree. |
 | INDEX | `projectName: Text`, `workRef: Ref`, `sources: Source[]` | Nguồn tên project và danh mục tài liệu; không thêm currentTask/status/version nhập tay ở đây. |
@@ -575,6 +592,8 @@ Những chỗ chưa có giá trị nhưng được phép thiếu phải được
 **D2 — Sai/thiếu thì chỉ đúng chỗ, không đoán hoặc chữa ngầm.** Báo file + trường/ID/đích lỗi; giữ nguyên nguồn và dừng phần phụ thuộc. Bao gồm thiếu trường bắt buộc, sai kiểu/enum, khóa JSON trùng, trường lạ, version không hỗ trợ, link/ID không tồn tại, hai record cùng Item, cha sai/vòng, LEAF có con, GROUP ghi DONE, nhiều việc đang thực hiện. Không tự đổi chữ thường thành enum, chọn record cuối, điền trạng thái TODO hay xóa trường lạ để bỏ lỗi; cập nhật schema phải có review/tương thích phù hợp.
 
 Một việc hiện hành được chọn bởi một currentItemId thuộc currentRoundId, không thêm cờ active ở từng Item. IN_PROGRESS diễn tả đã bắt đầu nhưng chưa xong, không tự là việc đang được thực hiện ngay lúc này: khi tạm chuyển sang dependency, giữ trạng thái/tiến độ mục cũ và ghi điểm quay lại hoặc blocker có căn cứ; không ép về TODO hay tạo nhiều việc hiện hành. Các Item IN_PROGRESS khác con trỏ hiện hành phải có điểm quay lại hoặc blocker giải thích, không được âm thầm bỏ dở. Khi đang phân rã nhóm hoặc chờ review, currentItemId có thể trỏ GROUP; trạng thái cha dẫn xuất không được tính thành nhiều việc thực hiện. Không tự đóng nhóm trống; GROUP COMPLETE nhưng không có con là dữ liệu không đủ để nhận hoàn tất, cần phân rã đúng hoặc xử lý N/A theo gate T03.
+
+**Mẫu cấu trúc hiện có:** [bộ mẫu R02-T02](tests/fixtures/r02-t02/README.md), [bằng chứng/giới hạn](tests/evidence/r02-t02.md). Không là validator hoặc mẫu init toàn bộ quy trình.
 
 **Ranh giới kiểm chứng:** S03 tạo mẫu cấu trúc với expected rõ (đúng/sai/thiếu điều kiện), S04 đối chiếu KA-03/09/25 và caller; chưa chạy validator sản phẩm hoặc tính KA PASS. Các record review có nhãn APPROVED trong dữ liệu giả không là xác nhận thật. T03/T04 bổ sung hợp đồng semantic về approval/N/A/fingerprint/checkpoint/quyền và nguồn vận hành; không dùng schema cấu trúc r1 này để tự cho qua các phần chưa xây. T05 kiểm tra parser/dependency và các lỗi cú pháp/khóa trùng trước triển khai. R06 mới xử lý đầy đủ impact/cycle; dependency cycle chưa chứng minh cách thực thi an toàn và không được dùng để nhận sẵn sàng. Không bỏ nhiệm vụ hoặc ngầm chọn các cơ chế này trong lượt tạo mẫu.
 
