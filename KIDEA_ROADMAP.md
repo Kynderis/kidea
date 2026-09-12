@@ -8,22 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã khép R02-T02 — hợp đồng hồ sơ và bộ mẫu.** Có 41 biến thể với expected riêng, kiểm tra recipe và đối chiếu nội dung; chưa chạy validator Kidea. Chỉ R02-T03-S01 đang chờ duyệt cách ghi kết quả Human review.
+**Đã duyệt và khép R02-T03-S01 — duyệt/yêu cầu sửa và N/A đúng phạm vi.** Chỉ S02 đang chờ duyệt cách đối chiếu bản cũ với nội dung hiện hành. Bộ mẫu T02 giữ nguyên; chưa triển khai approve hoặc validator.
 
 <a id="review-current"></a>
-<a id="approval-transitions-review"></a>
+<a id="approval-validity-review"></a>
 
-### R02-T03-S01-r1 — Khi bạn duyệt, yêu cầu sửa hoặc cho phép bỏ một mục [H]
+### R02-T03-S02-r1 — Nội dung đã duyệt thay đổi thì xử lý thế nào? [H]
 
-Task T03 chốt cách Kidea ghi nhận quyết định của bạn để không làm vượt phần đã được đồng ý. Bộ hồ sơ T02 đã có mẫu; lần này chưa viết chức năng approve.
+Task T03 bảo đảm Kidea không dùng một câu “đã duyệt” cho nội dung khác về sau. Gói trước đã chốt phản hồi của bạn; gói này chốt căn cứ để biết xác nhận cũ còn dùng được hay không.
 
-**D1 — Chỉ duyệt đúng gói đang trình; yêu cầu sửa thì vẫn chưa được duyệt.** Gói đi từ nháp → đang chờ bạn xem → đã duyệt. Chỉ khi gói đủ điều kiện và bạn xác nhận rõ đúng bản/phạm vi mới sang đã duyệt. Nếu bạn yêu cầu sửa, ghi lại lý do, đưa về nháp và trình bản sửa; không mất phản hồi hoặc dùng xác nhận cũ cho nội dung khác. Nếu bạn chỉ hỏi “giải thích thêm”, vẫn giữ chờ duyệt. Ví dụ duyệt quy tắc hủy không có nghĩa duyệt luôn giao diện hoặc cho phép đưa website lên. Cách này giữ ranh giới rõ, nhưng câu duyệt mơ hồ khi có nhiều mục sẽ cần hỏi lại.
+**D1 — Giữ căn cứ đúng bản bạn đã xem.** Khi ghi nhận duyệt, lưu đúng gói/bản/phạm vi, xác nhận của bạn và tham chiếu nội dung cùng tài liệu làm căn cứ lúc đó. Trước tiếp tục việc phụ thuộc, đối chiếu với bản hiện tại; cùng tên file hoặc cùng nhãn “đã duyệt” chưa đủ. Không cần sao chép cả project cho mọi gói. Nếu mất bản cũ hoặc không xác định được đầu vào, báo chưa đủ căn cứ và dừng phần phụ thuộc để đối chiếu/hỏi lại. Lợi ích là biết bạn thực sự đã đồng ý điều gì; đánh đổi là phải giữ được căn cứ thay vì chỉ một nhãn trạng thái.
 
-**D2 — “Không áp dụng” phải là một quyết định riêng có lý do.** Ví dụ sản phẩm đã chốt chỉ có web thì có thể xin không làm phần ứng dụng iOS. Sau khi bạn đồng ý, vẫn giữ mục đó và lý do, hiển thị “không áp dụng”, không ghi thành đã làm xong. Ngược lại, iOS vẫn thuộc phạm vi nhưng thiếu máy Mac thì ghi đang vướng, không tự bỏ. Miễn một mục không miễn cả bước hoặc các nghĩa vụ khác. Lợi ích là bạn thấy rõ phần được bỏ và vì sao; đổi lại cần ghi căn cứ thay vì xóa dòng khỏi danh sách.
+**D2 — Đổi ý nghĩa thì duyệt lại phần ảnh hưởng; sửa trình bày không nhất thiết.** Ví dụ bạn đã duyệt “chỉ người đăng ký được hủy”. Đổi thành “quản trị viên cũng được hủy” là đổi quyền, phải trình lại và rà phần giao diện/test liên quan. Sửa lỗi gõ ở tiêu đề có thể giữ xác nhận nếu AI đã đối chiếu và ghi rõ không đổi nghĩa. Không tự gọi mọi sửa nhỏ là “chính tả”; chưa chắc thì hỏi bạn. Giữ xác nhận cũ làm lịch sử, không xóa hoặc áp sang bản mới. Phần không ảnh hưởng có căn cứ không cần duyệt lại toàn bộ.
 
-Bạn duyệt hai cách xử lý này nhé? Sau đó chốt cách xét lại approval khi nội dung đổi; chưa chạy approve hoặc pilot.
+Bạn duyệt hai cách đối chiếu này nhé? Sau đó mới hoàn thiện mẫu review đúng/sai; cách nhận diện/lưu phiên bản cụ thể còn ở T04. Chưa viết approve, cấp quyền hoặc chạy pilot.
 
-Nguồn mở thêm: [đề xuất thiết kế](KIDEA_DESIGN.md#approval-transitions-proposal); [kết quả T02](#r02-t02-result).
+Nguồn mở thêm: [đề xuất](KIDEA_DESIGN.md#approval-validity-proposal); [kết quả S01](#r02-t03-s01-result).
 
 <a id="working-rules"></a>
 
@@ -116,9 +116,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T02-S06 | DONE | R02-T02-S06-r1 — APPROVED | Human “Duyệt nhé” sau answer 207cb5d; bộ trường/kiểu và xử lý thiếu/sai đã đồng bộ; [kết quả](#r02-t02-result) |
 | R02-T02-S03 | DONE | [A] — mẫu theo hợp đồng đã duyệt | 4 file baseline và 41 recipe/expected, tạo biến thể trong bộ nhớ; không chạy validator; [bằng chứng](tests/evidence/r02-t02.md) |
 | R02-T02-S04 | DONE | [A] — đối chiếu cấu trúc/nghĩa và caller | Rà mẫu/case, 21 Ref baseline, recipe chỉ đọc và 16 test khung đạt; không tính KA PASS; [kết quả](#r02-t02-result) |
-| R02-T03-S01 | IN_PROGRESS | R02-T03-S01-r1 — IN_REVIEW | Trình D1–D2 duyệt/yêu cầu sửa và N/A đúng phạm vi; chưa thực thi; [gói hiện hành](#review-current) |
+| R02-T03-S01 | DONE | R02-T03-S01-r1 — APPROVED | Human “Duyệt” sau answer 67b13b7; D1–D2 phản hồi đúng gói và N/A có căn cứ, đã đồng bộ; [kết quả](#r02-t03-s01-result) |
+| R02-T03-S02 | IN_PROGRESS | R02-T03-S02-r1 — IN_REVIEW | Trình căn cứ đúng bản và giữ/mở lại approval khi nguồn đổi; chưa hiện thực; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE; chỉ R02-T03-S01 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03-S01 DONE; chỉ R02-T03-S02 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
@@ -415,6 +416,16 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - S04: rà nội dung theo S01/S02/S05/S06 và KA-03/09/11/25 cùng caller review/release; giảm bản phác ôm mười bước thành lát cắt có scope/gate rõ. Kiểm tra 21 Ref baseline đủ file/anchor, 41 recipe dựng được và SHA-256/tập 7 file không đổi trước/sau; 16 test khung cũ đạt. Đây là kiểm tra fixture và hồi quy khung, chưa có 41 actual từ validator. [Bằng chứng](tests/evidence/r02-t02.md) giữ số, hash và giới hạn; không tính KA/KQ PASS hoặc hỗ trợ init toàn quy trình.
 - Đã đối chiếu nguồn hồ sơ, current/returnStack, state/gate, view, G6 và nghĩa vụ chất lượng; không đổi AC/QUALITY/G2, không sửa skill/helper, không chạy AI mới/pilot hoặc thêm dependency. Mẫu/script/evidence là nguồn dùng lại, không scratch; không tạo thư mục biến thể trên đĩa hoặc xóa hai thư mục rỗng T01.
 - Đủ sáu subtask T02 DONE; R02 chưa khép. Chỉ mở T03-S01 để trình hợp đồng Human review; T03/T04 phải chốt nghĩa/hiệu lực trước T05/T08. Việc có schema/mẫu không cấp quyền tự duyệt nội dung hoặc triển khai.
+
+<a id="approval-transitions-review"></a>
+<a id="r02-t03-s01-result"></a>
+
+### Kết quả R02-T03-S01 — ngày 2026-09-12
+
+- Human “Duyệt” sau [answer 67b13b7](https://github.com/Kynderis/kidea/blob/67b13b7fbe8aecd44ad77d1be7358075d7fa1550/answer.md), xác nhận D1–D2 của S01-r1: đúng gói/revision đủ điều kiện, yêu cầu sửa về nháp và giữ phản hồi; giải thích không thành approval; N/A riêng có lý do/Human xác nhận, không DONE hoặc tự bỏ việc vì thiếu tài nguyên.
+- Đồng bộ [nguồn thiết kế](KIDEA_DESIGN.md#approval-transitions-contract), giữ luồng ba trạng thái, gate cha và quyền riêng. Đối chiếu state/gate, nguồn review, cây GROUP/LEAF, N/A và KA-05–08/25 cùng KQ-01/05/06: một gói không duyệt cả phase, test PASS không cấp quyền, N/A không xóa nghĩa vụ khác. Không đổi AC/QUALITY/G2 hoặc thực thi approval.
+- Kiểm tra link/trạng thái/diff và cleanup; không tạo scratch, sửa helper/skill hoặc chạy AI/pilot. Bộ mẫu T02 giữ nguyên đúng hợp đồng cấu trúc cũ; chưa được tính thành mẫu semantic T03. Trường mục đích/phản hồi/lý do và fixture tương ứng được hoàn thiện ở S03 sau S02; nhận diện bản/checkpoint thuộc T04 trước runtime phụ thuộc.
+- Khép S01, chỉ mở S02 để trình căn cứ/hiệu lực khi nguồn đổi; T03 chưa khép, S03/S04 chưa bắt đầu. Hai thư mục rỗng T01 vẫn giữ theo ngoại lệ, không thử xóa lại.
 
 ## 4. Tổng quan 10 phase xây Kidea
 

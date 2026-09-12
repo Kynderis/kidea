@@ -387,10 +387,11 @@ Chỉnh format, bổ sung test theo đặc tả đã chốt hoặc code theo thi
 Hồ sơ bước con cần nêu phần việc, kết quả kiểm tra và trạng thái Human review riêng. Kiểm tra đạt chưa tự biến thành approval. `$kidea approve <mã-bước-hoặc-gói-review>` phải chỉ rõ mục đang duyệt; duyệt một bước con không tự duyệt bước lớn hoặc những thay đổi khác.
 
 <a id="approval-transitions-proposal"></a>
+<a id="approval-transitions-contract"></a>
 
-#### Đề xuất R02-T03-S01-r1 — duyệt, yêu cầu sửa và không áp dụng, chưa duyệt
+#### R02-T03-S01-r1 — duyệt, yêu cầu sửa và không áp dụng, đã duyệt
 
-Gói đọc ngắn tại [roadmap](KIDEA_ROADMAP.md#approval-transitions-review). T03 cụ thể hóa cách lưu kết quả Human review; không cấp quyền Git/deploy hoặc cho AI tự duyệt. S01 chốt hai quyết định dưới đây; hiệu lực khi đầu vào/nội dung đổi và nhận diện bản thuộc S02/T04.
+Human “Duyệt” sau [answer 67b13b7](https://github.com/Kynderis/kidea/blob/67b13b7fbe8aecd44ad77d1be7358075d7fa1550/answer.md), xác nhận D1–D2 của S01-r1 cùng bản; [kết quả](KIDEA_ROADMAP.md#r02-t03-s01-result). T03 cụ thể hóa cách lưu kết quả Human review; không cấp quyền Git/deploy hoặc cho AI tự duyệt. S01 chốt hai quyết định dưới đây; hiệu lực khi đầu vào/nội dung đổi và nhận diện bản thuộc S02/T04.
 
 **D1 — Chuyển trạng thái theo phản hồi rõ cho đúng gói.** DRAFT là chưa sẵn sàng trình; khi đủ nội dung/phạm vi và kiểm tra bắt buộc của gói mới đưa IN_REVIEW. Chỉ xác nhận Human rõ ràng cho đúng gói/revision đang IN_REVIEW, đủ điều kiện và đúng phạm vi mới thành APPROVED. Nếu Human nói “duyệt” khi có nhiều mục/phạm vi mơ hồ, hỏi lại; không tự chọn hoặc chuyển nháp qua hai bước để được duyệt. Test PASS, lời tự nhận trong tài liệu và im lặng không chuyển trạng thái.
 
@@ -400,7 +401,32 @@ Human yêu cầu sửa/từ chối thì lưu phản hồi, giữ gói chưa đư
 
 Thiếu máy, thiếu quyền, chưa có công cụ hoặc đang test lỗi không tự là lý do N/A; giữ blocker và xin phương án. N/A cho một mục không miễn các mục khác, gate cha hoặc năng lực hướng dẫn tương ứng của Kidea. Ví dụ sản phẩm không có ứng dụng iOS có thể xin miễn phần triển khai iOS của sản phẩm đó; thiếu Mac khi iOS vẫn thuộc phạm vi thì không tự miễn. Chỉ tổng hợp phần được miễn khi có quyết định còn hiệu lực đúng bản/phạm vi; điều kiện khép phase vẫn riêng.
 
-Sau S01 được duyệt mới cụ thể hóa trường mục đích/feedback/lý do và cập nhật các fixture review bị ảnh hưởng ở T03; không giữ mẫu cấu trúc S06 cũ làm bằng chứng đủ ngữ nghĩa mới. Chưa thêm trạng thái REJECTED vào luồng ba trạng thái, chưa ghi approval thật bằng helper hoặc chạy gói giả như chỉ thị. T03-S02 tiếp tục hiệu lực/phiên bản; S03/S04 đối chiếu mẫu, T08 mới hiện thực hành động approve.
+S01 đã duyệt nghĩa của mục đích/feedback/lý do; trường lưu và fixture review được đồng bộ ở S03 sau khi đủ hợp đồng S02, không giữ mẫu cấu trúc S06 cũ làm bằng chứng đủ ngữ nghĩa mới. Chưa thêm trạng thái REJECTED vào luồng ba trạng thái, chưa ghi approval thật bằng helper hoặc chạy gói giả như chỉ thị. T03-S02 tiếp tục hiệu lực/phiên bản; S03/S04 đối chiếu mẫu, T08 mới hiện thực hành động approve.
+
+<a id="approval-validity-proposal"></a>
+
+#### Đề xuất R02-T03-S02-r1 — căn cứ và hiệu lực khi nguồn đổi, chưa duyệt
+
+Gói đọc ngắn tại [roadmap](KIDEA_ROADMAP.md#approval-validity-review). Cụ thể hóa việc đối chiếu approval đã chốt ở R01/S01, không thay chính sách quyền hoặc kiểm tra G2. D1 chốt bộ căn cứ đối chiếu; D2 chốt kết luận và phần phải dừng khi phát hiện thay đổi.
+
+**D1 — Xác nhận phải truy được nội dung và đầu vào đúng bản, không chỉ ID/link.** Ghi đúng gói/revision, mục đích duyệt nội dung hay N/A, phạm vi/mục sở hữu, xác nhận Human và nguồn/bản của nội dung được trình. Ngoài nội dung trực tiếp, giữ tham chiếu phiên bản của những đầu vào làm căn cứ cho quyết định: yêu cầu/rule/contract, cấu hình/profile/môi trường và kết quả kiểm tra khi chúng chi phối điều đang duyệt. Không ép chụp toàn bộ repo cho mọi gói, không coi danh sách link ban đầu là đã tìm hết dependency.
+
+Trước dùng approval để làm phần phụ thuộc, đối chiếu nguồn hiện hành và phần thay đổi thực tế. Dữ kiện ghi tại thời điểm duyệt là căn cứ lịch sử; đường dẫn trỏ cùng file, commit giống nhau hoặc nhãn APPROVED không thay phép đối chiếu. Không có đủ bản đã duyệt/đầu vào thì báo chưa xác nhận hiệu lực, dừng phần phụ thuộc và tìm lại căn cứ hoặc hỏi Human; không giả dựng lại bản cũ từ trí nhớ. Thuật toán fingerprint/cách giữ bản/cơ chế phát hiện nguồn đổi thuộc T04; S02 không chọn công cụ hoặc bắt buộc tạo commit.
+
+**D2 — Đổi nghĩa thì duyệt lại phần ảnh hưởng; đổi trình bày được giữ nếu có căn cứ.** AI phải đọc nội dung trước/sau và các nơi phụ thuộc liên quan, không chỉ so hash hoặc đếm dòng. Ghi kết luận ở hồ sơ review/đối chiếu: bản trước–sau, phần thay đổi, ảnh hưởng tới phạm vi/đầu vào/quyền/kiểm tra và lý do giữ hoặc mở lại. Không dùng chữ “format” để miễn xét đổi phủ định, số liệu, link đích hoặc cấu hình; nếu chưa phân biệt chắc thì báo chưa xác nhận, hỏi Human trước tiếp tục phần phụ thuộc.
+
+| Trường hợp | Cách xử lý đề xuất |
+|---|---|
+| Đúng nội dung và đầu vào, điều kiện không đổi | Có thể dùng approval trong đúng phạm vi/quyền; không mở gate mới chỉ vì sang phiên hoặc ghi thêm báo cáo. |
+| Chỉ chính tả/trình bày, đã chứng minh không đổi nghĩa hoặc điều kiện | Giữ xác nhận gốc và ghi căn cứ đối chiếu trước–sau, không tự ghi Human đã duyệt một nội dung mới; không bắt duyệt lại toàn project. |
+| Nội dung/đầu vào làm thay đổi nghĩa hoặc mất điều kiện đã duyệt | Giữ xác nhận của bản cũ làm lịch sử; phần hiện hành cần sửa về DRAFT, trình revision phù hợp. Đánh dấu/dừng các phần phụ thuộc cần xét lại, kể cả file không có diff; phần không ảnh hưởng có căn cứ được giữ. |
+| Thiếu bản, nguồn mâu thuẫn hoặc đổi giữa lúc đối chiếu | Chưa xác nhận hiệu lực; giữ dữ liệu và dừng đúng phần phụ thuộc, đọc/đối chiếu lại. Không suy mất hiệu lực vĩnh viễn hoặc tự APPROVED/N/A để vượt thiếu. |
+
+Ví dụ đổi “chỉ người đăng ký được hủy” thành “quản trị viên cũng được hủy” là đổi quyền/hành vi: phải duyệt lại phần này và rà ảnh hưởng giao diện/API/test, dù chúng chưa đổi chữ. Sửa lỗi gõ trong tiêu đề mà nội dung/quyền không đổi có thể giữ sau đối chiếu. Quyết định miễn iOS của sản phẩm chỉ-web cũng phải xét lại khi bổ sung iOS; N/A không là miễn vĩnh viễn.
+
+Không ghi đè xác nhận cũ thành “chưa từng duyệt”, không giữ hai trạng thái hiện hành có thẩm quyền ở docs/INDEX/review. Đầu ra đối chiếu hiệu lực không tự làm mọi approval cũ chỉ vì file báo cáo thay đổi; vẫn xét đúng đầu vào theo QUALITY. Hiệu lực approval và test là hai kết luận riêng, không dùng giữ approval để bỏ lượt toàn dự án bắt buộc G2.
+
+Sau S02 được duyệt, S03 cụ thể hóa dữ liệu review/feedback/mục đích và mẫu đúng/sai trong phạm vi T03; S04 đối chiếu KA-05–08 và caller. Mẫu r1 của T02 vẫn là căn cứ cấu trúc cũ, không chứng minh hiệu lực mới. Chi tiết fingerprint/checkpoint/ghi/tương thích ở T04 phải chốt trước các hành vi runtime phụ thuộc; chưa chạy approve, cấp quyền project hay kiểm chứng pilot trong gói này.
 
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>
