@@ -8,20 +8,20 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã ghi nhận approval S02 và tạo/thử khung trong quyền. **R02-T01-S03** còn thiếu điều kiện chạy bộ kiểm tra cấu trúc skill, nên chưa DONE; chưa mở schema T02.
+Đã bổ sung công cụ kiểm tra đúng gói bạn duyệt; kiểm tra cấu trúc skill và 16 bài thử helper đạt. **R02-T01-S03 chưa DONE vì cleanup còn bị chặn**; chưa mở schema T02.
 
 <a id="review-current"></a>
 <a id="validation-tool-proposal"></a>
 
-### R02-T01-S03-r1 — Bổ sung công cụ kiểm tra, không đổi runtime Kidea
+### R02-T01-S03 — Kiểm tra đã đạt, còn dọn log tạm
 
-Khung đã được tạo đúng vị trí; Node riêng đã kiểm tra dấu nhận diện file và chạy đúng bản. 16 bài thử helper đạt. Một phiên Codex mới tìm được skill, gọi `status` và báo đúng “chưa triển khai”, không tự tạo hồ sơ hoặc nhận dự án đã xong. Tuy vậy, đây chưa là Kidea hoạt động đầy đủ.
+Human “Duyệt” sau [answer f5f23ee](https://github.com/Kynderis/kidea/blob/f5f23eea9cd3bb4bdd5f3974574cc34bbd11a1b8/answer.md), xác nhận **S03-r1 D1**: PyYAML 6.0.3 chỉ dùng cho bộ kiểm tra, local tại `.tools/skill-validation/`, không cài toàn máy hoặc đổi runtime Kidea.
 
-**Chỉ cần duyệt một điểm — D1:** cho tải **PyYAML 6.0.3** từ PyPI vào vùng local riêng `.tools/skill-validation/`, kiểm tra SHA-256 của gói trước dùng, rồi dùng Python 3.12 hiện có chạy bộ kiểm tra `quick_validate.py`. PyYAML giúp công cụ này đọc phần tên/mô tả ở đầu file skill; cả Python hiện có và Python đi kèm Codex đều đang thiếu nó. Không có thư viện này thì công cụ dừng trước khi kiểm tra, nên mình chưa thể báo phần đó đạt.
+Đã tải đúng wheel Windows x64/Python 3.12, SHA-256 khớp PyPI và giá trị đã trình trước khi dùng. `quick_validate.py` trả `Skill is valid!`, exit 0; 16/16 bài thử helper đạt, không skip. Không sửa skill/helper nên bằng chứng nạp/gọi từ phiên mới vẫn gắn đúng hash; không chạy thêm phiên AI hoặc tính kết quả này thành nghiệm thu lõi.
 
-Đây là **phụ trợ lúc kiểm tra**, không đưa Python/PyYAML vào chương trình Kidea, không thêm dependency npm, không cài toàn máy hoặc sửa PATH. Đánh đổi là thêm một gói cần lưu nguồn/phiên bản/hash; lợi ích là chạy đúng công cụ kiểm tra sẵn có, không viết bản thay thế. Chỉ lưu bằng chứng lên GitHub; gói tải và file sinh giữ local/loại khỏi Git, dọn đúng file tạm sau kiểm tra.
+**Không còn quyết định dependency cần duyệt.** Vướng mắc hiện tại là môi trường đã chặn lệnh dọn năm file log, không phải thiếu đồng ý của Human. Mình không đổi công cụ để vượt chặn. Theo quy tắc cleanup đã chốt, chưa đóng S03/S04 hoặc mở T02.
 
-**D1 đang IN_REVIEW; chưa tải/cài PyYAML.** Duyệt sẽ cho hoàn tất kiểm tra S03/S04; không duyệt schema, chức năng lõi, pilot hoặc project khác. [Bằng chứng/giới hạn](tests/evidence/r02-t01.md) và [nguồn gói](https://pypi.org/project/PyYAML/6.0.3/) là phần mở thêm.
+Bạn có thể xóa thủ công đúng thư mục `D:\Code\kynderis\kidea\.test-output\r02-t01-s04` sau khi đối chiếu nó chỉ chứa `before.json`, `after.json`, `stdout.jsonl`, `stderr.txt`, `summary.json`, rồi báo mình. Bằng chứng cần giữ đã ở [hồ sơ kiểm tra](tests/evidence/r02-t01.md); không xóa `.tools`, `tests` hoặc nguồn skill. Khi nhận xác nhận mình sẽ kiểm tra lại trên đĩa và tiếp tục; không cần duyệt lại lựa chọn đã chốt.
 
 <a id="working-rules"></a>
 
@@ -106,7 +106,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T10-S03 | DONE | R01-T10-S03-r1 — APPROVED | Human “Duyệt nhé” sau answer b666308; chấp nhận căn cứ và cho mở R02 từng phần; [kết quả](#r01-result) |
 | R02-T01-S01 | DONE | R02-T01-S01-r1 — APPROVED | Human “duyệt” sau answer 485eb46; JavaScript/Node 24 LTS và khung tối giản, chưa cài; [kết quả](#r02-t01-s01-result) |
 | R02-T01-S02 | DONE | R02-T01-S02-r1 — APPROVED | Human “duyệt” sau answer fb3bf51; D1–D3 đúng phạm vi; [kết quả](#r02-t01-scaffold-result) |
-| R02-T01-S03 | IN_PROGRESS | R02-T01-S03-r1 — IN_REVIEW | Khung/helper và 16 test đạt; validator thiếu PyYAML, chờ quyền phụ trợ; [gói hiện hành](#review-current) |
+| R02-T01-S03 | IN_PROGRESS | R02-T01-S03-r1 — APPROVED | Human “Duyệt” sau answer f5f23ee; PyYAML local và validator đạt, 16 test đạt; còn blocker cleanup; [hiện hành](#review-current) |
 
 R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01-S01/S02 DONE; chỉ S03 đang IN_PROGRESS. S04 đã có phép thử nạp/gọi sơ bộ nhưng chưa đóng trước S03; các subtask R02 khác mặc định TODO. R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
@@ -363,7 +363,7 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Human “duyệt” sau [answer fb3bf51](https://github.com/Kynderis/kidea/blob/fb3bf516523c93ee5c3a46e7eaf95b9b807d1bc2/answer.md), xác nhận D1–D3 của S02-r1: nguồn skill repo-local, Node 24.21.0 riêng, tạo/thử khung và lưu nguồn/bằng chứng trong các vùng đã chỉ định. Không mở quyền global/pilot/project khác hoặc lõi chưa chốt.
 - Đã tạo [skill](.agents/skills/kidea/SKILL.md), helper không có thao tác file/network, test và fixture dùng lại. Node tải từ nguồn chính thức, SHA-256 khớp trước chạy; Node global vẫn 22.18.0. Helper chỉ có `--help`, sáu hành động sản phẩm đều chưa triển khai và trả mã lỗi; không tạo schema/template giả.
 - 16/16 unit test đạt, không skip. Phép thử sơ bộ bằng Codex CLI 0.153.4 trong phiên mới ephemeral/read-only tìm được skill và gọi helper status đúng; 27 file đối chiếu trước/sau không đổi. Đây không phải test UI desktop hoặc chứng nhận ổn định nhiều lần, không tính KA PASS.
-- `quick_validate.py` không chạy được vì `ModuleNotFoundError: No module named 'yaml'` trên cả Python hệ thống và Python bundled. Chưa cài dependency. S03 chuyển sang chờ [một quyết định về công cụ kiểm tra](#review-current); S04 chỉ được đóng sau S03 đủ điều kiện, giữ phép thử đã có nếu nguồn liên quan không đổi.
+- Lỗi đầu `quick_validate.py`: thiếu yaml trên cả Python hệ thống/bundled, đã giữ bằng chứng. Sau Human duyệt S03-r1 tại [answer f5f23ee](https://github.com/Kynderis/kidea/blob/f5f23eea9cd3bb4bdd5f3974574cc34bbd11a1b8/answer.md), đã bổ sung PyYAML 6.0.3 trong `.tools/skill-validation/lib`, xác minh wheel trước dùng; validator trả `Skill is valid!`, exit 0. Python global vẫn không tìm thấy yaml. Hash skill/helper không đổi; S04 giữ phép thử đã có nhưng chỉ đóng sau S03 đủ điều kiện/cleanup.
 - [Hồ sơ bằng chứng](tests/evidence/r02-t01.md) giữ phiên bản, hash, lệnh, expected/actual, lỗi và giới hạn. File tạm sở hữu S03/S04: đúng năm file trong `.test-output/r02-t01-s04/` được liệt kê ở hồ sơ. Lệnh cleanup bị môi trường chặn trước chạy; năm file còn local/ignored, chưa xóa gì, cleanup còn thiếu trước đóng S03/S04. Runtime cùng SHASUMS là phần local cần giữ, không phải rác; test/fixture là nguồn dùng lại. Không sửa AC/QUALITY/G2 hoặc mở T02.
 
 ## 4. Tổng quan 10 phase xây Kidea
