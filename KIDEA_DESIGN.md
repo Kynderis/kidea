@@ -474,12 +474,13 @@ Không ghi suy nghĩ dài dòng của AI, toàn bộ hội thoại hoặc log th
 Thu gọn không có nghĩa xóa cây task cần hiển thị: với các task đã xác định trong phạm vi theo dõi hiện hành, kể cả đã hoàn thành, giữ tối thiểu ID, tên, quan hệ cha-con, trạng thái và link kết quả/bằng chứng. Chỉ bỏ log hoặc diễn giải không còn cần, để INDEX và giao diện vẫn liệt kê đúng phần đã làm/chưa làm.
 
 <a id="work-tree-proposal"></a>
+<a id="work-tree-contract"></a>
 
-#### Đề xuất R02-T02-S01-r1 — nhận diện và phân rã công việc, chưa duyệt
+#### R02-T02-S01-r1 — nhận diện và phân rã công việc, đã duyệt
 
-Gói review tại [roadmap](KIDEA_ROADMAP.md#work-tree-review). Chỉ áp dụng cho mô hình công việc project do Kidea quản lý; không đổi mã lộ trình xây Kidea hoặc mã nghiệp vụ/KA hiện có. Chưa là schema thực thi.
+Human “Duyệt” sau [answer 0065415](https://github.com/Kynderis/kidea/blob/0065415ec16d3eaec2c16bd37495a8042d02aca8/answer.md), xác nhận D1–D2; [kết quả đồng bộ](KIDEA_ROADMAP.md#r02-t02-s01-result). Chỉ áp dụng cho mô hình công việc project do Kidea quản lý; không đổi mã lộ trình xây Kidea hoặc mã nghiệp vụ/KA hiện có. Chưa là schema thực thi.
 
-**D1 — Mã độc lập với vị trí, cha-con tường minh.** Mỗi mục có ID, tên, loại việc và tham chiếu cha. Đề xuất mã ngắn như `W-001`; mã nhận diện, tên giải thích ý nghĩa. ID duy nhất trong tập công việc hiện hành của cùng project, gồm cả mục đã DONE còn được theo dõi qua các đợt. Không tạo kho retired-ID; trước bỏ/thay mục phải xử lý đủ tham chiếu hiện hành, còn hồ sơ/bằng chứng lịch sử giữ căn cứ phiên bản riêng. Không tái dùng mã của mục vẫn đang được giữ.
+**D1 — Mã độc lập với vị trí, cha-con tường minh.** Mỗi mục có ID, tên, loại việc và tham chiếu cha. Dùng mã ngắn như `W-001`; mã nhận diện, tên giải thích ý nghĩa. ID duy nhất trong tập công việc hiện hành của cùng project, gồm cả mục đã DONE còn được theo dõi qua các đợt. Không tạo kho retired-ID; trước bỏ/thay mục phải xử lý đủ tham chiếu hiện hành, còn hồ sơ/bằng chứng lịch sử giữ căn cứ phiên bản riêng. Không tái dùng mã của mục vẫn đang được giữ.
 
 - Đổi tên/thứ tự hoặc chuyển cùng mục sang cha khác giữ ID; phải rà phạm vi, dependency, gate và tham chiếu bị ảnh hưởng, không mặc nhiên giữ approval. Không ép đổi mã hợp lệ sẵn có chỉ để giống ví dụ.
 - Mỗi mục không phải gốc có đúng một cha tồn tại trong cùng cây đợt phát triển; gốc gắn đúng đợt. Cấm tự làm cha, vòng cha-con và cha không tồn tại. Bước lớn, phase, task và subtask giữ ý nghĩa riêng; không ép mười bước sản phẩm thành mười phase của kế hoạch code.
@@ -491,7 +492,34 @@ Nhóm phân rã đủ chỉ đủ điều kiện hoàn tất khi mọi con bắt
 
 Ví dụ: “Xây giao diện” chưa liệt kê màn hình → chưa phân rã, chưa xong; mới có “Đăng nhập — DONE” nhưng còn màn hình chưa liệt kê → đang phân rã, vẫn chưa xong. “Sửa nhãn nút” là việc lá có kiểm tra riêng, không cần tạo một task con giả để được DONE.
 
-Chưa duyệt định dạng file/parser, schema target/release, hợp đồng approval, fixture hay quyền ghi/chạy. Sau S01 mới trình S02; đối chiếu mẫu hợp lệ/sai ở S03/S04 với KA-03/09/25, KQ-03/06. Không coi review thiết kế là đã có validator/status/view.
+Approval S01 không duyệt định dạng file/parser, schema target/release, hợp đồng approval, fixture hay quyền ghi/chạy. Định dạng/nguồn được trình ở S02, tham chiếu bản phát triển/phát hành ở S05; sau đủ gate mới đối chiếu mẫu ở S03/S04 với KA-03/09/25, KQ-03/06. Không coi review thiết kế là đã có validator/status/view.
+
+<a id="record-format-proposal"></a>
+
+#### Đề xuất R02-T02-S02-r1 — định dạng và nơi lưu dữ kiện, chưa duyệt
+
+Gói Human review tại [roadmap](KIDEA_ROADMAP.md#record-format-review). Cụ thể hóa nguyên tắc một nguồn đã duyệt ở R01, không yêu cầu chuyển hồ sơ repo xây Kidea hoặc tạo hồ sơ pilot.
+
+**D1 — Dữ liệu có cấu trúc nằm ngay trong Markdown.** Đề xuất mỗi file hồ sơ điều phối có một khối fenced code `json` được đánh dấu riêng bằng hai dòng `<!-- kidea:data:start -->` và `<!-- kidea:data:end -->`; chỉ khối này là dữ liệu máy đọc. Giữ phần giải thích/link Markdown bên ngoài. Đây là lựa chọn định dạng nguồn, không thêm file JSON trạng thái độc lập, YAML runtime hoặc database. Khối có phiên bản định dạng và loại hồ sơ; bộ đọc sau này chỉ nhận các trường theo schema được chốt, không đoán trạng thái từ văn xuôi/bảng tóm tắt.
+
+- Dùng JSON chuẩn UTF-8, không comment hoặc dấu phẩy thừa trong khối. Thiếu/trùng dấu mốc, nhiều khối có thẩm quyền, cú pháp sai, khóa trùng hoặc phiên bản/loại không hỗ trợ phải báo đúng vị trí và dừng phần phụ thuộc, không chọn bản cuối hoặc sửa nguồn ngầm. Cách phát hiện/parser/dependency cụ thể chốt ở T05 trước code; không nhận chỉ gọi JSON.parse là đã xử lý mọi lỗi này.
+- AI cập nhật khối trong quyền và tạo/đối chiếu phần trình bày khi cần; Human đọc gói giải thích ngắn, không phải tự sửa JSON. Bảng/nhãn dẫn xuất phải thể hiện nguồn; nếu lệch thì báo cần đồng bộ, không tự chọn văn xuôi thay dữ liệu. Đánh đổi là JSON kém thuận tiện hơn bảng khi sửa tay, nhưng ranh giới máy đọc rõ và không cần diễn giải mọi biến thể Markdown.
+- Chỉ hồ sơ do Kidea quản lý dùng khối này. Tài liệu nghiệp vụ/code/bằng chứng ngoài `.kidea` giữ định dạng phù hợp hiện có; tham chiếu đến chúng không ép chuyển đổi hoặc tạo bản sao.
+
+**D2 — Chỉ định nguồn theo chức năng, tách khi có nhu cầu.** Các nhóm dữ kiện sau có đúng một nơi sở hữu; tên trường, kiểu, bắt buộc/tùy chọn và mẫu hoàn chỉnh được cụ thể hóa cùng S05 trước S03, không tự lấp quyết định lớn còn thiếu khi viết mẫu.
+
+| Hồ sơ | Dữ kiện nguồn và ranh giới |
+|---|---|
+| `.kidea/INDEX.md` | Nhận diện project/phiên bản định dạng, danh mục nguồn sản phẩm và đường tới work, kế hoạch, review. Tổng quan bước/gate/việc hiện hành là dẫn xuất hoặc tham chiếu, không lưu trạng thái nhập tay thứ hai. |
+| `.kidea/work.md` | Đợt và một việc hiện hành (hoặc chưa có việc hiện hành), blocker, điểm tiếp tục/chuỗi quay lại, link đầu vào/kết quả; mặc định chứa cây công việc gồm ID, tên, loại, cha, mức phân rã, dependency và trạng thái thực hiện. Chi tiết checkpoint/quyền/hiệu lực thuộc T03/T04; không tự cấp quyền từ dữ liệu. |
+| `.kidea/plans/` khi cần | Chuyển cây lớn thành nguồn kế hoạch được work trỏ tới. Mỗi mục chỉ có một record có thẩm quyền; work không giữ bản sao cây đã chuyển. Việc hiện hành là tham chiếu ID tới nguồn, không một record trạng thái khác. Không tạo folder rỗng trước nhu cầu. |
+| `.kidea/reviews/` khi có gói | Mỗi gói có record riêng về ID/revision, đối tượng/phạm vi, nguồn nội dung và căn cứ duyệt; trạng thái gate/xác nhận chỉ tại đây. Không chép rule, kế hoạch hay kết quả test. Hợp đồng chuyển trạng thái/hiệu lực vẫn ở T03/T04, không coi có record là đã được duyệt. |
+
+Tham chiếu nội bộ dùng đường dẫn tương đối theo root project đã xác minh và ID/anchor đích khi cần. Nguồn sản phẩm có thể ngoài `docs/` nhưng vẫn trong root/quyền đã chốt; link không cấp quyền đọc/ghi. Dữ liệu ngoài root hoặc bằng chứng bên ngoài chỉ được xử lý theo hợp đồng/quyền phù hợp, không tự theo link để chạy/tải. Đường dẫn chỉ định vị, không chứng minh đúng bản hoặc hiệu lực approval.
+
+Ví dụ hồ sơ nghiệp vụ ở `specs/features.md`: INDEX trỏ đúng nguồn này, work ghi việc đang xử lý, review trỏ đúng phần nội dung/bản được duyệt. Không tạo thêm `docs/features.md` để sao chép. Khi đưa cây sang plans, giữ ID và nguồn duy nhất; thiếu nguồn mới hoặc còn hai record cùng ID phải báo lỗi.
+
+S02 không duyệt schema bản phát triển/release/lần triển khai: S05 trình riêng, giữ G6 và nơi sở hữu ngoài `.kidea`. S03/S04 chỉ bắt đầu sau S02/S05; T05 mới hiện thực đọc/validator/status. Không thêm dependency, thay chuẩn chất lượng hoặc mở quyền thao tác trong lượt thiết kế này.
 
 <a id="source-authority-and-write-boundary"></a>
 

@@ -1,8 +1,10 @@
-Đã khép phần khung thử Kidea; hai thư mục rỗng được ghi nhận là tồn đọng không chặn. Bằng chứng kiểm tra vẫn khớp bản nguồn. Chưa có lõi Kidea.
+Đã ghi nhận duyệt và khép phần mã/cây công việc, mức phân rã.
 
-Tiếp theo là thiết kế hồ sơ để Kidea biết **đang làm gì, còn gì chưa xong**. Gói [R02-T02-S01-r1](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) có hai đề xuất:
+Gói tiếp theo [R02-T02-S02-r1](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) đề xuất hai điểm:
 
-1. **Mỗi việc có mã riêng và ghi rõ việc cha.** Ví dụ `W-001` là “Xây giao diện”, `W-002` là “Màn hình đăng nhập”, thuộc `W-001`. Đổi tên hoặc chuyển nhóm vẫn giữ mã, tránh sửa hàng loạt link; đổi nhóm vẫn phải rà ảnh hưởng/gate. Đánh đổi: cần đọc quan hệ cha để biết vị trí, không nhìn riêng mã. Mã không trùng trong hồ sơ công việc hiện hành; không lập kho mã cũ cấm dùng lại hoặc đổi mã roadmap đang có.
-2. **Phân biệt chưa chia hết việc với đã hoàn tất.** Nhóm ghi “chưa phân rã / đang phân rã / đã phân rã đủ”. Một màn hình xong không làm cả giao diện xong nếu còn màn hình chưa liệt kê. Việc nhỏ làm trực tiếp không cần tạo con giả; nhóm chỉ hoàn tất khi đủ việc, kiểm tra và gate cần thiết.
+1. **Giữ Markdown, đặt dữ liệu máy đọc trong một khối JSON bên trong.** Markdown dùng giải thích; JSON ghi rõ mã việc, trạng thái và quan hệ. Không thêm file trạng thái song song. Cách này giúp máy đọc chính xác, nhưng sửa tay kém tiện hơn bảng. AI lo cập nhật trong quyền; bạn vẫn đọc bản giải thích, không phải sửa JSON.
+2. **Mỗi loại thông tin chỉ có một nơi lưu chính.** INDEX là mục lục/link; work giữ việc hiện hành và cây công việc; review giữ gói/xác nhận duyệt. Cây lớn mới tách sang plans, không sao chép. Tài liệu nghiệp vụ ở đâu thì tham chiếu đúng đó, không ép chuyển vào thư mục mặc định.
 
-Bạn duyệt hai nguyên tắc này nhé? Sau đó mình mới trình cách lưu INDEX/work/review; chưa viết schema hoặc bộ đọc trước khi chốt.
+Phần bản dự kiến phát hành/bản đã triển khai được tách thành gói riêng kế tiếp. Chưa tạo schema thực thi, bộ đọc hoặc hồ sơ pilot.
+
+Bạn duyệt hai lựa chọn về định dạng và nơi lưu này nhé?
