@@ -473,6 +473,26 @@ Không ghi suy nghĩ dài dòng của AI, toàn bộ hội thoại hoặc log th
 
 Thu gọn không có nghĩa xóa cây task cần hiển thị: với các task đã xác định trong phạm vi theo dõi hiện hành, kể cả đã hoàn thành, giữ tối thiểu ID, tên, quan hệ cha-con, trạng thái và link kết quả/bằng chứng. Chỉ bỏ log hoặc diễn giải không còn cần, để INDEX và giao diện vẫn liệt kê đúng phần đã làm/chưa làm.
 
+<a id="work-tree-proposal"></a>
+
+#### Đề xuất R02-T02-S01-r1 — nhận diện và phân rã công việc, chưa duyệt
+
+Gói review tại [roadmap](KIDEA_ROADMAP.md#work-tree-review). Chỉ áp dụng cho mô hình công việc project do Kidea quản lý; không đổi mã lộ trình xây Kidea hoặc mã nghiệp vụ/KA hiện có. Chưa là schema thực thi.
+
+**D1 — Mã độc lập với vị trí, cha-con tường minh.** Mỗi mục có ID, tên, loại việc và tham chiếu cha. Đề xuất mã ngắn như `W-001`; mã nhận diện, tên giải thích ý nghĩa. ID duy nhất trong tập công việc hiện hành của cùng project, gồm cả mục đã DONE còn được theo dõi qua các đợt. Không tạo kho retired-ID; trước bỏ/thay mục phải xử lý đủ tham chiếu hiện hành, còn hồ sơ/bằng chứng lịch sử giữ căn cứ phiên bản riêng. Không tái dùng mã của mục vẫn đang được giữ.
+
+- Đổi tên/thứ tự hoặc chuyển cùng mục sang cha khác giữ ID; phải rà phạm vi, dependency, gate và tham chiếu bị ảnh hưởng, không mặc nhiên giữ approval. Không ép đổi mã hợp lệ sẵn có chỉ để giống ví dụ.
+- Mỗi mục không phải gốc có đúng một cha tồn tại trong cùng cây đợt phát triển; gốc gắn đúng đợt. Cấm tự làm cha, vòng cha-con và cha không tồn tại. Bước lớn, phase, task và subtask giữ ý nghĩa riêng; không ép mười bước sản phẩm thành mười phase của kế hoạch code.
+- Cha-con là quan hệ tổ chức, không phải dependency hoặc thứ tự chạy. Dependency vẫn là tham chiếu riêng; một việc dùng chung không bị nhân thành nhiều bản trạng thái. Trường lưu cụ thể và ranh giới nguồn chốt tại T02-S02.
+
+**D2 — Phân rã khác hoàn thành.** Phân biệt nhóm cần chia nhỏ với việc lá (việc đủ nhỏ để thực hiện trực tiếp). Nhóm ghi mức “chưa phân rã / đang phân rã / đã phân rã đủ”; việc lá không cần con. Nhóm chưa/đang phân rã không được coi hoàn tất dù chưa có con hoặc mọi con đã biết đều DONE. Việc lá chỉ DONE khi đạt đầu ra, test, đồng bộ/cleanup và gate áp dụng; không dựa vào số con bằng 0.
+
+Nhóm phân rã đủ chỉ đủ điều kiện hoàn tất khi mọi con bắt buộc xong và kiểm tra/gate của chính nhóm đạt; không tự APPROVED phase/bước lớn từ tổng DONE. N/A giữ lý do/xác nhận Human theo chính sách đã duyệt. Bổ sung phạm vi phải xem lại mức phân rã và hiệu lực kết quả/gate liên quan; không giữ nhãn hoàn tất trên cây thiếu việc. Status/INDEX/view cùng dựa nguồn công việc; thiếu hoặc mâu thuẫn phải báo rõ, không tự suy từ văn xuôi hoặc lấy 100% số con đã biết làm 100% sản phẩm.
+
+Ví dụ: “Xây giao diện” chưa liệt kê màn hình → chưa phân rã, chưa xong; mới có “Đăng nhập — DONE” nhưng còn màn hình chưa liệt kê → đang phân rã, vẫn chưa xong. “Sửa nhãn nút” là việc lá có kiểm tra riêng, không cần tạo một task con giả để được DONE.
+
+Chưa duyệt định dạng file/parser, schema target/release, hợp đồng approval, fixture hay quyền ghi/chạy. Sau S01 mới trình S02; đối chiếu mẫu hợp lệ/sai ở S03/S04 với KA-03/09/25, KQ-03/06. Không coi review thiết kế là đã có validator/status/view.
+
 <a id="source-authority-and-write-boundary"></a>
 
 ### Nguồn có hiệu lực và ranh giới ghi
@@ -897,7 +917,7 @@ Không cần thêm command riêng cho mỗi thao tác Git; thực thi thường 
 
 Human “duyệt” sau gói R02-T01-S01-r1; [căn cứ](KIDEA_ROADMAP.md#r02-t01-s01-result). Chương trình phụ trợ Kidea dùng JavaScript chạy trên Node.js 24 LTS. Khung ban đầu dùng JavaScript trực tiếp, chức năng và bộ chạy test tích hợp; chưa thêm framework/thư viện ngoài. Khi thật sự cần dependency, trình lý do/phạm vi/phiên bản tại task sở hữu; không tự viết bộ xử lý phức tạp để giữ số dependency bằng không.
 
-Đây là công nghệ của helper, không đổi backend C++ hoặc công nghệ web/native của sản phẩm. Một skill vẫn gồm hướng dẫn và helper có tác dụng xác định; helper không tự duyệt nghiệp vụ hoặc chứng minh mọi dependency. Human đã duyệt R02-T01-S02: một nguồn tại `.agents/skills/kidea/`, Node 24.21.0 Windows x64 riêng trong `.tools/node-v24.21.0-win-x64/`, quyền tạo/thử khung và lưu nguồn/bằng chứng trong repo này; không cài global, sửa PATH, tạo pilot hoặc tự triển khai lõi. Human duyệt bổ sung PyYAML 6.0.3 tại S03-r1 chỉ cho công cụ kiểm tra, đặt riêng `.tools/skill-validation/`, không là dependency runtime Kidea. [Kết quả và giới hạn hiện tại](KIDEA_ROADMAP.md#r02-t01-scaffold-result): Node/helper, nạp skill và kiểm tra cấu trúc đã được thử; chưa khép T01; năm log tạm đã xóa, còn thư mục rỗng bị chặn xóa, không phải lõi đã hoàn tất.
+Đây là công nghệ của helper, không đổi backend C++ hoặc công nghệ web/native của sản phẩm. Một skill vẫn gồm hướng dẫn và helper có tác dụng xác định; helper không tự duyệt nghiệp vụ hoặc chứng minh mọi dependency. Human đã duyệt R02-T01-S02: một nguồn tại `.agents/skills/kidea/`, Node 24.21.0 Windows x64 riêng trong `.tools/node-v24.21.0-win-x64/`, quyền tạo/thử khung và lưu nguồn/bằng chứng trong repo này; không cài global, sửa PATH, tạo pilot hoặc tự triển khai lõi. Human duyệt bổ sung PyYAML 6.0.3 tại S03-r1 chỉ cho công cụ kiểm tra, đặt riêng `.tools/skill-validation/`, không là dependency runtime Kidea. [Kết quả và giới hạn](KIDEA_ROADMAP.md#r02-t01-scaffold-result): T01 đã khép với kiểm tra khung/helper và nạp/gọi sơ bộ; Human chấp nhận hai thư mục rỗng còn lại không chặn việc tiếp theo. Đây không phải lõi đã hoàn tất hoặc nghiệm thu KA.
 
 Một skill Kidea, không tạo một skill riêng cho mỗi bước:
 

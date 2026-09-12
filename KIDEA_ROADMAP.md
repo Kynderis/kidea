@@ -8,20 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-Đã bổ sung công cụ kiểm tra đúng gói bạn duyệt; kiểm tra cấu trúc skill và 16 bài thử helper đạt. **R02-T01-S03 chưa đóng; năm log đã xóa, còn thư mục rỗng**; chưa mở schema T02.
+**Đã khép R02-T01 — runtime và khung thử.** Human đồng ý giữ hai thư mục rỗng như tồn đọng không chặn; kiểm tra cấu trúc, 16 bài thử helper và phép thử nạp/gọi đã có bằng chứng. Chưa có lõi Kidea. Việc hiện hành là thiết kế hồ sơ công việc ở R02-T02; chỉ S01 đang chờ duyệt.
 
 <a id="review-current"></a>
-<a id="validation-tool-proposal"></a>
+<a id="work-tree-review"></a>
 
-### R02-T01-S03 — Kiểm tra đã đạt, đã xóa log tạm
+### R02-T02-S01-r1 — Mã công việc và cây tiến độ [H]
 
-Human “Duyệt” sau [answer f5f23ee](https://github.com/Kynderis/kidea/blob/f5f23eea9cd3bb4bdd5f3974574cc34bbd11a1b8/answer.md), xác nhận **S03-r1 D1**: PyYAML 6.0.3 chỉ dùng cho bộ kiểm tra, local tại `.tools/skill-validation/`, không cài toàn máy hoặc đổi runtime Kidea.
+Task T02 thiết kế cách lưu hồ sơ để Kidea đọc đúng việc đang làm và phần còn lại. Gói này chỉ chốt cách nhận diện/nhóm công việc; chưa chọn định dạng file hoặc viết bộ đọc.
 
-Đã tải đúng wheel Windows x64/Python 3.12, SHA-256 khớp PyPI và giá trị đã trình trước khi dùng. `quick_validate.py` trả `Skill is valid!`, exit 0; 16/16 bài thử helper đạt, không skip. Không sửa skill/helper nên bằng chứng nạp/gọi từ phiên mới vẫn gắn đúng hash; không chạy thêm phiên AI hoặc tính kết quả này thành nghiệm thu lõi.
+**D1 — Mỗi việc có mã riêng, ghi rõ thuộc việc cha nào.** Đề xuất mã ngắn như `W-001`, tên dễ hiểu và tham chiếu cha; mã không chứa vị trí trong cây. Đổi tên, đổi thứ tự hoặc chuyển cùng việc sang nhóm khác không buộc đổi mã và toàn bộ link. Đánh đổi: muốn biết vị trí phải đọc quan hệ cha, không nhìn mã là biết. Mã không trùng trong danh sách công việc hiện hành của project; việc đã xong còn giữ để tra cứu. Không lập kho mã cũ cấm dùng lại. Cây nhóm việc khác danh sách dependency: “thuộc nhóm nào” không đồng nghĩa “phải chờ việc nào”. Không đổi mã roadmap xây Kidea đang dùng.
 
-**Không còn quyết định dependency cần duyệt.** Sau Human yêu cầu rõ “Tôi cho bạn quyền xoá đấy, xoá đi bạn”, lệnh xóa tường minh đúng năm file bằng PowerShell đã được thực thi thành công. Kiểm tra lại thư mục con có 0 file; bằng chứng cần giữ còn nguyên. Đây là lượt xử lý cleanup, chưa đóng S03/S04 hoặc mở T02.
+**D2 — Ghi riêng mức phân rã, không lấy danh sách rỗng làm đã xong.** Một nhóm ghi “chưa phân rã”, “đang phân rã” hoặc “đã phân rã đủ”; việc nhỏ làm trực tiếp được nhận diện riêng, không bắt tạo con giả. Ví dụ “Xây giao diện” mới có một màn hình đã xong nhưng chưa liệt kê các màn hình còn lại thì cả nhóm vẫn chưa xong. Nhóm chỉ đủ điều kiện hoàn tất khi phân rã đủ, con bắt buộc xong và kiểm tra/gate của nhóm đạt. Thêm nhãn này để tránh báo tiến độ sai; không thêm bước duyệt cho mọi task nhỏ.
 
-Lệnh dọn thư mục rỗng tiếp theo bị môi trường chặn trước chạy; `.test-output/r02-t01-s04/` còn rỗng, `.test-output/` chỉ chứa thư mục con này. Không còn log phải nhờ Human xóa, không yêu cầu duyệt lại PyYAML. [Bằng chứng](tests/evidence/r02-t01.md) giữ kết quả và giới hạn; không đổi công cụ để vượt chặn hoặc xóa `.tools`/`tests`.
+Bạn đang duyệt **D1–D2**, không duyệt schema file, approval, release hoặc quyền ghi/chạy. Sau xác nhận, mình đồng bộ phần này rồi trình S02 về nguồn INDEX/work/review.
+
+Nguồn mở thêm: [đề xuất thiết kế](KIDEA_DESIGN.md#work-tree-proposal); [điều kiện nghiệm thu KA-09/25](KIDEA_ACCEPTANCE.md); [kết quả khép khung](#r02-t01-scaffold-result).
 
 <a id="working-rules"></a>
 
@@ -106,9 +108,11 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R01-T10-S03 | DONE | R01-T10-S03-r1 — APPROVED | Human “Duyệt nhé” sau answer b666308; chấp nhận căn cứ và cho mở R02 từng phần; [kết quả](#r01-result) |
 | R02-T01-S01 | DONE | R02-T01-S01-r1 — APPROVED | Human “duyệt” sau answer 485eb46; JavaScript/Node 24 LTS và khung tối giản, chưa cài; [kết quả](#r02-t01-s01-result) |
 | R02-T01-S02 | DONE | R02-T01-S02-r1 — APPROVED | Human “duyệt” sau answer fb3bf51; D1–D3 đúng phạm vi; [kết quả](#r02-t01-scaffold-result) |
-| R02-T01-S03 | IN_PROGRESS | R02-T01-S03-r1 — APPROVED | Human “Duyệt” sau answer f5f23ee; PyYAML local và validator đạt, 16 test đạt; đã xóa năm log, còn thư mục rỗng bị chặn xóa; [hiện hành](#review-current) |
+| R02-T01-S03 | DONE | R02-T01-S03-r1 — APPROVED | PyYAML local/validator đạt và 16 test đạt; Human “Ok nhé” sau answer 8e5f90c chấp nhận giữ hai thư mục rỗng không chặn khép T01; [kết quả](#r02-t01-scaffold-result) |
+| R02-T01-S04 | DONE | [A] — kiểm chứng trong phạm vi S02 | Bằng chứng phiên mới nạp/gọi đã có; kiểm tra hash còn khớp, giữ giới hạn thử sơ bộ và ngoại lệ cleanup được Human chấp nhận; [kết quả](#r02-t01-scaffold-result) |
+| R02-T02-S01 | IN_PROGRESS | R02-T02-S01-r1 — IN_REVIEW | Trình D1–D2 về mã/cây công việc và mức phân rã; chưa duyệt hoặc viết schema/helper; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01-S01/S02 DONE; chỉ S03 đang IN_PROGRESS. S04 đã có phép thử nạp/gọi sơ bộ nhưng chưa đóng trước S03; các subtask R02 khác mặc định TODO. R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE; chỉ R02-T02-S01 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
@@ -356,15 +360,17 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 <a id="phase-overview"></a>
 
 <a id="local-install-proposal"></a>
+<a id="validation-tool-proposal"></a>
 <a id="r02-t01-scaffold-result"></a>
 
-### Kết quả R02-T01-S02 và kiểm tra khung đang làm — ngày 2026-09-12
+### Kết quả R02-T01-S02–S04 và khép khung — ngày 2026-09-12
 
 - Human “duyệt” sau [answer fb3bf51](https://github.com/Kynderis/kidea/blob/fb3bf516523c93ee5c3a46e7eaf95b9b807d1bc2/answer.md), xác nhận D1–D3 của S02-r1: nguồn skill repo-local, Node 24.21.0 riêng, tạo/thử khung và lưu nguồn/bằng chứng trong các vùng đã chỉ định. Không mở quyền global/pilot/project khác hoặc lõi chưa chốt.
 - Đã tạo [skill](.agents/skills/kidea/SKILL.md), helper không có thao tác file/network, test và fixture dùng lại. Node tải từ nguồn chính thức, SHA-256 khớp trước chạy; Node global vẫn 22.18.0. Helper chỉ có `--help`, sáu hành động sản phẩm đều chưa triển khai và trả mã lỗi; không tạo schema/template giả.
 - 16/16 unit test đạt, không skip. Phép thử sơ bộ bằng Codex CLI 0.153.4 trong phiên mới ephemeral/read-only tìm được skill và gọi helper status đúng; 27 file đối chiếu trước/sau không đổi. Đây không phải test UI desktop hoặc chứng nhận ổn định nhiều lần, không tính KA PASS.
-- Lỗi đầu `quick_validate.py`: thiếu yaml trên cả Python hệ thống/bundled, đã giữ bằng chứng. Sau Human duyệt S03-r1 tại [answer f5f23ee](https://github.com/Kynderis/kidea/blob/f5f23eea9cd3bb4bdd5f3974574cc34bbd11a1b8/answer.md), đã bổ sung PyYAML 6.0.3 trong `.tools/skill-validation/lib`, xác minh wheel trước dùng; validator trả `Skill is valid!`, exit 0. Python global vẫn không tìm thấy yaml. Hash skill/helper không đổi; S04 giữ phép thử đã có nhưng chỉ đóng sau S03 đủ điều kiện/cleanup.
-- [Hồ sơ bằng chứng](tests/evidence/r02-t01.md) giữ phiên bản, hash, lệnh, expected/actual, lỗi và giới hạn. File tạm sở hữu S03/S04: đúng năm file trong `.test-output/r02-t01-s04/` được liệt kê ở hồ sơ. Lệnh đầu bị chặn; sau yêu cầu xóa tường minh mới của Human, đã xóa đúng năm file bằng PowerShell và xác minh thư mục con rỗng. Lệnh xóa thư mục rỗng bị chặn; còn hai thư mục, không còn log. Runtime cùng SHASUMS là phần local cần giữ, không phải rác; test/fixture là nguồn dùng lại. Không sửa AC/QUALITY/G2 hoặc mở T02.
+- Lỗi đầu `quick_validate.py`: thiếu yaml trên cả Python hệ thống/bundled, đã giữ bằng chứng. Sau Human duyệt S03-r1 tại [answer f5f23ee](https://github.com/Kynderis/kidea/blob/f5f23eea9cd3bb4bdd5f3974574cc34bbd11a1b8/answer.md), đã bổ sung PyYAML 6.0.3 trong `.tools/skill-validation/lib`, xác minh wheel trước dùng; validator trả `Skill is valid!`, exit 0. Python global vẫn không tìm thấy yaml. Khi khép, đối chiếu lại cả bốn hash skill/helper/unit test/smoke script với evidence: khớp. Không chạy thêm phiên AI; chỉ tái dùng kết quả nạp/gọi trong phạm vi khung không đổi, không ngoại suy sang schema hoặc nội dung mới.
+- [Hồ sơ bằng chứng](tests/evidence/r02-t01.md) giữ phiên bản, hash, lệnh, expected/actual, lỗi và giới hạn. Đã xóa đúng năm log theo yêu cầu tường minh của Human; lệnh xóa hai thư mục rỗng bị chặn. Human “Ok nhé” sau [answer 8e5f90c](https://github.com/Kynderis/kidea/blob/8e5f90cfdc37a8e56b7a0498e63fc8d572f1dbe0/answer.md) chấp nhận giữ `.test-output/r02-t01-s04/` và `.test-output/` như tồn đọng không chặn, khép T01 và chuẩn bị gói T02-S01. Kiểm tra lại: thư mục con rỗng, cha chỉ có thư mục con; không thử xóa lại. Ngoại lệ chỉ cho hai thư mục này, không nới quy tắc cleanup chung; chỉ xét dọn khi môi trường cho phép và vẫn đúng quyền/phạm vi.
+- S03/S04 đủ đầu ra trong phạm vi khung; đóng T01, chưa đóng R02 hoặc nhận nghiệm thu KA. Runtime/SHASUMS/công cụ validator, test/fixture và evidence giữ nguyên. Đã rà nguồn trạng thái, thiết kế và các caller KA-03/09/25, KQ-03/06; không đổi AC/QUALITY/G2. T02-S01 chỉ là đề xuất mới, cần Human duyệt trước phần phụ thuộc.
 
 ## 4. Tổng quan 10 phase xây Kidea
 
