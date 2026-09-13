@@ -1,10 +1,9 @@
-Bạn không hiểu sai; **mình dùng chữ “cài” khiến bạn hiểu nhầm**. Không phải đang nói riêng về file `.exe`.
+Đã ghi nhận duyệt. Phần tiếp theo chốt mẫu hồ sơ để viết bộ đọc, gồm ba nhóm:
 
-Có hai việc khác nhau:
+1. **Bản lưu:** ghi nguồn, nơi lấy lại và mã đối chiếu. Bản tạm trước sửa tách khỏi lịch sử duyệt để không dọn nhầm.
+2. **Phiếu duyệt:** ghi rõ duyệt nội dung gì, dựa trên bản nào, kèm phản hồi và lịch sử. Chỉ một phiếu hiện hành; bản cũ vẫn xem lại được.
+3. **Hồ sơ thao tác:** tách điều định làm với kết quả thực tế. Sửa file và triển khai dùng hai loại hồ sơ riêng; thiếu bằng chứng không được ghi thành công.
 
-- **Sửa tài liệu:** ví dụ sửa yêu cầu nghiệp vụ. Kidea lưu/đối chiếu phiên bản và xác nhận duyệt theo phần đã chốt. **Không gọi mỗi lần sửa tài liệu là một lần triển khai.**
-- **Triển khai sản phẩm:** ví dụ đưa phiên bản website mới lên máy chủ. “Lần 1” là lần đưa lên đầu tiên; nếu bị lỗi rồi thực sự chạy lại thì đó là “lần 2”. Chỉ vào xem kết quả không tính là chạy lại.
+Cần thêm dữ liệu để kiểm tra, đổi lại tránh mất căn cứ hoặc báo xong sai. Quyền đã chốt giữ nguyên.
 
-Gói đang hỏi bạn thuộc **việc thứ hai**: ghi đúng phiên bản sản phẩm, cấu hình, các lệnh triển khai và kết quả từng lần đưa lên môi trường chạy.
-
-**Tài liệu chỉ ghi nhận và làm căn cứ; không phải đối tượng được “cài”.**
+Bạn duyệt ba nhóm này nhé? [Chi tiết trường và nơi lưu](https://github.com/Kynderis/kidea/blob/master/KIDEA_DESIGN.md#schema-v2-proposal); chưa viết bộ đọc.

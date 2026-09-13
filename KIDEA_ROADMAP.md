@@ -8,24 +8,26 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã duyệt và khép R02-T04-S05 — mẫu hồ sơ mới và cách xử lý khác phiên bản.** Chỉ S06 chờ duyệt cách nhận diện gói phát hành/lần chạy; mẫu cũ giữ nguyên, chưa có schema số 2 hoàn chỉnh hoặc bộ đọc.
+**Đã duyệt và khép R02-T04-S06 — nhận diện bản sản phẩm và từng lần triển khai.** Chỉ S07 chờ duyệt hợp đồng hồ sơ số 2; chưa tạo mẫu số 2 hoặc viết bộ đọc.
 
 <a id="review-current"></a>
-<a id="release-identity-review"></a>
+<a id="schema-v2-review"></a>
 
-### R02-T04-S06-r1 — Làm sao biết đã triển khai đúng bản? [H]
+### R02-T04-S07-r1 — Hồ sơ cần ghi những gì? [H]
 
-Task T04 cần tránh nhầm bản và lần triển khai.
+Task T04 còn chốt mẫu hồ sơ để viết bộ đọc:
 
-**D1 — Dùng mã nhận diện nội dung cố định cho gói đã kiểm tra, kèm cấu hình/script.** Hai file cùng tên có thể khác nội dung; trước triển khai phải đối chiếu, không khớp thì dừng.
+**D1 — Mỗi bản lưu có nguồn, nơi lấy lại và mã đối chiếu.** Tách bản tạm trước sửa khỏi lịch sử duyệt để không dọn nhầm.
 
-**D2 — Mỗi lần thực sự triển khai có mã riêng, nối lần trước nếu chạy lại.** Chỉ xem thêm kết quả thì bổ sung cho lần cũ, không tạo lần triển khai mới.
+**D2 — Phiếu duyệt ghi rõ duyệt gì, dựa trên bản nào, cùng phản hồi và lịch sử.** Chỉ một phiếu hiện hành; bản cũ vẫn truy được.
 
-Lợi ích: tránh nhầm gói/lần chạy; đánh đổi: thêm dữ liệu đối chiếu. Các quy tắc quyền, bảo mật, giữ lỗi và phục hồi đã chốt vẫn giữ nguyên.
+**D3 — Hồ sơ thao tác tách “định làm” khỏi “đã xảy ra”.** Ghi kết quả từng file/thành phần; thiếu bằng chứng không thành thành công. Sửa file và triển khai là hai loại hồ sơ riêng.
 
-Bạn duyệt D1–D2 nhé? Chỉ duyệt cách nhận diện hồ sơ, chưa chạy triển khai; các trường cụ thể còn ở S07.
+Đánh đổi: thêm dữ liệu/liên kết để kiểm tra, nhưng tránh mất căn cứ và báo xong sai.
 
-Nguồn: [đề xuất](KIDEA_DESIGN.md#release-identity-proposal).
+Bạn duyệt ba nhóm này nhé? Quyền đã chốt giữ nguyên; chưa viết bộ đọc.
+
+Nguồn: [hợp đồng trường và nơi lưu](KIDEA_DESIGN.md#schema-v2-proposal).
 
 <a id="working-rules"></a>
 
@@ -131,9 +133,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T04-S01 | DONE | R02-T04-S01-r1 — APPROVED | Human “Ok tôi hiểu rồi. Duyêt nhé” sau giải thích gói e463a7b; chỉ D1–D2 giữ/nhận diện bản trình, đã đồng bộ; [kết quả](#r02-t04-s01-result) |
 | R02-T04-S02 | DONE | R02-T04-S02-r1 — APPROVED với làm rõ Git/cleanup | Human “Ok, Tôi duyệt cả 2 nhé” sau gói 24a3b61 và giải thích trong hội thoại; [kết quả](#r02-t04-s02-result) |
 | R02-T04-S05 | DONE | R02-T04-S05-r1 — APPROVED | Human “Hay quá, mình duyệt nhé” sau giải thích dc266ea cho gói e136a0e; [kết quả](#r02-t04-s05-result) |
-| R02-T04-S06 | IN_PROGRESS | R02-T04-S06-r1 — IN_REVIEW | Trình nhận diện nội dung gói và ID từng lần thực thi/quan sát, chưa triển khai; [gói hiện hành](#review-current) |
+| R02-T04-S06 | DONE | R02-T04-S06-r1 — APPROVED | Human “Duyệt nhé” sau giải thích dff52b1, gói r1 rút gọn 65cdc2a; [kết quả](#r02-t04-s06-result) |
+| R02-T04-S07 | IN_PROGRESS | R02-T04-S07-r1 — IN_REVIEW | Trình ba nhóm trường/tham chiếu/nơi lưu số 2, giữ chính sách đã duyệt; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04-S01/S02/S05 DONE; chỉ R02-T04-S06 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04-S01/S02/S05/S06 DONE; chỉ R02-T04-S07 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
@@ -484,6 +487,17 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Mẫu số 1 T02 vẫn giữ lịch sử, mẫu tình huống T03 vẫn nguyên trạng; chưa có schema số 2 hoàn chỉnh hoặc parser. Trường/tham chiếu/nơi lưu còn thuộc S07, không coi approval chính sách là đã duyệt mọi trường.
 - Rà nguồn schema/approval/resume/view và KA-02/03/09/13, KQ-03/05/06; giữ AC/QUALITY/G2 và nghĩa vụ kiểm chứng. Chỉ kiểm tra tài liệu/link/trạng thái/diff; không chạy test mới, sửa helper/skill/fixture, cài dependency, xóa dữ liệu hoặc chạy pilot.
 - Khép S05; chỉ mở S06 [H] về nhận diện nội dung release và lần thực thi. S07/S03/S04 chưa bắt đầu; T04 chưa khép, ngoại lệ hai thư mục rỗng T01 giữ nguyên.
+
+<a id="release-identity-review"></a>
+<a id="r02-t04-s06-result"></a>
+
+### Kết quả R02-T04-S06 — ngày 2026-09-13
+
+- Human “Duyệt nhé” sau [giải thích dff52b1](https://github.com/Kynderis/kidea/blob/dff52b1b6e4bdb69d88a2e503b00499bd65a2799/answer.md): phân biệt sửa tài liệu với triển khai sản phẩm lên môi trường chạy, không giới hạn file exe, không tính sửa tài liệu thành một lần triển khai. Trước đó [ví dụ 3b12413](https://github.com/Kynderis/kidea/blob/3b1241397ae0b705ec15869c6ea425064a5f65ce/answer.md) dùng chữ “cài” gây nhầm, đã được giải thích lại trước xác nhận.
+- Xác nhận D1–D2 của gói r1 [rút gọn 65cdc2a](https://github.com/Kynderis/kidea/blob/65cdc2abdbbf205a7c1bedef297ca2eeedb75d59/KIDEA_ROADMAP.md#review-current), chi tiết từ [2e9a6cd](https://github.com/Kynderis/kidea/blob/2e9a6cda90bf23b54a2504bf1e1a6ee17272d862/KIDEA_DESIGN.md#release-identity-proposal): nhận diện gói/config/script theo nội dung; ID mỗi lần thực sự thực thi, quan sát thêm thuộc lần cũ. Đồng bộ [nguồn hợp đồng](KIDEA_DESIGN.md#release-identity-contract).
+- Rà G6, quyền G3, tham chiếu T02, hiệu lực T03, KA-13/25/28 và KQ-05/06/10; không đổi AC/QUALITY/G2, không đọc credential/build/deploy hoặc nhận chứng cứ vận hành thật.
+- Chỉ sửa DESIGN/ROADMAP/answer; kiểm tra nguồn/link/trạng thái/diff, không chạy test mới, sửa helper/skill/fixture, tạo scratch hoặc xóa dữ liệu. Giữ ngoại lệ hai thư mục rỗng T01.
+- Khép S06; chỉ mở S07 [H]. Gom các trường/tham chiếu/nơi lưu thành ba nhóm quyết định, giữ tên trường ở nguồn chi tiết; chưa đổi mẫu số 1 hoặc tạo schema số 2 thực thi. Sau S07 đủ hợp đồng mới thực hiện S03/S04 và đi tới gate bộ đọc T05; T04 chưa khép.
 
 ## 4. Tổng quan 10 phase xây Kidea
 

@@ -514,10 +514,13 @@ Gặp hồ sơ số 1, số lạ hoặc các file trộn định dạng: giữ n
 Làm rõ trước approval: số 1/số 2 là nhãn hai mẫu đang thiết kế trong repo, không yêu cầu Human chuyển một project đang chạy. Chuyển mẫu không chỉ sửa số: phải bổ sung/đối chiếu dữ liệu thiếu. Chính sách số 2 đã duyệt không có nghĩa schema số 2 đã đầy đủ hoặc parser đã tồn tại; mẫu T02/T03 vẫn nguyên trạng, các nhóm dữ liệu S07 còn chờ chốt.
 
 <a id="release-identity-proposal"></a>
+<a id="release-identity-contract"></a>
 
-#### Đề xuất R02-T04-S06-r1 — nhận diện gói phát hành và lần thực thi, chưa duyệt
+#### R02-T04-S06-r1 — nhận diện gói phát hành và lần thực thi, đã duyệt
 
-[Gói đọc ngắn](KIDEA_ROADMAP.md#release-identity-review). G6 đã chốt hồ sơ release/revision và giữ mỗi lần triển khai; S06 cụ thể hóa cách nhận diện để không chỉ tin tên version hoặc link. Không cấp quyền triển khai/PROD, không chọn runner/công cụ đóng gói; trường/kiểu/tham chiếu hoàn thiện ở S07.
+Human “Duyệt nhé” sau [giải thích dff52b1](https://github.com/Kynderis/kidea/blob/dff52b1b6e4bdb69d88a2e503b00499bd65a2799/answer.md) cho gói r1 đã rút gọn tại [65cdc2a](https://github.com/Kynderis/kidea/blob/65cdc2abdbbf205a7c1bedef297ca2eeedb75d59/KIDEA_ROADMAP.md#review-current), nguồn chi tiết từ 2e9a6cd; [kết quả](KIDEA_ROADMAP.md#r02-t04-s06-result). S06 cụ thể hóa G6 để không chỉ tin tên version hoặc link. Không cấp quyền triển khai/PROD, không chọn runner/công cụ đóng gói; trường/kiểu/tham chiếu hoàn thiện ở S07.
+
+Phần làm rõ trước xác nhận: “lần thực thi” ở đây là đưa sản phẩm lên môi trường chạy, ví dụ website lên máy chủ, không phải mỗi lần sửa tài liệu hoặc chỉ file exe. Sửa tài liệu tiếp tục theo hợp đồng phiên bản/approval/ghi local; tài liệu vận hành ghi nhận và làm căn cứ cho triển khai, không tự trở thành đối tượng được cài.
 
 **D1 — Hồ sơ bản phát hành tham chiếu danh sách thành phần có nhận diện nội dung cố định.** Với mỗi thành phần dự định triển khai, ghi ID/version, nguồn đúng bản, đích lấy gói và mã nhận diện nội dung của chính gói đã kiểm chứng. Với file thông thường dùng SHA-256/độ dài byte theo S01; với kho gói có định danh nội dung bất biến, giữ định danh đó và phương thức kiểm tra theo loại gói, không nhận nhãn có thể đổi như latest hoặc tên tag riêng lẻ. Không áp SHA-256 của file ZIP lên cây thư mục giải nén rồi gọi là cùng đối tượng. Profile project phải chỉ ra kiểm tra đối tượng nào; loại gói chưa có cách đối chiếu thì báo thiếu căn cứ, không tự chọn cơ chế để cho qua.
 
@@ -529,7 +532,83 @@ Danh sách còn gắn đúng cấu hình đích không nhạy cảm, schema dữ
 
 Mỗi lần giữ mục tiêu, phần đã thực thi, kết quả từng bước/thành phần và bản/config thực tế quan sát được. Đủ bằng chứng mới xác nhận thành công; web đạt/backend lỗi hoặc mất liên lạc không thành cả bản đã triển khai. Trước retry phải đối chiếu lần cũ và quyền, không tạo ID mới để được replay mù. Nguồn OperationRef phải khớp ID/release/target và bằng chứng, không lấy tên DEV thay kiểm tra đích thực. Hồ sơ ở nguồn vận hành, `.kidea` chỉ tham chiếu; kết quả theo thời điểm không chứng minh sức khỏe hiện tại.
 
-S03/S04 sẽ đối chiếu mẫu gói cùng tên khác nội dung, cấu hình/script đổi, lần chạy lại và quan sát thêm; chưa build/deploy/đọc credential hoặc tạo hồ sơ vận hành thật trong gói này.
+S03/S04 sẽ đối chiếu mẫu gói cùng tên khác nội dung, cấu hình/script đổi, lần chạy lại và quan sát thêm; chưa build/deploy/đọc credential hoặc tạo hồ sơ vận hành thật trong lượt này.
+
+<a id="schema-v2-proposal"></a>
+
+#### Đề xuất R02-T04-S07-r1 — hợp đồng hồ sơ số 2, chưa duyệt
+
+[Gói đọc ngắn](KIDEA_ROADMAP.md#schema-v2-review). Đây là ba nhóm hợp đồng dữ liệu để tạo mẫu và viết bộ đọc, không yêu cầu Human duyệt từng tên trường. Kế thừa nghĩa/quyền đã duyệt, không thêm state machine nghiệp vụ hoặc cơ chế ghi nguyên khối; T06 vẫn phải chốt và kiểm chứng cách ghi. Mẫu hiện có chưa đổi.
+
+**D1 — Tham chiếu phiên bản phải chỉ được bản cụ thể và nơi lấy lại.** Dùng chung một kiểu tham chiếu có vị trí nguồn, nơi giữ bản và mã nội dung; chỉ đủ link hoặc mã mà không lấy lại được bản cần thiết thì chưa đủ căn cứ. Bản trình review giữ tại vùng review, bản trước thao tác ở vùng checkpoint hoặc đúng bản Git đã xác minh; phân biệt nơi lưu để không dọn nhầm lịch sử duyệt. Nguồn ngoài repo giữ tham chiếu, không tự tải/chạy. Đánh đổi: thêm metadata và kiểm tra đích, nhưng không cần sao chép dữ kiện sang một kho trạng thái khác.
+
+**D2 — Gói duyệt hiện hành giữ liên kết tới lịch sử và lần đối chiếu.** Bổ sung mục đích duyệt/N/A, phản hồi, lý do miễn, căn cứ đúng bản và kết quả đối chiếu. Khi mở lại, bản hiện hành về nháp; bản từng được duyệt còn truy được qua lịch sử. Không nhập thêm nhãn approval ở tài liệu sản phẩm. Đánh đổi: cần quản lý các liên kết, đổi lại biết bản nào đã duyệt và vì sao hiện tại cần xét lại.
+
+**D3 — Mỗi lượt ghi hoặc triển khai giữ dự định và các kết quả quan sát riêng.** Lượt sửa file lưu bản trước/bản dự định và kết quả đọc lại; lần triển khai tham chiếu release cố định và kết quả từng thành phần. Chưa có bằng chứng thì biểu diễn thiếu/chưa xác nhận, không điền “thành công”. Dọn bản tạm phải ghi nó không còn dùng để phục hồi, trong khi lịch sử/evidence cần giữ vẫn còn. Đánh đổi là hồ sơ dài hơn, nhưng không lẫn việc định làm với việc đã xảy ra. Lượt sửa file và triển khai dùng loại record khác nhau, không gộp thành một hành động có chung quyền.
+
+##### Kiểu dùng chung và ranh giới
+
+Kế thừa `Text`, `ID`, `Ref`, mảng và quy tắc thiếu/trùng/sai của [hợp đồng số 1](#schema-fields-contract). Mọi trường liệt kê phải có; chỉ nơi ghi nullable mới dùng null. `UInt` là số nguyên an toàn không âm, `Positive` là số nguyên an toàn lớn hơn 0, `Time` là chuỗi thời điểm UTC có ngày/giờ/giây theo dạng `YYYY-MM-DDTHH:mm:ss.sssZ`, `SHA256` là 64 ký tự hex thường. Time là dữ kiện ghi nhận, không tự chứng minh thứ tự thực thi hoặc nguồn đáng tin.
+
+| Kiểu | Trường đề xuất | Điều kiện |
+|---|---|---|
+| Integrity | `method: Text`, `value: Text`, `byteLength: UInt hoặc null` | Với byte file: method là SHA256, value đúng kiểu SHA256, byteLength không null. Loại định danh khác chỉ dùng theo profile/phương thức đã xác minh hỗ trợ; thiếu hỗ trợ thì chưa xác nhận, không tự coi tương đương SHA-256. Không ghi hash secret vào hồ sơ public. |
+| SnapshotLocation | `kind: SNAPSHOT`, `ref: Ref` | Đích là file byte giữ nguyên trong project/quyền; Ref trỏ cả file, không phải một đoạn trích thay cho byte toàn file. |
+| GitLocation | `kind: GIT`, `commit: Text`, `path: Text` | Commit cố định trong repo project, path tương đối hợp lệ; phải đọc được nội dung và khớp integrity, không dùng branch/tag động. Không cấp quyền Git; không dùng thay snapshot bản trình S01. |
+| ExternalLocation | `kind: EXTERNAL`, `locator: Text`, `version: Text`, `profileRef: Ref` | Vị trí/bản cố định ở nơi được phép, cách kiểm tra trong profile nguồn. Không có secret trong locator, không tự mở/tải theo chuỗi này. Không hỗ trợ hoặc không truy được thì dừng phần phụ thuộc. |
+| VersionRef | `source: Ref hoặc null`, `location: SnapshotLocation/GitLocation/ExternalLocation`, `integrity: Integrity` | Nguồn trong repo có source, bao gồm anchor phạm vi; toàn bộ byte bản lưu vẫn được kiểm tra. source null chỉ nguồn ngoài repo được nhận diện bởi ExternalLocation. Riêng source ở đây nhận diện vị trí nguồn: khi đọc lịch sử hoặc bản dự định CREATE, không ép file hiện tại phải tồn tại; bản tại location phải truy được. Đối chiếu hiện hành vẫn phải báo file bị mất/thay đổi. Kiểm tra anchor trên bản tương ứng, không lấy anchor hiện tại thay bản cũ. |
+| ToolIdentity | `version: Text`, `components: ToolComponent[]` | components không rỗng; nhận diện bản công cụ thực khi tạo bằng chứng, không là version sản phẩm hoặc quyền nâng công cụ. |
+| ToolComponent | `name: Text`, `integrity: Integrity` | name duy nhất trong ToolIdentity; thành phần cần thiết theo bản công cụ/profile, không chứng minh đủ công cụ chỉ vì có một hash. |
+
+Các record số 2 dùng khối JSON trong Markdown như T02: `schemaVersion: 2`, `projectId: ID`, `kind` theo loại bên dưới. INDEX/work/plan và các kiểu Round/Item/Blocker/ReturnPoint/Source kế thừa toàn bộ trường/quy tắc số 1 trừ chỗ thay rõ dưới đây; không tự thêm trường lạ hoặc chuyển file cũ. INDEX thêm `createdWith: ToolIdentity`, `profileRefs: VersionRef[]`; đây là bản công cụ tạo hồ sơ và các quy tắc project làm căn cứ, không suy mọi lần sau cùng version. profileRefs chỉ rỗng khi không có profile project cần khai báo, không dùng rỗng để bỏ cấu hình bắt buộc. Khả năng hỗ trợ do bản công cụ thực khai báo, không lấy createdWith làm giấy chứng nhận tương thích.
+
+##### Review và lịch sử
+
+| Record/kiểu | Trường đề xuất | Điều kiện |
+|---|---|---|
+| review | Giữ `id`, `revision`, `ownerIds`, `subjectRefs`, `status`; thay `confirmationRef` bằng `VersionRef hoặc null`; thêm `purpose: CONTENT/NOT_APPLICABLE`, `feedbackRefs: VersionRef[]`, `waiverReasonRef: VersionRef hoặc null`, `subjectVersions: VersionRef[]`, `inputVersions: VersionRef[]`, `historyRefs: VersionRef[]`, `validityChecks: ValidityCheck[]` | ID/revision/status giữ nghĩa T03. IN_REVIEW/APPROVED phải có đủ subjectVersions đúng subjectRefs và đầu vào chi phối; DRAFT được chưa đủ nhưng không coi sẵn sàng. Không tự miễn các đầu vào chưa tìm được. |
+| ValidityCheck | `at: Time`, `beforeRefs: VersionRef[]`, `afterRefs: VersionRef[]`, `result: UNCHANGED/NON_SEMANTIC/REOPEN/UNKNOWN`, `reason: Text`, `affectedIds: ID[]` | Ghi đối chiếu trước/sau và ảnh hưởng theo T03. Thiếu bản thì UNKNOWN, giữ refs tìm được và nêu thiếu; không ghi UNCHANGED với mảng trống thay căn cứ. Không tạo trạng thái approval thứ tư. |
+
+CONTENT dùng waiverReasonRef null; NOT_APPLICABLE phải có lý do/phạm vi/nghĩa vụ còn giữ trước khi IN_REVIEW. APPROVED có confirmationRef đúng xác nhận Human/gói/revision/phạm vi và đủ điều kiện; source trong file tự nhận Human không thành xác nhận thật. Yêu cầu sửa được giữ trong feedbackRefs; khi đổi nội dung bản trình theo T03 thì tăng revision, lưu bản cũ và không gắn confirmationRef cũ vào nội dung mới. Sửa trình bày giữ xác nhận chỉ khi có ValidityCheck NON_SEMANTIC đủ căn cứ, không tự nói Human xác nhận lại.
+
+historyRefs trỏ bản review đã giữ theo byte trước khi thay; không coi những bản lịch sử cùng id/revision là nhiều record hiện hành. Chỉ work.reviewRefs chỉ định review hiện hành, mỗi ID một đích; không tự chọn file mới nhất. Không tạo vòng lịch sử; bản giữ chỉ dẫn về các bản trước đó, không sửa lịch sử để xóa lời xác nhận hoặc dựng lại bản không có. Kết quả đối chiếu cũ không thay việc đọc/đối chiếu nguồn khi tiếp tục.
+
+##### Lượt ghi local và dọn bản tạm
+
+| Record/kiểu | Trường đề xuất | Điều kiện |
+|---|---|---|
+| checkpoint | Header kind checkpoint; `id: ID`, `ownerId: ID`, `createdAt: Time`, `tool: ToolIdentity`, `permissionRefs: VersionRef[]`, `inputRefs: VersionRef[]`, `targets: WriteTarget[]`, `observations: WriteObservation[]`, `nextAction: Text` | ownerId tồn tại; targets không rỗng, mỗi path một đích. Đây là hồ sơ lượt ghi, không là task/gate thứ hai hoặc quyền có được từ chính record. work.checkpointRef trỏ record; khi bị ngắt vẫn phải phát hiện lượt dở theo T06, không coi mất con trỏ là chưa ghi. |
+| RecoveryCopy | `version: VersionRef`, `cleanup: CleanupReceipt hoặc null` | Khi còn cần phục hồi: cleanup null và lấy lại được đúng bản. Bản tạm đã dọn giữ nhận diện để truy lịch sử, không còn nhận là nguồn có thể phục hồi. Chỉ trường hợp này cho phép location của bản tạm đã dọn không còn đích. |
+| CleanupReceipt | `at: Time`, `reason: Text`, `evidenceRef: Ref` | Ghi căn cứ công việc/kiểm tra/quyền và không còn cần giữ theo S02. Đích evidence phải còn; không dùng receipt để che xóa lịch sử duyệt/Git/nguồn sản phẩm hoặc xóa khi ghi dở. |
+| WriteTarget | `path: Text`, `action: CREATE/UPDATE`, `before: RecoveryCopy hoặc null`, `planned: RecoveryCopy` | Path tương đối hợp lệ/root/quyền. before null chỉ CREATE khi đã xác minh chưa tồn tại; file rỗng khác không tồn tại. UPDATE cần bản ngay trước. Chưa có DELETE trong hợp đồng này. |
+| WriteObservation | `at: Time`, `phase: PRECHECK/WRITE/VERIFY/RESTORE/CLEANUP`, `results: WriteResult[]`, `evidenceRefs: VersionRef[]` | Giữ từng quan sát theo thứ tự ghi nhận, không xóa lần lỗi. Thiếu kết quả đích không là đích đạt; phase không chứng minh thao tác thành công. |
+| WriteResult | `path: Text`, `match: BEFORE/PLANNED/OTHER/UNKNOWN`, `integrity: Integrity hoặc null`, `detail: Text` | Path thuộc targets; integrity null khi chưa đọc/xác định được, phải nêu lý do. Match do đối chiếu thực tế, không do nhãn log. Với CREATE, BEFORE là xác minh đích chưa có, không gán hash file rỗng. |
+
+Chỉ kết luận lượt ghi hoàn tất từ đủ đích/quan hệ/kiểm tra, không có cờ DONE nhập tay trong checkpoint. Căn cứ thiếu hoặc bản bị Human sửa thêm thì giữ và hỏi theo S02. RecoveryCopy cleanup chỉ được áp dụng snapshot tạm của chính lượt ghi đã đủ điều kiện; không xóa Git hoặc bản lịch sử approval. Lỗi dọn ghi trong observations, không tạo receipt thành công. Bản được dọn không được dùng cho hành động restore sau này; thiếu căn cứ thì dừng. Bản dự định mới cũng là dữ liệu cần bảo vệ, không dựng lại từ trí nhớ sau ngắt.
+
+##### Nguồn phát hành và triển khai
+
+| Record/kiểu | Trường đề xuất | Điều kiện |
+|---|---|---|
+| ReleaseRef số 2 | Giữ `path`, `id`, `revision`; thêm `recordVersion: VersionRef` | Trỏ đúng bản hồ sơ vận hành, đối chiếu id/revision/phạm vi, không chỉ link hiện tại. Round.releaseRef dùng kiểu này. |
+| OperationRef số 2 | Giữ `path`, `id`, `release`, `environment`, `targetId`; thêm `recordVersion: VersionRef` | Trỏ bản đã quan sát của đúng lần thực thi; thay đổi quan sát tạo bản tham chiếu mới, không tự tạo operation ID mới. Kết quả luôn kèm thời điểm, không là giám sát live. |
+| release | Header kind release; `id: ID`, `revision: Positive`, `productVersion: Text hoặc null`, `components: ReleaseComponent[]`, `configRefs: VersionRef[]`, `schemaRefs: VersionRef[]`, `scriptRefs: VersionRef[]`, `evidenceRefs: VersionRef[]`, `approvalRefs: VersionRef[]`, `executionPlanRef: VersionRef`, `recoveryPlanRef: VersionRef` | components không rỗng, ID thành phần duy nhất. Bản chuẩn bị có thể thiếu version/gói nhưng chưa đủ triển khai; kế hoạch chỉ rõ phạm vi/điều kiện. Trước triển khai phải đủ tổ hợp và chứng cứ theo S06/G6/G2, không suy cấu trúc đúng là sẵn sàng. |
+| ReleaseComponent | `id: ID`, `version: Text hoặc null`, `sourceRefs: VersionRef[]`, `artifactRef: VersionRef hoặc null` | Thiếu nguồn/gói/version chỉ diễn tả chưa chuẩn bị đủ, không được đi vào lần triển khai. Định danh gói phải đúng loại đối tượng và phương thức kiểm tra đã được hỗ trợ. |
+| operation | Header kind operation; `id: ID`, `release: ReleaseRef`, `previousAttemptId: ID hoặc null`, `environment: Text`, `targetId: ID`, `actor: Text`, `tool: ToolIdentity hoặc null`, `startedAt: Time hoặc null`, `observations: OperationObservation[]` | ID duy nhất project; previousAttemptId có thật, không tự trỏ hoặc vòng. tool null chỉ chưa xác định được công cụ thực, phải nêu thiếu trong bằng chứng/quan sát và không tự nhận đủ điều kiện. startedAt null nghĩa chưa có xác nhận bắt đầu, không chứng minh chưa có tác dụng phụ. ID mới không cấp quyền retry. |
+| OperationObservation | `id: ID`, `at: Time`, `sourceRefs: VersionRef[]`, `components: ComponentResult[]`, `steps: StepResult[]` | ID quan sát duy nhất trong operation; bằng chứng đúng lần/đích/thời điểm. Quan sát thêm giữ lần trước, không ghi đè lỗi. Chưa có dữ kiện không tự tạo quan sát thành công. |
+| ComponentResult | `id: ID`, `result: NOT_STARTED/UNKNOWN/FAILED/SUCCEEDED`, `artifactRef: VersionRef hoặc null`, `configRefs: VersionRef[]`, `detail: Text` | ID thuộc release; bản thực quan sát được, không chép artifact mong muốn làm actual. SUCCEEDED cần đủ bằng chứng/điều kiện, không chỉ chuỗi enum. |
+| StepResult | `id: ID`, `result: NOT_STARTED/UNKNOWN/FAILED/SUCCEEDED`, `evidenceRefs: VersionRef[]`, `detail: Text` | Bước có trong executionPlan; NOT_STARTED cần căn cứ, không mặc định khi thiếu. Không tổng hợp thành toàn bộ đạt khi còn FAILED/UNKNOWN hoặc thiếu thành phần/bước bắt buộc. |
+
+Release/operation ở nguồn vận hành project, mặc định `docs/operations/`, không chuyển vào `.kidea`. Khối dữ liệu trên chỉ dành cho hồ sơ nguồn do Kidea quản lý theo hợp đồng này, không ép mọi tài liệu vận hành thành JSON. Nguồn có sẵn dùng định dạng khác cần cách đọc/đối chiếu được chốt trong profile trước phụ thuộc; chưa hỗ trợ thì báo thiếu, không tạo bản dữ kiện song song để giả tương thích. Dữ liệu nhạy cảm vẫn chỉ tham chiếu tại nơi được phép.
+
+##### Nơi lưu và điều kiện kiểm chứng
+
+- Review hiện hành vẫn theo work.reviewRefs trong `.kidea/reviews/`; bản byte lịch sử và căn cứ trình giữ dưới `.kidea/reviews/evidence/`. Mỗi file lưu có khóa lưu riêng, không ghép ID/tên do người dùng cung cấp trực tiếp thành đường dẫn. Ref chỉ định đường dẫn thực đã kiểm tra root/quyền, không tên suy đoán.
+- Lượt ghi và bản tạm nằm dưới `.kidea/checkpoints/`; record Markdown và payload byte phân biệt rõ, chỉ tạo khi có nội dung. Git đúng bản có thể thay payload trước thao tác theo S02. Không dùng chung payload tạm có thể dọn với bằng chứng review cần giữ; bản trình không tự bị xóa khi lượt ghi hoàn tất.
+- Bản cố định của hồ sơ release/operation và bằng chứng vận hành giữ cùng nguồn vận hành hoặc nơi được phép do project chỉ định; không dùng thư mục review để tạo kho lịch sử triển khai thứ hai. Chỉ những phần thực sự là căn cứ của một gói Human review mới được tham chiếu theo vai trò review.
+- Snapshot raw là byte bằng chứng, không là nguồn trạng thái có thẩm quyền thứ hai. Bộ đọc chỉ nhận record hiện hành ở danh mục nguồn, lịch sử được đọc trong ngữ cảnh đối chiếu; không tự nạp mọi file tìm thấy làm record hiện hành hoặc theo link ngoài quyền. T06 chốt phát hiện lượt ghi dở/đường ghi/giới hạn đồng thời trước triển khai.
+- Ràng buộc chung: đúng project/kiểu/version, trường/enum và đích, không vòng/trùng/thiếu, không tự chuyển số 1 hoặc điền mặc định. Ref đủ không là quyền hoặc bằng chứng ngữ nghĩa; UNKNOWN/nullable không được dùng để cho qua điều kiện hành động. Chuẩn bị chưa đủ là dữ liệu cần báo, không phải lý do bỏ kiểm tra cấu trúc hoặc tự N/A.
+- Sau Human duyệt ba nhóm này, S03/S04 mới tạo bộ mẫu số 2 theo hợp đồng, đối chiếu T02/T03, trước/giữa/sau ghi, Git/cleanup và release/quan sát. Sửa lỗi tên trường/format thuần cơ học không tạo gate mới; nếu phát hiện quyết định đổi nghĩa/hành vi còn thiếu thì trình đúng phần đó. Chưa có parser/ghi/approve/deploy hoạt động từ bảng này.
 
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>
