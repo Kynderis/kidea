@@ -1,8 +1,11 @@
-Đã đối chiếu 51 tình huống mẫu; 16 test khung vẫn đạt. Chưa có bộ đọc thật.
+Ý 2 là **dùng một đoạn chương trình có sẵn, thay vì tự viết lại**, bro. Đoạn chương trình đó gọi là “thư viện”.
 
-Tiếp theo, mình đề xuất:
+Ví dụ hồ sơ ghi:
+- Tên việc: Làm trang đăng nhập.
+- Trạng thái: Đang làm.
 
-1. **Làm chức năng “xem tiến độ”.** Kidea đọc hồ sơ và báo đang làm gì, còn vướng gì. Ví dụ thiếu bản đã duyệt thì chỉ rõ chỗ thiếu, không tự đoán đã xong hoặc sửa file.
-2. **Dùng thêm [bộ đọc dữ liệu có sẵn](https://github.com/microsoft/node-jsonc-parser/tree/v3.3.1).** Chỉ thêm thư viện này trong repo, giúp không phải tự viết phần đọc cú pháp. Đổi lại có thêm một thư viện cần quản lý; quy tắc riêng của Kidea vẫn phải viết và kiểm tra.
+Thư viện giúp lấy đúng các thông tin ấy ra để Kidea xử lý. **Còn việc kiểm tra trạng thái có hợp lệ, thiếu gì, được làm tiếp chưa… vẫn do phần Kidea mình viết.**
 
-Bạn duyệt hai ý này nhé? Sau đó mình mới thêm thư viện, viết bộ đọc và test; chưa làm chức năng sửa, duyệt hay triển khai.
+Lợi ích: bớt một phần phải tự viết và kiểm tra từ đầu. Đánh đổi: dự án phụ thuộc thêm vào thư viện đó.
+
+Bạn không phải mở thêm ứng dụng. Mình sẽ thêm nó vào code của Kidea, **sau khi bạn đồng ý**.
