@@ -8,20 +8,32 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã viết chức năng xem tiến độ chỉ đọc, 79 bài kiểm tra đạt.** S01 đã duyệt, S02 hoàn tất; S03 đang chờ chốt lượt thử trong phiên AI mới. Chưa có chức năng sửa/duyệt/triển khai. [Bằng chứng và giới hạn](tests/evidence/r02-t05.md).
+**Đã khép phần xem tiến độ chỉ đọc:** 79 bài kiểm tra và gói 3 phiên AI × 3 mẫu đạt; file không đổi trong các lượt đo. Chưa có chức năng sửa/duyệt/triển khai. Tiếp theo là T06, bảo vệ nội dung khi ghi; S01 đang trình thiết kế, chưa viết code. [Bằng chứng và giới hạn T05](tests/evidence/r02-t05.md).
 
 <a id="review-current"></a>
+<a id="safe-write-review"></a>
+
+### R02-T06-S01-r1 — Ghi file không đè sửa của bạn [H]
+
+Khi Kidea sửa file mà bạn cũng đang sửa, hoặc máy ngắt giữa chừng, cần bảo vệ nội dung và biết phần nào còn dở.
+
+**D1 — Khóa file trong lúc ghi.** Dùng PowerShell/Windows có sẵn để chặn thao tác xung đột; không lấy được khóa thì dừng. Đổi lại, editor có thể tạm không lưu/đọc được; bản đầu chỉ ghi trên ổ NTFS local, không thư mục đồng bộ/ổ mạng/đường dẫn liên kết.
+
+**D2 — Chấp nhận bản ghi dở nhưng không giấu lỗi.** Ghi dưới khóa, giữ bản trước; chỉ tự phục hồi lỗi của chính lượt đang giữ khóa liên tục. Sau ngắt, chưa rõ ai sửa thì giữ nguyên và hỏi. Không hứa nhiều file đổi đồng thời hoặc chống mất điện.
+
+Bạn duyệt hai lựa chọn để mình viết và thử trên dữ liệu giả nhé? [Chi tiết thiết kế/kiểm chứng](KIDEA_DESIGN.md#safe-write-proposal). Không mở thêm phiên AI hoặc ghi dự án thật.
+
 <a id="status-ai-trial-review"></a>
 
 ### R02-T05-S03 — Thử cách AI báo tiến độ
 
-Bộ đọc đã chạy được. Còn cần kiểm tra AI có hiểu đúng kết quả hay nói quá thành “đã xong/đã được duyệt”.
+Bộ đọc đã chạy được; gói này kiểm tra AI có hiểu đúng kết quả hay nói quá thành “đã xong/đã được duyệt”.
 
-Đề xuất **3 phiên AI mới, độc lập**. Mỗi phiên đọc ba hồ sơ giả cố định: việc còn dở, hồ sơ tự ghi “đã duyệt”, và hồ sơ thiếu bản lưu. AI phải báo đúng giới hạn, không tự sửa hay làm tiếp. So file trước/sau và giữ cả lỗi.
+Gói đã duyệt: **3 phiên AI mới, độc lập**. Mỗi phiên đọc ba hồ sơ giả cố định: việc còn dở, hồ sơ tự ghi “đã duyệt”, và hồ sơ thiếu bản lưu. AI phải báo đúng giới hạn, không tự sửa hay làm tiếp. So file trước/sau và giữ cả lỗi.
 
 Chỉ dùng vùng thử trong repo, không chạm dự án thật hoặc dịch vụ ngoài; mỗi phiên tối đa 3 phút, không tự chạy thêm khi lỗi. Có tiêu thụ hạn mức AI. Đây là phép thử hữu hạn, không chứng nhận Kidea luôn đúng.
 
-Bạn cho chạy gói thử này nhé? S03 vẫn là việc [A]; đây là chốt số lần/phạm vi/quyền thử còn thiếu, không thêm gate duyệt lại thiết kế.
+Human “Duyệt nhé” sau [answer 8443783](https://github.com/Kynderis/kidea/blob/844378309742f7f1df934369825b12eb4cf18dab/answer.md) đã cấp phạm vi/quyền gói này. Đã chạy đủ ba phiên, cả ba báo đúng ba mẫu và giới hạn; nguồn/dữ liệu không đổi. [Kết quả chi tiết](tests/evidence/r02-t05.md). S03 là việc [A], không thêm approval sản phẩm; không dùng gói đã chạy để mở thêm phiên.
 
 <a id="reader-status-review"></a>
 
@@ -147,9 +159,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T04-S04 | DONE | [A] — đối chiếu tĩnh và QA catalog | Rà tham chiếu/hash/recipe và caller; 51 biến thể dựng được, 16 test khung đạt, chưa chấm expected bằng Kidea; [kết quả](#r02-t04-result) |
 | R02-T05-S01 | DONE | R02-T05-S01-r1 — APPROVED | Human “Mình duyệt nhé” sau giải thích 6ad94cb; D1–D2 gói f54d81a |
 | R02-T05-S02 | DONE | [A] — triển khai và test | Status schema 2 chỉ đọc, parser local khóa phiên bản; 79/79 test; [bằng chứng](tests/evidence/r02-t05.md) |
-| R02-T05-S03 | IN_PROGRESS | Chờ phạm vi/quyền thử AI | Đã thử Unicode/CRLF/đường dẫn/Git/nguồn đổi và hash; chưa chạy phiên AI mới; [gói thử](#status-ai-trial-review) |
+| R02-T05-S03 | DONE | [A] — quyền gói 3 phiên sau 8443783 | 79 bài helper cùng 3 phiên × B01/A01/V03 đạt; nguồn/hash không đổi trong lượt, không nhận ổn định mọi tình huống; [bằng chứng](tests/evidence/r02-t05.md) |
+| R02-T06-S01 | IN_PROGRESS | R02-T06-S01-r1 — IN_REVIEW | Chờ Human chọn cơ chế khóa Windows và ghi/phục hồi dưới khóa; chưa code; [gói hiện hành](#safe-write-review) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; T05-S01/S02 DONE, chỉ T05-S03 IN_PROGRESS, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Có lát cắt status, chưa có pilot; test helper không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; T05 đủ ba subtask DONE, chỉ T06-S01 IN_PROGRESS, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Có lát cắt status, chưa có pilot; test helper hoặc ba phiên hữu hạn không được cộng thành nghiệm thu toàn KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 

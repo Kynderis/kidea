@@ -1,9 +1,8 @@
-Đã viết chức năng **xem tiến độ chỉ đọc**; 79 bài kiểm tra đều đạt. Dùng skill `skill-creator` để cập nhật hướng dẫn gọi chức năng và giữ giới hạn không tự sửa/duyệt/triển khai.
+**3 phiên AI × 3 mẫu đều đạt**, dữ liệu không đổi; chạy lại 79 bài kiểm tra cũng đạt. Dùng skill [OpenAI Docs](https://learn.chatgpt.com/docs/non-interactive-mode) để cấu hình phiên chỉ đọc.
 
-Tiếp theo cần thử xem AI có diễn đạt đúng kết quả hay không.
+Tiếp theo là bảo vệ file khi ghi. Mình đề xuất:
 
-Mình đề xuất **3 phiên AI mới, độc lập**. Mỗi phiên đọc ba hồ sơ giả: việc còn dở, hồ sơ tự ghi “đã duyệt”, và hồ sơ thiếu bản lưu. AI phải báo đúng giới hạn, không tự sửa hoặc làm tiếp.
+1. **Khóa file lúc sửa**, bằng PowerShell/Windows có sẵn. Không lấy được khóa thì dừng; editor có thể tạm không lưu được. Bản đầu chỉ ghi trên ổ NTFS local, không ổ mạng/thư mục đồng bộ/đường dẫn liên kết.
+2. **Giữ bản trước và nhận rõ phần ghi dở.** Chỉ tự phục hồi lỗi khi vẫn giữ khóa liên tục; sau ngắt, chưa rõ ai sửa thì giữ nguyên và hỏi. Không bảo đảm nhiều file đổi đồng thời hoặc chống mất điện.
 
-Chỉ dùng vùng thử trong repo; mỗi phiên tối đa 3 phút, không tự chạy thêm khi lỗi. Có tiêu thụ hạn mức AI; chưa đụng dự án thật.
-
-Bạn cho chạy [gói thử này](KIDEA_ROADMAP.md#status-ai-trial-review) nhé?
+Bạn duyệt [hai lựa chọn này](D:/Code/kynderis/kidea/KIDEA_ROADMAP.md#safe-write-review) để mình viết và thử trên dữ liệu giả nhé? Chưa ghi dự án thật.
