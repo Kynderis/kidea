@@ -1,10 +1,16 @@
-Đã ghi nhận duyệt nhé bro. Mẫu hồ sơ mới đã được chốt về nguyên tắc; chưa đổi mẫu thử hoặc viết bộ đọc.
+Có, bro. **Chậm một phần do mình chia gói quá vụn và nhắc lại những nguyên tắc bạn đã duyệt.** Chỉ rút ngắn câu sẽ chưa đủ.
 
-Tiếp theo: **làm sao biết đã triển khai đúng bản và không nhầm các lần chạy?** Mình đề xuất:
+Mình đề xuất cách làm mới:
 
-1. **Không chỉ nhìn tên file hoặc số phiên bản.** Hai file cùng tên “web-1.0.zip” có thể chứa nội dung khác nhau. Kidea phải nhận diện đúng gói đã kiểm tra, kèm cấu hình và script tương ứng; trước triển khai đối chiếu lại, khác thì dừng. Đổi tổ hợp phải ghi bản hồ sơ mới, không sửa âm thầm bản đã chọn.
-2. **Mỗi lần thực sự triển khai có mã riêng.** Lần đầu lỗi, chạy lại thì ghi lần mới và giữ lỗi cũ. Còn chỉ vào kiểm tra lần đầu đã thành công chưa thì bổ sung kết quả cho lần đầu, không tính thành một lần triển khai khác. Mất kết nối không có nghĩa được chạy lại ngay.
+1. **Mỗi lượt khoảng 100–150 từ:** việc cần giải quyết → tối đa 3 quyết định mới → lợi ích/đánh đổi → bạn đang duyệt gì. Dùng ví dụ khi cần; không đưa tên trường hay thuật ngữ vào nếu chúng không giúp bạn quyết định.
+2. **Không hỏi lại điều đã chốt.** Chi tiết triển khai thường lệ trong thiết kế/quyền đã có thì mình tự làm và kiểm tra. Thay đổi quan trọng về hành vi, kiến trúc, dữ liệu, quyền hoặc chi phí vẫn phải trình.
+3. **Gom các lựa chọn liên quan, rồi làm liền mạch đến điểm cần bạn quyết định tiếp.** Rà các gói còn lại để bỏ lần hỏi trùng; việc điều chỉnh các điểm duyệt hiện có phải được thống nhất, không tự bỏ.
 
-Cách này cần thêm thông tin đối chiếu, nhưng giúp tránh triển khai nhầm hoặc che mất lần lỗi. Không đưa mật khẩu/token vào hồ sơ.
+Ví dụ, gói hiện tại chỉ cần tập trung vào:
+> Nhận diện gói phát hành bằng nội dung, không chỉ tên; phân biệt một lần triển khai mới với việc xem lại kết quả lần cũ.
 
-Bạn duyệt hai cách này nhé? [Gói chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current) vẫn chỉ là thiết kế, chưa build/deploy hoặc cấp quyền chạy PROD.
+Các nguyên tắc “giữ lỗi cũ, không chạy lại mù” đã duyệt thì không cần giải thích lại.
+
+**Tài liệu vẫn đầy đủ; bản gửi bạn phải đủ để quyết định, không giấu rủi ro trong link.**
+
+Bạn đồng ý cách làm này nhé? Lần này chỉ chốt cách phối hợp, chưa tính là duyệt gói phát hành đang chờ.
