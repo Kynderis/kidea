@@ -1,8 +1,11 @@
-Đã cập nhật cách review mới. Gói đang chờ còn hai ý:
+Đơn giản là **đừng cài nhầm bản, và ghi rõ mỗi lần cài**, bro.
 
-1. **Nhận diện đúng gói bằng mã nội dung cố định**, kèm cấu hình/script. Hai file cùng tên có thể khác nội dung; trước triển khai phải đối chiếu, không khớp thì dừng.
-2. **Mỗi lần thực sự triển khai có mã riêng.** Chạy lại thì tạo lần mới nối với lần trước; chỉ xem thêm kết quả thì bổ sung vào lần cũ.
+**1. Kiểm tra đúng bản trước khi cài**
+Bạn đã kiểm tra file A và thấy chạy tốt. Sau đó có file B cùng tên nhưng nội dung khác. Kidea phải nhận ra B không phải A và dừng lại. Cấu hình và các lệnh cài đi kèm cũng phải đúng bản đã kiểm tra.
 
-Lợi ích: tránh nhầm bản và lần chạy. Đánh đổi: thêm dữ liệu đối chiếu. Quyền, bảo mật, giữ lỗi và phục hồi đã chốt vẫn giữ nguyên.
+**2. Ghi riêng từng lần cài**
+- Cài lần đầu bị lỗi → giữ kết quả lần 1.
+- Cài lại → ghi lần 2, liên kết với lần 1.
+- Chỉ vào xem lần 1 đã chạy được chưa → bổ sung kết quả lần 1, không tính là lần 2.
 
-Bạn duyệt hai ý này nhé? Chỉ chốt cách nhận diện hồ sơ, chưa chạy triển khai hoặc chốt các trường cụ thể. [Chi tiết](https://github.com/Kynderis/kidea/blob/master/KIDEA_ROADMAP.md#review-current).
+Cần lưu thêm thông tin, đổi lại tránh nhầm bản và mất dấu lần lỗi. **Hiện chỉ duyệt cách quản lý này, chưa cài hay triển khai gì.**
