@@ -8,26 +8,22 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã duyệt và khép R02-T04-S06 — nhận diện bản sản phẩm và từng lần triển khai.** Chỉ S07 chờ duyệt hợp đồng hồ sơ số 2; chưa tạo mẫu số 2 hoặc viết bộ đọc.
+**Đã khép R02-T04 — hợp đồng số 2 và 51 tình huống mẫu.** Mẫu được dựng/đối chiếu trong bộ nhớ; chưa phải 51 bài test chức năng Kidea. Chỉ T05-S01 chờ duyệt cách làm bộ đọc/status và dependency local.
 
 <a id="review-current"></a>
-<a id="schema-v2-review"></a>
+<a id="reader-status-review"></a>
 
-### R02-T04-S07-r1 — Hồ sơ cần ghi những gì? [H]
+### R02-T05-S01-r1 — Viết chức năng xem tiến độ [H]
 
-Task T04 còn chốt mẫu hồ sơ để viết bộ đọc:
+Tiếp theo sẽ viết chức năng “xem tiến độ”.
 
-**D1 — Mỗi bản lưu có nguồn, nơi lấy lại và mã đối chiếu.** Tách bản tạm trước sửa khỏi lịch sử duyệt để không dọn nhầm.
+**D1 — Đọc hồ sơ rồi báo đang làm gì, còn vướng gì.** Ví dụ hồ sơ thiếu bản đã duyệt: chỉ rõ thiếu ở đâu, không tự đoán việc đã xong hoặc sửa file để che lỗi. Lệnh này chỉ đọc.
 
-**D2 — Phiếu duyệt ghi rõ duyệt gì, dựa trên bản nào, cùng phản hồi và lịch sử.** Chỉ một phiếu hiện hành; bản cũ vẫn truy được.
+**D2 — Dùng thêm một bộ đọc dữ liệu có sẵn.** Chọn [jsonc-parser 3.3.1](https://github.com/microsoft/node-jsonc-parser/tree/v3.3.1), chỉ bổ sung trong repo. Giúp không phải tự viết phần đọc cú pháp; đổi lại có thêm một thư viện cần quản lý. Quy tắc riêng của Kidea vẫn phải viết và kiểm tra.
 
-**D3 — Hồ sơ thao tác tách “định làm” khỏi “đã xảy ra”.** Ghi kết quả từng file/thành phần; thiếu bằng chứng không thành thành công. Sửa file và triển khai là hai loại hồ sơ riêng.
+Bạn duyệt hai lựa chọn này nhé? Sau đó mới thêm thư viện, viết bộ đọc và test; chưa làm chức năng sửa/duyệt/triển khai.
 
-Đánh đổi: thêm dữ liệu/liên kết để kiểm tra, nhưng tránh mất căn cứ và báo xong sai.
-
-Bạn duyệt ba nhóm này nhé? Quyền đã chốt giữ nguyên; chưa viết bộ đọc.
-
-Nguồn: [hợp đồng trường và nơi lưu](KIDEA_DESIGN.md#schema-v2-proposal).
+Nguồn: [hợp đồng đọc và đầu ra](KIDEA_DESIGN.md#reader-status-proposal).
 
 <a id="working-rules"></a>
 
@@ -42,7 +38,7 @@ Human “Đồng ý nhé” ngày 2026-09-13 sau [đề xuất 0f5a472](https://
 - **Phase:** một nhóm năng lực có thể kiểm chứng tích hợp; cuối phase có Human gate.
 - **Task:** một đầu ra cụ thể. **Subtask:** một lát cắt đủ nhỏ để làm, kiểm tra và nếu cần thì duyệt độc lập.
 - Gói review tối đa **3 quyết định mới thực sự độc lập**, thường 2; một quyết định thì chỉ hỏi một. Gom các lựa chọn liên quan khi vẫn đủ rõ, không giấu nhiều lựa chọn trong một dòng “duyệt cả gói”. Mỗi quyết định có đề xuất, lợi ích/hệ quả và đánh đổi quan trọng.
-- Theo yêu cầu Human ngày 2026-09-11, mỗi quyết định giải thích dễ hiểu: việc này giải quyết vấn đề gì, đề xuất cách nào, vì sao/lợi ích và đánh đổi, bạn đang duyệt điều gì và điều gì chưa duyệt. Giải nghĩa thuật ngữ bằng lời thường hoặc ví dụ; không dùng mã task hay danh sách từ kỹ thuật thay giải thích.
+- Theo yêu cầu Human ngày 2026-09-11 và nhắc lại ngày 2026-09-13: bắt đầu bằng tình huống cụ thể và việc Kidea sẽ làm, dùng từ đời thường; tránh thuật ngữ/tên trường nếu không cần để quyết định. Nếu bắt buộc dùng thuật ngữ thì giải nghĩa ngay. Không thay “triển khai website” bằng chữ “cài” chung chung gây lẫn với sửa tài liệu. Mỗi quyết định vẫn đủ vấn đề, cách làm, lợi ích/đánh đổi và phạm vi đang/chưa duyệt; mã task chỉ để truy nguồn, không thay giải thích.
 - Phần bắt buộc Human đọc **khoảng 100–150 từ tiếng Việt**: một câu mục tiêu, tối đa ba quyết định mới, lợi ích/đánh đổi và phạm vi đang duyệt; thường chỉ một link nguồn mở thêm. Đây là mục tiêu trình bày, không cắt rủi ro để đủ số chữ. Ví dụ chỉ dùng khi giúp quyết định; tên trường/thuật ngữ không cần thiết để trong tài liệu. Gói phức tạp được giải thích thêm đúng chỗ hoặc chia theo quyết định thật, không chia vụn theo từng trường.
 - Điều đã duyệt chỉ nhắc “giữ nguyên” nếu cần, không hỏi/giải thích lại. Tài liệu và kiểm tra vẫn đầy đủ; nội dung chuyên sâu không được giấu lựa chọn hoặc rủi ro đáng kể mà Human cần biết để quyết định. Giữ khả năng truy đúng bản/gói/phạm vi, không dùng bản ngắn thay căn cứ đã duyệt.
 - AI vẫn đọc đủ nguồn/phụ thuộc, kiểm tra ngữ nghĩa và ảnh hưởng xuyên chuỗi. Bản tóm tắt cho Human không thay đầu vào phân tích của AI.
@@ -134,9 +130,12 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T04-S02 | DONE | R02-T04-S02-r1 — APPROVED với làm rõ Git/cleanup | Human “Ok, Tôi duyệt cả 2 nhé” sau gói 24a3b61 và giải thích trong hội thoại; [kết quả](#r02-t04-s02-result) |
 | R02-T04-S05 | DONE | R02-T04-S05-r1 — APPROVED | Human “Hay quá, mình duyệt nhé” sau giải thích dc266ea cho gói e136a0e; [kết quả](#r02-t04-s05-result) |
 | R02-T04-S06 | DONE | R02-T04-S06-r1 — APPROVED | Human “Duyệt nhé” sau giải thích dff52b1, gói r1 rút gọn 65cdc2a; [kết quả](#r02-t04-s06-result) |
-| R02-T04-S07 | IN_PROGRESS | R02-T04-S07-r1 — IN_REVIEW | Trình ba nhóm trường/tham chiếu/nơi lưu số 2, giữ chính sách đã duyệt; [gói hiện hành](#review-current) |
+| R02-T04-S07 | DONE | R02-T04-S07-r1 — APPROVED | Human “Tôi duyệt” sau answer 7fd8d05; D1–D3 mẫu số 2 đã đồng bộ; [kết quả](#r02-t04-result) |
+| R02-T04-S03 | DONE | [A] — mẫu theo hợp đồng | 48 file ảo baseline, 51 biến thể/expected, không ghi project mẫu ra đĩa; [bằng chứng](tests/evidence/r02-t04.md) |
+| R02-T04-S04 | DONE | [A] — đối chiếu tĩnh và QA catalog | Rà tham chiếu/hash/recipe và caller; 51 biến thể dựng được, 16 test khung đạt, chưa chấm expected bằng Kidea; [kết quả](#r02-t04-result) |
+| R02-T05-S01 | IN_PROGRESS | R02-T05-S01-r1 — IN_REVIEW | Trình bộ đọc/status chỉ đọc và thêm jsonc-parser 3.3.1 local; chưa cài/code; [gói hiện hành](#review-current) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04-S01/S02/S05/S06 DONE; chỉ R02-T04-S07 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; chỉ R02-T05-S01 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
@@ -498,6 +497,18 @@ R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result
 - Rà G6, quyền G3, tham chiếu T02, hiệu lực T03, KA-13/25/28 và KQ-05/06/10; không đổi AC/QUALITY/G2, không đọc credential/build/deploy hoặc nhận chứng cứ vận hành thật.
 - Chỉ sửa DESIGN/ROADMAP/answer; kiểm tra nguồn/link/trạng thái/diff, không chạy test mới, sửa helper/skill/fixture, tạo scratch hoặc xóa dữ liệu. Giữ ngoại lệ hai thư mục rỗng T01.
 - Khép S06; chỉ mở S07 [H]. Gom các trường/tham chiếu/nơi lưu thành ba nhóm quyết định, giữ tên trường ở nguồn chi tiết; chưa đổi mẫu số 1 hoặc tạo schema số 2 thực thi. Sau S07 đủ hợp đồng mới thực hiện S03/S04 và đi tới gate bộ đọc T05; T04 chưa khép.
+
+<a id="schema-v2-review"></a>
+<a id="r02-t04-result"></a>
+
+### Kết quả R02-T04-S07/S03/S04 và khép task — ngày 2026-09-13
+
+- Human “Tôi duyệt” sau [answer 7fd8d05](https://github.com/Kynderis/kidea/blob/7fd8d059db6b9085f13ec4ed6427126b57317880/answer.md), xác nhận D1–D3 của S07-r1 về tham chiếu/nơi lưu, review/lịch sử và dự định/quan sát của lượt ghi/triển khai. Đồng bộ [hợp đồng số 2](KIDEA_DESIGN.md#schema-v2-contract). Human đồng thời yêu cầu các phần giải thích sau dễ hiểu hơn để đọc/duyệt nhanh; đã cụ thể hóa ở quy tắc trình bày.
+- S03: tạo [catalog số 2](tests/fixtures/r02-t04/README.md) gồm baseline 48 file ảo/6 record hiện hành và 51 biến thể, có plan ở biến thể riêng. Dữ liệu/snapshot tạo trong bộ nhớ; sourceCommit giữ bản hợp đồng 7fd8d05. Không đổi mẫu số 1 T02 hoặc tình huống T03, không dựng pilot/cây project trên đĩa.
+- S04: rà cấu trúc/ý nghĩa/caller, sửa mẫu C04 về đúng BEFORE cho đích chưa tạo, C11 đủ trạng thái việc/gate giả, R08 dùng revision r2 thay sửa r1; tách source từng thành phần và bằng chứng trước/sau triển khai. Đối chiếu KA-02/05–13/25/28, G2/G4/G6, KQ-02/03/05/06/10; không nhận các biến thể chưa chạy là PASS.
+- QA: 51 biến thể dựng được, 44 lượt kiểm tra Ref baseline và 30 VersionRef có byte/hash phù hợp; recipe Git/cleanup/retry/quan sát nhất quán, file catalog trên đĩa không đổi. 16 test khung đạt. [Evidence](tests/evidence/r02-t04.md) giữ số/hash/lỗi mẫu đã sửa và giới hạn; đây không phải 51 test parser/AI/Git/filesystem thực.
+- Không sửa helper/skill/AC/QUALITY/G2 hoặc thêm dependency; không chạy AI mới, approve, deploy, đọc credential hoặc xóa file. Nguồn test dùng lại, không scratch; ngoại lệ hai thư mục rỗng T01 giữ nguyên.
+- Đủ bảy subtask T04 DONE; R02 chưa khép. Chỉ mở T05-S01 [H], bộ đọc/status và dependency còn là đề xuất; T06 giữ gate thuật toán ghi/khôi phục trước triển khai.
 
 ## 4. Tổng quan 10 phase xây Kidea
 
