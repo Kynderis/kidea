@@ -1,11 +1,10 @@
-Đơn giản là **đừng cài nhầm bản, và ghi rõ mỗi lần cài**, bro.
+Bạn không hiểu sai; **mình dùng chữ “cài” khiến bạn hiểu nhầm**. Không phải đang nói riêng về file `.exe`.
 
-**1. Kiểm tra đúng bản trước khi cài**
-Bạn đã kiểm tra file A và thấy chạy tốt. Sau đó có file B cùng tên nhưng nội dung khác. Kidea phải nhận ra B không phải A và dừng lại. Cấu hình và các lệnh cài đi kèm cũng phải đúng bản đã kiểm tra.
+Có hai việc khác nhau:
 
-**2. Ghi riêng từng lần cài**
-- Cài lần đầu bị lỗi → giữ kết quả lần 1.
-- Cài lại → ghi lần 2, liên kết với lần 1.
-- Chỉ vào xem lần 1 đã chạy được chưa → bổ sung kết quả lần 1, không tính là lần 2.
+- **Sửa tài liệu:** ví dụ sửa yêu cầu nghiệp vụ. Kidea lưu/đối chiếu phiên bản và xác nhận duyệt theo phần đã chốt. **Không gọi mỗi lần sửa tài liệu là một lần triển khai.**
+- **Triển khai sản phẩm:** ví dụ đưa phiên bản website mới lên máy chủ. “Lần 1” là lần đưa lên đầu tiên; nếu bị lỗi rồi thực sự chạy lại thì đó là “lần 2”. Chỉ vào xem kết quả không tính là chạy lại.
 
-Cần lưu thêm thông tin, đổi lại tránh nhầm bản và mất dấu lần lỗi. **Hiện chỉ duyệt cách quản lý này, chưa cài hay triển khai gì.**
+Gói đang hỏi bạn thuộc **việc thứ hai**: ghi đúng phiên bản sản phẩm, cấu hình, các lệnh triển khai và kết quả từng lần đưa lên môi trường chạy.
+
+**Tài liệu chỉ ghi nhận và làm căn cứ; không phải đối tượng được “cài”.**
