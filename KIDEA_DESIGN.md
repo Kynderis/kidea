@@ -4,7 +4,7 @@ Trạng thái: `CĂN CỨ R01 ĐÃ DUYỆT — ĐÃ CÓ KHUNG THỬ R02-T01, CH�
 
 Ngày cập nhật: 2026-09-12
 
-Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); đã tạo khung skill/helper để thử, chưa triển khai sáu chức năng sản phẩm hoặc pilot.
+Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); đã có status schema 2 chỉ đọc, năm chức năng còn lại và pilot chưa triển khai.
 
 Human đã duyệt kết quả tích hợp R01 và cho mở R02 từng phần tại [gate khép căn cứ](KIDEA_ROADMAP.md#r01-result). Không coi đây là duyệt mọi chi tiết còn đề xuất, số đo/fixture, runtime/schema hoặc quyền cài/chạy pilot/deploy.
 
@@ -613,9 +613,11 @@ Release/operation ở nguồn vận hành project, mặc định `docs/operation
 
 <a id="reader-status-proposal"></a>
 
-#### Đề xuất R02-T05-S01-r1 — bộ đọc và status chỉ đọc, chưa duyệt
+<a id="reader-status-contract"></a>
 
-[Gói đọc ngắn](KIDEA_ROADMAP.md#reader-status-review). T04 đã có hợp đồng/mẫu; T05 bắt đầu helper thực. Gói này chốt hai lựa chọn: đầu ra kiểm tra/tiến độ chỉ đọc và dùng một dependency phân tích JSON. Chưa sửa helper hoặc cài package trong lượt trình.
+#### R02-T05-S01-r1 — bộ đọc và status chỉ đọc, đã duyệt
+
+[Gói đọc ngắn](KIDEA_ROADMAP.md#reader-status-review). Human “Mình duyệt nhé” ngày 2026-09-13 sau giải thích tại [6ad94cb](https://github.com/Kynderis/kidea/blob/6ad94cb/answer.md), duyệt D1–D2 đã trình tại f54d81a: đầu ra kiểm tra/tiến độ chỉ đọc và jsonc-parser 3.3.1 local. S02 triển khai theo hợp đồng dưới đây; approval không mở chức năng ghi/duyệt/triển khai.
 
 **D1 — Lệnh status đọc hồ sơ số 2 rồi báo tiến độ cùng điều chưa đủ, không sửa dữ liệu.** Giữ cách gọi action `status` không thêm đối số; cwd phải là root project được chọn có `.kidea/INDEX.md`, không tự tìm ngược sang project cha hoặc init. Đọc INDEX → work → plan/review/checkpoint và nguồn được tham chiếu cần thiết, gồm release/operation tại nguồn vận hành. Đúng root/quyền trước mở đích, không glob cả repo rồi lấy mọi snapshot lịch sử làm record hiện hành. Lịch sử chỉ đọc trong ngữ cảnh đối chiếu.
 
@@ -638,7 +640,7 @@ Ví dụ đang dở một task, có review chờ và backend chưa rõ: trả đ
 
 Tra metadata npm ngày 2026-09-13: bản 3.3.1, MIT, không khai báo runtime dependencies; [metadata phiên bản](https://registry.npmjs.org/jsonc-parser/3.3.1), integrity `sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==`. Đề xuất thêm đúng phiên bản local trong repo và lockfile, không global/cài phiên bản trôi nổi; kiểm tra nguồn/integrity và tắt install scripts. Đây là dependency mới cần Human chấp thuận trong D2; chưa tải/cài/chạy package. Đánh đổi là thêm một dependency cần giữ/cập nhật; lợi ích là dùng lớp cú pháp sẵn có thay tự viết parser, vẫn tự kiểm tra ràng buộc Kidea bằng test.
 
-Sau duyệt, S02 mới triển khai bộ đọc/status và test dữ liệu đúng/sai, Unicode/CRLF, nguồn đổi, khóa trùng/escape và file ngoài phạm vi; S03 giữ kiểm chứng phiên AI/quyền/đầu vào theo gate thử đã có. Fixture T04 được tái dùng nhưng expected ngữ nghĩa/quyền không tự thành chức năng parser phải đoán. Thiếu quyết định công cụ/quyền hoặc thay đổi hợp đồng thì trình đúng phần, không lặng lẽ chọn dependency khác.
+S02 đã triển khai bộ đọc/status và test dữ liệu đúng/sai, Unicode/CRLF, nguồn đổi, khóa trùng/escape và file ngoài phạm vi; [bằng chứng](tests/evidence/r02-t05.md). jsonc-parser 3.3.1 đã cài local với lockfile đúng integrity, không chạy install scripts. Các câu “đề xuất/chưa cài” ở phần metadata phía trên mô tả thời điểm trình gói, không phải trạng thái hiện tại. S03 giữ kiểm chứng phiên AI/quyền/đầu vào theo gate thử đã có. Fixture T04 được tái dùng nhưng expected ngữ nghĩa/quyền không tự thành chức năng parser phải đoán. Thiếu quyết định công cụ/quyền hoặc thay đổi hợp đồng thì trình đúng phần, không lặng lẽ chọn dependency khác.
 
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>

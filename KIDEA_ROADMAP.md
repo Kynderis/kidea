@@ -8,12 +8,24 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã khép R02-T04 — hợp đồng số 2 và 51 tình huống mẫu.** Mẫu được dựng/đối chiếu trong bộ nhớ; chưa phải 51 bài test chức năng Kidea. Chỉ T05-S01 chờ duyệt cách làm bộ đọc/status và dependency local.
+**Đã viết chức năng xem tiến độ chỉ đọc, 79 bài kiểm tra đạt.** S01 đã duyệt, S02 hoàn tất; S03 đang chờ chốt lượt thử trong phiên AI mới. Chưa có chức năng sửa/duyệt/triển khai. [Bằng chứng và giới hạn](tests/evidence/r02-t05.md).
 
 <a id="review-current"></a>
+<a id="status-ai-trial-review"></a>
+
+### R02-T05-S03 — Thử cách AI báo tiến độ
+
+Bộ đọc đã chạy được. Còn cần kiểm tra AI có hiểu đúng kết quả hay nói quá thành “đã xong/đã được duyệt”.
+
+Đề xuất **3 phiên AI mới, độc lập**. Mỗi phiên đọc ba hồ sơ giả cố định: việc còn dở, hồ sơ tự ghi “đã duyệt”, và hồ sơ thiếu bản lưu. AI phải báo đúng giới hạn, không tự sửa hay làm tiếp. So file trước/sau và giữ cả lỗi.
+
+Chỉ dùng vùng thử trong repo, không chạm dự án thật hoặc dịch vụ ngoài; mỗi phiên tối đa 3 phút, không tự chạy thêm khi lỗi. Có tiêu thụ hạn mức AI. Đây là phép thử hữu hạn, không chứng nhận Kidea luôn đúng.
+
+Bạn cho chạy gói thử này nhé? S03 vẫn là việc [A]; đây là chốt số lần/phạm vi/quyền thử còn thiếu, không thêm gate duyệt lại thiết kế.
+
 <a id="reader-status-review"></a>
 
-### R02-T05-S01-r1 — Viết chức năng xem tiến độ [H]
+### R02-T05-S01-r1 — Viết chức năng xem tiến độ [H], đã duyệt
 
 Tiếp theo sẽ viết chức năng “xem tiến độ”.
 
@@ -21,7 +33,7 @@ Tiếp theo sẽ viết chức năng “xem tiến độ”.
 
 **D2 — Dùng thêm một bộ đọc dữ liệu có sẵn.** Chọn [jsonc-parser 3.3.1](https://github.com/microsoft/node-jsonc-parser/tree/v3.3.1), chỉ bổ sung trong repo. Giúp không phải tự viết phần đọc cú pháp; đổi lại có thêm một thư viện cần quản lý. Quy tắc riêng của Kidea vẫn phải viết và kiểm tra.
 
-Bạn duyệt hai lựa chọn này nhé? Sau đó mới thêm thư viện, viết bộ đọc và test; chưa làm chức năng sửa/duyệt/triển khai.
+Human “Mình duyệt nhé” ngày 2026-09-13 sau giải thích tại 6ad94cb, xác nhận D1–D2 của gói f54d81a. Đã thêm thư viện, viết bộ đọc và test; không mở chức năng sửa/duyệt/triển khai.
 
 Nguồn: [hợp đồng đọc và đầu ra](KIDEA_DESIGN.md#reader-status-proposal).
 
@@ -133,9 +145,11 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T04-S07 | DONE | R02-T04-S07-r1 — APPROVED | Human “Tôi duyệt” sau answer 7fd8d05; D1–D3 mẫu số 2 đã đồng bộ; [kết quả](#r02-t04-result) |
 | R02-T04-S03 | DONE | [A] — mẫu theo hợp đồng | 48 file ảo baseline, 51 biến thể/expected, không ghi project mẫu ra đĩa; [bằng chứng](tests/evidence/r02-t04.md) |
 | R02-T04-S04 | DONE | [A] — đối chiếu tĩnh và QA catalog | Rà tham chiếu/hash/recipe và caller; 51 biến thể dựng được, 16 test khung đạt, chưa chấm expected bằng Kidea; [kết quả](#r02-t04-result) |
-| R02-T05-S01 | IN_PROGRESS | R02-T05-S01-r1 — IN_REVIEW | Trình bộ đọc/status chỉ đọc và thêm jsonc-parser 3.3.1 local; chưa cài/code; [gói hiện hành](#review-current) |
+| R02-T05-S01 | DONE | R02-T05-S01-r1 — APPROVED | Human “Mình duyệt nhé” sau giải thích 6ad94cb; D1–D2 gói f54d81a |
+| R02-T05-S02 | DONE | [A] — triển khai và test | Status schema 2 chỉ đọc, parser local khóa phiên bản; 79/79 test; [bằng chứng](tests/evidence/r02-t05.md) |
+| R02-T05-S03 | IN_PROGRESS | Chờ phạm vi/quyền thử AI | Đã thử Unicode/CRLF/đường dẫn/Git/nguồn đổi và hash; chưa chạy phiên AI mới; [gói thử](#status-ai-trial-review) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; chỉ R02-T05-S01 đang IN_PROGRESS/IN_REVIEW, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Không có lõi/pilot mới; kết quả khung không được cộng thành nghiệm thu KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; T05-S01/S02 DONE, chỉ T05-S03 IN_PROGRESS, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Có lát cắt status, chưa có pilot; test helper không được cộng thành nghiệm thu KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
