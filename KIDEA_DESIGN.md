@@ -643,10 +643,13 @@ Tra metadata npm ngày 2026-09-13: bản 3.3.1, MIT, không khai báo runtime de
 S02 đã triển khai bộ đọc/status và test dữ liệu đúng/sai, Unicode/CRLF, nguồn đổi, khóa trùng/escape và file ngoài phạm vi; [bằng chứng](tests/evidence/r02-t05.md). jsonc-parser 3.3.1 đã cài local với lockfile đúng integrity, không chạy install scripts. Các câu “đề xuất/chưa cài” ở phần metadata phía trên mô tả thời điểm trình gói, không phải trạng thái hiện tại. S03 giữ kiểm chứng phiên AI/quyền/đầu vào theo gate thử đã có. Fixture T04 được tái dùng nhưng expected ngữ nghĩa/quyền không tự thành chức năng parser phải đoán. Thiếu quyết định công cụ/quyền hoặc thay đổi hợp đồng thì trình đúng phần, không lặng lẽ chọn dependency khác.
 
 <a id="safe-write-proposal"></a>
+<a id="safe-write-contract"></a>
 
-#### R02-T06-S01-r1 — Cơ chế ghi/phục hồi local, đề xuất chờ duyệt
+#### R02-T06-S01-r1 — Cơ chế ghi/phục hồi local, đã duyệt
 
-T05 đã thử bộ đọc và ba phiên AI theo [bằng chứng](tests/evidence/r02-t05.md), chưa có chức năng ghi. T06 làm cho các chức năng sau này ghi đúng đích và nhận ra việc dở; giữ nguyên [bản trước/cách phục hồi](#interrupted-write-contract), [schema 2](#schema-v2-contract) và quyền G4. Hai lựa chọn mới dưới đây **chưa được duyệt hoặc code**; không diễn giải approval T04 thành đã chọn thuật toán hệ thống file.
+Human “Tôi duyệt nhé” ngày 2026-09-13 sau [giải thích bd52a52](https://github.com/Kynderis/kidea/blob/bd52a5244dd7d2697fddea823807297ac046a166/answer.md), xác nhận D1–D2 của [gói d687d6a](https://github.com/Kynderis/kidea/blob/d687d6af5821efa0780c893a374657a57e7fa4a7/KIDEA_DESIGN.md#safe-write-proposal). Cùng phản hồi, Human yêu cầu rà cách gom duyệt theo big-step; phần phối hợp mới đang trao đổi, không tự duyệt/bỏ gate khác.
+
+T05 đã thử bộ đọc và ba phiên AI theo [bằng chứng](tests/evidence/r02-t05.md), chưa có chức năng ghi. T06 làm cho các chức năng sau này ghi đúng đích và nhận ra việc dở; giữ nguyên [bản trước/cách phục hồi](#interrupted-write-contract), [schema 2](#schema-v2-contract) và quyền G4. Hai lựa chọn dưới đây **đã duyệt thiết kế, chưa code/kiểm chứng cơ chế**; không diễn giải approval này thành kết quả ghi an toàn đã đạt.
 
 **D1 — Khóa bằng Windows trong lượt ghi, không chỉ đặt cờ “đang bận”.** Đề xuất một worker PowerShell/.NET local do Node gọi, dùng cơ chế mở file của Windows để giữ quyền ghi độc quyền lên đích và ngăn đổi tên/xóa các đường dẫn cần bảo vệ. Lượt ghi thứ hai không lấy được khóa thì dừng; không xếp hàng chờ vô hạn hoặc tự phá khóa. Giữ khóa qua kiểm tra byte trước, ghi, đọc lại và xử lý lỗi; đầu vào chi phối cũng phải được giữ ổn định. Việc lấy khóa thất bại vì editor/tiến trình khác đang dùng file là kết quả cần báo, không được tắt bảo vệ để ghi cho được.
 
@@ -664,7 +667,7 @@ Lượt đang ghi hoặc chưa đối chiếu xong phải làm status/khởi đ�
 
 Mô hình lỗi cần kiểm chứng: tiến trình bị dừng ở từng ranh giới, lỗi I/O/quyền, ghi/phục hồi dở; hai writer cạnh tranh; editor/tiến trình khác mở sửa/xóa/đổi tên đích hoặc thư mục cha trước và trong khóa; nguồn đổi trước khóa, sau mất khóa; CREATE bị chiếm tên; hard link/reparse/path thoát root; checkpoint hỏng/mất con trỏ; status chạy giữa lượt; lỗi cleanup. Dùng tiến trình thứ hai thật trên dữ liệu tổng hợp để kiểm tra xung đột, không chỉ mock hash. D1/D2 chưa chứng nhận chống mất điện/hỏng ổ/ghi raw disk, administrator/kernel can thiệp, mọi biến thể filesystem hay nhiều file đổi nguyên khối. Không dùng giới hạn này để cho phép đè sửa chen trong mô hình lỗi đã nhận.
 
-Nếu Human duyệt, S02 bắt đầu bằng thử cơ chế khóa/đường dẫn trong `.test-output/r02-t06` rồi mới hoàn thiện các đường ghi/restore/cleanup và hồi quy bộ đọc. Nếu không chứng minh được thuộc tính bảo vệ, dừng tích hợp và trình lựa chọn thay đổi; không tự rút bảo vệ xuống thành “đã so hash”. S03 còn phép thử gián đoạn/phiên AI theo số lần và quyền chốt riêng; gói này không tự mở thêm phiên AI, deploy/pilot, reset Git, cài dependency hay sửa project thật.
+Sau approval trên, S02 sẽ bắt đầu bằng thử cơ chế khóa/đường dẫn trong `.test-output/r02-t06` rồi mới hoàn thiện các đường ghi/restore/cleanup và hồi quy bộ đọc. Lượt xác nhận này ưu tiên yêu cầu mới của Human về rà cách gom duyệt, chưa bắt đầu S02. Nếu không chứng minh được thuộc tính bảo vệ, dừng tích hợp và trình lựa chọn thay đổi; không tự rút bảo vệ xuống thành “đã so hash”. S03 còn phép thử gián đoạn/phiên AI theo số lần và quyền chốt riêng; gói này không tự mở thêm phiên AI, deploy/pilot, reset Git, cài dependency hay sửa project thật.
 
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>

@@ -1,40 +1,38 @@
-Hai đề xuất giải quyết hai chuyện khác nhau: **tránh hai bên ghi đè nhau**, và **xử lý khi Kidea ghi bị lỗi hoặc bị ngắt**. Đây vẫn là thiết kế chờ duyệt, chưa phải chức năng đã chạy.
+Được. **Mình đề xuất đổi từ “duyệt từng mảnh kỹ thuật” sang “duyệt những lựa chọn quan trọng của cả big-step”, rồi duyệt gộp phần còn lại.** Ở đây, big-step là từng phase xây Kidea. Cơ chế ghi/phục hồi vừa duyệt đã được ghi nhận.
 
-### 1. Khóa file: tránh ghi đè thay đổi vừa xuất hiện
+### Vì sao cách hiện tại vẫn chậm?
 
-Ví dụ Kidea đọc một tài liệu rồi chuẩn bị sửa. Trong lúc đó, bạn lưu thêm một đoạn. Nếu Kidea lấy bản đã đọc trước đó ghi đè lên, đoạn bạn vừa thêm có thể mất.
+Mình đã rà lộ trình và nhờ hai lượt rà độc lập đối chiếu. Có hai vấn đề:
 
-Cách đề xuất là:
+- **Chia gói theo chi tiết kỹ thuật nhiều hơn theo giá trị quyết định của bạn.** Trong [lộ trình](D:/Code/kynderis/kidea/KIDEA_ROADMAP.md#r02-subtasks), cấu trúc hồ sơ có 4 gói duyệt, phần bản lưu/ghi dở có 5 gói.
+- Rút câu trả lời xuống 100–150 từ đôi khi làm mất tình huống và hệ quả cần hiểu. Bạn phải hỏi thêm để tự nối các mảnh lại.
 
-1. Chuẩn bị nội dung định sửa.
-2. Xin Windows giữ độc quyền thao tác trên những file cần bảo vệ.
-3. Đọc lại, kiểm tra file có đổi so với căn cứ ban đầu không. Có đổi thì đối chiếu lại, không áp bản sửa cũ mù quáng.
-4. Giữ khóa trong lúc ghi và kiểm tra kết quả, xong mới nhả khóa.
+Vì vậy, cần **giảm số lượt bạn phải dừng để duyệt**, không chỉ giảm số chữ.
 
-Windows có cơ chế từ chối mở file để ghi/xóa/đổi tên khi xung đột với quyền chia sẻ đang được giữ. Kidea phải viết và kiểm thử cách sử dụng cơ chế đó; không phải cứ tạo một file tên “lock” là phần mềm khác bị chặn. [Tài liệu Microsoft](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew).
+### Cách đề xuất cho từng big-step
 
-**Ảnh hưởng tới bạn:** trong khoảng thao tác này, trình soạn thảo có thể báo file đang bận khi lưu hoặc đọc. Nếu phần mềm khác đã giữ file khiến Kidea không lấy được khóa, Kidea phải dừng, không ép đóng phần mềm của bạn.
+Trước khi trình, mình rà toàn bộ mục tiêu, phụ thuộc, lựa chọn, quyền và kiểm chứng của big-step đó, rồi phân loại:
 
-Khóa chỉ dành cho đoạn thao tác ghi/kiểm tra, không phải khóa cả ổ đĩa hoặc suốt thời gian AI suy nghĩ. Nó cũng **không bảo vệ nội dung bạn chưa lưu trong editor**, hay ngăn bạn lưu một bản cũ đè lên file sau khi khóa đã nhả. Đây không phải cơ chế cùng chỉnh sửa tài liệu theo thời gian thực.
-
-### 2. Phục hồi: không lấy bản cũ đè lên khi chưa rõ chuyện gì xảy ra
-
-Trước khi ghi, Kidea giữ được **bản ngay trước thao tác**, **nội dung định ghi** và dấu vết lượt đang làm. Nếu đúng bản trước đã có trong Git thì có thể tận dụng; không bắt commit mỗi lần sửa.
-
-Điểm quan trọng là phân biệt:
-
-| Tình huống | Cách xử lý đề xuất |
+| Nhóm | Cách trình cho bạn |
 |---|---|
-| Ghi lỗi nhưng Kidea vẫn chạy và giữ khóa liên tục | Có thể tự phục hồi bước lỗi của mình từ bản trước đã xác minh, trong đúng quyền; sau đó kiểm tra lại. Phục hồi cũng lỗi thì phải báo chưa khắc phục được. |
-| Tiến trình đã ngắt, khóa không còn được giữ liên tục | Đọc lại thực tế trước. Không tự hoàn tác chỉ vì còn bản dự phòng; khoảng gián đoạn có thể đã có người khác sửa. |
-| File khác cả bản trước lẫn bản định ghi, chưa rõ ai sửa | Giữ nguyên, báo khác biệt và hỏi; không đoán rồi ghi đè. |
+| **Cần cân nhắc kỹ** | Đưa ra trước: thay đổi hành vi, quyền, chi phí, nguy cơ mất dữ liệu, giới hạn hỗ trợ, tiêu chí nghiệm thu hoặc lựa chọn khó đảo ngược. |
+| **Đủ rõ để duyệt gộp** | Gom các đầu ra đã đủ căn cứ, giữ rõ từng phạm vi/giới hạn. Bạn có thể duyệt cả gói hoặc loại một mục; không cần hỏi riêng từng gate con. |
+| **Chưa đủ căn cứ** | Nêu ngay từ đầu cần thử/đo gì, lúc nào mới quyết. Không ép bạn duyệt trước con số hay kết quả chưa có. |
+| **Đã thống nhất** | Mình triển khai và kiểm tra trong quyền; không đưa ra xin duyệt lại. |
 
-Ví dụ cần sửa hai file: file A đã xong, file B mới ghi một nửa thì tiến trình tắt. Khi chạy lại, Kidea phải nhận ra **lượt còn dở**, không báo hoàn tất hoặc chạy lại cả hai một cách máy móc. Nếu mọi file thực tế đã đúng bản định ghi thì kiểm tra kết quả, không cần ghi lại chỉ vì log chưa kịp cập nhật.
+Với mỗi điểm cần cân nhắc, mình phải trả lời rõ: **tình huống nào xảy ra → mình đề xuất gì → bạn được gì, phải chấp nhận gì → vì sao bạn có thể không đồng ý**. Có ví dụ ngay khi cần, không đợi bạn hỏi.
 
-### 3. Đánh đổi bạn đang cân nhắc
+Giới hạn 2–3 điểm dành cho phần cần cân nhắc, không đếm từng chi tiết để tách thêm lượt. “Bạn thường đồng ý” **không phải** căn cứ xếp nhóm ít rủi ro.
 
-- **Thêm một lớp code Windows**, dùng PowerShell/.NET có sẵn; không đề xuất cài thêm thư viện lúc này.
-- Bản đầu chỉ ghi trên **ổ NTFS local**, tức ổ máy dùng định dạng NTFS; chưa nhận ổ mạng, thư mục đang đồng bộ hoặc đường dẫn liên kết. Không tự di chuyển dự án của bạn.
-- **Có thể còn file ghi dở khi bị ngắt.** Thiết kế ưu tiên giữ căn cứ và xử lý đúng, không hứa mọi file đổi đồng thời hay chống mất điện/hỏng ổ.
+### Áp dụng vào phần R02 còn lại
 
-Việc giữ bản trước và không đè sửa của bạn đã được thống nhất. **Lần này cần chốt cách thực hiện:** dùng khóa Windows và chỉ tự phục hồi khi đủ căn cứ, đặc biệt việc giữ khóa liên tục. Nếu duyệt, mình thử trên dữ liệu giả trước; chưa chứng minh được bảo vệ đúng thì chưa tích hợp vào chức năng ghi.
+- **Không hỏi lại:** cơ chế khóa/phục hồi vừa duyệt và nguyên tắc về hồ sơ, xác nhận, giữ việc dở đã chốt.
+- **Có thể gom:** các chi tiết khởi tạo, ghi xác nhận và tiếp tục công việc bám đúng hợp đồng đã có; chỉ tách riêng phần còn lựa chọn thực sự hoặc đổi quyền/hành vi.
+- **Chuẩn bị quyền thử sớm:** đưa dữ liệu thử, số phiên AI, giới hạn thời gian và quyền vào gói đầy đủ, tránh tới bước chạy mới phát hiện thiếu rồi hỏi thêm.
+- **Vẫn quyết sau khi có bằng chứng:** ngưỡng hiệu năng sau đo thăm dò; chấp nhận kết quả cuối big-step sau kiểm chứng.
+
+Các big-step sau cũng làm như vậy **khi tới lượt**, không bắt bạn duyệt trước toàn bộ phần còn xa.
+
+**Giới hạn giữ nguyên:** không đảo phụ thuộc, bỏ kiểm thử, duyệt trước kết quả hoặc mở quyền ngoài gói. Các gate sản phẩm riêng vẫn giữ. Nếu phát hiện vấn đề mới, chỉ trình phần bị ảnh hưởng, không kéo bạn duyệt lại cả big-step.
+
+Bạn duyệt cách phối hợp này để mình điều chỉnh các gói review còn lại từ R02 nhé? Hiện mình mới rà và đề xuất, chưa tự đổi hoặc bỏ các điểm duyệt.

@@ -8,12 +8,13 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
-**Đã khép phần xem tiến độ chỉ đọc:** 79 bài kiểm tra và gói 3 phiên AI × 3 mẫu đạt; file không đổi trong các lượt đo. Chưa có chức năng sửa/duyệt/triển khai. Tiếp theo là T06, bảo vệ nội dung khi ghi; S01 đang trình thiết kế, chưa viết code. [Bằng chứng và giới hạn T05](tests/evidence/r02-t05.md).
-
 <a id="review-current"></a>
+
+**T06-S01 đã được duyệt; chưa bắt đầu code T06-S02.** Human vừa yêu cầu rà cách đưa điểm nhạy cảm ra trước rồi gom phần rõ ràng theo big-step; lượt này tập trung [đề xuất cách phối hợp](answer.md), chưa áp dụng đổi/bỏ gate. Phần xem tiến độ đã hoàn tất phép thử hữu hạn theo [bằng chứng T05](tests/evidence/r02-t05.md); chưa có chức năng ghi/duyệt/triển khai.
+
 <a id="safe-write-review"></a>
 
-### R02-T06-S01-r1 — Ghi file không đè sửa của bạn [H]
+### R02-T06-S01-r1 — Ghi file không đè sửa của bạn [H], đã duyệt
 
 Khi Kidea sửa file mà bạn cũng đang sửa, hoặc máy ngắt giữa chừng, cần bảo vệ nội dung và biết phần nào còn dở.
 
@@ -21,7 +22,7 @@ Khi Kidea sửa file mà bạn cũng đang sửa, hoặc máy ngắt giữa ch�
 
 **D2 — Chấp nhận bản ghi dở nhưng không giấu lỗi.** Ghi dưới khóa, giữ bản trước; chỉ tự phục hồi lỗi của chính lượt đang giữ khóa liên tục. Sau ngắt, chưa rõ ai sửa thì giữ nguyên và hỏi. Không hứa nhiều file đổi đồng thời hoặc chống mất điện.
 
-Bạn duyệt hai lựa chọn để mình viết và thử trên dữ liệu giả nhé? [Chi tiết thiết kế/kiểm chứng](KIDEA_DESIGN.md#safe-write-proposal). Không mở thêm phiên AI hoặc ghi dự án thật.
+Human “Tôi duyệt nhé” sau [giải thích bd52a52](https://github.com/Kynderis/kidea/blob/bd52a5244dd7d2697fddea823807297ac046a166/answer.md) đã duyệt D1–D2 của gói d687d6a. Đã đồng bộ [hợp đồng và giới hạn](KIDEA_DESIGN.md#safe-write-contract); chưa code, không mở thêm phiên AI hoặc ghi dự án thật. Yêu cầu mới về cách gom review đang trao đổi riêng, không tự thay các gate còn lại.
 
 <a id="status-ai-trial-review"></a>
 
@@ -160,9 +161,9 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T05-S01 | DONE | R02-T05-S01-r1 — APPROVED | Human “Mình duyệt nhé” sau giải thích 6ad94cb; D1–D2 gói f54d81a |
 | R02-T05-S02 | DONE | [A] — triển khai và test | Status schema 2 chỉ đọc, parser local khóa phiên bản; 79/79 test; [bằng chứng](tests/evidence/r02-t05.md) |
 | R02-T05-S03 | DONE | [A] — quyền gói 3 phiên sau 8443783 | 79 bài helper cùng 3 phiên × B01/A01/V03 đạt; nguồn/hash không đổi trong lượt, không nhận ổn định mọi tình huống; [bằng chứng](tests/evidence/r02-t05.md) |
-| R02-T06-S01 | IN_PROGRESS | R02-T06-S01-r1 — IN_REVIEW | Chờ Human chọn cơ chế khóa Windows và ghi/phục hồi dưới khóa; chưa code; [gói hiện hành](#safe-write-review) |
+| R02-T06-S01 | DONE | R02-T06-S01-r1 — APPROVED | Human “Tôi duyệt nhé” sau giải thích bd52a52, D1–D2 gói d687d6a; đồng bộ hợp đồng, chưa code; [xác nhận](#safe-write-review) |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; T05 đủ ba subtask DONE, chỉ T06-S01 IN_PROGRESS, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Có lát cắt status, chưa có pilot; test helper hoặc ba phiên hữu hạn không được cộng thành nghiệm thu toàn KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; T05 đủ ba subtask DONE; T06-S01 DONE, S02 và các subtask R02 khác mặc định TODO. Lượt này đang trao đổi cách phối hợp theo yêu cầu mới, không có subtask triển khai đang chạy; việc triển khai tiếp theo là T06-S02 trong quyền đã duyệt. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Có lát cắt status, chưa có pilot; test helper hoặc ba phiên hữu hạn không được cộng thành nghiệm thu toàn KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 
