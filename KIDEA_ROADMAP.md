@@ -15,27 +15,34 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 ### R02-T04-S06-r1 — Làm sao biết đã triển khai đúng bản? [H]
 
-Task T04 giữ căn cứ để không nhầm bản hoặc kết quả. G6 trước đây đã chốt lưu hồ sơ phát hành; gói này chốt cách phân biệt gói thực tế và từng lần chạy.
+Task T04 cần tránh nhầm bản và lần triển khai.
 
-**D1 — Nhận diện bằng nội dung gói, không chỉ tên phiên bản.** Ví dụ có hai file cùng tên “web-1.0.zip” nhưng bên trong khác nhau. Hồ sơ phải chỉ đúng file đã kiểm tra bằng mã nhận diện nội dung, kèm cấu hình và bộ script tương ứng. Trước triển khai đối chiếu lại; không khớp thì dừng. Đổi tổ hợp phải có bản hồ sơ mới và xét lại, không sửa âm thầm bản đã chọn. Lợi ích là tránh triển khai nhầm dù tên giống; đánh đổi là cần giữ thêm thông tin đối chiếu. Không đưa mật khẩu/token hoặc gói lớn vào hồ sơ public.
+**D1 — Dùng mã nhận diện nội dung cố định cho gói đã kiểm tra, kèm cấu hình/script.** Hai file cùng tên có thể khác nội dung; trước triển khai phải đối chiếu, không khớp thì dừng.
 
-**D2 — Phân biệt chạy lại với chỉ kiểm tra kết quả cũ.** Lần triển khai thứ nhất lỗi, thực sự chạy lần nữa thì có mã lần mới nối tới lần trước; giữ cả lỗi cũ. Nhưng chỉ vào xem lần thứ nhất đã thành công chưa thì bổ sung kết quả cho chính lần ấy, không tính thành lần triển khai mới. Trước chạy lại phải xác minh việc đã xảy ra, không chạy lặp chỉ vì mất kết nối.
+**D2 — Mỗi lần thực sự triển khai có mã riêng, nối lần trước nếu chạy lại.** Chỉ xem thêm kết quả thì bổ sung cho lần cũ, không tạo lần triển khai mới.
 
-Bạn duyệt hai cách nhận diện này nhé? Web lên thành công nhưng backend lỗi vẫn chưa phải cả bản triển khai đạt. Đây chỉ là hợp đồng hồ sơ; chưa build/deploy, chưa cấp quyền chạy PROD, và các trường cụ thể còn trình ở S07.
+Lợi ích: tránh nhầm gói/lần chạy; đánh đổi: thêm dữ liệu đối chiếu. Các quy tắc quyền, bảo mật, giữ lỗi và phục hồi đã chốt vẫn giữ nguyên.
 
-Nguồn mở thêm: [đề xuất](KIDEA_DESIGN.md#release-identity-proposal); [kết quả S05](#r02-t04-s05-result).
+Bạn duyệt D1–D2 nhé? Chỉ duyệt cách nhận diện hồ sơ, chưa chạy triển khai; các trường cụ thể còn ở S07.
+
+Nguồn: [đề xuất](KIDEA_DESIGN.md#release-identity-proposal).
 
 <a id="working-rules"></a>
 
 ## 2. Cách làm mới
 
+<a id="concise-review-approved"></a>
+
+Human “Đồng ý nhé” ngày 2026-09-13 sau [đề xuất 0f5a472](https://github.com/Kynderis/kidea/blob/0f5a472ae5ea6642c7846cffd334733cb1c9600e/answer.md) đã duyệt cách phối hợp: bản trình 100–150 từ, chỉ quyết định mới, gom lựa chọn liên quan và làm liên tục phần thường lệ trong quyền. Xác nhận này **không duyệt S06 hoặc tự bỏ/chuyển các gate [H] hiện có**. Gói S06-r1 chỉ rút phần nhắc lại, giữ D1–D2 và nguồn đề xuất; trạng thái vẫn IN_REVIEW. Rà gói còn lại khi tới lượt, đề xuất điều chỉnh gate nếu cần, không tự thực hiện thay đổi chưa được thống nhất.
+
 ### 2.1. Phase → task → subtask
 
 - **Phase:** một nhóm năng lực có thể kiểm chứng tích hợp; cuối phase có Human gate.
 - **Task:** một đầu ra cụ thể. **Subtask:** một lát cắt đủ nhỏ để làm, kiểm tra và nếu cần thì duyệt độc lập.
-- Gói review tối đa **3 quyết định thực sự độc lập**, thường 2; một quyết định thì chỉ hỏi một. Không giấu sáu lựa chọn trong một dòng “duyệt cả gói”. Mỗi quyết định có đề xuất, hệ quả và link đúng đoạn.
+- Gói review tối đa **3 quyết định mới thực sự độc lập**, thường 2; một quyết định thì chỉ hỏi một. Gom các lựa chọn liên quan khi vẫn đủ rõ, không giấu nhiều lựa chọn trong một dòng “duyệt cả gói”. Mỗi quyết định có đề xuất, lợi ích/hệ quả và đánh đổi quan trọng.
 - Theo yêu cầu Human ngày 2026-09-11, mỗi quyết định giải thích dễ hiểu: việc này giải quyết vấn đề gì, đề xuất cách nào, vì sao/lợi ích và đánh đổi, bạn đang duyệt điều gì và điều gì chưa duyệt. Giải nghĩa thuật ngữ bằng lời thường hoặc ví dụ; không dùng mã task hay danh sách từ kỹ thuật thay giải thích.
-- Phần bắt buộc Human đọc khoảng 200–350 từ tiếng Việt, tối đa 3 đầu mục quyết định và 3 mục nguồn ngắn. Nếu chưa đủ để hiểu mà phải mở nhiều đoạn dài, chia tiếp trước khi trình; không dùng giới hạn chữ để lược mất rủi ro quan trọng. Nội dung chuyên sâu là phần mở thêm, không là quyết định ngầm.
+- Phần bắt buộc Human đọc **khoảng 100–150 từ tiếng Việt**: một câu mục tiêu, tối đa ba quyết định mới, lợi ích/đánh đổi và phạm vi đang duyệt; thường chỉ một link nguồn mở thêm. Đây là mục tiêu trình bày, không cắt rủi ro để đủ số chữ. Ví dụ chỉ dùng khi giúp quyết định; tên trường/thuật ngữ không cần thiết để trong tài liệu. Gói phức tạp được giải thích thêm đúng chỗ hoặc chia theo quyết định thật, không chia vụn theo từng trường.
+- Điều đã duyệt chỉ nhắc “giữ nguyên” nếu cần, không hỏi/giải thích lại. Tài liệu và kiểm tra vẫn đầy đủ; nội dung chuyên sâu không được giấu lựa chọn hoặc rủi ro đáng kể mà Human cần biết để quyết định. Giữ khả năng truy đúng bản/gói/phạm vi, không dùng bản ngắn thay căn cứ đã duyệt.
 - AI vẫn đọc đủ nguồn/phụ thuộc, kiểm tra ngữ nghĩa và ảnh hưởng xuyên chuỗi. Bản tóm tắt cho Human không thay đầu vào phân tích của AI.
 - Phân rã chi tiết **phase gần nhất**; các phase xa có task/đầu ra/kiểm chứng, subtask ghi **chưa phân rã**, không phải đã hoàn tất. Trước khi mở task ở đó, ghi các subtask, test và gate tại đúng hàng nguồn; không dùng task lớn làm giấy phép thực hiện một lượt.
 - Chỉ một subtask triển khai hiện hành. Review độc lập có thể hỗ trợ nhưng không tạo nhiều luồng sửa ngoài kiểm soát. Không cố định số task như cam kết thời gian hoặc phần trăm hoàn thành.
@@ -46,7 +53,8 @@ Nguồn mở thêm: [đề xuất](KIDEA_DESIGN.md#release-identity-proposal); [
 2. **[H]** là gói dừng chờ Human; **[A]** là thực hiện/kiểm tra trong thiết kế và quyền đã có. Mỗi gói chỉ định ID/r1/r2, nguồn, đề xuất, kết quả/giới hạn và điều chưa duyệt. Góp ý, im lặng hoặc PASS không là approval.
 3. Chỉ ghi DONE khi đạt đầu ra/test bắt buộc, đã đồng bộ tài liệu/map/bằng chứng liên quan và dọn tạm. Subtask [H] còn phải có xác nhận Human cho đúng gói hiện hành trước DONE hoặc mở việc phụ thuộc. Task không cần một approval thừa nếu các gate con đã đủ; chỉnh format hoặc test theo đặc tả không tự tạo gate mới.
 4. Cuối phase: review tối đa 2 quyết định — chấp nhận kết quả tích hợp/giới hạn và cho mở phase kế theo phạm vi nêu rõ. Không yêu cầu đọc lại từng đoạn đã duyệt; có thay đổi làm sai căn cứ thì chỉ rõ gói bị ảnh hưởng và duyệt lại phần đó.
-5. Phát hiện quyết định lớn chưa chốt thì dừng phần phụ thuộc, thêm subtask tại nơi sở hữu và xin Human quyết định trước khi làm. Không hạ chuẩn hoặc đổi scope để làm xanh.
+5. Chi tiết triển khai thường lệ trong thiết kế/quyền đã có do AI thực hiện và kiểm tra, không hỏi lại chỉ vì tách thành subtask hoặc đặt tên trường. Sau một approval, tiếp tục liền mạch các việc [A] đủ điều kiện, vẫn chỉ một việc triển khai hiện hành, đến điểm thực sự cần Human quyết định tiếp; không thêm gate chỉ để báo tiến độ.
+6. Thay đổi quan trọng về hành vi, kiến trúc, dữ liệu, quyền hoặc chi phí chưa chốt thì dừng phần phụ thuộc, trình quyết định tại nơi sở hữu. Rà gói còn lại để bỏ phần hỏi trùng; điều chỉnh điểm duyệt [H] hiện có phải được Human thống nhất, không tự đổi [H] thành [A], bỏ gate phase hoặc suy quyền mới. Không hạ chuẩn hoặc đổi scope để làm xanh.
 
 ### 2.3. Một nguồn trạng thái và bằng chứng
 
