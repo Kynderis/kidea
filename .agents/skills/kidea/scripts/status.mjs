@@ -31,7 +31,16 @@ export function inspectStatusGraph(cwd, projectedBytes = new Map(), checkpointPa
   return {status,...graph};
 }
 
-function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpointPaths = [], capture } = {}) {
+// Pure validation of a complete byte set supplied by the trusted writer. There
+// is no filesystem/Git fallback or pending bypass in the public status action.
+// This result is not live progress: native proof must bind these bytes first.
+export function inspectBoundGraph(cwd, files) {
+  let graph;
+  const status=statusEngine(cwd,{boundOnly:true,projectedBytes:files,capture:value=>{graph=value;}});
+  return {status,...graph};
+}
+
+function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpointPaths = [], capture, boundOnly=false } = {}) {
   const out={outputVersion:1,action:'status',observedAt:new Date().toISOString(),readState:'OK',projectId:null,data:null,diagnostics:[]};
   const records=new Map(), reads=new Map(), absent=new Set(), gitReads=new Map(), directRefs=new Set();
   let root, pendingBefore;
@@ -49,6 +58,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
   function absolute(p) {
     if(!validPath(p)) {issue('UNSAFE_PATH',p);throw new Stop();}
     const target=path.resolve(root,...p.split('/'));
+    if(boundOnly)return target;
     // Validate every existing component before opening the final file, including junctions.
     let part=root;
     for(const segment of p.split('/')) {
@@ -59,6 +69,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     return target;
   }
   function pendingState() {
+    if(boundOnly)return 'BOUND_INPUT_NOT_LIVE_STATUS';
     try {
       const state=inspectPendingWrites(root);
       if(state.pending) {issue('WRITE_PENDING',pendingWritesPath,null,'INCOMPLETE');throw new Stop();}
@@ -77,6 +88,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
       if(allowMissing)return null;
       issue('MISSING_FILE',p,null,'INCOMPLETE');throw new Stop();
     }
+    if(boundOnly){issue('MISSING_BOUND_INPUT',p,null,'INCOMPLETE');throw new Stop();}
     try {
       const resolved=realpathSync(target);
       if(!inside(root,resolved)) {issue('UNSAFE_PATH',p);throw new Stop();}
@@ -142,6 +154,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     if(bytesValue && (bytesValue.length!==i.byteLength||sha(bytesValue)!==i.value))issue('CONTENT_MISMATCH',record.file,field,'INCOMPLETE',record);
   }
   function gitBytes(location,record,field) {
+    if(boundOnly){issue('BOUND_GIT_UNSUPPORTED',record.file,field,'UNSUPPORTED');throw new Stop();}
     if(!/^(?:[a-f0-9]{40}|[a-f0-9]{64})$/.test(location.commit)){issue('GIT_COMMIT',record.file,field,'INVALID',record);throw new Stop();}
     absolute(location.path);
     // No shell, filters, hooks, fetch or revision expressions from the record.
@@ -247,7 +260,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     }
   }
   try {
-    root=realpathSync(cwd);
+    root=boundOnly?path.resolve(cwd):realpathSync(cwd);
     pendingBefore=pendingState();
     const index=load('.kidea/INDEX.md','index');out.projectId=index.data.projectId;
     const idx=index.data;

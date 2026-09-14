@@ -6,7 +6,7 @@ import { cpSync, mkdtempSync, mkdirSync, readFileSync, readdirSync, writeFileSyn
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
-import { buildBase, dataAt, paths, ref } from '../fixtures/r02-t04/catalog.mjs';
+import { buildBase, dataAt, paths, ref, envelope, digest } from '../fixtures/r02-t04/catalog.mjs';
 import { prepareInternalWrite, prepareInternalCleanup, executeInternalWrite } from '../../.agents/skills/kidea/scripts/write-internal.mjs';
 import { inspectStatusGraph, readStatus } from '../../.agents/skills/kidea/scripts/status.mjs';
 
@@ -115,9 +115,17 @@ test.before(async () => {
   assert.equal(groupResult.state, 'COMPLETED_BYTES', JSON.stringify(groupResult));
   groupSeed = { root: groupRoot, context: groupContext,
     checkpointPath: `.kidea/checkpoints/operations/${groupPrepared.operationId}/checkpoint.md`, originalOperationId: groupPrepared.operationId };
+  // D1 now requires the STEP's own gate. Keep a separate synthetic review,
+  // bound to its real scope bytes; these fixture labels still confer no rights.
+  const groupReviewPath='.kidea/reviews/RV-GROUP.md',groupSnapshot='.kidea/reviews/evidence/group-scope.md';
+  const groupSubject=bytes(groupSeed,'docs/plan.md');writeFileSync(full(groupSeed,groupSnapshot),groupSubject,{flag:'wx'});
+  const groupReview={...record(groupSeed,paths.review),id:'RV-GROUP',revision:1,ownerIds:['W-001'],subjectRefs:[ref('docs/plan.md','scope')],subjectVersions:[{source:ref('docs/plan.md','scope'),location:{kind:'SNAPSHOT',ref:ref(groupSnapshot)},integrity:digest(groupSubject.toString('utf8'))}],historyRefs:[],validityChecks:[]};
+  writeFileSync(full(groupSeed,groupReviewPath),envelope(groupReview),{flag:'wx'});
   editRecord(groupSeed, paths.work, work => {
     work.checkpointRef = ref(groupSeed.checkpointPath);
     work.items.find(item => item.id === 'W-001').decomposition = 'COMPLETE';
+    work.items.find(item => item.id === 'W-001').gateIds = ['RV-GROUP'];
+    work.reviewRefs.push(ref(groupReviewPath));
   });
   assert.equal(readStatus(groupRoot).readState, 'OK');
   saveJson('group-seed.json', { ...groupSeed, producedByWorker: true, syntheticCompletionDerivedFromChildren: true, tree: fingerprint(groupRoot) });
@@ -237,6 +245,11 @@ test('GROUP PARTIAL decomposition rejects despite all current children DONE', ()
   const f = fixture('group-partial', undefined, groupSeed);
   editRecord(f, paths.work, work => { work.items.find(item => item.id === 'W-001').decomposition = 'PARTIAL'; });
   reject(f, 'OWNER_NOT_COMPLETE');
+});
+test('STEP GROUP without its mandatory gate rejects cleanup despite completed children', () => {
+  const f=fixture('group-no-gate',undefined,groupSeed);
+  editRecord(f,paths.work,work=>{work.items.find(item=>item.id==='W-001').gateIds=[];});
+  reject(f,'OWNER_NOT_COMPLETE');
 });
 test('GROUP COMPLETE decomposition with an incomplete child rejects', () => {
   const f = fixture('group-incomplete-child', undefined, groupSeed);

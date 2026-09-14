@@ -1,4 +1,4 @@
-// Internal R02-T06 primitive. No CLI command imports this module. Authorization
+// Internal R02-T06 primitive, used by the CREATE-only init caller. Authorization
 // comes from the trusted in-memory caller, never an APPROVED label in a record.
 import { readFileSync, realpathSync, lstatSync } from 'node:fs';
 import path from 'node:path';
@@ -9,6 +9,7 @@ import { isDeepStrictEqual } from 'node:util';
 import { inspectStatusGraph,snapshotAnchorCount } from './status.mjs';
 import { validPath, validate } from './schema.mjs';
 import { isRecordedComplete } from './recorded-completion.mjs';
+import { prepareBootstrapRequest,validateBootstrapGraph } from './bootstrap-plan.mjs';
 
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const integrity=bytes=>({method:'SHA256',value:sha(bytes),byteLength:bytes.length});
@@ -59,6 +60,12 @@ function localBytes(root,relative,missing=false) {
 // This stage is read-only. It is deliberately limited to an already valid
 // existing project, local snapshots, and existing target parent directories.
 export function prepareInternalWrite(args) { return preparePlan(args); }
+
+export function prepareInternalBootstrap(args) {
+  const request=prepareBootstrapRequest(args),line=JSON.stringify(request);
+  const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId:request.operationId});
+  preparedPlans.add(prepared);return prepared;
+}
 
 function preparePlan({root,authorization,context,targets,operationId=randomUUID()},cleanup=null,priorGraph=null) {
   if(process.platform!=='win32')fail('UNSUPPORTED_HOST');
@@ -209,6 +216,10 @@ export function verifyInternalProof(prepared,event) {
   }
   const latest=[...c.observations].reverse().find(o=>o.phase==='VERIFY');
   if(!latest||latest.results.length!==request.targets.length||!request.targets.every(t=>latest.results.some(r=>r.path===t.path&&r.match==='PLANNED'&&same(r.integrity,integrity(Buffer.from(t.plannedBase64,'base64'))))))fail('PROOF_CHECKPOINT');
+  if(request.bootstrap) {
+    checkSet(event.bootstrapEvidence,new Map(request.bootstrap.evidence.map(e=>[e.path,Buffer.from(e.bytesBase64,'base64')])));
+    validateBootstrapGraph(request,c);
+  }
   return true;
 }
 

@@ -1,6 +1,6 @@
 # R02-T07-S01-r1 — khởi tạo hồ sơ tối thiểu
 
-**Đề xuất chưa duyệt.** [Sổ công việc](../KIDEA_ROADMAP.md#work-state) giữ trạng thái; tài liệu này không cấp quyền chạy init trên project thật. T06 đã có primitive nội bộ, chưa có bootstrap/caller init. Gói này gồm **một quyết định cần cân nhắc D1** và hợp đồng/template thường lệ hữu hạn dưới đây; không duyệt trước kết quả thực thi hay quota AI.
+**Đã được Human duyệt** qua “Ok tôi hiểu rồi. Duyệt nhé” sau [gói 52be3d8](https://github.com/Kynderis/kidea/blob/52be3d84a0182625b69dc6dcc530fe38f341ea59/answer.md) và giải thích “phiếu duyệt” trong hội thoại. Xác nhận áp dụng D1 cùng hợp đồng/template hữu hạn dưới đây, không duyệt trước kết quả thực thi hay quota AI. [Sổ công việc](../KIDEA_ROADMAP.md#work-state) giữ trạng thái; chưa cấp quyền chạy init trên project thật. Các mô tả “đề xuất/sau approval” phía dưới giữ nội dung bản trình; phạm vi này nay là căn cứ S02, không là bằng chứng init đã chạy được.
 
 ## D1 — chưa có phiếu duyệt không có nghĩa được miễn duyệt
 

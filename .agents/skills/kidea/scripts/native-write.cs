@@ -167,12 +167,12 @@ public static class KideaNativeWrite
         Require(bytes.Length <= MaxBytes && Convert.ToBase64String(bytes) == encoded, "INVALID_BYTES");
         return bytes;
     }
-    static void CheckIntegrityShape(JsonElement i)
+    static void CheckIntegrityShape(JsonElement i, bool payload = true)
     {
         Closed(i, "method", "value", "byteLength");
         Require(Text(i.GetProperty("method")) == "SHA256" && Regex.IsMatch(Text(i.GetProperty("value")), "^[0-9a-f]{64}$"), "INVALID_INTEGRITY");
         var n = i.GetProperty("byteLength");
-        Require(n.ValueKind == JsonValueKind.Number && n.TryGetInt64(out long length) && length >= 0 && length <= MaxBytes, "INVALID_INTEGRITY");
+        Require(n.ValueKind == JsonValueKind.Number && n.TryGetInt64(out long length) && length >= 0 && length <= (payload ? MaxBytes : 9007199254740991L), "INVALID_INTEGRITY");
     }
     static void CheckRef(JsonElement e)
     {
@@ -259,13 +259,16 @@ public static class KideaNativeWrite
         readonly List<Target> targets = new List<Target>();
         readonly Dictionary<string, CleanupCopy> cleanupCopies = new Dictionary<string, CleanupCopy>(PathComparer);
         readonly List<Held> evidence = new List<Held>();
+        readonly List<string> bootstrapDirectories = new List<string>();
+        readonly Dictionary<string, byte[]> bootstrapEvidence = new Dictionary<string, byte[]>(PathComparer);
+        readonly Dictionary<string, Held> bootstrapFiles = new Dictionary<string, Held>(PathComparer);
         readonly string fault, barrier;
         string root, operation, opRelative, digest;
         byte[] requestBytes;
         JsonElement context, cleanup;
         JsonObject checkpoint;
         Held pending, current;
-        bool restoreAllowed, retireAllowed, pendingCreated, retired, effects, faultUsed, barrierUsed, safetyLost, isCleanup;
+        bool restoreAllowed, retireAllowed, pendingCreated, retired, effects, faultUsed, barrierUsed, safetyLost, isCleanup, isBootstrap;
         int observationNumber;
         string lastPhase = "PRECHECK";
 
@@ -301,7 +304,13 @@ public static class KideaNativeWrite
         {
             CheckIdentities();
             try { using (var h = Open(path, 0, 7, OpenExisting, false)) { safetyLost = true; throw new Failure("CREATE_TARGET_EXISTS"); } }
-            catch (Win32Exception e) { if (e.NativeErrorCode != 2) { safetyLost = true; throw; } }
+            catch (Win32Exception e)
+            {
+                bool missingParent = isBootstrap && e.NativeErrorCode == 3 &&
+                    ((!directories.ContainsKey(Absolute(".kidea")) && path.StartsWith(Absolute(".kidea") + "\\", StringComparison.OrdinalIgnoreCase)) ||
+                    bootstrapDirectories.Any(d => !directories.ContainsKey(Absolute(d)) && path.StartsWith(Absolute(d) + "\\", StringComparison.OrdinalIgnoreCase)));
+                if (e.NativeErrorCode != 2 && !missingParent) { safetyLost = true; throw; }
+            }
             CheckIdentities();
         }
         void EnsureMetadataDirectory(string relative, bool mustBeNew = false)
@@ -423,11 +432,14 @@ public static class KideaNativeWrite
         void ValidateRequest(JsonElement request, string line)
         {
             isCleanup = request.TryGetProperty("cleanup", out cleanup);
+            isBootstrap = request.TryGetProperty("bootstrap", out var bootstrap);
+            Require(!(isCleanup && isBootstrap), "INVALID_BOOTSTRAP");
             if (isCleanup)
             {
                 Closed(request, "protocolVersion", "operationId", "root", "authorization", "context", "inputs", "targets", "cleanup");
                 Closed(cleanup, "checkpointPath", "copies", "receipt"); Relative(cleanup.GetProperty("checkpointPath"));
             }
+            else if (isBootstrap) Closed(request, "protocolVersion", "operationId", "root", "authorization", "context", "inputs", "targets", "bootstrap");
             else Closed(request, "protocolVersion", "operationId", "root", "authorization", "context", "inputs", "targets");
             Require(request.GetProperty("protocolVersion").ValueKind == JsonValueKind.Number && request.GetProperty("protocolVersion").GetInt32() == 1, "PROTOCOL_VERSION");
             operation = Text(request.GetProperty("operationId"));
@@ -436,6 +448,7 @@ public static class KideaNativeWrite
             opRelative = MetadataRoot + "/operations/" + operation;
             var auth = request.GetProperty("authorization");
             if (isCleanup) Closed(auth, "root", "metadataRoot", "targets", "allowRestoreUpdate", "allowRetireOwnPending", "assumptions", "cleanup");
+            else if (isBootstrap) Closed(auth, "root", "metadataRoot", "targets", "allowRestoreUpdate", "allowRetireOwnPending", "assumptions", "bootstrap", "createDirectories");
             else Closed(auth, "root", "metadataRoot", "targets", "allowRestoreUpdate", "allowRetireOwnPending", "assumptions");
             Require(PathComparer.Equals(CanonicalAbsolute(Text(auth.GetProperty("root"))), root) && Text(auth.GetProperty("metadataRoot")) == MetadataRoot, "AUTHORIZATION_REQUIRED");
             restoreAllowed = Bool(auth.GetProperty("allowRestoreUpdate")); retireAllowed = Bool(auth.GetProperty("allowRetireOwnPending"));
@@ -449,7 +462,7 @@ public static class KideaNativeWrite
             var tool = context.GetProperty("tool"); Closed(tool, "version", "components"); Text(tool.GetProperty("version"));
             var components = tool.GetProperty("components"); Require(components.ValueKind == JsonValueKind.Array && components.GetArrayLength() > 0, "TOOL_IDENTITY_REQUIRED");
             var componentNames = new HashSet<string>(StringComparer.Ordinal);
-            foreach (var c in components.EnumerateArray()) { Closed(c, "name", "integrity"); Require(componentNames.Add(Text(c.GetProperty("name"))), "DUPLICATE_COMPONENT"); CheckIntegrityShape(c.GetProperty("integrity")); }
+            foreach (var c in components.EnumerateArray()) { Closed(c, "name", "integrity"); Require(componentNames.Add(Text(c.GetProperty("name"))), "DUPLICATE_COMPONENT"); CheckIntegrityShape(c.GetProperty("integrity"), false); }
             foreach (string name in new[] { "permissionRefs", "inputRefs" })
             {
                 var refs = context.GetProperty(name); Require(refs.ValueKind == JsonValueKind.Array && refs.GetArrayLength() > 0, "CONTEXT_REFERENCES_REQUIRED");
@@ -474,13 +487,41 @@ public static class KideaNativeWrite
                 Closed(grant, "path", "action"); string p = Relative(grant.GetProperty("path")), action = Text(grant.GetProperty("action"));
                 Require(grantPaths.Add(p) && targets.Any(t => t.Path == p && t.Action == action), "TARGET_NOT_AUTHORIZED");
             }
-            var inputs = request.GetProperty("inputs"); Require(inputs.ValueKind == JsonValueKind.Array && inputs.GetArrayLength() > 0 && inputs.GetArrayLength() <= 4096, "INVALID_INPUTS");
+            var inputs = request.GetProperty("inputs"); Require(inputs.ValueKind == JsonValueKind.Array && (isBootstrap || inputs.GetArrayLength() > 0) && inputs.GetArrayLength() <= 4096, "INVALID_INPUTS");
             foreach (var i in inputs.EnumerateArray())
             {
                 Closed(i, "path", "expectedBase64"); string p = Relative(i.GetProperty("path")); Spelling(p);
                 Require(!expectedInputs.ContainsKey(p), "DUPLICATE_INPUT"); expectedInputs.Add(p, Bytes(i.GetProperty("expectedBase64")));
             }
             if (isCleanup) ValidateCleanup(auth.GetProperty("cleanup"));
+            if (isBootstrap) ValidateBootstrap(bootstrap, auth);
+        }
+        void ValidateBootstrap(JsonElement bootstrap, JsonElement auth)
+        {
+            Closed(bootstrap, "directories", "evidence");
+            Require(Bool(auth.GetProperty("bootstrap")) && !restoreAllowed && targets.All(t => t.Action == "CREATE") &&
+                targets.Any(t => t.Path == ".kidea/INDEX.md") && targets.Any(t => t.Path == ".kidea/work.md"), "INVALID_BOOTSTRAP");
+            Require(targets.All(t => !t.Path.StartsWith(".kidea/", StringComparison.OrdinalIgnoreCase) || t.Path == ".kidea/INDEX.md" || t.Path == ".kidea/work.md"), "INVALID_BOOTSTRAP_TARGET");
+            var dirs = bootstrap.GetProperty("directories"); var grants = auth.GetProperty("createDirectories");
+            Require(dirs.ValueKind == JsonValueKind.Array && grants.ValueKind == JsonValueKind.Array && dirs.GetArrayLength() <= 256 && dirs.GetArrayLength() == grants.GetArrayLength(), "DIRECTORIES_NOT_AUTHORIZED");
+            int n = 0;
+            foreach (var d in dirs.EnumerateArray())
+            {
+                string p = Relative(d); Spelling(p);
+                Require(!p.StartsWith(".kidea", StringComparison.OrdinalIgnoreCase) && !bootstrapDirectories.Contains(p, PathComparer) &&
+                    Relative(grants[n++]) == p && targets.Any(t => t.Path.StartsWith(p + "/", StringComparison.Ordinal)), "DIRECTORIES_NOT_AUTHORIZED");
+                Require(!targets.Any(t => PathComparer.Equals(t.Path, p)) && !expectedInputs.ContainsKey(p), "PATH_ROLE_COLLISION");
+                bootstrapDirectories.Add(p);
+            }
+            var copies = bootstrap.GetProperty("evidence");
+            Require(copies.ValueKind == JsonValueKind.Array && copies.GetArrayLength() > 0 && copies.GetArrayLength() <= 256, "INVALID_BOOTSTRAP_EVIDENCE");
+            foreach (var e in copies.EnumerateArray())
+            {
+                Closed(e, "path", "bytesBase64"); string p = Relative(e.GetProperty("path")); Spelling(p);
+                Require(p.StartsWith(opRelative + "/", StringComparison.Ordinal) && Regex.IsMatch(p.Substring(opRelative.Length + 1), @"^(permission|input-[0-9]+)\.md$") &&
+                    !bootstrapEvidence.ContainsKey(p) && !expectedInputs.ContainsKey(p), "INVALID_BOOTSTRAP_EVIDENCE");
+                bootstrapEvidence.Add(p, Bytes(e.GetProperty("bytesBase64")));
+            }
         }
         void ValidateCleanup(JsonElement grant)
         {
@@ -557,6 +598,7 @@ public static class KideaNativeWrite
         byte[] BoundBefore(string p)
         {
             Spelling(p);
+            if (isBootstrap && bootstrapEvidence.TryGetValue(p, out var captured)) return captured;
             if (inputFiles.TryGetValue(p, out var input)) return ReadBytes(input);
             var target = targets.FirstOrDefault(t => t.Path == p && t.Action == "UPDATE");
             Require(target != null, "UNBOUND_REFERENCE"); return ReadBytes(target.File);
@@ -564,7 +606,21 @@ public static class KideaNativeWrite
         void Acquire()
         {
             ProtectDirectory(root);
-            foreach (var target in targets) ProtectParent(Absolute(target.Path));
+            if (isBootstrap)
+            {
+                CheckAbsence(Absolute(".kidea"));
+                foreach (var d in bootstrapDirectories)
+                {
+                    string parent = Path.GetDirectoryName(Absolute(d));
+                    if (!bootstrapDirectories.Any(x => PathComparer.Equals(Absolute(x), parent))) ProtectDirectory(parent);
+                    CheckAbsence(Absolute(d));
+                }
+            }
+            foreach (var target in targets)
+            {
+                string parent = Path.GetDirectoryName(Absolute(target.Path));
+                if (!isBootstrap || !PathComparer.Equals(parent, Absolute(".kidea")) && !bootstrapDirectories.Any(d => PathComparer.Equals(Absolute(d), parent))) ProtectDirectory(parent);
+            }
             foreach (var p in expectedInputs.Keys) ProtectParent(Absolute(p));
             foreach (var target in targets)
             {
@@ -582,7 +638,7 @@ public static class KideaNativeWrite
                 inputFiles.Add(pair.Key, held); Require(ReadBytes(held).SequenceEqual(pair.Value), "INPUT_BYTES_CHANGED");
             }
             CheckContextReferences(); CheckStable();
-            EnsureMetadataDirectory(".kidea"); EnsureMetadataDirectory(MetadataRoot);
+            EnsureMetadataDirectory(".kidea", isBootstrap); EnsureMetadataDirectory(MetadataRoot);
             // The persistent empty lock is never rewritten or deleted. Opening
             // the registry directory share=0 would block our own enumeration.
             Held mutex;
@@ -616,6 +672,7 @@ public static class KideaNativeWrite
             // Exact protocol bytes are supporting evidence, not a new source of
             // authority. Never replay this persisted request automatically.
             NewEvidence(opRelative + "/request.json", requestBytes);
+            foreach (var e in bootstrapEvidence) bootstrapFiles.Add(e.Key, NewEvidence(e.Key, e.Value));
             for (int i = 0; i < targets.Count; i++)
             {
                 var t = targets[i];
@@ -626,6 +683,10 @@ public static class KideaNativeWrite
             NewEvidence(opRelative + "/prepared.md", Envelope(checkpoint));
             Journal("PRECHECK", "Recovery copies are retained; target writes have not started.", false);
             Barrier("PREPARED"); CheckStable();
+            // Missing business parents are created only after the discovery
+            // marker and retained plan exist. Never adopt a raced-in directory.
+            foreach (var directory in bootstrapDirectories) EnsureMetadataDirectory(directory, true);
+            CheckStable();
         }
         void DeleteCleanupCopies()
         {
@@ -743,6 +804,7 @@ public static class KideaNativeWrite
             Emit(new { @event = "BYTES_VERIFIED", operationId = operation, planDigest = digest,
                 checkpointRef = new { path = CheckpointPath, anchor = (string)null }, checkpoint,
                 inputs = InputProof(), deleted = DeletedProof(),
+                bootstrapEvidence = bootstrapFiles.Select(p => new { path = p.Key, integrity = Integrity(ReadBytes(p.Value)) }).ToArray(),
                 targets = targets.Select(t => new { path = t.Path, integrity = Integrity(ReadBytes(t.File)) }).ToArray() });
             using (var doc = Parse(Receive()))
             {

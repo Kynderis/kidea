@@ -16,8 +16,9 @@ const snapshot = (root) => Object.fromEntries(readdirSync(root, { recursive: tru
 
 const cases = [
   { args: ['--help'], status: 0 },
-  ...['init', 'resume', 'approve', 'change', 'visualize'].map((action) => ({ args: [action], status: 3, code: 'NOT_IMPLEMENTED' })),
-  { args: ['init', 'Ý tưởng có dấu và khoảng trắng'], status: 3, code: 'NOT_IMPLEMENTED' },
+  ...['resume', 'approve', 'change', 'visualize'].map((action) => ({ args: [action], status: 3, code: 'NOT_IMPLEMENTED' })),
+  { args: ['init'], status: 1, code: 'INIT_INPUT_INVALID' },
+  { args: ['init', 'Ý tưởng có dấu và khoảng trắng'], status: 2, code: 'INVALID_ARGUMENTS' },
   { args: ['approve', 'R99-T01-S01'], status: 3, code: 'NOT_IMPLEMENTED' },
   ...[[], ['unknown'], ['--help', 'init'], ['status', 'unexpected'], ['resume', '--force'], ['init', '--write'], ['visualize', '../outside']]
     .map((args) => ({ args, status: 2, code: 'INVALID_ARGUMENTS' })),
@@ -27,12 +28,12 @@ for (const entry of cases) {
   test(`scaffold ${JSON.stringify(entry.args)}`, () => {
     assert.equal(process.versions.node.split('.')[0], '24');
     const before = snapshot(fixture);
-    const result = spawnSync(process.execPath, [helper, ...entry.args], { cwd: fixture, encoding: 'utf8', timeout: 5000 });
+    const result = spawnSync(process.execPath, [helper, ...entry.args], { cwd: fixture, input:'', encoding: 'utf8', timeout: 10000, windowsHide:true });
     assert.ifError(result.error);
     assert.equal(result.status, entry.status, result.stderr);
     const response = JSON.parse(entry.status === 0 ? result.stdout : result.stderr);
     if (entry.code) assert.equal(response.code, entry.code);
-    else assert.deepEqual(response.implemented, ['status']);
+    else assert.deepEqual(response.implemented, ['status','init']);
     assert.equal(entry.status === 0 ? result.stderr : result.stdout, '');
     assert.deepEqual(snapshot(fixture), before);
   });
