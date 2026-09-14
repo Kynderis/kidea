@@ -4,7 +4,7 @@ Trạng thái: `R01 ĐÃ DUYỆT — R02 ĐANG HOÀN THIỆN LÕI, CHƯA NGHIỆ
 
 Ngày cập nhật: 2026-09-14
 
-Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. [Roadmap](KIDEA_ROADMAP.md) giữ trạng thái xây Kidea: status/init và writer hợp tác đã có bản thử; approve/resume/change/visualize, kiểm chứng tích hợp và pilot chưa hoàn tất.
+Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. [Roadmap](KIDEA_ROADMAP.md) giữ trạng thái xây Kidea: status/init, writer hợp tác và luồng hồ sơ review đã có bản thử; resume/change/visualize, kiểm chứng AI tích hợp và pilot chưa hoàn tất.
 
 Human đã duyệt kết quả tích hợp R01 và cho mở R02 từng phần tại [gate khép căn cứ](KIDEA_ROADMAP.md#r01-result). Không coi đây là duyệt mọi chi tiết còn đề xuất, số đo/fixture, runtime/schema hoặc quyền cài/chạy pilot/deploy.
 
@@ -392,6 +392,8 @@ Hồ sơ bước con cần nêu phần việc, kết quả kiểm tra và trạn
 <a id="approval-transitions-contract"></a>
 
 #### R02-T03-S01-r1 — duyệt, yêu cầu sửa và không áp dụng, đã duyệt
+
+Runtime R02-T08 hiện thực lát cắt theo [giao diện được duyệt](KIDEA_ROADMAP.md#approve-interface-approved): một entrypoint approve cho tạo/trình/góp ý/đổi bản/ghi xác nhận. Điều kiện, ý nghĩa và quyền vẫn do caller đối chiếu; helper kiểm tra đúng bản/byte/cấu trúc, không xác thực Human. Chỉ REVISE có ngoại lệ review STALE giới hạn sau so sánh; không sửa nguồn sản phẩm, kế thừa xác nhận cũ hoặc tự mở phần tiếp theo. Nhánh giữ approval sau sửa thuần trình bày của S02 chưa có thao tác ghi trong candidate, không được giả đã hỗ trợ toàn T03.
 
 Human “Duyệt” sau [answer 67b13b7](https://github.com/Kynderis/kidea/blob/67b13b7fbe8aecd44ad77d1be7358075d7fa1550/answer.md), xác nhận D1–D2 của S01-r1 cùng bản; [kết quả](KIDEA_ROADMAP.md#r02-t03-s01-result). T03 cụ thể hóa cách lưu kết quả Human review; không cấp quyền Git/deploy hoặc cho AI tự duyệt. S01 chốt hai quyết định dưới đây; hiệu lực khi đầu vào/nội dung đổi và nhận diện bản thuộc S02/T04.
 

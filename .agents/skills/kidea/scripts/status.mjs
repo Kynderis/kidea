@@ -254,11 +254,11 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     for(const [i,v] of r.validityChecks.entries())if(['UNCHANGED','NON_SEMANTIC'].includes(v.result))requireValue(v.beforeRefs.length>0&&v.afterRefs.length>0,record,`.validityChecks[${i}]`);
     for(const [i,v] of r.historyRefs.entries()) {
       const loc=v.location;
-      requireValue(loc.kind==='SNAPSHOT'&&loc.ref.path.startsWith('.kidea/reviews/evidence/'),record,`.historyRefs[${i}]`);
+      requireValue(loc.kind==='GIT'||loc.kind==='SNAPSHOT'&&loc.ref.path.startsWith('.kidea/reviews/evidence/'),record,`.historyRefs[${i}]`);
       const key=JSON.stringify(loc);
       if(seen.has(key)){issue('HISTORY_CYCLE',record.file,`.historyRefs[${i}]`);continue;}
       const data=version(v,record,`.historyRefs[${i}]`,{reviewSnapshot:true});
-      if(data){const old=parse(loc.ref.path,data);requireValue(old.data.kind==='review'&&old.data.id===r.id&&old.data.revision<=r.revision,record,`.historyRefs[${i}]`);if(old.data.kind==='review'){walk(old.data,'review',old,'',{historical:true});reviewHistory(old,new Set([...seen,key]));}}
+      if(data){const old=parse(loc.kind==='GIT'?loc.path:loc.ref.path,data);requireValue(old.data.kind==='review'&&old.data.id===r.id&&old.data.revision<=r.revision,record,`.historyRefs[${i}]`);if(old.data.kind==='review'){walk(old.data,'review',old,'',{historical:true});reviewHistory(old,new Set([...seen,key]));}}
     }
   }
   try {

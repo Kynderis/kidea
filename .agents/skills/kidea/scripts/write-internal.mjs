@@ -75,13 +75,23 @@ function safeRoot(root) {
 // existing project, local snapshots, and existing target parent directories.
 export function prepareInternalWrite(args) { return preparePlan(args); }
 
+// Narrow metadata-only reconciliation. Never relax the generic product writer.
+export function prepareInternalReviewWrite(args, {reviewPath, relatedPaths=[], directories=[]}={}) {
+  if(!/^\.kidea\/reviews\/(?!evidence\/)[^/]+\.md$/.test(reviewPath??''))fail('INVALID_REVIEW_PATH');
+  if(directories.some(p=>!['.kidea/reviews','.kidea/reviews/evidence'].includes(p))||new Set(directories).size!==directories.length)fail('INVALID_REVIEW_DIRECTORIES');
+  for(const t of args.targets)if(t.path!==reviewPath&&!relatedPaths.includes(t.path)&&!(t.action==='CREATE'&&t.path.startsWith('.kidea/reviews/evidence/')))fail('REVIEW_TARGET_SCOPE');
+  for(const p of relatedPaths)if(!p.startsWith('.kidea/')||p.startsWith('.kidea/reviews/')||p.startsWith('.kidea/checkpoints/'))fail('REVIEW_TARGET_SCOPE');
+  if(!same(args.authorization.createDirectories??[],directories))fail('DIRECTORY_NOT_AUTHORIZED');
+  return preparePlan(args,null,null,{reviewPath,directories});
+}
+
 export function prepareInternalBootstrap(args) {
   const request=prepareBootstrapRequest(args),line=JSON.stringify(request);
   const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId:request.operationId});
   preparedPlans.add(prepared);return prepared;
 }
 
-function preparePlan({root,authorization,context,targets,operationId=randomUUID()},cleanup=null,priorGraph=null) {
+function preparePlan({root,authorization,context,targets,operationId=randomUUID()},cleanup=null,priorGraph=null,review=null) {
   if(process.platform!=='win32')fail('UNSUPPORTED_HOST');
   root=safeRoot(root);
   if(!authorization||path.resolve(authorization.root)!==root||authorization.metadataRoot!=='.kidea/checkpoints')fail('AUTHORIZATION_REQUIRED');
@@ -89,14 +99,16 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   if(typeof authorization.allowRestoreUpdate!=='boolean'||authorization.allowRetireOwnPending!==true)fail('AUTHORIZATION_REQUIRED');
   if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(operationId))fail('INVALID_OPERATION_ID');
   if(!Array.isArray(targets)||!targets.length||!Array.isArray(authorization.targets)||authorization.targets.length!==targets.length)fail('INVALID_TARGETS');
-  function checkGraph(g) {
-    if(g.status.readState!=='OK')throw Object.assign(new Error('GRAPH_NOT_VALID'),{code:'GRAPH_NOT_VALID',diagnostics:g.status.diagnostics});
+  function checkGraph(g,allowStale=false) {
+    const permitted=allowStale&&g.status.diagnostics.length&&g.status.diagnostics.every(d=>d.code==='CURRENT_SOURCE_DIFFERS'&&d.file===review.reviewPath&&/^\.(subjectVersions|inputVersions)\[\d+\]$/.test(d.fieldOrId));
+    if(g.status.readState!=='OK'&&!permitted)throw Object.assign(new Error('GRAPH_NOT_VALID'),{code:'GRAPH_NOT_VALID',diagnostics:g.status.diagnostics});
     if(g.absent.size)fail('UNSUPPORTED_GRAPH_INPUT');
   }
   // Discover interrupted writes before interpreting already-created/partial
   // targets as a fresh request. This still does not authorize recovery/replay.
   const allowGit=authorization.allowReadLocalGit===true;
-  const current=cleanup?cleanupGraph(root,new Map(),cleanup.checkpointPath,allowGit):inspectStatusGraph(root,new Map(),[],{allowGit});checkGraph(current);
+  const current=cleanup?cleanupGraph(root,new Map(),cleanup.checkpointPath,allowGit):inspectStatusGraph(root,new Map(),[],{allowGit});checkGraph(current,!!review);
+  for(const d of review?.directories??[])if(localEntry(root,d,true))fail('DIRECTORY_ALREADY_EXISTS');
   const seen=new Set(),overlay=new Map(),planned=[];
   for(const t of targets) {
     if(!validPath(t.path)||!['UPDATE','CREATE'].includes(t.action)||!Buffer.isBuffer(t.plannedBytes))fail('INVALID_TARGET');
@@ -113,7 +125,8 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   }
   if(cleanup)for(const c of cleanup.copies)overlay.set(c.path,null);
   const projected=cleanup?cleanupGraph(root,overlay,cleanup.checkpointPath,allowGit):inspectStatusGraph(root,overlay,[],{allowGit});checkGraph(projected);
-  if(context?.projectId!==current.status.projectId||context.projectId!==projected.status.projectId||!current.status.data.items.some(i=>i.id===context.ownerId)||!projected.status.data.items.some(i=>i.id===context.ownerId))fail('CONTEXT_IDENTITY');
+  const currentItems=[...current.records.values()].filter(r=>['work','plan'].includes(r.kind)).flatMap(r=>r.items);
+  if(context?.projectId!==current.status.projectId||context.projectId!==projected.status.projectId||!currentItems.some(i=>i.id===context.ownerId)||!projected.status.data.items.some(i=>i.id===context.ownerId))fail('CONTEXT_IDENTITY');
   checked(context.tool,'ToolIdentity');
   if(!context.tool.components.length||new Set(context.tool.components.map(c=>c.name)).size!==context.tool.components.length)fail('INVALID_TOOLIDENTITY');
   if(!Array.isArray(context.permissionRefs)||!context.permissionRefs.length||!Array.isArray(context.inputRefs)||!context.inputRefs.length)fail('CONTEXT_REFERENCES_REQUIRED');
@@ -128,14 +141,15 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
     checked(v,'VersionRef');
     if(!['SNAPSHOT','GIT'].includes(v.location.kind)||v.location.kind==='SNAPSHOT'&&v.location.ref.anchor!==null||v.source===null)fail('UNSUPPORTED_REFERENCE');
     if(v.location.kind==='GIT'&&!allowGit)fail('GIT_READ_NOT_AUTHORIZED');
-    const snapshot=v.location.kind==='GIT'?readGitVersion(root,v.location):localBytes(root,v.location.ref.path),source=localBytes(root,v.source.path);
+    const resolveContext=p=>review&&overlay.has(p)&&planned.find(t=>t.path===p)?.action==='CREATE'?overlay.get(p):localBytes(root,p);
+    const snapshot=v.location.kind==='GIT'?readGitVersion(root,v.location):resolveContext(v.location.ref.path),source=resolveContext(v.source.path);
     if(!same(integrity(snapshot),v.integrity)||!source.equals(snapshot))fail('CONTEXT_SOURCE_DIFFERS');
     if(v.source.anchor!==null) {
       try{if(snapshotAnchorCount(snapshot,v.source.anchor)!==1)fail('CONTEXT_ANCHOR');}
       catch{fail('CONTEXT_ANCHOR');}
     }
-    if(v.location.kind==='GIT')bindGit(v.location,snapshot);else bind(v.location.ref.path,snapshot);
-    bind(v.source.path,source);
+    if(v.location.kind==='GIT')bindGit(v.location,snapshot);else if(!review||!overlay.has(v.location.ref.path))bind(v.location.ref.path,snapshot);
+    if(!review||!overlay.has(v.source.path))bind(v.source.path,source);
   }
   const folded=new Map();
   for(const p of [...inputs.keys(),...planned.map(t=>t.path)]) {
@@ -149,6 +163,7 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   const request={protocolVersion:2,operationId,root,authorization:structuredClone(authorization),context:structuredClone(context),
     inputs:[...inputs].sort(([a],[b])=>a.localeCompare(b)).map(([p,b])=>({path:p,expectedBase64:b.toString('base64')})),gitInputs:[...gitInputs.values()],targets:planned};
   if(cleanup)request.cleanup=structuredClone(cleanup);
+  if(review)request.review=structuredClone(review);
   const line=JSON.stringify(request);
   const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId});
   preparedPlans.add(prepared);return prepared;
@@ -315,6 +330,7 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
     remember(checkpointPath,record(checkpoint));
     await barrier('PREPARED');checkPending();checkInputs();
     for(const d of request.bootstrap?.directories??[])directory(d,true);
+    for(const d of request.review?.directories??[])directory(d,true);
     await barrier('BEFORE_FIRST_WRITE');fault('BEFORE_FIRST_WRITE');checkInputs();
     if(request.cleanup) {
       await barrier('CLEANUP_BEFORE_DELETE');fault('CLEANUP_DELETE_FAILURE');

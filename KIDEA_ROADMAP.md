@@ -10,7 +10,19 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
-**Đã hoàn tất lát cắt tinh gọn writer/caller theo hướng duyệt ngày 2026-09-14: 174/174 test xác định đạt trên nguồn không đổi.** [Bằng chứng](tests/evidence/r02-t06-cooperative.md); chưa nghiệm thu toàn lõi. Tiếp theo là phần approve/resume đủ điều kiện thực, rồi kiểm thử luồng tích hợp. T07 AI vẫn **0/3**, protocol cũ tạm dừng; không tự dùng quota đó cho nguồn/bài thử mới. Sự cố launcher/ACL [vẫn chưa giải quyết riêng](tests/r02-t07/launcher-preflight.md); không dựng VM, đổi ACL hoặc chạy sandbox trong lượt tinh gọn.
+**Đã hoàn tất lát cắt R02-T08-S02: 196/196 test xác định đạt, nguồn theo dõi không đổi.** Tạo/trình gói, giữ góp ý, ghi đúng xác nhận và đối chiếu có kiểm soát review đã cũ theo phạm vi Human “Duyệt nhé” ngày 2026-09-14. [Hợp đồng](#approve-interface-approved), [bằng chứng/giới hạn](tests/evidence/r02-t08.md). Chưa hoàn tất toàn T08/lõi; tiếp theo rà prerequisite thực cho resume và bài thử AI tích hợp. T07 AI vẫn **0/3**, protocol cũ tạm dừng; không tự dùng quota đó cho nguồn/bài thử mới. Sự cố launcher/ACL [vẫn chưa giải quyết riêng](tests/r02-t07/launcher-preflight.md); không dựng VM, đổi ACL hoặc chạy sandbox trong lượt này.
+
+<a id="approve-interface-approved"></a>
+
+### R02-T08-S01-r1 — giao diện và phạm vi đã duyệt
+
+Human **“Duyệt nhé”** sau gói rà soát R02-T08 trong hội thoại ngày 2026-09-14 đã duyệt tạo/trình gói, giữ phản hồi, approval đúng bản và ngoại lệ cập nhật giới hạn cho review STALE sau đối chiếu. Không thay T03 hoặc cấp quyền sửa nguồn sản phẩm, kế thừa approval cũ khi đổi nghĩa, tự tiếp tục, chạy AI, resume, ACL/VM hay pilot.
+
+Một hành động công khai `approve`, request nội bộ CREATE/SUBMIT/FEEDBACK/REVISE/APPROVE; Human tiếp tục góp ý tự nhiên, không thêm lệnh công khai thứ bảy. Gói gắn đúng owner, ID/revision và digest toàn file đã trình. Nháp không tự qua hai bước để duyệt; góp ý không thành xác nhận. N/A giữ mục đích/lý do và không thành DONE hoặc miễn gate cha. CREATE chỉ nối review/gate refs trong work/plan liên quan. REVISE giữ lịch sử, tăng revision, xóa xác nhận ở bản hiện hành; không sửa bản lịch sử.
+
+Ngoại lệ STALE chỉ nhận CURRENT_SOURCE_DIFFERS ở subjectVersions/inputVersions của review được chọn; yêu cầu đối chiếu bản cũ, nguồn hiện tại và ảnh hưởng. Nguồn thiếu, hồ sơ sai, review/profile khác đã cũ, thiếu quyền hoặc pending đều chặn. Writer thông thường không được nới. Git-first đúng byte khi có quyền đọc; snapshot khi cần. Runtime vẫn không xác thực người nói hoặc chứng minh đánh giá ngữ nghĩa của caller.
+
+S02 gồm mã/hướng dẫn và kiểm thử xác định project giả từ init thật. S03 thử AI tích hợp vẫn chờ phạm vi/quota mới. Giữ hiệu lực sau sửa thuần trình bày là nghĩa T03 nhưng chưa có thao tác ghi tương ứng ở candidate này; không giả dùng REVISE hoặc helper nội bộ để vượt giới hạn.
 
 <a id="lean-core-review"></a>
 
@@ -230,8 +242,11 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T07-S01 | DONE | R02-T07-S01-r1 — APPROVED | Human “Ok tôi hiểu rồi. Duyệt nhé” sau [gói 52be3d8](https://github.com/Kynderis/kidea/blob/52be3d84a0182625b69dc6dcc530fe38f341ea59/answer.md) và giải thích “phiếu duyệt”; [hợp đồng/template](proposals/r02-t07-init-r1.md). D1 đã đồng bộ đúng ngoại lệ, không mở quota AI/project thật |
 | R02-T07-S02 | DONE | [A] — theo S01-r1 đã APPROVED | Template/caller init và bootstrap CREATE-only đã chạy; D1 chặn hoàn tất/cleanup STEP thiếu gate. 229/229 gồm 19 init + 118 writer/cleanup + 92 helper/status trên nguồn không đổi; [bằng chứng/lỗi/giới hạn](tests/evidence/r02-t07.md). Chưa chứng nhận hành vi AI hoặc project thật |
 | R02-T07-S03 | IN_PROGRESS | Gói cũ APPROVED; tạm dừng launcher, không đang thực thi | **0/3 AI**; quyền ACL hẹp/sự cố giữ tại [preflight](tests/r02-t07/launcher-preflight.md). Nguồn/protocol cũ cố định; không dùng quota T06 hoặc chuyển quota này sang writer/luồng mới. T08/T09 chỉ chờ prerequisite thực |
+| R02-T08-S01 | DONE | [H] — S01-r1 APPROVED ngày 2026-09-14 | Human “Duyệt nhé” xác nhận [giao diện/phạm vi](#approve-interface-approved); không mở resume hoặc AI trial |
+| R02-T08-S02 | DONE | [A] — theo S01-r1 | Luồng review metadata, lịch sử Git/snapshot, ngoại lệ STALE giới hạn và procedure đã có; 196/196 = 15 helper + 78 status + 61 writer + 20 init + 22 review, nguồn không đổi; [bằng chứng/giới hạn](tests/evidence/r02-t08.md). Chưa có nhánh giữ approval sau sửa thuần trình bày hoặc behavioral AI acceptance |
+| R02-T08-S03 | TODO | [A] — chưa cấp phiên AI | Chờ bài thử luồng tích hợp, nguồn/quota/phạm vi/quyền mới; không tự tái dùng 0/3 của T07 |
 
-R01 đã APPROVED; các kết quả T01–T06 trước tinh gọn và T07-S01/S02 giữ bằng chứng đúng bản trong sổ. S04 đã hoàn tất đúng lát cắt hợp đồng/writer/caller và hồi quy xác định; T07-S03 đã bắt đầu preflight nhưng tạm dừng, 0/3 AI. Kết quả native/T07 cũ không tự chứng nhận writer mới. T08/T09 và gate tích hợp/AI chưa hoàn tất; R02 chưa khép, R03–R10 chưa mở/pilot chưa có.
+R01 đã APPROVED; các kết quả T01–T06 trước tinh gọn và T07-S01/S02 giữ bằng chứng đúng bản trong sổ. S04 và lát cắt T08-S02 đã hoàn tất kiểm thử xác định; T07-S03 đã bắt đầu preflight nhưng tạm dừng, 0/3 AI. Kết quả native/T07 cũ không tự chứng nhận writer mới. Toàn T08, T09 và gate tích hợp/AI chưa hoàn tất; R02 chưa khép, R03–R10 chưa mở/pilot chưa có.
 
 <a id="r01-t01-result"></a>
 

@@ -16,10 +16,11 @@ const snapshot = (root) => Object.fromEntries(readdirSync(root, { recursive: tru
 
 const cases = [
   { args: ['--help'], status: 0 },
-  ...['resume', 'approve', 'change', 'visualize'].map((action) => ({ args: [action], status: 3, code: 'NOT_IMPLEMENTED' })),
+  ...['resume', 'change', 'visualize'].map((action) => ({ args: [action], status: 3, code: 'NOT_IMPLEMENTED' })),
+  { args: ['approve'], status: 1, code: 'REVIEW_INPUT_INVALID' },
   { args: ['init'], status: 1, code: 'INIT_INPUT_INVALID' },
   { args: ['init', 'Ý tưởng có dấu và khoảng trắng'], status: 2, code: 'INVALID_ARGUMENTS' },
-  { args: ['approve', 'R99-T01-S01'], status: 3, code: 'NOT_IMPLEMENTED' },
+  { args: ['approve', 'R99-T01-S01'], status: 2, code: 'INVALID_ARGUMENTS' },
   ...[[], ['unknown'], ['--help', 'init'], ['status', 'unexpected'], ['resume', '--force'], ['init', '--write'], ['visualize', '../outside']]
     .map((args) => ({ args, status: 2, code: 'INVALID_ARGUMENTS' })),
 ];
@@ -33,7 +34,7 @@ for (const entry of cases) {
     assert.equal(result.status, entry.status, result.stderr);
     const response = JSON.parse(entry.status === 0 ? result.stdout : result.stderr);
     if (entry.code) assert.equal(response.code, entry.code);
-    else assert.deepEqual(response.implemented, ['status','init']);
+    else assert.deepEqual(response.implemented, ['status','init','approve']);
     assert.equal(entry.status === 0 ? result.stderr : result.stdout, '');
     assert.deepEqual(snapshot(fixture), before);
   });
