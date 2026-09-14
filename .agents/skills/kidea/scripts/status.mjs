@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { parseTree, getNodeValue, findNodeAtLocation } from 'jsonc-parser';
 import { validate, validPath, schemas } from './schema.mjs';
+import { inspectPendingWrites, PendingWriteReadError, pendingWritesPath } from './pending-writes.mjs';
 
 const start = '<!-- kidea:data:start -->', end = '<!-- kidea:data:end -->';
 const utf8 = bytes => new TextDecoder('utf-8',{fatal:true}).decode(bytes);
@@ -16,7 +17,7 @@ class Stop extends Error {}
 export function readStatus(cwd, { beforeRecheck } = {}) {
   const out={outputVersion:1,action:'status',observedAt:new Date().toISOString(),readState:'OK',projectId:null,data:null,diagnostics:[]};
   const records=new Map(), reads=new Map(), absent=new Set(), gitReads=new Map();
-  let root;
+  let root, pendingBefore;
   function issue(code,file=null,field=null,state='INVALID',record=null) {
     const priority={OK:0,UNSUPPORTED:1,INCOMPLETE:2,INVALID:3};
     if(priority[state]>priority[out.readState]) out.readState=state;
@@ -39,6 +40,17 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
       catch(e) {if(e instanceof Stop) throw e;if(e.code==='ENOENT') break;issue('READ_FAILED',p,null,'INCOMPLETE');throw new Stop();}
     }
     return target;
+  }
+  function pendingState() {
+    try {
+      const state=inspectPendingWrites(root);
+      if(state.pending) {issue('WRITE_PENDING',pendingWritesPath,null,'INCOMPLETE');throw new Stop();}
+      return state.fingerprint;
+    } catch(error) {
+      if(error instanceof Stop)throw error;
+      const code=error instanceof PendingWriteReadError?error.code:'PENDING_READ_FAILED';
+      issue(code,pendingWritesPath,null,code==='PENDING_READ_FAILED'?'INCOMPLETE':'INVALID');throw new Stop();
+    }
   }
   function bytes(p,allowMissing=false) {
     const target=absolute(p);
@@ -208,6 +220,7 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
   }
   try {
     root=realpathSync(cwd);
+    pendingBefore=pendingState();
     const index=load('.kidea/INDEX.md','index');out.projectId=index.data.projectId;
     const idx=index.data;
     const work=load(idx.workRef.path,'work'), w=work.data;
@@ -299,6 +312,7 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
     for(const [p,read] of reads) {const latest=bytes(p);if(!latest.equals(read.data))issue('SOURCE_CHANGED',p,null,'INCOMPLETE');}
     for(const p of absent)if(bytes(p,true)!==null)issue('SOURCE_CHANGED',p,null,'INCOMPLETE');
     for(const entry of [...gitReads.values()])if(!gitBytes(entry.location,entry.record,entry.field).equals(entry.bytes))issue('SOURCE_CHANGED',entry.record.file,entry.field,'INCOMPLETE');
+    if(pendingState()!==pendingBefore)issue('PENDING_STATE_CHANGED',pendingWritesPath,null,'INCOMPLETE');
     if(out.readState==='OK')out.data={currentRoundId:w.currentRoundId,currentItemId:w.currentItemId,
       items:itemRows.map(({item,record})=>({...item,source:{file:record.file,id:item.id}})),
       reviews:reviews.map(r=>({id:r.data.id,revision:r.data.revision,recordedStatus:r.data.status,source:{file:r.file,id:r.data.id},subjectVersions:r.data.subjectVersions,inputVersions:r.data.inputVersions,confirmationRef:r.data.confirmationRef,verification:{structure:'CHECKED',snapshotBytes:'CHECKED',authority:'NOT_VERIFIED',semantics:'REQUIRES_AI_REVIEW'}})),
@@ -314,4 +328,9 @@ const messages={
   UNSUPPORTED_SCHEMA:'Phiên bản hoặc loại hồ sơ chưa được hỗ trợ.',CONTENT_MISMATCH:'Byte bản lưu không khớp mã nội dung.',
   CURRENT_SOURCE_DIFFERS:'Nguồn hiện hành khác hoặc thiếu so với căn cứ; cần đối chiếu lại ý nghĩa/hiệu lực.',SOURCE_CHANGED:'Nguồn thay đổi trong lượt đọc; chưa xác nhận ảnh chụp nhất quán.',
   EXTERNAL_UNSUPPORTED:'Nguồn bên ngoài chưa có phương thức đối chiếu được hỗ trợ; không truy cập mạng.',
+  WRITE_PENDING:'Có lượt ghi đang làm hoặc chưa được đối chiếu; chưa xác nhận tiến độ. Không tự dọn dấu lượt ghi hoặc chạy lại.',
+  PENDING_STATE_CHANGED:'Vùng nhận diện lượt ghi thay đổi trong lượt đọc; chưa xác nhận tiến độ.',
+  UNSAFE_PENDING_PATH:'Đường nhận diện lượt ghi có liên kết hoặc nằm ngoài project; không theo đường này.',
+  PENDING_NOT_DIRECTORY:'Vùng nhận diện lượt ghi không phải thư mục hợp lệ; cần đối chiếu, không tự sửa.',
+  PENDING_READ_FAILED:'Không kiểm tra được vùng nhận diện lượt ghi; chưa xác nhận tiến độ.',
 };

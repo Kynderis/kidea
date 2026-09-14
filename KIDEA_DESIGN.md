@@ -2,7 +2,7 @@
 
 Trạng thái: `CĂN CỨ R01 ĐÃ DUYỆT — ĐÃ CÓ KHUNG THỬ R02-T01, CHƯA CÓ LÕI KIDEA`
 
-Ngày cập nhật: 2026-09-12
+Ngày cập nhật: 2026-09-14
 
 Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. Lộ trình xây dựng chính Kidea được quản lý riêng tại [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md); đã có status schema 2 chỉ đọc, năm chức năng còn lại và pilot chưa triển khai.
 
@@ -11,6 +11,8 @@ Human đã duyệt kết quả tích hợp R01 và cho mở R02 từng phần t�
 Human đã đồng ý với thiết kế tổng thể và các đề xuất bổ sung, gồm giao diện tiến độ, quy tắc code theo môi trường, gate ở bước con, truy xuất xuyên tầng và ba bản đồ liên thông. Bản này hợp nhất các quyết định đó. Định dạng dữ liệu, runtime, bộ công cụ và phạm vi hỗ trợ cụ thể vẫn cần thiết kế, thử nghiệm và Human duyệt theo lộ trình; không coi đồng ý định hướng là duyệt trước mọi chi tiết triển khai.
 
 Tài liệu này là nguồn thiết kế; roadmap là nguồn trạng thái xây dựng Kidea; tài liệu tham khảo là đầu vào; `answer.md` là bản sao câu trả lời để đọc từ xa. Human yêu cầu bắt đầu vòng rà soát R2 từ đầu ngày 2026-09-08: lựa chọn đã duyệt là căn cứ để xác nhận/điều chỉnh từng phần, không tự chuyển DONE/APPROVED của vòng trước sang vòng mới. [Chỉ đọc gói hiện tại](KIDEA_ROADMAP.md#review-current); [đối chiếu lộ trình cũ → mới](KIDEA_ROADMAP.md#coverage). Các mã gói P01 còn giữ dưới đây là nhận diện bằng chứng lịch sử, không phải task đang chạy.
+
+Ngày 2026-09-14, Human đã duyệt [cách review theo rủi ro và gói của từng phase xây Kidea](KIDEA_ROADMAP.md#risk-first-review-approved): đưa điểm cần cân nhắc ra trước, gom đầu ra đủ căn cứ, không hỏi lại phần đã chốt và để quyết định phụ thuộc số đo/kết quả tới đúng lúc. Đây là cách phối hợp xây chính Kidea, không tự thay gate trong mười bước sản phẩm hoặc cấp quyền mới.
 
 Ranh giới hồ sơ project `PROJECT-FILES-r1` đã được Human duyệt ngày 2026-09-07: [tài liệu sản phẩm ngoài `.kidea`, hồ sơ điều phối trong `.kidea`](#files-view), cùng một Git repo. [Bằng chứng và phạm vi cập nhật](KIDEA_ROADMAP.md#project-files-review). [G1](#git-working-layout), vị trí kiểm chứng/tích hợp [G2](#git-integration-gate) và chính sách [G3](#git-permissions) đã đồng bộ theo [approval ngày 2026-09-11](KIDEA_ROADMAP.md#r01-t06-s01-result); nghĩa vụ kiểm tra cuối G2 theo [kết quả T05](KIDEA_ROADMAP.md#r01-t05-result) giữ nguyên. [G4 lưu/khôi phục việc dở](#git-checkpoint) đã được duyệt theo [kết quả T06](KIDEA_ROADMAP.md#r01-t06-result); [cách đánh số sản phẩm](#product-version) đã chốt theo [T07-S01](KIDEA_ROADMAP.md#r01-t07-s01-result); [version thành phần/tag](#component-version-tags) đã chốt theo [T07-S02](KIDEA_ROADMAP.md#r01-t07-s02-result); [hồ sơ release và từng lần triển khai G6](#release-records) đã chốt theo [kết quả T07](KIDEA_ROADMAP.md#r01-t07-result). Approval thiết kế không cấp quyền thực thi cho project/pilot cụ thể.
 
@@ -647,9 +649,9 @@ S02 đã triển khai bộ đọc/status và test dữ liệu đúng/sai, Unicod
 
 #### R02-T06-S01-r1 — Cơ chế ghi/phục hồi local, đã duyệt
 
-Human “Tôi duyệt nhé” ngày 2026-09-13 sau [giải thích bd52a52](https://github.com/Kynderis/kidea/blob/bd52a5244dd7d2697fddea823807297ac046a166/answer.md), xác nhận D1–D2 của [gói d687d6a](https://github.com/Kynderis/kidea/blob/d687d6af5821efa0780c893a374657a57e7fa4a7/KIDEA_DESIGN.md#safe-write-proposal). Cùng phản hồi, Human yêu cầu rà cách gom duyệt theo big-step; phần phối hợp mới đang trao đổi, không tự duyệt/bỏ gate khác.
+Human “Tôi duyệt nhé” ngày 2026-09-13 sau [giải thích bd52a52](https://github.com/Kynderis/kidea/blob/bd52a5244dd7d2697fddea823807297ac046a166/answer.md), xác nhận D1–D2 của [gói d687d6a](https://github.com/Kynderis/kidea/blob/d687d6af5821efa0780c893a374657a57e7fa4a7/KIDEA_DESIGN.md#safe-write-proposal). Cùng phản hồi, Human yêu cầu rà cách gom duyệt theo big-step; phần phối hợp sau đó được duyệt riêng ngày 2026-09-14 theo con trỏ ở đầu tài liệu, không tự duyệt/bỏ gate khác.
 
-T05 đã thử bộ đọc và ba phiên AI theo [bằng chứng](tests/evidence/r02-t05.md), chưa có chức năng ghi. T06 làm cho các chức năng sau này ghi đúng đích và nhận ra việc dở; giữ nguyên [bản trước/cách phục hồi](#interrupted-write-contract), [schema 2](#schema-v2-contract) và quyền G4. Hai lựa chọn dưới đây **đã duyệt thiết kế, chưa code/kiểm chứng cơ chế**; không diễn giải approval này thành kết quả ghi an toàn đã đạt.
+T05 đã thử bộ đọc và ba phiên AI theo [bằng chứng](tests/evidence/r02-t05.md), chưa có chức năng ghi. T06 làm cho các chức năng sau này ghi đúng đích và nhận ra việc dở; giữ nguyên [bản trước/cách phục hồi](#interrupted-write-contract), [schema 2](#schema-v2-contract) và quyền G4. Hai lựa chọn dưới đây **đã duyệt thiết kế, đang triển khai/kiểm chứng S02**; không diễn giải approval hoặc một probe thành kết quả ghi an toàn đã đạt.
 
 **D1 — Khóa bằng Windows trong lượt ghi, không chỉ đặt cờ “đang bận”.** Đề xuất một worker PowerShell/.NET local do Node gọi, dùng cơ chế mở file của Windows để giữ quyền ghi độc quyền lên đích và ngăn đổi tên/xóa các đường dẫn cần bảo vệ. Lượt ghi thứ hai không lấy được khóa thì dừng; không xếp hàng chờ vô hạn hoặc tự phá khóa. Giữ khóa qua kiểm tra byte trước, ghi, đọc lại và xử lý lỗi; đầu vào chi phối cũng phải được giữ ổn định. Việc lấy khóa thất bại vì editor/tiến trình khác đang dùng file là kết quả cần báo, không được tắt bảo vệ để ghi cho được.
 
@@ -667,7 +669,32 @@ Lượt đang ghi hoặc chưa đối chiếu xong phải làm status/khởi đ�
 
 Mô hình lỗi cần kiểm chứng: tiến trình bị dừng ở từng ranh giới, lỗi I/O/quyền, ghi/phục hồi dở; hai writer cạnh tranh; editor/tiến trình khác mở sửa/xóa/đổi tên đích hoặc thư mục cha trước và trong khóa; nguồn đổi trước khóa, sau mất khóa; CREATE bị chiếm tên; hard link/reparse/path thoát root; checkpoint hỏng/mất con trỏ; status chạy giữa lượt; lỗi cleanup. Dùng tiến trình thứ hai thật trên dữ liệu tổng hợp để kiểm tra xung đột, không chỉ mock hash. D1/D2 chưa chứng nhận chống mất điện/hỏng ổ/ghi raw disk, administrator/kernel can thiệp, mọi biến thể filesystem hay nhiều file đổi nguyên khối. Không dùng giới hạn này để cho phép đè sửa chen trong mô hình lỗi đã nhận.
 
-Sau approval trên, S02 sẽ bắt đầu bằng thử cơ chế khóa/đường dẫn trong `.test-output/r02-t06` rồi mới hoàn thiện các đường ghi/restore/cleanup và hồi quy bộ đọc. Lượt xác nhận này ưu tiên yêu cầu mới của Human về rà cách gom duyệt, chưa bắt đầu S02. Nếu không chứng minh được thuộc tính bảo vệ, dừng tích hợp và trình lựa chọn thay đổi; không tự rút bảo vệ xuống thành “đã so hash”. S03 còn phép thử gián đoạn/phiên AI theo số lần và quyền chốt riêng; gói này không tự mở thêm phiên AI, deploy/pilot, reset Git, cài dependency hay sửa project thật.
+S02 bắt đầu ngày 2026-09-14 bằng thử cơ chế khóa/đường dẫn trong `.test-output/r02-t06` và tích hợp phát hiện lượt ghi dở vào status, rồi mới hoàn thiện các đường ghi/restore/cleanup. Nếu không chứng minh được thuộc tính bảo vệ, dừng tích hợp và trình lựa chọn thay đổi; không tự rút bảo vệ xuống thành “đã so hash”. S03 còn phép thử gián đoạn/phiên AI theo số lần và quyền chốt riêng; gói này không tự mở thêm phiên AI, deploy/pilot, reset Git, cài dependency hay sửa project thật.
+
+Chi tiết discovery S02: vùng nội bộ `.kidea/checkpoints/pending/` không là nguồn task/gate thứ hai. Worker phải tạo entry của lượt trước tác dụng ghi đầu tiên và giữ tới khi đã đối chiếu đủ; bất kỳ entry nào, kể cả thư mục con rỗng, journal hỏng hoặc tự ghi DONE, đều làm status trả INCOMPLETE/data null. Status chỉ xem sự tồn tại/tập entry, không chạy hoặc suy trạng thái từ nội dung; vùng sai kiểu/liên kết/không đọc được phải báo chưa đủ căn cứ. Đối chiếu lại định danh/tập/thời điểm thay đổi vùng trước output; đây vẫn là các lần quan sát, không khóa snapshot nguyên khối. Sau khi tạo, giữ thư mục pending gốc; chỉ kết thúc/dọn entry con đúng quyền để dấu thay đổi vẫn quan sát được, không biến có lượt ghi rồi trở lại ABSENT bằng xóa cả gốc. Không quét checkpoint lịch sử để biến chúng thành lượt đang chạy. Đường tạo/đóng/dọn entry chỉ được tích hợp sau đủ các điều kiện ghi/phục hồi đã chốt; phần đọc discovery không tự chứng minh đã có worker hoàn chỉnh.
+
+<a id="safe-write-namespace-review"></a>
+
+#### R02-T06-S01-r2 — giới hạn bảo vệ đường dẫn bản đầu, đề xuất chưa duyệt
+
+Gói thay đổi một quyết định của D1-r1, phát sinh từ S02; [trạng thái review tại nguồn](KIDEA_ROADMAP.md#work-state). **Chưa áp dụng r2 vào code, tiêu chí nghiệm thu hoặc cam kết hỗ trợ.** R1 vẫn là căn cứ hiện hành; đường ghi chưa mở. Không suy câu đồng ý cách phối hợp ngày 2026-09-14 là duyệt gói mới này.
+
+**Vấn đề có bằng chứng:** [probe share-mode](tests/r02-t06/native-lock-evidence.md) có 7 PASS/4 FAIL; file đang giữ vẫn có thể nhận hard link mới và thư mục rỗng đang giữ vẫn có thể đổi thành junction. Probe bổ sung RWH/RH oplock cũng ghi nhận các thao tác này thành công trước khi owner thả handle, gồm handle chỉ ghi thuộc tính mở trước/sau khi cấp oplock; xem [bằng chứng T06](tests/evidence/r02-t06.md). Đây là các phản ví dụ trên tổ hợp đã thử, không chứng minh mọi cơ chế Windows đều bất khả thi. Chưa có worker ghi dữ liệu thật hoặc lỗi mất dữ liệu project.
+
+**D1-r2 — Đề xuất giới hạn bản đầu vào môi trường không đổi liên kết trong lượt ghi.** Kidea vẫn phải chặn các thao tác sửa/lưu/xóa/đổi tên thông thường trong mô hình được kiểm chứng, giữ khóa đích/nguồn và bảo vệ các đường cha cần thiết. Bản đầu **không bảo đảm an toàn nếu tiến trình khác tạo tên phụ cùng trỏ tới file hoặc đổi hướng thư mục ngay trong lúc ghi**, dù xảy ra vô tình hay cố ý. Điều kiện này phải được nêu rõ trong phạm vi sử dụng, không dùng câu “thư mục tin cậy” thay giải thích, không nhận một lần quét là chứng minh không có can thiệp tương lai.
+
+Ví dụ: chương trình khác tạo tên B cho cùng file A sau khi Kidea kiểm tra; ghi A cũng thay nội dung nhìn qua B, kể cả khi B nằm ngoài danh sách đường dẫn được phép. Hoặc thư mục bị đổi hướng sang nơi khác giữa hai thao tác theo đường dẫn. Kiểm tra lại có thể phát hiện, nhưng khi đó tác dụng ghi có thể đã xảy ra; không hứa phát hiện luôn kịp trước ghi hoặc luôn phục hồi được. **Đây là giảm phạm vi bảo đảm đã duyệt**, không chỉ chỉnh chi tiết kỹ thuật để làm xanh test. Giới hạn này không cấp quyền chủ động ghi vào đích ngoài phạm vi; phát hiện vi phạm vẫn phải dừng và báo đúng tác dụng đã biết/chưa xác nhận.
+
+Lợi ích/đánh đổi: giữ phương án local đơn giản cho một Human + AI, chưa thêm ranh giới tài khoản/quyền hoặc môi trường cách ly chỉ để bảo vệ hai kiểu can thiệp trên. Đổi lại, không phù hợp nếu project phải an toàn ngay cả khi phần mềm khác đồng thời tạo/đổi liên kết trên các đường đang dùng. Nếu Human cần giữ mức bảo đảm rộng hơn, giữ đường ghi đóng và nghiên cứu cơ chế/ranh giới quyền khác; chưa biết chi phí hoặc khẳng định sao chép folder, thêm process hay sandbox bất kỳ là đủ. Thay quyền/cài đặt/chuyển project cần phương án cụ thể và approval, không được cấp kèm ở r2.
+
+**Những điều giữ nguyên:**
+
+- Đích/nguồn/đường cha không xác minh được, đã có hard link nhiều tên/reparse, nguồn/identity đổi hoặc lấy khóa thất bại thì không bắt đầu ghi; phát hiện trong lượt thì dừng phần còn lại, giữ bằng chứng và trạng thái chưa xác nhận. Không tự tắt bảo vệ, đóng editor, phá khóa hoặc fallback sang chỉ so hash.
+- Chuẩn bị/đọc lại bản trước và nội dung dự định; ghi/đọc lại qua handle giữ liên tục, CREATE chỉ tạo mới. Giữ ranh giới NTFS local/không sync/không ổ mạng của r1. Các đường ghi/gián đoạn/phục hồi phải tiếp tục được kiểm chứng; chưa suy các probe đã đáp ứng chúng.
+- D2-r1, T04 và G4 vẫn giữ: chỉ tự restore UPDATE lỗi của chính lượt nếu còn khóa liên tục và đủ căn cứ; mất khóa, phát hiện can thiệp hoặc chưa rõ nguồn gốc thì không tự restore. CREATE dở không tự xóa. Pending/journal/status không giấu việc dở hoặc tự replay.
+- Giữ lỗi/counterexample đúng bản. Không đổi FAIL của r1 thành PASS/N/A. Nếu r2 được duyệt, bộ kiểm chứng bản mới phải phân biệt rõ điều kiện hỗ trợ với can thiệp ngoài bảo đảm; trong mô hình được hỗ trợ, mọi lỗi mất nội dung/ghi ngoài quyền/báo thành công sai vẫn chặn nghiệm thu.
+
+**Ảnh hưởng phải đồng bộ nếu được duyệt:** giới hạn D1/mô hình lỗi T06; cách công bố phạm vi an toàn ghi của KA-10 và KQ-02, gồm phần [điều phối/quyền](KIDEA_QUALITY.md#control-acceptance-approved); các caller ghi ở T07/T08/T09 và kiểm chứng T10/T11/R10. R2 chỉ giới hạn hai điều kiện can thiệp liên kết trong lượt nói trên, không miễn thử sửa file ngoài luồng thông thường, lỗi quyền, ngắt tiến trình, CREATE, phục hồi hoặc dọn payload. Không thay schema 2, approval sản phẩm, ngưỡng, số phiên AI hay quyền Git/pilot/deploy. ACCEPTANCE/QUALITY chưa bị sửa trong lượt đề xuất này.
 
 <a id="git-permissions-proposal"></a>
 <a id="git-permissions"></a>
