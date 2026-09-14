@@ -9,6 +9,8 @@ description: Use Kidea for its init, resume, status, approve, change, or visuali
 
 Internal write/cleanup helpers under `scripts/` are not skill actions. Only call the public `kidea.mjs` entrypoint; do not bypass it to update, restore or clean a target project. A successful byte write does not approve or complete a task.
 
+Use one cooperative mutating Kidea run per project. Human waits for it to finish and requests changes through Kidea; serialize formatters, code generators and Git writes too. Other windows/machines must not mutate the same project concurrently. The project busy marker catches overlapping cooperative calls; it is not an OS lock on files or a cross-machine service. Do not promise protection against another program editing source. Keep the existing single working directory and Git convention; branch/worktree/stash are optional tools for a real context change, not mandatory checkpoints.
+
 When invoked:
 
 1. Identify the requested action. If missing or unknown, explain the available action names and the current development limit. Do not select a mutating action on the user's behalf.

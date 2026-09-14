@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { readStatus } from '../.agents/skills/kidea/scripts/status.mjs';
+import { readStatus,inspectStatusGraph,inspectBoundGraph } from '../.agents/skills/kidea/scripts/status.mjs';
 import { pendingWritesPath } from '../.agents/skills/kidea/scripts/pending-writes.mjs';
 import { buildBase, buildCases, edit, paths, digest, dataAt, envelope } from './fixtures/r02-t04/catalog.mjs';
 
@@ -123,6 +123,27 @@ test('real local Git commit protects exact before bytes, rejects changed identit
 });
 
 test('review cannot use live source as its retained snapshot',()=>{const {world}=buildBase();edit(world,paths.review,d=>{d.subjectVersions[0].location.ref.path='docs/features.md';});check(world,'INVALID');});
+
+test('review accepts fixed Git evidence, while bound validation requires all supplied Git bytes',()=>{
+  const {world,refs}=buildBase(),root=materialize(world);
+  const git=args=>{const r=spawnSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
+  git(['init','--quiet']);git(['-c','core.autocrlf=false','add','--','docs/features.md']);git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','-c','core.hooksPath=NUL','commit','--quiet','-m','Synthetic review source']);
+  const location={kind:'GIT',commit:git(['rev-parse','HEAD']),path:'docs/features.md'};
+  edit(world,paths.review,d=>{d.subjectVersions[0]={...refs.subject,location};});
+  writeFileSync(path.join(root,paths.review),world.files[paths.review]);
+  const before=fingerprint(root),graph=inspectStatusGraph(root);
+  assert.equal(graph.status.readState,'OK',JSON.stringify(graph.status.diagnostics));
+  assert.equal(graph.status.data.reviews[0].verification.authority,'NOT_VERIFIED');
+  assert.deepEqual(fingerprint(root),before);
+  assert.equal(inspectBoundGraph(root,graph.reads).status.readState,'INCOMPLETE');
+  const gitVersions=new Map([...graph.gitReads].map(([key,v])=>[key,v.bytes]));
+  assert.equal(inspectBoundGraph(root,graph.reads,{gitVersions}).status.readState,'OK');
+  gitVersions.set(JSON.stringify(location),Buffer.from('wrong bytes'));
+  assert.notEqual(inspectBoundGraph(root,graph.reads,{gitVersions}).status.readState,'OK');
+  edit(world,paths.review,d=>{d.subjectVersions[0].location.commit='0'.repeat(40);});
+  writeFileSync(path.join(root,paths.review),world.files[paths.review]);
+  assert.equal(readStatus(root).readState,'INCOMPLETE');
+});
 test('pinned release must satisfy uniqueness even when not listed as current source',()=>{
   const {world}=buildBase();edit(world,paths.index,d=>{d.sources=d.sources.filter(s=>s.ref.path!==paths.release);});
   const release=dataAt(world,paths.release);release.components.push(structuredClone(release.components[0]));

@@ -5,8 +5,10 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 const root=fileURLToPath(new URL('../../',import.meta.url));
-const suites=['tests/helper.test.mjs','tests/status.test.mjs','tests/r02-t06/write-preflight.test.mjs','tests/r02-t06/native-write.test.mjs','tests/r02-t06/mapped-write.test.mjs','tests/r02-t06/cleanup.test.mjs','tests/r02-t07/init.test.mjs'];
-const sources=[...readdirSync(path.join(root,'.agents/skills/kidea/scripts')).map(n=>'.agents/skills/kidea/scripts/'+n),'.agents/skills/kidea/SKILL.md','.agents/skills/kidea/references/init.md',...suites,'tests/r02-t07/run-tests.mjs','tests/fixtures/r02-t04/catalog.mjs','tests/r02-t06/mapping-probe.cs','tests/r02-t06/mapping-probe.ps1','package.json','package-lock.json'];
+// Native lock/oplock/mapping suites belong to the retired writer. Their existing
+// evidence is historical, not evidence for this cooperative implementation.
+const suites=['tests/helper.test.mjs','tests/status.test.mjs','tests/r02-t06/cooperative-write.test.mjs','tests/r02-t07/init.test.mjs'];
+const sources=[...readdirSync(path.join(root,'.agents/skills/kidea/scripts')).map(n=>'.agents/skills/kidea/scripts/'+n),'.agents/skills/kidea/SKILL.md','.agents/skills/kidea/references/init.md',...suites,'tests/r02-t07/run-tests.mjs','tests/fixtures/r02-t04/catalog.mjs','package.json','package-lock.json'];
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const hashes=()=>Object.fromEntries(sources.map(f=>[f,hash(readFileSync(path.join(root,f)))]));
 const output=path.join(root,'.test-output/r02-t07');mkdirSync(output,{recursive:true});const dir=mkdtempSync(path.join(output,'regression-'));

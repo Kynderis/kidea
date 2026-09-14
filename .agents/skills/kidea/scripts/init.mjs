@@ -9,11 +9,8 @@ import { localEntry,byteIntegrity,recordBytes,hashBytes } from './bootstrap-plan
 import { prepareInternalBootstrap,executeInternalWrite } from './write-internal.mjs';
 import { readStatus } from './status.mjs';
 import { validPath } from './schema.mjs';
+import { findGitVersion } from './git-versions.mjs';
 
-export const approvedRuntime=Object.freeze({
-  powershell:'C:/Users/vuhoa/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe',
-  powershellSha256:'362a356ce7f0940ec74f73a8fc2c990a2cc24a38a11c90bbd8eca947110ad139'
-});
 const nodeHash='ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32';
 const fail=code=>{throw Object.assign(new Error(code),{code});};
 const text=v=>typeof v==='string'&&v.trim().length>0;
@@ -34,27 +31,26 @@ const steps=[
 
 export function initToolIdentity() {
   if(process.platform!=='win32'||process.versions.node!=='24.21.0'||hashBytes(readFileSync(process.execPath))!==nodeHash)fail('RUNTIME_NOT_VERIFIED');
-  const components=['kidea.mjs','init.mjs','bootstrap-plan.mjs','write-internal.mjs','native-write.ps1','native-write.cs','status.mjs','schema.mjs','pending-writes.mjs','recorded-completion.mjs'].map(name=>({name,integrity:byteIntegrity(readFileSync(fileURLToPath(new URL(name,import.meta.url))))}));
-  const ps=readFileSync(approvedRuntime.powershell);
-  if(hashBytes(ps)!==approvedRuntime.powershellSha256)fail('RUNTIME_NOT_VERIFIED');
-  components.push({name:'node-24.21.0',integrity:byteIntegrity(readFileSync(process.execPath))},{name:'powershell-7.6.5',integrity:byteIntegrity(ps)});
-  return {version:'kidea-schema2-init-r02-t07',components};
+  const components=['kidea.mjs','init.mjs','bootstrap-plan.mjs','write-internal.mjs','git-versions.mjs','status.mjs','schema.mjs','pending-writes.mjs','recorded-completion.mjs'].map(name=>({name,integrity:byteIntegrity(readFileSync(fileURLToPath(new URL(name,import.meta.url))))}));
+  components.push({name:'node-24.21.0',integrity:byteIntegrity(readFileSync(process.execPath))});
+  return {version:'kidea-schema2-init-cooperative-r1',components};
 }
 
 // Read-only preparation. Profile/source bytes are captured in the operation's
-// metadata and checked again by the worker under held handles before creation.
+// metadata or exact local Git versions and checked again before creation.
 export function prepareInit(root,request) {
   if(typeof root!=='string'||!path.isAbsolute(root)||path.resolve(realpathSync(root))!==path.resolve(root))fail('ROOT_NOT_EXPLICIT');
   root=realpathSync(root);
   if(!closed(request,['projectName','humanRequest','featureSource','profiles','permission'])||!text(request.projectName)||!text(request.humanRequest))fail('INIT_INPUT_REQUIRED');
   const grant=request.permission;
-  if(!closed(grant,['root','metadataRoot','targets','createDirectories','allowRestoreUpdate','allowRetireOwnPending','assumptions','bootstrap','statement'])||!text(grant.statement))fail('AUTHORIZATION_REQUIRED');
+  if(!closed(grant,['root','metadataRoot','targets','createDirectories','allowRestoreUpdate','allowRetireOwnPending','allowReadLocalGit','assumptions','bootstrap','statement'])||!text(grant.statement))fail('AUTHORIZATION_REQUIRED');
   const {statement,...authorization}=grant;
   if(authorization.root!==root||authorization.metadataRoot!=='.kidea/checkpoints'||authorization.bootstrap!==true||authorization.allowRestoreUpdate!==false||authorization.allowRetireOwnPending!==true)fail('AUTHORIZATION_REQUIRED');
-  if(!authorization.assumptions||!['localNtfs','noActiveSync','noConcurrentNamespaceChanges'].every(k=>authorization.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
+  if(authorization.allowReadLocalGit!==undefined&&typeof authorization.allowReadLocalGit!=='boolean')fail('AUTHORIZATION_REQUIRED');
+  if(!authorization.assumptions||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>authorization.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
   const existing=localEntry(root,'.kidea');
   if(existing) {
-    const status=readStatus(root);
+    const status=readStatus(root,{allowGit:authorization.allowReadLocalGit===true});
     return {state:status.readState==='OK'?'ALREADY_INITIALIZED':'EXISTING_STATE_REQUIRES_RECONCILIATION',status};
   }
   const source=request.featureSource;
@@ -63,7 +59,7 @@ export function prepareInit(root,request) {
   if(source.mode==='NEW'&&source.anchor!==null)fail('NEW_FEATURE_ANCHOR_UNSUPPORTED');
   if(!Array.isArray(request.profiles))fail('PROFILE_SELECTION_REQUIRED');
   const operationId=randomUUID(),projectId=randomUUID(),prefix=`.kidea/checkpoints/operations/${operationId}/`;
-  const inputs=[],evidence=[];
+  const inputs=[],evidence=[],gitInputs=[];
   const capture=(bytes,sourceRef=null,name=`input-${evidence.filter(e=>e.path!==prefix+'permission.md').length}.md`)=>{
     const p=prefix+name;evidence.push({path:p,bytes});
     return {source:sourceRef??ref(p),location:{kind:'SNAPSHOT',ref:ref(p)},integrity:byteIntegrity(bytes)};
@@ -77,6 +73,11 @@ export function prepareInit(root,request) {
     const previous=inputs.find(i=>i.path===r.path);
     if(previous&&!previous.expectedBytes.equals(bytes))fail('SOURCE_CHANGED');
     if(!previous)inputs.push({path:r.path,expectedBytes:bytes});
+    const gitVersion=authorization.allowReadLocalGit===true?findGitVersion(root,r.path,bytes,r.anchor):null;
+    if(gitVersion) {
+      if(!gitInputs.some(i=>isDeepStrictEqual(i.location,gitVersion.location)))gitInputs.push({location:gitVersion.location,expectedBytes:bytes});
+      return gitVersion;
+    }
     return capture(bytes,r);
   };
   const featureRef=ref(source.path,source.anchor),inputVersions=[humanVersion];
@@ -90,12 +91,12 @@ export function prepareInit(root,request) {
   const targets=[{path:'.kidea/INDEX.md',action:'CREATE',plannedBytes:Buffer.concat([Buffer.from('# Hồ sơ Kidea\n\nNguồn điều phối: [cây công việc](work.md). Nguồn sản phẩm nằm tại sources trong bản ghi, không sao chép trạng thái ở đây.\n\n'),recordBytes(index)])},{path:'.kidea/work.md',action:'CREATE',plannedBytes:Buffer.concat([Buffer.from('# Công việc\n\nKhung quy trình; không khẳng định đầu ra sản phẩm đã tồn tại.\n\n'),recordBytes(work),Buffer.from('\n'+sections)])}];
   if(source.mode==='NEW')targets.push({path:source.path,action:'CREATE',plannedBytes:Buffer.from('# Feature Map — bản nháp chưa duyệt\n\n## Ý tưởng Human (nguyên văn dạng JSON string)\n\n'+JSON.stringify(request.humanRequest)+'\n\n## Mục tiêu, người dùng, phạm vi và ràng buộc\n\nChưa chốt; cần làm rõ ở bước 1. Lời yêu cầu trên không tự là approval phạm vi.\n\n## Phân loại\n\n- MVP: chưa có feature được duyệt vào nhóm này.\n- Future: chưa phân loại.\n- Idea: giữ ý tưởng gốc phía trên để đối chiếu, chưa phân loại feature.\n\nKhông có gợi ý AI được thêm trong lượt init này.\n')});
   if(!isDeepStrictEqual(authorization.targets,targets.map(({path,action})=>({path,action}))))fail('TARGET_NOT_AUTHORIZED');
-  const prepared=prepareInternalBootstrap({root,authorization,context:{projectId,ownerId:'W-001',tool,permissionRefs:[permissionVersion],inputRefs:inputVersions},targets,inputs,operationId,bootstrap:{directories:authorization.createDirectories,evidence}});
+  const prepared=prepareInternalBootstrap({root,authorization,context:{projectId,ownerId:'W-001',tool,permissionRefs:[permissionVersion],inputRefs:inputVersions},targets,inputs,gitInputs,operationId,bootstrap:{directories:authorization.createDirectories,evidence}});
   return {state:'PREPARED_READ_ONLY',projectId,prepared};
 }
 
 export async function initialize(root,request) {
   const plan=prepareInit(root,request);if(plan.state!=='PREPARED_READ_ONLY')return plan;
-  const result=await executeInternalWrite(plan.prepared,approvedRuntime);
+  const result=await executeInternalWrite(plan.prepared);
   return {state:result.state==='COMPLETED_BYTES'?'INITIALIZED':'INIT_NOT_COMPLETE',projectId:plan.projectId,operationId:result.operationId,verification:result.verification,writer:result};
 }

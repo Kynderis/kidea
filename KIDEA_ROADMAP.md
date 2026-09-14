@@ -10,7 +10,20 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
-**T07-S02 đã xong; quota AI S03 đã duyệt nhưng đang dừng ở preflight launcher.** Init mới/cũ, bootstrap CREATE-only và D1 đã hiện thực; [229/229 bài kiểm trên bản S02](tests/evidence/r02-t07.md) không thay kiểm chứng launcher/AI. **0/3 phiên đã dùng.** Ngoại lệ ACL trong cây fixture đã duyệt; tạm dừng sau lỗi gọi nhầm launcher khi xem help, chưa xác định ACL thực sự thay đổi. [Bằng chứng và sự cố](tests/r02-t07/launcher-preflight.md). Chưa ghi project thật, chưa nhận toàn T07/lõi Kidea hoàn tất.
+**Đã hoàn tất lát cắt tinh gọn writer/caller theo hướng duyệt ngày 2026-09-14: 174/174 test xác định đạt trên nguồn không đổi.** [Bằng chứng](tests/evidence/r02-t06-cooperative.md); chưa nghiệm thu toàn lõi. Tiếp theo là phần approve/resume đủ điều kiện thực, rồi kiểm thử luồng tích hợp. T07 AI vẫn **0/3**, protocol cũ tạm dừng; không tự dùng quota đó cho nguồn/bài thử mới. Sự cố launcher/ACL [vẫn chưa giải quyết riêng](tests/r02-t07/launcher-preflight.md); không dựng VM, đổi ACL hoặc chạy sandbox trong lượt tinh gọn.
+
+<a id="lean-core-review"></a>
+
+### R02-T06-S04 — tinh gọn mô hình một lượt sửa, đã duyệt hướng
+
+Human **“Tôi đồng ý hướng bạn đề xuất”** trong hội thoại ngày 2026-09-14 sau rà soát tổng quan–chi tiết. [DESIGN hiện hành](KIDEA_DESIGN.md#lean-operation-approved): một Human/một lượt hợp tác; Git-first đúng byte và giữ bản, snapshot tối thiểu; dấu bận/hồ sơ ghi dở/readback; không tự replay/restore sau gián đoạn. Thay bảo đảm Win32 chống editor, không mở thêm quyền môi trường.
+
+- Lượt này đồng bộ DESIGN/ROADMAP/KA/KQ, thay writer/caller liên quan và kiểm thử xác định trên dữ liệu tổng hợp. Giữ evidence/protocol/manifest cũ đúng bản; không sửa expected cũ để lấy PASS mới.
+- Giữ 10 bước sản phẩm/Human gate, 6 hành động, ba góc nhìn bản đồ, G2 toàn Feature, pilot thật/production và đồng thời nghiệp vụ. Hồ sơ/subtask theo nhu cầu; hỏi quyết định đáng kể; N/A một lần đúng phạm vi.
+- Task xây Kidea phụ thuộc đầu vào thực, không chỉ số thứ tự. T07 AI chưa chạy không blanket-block chuẩn bị/triển khai phần T08/T09 đủ hợp đồng/primitive/quyền; prerequisite thật và gate tích hợp vẫn chờ. Không tự đổi gate sản phẩm.
+- Gom AI trial theo luồng có ý nghĩa, case/quota/phạm vi/quyền rõ trước chạy. Approval này không mở phiên AI hoặc dùng quota/manifest cũ cho bản mới. ACL incident riêng; VM không là mặc định.
+
+Kết quả triển khai/kiểm chứng mới ở [bằng chứng S04](tests/evidence/r02-t06-cooperative.md) và dòng S04 trong sổ. PASS đến từ lượt kiểm thử mới, không suy từ approval; R02/pilot chưa hoàn tất.
 
 <a id="init-ai-trial-review"></a>
 
@@ -44,7 +57,7 @@ Mỗi phiên tối đa **3 phút**, không tự thêm/chạy bù khi lỗi; có 
 
 <a id="safe-write-r2-approved"></a>
 
-### R02-T06-S01-r2 — Giới hạn bảo vệ bản đầu [H], đã duyệt
+### R02-T06-S01-r2 — lịch sử, đã được thay bằng mô hình một lượt hợp tác
 
 Phép thử cho thấy phần mềm khác vẫn tạo được một tên phụ trỏ tới file đang khóa, hoặc đổi hướng thư mục. Ví dụ file A có thêm tên B: Kidea ghi A thì nội dung nhìn qua B cũng thay đổi. Chưa có ghi dữ liệu project thật.
 
@@ -54,7 +67,7 @@ Human **“Ok nhé”** sau [answer 5466a42](https://github.com/Kynderis/kidea/b
 
 <a id="safe-write-review"></a>
 
-### R02-T06-S01-r1 — Ghi file không đè sửa của bạn [H], đã duyệt
+### R02-T06-S01-r1 — lịch sử cơ chế khóa Windows, không còn hiện hành
 
 Khi Kidea sửa file mà bạn cũng đang sửa, hoặc máy ngắt giữa chừng, cần bảo vệ nội dung và biết phần nào còn dở.
 
@@ -62,7 +75,7 @@ Khi Kidea sửa file mà bạn cũng đang sửa, hoặc máy ngắt giữa ch�
 
 **D2 — Chấp nhận bản ghi dở nhưng không giấu lỗi.** Ghi dưới khóa, giữ bản trước; chỉ tự phục hồi lỗi của chính lượt đang giữ khóa liên tục. Sau ngắt, chưa rõ ai sửa thì giữ nguyên và hỏi. Không hứa nhiều file đổi đồng thời hoặc chống mất điện.
 
-Human “Tôi duyệt nhé” sau [giải thích bd52a52](https://github.com/Kynderis/kidea/blob/bd52a5244dd7d2697fddea823807297ac046a166/answer.md) đã duyệt D1–D2 của gói d687d6a. Giữ bản trình/xác nhận này làm lịch sử; phạm vi D1 hiện hành được cập nhật đúng hai điều kiện bởi [r2 đã duyệt](#safe-write-r2-approved), D2 và các bảo vệ còn lại không đổi. S02 thử/triển khai trên dữ liệu giả; không mở thêm phiên AI hoặc ghi dự án thật. Cách gom review được duyệt riêng, không thay phạm vi các gate còn lại.
+Human “Tôi duyệt nhé” sau [giải thích bd52a52](https://github.com/Kynderis/kidea/blob/bd52a5244dd7d2697fddea823807297ac046a166/answer.md) đã duyệt D1–D2 gói d687d6a. R2 từng thay hai điều kiện D1; cả r1/r2 nay giữ lịch sử và được thay bằng [mô hình hợp tác](#lean-core-review), không còn nghĩa vụ khóa Windows. Kết quả/protocol cũ giữ nguyên; không mở AI/project thật từ đoạn lịch sử này.
 
 <a id="status-ai-trial-review"></a>
 
@@ -100,7 +113,7 @@ Human “Đồng ý nhé” ngày 2026-09-13 sau [đề xuất 0f5a472](https://
 
 <a id="risk-first-review-approved"></a>
 
-Human “Tôi đồng ý” ngày 2026-09-14 sau [đề xuất 34c6dc1](https://github.com/Kynderis/kidea/blob/34c6dc12aecf796d93165101f2c0a6d66a100192/answer.md) đã duyệt rà theo từng **big-step = phase xây Kidea**: trình điểm cần cân nhắc trước, gom đầu ra thường lệ đã đủ căn cứ, nêu rõ phần cần thử/đo rồi mới quyết và không hỏi lại điều đã thống nhất. Áp dụng từ phần R02 còn lại; các phase sau rà khi tới lượt. Approval này đổi cách tổ chức các lượt review, không duyệt trước hợp đồng/đầu ra, ngưỡng, số phiên AI, ngân sách hoặc quyền mới; không bỏ dependency, kiểm chứng, gate cuối phase hay gate sản phẩm riêng.
+Human “Tôi đồng ý” ngày 2026-09-14 sau [đề xuất 34c6dc1](https://github.com/Kynderis/kidea/blob/34c6dc12aecf796d93165101f2c0a6d66a100192/answer.md) đã duyệt rà theo từng **big-step = phase xây Kidea**: trình điểm cần cân nhắc trước, gom đầu ra thường lệ đã đủ căn cứ, nêu rõ phần cần thử/đo rồi mới quyết và không hỏi lại điều đã thống nhất. Áp dụng từ phần R02 còn lại; các phase sau rà khi tới lượt. Approval này đổi cách tổ chức các lượt review, không duyệt trước hợp đồng/đầu ra, ngưỡng, số phiên AI, ngân sách hoặc quyền mới; không bỏ dependency, kiểm chứng, gate cuối phase hay gate sản phẩm riêng. Bổ sung cùng ngày: [hướng tinh gọn đã duyệt](#lean-core-review), bỏ phụ thuộc chỉ theo thứ tự task xây Kidea, tạo hồ sơ/subtask khi cần và gom thử AI theo luồng; giữ gate sản phẩm/quyền.
 
 ### 2.1. Phase → task → subtask
 
@@ -117,7 +130,7 @@ Human ngày 2026-09-14 làm rõ khi duyệt T07-S01: không giới hạn số t�
 - Điều đã duyệt chỉ nhắc “giữ nguyên” nếu cần, không hỏi/giải thích lại. Tài liệu và kiểm tra vẫn đầy đủ; nội dung chuyên sâu không được giấu lựa chọn hoặc rủi ro đáng kể mà Human cần biết để quyết định. Giữ khả năng truy đúng bản/gói/phạm vi, không dùng bản ngắn thay căn cứ đã duyệt.
 - AI vẫn đọc đủ nguồn/phụ thuộc, kiểm tra ngữ nghĩa và ảnh hưởng xuyên chuỗi. Bản tóm tắt cho Human không thay đầu vào phân tích của AI.
 - Phân rã chi tiết **phase gần nhất**; các phase xa có task/đầu ra/kiểm chứng, subtask ghi **chưa phân rã**, không phải đã hoàn tất. Trước khi mở task ở đó, ghi các subtask, test và gate tại đúng hàng nguồn; không dùng task lớn làm giấy phép thực hiện một lượt.
-- Chỉ một subtask triển khai hiện hành. Review độc lập có thể hỗ trợ nhưng không tạo nhiều luồng sửa ngoài kiểm soát. Không cố định số task như cam kết thời gian hoặc phần trăm hoàn thành.
+- Chỉ một subtask triển khai hiện hành; công cụ sửa nguồn cùng project tuần tự trong một lượt hợp tác. Review độc lập chỉ đọc có thể hỗ trợ. Dùng prerequisite đầu vào thật, không số thứ tự; blocker bài thử không tự đóng việc độc lập. Không cố định số task như cam kết thời gian/phần trăm.
 
 ### 2.2. Bắt đầu, review và đóng đơn vị
 
@@ -210,14 +223,15 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T05-S01 | DONE | R02-T05-S01-r1 — APPROVED | Human “Mình duyệt nhé” sau giải thích 6ad94cb; D1–D2 gói f54d81a |
 | R02-T05-S02 | DONE | [A] — triển khai và test | Status schema 2 chỉ đọc, parser local khóa phiên bản; 79/79 test; [bằng chứng](tests/evidence/r02-t05.md) |
 | R02-T05-S03 | DONE | [A] — quyền gói 3 phiên sau 8443783 | 79 bài helper cùng 3 phiên × B01/A01/V03 đạt; nguồn/hash không đổi trong lượt, không nhận ổn định mọi tình huống; [bằng chứng](tests/evidence/r02-t05.md) |
-| R02-T06-S01 | DONE | R02-T06-S01-r1 — APPROVED; phạm vi D1 được cập nhật bằng r2 tại S02 | Giữ xác nhận r1: Human “Tôi duyệt nhé” sau giải thích bd52a52, D1–D2 gói d687d6a; [lịch sử](#safe-write-review). D2 và các bảo vệ còn lại giữ nguyên |
+| R02-T06-S01 | DONE | Lịch sử r1/r2 đã APPROVED; được thay bằng S04 | Giữ xác nhận Human sau bd52a52/d687d6a và 5466a42, [lịch sử](#safe-write-review). Mô hình hiện hành tại [S04](#lean-core-review), không coi các bảo đảm khóa cũ còn bắt buộc |
 | R02-T06-S02 | DONE | [A] — theo S01-r1 và S01-r2 đã APPROVED | Human “Ok nhé” sau answer 5466a42 duyệt đúng r2; [xác nhận/phạm vi](#safe-write-r2-approved). Primitive WRITE/CREATE/restore/cleanup nội bộ: 117/117 và status 92/92 PASS, nguồn không đổi; [bằng chứng/giới hạn](tests/evidence/r02-t06.md). Giữ FAIL r1/log và payload cần đối chiếu, không còn scratch một lần đã xác định để xóa; chưa mở caller công khai hoặc dùng quota AI mới |
 | R02-T06-S03 | DONE | [A] — quyền trial-r1 sau answer cfa374a, quota đã dùng hết | 3/3 phiên mới, 9/9 báo cáo case PASS; không timeout, toàn bộ 96 file repo + 188 source + 188 bản sao và runtime không đổi. Đối chiếu KA-10 đúng phần nội bộ; [bằng chứng/giới hạn](tests/evidence/r02-t06.md#ai-trial-result). Giữ fixture/log/payload làm evidence, không có scratch một lần mới để xóa |
+| R02-T06-S04 | DONE | [A] — hướng tinh gọn APPROVED ngày 2026-09-14 | Đồng bộ 4 tài liệu, Node writer/Git-first và caller init/status. 174/174 = 15 helper + 78 status + 61 writer + 20 init, nguồn/đầu vào không đổi; [bằng chứng/lỗi/giới hạn](tests/evidence/r02-t06-cooperative.md). Skill validator/syntax đạt; native được bỏ khỏi runtime, lịch sử giữ qua Git. Không AI/sandbox/ACL/VM/project thật; chưa nghiệm thu toàn lõi |
 | R02-T07-S01 | DONE | R02-T07-S01-r1 — APPROVED | Human “Ok tôi hiểu rồi. Duyệt nhé” sau [gói 52be3d8](https://github.com/Kynderis/kidea/blob/52be3d84a0182625b69dc6dcc530fe38f341ea59/answer.md) và giải thích “phiếu duyệt”; [hợp đồng/template](proposals/r02-t07-init-r1.md). D1 đã đồng bộ đúng ngoại lệ, không mở quota AI/project thật |
 | R02-T07-S02 | DONE | [A] — theo S01-r1 đã APPROVED | Template/caller init và bootstrap CREATE-only đã chạy; D1 chặn hoàn tất/cleanup STEP thiếu gate. 229/229 gồm 19 init + 118 writer/cleanup + 92 helper/status trên nguồn không đổi; [bằng chứng/lỗi/giới hạn](tests/evidence/r02-t07.md). Chưa chứng nhận hành vi AI hoặc project thật |
-| R02-T07-S03 | IN_PROGRESS | R02-T07-S03-trial-r1 — APPROVED; ACL hẹp APPROVED; tạm dừng launcher | Human “Còn phần trên tôi duyệt nhé” sau 38daef8 duyệt 3 phiên × tối đa 3 phút; **0/3 đã dùng**. [Preflight](tests/r02-t07/launcher-preflight.md): ngoại lệ ACL fixture đã duyệt; sự cố gọi nhầm help đã kích hoạt launcher, chưa xác định ACL đổi. Dừng sandbox/AI; 9 fixture và source vẫn khớp. Không dùng quota T06 hoặc đi tiếp T08/T09 trước dependency |
+| R02-T07-S03 | IN_PROGRESS | Gói cũ APPROVED; tạm dừng launcher, không đang thực thi | **0/3 AI**; quyền ACL hẹp/sự cố giữ tại [preflight](tests/r02-t07/launcher-preflight.md). Nguồn/protocol cũ cố định; không dùng quota T06 hoặc chuyển quota này sang writer/luồng mới. T08/T09 chỉ chờ prerequisite thực |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; T05 và T06 mỗi task đủ ba subtask DONE. T07-S01/S02 DONE; chỉ T07-S03 IN_PROGRESS tạm dừng sau sự cố launcher (quota và ACL hẹp đã duyệt, chưa dùng phiên AI), các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Có status/init và primitive ghi nội bộ, chưa có pilot; test helper hoặc các phiên hữu hạn không được cộng thành nghiệm thu toàn KA hoặc ổn định AI.
+R01 đã APPROVED; các kết quả T01–T06 trước tinh gọn và T07-S01/S02 giữ bằng chứng đúng bản trong sổ. S04 đã hoàn tất đúng lát cắt hợp đồng/writer/caller và hồi quy xác định; T07-S03 đã bắt đầu preflight nhưng tạm dừng, 0/3 AI. Kết quả native/T07 cũ không tự chứng nhận writer mới. T08/T09 và gate tích hợp/AI chưa hoàn tất; R02 chưa khép, R03–R10 chưa mở/pilot chưa có.
 
 <a id="r01-t01-result"></a>
 
@@ -624,7 +638,7 @@ Mũi tên chỉ phụ thuộc, không là lệnh tự động bắt đầu: cầ
 | [R09 — 14](#r09) | Workshop thật: backend–web, đổi giữa MVP, event/admin, Android/iOS, release lab và thay đổi sau release | Đi đầu–cuối và thử reject, gián đoạn, hotfix, lỗi một phần, tương thích, khôi phục; dữ liệu giả |
 | [R10 — 7](#r10) | Gói cài/nâng cấp/gỡ, ma trận hỗ trợ, hướng dẫn và bản Kidea bàn giao | Hồi quy đúng bản ứng viên, review độc lập và Human nghiệm thu; chỉ công bố phần đã chứng minh |
 
-R01 đã APPROVED và cho mở phần thiết kế R02; cài/chạy/ghi ngoài phạm vi vẫn cần quyền cụ thể. Từ R03 trở đi cần phase trước APPROVED; R09 còn cần gate/quyền pilot riêng. Mặc định task sau cần task trước trong phase; ngoại lệ/quay lại phải ghi rõ. Test helper/phiên AI bắt đầu ngay khi lát cắt làm được, không dồn đến R09.
+R01 đã APPROVED và cho mở R02 trong phạm vi được phép. Phase sau giữ gate phase trước, R09 giữ quyền/gate pilot riêng. Task phụ thuộc hợp đồng, nguồn, công cụ/quyền và kết quả thực sự cần, không mặc định N chờ toàn N−1. Nêu prerequisite tại task trước mở; vẫn một việc triển khai, không bypass gate sản phẩm hoặc dùng đầu vào chưa đủ. Test helper khi lát cắt làm được; AI theo luồng và gói quyền/quota rõ, không dồn mọi kiểm chứng đến R09.
 
 **Không nhầm hai lộ trình:** đây là 10 phase xây công cụ Kidea. [Mười bước phát triển sản phẩm](KIDEA_DESIGN.md#workflow) là quy trình Kidea sẽ hướng dẫn cho workshop và project sau này; có đối chiếu ở [bảng bao phủ](#coverage).
 
@@ -672,20 +686,20 @@ Subtask đã phân rã tại [bảng R02](#r02-subtasks). Phân rã là kế ho�
 | R02-T03 — Hợp đồng approval | Chuyển trạng thái, reject/N/A, đúng gói/nội dung và hiệu lực khi đầu vào đổi; đối chiếu quyền thường lệ theo project với bản/phạm vi Human chọn phát hành. | PASS không thành approval; tài liệu/comment không tự cấp quyền. Phân biệt approval Kidea với quyền thực tế; AI có quyền DEV không tự có quyền PROD. |
 | R02-T04 — Checkpoint, phiên bản và ghi dở | Quyền ghi, input/output evidence, tương thích skill/schema/profile và phục hồi theo [G4 đã duyệt](KIDEA_DESIGN.md#git-checkpoint). Nhận diện nguồn dở, artifact/config/bộ script và hồ sơ release/revision cố định gắn từng lần thực thi; giữ lần lỗi/chưa xác nhận khi retry, không chọn runner thay sản phẩm. | Diễn tập ghi dở, nguồn đổi, đường dẫn ngoài phạm vi, tác dụng phụ chưa rõ; không lấy trạng thái hoặc tên commit thay nội dung chưa được lưu/chuyển. |
 | R02-T05 — Đọc, validator và status | Lát cắt chỉ đọc trên fixture hai vùng .kidea + tài liệu sản phẩm. | Dữ liệu thiếu/sai có vị trí; status không sửa nguồn; thử lệnh sai. |
-| R02-T06 — Ghi an toàn | Helper ghi đúng danh sách đích; phục hồi bước ghi local theo G4 và [mô hình hỗ trợ r2](KIDEA_DESIGN.md#safe-write-namespace-review). | Thử có/thiếu bản trước, file bị sửa thêm thông thường, sai phạm vi, lỗi giữa cập nhật và lỗi khi phục hồi; không đè nội dung Human hoặc báo đạt khi chưa xác nhận trong mô hình đã nhận. Giữ counterexample hai can thiệp liên kết ngoài bảo đảm, không đổi FAIL r1 thành PASS/N/A. |
+| R02-T06 — Ghi có căn cứ | [Một lượt hợp tác/Git-first](KIDEA_DESIGN.md#lean-operation-approved): đúng root/đích/quyền, bản trước/review và dấu bận/pending. | Đủ/thiếu căn cứ Git/snapshot, CREATE-no-overwrite, lỗi quyền/I/O/ngắt/readback/cleanup. Không tự replay/restore sau ngắt; không còn proof Win32 chống editor. Giữ kết quả/protocol cũ đúng bản, kiểm writer mới riêng. |
 | R02-T07 — Init | Ba file tối thiểu hoặc dùng nguồn cũ đã đối chiếu; tách ý Human/gợi ý AI. | Không init đè; dự án cũ bắt đầu bước 1, không tự chứng nhận từ code. |
 | R02-T08 — Approve | Hành động ghi đúng xác nhận Human cho gói đủ điều kiện. | Thử đúng/sai ID, reject, nội dung cũ, gate con khác gate cha. |
 | R02-T09 — Resume cơ bản | Đọc đủ nguồn, task, quy ước thực thi và chuỗi điểm quay lại; kiểm tra thực tế trước tiếp tục, gồm kết quả Human chạy phát hành. | Phiên mới không cần kể lại; thiếu docs/công cụ hoặc side effect chưa rõ phải dừng đúng chỗ. Job/cảnh báo đã được phép duy trì độc lập phiên AI/laptop; truy lần triển khai, đúng hồ sơ/revision và bản thực chạy trước retry, không ghi đè lần lỗi. |
 | R02-T10 — Đo sớm và thử luồng lõi | Manifest biến thể, benchmark đọc/status và phiên AI mới dùng bản cài thử. | Trình ngưỡng đọc/status, manifest và số lần AI theo chính sách R01 trước chạy nghiệm thu; giữ toàn bộ mẫu, không tự nâng chuẩn để đạt. |
 | R02-T11 — Khép lõi | Hồi quy init → status → reject/sửa/approve → ngắt/resume. | Human review tích hợp; change/visualize chưa có phải báo chưa hỗ trợ. |
 
-Các caller ghi ở T07/T08/T09 áp dụng cùng [D1-r2/D2](KIDEA_DESIGN.md#safe-write-contract), [KA-10](KIDEA_ACCEPTANCE.md#acceptance-write-model) và [KQ-02](KIDEA_QUALITY.md#write-model-r2-approved); T10/T11/R10 kiểm chứng và công bố đúng mô hình. Giới hạn chỉ gồm tạo hard link mới/đổi hướng thư mục đồng thời trong lượt ghi, không miễn phép từ chối liên kết đã có, bảo vệ ghi/sửa/xóa/đổi tên thông thường, CREATE, phục hồi, cleanup hoặc quyền đích.
+Các caller ghi T07/T08/T09 áp dụng [mô hình một lượt hợp tác](KIDEA_DESIGN.md#lean-operation-approved), [KA-10](KIDEA_ACCEPTANCE.md#acceptance-write-model) và [KQ-02](KIDEA_QUALITY.md#write-model-cooperative-approved). T10/T11/R10 kiểm cùng mô hình: Git-first đúng byte/retention, root/quyền/CREATE, dấu bận/pending/readback, không tự replay/restore sau ngắt. Không còn bảo đảm Win32 ngăn writer ngoài luồng; giữ giới hạn và evidence lịch sử.
 
 <a id="r02-subtasks"></a>
 
 ### Phân rã R02 — kế hoạch theo từng lát cắt
 
-Mỗi ô có mã con đầy đủ, đầu ra và kiểm tra. Trong mỗi task làm S01 → S02 → S03 → S04 nếu có; task sau mặc định phụ thuộc task trước. [H] phải có xác nhận đúng gói trước phần phụ thuộc; các đầu ra đủ điều kiện có thể cùng được trình trong một lượt nhưng không bỏ dependency hoặc gate. [A] chỉ thực hiện trong hợp đồng/quyền đã có. Các lựa chọn chưa chốt không biến thành quyền từ bảng này; không có subtask nào mặc nhiên DONE. Các phân rã T01–T05 dưới đây giữ căn cứ công việc đã thực hiện, không dùng cách tách gói lịch sử để buộc tách tiếp phần còn lại.
+Mỗi ô chỉ rõ đầu ra/kiểm tra và prerequisite thực. [H] cần xác nhận đúng gói trước phần phụ thuộc; [A] làm trong hợp đồng/quyền đã có. Không áp S01→S02→S03 hoặc task trước→sau chỉ vì số thứ tự, nhưng không dùng điều này để vượt đầu vào, quyết định hay gate thật. Phần đã thực hiện dưới đây giữ lịch sử; chỉ tạo subtask mới khi có lát cắt/đầu ra độc lập cần quản lý, không để phân rã lịch sử buộc tăng thủ tục.
 
 | Task | S01 | S02 | S03 | S04 |
 |---|---|---|---|---|
@@ -694,7 +708,7 @@ Mỗi ô có mã con đầy đủ, đầu ra và kiểm tra. Trong mỗi task l�
 | R02-T03 | **R02-T03-S01 [H]** Hợp đồng duyệt/reject/N/A và gate con/cha; bảng tình huống đúng/sai phạm vi | **R02-T03-S02 [H]** Căn cứ nội dung/đầu vào và hiệu lực approval; so đổi nghĩa với sửa trình bày | **R02-T03-S03 [A]** Mẫu quyền đủ/thiếu, giả chỉ thị và approval cũ; giữ G3, expected không vượt quyền | **R02-T03-S04 [A]** Diễn tập/đối chiếu hợp đồng với schema và KA-05–08; chưa thay bằng chứng approve thực thi |
 | R02-T04 | **R02-T04-S01 [H]** Giữ/nhận diện bản nguồn và đầu vào; **R02-T04-S05 [H]** chính sách tương thích skill/schema/profile; **R02-T04-S06 [H]** nhận diện hồ sơ release/revision/lần thực thi; **R02-T04-S07 [H]** trường/kiểu/tham chiếu/nơi lưu review và lượt ghi theo các gói đã chốt; đủ gate trước mẫu/code phụ thuộc | **R02-T04-S02 [H]** Hợp đồng ghi dở/checkpoint/phục hồi và backup trong mô hình lỗi; quyền/bản trước/nguồn sửa thêm | **R02-T04-S03 [A]** Mẫu trước/giữa/sau ghi, Git đúng/sai bản, bản tạm giữ/dọn/lỗi dọn, side effect chưa rõ và evidence; đối chiếu G4/G6/KQ-10 | **R02-T04-S04 [A]** Rà đồng bộ schema/approval/case/giới hạn phục hồi; chưa chứng nhận cơ chế ghi an toàn |
 | R02-T05 | **R02-T05-S01 [H]** Hợp đồng đọc/validator/status: đầu vào, lỗi/đầu ra và ranh giới chỉ đọc; chốt parser/dependency nếu cần | **R02-T05-S02 [A]** Viết bộ đọc và status cho schema đã chốt; test mẫu hợp lệ/thiếu/sai và lệnh sai | **R02-T05-S03 [A]** Thử UTF-8/CRLF/đường dẫn khác mặc định, nguồn đổi và phiên AI; so file trước/sau, không sửa nguồn | — |
-| R02-T06 | **R02-T06-S01 [H]** Thiết kế cơ chế ghi/phục hồi thực thi theo T04; chốt cách phát hiện nguồn đổi và giới hạn | **R02-T06-S02 [A]** Hiện thực từng đường ghi và tiêm lỗi; kiểm tra đích/bản trước/không đè thay đổi | **R02-T06-S03 [A]** Thử lỗi giữa cập nhật/lỗi phục hồi, ngoài quyền và phiên AI; đối chiếu nội dung thật với KA-10 | — |
+| R02-T06 | **R02-T06-S01 [H]** Lịch sử r1/r2 | **R02-T06-S02 [A]** Lịch sử worker native và test đúng bản | **R02-T06-S03 [A]** Lịch sử 3 phiên AI/status, quota dùng hết | **R02-T06-S04 [A]** Theo hướng tinh gọn đã duyệt: hợp đồng/caller/writer hợp tác, Git-first và hồi quy xác định dữ liệu giả; không AI/ACL/VM |
 | R02-T07 | **R02-T07-S01 [H]** Hợp đồng init mới/cũ và template tối thiểu; ví dụ vị trí tài liệu khác mặc định | **R02-T07-S02 [A]** Hiện thực init trên vùng thử; test không ghi đè, nguồn đã có và lỗi giữa tạo hồ sơ | **R02-T07-S03 [A]** Phiên AI mới thử đủ/thiếu quyền, ý Human/gợi ý AI và init lặp; hồi quy đọc/ghi | — |
 | R02-T08 | **R02-T08-S01 [H]** Giao diện ghi approval đúng gói/xác nhận và xử lý sai args; không thay ngữ nghĩa T03 | **R02-T08-S02 [A]** Hiện thực approve/reject theo hợp đồng; test sai ID, cũ, thiếu điều kiện, gate con/cha | **R02-T08-S03 [A]** Phiên mới thử giả approval/quyền và lời góp ý; đối chiếu lời báo–record–hành động, hồi quy | — |
 | R02-T09 | **R02-T09-S01 [H]** Hợp đồng resume/điểm quay lại và tra tác dụng phụ chưa rõ; mẫu đủ/thiếu căn cứ | **R02-T09-S02 [A]** Hiện thực đọc/checkpoint/đối chiếu; test thiếu file/conflict/khác bản và không replay mù | **R02-T09-S03 [A]** Phiên mới từ hồ sơ dở/nguồn đổi, có và chưa có kết quả operation; giữ bằng chứng lỗi, không diễn tập PROD | — |
@@ -715,7 +729,7 @@ Phiên AI ở từng task chỉ chạy sau khi chốt đầu vào/biến thể, 
 
 | Phạm vi | Căn cứ đã chốt, không hỏi lại | Phần cần chuẩn bị hoặc cân nhắc trước khi trình | Phần phải thử/đo rồi mới kết luận |
 |---|---|---|---|
-| **T06 — ghi an toàn** | [Cơ chế r1 cùng giới hạn D1-r2 đã duyệt](KIDEA_DESIGN.md#safe-write-contract); không hỏi lại các bảo vệ/quyền còn hiệu lực. | Đã có [bằng chứng S02/S03](tests/evidence/r02-t06.md#ai-trial-result), trạng thái ở sổ công việc; quota AI đã dùng hết. Chỉ quay lại lựa chọn cơ chế nếu kiểm chứng buộc đổi thêm bảo vệ/giới hạn ngoài r2. | Giữ FAIL phản ví dụ r1, không chấm lại PASS/N/A. Caller và tích hợp kiểm đúng bản mới; kết quả nội bộ không tự chứng nhận toàn KA-10. |
+| **T06 — ghi có căn cứ** | [Mô hình hợp tác/Git-first đã duyệt](KIDEA_DESIGN.md#lean-operation-approved); giữ root/quyền/CREATE, pending và không tự replay/restore. | S04 thay primitive/caller và kiểm thử xác định trên dữ liệu giả. S02/S03 native giữ lịch sử, không chứng nhận writer mới. | Đúng raw byte/retention, dấu bận, ngắt/readback/cleanup; giữ mọi FAIL cũ, không chạy protocol cũ trên nguồn mới hoặc mở quota AI. |
 | **T07 — khởi tạo** | [Ý Human khác gợi ý AI](KIDEA_DESIGN.md#commands), không init đè, dự án cũ bắt đầu bước 1; nguồn/schema đã chốt tại T02/T04. | [S01-r1 đã duyệt](proposals/r02-t07-init-r1.md): một quyết định D1 về bước chưa có phiếu và template/hợp đồng thường lệ đi cùng. Đã có xác nhận đúng gói; triển khai theo sổ công việc, không duyệt trước kết quả kiểm chứng. | Init lặp, thiếu quyền, nguồn đã có, bootstrap/CREATE bị ngắt và gate bắt buộc; phiên AI chỉ sau gói quota riêng được cấp. |
 | **T08 — ghi xác nhận** | [Ngữ nghĩa T03](KIDEA_DESIGN.md#approval-transitions-contract): xác nhận thật cho đúng gói/bản đủ điều kiện, PASS/góp ý không là approval, gate con không thay gate cha; hiệu lực khi nguồn đổi giữ nguyên. | Soạn giao diện ghi xác nhận và xử lý đối số sai S01. Cụ thể hóa đúng căn cứ/quyền có thể gom; nếu có lựa chọn mới về nhận xác nhận thật, phạm vi ghi hoặc hành vi phải trình rõ, không ngầm quyết trong code. Chưa có nguồn gói S01 hoàn chỉnh. | Sai ID, bản cũ, thiếu điều kiện, giả approval và đối chiếu lời báo–record–hành động. |
 | **T09 — tiếp tục việc dở** | [G4 và resume](KIDEA_DESIGN.md#resume): đọc/đối chiếu thực tế, giữ điểm quay lại, không replay mù hoặc tự nhận hoàn tất; không có quyền PROD từ resume. | Soạn hợp đồng S01 cho checkpoint/điểm quay lại và cách tra tác dụng phụ chưa rõ. Bám đúng T03/T04 thì gom phần thường lệ; thay ranh giới tự tiếp tục, nguồn có thể đọc hoặc quyền thì đưa ra trước. Chưa có nguồn gói S01 hoàn chỉnh. | Phiên mới với hồ sơ dở/nguồn đổi/thiếu file, kết quả operation có hoặc chưa có; không diễn tập PROD. |
@@ -878,7 +892,7 @@ Subtask: **chưa phân rã**. Khi phase tới lượt, rà mục tiêu/phụ thu
 | R09-T09 — Đổi sau release | Cho hủy khi PAUSED; xử lý cả consumer không diff. | Target mới khác bản đang chạy; change/map/test/approval, lượt cuối toàn dự án theo G2 và deploy đúng quyền. Fixture bổ sung cho sự cố/đổi cấu hình không diff code vẫn phải đi qua impact; không tự đổi nghiệp vụ. |
 | R09-T10 — Bugfix giữ nguyên đặc tả | Fixture vượt sức chứa cô lập; thử master phù hợp và master có Feature dở cần nhánh bảo trì; hai patch kế tiếp, bản bị thu hồi và hết hỗ trợ. | Tái hiện/test bắt lỗi; không kèm phần chưa chọn phát hành. Full gate từng bản ứng viên khác đầu vào, build/lab; fix có kết luận/bằng chứng trên master, giữ tiến độ Feature và các patch hợp lệ. Tích hợp đổi đầu vào phải chạy toàn lượt G2 trên bản kết hợp, giữ Feature chưa hoàn tất; khi khép vẫn chạy lượt cuối trên chính bản cuối của Feature. Dọn nhánh đúng quyền vẫn giữ tag/source/artifact/evidence; không đổi rule để xanh. |
 | R09-T11 — Reject, approval và quyền | Từng case reject/góp ý/im lặng, approval cũ/sai, thiếu quyền và fail/skip; fixture DEV trỏ nhầm PROD hoặc script đổi sau xác minh. | Không vượt gate/báo đạt giả; thử quyền DEV không mở PROD và bảo vệ credential bằng dữ liệu/lab giả. Giữ biến thể tài liệu/comment giả chỉ thị theo gate đã chốt. |
-| R09-T12 — Ngắt phiên và pending side effect | Gián đoạn nhiều cấp/thiếu công cụ, kết quả thao tác đã hoặc chưa xảy ra; local mất kết nối sau gửi lệnh. | Phiên mới đối chiếu thực tế trước tiếp tục; không tác giả sửa hộ trạng thái để PASS. Job/cảnh báo cần thiết độc lập phiên AI/laptop; không lặp migration khi resume. Lưu file/điểm tiếp tục theo mốc G4; phục hồi ghi local chỉ khi đúng quyền, có bản trước và không có thay đổi chen vào; thiếu căn cứ phải hỏi. |
+| R09-T12 — Ngắt phiên và pending side effect | Gián đoạn nhiều cấp/thiếu công cụ, thao tác đã/chưa xảy ra; mất kết nối sau gửi lệnh. | Đối chiếu thực tế trước tiếp tục; không sửa hộ trạng thái để PASS. Job/cảnh báo độc lập phiên AI/laptop, không lặp migration. Ghi local theo một lượt hợp tác, giữ file/bản trước/điểm tiếp tục; không tự replay/restore sau ngắt, phương án xử lý cần đúng quyền/căn cứ. |
 | R09-T13 — Git và chuyển môi trường | Chuyển đủ .kidea + tài liệu sản phẩm + code/test/config/quy ước thực thi; thử thiếu/conflict/sai repo hoặc nhầm master/nhánh bảo trì. | Hồ sơ/rule/phiên bản và bộ script còn truy được; không giả có phần WIP chưa chuyển. Chỉ thao tác Git đúng quyền project; không để tiến độ hotfix ghi đè Feature. |
 | R09-T14 — Khép pilot và sửa lỗi Kidea | Tổng hợp toàn bộ bằng chứng, lỗi, impact và hồi quy. | Mỗi sửa lỗi tách subtask có phạm vi; Human quyết định quay phase nào, không mở refactor vô hạn. Tổng hợp luồng release/đọc lại/gián đoạn/phục hồi, không thay bằng mẫu hồ sơ. |
 
@@ -894,7 +908,7 @@ Subtask: **chưa phân rã**. Khi phase tới lượt, rà mục tiêu/phụ thu
 |---|---|---|
 | R10-T01 — Version và tương thích | Ma trận skill/schema/profile được hỗ trợ, cách nâng cấp và phục hồi. | Schema quá mới phải dừng; đổi hợp đồng nền mở lại nơi sở hữu. |
 | R10-T02 — Gói cài và gỡ | Cài sạch/nhận skill/sáu hành động, không đè bản khác; gỡ đúng phạm vi. | Host thực được kiểm tra; gỡ skill không xóa hồ sơ/source sản phẩm. |
-| R10-T03 — Nâng cấp và rollback lỗi | Từng đường nâng cấp được hỗ trợ, lỗi giữa chừng và khôi phục; ghi local theo [giới hạn r2](KIDEA_DESIGN.md#safe-write-namespace-review). | Bảo toàn nguồn/bằng chứng trong mô hình đã nhận, chạy kiểm tra sau phục hồi; công bố hai can thiệp liên kết ngoài bảo đảm, không miễn thử ghi/restore/cleanup còn lại hoặc mở quyền. |
+| R10-T03 — Nâng cấp và rollback lỗi | Đường nâng cấp được hỗ trợ, lỗi giữa chừng/khôi phục; ghi theo [mô hình hợp tác](KIDEA_DESIGN.md#lean-operation-approved). | Bảo toàn căn cứ, nhận diện dở và kiểm tra xử lý được phép; không tự replay/restore sau ngắt. Không còn proof Win32 chống editor; giữ lỗi quyền/CREATE/pending/cleanup và giới hạn không chống hỏng ổ/mất điện. |
 | R10-T04 — Ma trận môi trường cuối | Chia subtask từng host/đích được cam kết, gồm Git/resume, docs khác vị trí mặc định và quy ước thực thi đã chọn. | Máy thật/mô phỏng tách rõ; local điều khiển không miễn nền đích. Thiếu một mục bắt buộc vẫn là khoảng trống; không coi một template là hỗ trợ mọi môi trường. |
 | R10-T05 — Hướng dẫn tiếng Việt | Bắt đầu/gate/resume/change/view, xử lý lỗi, backup/giới hạn và SEO; bộ lệnh local, AI DEV/Human PROD, cấu hình/credential, hồ sơ release/từng lần triển khai, nhánh bảo trì và quyền dọn. | Ví dụ/link thực; chỉ nêu đường deploy đã kiểm chứng và cách theo dõi/xử lý khi phiên AI/laptop đóng. SKILL.md gọn, không cần nhớ hội thoại hoặc tự xây thư viện template. |
 | R10-T06 — Bản ứng viên và review độc lập | Chạy nghiệm thu đúng bản cố định: helper, AI, map/change/view/install và tích hợp, gồm phương án local/DEV/phát hành do Human và nhánh bảo trì trên lab. | Rà secrets/quyền/link; chốt manifest/số lần nhóm AI trước chạy theo chính sách T09, mọi case áp dụng có kết quả còn hiệu lực, không chọn lần chạy đẹp. Nghiệm thu đầu–cuối và đường lỗi theo toàn phạm vi đã chốt, không dùng template có đủ nội dung thay bằng chứng thực thi. |
@@ -924,7 +938,7 @@ Toàn bộ 77 task của lộ trình cũ được giữ nghĩa vụ trong bảng
 | Nghĩa vụ nguồn | Nơi sở hữu | Nơi xác nhận cuối |
 |---|---|---|
 | Sáu hành động, state/gate/quyền, KA-01–09; KQ-01 | R02, change R06, visualize R07 | R09/R10, không cộng PASS rời thay KA-04 đầu-cuối |
-| Ghi/resume/Git/pending side effect, KA-10–13; KQ-02/03; giới hạn ghi local [D1-r2](KIDEA_DESIGN.md#safe-write-namespace-review) | R02/R06 | R09-T12/T13, R10-T03/T04; ghi rõ mô hình hỗ trợ, không đổi quyền/gate |
+| Ghi/resume/Git/pending side effect, KA-10–13; KQ-02/03; [mô hình hợp tác/Git-first](KIDEA_DESIGN.md#lean-operation-approved) | R02/R06 | R09-T12/T13, R10-T03/T04; đúng bản trước/review, dấu bận/pending, không tự replay/restore; giữ quyền/gate |
 | Shared/AC/test, KA-14 | R03 | Hồ sơ được duyệt và pilot thật R09 |
 | Ba bản đồ/unknown/no-diff/cycle/di chuyển, KA-15/16/20–22; KQ-04/09 | R06 | R09, cả đường event và consumer không diff |
 | Feature giữa MVP/sau release/bugfix, KA-17–19 | R06 | R09-T04/T09/T10; checkpoint và release thực giữ lại |
@@ -948,7 +962,7 @@ Mười bước sản phẩm không bị gộp bởi cách chia phase xây skill
 | [Version sản phẩm, thành phần, build và tag](KIDEA_DESIGN.md#product-version) | R02-T02/T04; R05-T04/T05; R08-T04 | KA-28; R09-T08/T10; R10-T06 |
 | [Hồ sơ release/revision, từng lần triển khai và exact artifact/config/schema/script](KIDEA_DESIGN.md#release-records) | R02-T02/T04/T09; R07-T01/T02; R08-T03–T05 | KA-13/25/28; R09-T08/T12 |
 | [Hotfix đúng nền production, đưa fix về master, bảo toàn Feature dở và dòng bảo trì](KIDEA_DESIGN.md#production-bugfix-flow) | R06-T07/T10; R08-T04/T06 | KA-19/22; R09-T10/T13 |
-| [Checkpoint/khôi phục local và resume qua Git đúng quyền](KIDEA_DESIGN.md#git-checkpoint), ghi local theo [D1-r2](KIDEA_DESIGN.md#safe-write-namespace-review) | R02-T04/T06/T07/T08/T09; R06-T10 | KA-10–13; R02-T10/T11; R09-T12/T13; R10-T03/T04 |
+| [Checkpoint/resume Git](KIDEA_DESIGN.md#git-checkpoint), ghi theo [mô hình hợp tác](KIDEA_DESIGN.md#lean-operation-approved) | R02-T04/T06/T07/T08/T09; R06-T10 | KA-10–13; R02-T10/T11; R09-T12/T13; R10-T03/T04 |
 | [Deploy theo thành phần, tương thích cũ–mới, rollback khác restore DB](KIDEA_DESIGN.md#production-capabilities) | R04-T05; R05-T06; R08-T03–T06 | KA-23/28; R09-T08; R10-T04/T06 |
 | [Readiness, cảnh báo/job độc lập phiên AI, sự cố và A/B theo nhu cầu](KIDEA_DESIGN.md#production-capabilities) | R03-T02/T04; R04-T01/T03; R06-T07; R08-T04–T06 | KA-13/15/18/23/28/30; R09-T08/T09/T12 |
 | [Một nguồn hồ sơ, ba bản đồ và HTML chỉ đọc](KIDEA_DESIGN.md#source-authority-and-write-boundary) | R02; R06; R07 | KA-09/15/16/20–22/25/26; R09/R10 |

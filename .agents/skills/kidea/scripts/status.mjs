@@ -1,11 +1,11 @@
 import { readFileSync, realpathSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import { spawnSync } from 'node:child_process';
 import { parseTree, getNodeValue, findNodeAtLocation } from 'jsonc-parser';
 import { validate, validPath, schemas } from './schema.mjs';
 import { inspectPendingWrites, PendingWriteReadError, pendingWritesPath } from './pending-writes.mjs';
 import { isRecordedComplete } from './recorded-completion.mjs';
+import { readGitVersion } from './git-versions.mjs';
 
 const start = '<!-- kidea:data:start -->', end = '<!-- kidea:data:end -->';
 const utf8 = bytes => new TextDecoder('utf-8',{fatal:true}).decode(bytes);
@@ -19,28 +19,28 @@ export function snapshotAnchorCount(data,anchor) {
 }
 
 // The optional hook is test-only dependency injection, not a CLI capability.
-export function readStatus(cwd, { beforeRecheck } = {}) {
-  return statusEngine(cwd,{beforeRecheck});
+export function readStatus(cwd, { beforeRecheck, allowGit = true } = {}) {
+  return statusEngine(cwd,{beforeRecheck,allowGit});
 }
 
 // Internal writer preflight only. This is a projected graph, never public progress
-// and never authorization. The writer must bind every read byte under native locks.
-export function inspectStatusGraph(cwd, projectedBytes = new Map(), checkpointPaths = []) {
+// and never authorization. The cooperative writer rechecks every bound input.
+export function inspectStatusGraph(cwd, projectedBytes = new Map(), checkpointPaths = [], {allowGit = true} = {}) {
   let graph;
-  const status=statusEngine(cwd,{projectedBytes,checkpointPaths,capture:value=>{graph=value;}});
+  const status=statusEngine(cwd,{projectedBytes,checkpointPaths,allowGit,capture:value=>{graph=value;}});
   return {status,...graph};
 }
 
 // Pure validation of a complete byte set supplied by the trusted writer. There
 // is no filesystem/Git fallback or pending bypass in the public status action.
-// This result is not live progress: native proof must bind these bytes first.
-export function inspectBoundGraph(cwd, files) {
+// This result is not live progress: the writer must read back these bytes first.
+export function inspectBoundGraph(cwd, files, {gitVersions = new Map(), checkpointPaths = []} = {}) {
   let graph;
-  const status=statusEngine(cwd,{boundOnly:true,projectedBytes:files,capture:value=>{graph=value;}});
+  const status=statusEngine(cwd,{boundOnly:true,projectedBytes:files,gitVersions,checkpointPaths,capture:value=>{graph=value;}});
   return {status,...graph};
 }
 
-function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpointPaths = [], capture, boundOnly=false } = {}) {
+function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpointPaths = [], gitVersions = new Map(), capture, boundOnly=false, allowGit=true } = {}) {
   const out={outputVersion:1,action:'status',observedAt:new Date().toISOString(),readState:'OK',projectId:null,data:null,diagnostics:[]};
   const records=new Map(), reads=new Map(), absent=new Set(), gitReads=new Map(), directRefs=new Set();
   let root, pendingBefore;
@@ -154,23 +154,25 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     if(bytesValue && (bytesValue.length!==i.byteLength||sha(bytesValue)!==i.value))issue('CONTENT_MISMATCH',record.file,field,'INCOMPLETE',record);
   }
   function gitBytes(location,record,field) {
-    if(boundOnly){issue('BOUND_GIT_UNSUPPORTED',record.file,field,'UNSUPPORTED');throw new Stop();}
     if(!/^(?:[a-f0-9]{40}|[a-f0-9]{64})$/.test(location.commit)){issue('GIT_COMMIT',record.file,field,'INVALID',record);throw new Stop();}
     absolute(location.path);
-    // No shell, filters, hooks, fetch or revision expressions from the record.
-    const gitEnv=Object.fromEntries(Object.entries(process.env).filter(([k])=>!k.toUpperCase().startsWith('GIT_')));
-    const run=args=>spawnSync('git',['--no-optional-locks','--no-lazy-fetch',...args],{cwd:root,encoding:null,timeout:10000,maxBuffer:32*1024*1024,windowsHide:true,env:{...gitEnv,GIT_CONFIG_NOSYSTEM:'1',GIT_CONFIG_GLOBAL:process.platform==='win32'?'NUL':'/dev/null',GIT_NO_REPLACE_OBJECTS:'1',GIT_NO_LAZY_FETCH:'1',GIT_TERMINAL_PROMPT:'0'}});
-    const top=run(['rev-parse','--show-toplevel']);
-    if(top.status!==0||path.resolve(top.stdout.toString().trim())!==root){issue('GIT_UNAVAILABLE',record.file,field,'INCOMPLETE',record);throw new Stop();}
-    const type=run(['cat-file','-t',location.commit]);
-    if(type.status!==0||type.stdout.toString().trim()!=='commit'){issue('GIT_UNAVAILABLE',record.file,field,'INCOMPLETE',record);throw new Stop();}
-    const result=run(['cat-file','blob',`${location.commit}:${location.path}`]);
-    if(result.status!==0){issue('GIT_UNAVAILABLE',record.file,field,'INCOMPLETE',record);throw new Stop();}
-    gitReads.set(JSON.stringify(location),{location,record,field,bytes:result.stdout});return result.stdout;
+    if(boundOnly) {
+      const supplied=gitVersions.get(JSON.stringify(location));
+      if(!Buffer.isBuffer(supplied)){issue('MISSING_BOUND_GIT_INPUT',record.file,field,'INCOMPLETE');throw new Stop();}
+      const data=Buffer.from(supplied);
+      gitReads.set(JSON.stringify(location),{location,record,field,bytes:data});return data;
+    }
+    if(!allowGit){issue('GIT_READ_NOT_AUTHORIZED',record.file,field,'UNSUPPORTED');throw new Stop();}
+    // Shared local reader: no project-selected executable, shell, filters,
+    // hooks, fetch or revision expressions supplied by the record.
+    let data;
+    try {data=readGitVersion(root,location);}
+    catch {issue('GIT_UNAVAILABLE',record.file,field,'INCOMPLETE',record);throw new Stop();}
+    gitReads.set(JSON.stringify(location),{location,record,field,bytes:data});return data;
   }
   function version(v,record,field,{missing=false,current=false,reviewSnapshot=false}={}) {
     const l=v.location;
-    if(reviewSnapshot && l.kind!=='EXTERNAL' && (l.kind!=='SNAPSHOT'||!l.ref.path.startsWith('.kidea/reviews/evidence/'))) {
+    if(reviewSnapshot && l.kind!=='EXTERNAL' && l.kind!=='GIT' && (l.kind!=='SNAPSHOT'||!l.ref.path.startsWith('.kidea/reviews/evidence/'))) {
       issue('REVIEW_SNAPSHOT_LOCATION',record.file,field,'INVALID',record);return null;
     }
     if(v.source===null && l.kind!=='EXTERNAL'){issue('VERSION_SOURCE',record.file,field,'INVALID',record);return null;}
@@ -364,6 +366,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
   } catch(e) {if(!(e instanceof Stop))issue('READ_FAILED',null,null,'INCOMPLETE');}
   out.observedAt=new Date().toISOString();
   capture?.({reads:new Map([...reads].map(([p,v])=>[p,Buffer.from(v.data)])),absent:new Set(absent),gitReadCount:gitReads.size,
+    gitReads:new Map([...gitReads].map(([key,v])=>[key,{location:structuredClone(v.location),bytes:Buffer.from(v.bytes)}])),
     records:new Map([...records].map(([p,r])=>[p,structuredClone(r.data)])),directRefs:new Set(directRefs)});
   return out;
 }

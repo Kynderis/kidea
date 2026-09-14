@@ -1,15 +1,15 @@
-// Internal R02-T06 primitive, used by the CREATE-only init caller. Authorization
-// comes from the trusted in-memory caller, never an APPROVED label in a record.
-import { readFileSync, realpathSync, lstatSync } from 'node:fs';
+// Cooperative single-writer operations. The project guard prevents accidental
+// Kidea overlap; it is not an OS sandbox or protection against external writers.
+// Authorization comes from the in-memory caller, never a project record.
+import { readFileSync, realpathSync, lstatSync, readdirSync, mkdirSync, openSync, writeSync, ftruncateSync, fsyncSync, closeSync, unlinkSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { createHash, randomUUID } from 'node:crypto';
-import { spawn } from 'node:child_process';
 import { isDeepStrictEqual } from 'node:util';
-import { inspectStatusGraph,snapshotAnchorCount } from './status.mjs';
+import { inspectStatusGraph,inspectBoundGraph,snapshotAnchorCount } from './status.mjs';
 import { validPath, validate } from './schema.mjs';
 import { isRecordedComplete } from './recorded-completion.mjs';
-import { prepareBootstrapRequest,validateBootstrapGraph } from './bootstrap-plan.mjs';
+import { prepareBootstrapRequest } from './bootstrap-plan.mjs';
+import { findGitVersion,readGitVersion } from './git-versions.mjs';
 
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const integrity=bytes=>({method:'SHA256',value:sha(bytes),byteLength:bytes.length});
@@ -19,10 +19,10 @@ const fail=code=>{throw Object.assign(new Error(code),{code});};
 const inside=(root,target)=>{const rel=path.relative(root,target);return rel!== '..'&&!rel.startsWith(`..${path.sep}`)&&!path.isAbsolute(rel);};
 const checked=(value,type)=>{if(!validate(value,type,()=>{}))fail('INVALID_'+type.toUpperCase());};
 
-function cleanupGraph(root,overlay,checkpointPath) {
+function cleanupGraph(root,overlay,checkpointPath,allowGit=false) {
   const retained=new Set([checkpointPath]);
   for(let pass=0;pass<256;pass++) {
-    const graph=inspectStatusGraph(root,overlay,[...retained]);
+    const graph=inspectStatusGraph(root,overlay,[...retained],{allowGit});
     if(graph.status.readState!=='OK')return graph;
     const added=[];
     for(const p of graph.directRefs) {
@@ -42,19 +42,33 @@ function cleanupGraph(root,overlay,checkpointPath) {
   fail('CLEANUP_REFERENCE_LIMIT');
 }
 
-function localBytes(root,relative,missing=false) {
+function localEntry(root,relative,missing=false) {
   if(!validPath(relative))fail('UNSAFE_PATH');
   let target=root;
   const parts=relative.split('/');
   for(const [i,part] of parts.entries()) {
+    const spelling=readdirSync(target).find(name=>name.toLowerCase()===part.toLowerCase());
+    if(spelling&&spelling!==part)fail('AMBIGUOUS_PATH_ALIAS');
     target=path.join(target,part);
     let stat;
-    try{stat=lstatSync(target);}catch(e){if(missing&&i===parts.length-1&&e.code==='ENOENT')return null;throw e;}
-    if(stat.isSymbolicLink()||!inside(root,realpathSync(target)))fail('UNSAFE_PATH');
+    try{stat=lstatSync(target);}catch(e){if(missing&&e.code==='ENOENT')return null;throw e;}
+    if(stat.isSymbolicLink()||!inside(root,realpathSync(target))||path.resolve(realpathSync(target)).toLowerCase()!==path.resolve(target).toLowerCase())fail('UNSAFE_PATH');
     if(i<parts.length-1&&!stat.isDirectory())fail('UNSAFE_PATH');
-    if(i===parts.length-1&&(!stat.isFile()||stat.nlink!==1))fail('UNSAFE_PATH');
+    if(i===parts.length-1) {
+      if(!stat.isDirectory()&&(!stat.isFile()||stat.nlink!==1))fail('UNSAFE_PATH');
+      return {full:target,stat};
+    }
   }
-  return readFileSync(target);
+}
+function localBytes(root,relative,missing=false) {
+  const entry=localEntry(root,relative,missing);
+  if(!entry)return null;
+  if(!entry.stat.isFile())fail('UNSAFE_PATH');
+  return readFileSync(entry.full);
+}
+function safeRoot(root) {
+  if(typeof root!=='string'||!path.isAbsolute(root)||lstatSync(root).isSymbolicLink()||!lstatSync(root).isDirectory()||path.resolve(root).toLowerCase()!==realpathSync(root).toLowerCase())fail('UNSAFE_ROOT');
+  return realpathSync(root);
 }
 
 // This stage is read-only. It is deliberately limited to an already valid
@@ -69,19 +83,20 @@ export function prepareInternalBootstrap(args) {
 
 function preparePlan({root,authorization,context,targets,operationId=randomUUID()},cleanup=null,priorGraph=null) {
   if(process.platform!=='win32')fail('UNSUPPORTED_HOST');
-  root=realpathSync(root);
+  root=safeRoot(root);
   if(!authorization||path.resolve(authorization.root)!==root||authorization.metadataRoot!=='.kidea/checkpoints')fail('AUTHORIZATION_REQUIRED');
-  if(!authorization.assumptions||!['localNtfs','noActiveSync','noConcurrentNamespaceChanges'].every(k=>authorization.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
+  if(!authorization.assumptions||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>authorization.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
   if(typeof authorization.allowRestoreUpdate!=='boolean'||authorization.allowRetireOwnPending!==true)fail('AUTHORIZATION_REQUIRED');
   if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(operationId))fail('INVALID_OPERATION_ID');
   if(!Array.isArray(targets)||!targets.length||!Array.isArray(authorization.targets)||authorization.targets.length!==targets.length)fail('INVALID_TARGETS');
   function checkGraph(g) {
     if(g.status.readState!=='OK')throw Object.assign(new Error('GRAPH_NOT_VALID'),{code:'GRAPH_NOT_VALID',diagnostics:g.status.diagnostics});
-    if(g.gitReadCount||g.absent.size)fail('UNSUPPORTED_GRAPH_INPUT');
+    if(g.absent.size)fail('UNSUPPORTED_GRAPH_INPUT');
   }
   // Discover interrupted writes before interpreting already-created/partial
   // targets as a fresh request. This still does not authorize recovery/replay.
-  const current=cleanup?cleanupGraph(root,new Map(),cleanup.checkpointPath):inspectStatusGraph(root);checkGraph(current);
+  const allowGit=authorization.allowReadLocalGit===true;
+  const current=cleanup?cleanupGraph(root,new Map(),cleanup.checkpointPath,allowGit):inspectStatusGraph(root,new Map(),[],{allowGit});checkGraph(current);
   const seen=new Set(),overlay=new Map(),planned=[];
   for(const t of targets) {
     if(!validPath(t.path)||!['UPDATE','CREATE'].includes(t.action)||!Buffer.isBuffer(t.plannedBytes))fail('INVALID_TARGET');
@@ -93,27 +108,34 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
     const before=localBytes(root,t.path,t.action==='CREATE');
     if((t.action==='CREATE')!==(before===null))fail('TARGET_PRECONDITION');
     overlay.set(t.path,Buffer.from(t.plannedBytes));
-    planned.push({path:t.path,action:t.action,beforeBase64:before?.toString('base64')??null,plannedBase64:t.plannedBytes.toString('base64')});
+    const beforeVersion=before&&authorization.allowReadLocalGit===true?findGitVersion(root,t.path,before):null;
+    planned.push({path:t.path,action:t.action,beforeBase64:before?.toString('base64')??null,beforeVersion,plannedBase64:t.plannedBytes.toString('base64')});
   }
   if(cleanup)for(const c of cleanup.copies)overlay.set(c.path,null);
-  const projected=cleanup?cleanupGraph(root,overlay,cleanup.checkpointPath):inspectStatusGraph(root,overlay);checkGraph(projected);
+  const projected=cleanup?cleanupGraph(root,overlay,cleanup.checkpointPath,allowGit):inspectStatusGraph(root,overlay,[],{allowGit});checkGraph(projected);
   if(context?.projectId!==current.status.projectId||context.projectId!==projected.status.projectId||!current.status.data.items.some(i=>i.id===context.ownerId)||!projected.status.data.items.some(i=>i.id===context.ownerId))fail('CONTEXT_IDENTITY');
   checked(context.tool,'ToolIdentity');
   if(!context.tool.components.length||new Set(context.tool.components.map(c=>c.name)).size!==context.tool.components.length)fail('INVALID_TOOLIDENTITY');
   if(!Array.isArray(context.permissionRefs)||!context.permissionRefs.length||!Array.isArray(context.inputRefs)||!context.inputRefs.length)fail('CONTEXT_REFERENCES_REQUIRED');
-  const inputs=new Map();
+  const inputs=new Map(),gitInputs=new Map();
   function bind(p,data){if(inputs.has(p)&&!inputs.get(p).equals(data))fail('SOURCE_CHANGED');inputs.set(p,Buffer.from(data));}
-  for(const graph of [priorGraph,current,projected].filter(Boolean))for(const [p,data]of graph.reads)bind(p,data);
+  function bindGit(location,data){const key=JSON.stringify(location);if(gitInputs.has(key)&&gitInputs.get(key).expectedBase64!==data.toString('base64'))fail('SOURCE_CHANGED');gitInputs.set(key,{location:structuredClone(location),expectedBase64:data.toString('base64')});}
+  for(const graph of [priorGraph,current,projected].filter(Boolean)) {
+    for(const [p,data]of graph.reads)bind(p,data);
+    for(const {location,bytes}of graph.gitReads?.values()??[])bindGit(location,bytes);
+  }
   for(const v of [...context.permissionRefs,...context.inputRefs]) {
     checked(v,'VersionRef');
-    if(v.location.kind!=='SNAPSHOT'||v.location.ref.anchor!==null||v.source===null)fail('UNSUPPORTED_REFERENCE');
-    const snapshot=localBytes(root,v.location.ref.path),source=localBytes(root,v.source.path);
+    if(!['SNAPSHOT','GIT'].includes(v.location.kind)||v.location.kind==='SNAPSHOT'&&v.location.ref.anchor!==null||v.source===null)fail('UNSUPPORTED_REFERENCE');
+    if(v.location.kind==='GIT'&&!allowGit)fail('GIT_READ_NOT_AUTHORIZED');
+    const snapshot=v.location.kind==='GIT'?readGitVersion(root,v.location):localBytes(root,v.location.ref.path),source=localBytes(root,v.source.path);
     if(!same(integrity(snapshot),v.integrity)||!source.equals(snapshot))fail('CONTEXT_SOURCE_DIFFERS');
     if(v.source.anchor!==null) {
       try{if(snapshotAnchorCount(snapshot,v.source.anchor)!==1)fail('CONTEXT_ANCHOR');}
       catch{fail('CONTEXT_ANCHOR');}
     }
-    bind(v.location.ref.path,snapshot);bind(v.source.path,source);
+    if(v.location.kind==='GIT')bindGit(v.location,snapshot);else bind(v.location.ref.path,snapshot);
+    bind(v.source.path,source);
   }
   const folded=new Map();
   for(const p of [...inputs.keys(),...planned.map(t=>t.path)]) {
@@ -123,9 +145,9 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
     if(inputs.has(t.path)&&(t.beforeBase64===null||inputs.get(t.path).toString('base64')!==t.beforeBase64))fail('SOURCE_CHANGED');
   }
   // Return only serialized, detached data; mutating caller buffers cannot change
-  // a plan after graph validation. Execution rechecks this digest and native proof.
-  const request={protocolVersion:1,operationId,root,authorization:structuredClone(authorization),context:structuredClone(context),
-    inputs:[...inputs].sort(([a],[b])=>a.localeCompare(b)).map(([p,b])=>({path:p,expectedBase64:b.toString('base64')})),targets:planned};
+  // a plan after graph validation. Execution rechecks these bytes before writing.
+  const request={protocolVersion:2,operationId,root,authorization:structuredClone(authorization),context:structuredClone(context),
+    inputs:[...inputs].sort(([a],[b])=>a.localeCompare(b)).map(([p,b])=>({path:p,expectedBase64:b.toString('base64')})),gitInputs:[...gitInputs.values()],targets:planned};
   if(cleanup)request.cleanup=structuredClone(cleanup);
   const line=JSON.stringify(request);
   const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId});
@@ -136,19 +158,19 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
 // Trust in completion/checks/retention comes from the caller's explicit grant;
 // matching record labels are necessary corroboration, never self-authorization.
 export function prepareInternalCleanup({root,authorization,context,checkpointPath,copies,receipt,operationId=randomUUID()}) {
-  root=realpathSync(root);
+  root=safeRoot(root);
   if(!authorization?.cleanup||authorization.allowRestoreUpdate!==false)fail('CLEANUP_AUTHORIZATION_REQUIRED');
   if(typeof authorization.root!=='string'||path.resolve(authorization.root)!==root||authorization.metadataRoot!=='.kidea/checkpoints'||authorization.allowRetireOwnPending!==true)fail('CLEANUP_AUTHORIZATION_REQUIRED');
-  if(!authorization.assumptions||!['localNtfs','noActiveSync','noConcurrentNamespaceChanges'].every(k=>authorization.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
+  if(!authorization.assumptions||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>authorization.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
   const conditions=authorization.cleanup.conditions;
   if(!conditions||!['ownerCompleted','requiredChecksPassed','retentionEnded'].every(k=>conditions[k]===true))fail('CLEANUP_CONDITIONS_REQUIRED');
   const match=/^\.kidea\/checkpoints\/operations\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/checkpoint\.md$/.exec(checkpointPath??'');
   if(!match)fail('NOT_OWN_CHECKPOINT');
   checked(receipt,'CleanupReceipt');
   if(!Array.isArray(copies)||!copies.length||!Array.isArray(authorization.cleanup.copies)||authorization.cleanup.copies.length!==copies.length)fail('CLEANUP_TARGETS_REQUIRED');
-  const current=cleanupGraph(root,new Map(),checkpointPath);
+  const current=cleanupGraph(root,new Map(),checkpointPath,authorization.allowReadLocalGit===true);
   if(current.status.readState!=='OK')throw Object.assign(new Error('GRAPH_NOT_VALID'),{code:'GRAPH_NOT_VALID',diagnostics:current.status.diagnostics});
-  if(current.gitReadCount||current.absent.size)fail('UNSUPPORTED_GRAPH_INPUT');
+  if(current.absent.size)fail('UNSUPPORTED_GRAPH_INPUT');
   const checkpoint=current.records.get(checkpointPath);
   if(checkpoint?.id!==match[1]||checkpoint.ownerId!==context?.ownerId||checkpoint.projectId!==context?.projectId)fail('CLEANUP_IDENTITY');
   if(!isRecordedComplete(checkpoint.ownerId,current.status.data.items,new Set(current.status.data.reviews.filter(r=>r.recordedStatus==='APPROVED').map(r=>r.id))))fail('OWNER_NOT_COMPLETE');
@@ -181,91 +203,159 @@ export function prepareInternalCleanup({root,authorization,context,checkpointPat
   return preparePlan({root,authorization,context,operationId,targets:[{path:checkpointPath,action:'UPDATE',plannedBytes:Buffer.from(plannedText)}]},cleanup,current);
 }
 
-export function verifyInternalProof(prepared,event) {
-  const request=JSON.parse(prepared.line);
-  if(sha(Buffer.from(prepared.line))!==prepared.planDigest||event.operationId!==request.operationId||event.planDigest!==prepared.planDigest)fail('PROOF_IDENTITY');
-  const targetMap=new Map(request.targets.map(t=>[t.path,t]));
-  const deleted=new Map(request.cleanup?.copies.map(c=>[c.path,c])??[]);
-  function checkSet(actual,expected) {
-    if(!Array.isArray(actual)||actual.length!==expected.size||new Set(actual.map(x=>x.path)).size!==actual.length)fail('PROOF_PATHS');
-    for(const row of actual) {
-      if(!expected.has(row.path))fail('PROOF_BYTES');
-      const value=expected.get(row.path);
-      if(value===null){if(row.integrity!==null||row.absent!==true)fail('PROOF_BYTES');}
-      else if(!same(row.integrity,integrity(value)))fail('PROOF_BYTES');
-    }
-  }
-  checkSet(event.inputs,new Map(request.inputs.map(i=>[i.path,deleted.has(i.path)?null:Buffer.from(targetMap.get(i.path)?.plannedBase64??i.expectedBase64,'base64')])));
-  if(request.cleanup) {
-    if(!Array.isArray(event.deleted)||event.deleted.length!==deleted.size||new Set(event.deleted.map(c=>c.path)).size!==deleted.size)fail('PROOF_DELETIONS');
-    for(const row of event.deleted)if(!deleted.has(row.path)||row.absent!==true||!same(row.integrity,deleted.get(row.path).integrity))fail('PROOF_DELETIONS');
-  }
-  checkSet(event.targets,new Map(request.targets.map(t=>[t.path,Buffer.from(t.plannedBase64,'base64')])));
-  checked(event.checkpoint,'checkpoint');
-  const c=event.checkpoint;
-  if(c.id!==request.operationId||c.projectId!==request.context.projectId||c.ownerId!==request.context.ownerId||!same(c.tool,request.context.tool)||!same(c.permissionRefs,request.context.permissionRefs)||!same(c.inputRefs,request.context.inputRefs)||c.targets.length!==request.targets.length)fail('PROOF_CHECKPOINT');
-  const metadata=`.kidea/checkpoints/operations/${request.operationId}/`;
-  for(const [i,t] of request.targets.entries()) {
-    const observed=c.targets[i];
-    if(observed.path!==t.path||observed.action!==t.action)fail('PROOF_CHECKPOINT');
-    for(const [kind,payload] of [['before',t.beforeBase64],['planned',t.plannedBase64]]) {
-      const copy=observed[kind];
-      if(payload===null){if(copy!==null)fail('PROOF_CHECKPOINT');continue;}
-      if(copy?.cleanup!==null||copy.version.source?.path!==t.path||copy.version.source?.anchor!==null||copy.version.location.kind!=='SNAPSHOT'||copy.version.location.ref.anchor!==null||copy.version.location.ref.path!==`${metadata}${kind}-${i}.bin`||!same(copy.version.integrity,integrity(Buffer.from(payload,'base64'))))fail('PROOF_CHECKPOINT');
-    }
-  }
-  const latest=[...c.observations].reverse().find(o=>o.phase==='VERIFY');
-  if(!latest||latest.results.length!==request.targets.length||!request.targets.every(t=>latest.results.some(r=>r.path===t.path&&r.match==='PLANNED'&&same(r.integrity,integrity(Buffer.from(t.plannedBase64,'base64'))))))fail('PROOF_CHECKPOINT');
-  if(request.bootstrap) {
-    checkSet(event.bootstrapEvidence,new Map(request.bootstrap.evidence.map(e=>[e.path,Buffer.from(e.bytesBase64,'base64')])));
-    validateBootstrapGraph(request,c);
-  }
-  return true;
-}
-
-// Runtime path/hash is provided by the trusted host integration, never the project.
-// Hooks are test-only in-memory controls; no project record can request a fault.
-export async function executeInternalWrite(prepared,{powershell,powershellSha256,testFault='NONE',testBarrier='NONE',onBarrier,timeoutMs=60000}={}) {
+// Test hooks exist only on the trusted internal API, never in public project
+// input. A stopped process leaves the same pending marker as an ordinary error.
+export async function executeInternalWrite(prepared,{testFault='NONE',testBarrier='NONE',onBarrier}={}) {
   if(!preparedPlans.has(prepared))fail('UNVALIDATED_PLAN');
-  const faults=['NONE','BEFORE_FIRST_WRITE','AFTER_PARTIAL_WRITE','AFTER_PARTIAL_WRITE_SECOND','SAFETY_LOSS_AFTER_PARTIAL_WRITE','CREATE_POSTOPEN_FAILURE','PENDING_POSTOPEN_FAILURE','CLEANUP_AFTER_FIRST_DELETE','CLEANUP_DELETE_FAILURE','CLEANUP_RECEIPT_FAILURE','AFTER_CREATE','AFTER_VERIFY','RESTORE_FAILURE','JOURNAL_FAILURE','RETIRE_FAILURE'];
-  const barriers=['NONE','LOCKS_ACQUIRED','PENDING_CREATED','PREPARED','BEFORE_FIRST_WRITE','AFTER_PARTIAL_WRITE','AFTER_CREATE','AFTER_VERIFY','BEFORE_RESTORE','BEFORE_RETIRE','CLEANUP_BEFORE_DELETE','CLEANUP_AFTER_FIRST_DELETE'];
-  if(!faults.includes(testFault)||!barriers.includes(testBarrier)||!Number.isInteger(timeoutMs)||timeoutMs<1||timeoutMs>60000)fail('INVALID_TEST_OPTIONS');
-  if(!path.isAbsolute(powershell??'')||!/^[a-f0-9]{64}$/.test(powershellSha256??'')||sha(readFileSync(powershell))!==powershellSha256)fail('RUNTIME_NOT_VERIFIED');
   if(sha(Buffer.from(prepared.line))!==prepared.planDigest)fail('PLAN_CHANGED');
-  const request=JSON.parse(prepared.line);
-  const script=fileURLToPath(new URL('./native-write.ps1',import.meta.url));
-  const child=spawn(powershell,['-NoLogo','-NoProfile','-NonInteractive','-File',script,'-TestFault',testFault,'-TestBarrier',testBarrier],{cwd:request.root,windowsHide:true,stdio:['pipe','pipe','pipe']});
-  child.stdout.setEncoding('utf8');child.stderr.setEncoding('utf8');
-  let stdout='',stderr='',buffer='',proofAccepted=false,wrapperError=null,wrapperErrorDetail=null,chain=Promise.resolve();
-  const events=[];
-  const stop=error=>{wrapperError??=error?.code??error?.message??String(error);wrapperErrorDetail??=error?.message??String(error);child.kill();};
-  const timer=setTimeout(()=>stop(new Error('WORKER_TIMEOUT')),timeoutMs);
-  child.stdin.on('error',error=>{wrapperError??=error.code;});
-  child.stdout.on('data',chunk=>{
-    stdout+=chunk.toString();buffer+=chunk.toString();
-    if(stdout.length>16*1024*1024){stop(new Error('OUTPUT_LIMIT'));return;}
-    while(buffer.includes('\n')) {
-      const n=buffer.indexOf('\n'),line=buffer.slice(0,n).trim();buffer=buffer.slice(n+1);if(!line)continue;
-      chain=chain.then(async()=>{
-        const event=JSON.parse(line);events.push(event);
-        if(event.event==='BARRIER') {
-          if(testBarrier==='NONE'||event.point!==testBarrier||event.operationId!==request.operationId)fail('UNEXPECTED_BARRIER');
-          const proceed=await onBarrier?.(event,{kill:()=>child.kill(),pid:child.pid});
-          if(proceed!==false)child.stdin.write(JSON.stringify({command:'CONTINUE',point:event.point,operationId:request.operationId})+'\n');
-        } else if(event.event==='BYTES_VERIFIED') {
-          if(proofAccepted)fail('DUPLICATE_PROOF');
-          verifyInternalProof(prepared,event);proofAccepted=true;
-          child.stdin.write(JSON.stringify({command:'FINALIZE',operationId:request.operationId,planDigest:prepared.planDigest,verified:true})+'\n');
-        }
-      }).catch(stop);
+  const barriers=['NONE','BUSY_ACQUIRED','PENDING_CREATED','PREPARED','BEFORE_FIRST_WRITE','AFTER_PARTIAL_WRITE','AFTER_CREATE','AFTER_VERIFY','BEFORE_RETIRE','CLEANUP_BEFORE_DELETE','CLEANUP_AFTER_FIRST_DELETE'];
+  const faults=['NONE','BEFORE_FIRST_WRITE','AFTER_PARTIAL_WRITE','AFTER_CREATE','AFTER_VERIFY','RETIRE_FAILURE','CLEANUP_DELETE_FAILURE','CLEANUP_AFTER_FIRST_DELETE','CLEANUP_RECEIPT_FAILURE'];
+  if(!barriers.includes(testBarrier)||!faults.includes(testFault)||onBarrier!==undefined&&typeof onBarrier!=='function')fail('INVALID_TEST_OPTIONS');
+  const request=JSON.parse(prepared.line),{root,operationId,context,authorization}=request;
+  const prefix=`.kidea/checkpoints/operations/${operationId}/`,checkpointPath=prefix+'checkpoint.md';
+  const pendingDirectory='.kidea/checkpoints/pending',pendingPath=pendingDirectory+'/active.json';
+  const targets=request.targets.map(t=>({...t,before:t.beforeBase64===null?null:Buffer.from(t.beforeBase64,'base64'),planned:Buffer.from(t.plannedBase64,'base64')}));
+  const expected=new Map(request.inputs.map(i=>[i.path,Buffer.from(i.expectedBase64,'base64')]));
+  const gitVersions=new Map((request.gitInputs??[]).map(i=>[JSON.stringify(i.location),Buffer.from(i.expectedBase64,'base64')]));
+  const evidence=new Map(),deleted=new Map(),events=[];
+  let pendingBytes,checkpoint,pendingOwned=false,effects=false,bytesVerified=false,barrierUsed=false;
+  const now=()=>new Date().toISOString();
+  const record=c=>Buffer.from('# Kidea write checkpoint — byte evidence, not approval\n\n<!-- kidea:data:start -->\n```json\n'+JSON.stringify(c,null,2)+'\n```\n<!-- kidea:data:end -->\n');
+  function directory(relative,mustBeNew=false) {
+    const entry=localEntry(root,relative,true);
+    if(entry) {if(mustBeNew||!entry.stat.isDirectory())fail('DIRECTORY_ALREADY_EXISTS');return;}
+    mkdirSync(path.join(root,relative));effects=true;
+    if(!localEntry(root,relative)?.stat.isDirectory())fail('UNSAFE_PATH');
+  }
+  function writeBytes(relative,bytes,create=true) {
+    const entry=localEntry(root,relative,true);
+    if(create?entry!==null:!entry?.stat.isFile())fail('TARGET_PRECONDITION');
+    const fd=openSync(path.join(root,relative),create?'wx':'r+');
+    effects=true;
+    try {
+      let written=0;
+      while(written<bytes.length) {const n=writeSync(fd,bytes,written,bytes.length-written,written);if(!n)fail('SHORT_WRITE');written+=n;}
+      ftruncateSync(fd,bytes.length);fsyncSync(fd);
+    } finally {closeSync(fd);}
+    if(!localBytes(root,relative).equals(bytes))fail('READBACK_DIFFERS');
+  }
+  function remember(relative,bytes) {writeBytes(relative,bytes);evidence.set(relative,bytes);}
+  function exact(relative,bytes,code='SOURCE_CHANGED') {
+    const actual=localBytes(root,relative,true);
+    if(bytes===null?actual!==null:!actual?.equals(bytes))fail(code);
+    return actual;
+  }
+  function checkInputs() {
+    safeRoot(root);
+    for(const [p,bytes]of expected)exact(p,bytes);
+    for(const [key,bytes]of gitVersions)if(!readGitVersion(root,JSON.parse(key)).equals(bytes))fail('GIT_SOURCE_CHANGED');
+    for(const t of targets)if(!expected.has(t.path))exact(t.path,t.before,'TARGET_PRECONDITION');
+  }
+  function checkFinalBytes() {
+    for(const [p,bytes]of expected)exact(p,deleted.has(p)?null:targets.find(t=>t.path===p)?.planned??bytes);
+    for(const t of targets)exact(t.path,t.planned,'TARGET_BYTES_CHANGED');
+    for(const [p,bytes]of evidence)exact(p,bytes,'RECOVERY_EVIDENCE_CHANGED');
+    for(const [key,bytes]of gitVersions)if(!readGitVersion(root,JSON.parse(key)).equals(bytes))fail('GIT_SOURCE_CHANGED');
+    for(const p of deleted.keys())exact(p,null,'CLEANUP_ABSENCE_UNVERIFIED');
+  }
+  function checkPending() {
+    exact(pendingPath,pendingBytes,'PENDING_CHANGED');
+    if(!same(readdirSync(path.join(root,pendingDirectory)).sort(),['active.json']))fail('INCOMPLETE_WRITE_EXISTS');
+  }
+  async function barrier(point) {
+    if(testBarrier!==point||barrierUsed)return;
+    barrierUsed=true;
+    const event={event:'BARRIER',point,operationId};events.push(event);
+    if(await onBarrier?.(event,{pid:process.pid})===false)fail('INJECTED_STOP');
+  }
+  const fault=point=>{if(testFault===point)fail('INJECTED_'+point);};
+  function copy(t,index,kind) {
+    if(kind==='before'&&t.before===null)return null;
+    const bytes=kind==='before'?t.before:t.planned;
+    const version=kind==='before'&&t.beforeVersion?t.beforeVersion:{source:{path:t.path,anchor:null},location:{kind:'SNAPSHOT',ref:{path:prefix+`${kind}-${index}.bin`,anchor:null}},integrity:integrity(bytes)};
+    return {version:structuredClone(version),cleanup:null};
+  }
+  function result(complete,error=null) {
+    const state=complete?'COMPLETED_BYTES':pendingOwned||effects?'PENDING':'REJECTED';
+    events.push({event:'RESULT',state,operationId,planDigest:prepared.planDigest,code:error?.code??(complete?'BOUND_BYTES_VERIFIED_NOT_TASK_APPROVAL':'WRITE_NOT_COMPLETE'),effects,checkpointRef:{path:checkpointPath,anchor:null}});
+    return {state,operationId,bytesVerified,checkpointRef:{path:checkpointPath,anchor:null},wrapperError:error?.code??null,wrapperErrorDetail:error?.message??null,events,
+      verification:complete?'BOUND_GRAPH_AND_BYTES_NOT_APPROVAL':'NOT_COMPLETE'};
+  }
+  try {
+    if(request.protocolVersion!==2||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>authorization.assumptions?.[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
+    if(authorization.allowReadLocalGit!==true&&(gitVersions.size||targets.some(t=>t.beforeVersion)))fail('GIT_READ_NOT_AUTHORIZED');
+    checkInputs();
+    if(localEntry(root,prefix.slice(0,-1),true))fail('OPERATION_ALREADY_EXISTS');
+    if(request.bootstrap) {
+      if(localEntry(root,'.kidea',true))fail('KIDEA_ALREADY_EXISTS');
+      for(const d of request.bootstrap.directories)if(localEntry(root,d,true))fail('DIRECTORY_ALREADY_EXISTS');
     }
-  });
-  child.stderr.on('data',chunk=>{stderr+=chunk.toString();if(stderr.length>1024*1024)stop(new Error('OUTPUT_LIMIT'));});
-  child.stdin.write(prepared.line+'\n');
-  const exit=await new Promise(resolve=>{child.on('error',error=>{wrapperError=error.message;resolve({code:null,signal:null});});child.on('close',(code,signal)=>resolve({code,signal}));});
-  clearTimeout(timer);await chain;
-  const result=[...events].reverse().find(e=>typeof e.state==='string');
-  const complete=!wrapperError&&exit.code===0&&proofAccepted&&result?.state==='COMPLETED_BYTES'&&result.operationId===request.operationId&&result.planDigest===prepared.planDigest;
-  return {state:complete?'COMPLETED_BYTES':result?.state==='REJECTED'?'REJECTED':'PENDING',operationId:request.operationId,proofAccepted,wrapperError,wrapperErrorDetail,exit,events,stdout,stderr,
-    verification:complete?'BOUND_GRAPH_AND_BYTES_NOT_APPROVAL':'NOT_COMPLETE'};
+    directory('.kidea',!!request.bootstrap);directory('.kidea/checkpoints');directory(pendingDirectory);
+    if(readdirSync(path.join(root,pendingDirectory)).length)fail('INCOMPLETE_WRITE_EXISTS');
+    pendingBytes=Buffer.from(JSON.stringify({protocolVersion:2,operationId,planDigest:prepared.planDigest,checkpointRef:{path:checkpointPath,anchor:null}})+'\n');
+    // wx is the single cooperative project guard. Never reclaim an existing
+    // marker by age, PID, or a record claiming the previous operation was done.
+    const fd=openSync(path.join(root,pendingPath),'wx');pendingOwned=true;effects=true;
+    try {let offset=0;while(offset<pendingBytes.length){const n=writeSync(fd,pendingBytes,offset,pendingBytes.length-offset,offset);if(!n)fail('SHORT_WRITE');offset+=n;}fsyncSync(fd);}finally{closeSync(fd);}
+    checkPending();await barrier('BUSY_ACQUIRED');await barrier('PENDING_CREATED');checkInputs();
+    directory('.kidea/checkpoints/operations');directory(prefix.slice(0,-1),true);
+    for(const t of targets)if(t.beforeVersion) {
+      if(!readGitVersion(root,t.beforeVersion.location).equals(t.before)||!same(t.beforeVersion.integrity,integrity(t.before)))fail('GIT_PREIMAGE_CHANGED');
+      gitVersions.set(JSON.stringify(t.beforeVersion.location),t.before);
+    }
+    checkpoint={schemaVersion:2,projectId:context.projectId,kind:'checkpoint',id:operationId,ownerId:context.ownerId,createdAt:now(),tool:context.tool,
+      permissionRefs:context.permissionRefs,inputRefs:context.inputRefs,targets:targets.map((t,i)=>({path:t.path,action:t.action,before:copy(t,i,'before'),planned:copy(t,i,'planned')})),
+      observations:[],nextAction:'Prepared only. Reconcile actual bytes before continuing an interrupted operation.'};
+    for(const e of request.bootstrap?.evidence??[])remember(e.path,Buffer.from(e.bytesBase64,'base64'));
+    for(const [i,t]of targets.entries()) {
+      if(t.before!==null&&!t.beforeVersion)remember(prefix+`before-${i}.bin`,t.before);
+      remember(prefix+`planned-${i}.bin`,t.planned);
+    }
+    remember(prefix+'prepared.md',record(checkpoint));
+    remember(checkpointPath,record(checkpoint));
+    await barrier('PREPARED');checkPending();checkInputs();
+    for(const d of request.bootstrap?.directories??[])directory(d,true);
+    await barrier('BEFORE_FIRST_WRITE');fault('BEFORE_FIRST_WRITE');checkInputs();
+    if(request.cleanup) {
+      await barrier('CLEANUP_BEFORE_DELETE');fault('CLEANUP_DELETE_FAILURE');
+      for(const c of request.cleanup.copies) {
+        exact(c.path,expected.get(c.path),'COPY_BYTES_CHANGED');
+        unlinkSync(path.join(root,c.path));effects=true;deleted.set(c.path,c);
+        exact(c.path,null,'CLEANUP_ABSENCE_UNVERIFIED');
+        if(deleted.size===1){await barrier('CLEANUP_AFTER_FIRST_DELETE');fault('CLEANUP_AFTER_FIRST_DELETE');}
+      }
+    }
+    for(const [i,t]of targets.entries()) {
+      checkPending();exact(t.path,t.before,'TARGET_PRECONDITION');
+      if(t.action==='CREATE'){writeBytes(t.path,Buffer.alloc(0));await barrier('AFTER_CREATE');fault('AFTER_CREATE');}
+      if((testFault==='AFTER_PARTIAL_WRITE'||testBarrier==='AFTER_PARTIAL_WRITE'&&!barrierUsed)&&i===0) {
+        writeBytes(t.path,t.planned.subarray(0,Math.max(1,Math.floor(t.planned.length/2))),false);
+        await barrier('AFTER_PARTIAL_WRITE');fault('AFTER_PARTIAL_WRITE');
+      }
+      if(request.cleanup)fault('CLEANUP_RECEIPT_FAILURE');
+      // UPDATE retains the existing file metadata. A partial write is possible;
+      // the exact preimage and pending operation are retained, never auto-replayed.
+      writeBytes(t.path,t.planned,false);
+      exact(t.path,t.planned,'READBACK_DIFFERS');
+    }
+    checkFinalBytes();
+    checkpoint.observations=[{at:now(),phase:'VERIFY',results:targets.map(t=>({path:t.path,match:'PLANNED',integrity:integrity(t.planned),detail:'Read back by the cooperative Node writer.'})),evidenceRefs:[]}];
+    checkpoint.nextAction='All planned bytes verified. This is not task completion or Human approval.';
+    const finalCheckpoint=record(checkpoint);
+    // Keep the immutable prepared record if this small final record is torn.
+    writeBytes(checkpointPath,finalCheckpoint,false);evidence.set(checkpointPath,finalCheckpoint);
+    await barrier('AFTER_VERIFY');fault('AFTER_VERIFY');checkFinalBytes();
+    const files=new Map([...expected,...evidence]);
+    for(const t of targets)files.set(t.path,localBytes(root,t.path));
+    for(const p of deleted.keys())files.set(p,null);
+    const graph=inspectBoundGraph(root,files,{gitVersions,checkpointPaths:[checkpointPath,...(request.cleanup?[request.cleanup.checkpointPath]:[])]});
+    if(graph.status.readState!=='OK')throw Object.assign(new Error('FINAL_GRAPH_NOT_VALID'),{code:'FINAL_GRAPH_NOT_VALID',diagnostics:graph.status.diagnostics});
+    if(graph.status.projectId!==context.projectId||!graph.status.data.items.some(i=>i.id===context.ownerId))fail('CONTEXT_IDENTITY');
+    bytesVerified=true;
+    await barrier('BEFORE_RETIRE');fault('RETIRE_FAILURE');checkPending();checkFinalBytes();
+    unlinkSync(path.join(root,pendingPath));
+    // No further fallible I/O after retiring our own marker. Git/snapshot
+    // retention and multi-file crash recovery remain explicit lifecycle duties.
+    return result(true);
+  } catch(error) {return result(false,error);}
 }

@@ -35,7 +35,7 @@ if (process.versions.node.split('.')[0] !== '24') {
     const result=await initialize(process.cwd(),request);
     const ok=['INITIALIZED','ALREADY_INITIALIZED'].includes(result.state);
     const {writer,...summary}=result;
-    if(writer)summary.detail={state:writer.state,proofAccepted:writer.proofAccepted,code:writer.wrapperError??writer.events.findLast(e=>e.code)?.code??null};
+    if(writer)summary.detail={state:writer.state,bytesVerified:writer.bytesVerified,code:writer.wrapperError??writer.events.findLast(e=>e.code)?.code??null};
     (ok?console.log:console.error)(JSON.stringify(summary));process.exitCode=ok?0:1;
   } catch(error) {
     console.error(JSON.stringify({code:error.code??'INIT_REJECTED',message:'Init chưa hoàn tất. Không tự sửa, ghi đè hoặc chạy lại; đối chiếu nguyên nhân và trạng thái hiện có.',diagnostics:error.diagnostics??[]}));process.exitCode=1;
