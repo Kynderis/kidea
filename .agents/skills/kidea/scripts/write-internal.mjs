@@ -8,8 +8,8 @@ import { isDeepStrictEqual } from 'node:util';
 import { inspectStatusGraph,inspectBoundGraph,snapshotAnchorCount } from './status.mjs';
 import { validPath, validate } from './schema.mjs';
 import { isRecordedComplete } from './recorded-completion.mjs';
-import { prepareBootstrapRequest } from './bootstrap-plan.mjs';
-import { findGitVersion,readGitVersion } from './git-versions.mjs';
+import { prepareBootstrapRequest,recordBytes } from './bootstrap-plan.mjs';
+import { findGitVersion,readGitVersion,readGitContext } from './git-versions.mjs';
 
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const integrity=bytes=>({method:'SHA256',value:sha(bytes),byteLength:bytes.length});
@@ -75,6 +75,22 @@ function safeRoot(root) {
 // existing project, local snapshots, and existing target parent directories.
 export function prepareInternalWrite(args) { return preparePlan(args); }
 
+// Save the current continuation note and a real checkpoint, never item/gate
+// transitions. Evidence is confined to this operation's metadata directory.
+export function prepareInternalContinuationWrite(args,{evidence=[],checkout=null,inputs=new Map()}={}) {
+  const prefix=`.kidea/checkpoints/operations/${args.operationId}/`;
+  if(args.targets?.length!==1||args.targets[0].action!=='UPDATE'||!evidence.length)fail('CONTINUATION_SCOPE');
+  const seen=new Set();
+  for(const e of evidence) {
+    if(!validPath(e.path)||!e.path.startsWith(prefix)||!/^context-[0-9]+\.bin$/.test(e.path.slice(prefix.length))||seen.has(e.path)||!Buffer.isBuffer(e.bytes))fail('CONTINUATION_EVIDENCE_SCOPE');
+    seen.add(e.path);
+  }
+  if(!(inputs instanceof Map))fail('CONTINUATION_INPUTS_REQUIRED');
+  if(checkout!==null&&args.authorization.allowReadLocalGit!==true)fail('GIT_READ_NOT_AUTHORIZED');
+  if(checkout===null?localEntry(args.root,'.git',true)!==null:!same(readGitContext(args.root),checkout))fail('CHECKOUT_CHANGED');
+  return preparePlan(args,null,null,null,{evidence,checkout,inputs});
+}
+
 // Narrow metadata-only reconciliation. Never relax the generic product writer.
 export function prepareInternalReviewWrite(args, {reviewPath, relatedPaths=[], directories=[]}={}) {
   if(!/^\.kidea\/reviews\/(?!evidence\/)[^/]+\.md$/.test(reviewPath??''))fail('INVALID_REVIEW_PATH');
@@ -91,7 +107,7 @@ export function prepareInternalBootstrap(args) {
   preparedPlans.add(prepared);return prepared;
 }
 
-function preparePlan({root,authorization,context,targets,operationId=randomUUID()},cleanup=null,priorGraph=null,review=null) {
+function preparePlan({root,authorization,context,targets,operationId=randomUUID()},cleanup=null,priorGraph=null,review=null,continuation=null) {
   if(process.platform!=='win32')fail('UNSUPPORTED_HOST');
   root=safeRoot(root);
   if(!authorization||path.resolve(authorization.root)!==root||authorization.metadataRoot!=='.kidea/checkpoints')fail('AUTHORIZATION_REQUIRED');
@@ -124,7 +140,26 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
     planned.push({path:t.path,action:t.action,beforeBase64:before?.toString('base64')??null,beforeVersion,plannedBase64:t.plannedBytes.toString('base64')});
   }
   if(cleanup)for(const c of cleanup.copies)overlay.set(c.path,null);
+  if(continuation) {
+    const prefix=`.kidea/checkpoints/operations/${operationId}/`,target=planned[0];
+    for(const e of continuation.evidence){if(localEntry(root,e.path,true))fail('EVIDENCE_ALREADY_EXISTS');overlay.set(e.path,Buffer.from(e.bytes));}
+    const copy=(bytes,kind,index,beforeVersion=null)=>({version:beforeVersion??{source:{path:planned[index].path,anchor:null},location:{kind:'SNAPSHOT',ref:{path:prefix+`${kind}-${index}.bin`,anchor:null}},integrity:integrity(bytes)},cleanup:null});
+    for(const [i,t]of planned.entries()){
+      if(t.beforeBase64!==null&&!t.beforeVersion)overlay.set(prefix+`before-${i}.bin`,Buffer.from(t.beforeBase64,'base64'));
+      overlay.set(prefix+`planned-${i}.bin`,Buffer.from(t.plannedBase64,'base64'));
+    }
+    const checkpoint={schemaVersion:2,projectId:context.projectId,kind:'checkpoint',id:operationId,ownerId:context.ownerId,createdAt:new Date().toISOString(),tool:context.tool,permissionRefs:context.permissionRefs,inputRefs:context.inputRefs,
+      targets:planned.map((t,i)=>({path:t.path,action:t.action,before:t.beforeBase64===null?null:copy(Buffer.from(t.beforeBase64,'base64'),'before',i,t.beforeVersion),planned:copy(Buffer.from(t.plannedBase64,'base64'),'planned',i)})),observations:[],nextAction:'Continuation checkpoint preflight, not completion.'};
+    overlay.set(prefix+'checkpoint.md',recordBytes(checkpoint));
+    if(current.records.get(target.path)?.kind!=='work')fail('CONTINUATION_SCOPE');
+  }
   const projected=cleanup?cleanupGraph(root,overlay,cleanup.checkpointPath,allowGit):inspectStatusGraph(root,overlay,[],{allowGit});checkGraph(projected);
+  if(continuation) {
+    const p=planned[0].path,old=structuredClone(current.records.get(p)),next=structuredClone(projected.records.get(p));
+    if(!next||next.kind!=='work'||next.currentItemId!==context.ownerId||!same(next.checkpointRef,{path:`.kidea/checkpoints/operations/${operationId}/checkpoint.md`,anchor:null}))fail('CONTINUATION_SCOPE');
+    for(const r of [old,next]){delete r.nextAction;delete r.checkpointRef;}
+    if(!same(old,next))fail('CONTINUATION_TRANSITION_NOT_ALLOWED');
+  }
   const currentItems=[...current.records.values()].filter(r=>['work','plan'].includes(r.kind)).flatMap(r=>r.items);
   if(context?.projectId!==current.status.projectId||context.projectId!==projected.status.projectId||!currentItems.some(i=>i.id===context.ownerId)||!projected.status.data.items.some(i=>i.id===context.ownerId))fail('CONTEXT_IDENTITY');
   checked(context.tool,'ToolIdentity');
@@ -137,19 +172,23 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
     for(const [p,data]of graph.reads)bind(p,data);
     for(const {location,bytes}of graph.gitReads?.values()??[])bindGit(location,bytes);
   }
+  for(const [p,bytes]of continuation?.inputs??[]) {
+    if(!Buffer.isBuffer(bytes)||!localBytes(root,p).equals(bytes))fail('SOURCE_CHANGED');bind(p,bytes);
+  }
   for(const v of [...context.permissionRefs,...context.inputRefs]) {
     checked(v,'VersionRef');
     if(!['SNAPSHOT','GIT'].includes(v.location.kind)||v.location.kind==='SNAPSHOT'&&v.location.ref.anchor!==null||v.source===null)fail('UNSUPPORTED_REFERENCE');
     if(v.location.kind==='GIT'&&!allowGit)fail('GIT_READ_NOT_AUTHORIZED');
-    const resolveContext=p=>review&&overlay.has(p)&&planned.find(t=>t.path===p)?.action==='CREATE'?overlay.get(p):localBytes(root,p);
+    const createdContext=p=>continuation?.evidence.some(e=>e.path===p)||review&&overlay.has(p)&&planned.find(t=>t.path===p)?.action==='CREATE';
+    const resolveContext=p=>createdContext(p)?overlay.get(p):localBytes(root,p);
     const snapshot=v.location.kind==='GIT'?readGitVersion(root,v.location):resolveContext(v.location.ref.path),source=resolveContext(v.source.path);
     if(!same(integrity(snapshot),v.integrity)||!source.equals(snapshot))fail('CONTEXT_SOURCE_DIFFERS');
     if(v.source.anchor!==null) {
       try{if(snapshotAnchorCount(snapshot,v.source.anchor)!==1)fail('CONTEXT_ANCHOR');}
       catch{fail('CONTEXT_ANCHOR');}
     }
-    if(v.location.kind==='GIT')bindGit(v.location,snapshot);else if(!review||!overlay.has(v.location.ref.path))bind(v.location.ref.path,snapshot);
-    if(!review||!overlay.has(v.source.path))bind(v.source.path,source);
+    if(v.location.kind==='GIT')bindGit(v.location,snapshot);else if(!createdContext(v.location.ref.path))bind(v.location.ref.path,snapshot);
+    if(!createdContext(v.source.path))bind(v.source.path,source);
   }
   const folded=new Map();
   for(const p of [...inputs.keys(),...planned.map(t=>t.path)]) {
@@ -164,6 +203,7 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
     inputs:[...inputs].sort(([a],[b])=>a.localeCompare(b)).map(([p,b])=>({path:p,expectedBase64:b.toString('base64')})),gitInputs:[...gitInputs.values()],targets:planned};
   if(cleanup)request.cleanup=structuredClone(cleanup);
   if(review)request.review=structuredClone(review);
+  if(continuation)request.continuation={checkout:structuredClone(continuation.checkout),evidence:continuation.evidence.map(e=>({path:e.path,bytesBase64:e.bytes.toString('base64')}))};
   const line=JSON.stringify(request);
   const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId});
   preparedPlans.add(prepared);return prepared;
@@ -262,11 +302,13 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
   }
   function checkInputs() {
     safeRoot(root);
+    if(request.continuation&&(request.continuation.checkout===null?localEntry(root,'.git',true)!==null:!same(readGitContext(root),request.continuation.checkout)))fail('CHECKOUT_CHANGED');
     for(const [p,bytes]of expected)exact(p,bytes);
     for(const [key,bytes]of gitVersions)if(!readGitVersion(root,JSON.parse(key)).equals(bytes))fail('GIT_SOURCE_CHANGED');
     for(const t of targets)if(!expected.has(t.path))exact(t.path,t.before,'TARGET_PRECONDITION');
   }
   function checkFinalBytes() {
+    if(request.continuation&&(request.continuation.checkout===null?localEntry(root,'.git',true)!==null:!same(readGitContext(root),request.continuation.checkout)))fail('CHECKOUT_CHANGED');
     for(const [p,bytes]of expected)exact(p,deleted.has(p)?null:targets.find(t=>t.path===p)?.planned??bytes);
     for(const t of targets)exact(t.path,t.planned,'TARGET_BYTES_CHANGED');
     for(const [p,bytes]of evidence)exact(p,bytes,'RECOVERY_EVIDENCE_CHANGED');
@@ -322,6 +364,7 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
       permissionRefs:context.permissionRefs,inputRefs:context.inputRefs,targets:targets.map((t,i)=>({path:t.path,action:t.action,before:copy(t,i,'before'),planned:copy(t,i,'planned')})),
       observations:[],nextAction:'Prepared only. Reconcile actual bytes before continuing an interrupted operation.'};
     for(const e of request.bootstrap?.evidence??[])remember(e.path,Buffer.from(e.bytesBase64,'base64'));
+    for(const e of request.continuation?.evidence??[])remember(e.path,Buffer.from(e.bytesBase64,'base64'));
     for(const [i,t]of targets.entries()) {
       if(t.before!==null&&!t.beforeVersion)remember(prefix+`before-${i}.bin`,t.before);
       remember(prefix+`planned-${i}.bin`,t.planned);

@@ -27,6 +27,16 @@ function git(root, args) {
 function checkRoot(root) {
   if (path.resolve(git(root, ['rev-parse', '--show-toplevel']).toString().trim()) !== path.resolve(root)) fail('GIT_ROOT_DIFFERS');
 }
+// Read-only checkout facts for resume. A caller must authorize Git reads.
+export function readGitContext(root) {
+  checkRoot(root);
+  let head=null,branch=null;
+  try{head=git(root,['rev-parse','--verify','HEAD^{commit}']).toString().trim();}catch{}
+  try{branch=git(root,['symbolic-ref','--quiet','HEAD']).toString().trim();}catch{}
+  const unmerged=git(root,['ls-files','--unmerged','-z']);
+  const conflictPaths=[...new Set(unmerged.toString('utf8').split('\0').filter(Boolean).map(line=>line.slice(line.indexOf('\t')+1)))].sort();
+  return {head,branch,unmerged:unmerged.length>0,conflictPaths};
+}
 export function readGitVersion(root, location) {
   if (location?.kind !== 'GIT' || !hash.test(location.commit) || !validPath(location.path)) fail('INVALID_GIT_VERSION');
   checkRoot(root);

@@ -19,7 +19,7 @@ if (process.versions.node.split('.')[0] !== '24') {
   console.error(JSON.stringify({ code: 'UNSUPPORTED_RUNTIME', message: 'Use the approved Node.js 24 runtime.' }));
   process.exitCode = 2;
 } else if (action === '--help' && args.length === 1) {
-  console.log(JSON.stringify({ stage: 'R02-T08 review candidate', actions, implemented: ['status','init','approve'], help: 'status is read-only; init creates initial records; approve manages scoped review metadata from a trusted stdin request. Project files are never permission. No action continues product work. Other actions remain unavailable.' }));
+  console.log(JSON.stringify({ stage: 'R02-T09 resume candidate', actions, implemented: ['status','init','approve','resume'], help: 'status is read-only; init creates initial records; approve manages scoped reviews; resume reads continuation context or saves a scoped note. Trusted stdin requests supply permission, never project files. No helper executes product commands or replays pending effects. change/visualize remain unavailable.' }));
 } else if (!actions.includes(action) || args.some((arg) => arg.startsWith('-')) ||
   (['init', 'resume', 'status', 'approve', 'visualize'].includes(action) && args.length !== 1)) {
   console.error(JSON.stringify({ code: 'INVALID_ARGUMENTS', message: 'Use --help alone or a known action. This scaffold has no product functionality.' }));
@@ -40,6 +40,15 @@ if (process.versions.node.split('.')[0] !== '24') {
   } catch(error) {
     console.error(JSON.stringify({code:error.code??'INIT_REJECTED',message:'Init chưa hoàn tất. Không tự sửa, ghi đè hoặc chạy lại; đối chiếu nguyên nhân và trạng thái hiện có.',diagnostics:error.diagnostics??[]}));process.exitCode=1;
   }
+} else if (action === 'resume') {
+  try {
+    const request=await initInput('RESUME');
+    const {resume}=await import('./resume.mjs');
+    const {writer,...result}=await resume(process.cwd(),request);
+    if(writer)result.detail={state:writer.state,bytesVerified:writer.bytesVerified,code:writer.wrapperError};
+    const ok=['CONTEXT_READY','WAITING','NO_CURRENT_ITEM','CONTINUATION_SAVED'].includes(result.state);
+    (ok?console.log:console.error)(JSON.stringify(result));process.exitCode=ok?0:1;
+  }catch(error){console.error(JSON.stringify({code:error.code??'RESUME_REJECTED',diagnostics:error.diagnostics??[],message:'Chưa thể tiếp tục. Giữ dữ liệu hiện có; đối chiếu căn cứ, quyền và tác dụng phụ. Không tự phục hồi hoặc chạy lại.'}));process.exitCode=1;}
 } else if (action === 'approve') {
   try {
     const request=await initInput('REVIEW');

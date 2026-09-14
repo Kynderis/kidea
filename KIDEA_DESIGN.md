@@ -4,7 +4,7 @@ Trạng thái: `R01 ĐÃ DUYỆT — R02 ĐANG HOÀN THIỆN LÕI, CHƯA NGHIỆ
 
 Ngày cập nhật: 2026-09-14
 
-Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. [Roadmap](KIDEA_ROADMAP.md) giữ trạng thái xây Kidea: status/init, writer hợp tác và luồng hồ sơ review đã có bản thử; resume/change/visualize, kiểm chứng AI tích hợp và pilot chưa hoàn tất.
+Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. [Roadmap](KIDEA_ROADMAP.md) giữ trạng thái xây Kidea: status/init, writer hợp tác, review và resume cơ bản đã có bản thử; change/visualize, kiểm chứng AI tích hợp và pilot chưa hoàn tất.
 
 Human đã duyệt kết quả tích hợp R01 và cho mở R02 từng phần tại [gate khép căn cứ](KIDEA_ROADMAP.md#r01-result). Không coi đây là duyệt mọi chi tiết còn đề xuất, số đo/fixture, runtime/schema hoặc quyền cài/chạy pilot/deploy.
 
@@ -978,6 +978,8 @@ Nội dung đọc từ hồ sơ phải được chèn vào HTML như dữ liệu
 
 ## 6. Resume qua phiên hoặc máy khác
 
+Lát cắt R02-T09 theo [phạm vi đã duyệt](KIDEA_ROADMAP.md#resume-interface-approved) có READ context và SAVE ghi chú/checkpoint cho đúng task hiện hành, cùng chẩn đoán pending chỉ đọc. Không phải executor sản phẩm hoặc chuyển task tự động. SAVE giữ nguyên gate/trạng thái/cây/điểm quay lại; chẩn đoán không xóa pending hay tự replay/restore. Các yêu cầu G4 và đối chiếu ngữ nghĩa/quyền bên dưới vẫn giữ; test helper không thay behavioral AI hoặc kiểm chứng môi trường thật.
+
 <a id="git-checkpoint"></a>
 
 ### 6.1. G4 — lưu và phục hồi việc dở đã duyệt
@@ -1289,7 +1291,7 @@ Bộ cách gọi mục tiêu gồm sáu hành động:
 | `$kidea change <yêu cầu>` | Ghi nhận thay đổi, phân tích phạm vi và dẫn qua quy trình phù hợp. |
 | `$kidea visualize` | Đọc hồ sơ, kiểm tra dữ liệu và sinh HTML tiến độ chỉ để xem; không tự thay trạng thái, approve hoặc publish. |
 
-Sau khi init/resume, Human và AI trao đổi bằng ngôn ngữ bình thường; không cần biến mọi phản hồi thành một command. Các args trên do Kidea quy ước. Khung R02-T01 đã nhận diện tên sáu hành động nhưng đều trả chưa triển khai, không phải chức năng đã hoạt động.
+Sau khi init/resume, Human và AI trao đổi bằng ngôn ngữ bình thường; không cần biến mọi phản hồi thành một command. Các args trên do Kidea quy ước. Khung R02-T01 ban đầu chỉ nhận diện tên sáu hành động; năng lực runtime hiện hành và giới hạn ghi tại ROADMAP/SKILL, không suy mọi hành động đã hoạt động chỉ vì có tên lệnh.
 
 Về ký hiệu: tài liệu chính thức mô tả Codex CLI/IDE dùng `$` để nhắc skill hoặc `/skills` để chọn. Vì vậy thiết kế không nên giả định tạo skill tên `kidea` là tự đăng ký được slash command `/kidea`; cần kiểm tra hỗ trợ trên ứng dụng đích khi triển khai. [OpenAI — Build skills](https://learn.chatgpt.com/docs/build-skills).
 

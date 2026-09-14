@@ -1,9 +1,9 @@
-Đã triển khai lát cắt `approve` và push lên `master`.
+Đã triển khai `resume` cơ bản và push lên `master`.
 
-- Tạo/trình gói, lưu góp ý, ghi xác nhận đúng ID/bản/phạm vi; không tự hoàn tất task hoặc duyệt gate cha.
-- Gói cũ được đối chiếu rồi mở bản nháp mới, giữ lịch sử; không sửa nguồn sản phẩm hoặc kế thừa approval cũ.
-- Cập nhật hướng dẫn bằng `skill-creator`; kiểm tra cấu trúc skill đạt.
+- Đọc lại đúng task, dependency, điểm quay lại và căn cứ hiện hành.
+- Lưu phần đã làm/còn dở/tiếp theo; giữ nguyên trạng thái và gate.
+- Chẩn đoán file sau ghi bị ngắt; không tự phục hồi, chạy lại hoặc xóa chốt dừng.
 
-**196/196 test đạt**, nguồn không đổi trong lượt chạy. [Bằng chứng](D:/Code/kynderis/kidea/tests/evidence/r02-t08.md).
+**227/227 test đạt**, nguồn không đổi, gồm luồng tích hợp `init → review → approve → ngắt/resume`. Hướng dẫn cập nhật bằng `skill-creator`, validator đạt. [Bằng chứng](D:/Code/kynderis/kidea/tests/evidence/r02-t09.md).
 
-Chưa mở `resume`, thử AI tích hợp hoặc nhánh giữ approval sau sửa thuần trình bày. Không dùng quota AI, đổi ACL hay tạo VM. Tiếp theo: rà phạm vi `resume` và bài thử tích hợp.
+Chưa chạy AI trial hoặc mở điều phối task mới. Việc lưu vẫn bị chặn nếu làm cũ căn cứ review. Tiếp theo: rà bài thử AI tích hợp và các gate còn thiếu để khép lõi R02.

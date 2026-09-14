@@ -10,7 +10,20 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
-**Đã hoàn tất lát cắt R02-T08-S02: 196/196 test xác định đạt, nguồn theo dõi không đổi.** Tạo/trình gói, giữ góp ý, ghi đúng xác nhận và đối chiếu có kiểm soát review đã cũ theo phạm vi Human “Duyệt nhé” ngày 2026-09-14. [Hợp đồng](#approve-interface-approved), [bằng chứng/giới hạn](tests/evidence/r02-t08.md). Chưa hoàn tất toàn T08/lõi; tiếp theo rà prerequisite thực cho resume và bài thử AI tích hợp. T07 AI vẫn **0/3**, protocol cũ tạm dừng; không tự dùng quota đó cho nguồn/bài thử mới. Sự cố launcher/ACL [vẫn chưa giải quyết riêng](tests/r02-t07/launcher-preflight.md); không dựng VM, đổi ACL hoặc chạy sandbox trong lượt này.
+**Đã hoàn tất lát cắt R02-T09-S02: 227/227 test xác định đạt, nguồn theo dõi không đổi.** [Hợp đồng](#resume-interface-approved), [bằng chứng/lỗi/giới hạn](tests/evidence/r02-t09.md): đọc context đúng việc, lưu điểm dở và chẩn đoán pending; không tự phục hồi hoặc chạy lại tác dụng phụ. Chưa hoàn tất toàn resume/lõi; bước tiếp theo là rà bài thử AI tích hợp và các gate R02-T10/T11 còn thiếu. T07 AI vẫn **0/3**, protocol cũ tạm dừng; không tự dùng quota đó cho nguồn/bài thử mới. Sự cố launcher/ACL [vẫn chưa giải quyết riêng](tests/r02-t07/launcher-preflight.md); không dựng VM, đổi ACL hoặc chạy sandbox trong lượt này.
+
+<a id="resume-interface-approved"></a>
+
+### R02-T09-S01-r1 — resume/điểm quay lại và chẩn đoán đã duyệt
+
+Human **“Duyệt nhé”** sau gói R02-T09 trong hội thoại ngày 2026-09-14 đã duyệt bốn phần: tiếp tục đúng việc/phạm vi/quyền; giữ điểm dở trong hồ sơ hiện có; chẩn đoán bản trước/dự định/thực tế sau gián đoạn; dừng phần thiếu căn cứ, conflict, công cụ hoặc kết quả bên ngoài chưa rõ. Gói bao gồm mã và kiểm thử xác định trên project giả, chưa mở AI trial, ACL/VM, phục hồi tự động hoặc pilot.
+
+- Một hành động `resume`, request nội bộ READ/SAVE. READ dựng context task, cha/dependency, returnStack, nguồn/review và quan sát operation; caller đọc ngữ nghĩa, quyền và điều kiện thực trước tiếp tục bằng năng lực đã hỗ trợ. CONTEXT_READY không là quyền thực thi; không tự chọn task mới, đổi trạng thái hoặc chạy lại mục DONE.
+- SAVE chỉ sửa `nextAction`/`checkpointRef` của work hiện hành và giữ evidence/checkpoint, không đổi cây, gate, blocker hoặc returnStack. Ghi rõ đã làm/còn dở/tiếp theo; giữ byte nguồn được chọn, không chỉ tên commit. Giữ Git-first/snapshot theo hợp đồng, không ép commit/stash/branch; không nhận đã giữ buffer chưa lưu hoặc nguồn chưa chuyển máy.
+- Chẩn đoán pending là đường chỉ đọc độc lập, không nới chốt status/writer. Chỉ đọc marker/prepared checkpoint/copy/target đúng phạm vi; BEFORE/PLANNED/OTHER/UNKNOWN không là chứng nhận hoàn tất. Mọi file khớp PLANNED vẫn không xóa marker, SAVE, replay hoặc restore.
+- Git local chỉ đọc khi được cấp quyền, đối chiếu project/checkout và index conflict; không fetch/pull/switch/reset. Kết quả deployment/job/migration cũ không thành quan sát live; thiếu phép tra hiện hành phải dừng hành động phụ thuộc. Không tự mở connector hoặc retry bên ngoài.
+
+Candidate chưa có chuyển task/phân rã hoặc executor sản phẩm mới. Trường hợp SAVE làm cũ review của toàn work record phải dừng, không miễn kiểm tra hay tự giữ approval; nhánh non-semantic của T03 vẫn chưa có thao tác ghi. T09-S03/bài thử AI tích hợp trình phạm vi/quota riêng sau mã; approval này không đổi ngưỡng hay khép R02.
 
 <a id="approve-interface-approved"></a>
 
@@ -245,8 +258,11 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T08-S01 | DONE | [H] — S01-r1 APPROVED ngày 2026-09-14 | Human “Duyệt nhé” xác nhận [giao diện/phạm vi](#approve-interface-approved); không mở resume hoặc AI trial |
 | R02-T08-S02 | DONE | [A] — theo S01-r1 | Luồng review metadata, lịch sử Git/snapshot, ngoại lệ STALE giới hạn và procedure đã có; 196/196 = 15 helper + 78 status + 61 writer + 20 init + 22 review, nguồn không đổi; [bằng chứng/giới hạn](tests/evidence/r02-t08.md). Chưa có nhánh giữ approval sau sửa thuần trình bày hoặc behavioral AI acceptance |
 | R02-T08-S03 | TODO | [A] — chưa cấp phiên AI | Chờ bài thử luồng tích hợp, nguồn/quota/phạm vi/quyền mới; không tự tái dùng 0/3 của T07 |
+| R02-T09-S01 | DONE | [H] — S01-r1 APPROVED ngày 2026-09-14 | Human “Duyệt nhé” xác nhận [hợp đồng/phạm vi resume](#resume-interface-approved); không mở AI trial hoặc phục hồi tự động |
+| R02-T09-S02 | DONE | [A] — theo S01-r1 | Resume READ/SAVE và chẩn đoán pending chỉ đọc; 227/227 = 15 helper + 78 status + 61 writer + 20 init + 22 review + 31 resume trên nguồn không đổi. [Bằng chứng/lỗi/giới hạn](tests/evidence/r02-t09.md); skill validator đạt; chưa là behavioral AI, executor sản phẩm hoặc recovery |
+| R02-T09-S03 | TODO | [A] — chưa cấp phiên AI | Cần bài thử tích hợp hữu hạn, nguồn/quota/quyền mới; không diễn tập PROD |
 
-R01 đã APPROVED; các kết quả T01–T06 trước tinh gọn và T07-S01/S02 giữ bằng chứng đúng bản trong sổ. S04 và lát cắt T08-S02 đã hoàn tất kiểm thử xác định; T07-S03 đã bắt đầu preflight nhưng tạm dừng, 0/3 AI. Kết quả native/T07 cũ không tự chứng nhận writer mới. Toàn T08, T09 và gate tích hợp/AI chưa hoàn tất; R02 chưa khép, R03–R10 chưa mở/pilot chưa có.
+R01 đã APPROVED; các kết quả T01–T06 trước tinh gọn và T07-S01/S02 giữ bằng chứng đúng bản trong sổ. S04, lát cắt T08-S02 và T09-S02 đã hoàn tất kiểm thử xác định; T07-S03 đã bắt đầu preflight nhưng tạm dừng, 0/3 AI. Kết quả native/T07 cũ không tự chứng nhận writer mới. Toàn T08/T09 và gate tích hợp/AI chưa hoàn tất; R02 chưa khép, R03–R10 chưa mở/pilot chưa có.
 
 <a id="r01-t01-result"></a>
 
