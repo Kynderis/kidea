@@ -10,17 +10,17 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
-**T07-S02 đã xong trong phạm vi thử xác định; đang chờ quyền thử AI ở S03.** Init mới/cũ, bootstrap CREATE-only và D1 đã hiện thực; [229/229 bài kiểm trên bản cuối](tests/evidence/r02-t07.md) gồm init và hồi quy đọc/ghi/cleanup. Nguồn không đổi trong lượt; giữ cả FAIL cũ. Chưa chạy phiên AI T07, chưa ghi project thật, chưa nhận toàn T07/lõi Kidea hoàn tất.
+**T07-S02 đã xong; quota AI S03 đã duyệt nhưng đang dừng ở preflight launcher.** Init mới/cũ, bootstrap CREATE-only và D1 đã hiện thực; [229/229 bài kiểm trên bản S02](tests/evidence/r02-t07.md) không thay kiểm chứng launcher/AI. **0/3 phiên đã dùng.** Sandbox Windows có cơ chế refresh ACL trong khi gói trial-r1 cấm đổi ACL; [bằng chứng và ngoại lệ hẹp đang xin](tests/r02-t07/launcher-preflight.md). Chưa ghi project thật, chưa nhận toàn T07/lõi Kidea hoàn tất.
 
 <a id="init-ai-trial-review"></a>
 
-### R02-T07-S03-trial-r1 — xin quota thử AI dùng init
+### R02-T07-S03-trial-r1 — quota đã duyệt, chưa chạy
 
 Đề nghị **3 phiên AI mới độc lập**, mỗi phiên thử cùng ba tình huống trên bản sao riêng: đủ quyền tạo mới; thiếu quyền có nội dung file tự nhận APPROVED; hồ sơ đã có được giữ khi gọi init. Mỗi phiên tối đa **3 phút**, không tự retry/chạy bù. Có tiêu thụ hạn mức AI; không dùng lại quota T06.
 
 Chỉ cho CREATE đúng hồ sơ/parent/metadata F01 của từng phiên; F02/F03 và source Kidea chỉ đọc. Launcher phải xác minh scope trước khi chạy, không nới sandbox nếu bị chặn. Không project thật, mạng/app/Git/ACL/install, restore/cleanup hoặc deploy. Giữ transcript, file/hash trước/sau và kết quả lỗi; dừng giữa phiên để đối chiếu. [Protocol và tiêu chí](tests/r02-t07/ai-trial-protocol.md), [fixture/hash thực đã chuẩn bị, 0 phiên đã chạy](tests/evidence/r02-t07.md).
 
-Đây là quyền/chi phí thử hữu hạn, **chưa được duyệt**; không hỏi lại hợp đồng D1/S01 hoặc xin nghiệm thu kết quả chưa có. Chỉ chạy sau Human đồng ý đúng gói; nếu chưa giữ được giới hạn launcher thì báo điều kiện thiếu, không tự mở rộng quyền.
+Human “Còn phần trên tôi duyệt nhé” sau [answer 38daef8](https://github.com/Kynderis/kidea/blob/38daef8294d0123cf96e0bf213bd2b95a6f2d20f/answer.md) đã duyệt quota/phạm vi này. Không hỏi lại quota, D1/S01 hoặc xin nghiệm thu kết quả chưa có. [Preflight chỉ đọc](tests/r02-t07/launcher-preflight.md) phát hiện launcher có cơ chế refresh ACL: đang xin ngoại lệ chỉ trong cây dữ liệu giả, không tự sửa ACL/config hoặc mở phiên khi chưa rõ quyền. Protocol/manifest bản trình giữ nguyên để đối chiếu; xác nhận mới nằm tại sổ này.
 
 <a id="init-review"></a>
 
@@ -215,9 +215,9 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T06-S03 | DONE | [A] — quyền trial-r1 sau answer cfa374a, quota đã dùng hết | 3/3 phiên mới, 9/9 báo cáo case PASS; không timeout, toàn bộ 96 file repo + 188 source + 188 bản sao và runtime không đổi. Đối chiếu KA-10 đúng phần nội bộ; [bằng chứng/giới hạn](tests/evidence/r02-t06.md#ai-trial-result). Giữ fixture/log/payload làm evidence, không có scratch một lần mới để xóa |
 | R02-T07-S01 | DONE | R02-T07-S01-r1 — APPROVED | Human “Ok tôi hiểu rồi. Duyệt nhé” sau [gói 52be3d8](https://github.com/Kynderis/kidea/blob/52be3d84a0182625b69dc6dcc530fe38f341ea59/answer.md) và giải thích “phiếu duyệt”; [hợp đồng/template](proposals/r02-t07-init-r1.md). D1 đã đồng bộ đúng ngoại lệ, không mở quota AI/project thật |
 | R02-T07-S02 | DONE | [A] — theo S01-r1 đã APPROVED | Template/caller init và bootstrap CREATE-only đã chạy; D1 chặn hoàn tất/cleanup STEP thiếu gate. 229/229 gồm 19 init + 118 writer/cleanup + 92 helper/status trên nguồn không đổi; [bằng chứng/lỗi/giới hạn](tests/evidence/r02-t07.md). Chưa chứng nhận hành vi AI hoặc project thật |
-| R02-T07-S03 | IN_PROGRESS | R02-T07-S03-trial-r1 — IN_REVIEW (quyền/quota thử, không duyệt sản phẩm) | Đã chuẩn bị 3 × 3 root giả riêng và manifest/hash, 0 phiên chạy. Chờ quyền 3 phiên × tối đa 3 phút, không retry; [gói](#init-ai-trial-review). Không dùng quota T06 hoặc đi tiếp T08/T09 trước dependency |
+| R02-T07-S03 | IN_PROGRESS | R02-T07-S03-trial-r1 — APPROVED; chờ làm rõ ACL launcher | Human “Còn phần trên tôi duyệt nhé” sau 38daef8 duyệt 3 phiên × tối đa 3 phút; **0/3 đã dùng**. [Preflight](tests/r02-t07/launcher-preflight.md) dừng trước chạy vì giới hạn không ACL; chưa cấp ngoại lệ trong cây dữ liệu giả. Không dùng quota T06 hoặc đi tiếp T08/T09 trước dependency |
 
-R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; T05 và T06 mỗi task đủ ba subtask DONE. T07-S01/S02 DONE; chỉ T07-S03 IN_PROGRESS chờ quota, các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Có status/init và primitive ghi nội bộ, chưa có pilot; test helper hoặc các phiên hữu hạn không được cộng thành nghiệm thu toàn KA hoặc ổn định AI.
+R01 đủ 31 subtask DONE và gate phase APPROVED theo [xác nhận](#r01-result). R02-T01 đủ bốn subtask DONE, R02-T02 đủ sáu subtask DONE, T03 đủ bốn subtask DONE; T04 đủ bảy subtask DONE; T05 và T06 mỗi task đủ ba subtask DONE. T07-S01/S02 DONE; chỉ T07-S03 IN_PROGRESS chờ làm rõ quyền ACL launcher (quota đã duyệt, chưa dùng), các subtask R02 khác mặc định TODO. R02 chưa khép phase; R03–R10 chưa mở/chưa phân rã. Có status/init và primitive ghi nội bộ, chưa có pilot; test helper hoặc các phiên hữu hạn không được cộng thành nghiệm thu toàn KA hoặc ổn định AI.
 
 <a id="r01-t01-result"></a>
 

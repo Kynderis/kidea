@@ -1,11 +1,15 @@
-Đã hoàn tất **phần triển khai `init` — T07-S02** trên dữ liệu giả:
+Đã lưu ưu tiên của bạn. Tôi thấy hợp lý: **cô đọng là bỏ ý thừa, không bỏ phần giải thích cần thiết**; không áp giới hạn số từ cứng.
 
-- Tạo hồ sơ tối thiểu, giữ nguyên nguồn cũ và bắt đầu bước 1; đủ mười bước nhưng chưa bước nào được coi là hoàn thành.
-- Nếu bị ngắt, giữ hồ sơ/bằng chứng còn dở, không tự ghi đè hoặc khởi tạo lại. Hướng dẫn skill cũng giới hạn việc gọi lệnh công khai và không tự phục hồi.
-- **229/229 bài kiểm đạt**, gồm init và hồi quy đọc/ghi/cleanup; source không đổi trong lượt chạy. Giữ cả các lỗi trước sửa để đối chiếu. [Bằng chứng](D:/Code/kynderis/kidea/tests/evidence/r02-t07.md).
+Gói **3 phiên AI đã được ghi nhận duyệt**, nhưng hiện **chưa dùng phiên nào**. Kiểm tra theo [OpenAI Docs](https://learn.chatgpt.com/docs/windows/windows-sandbox) và log trên máy cho thấy sandbox có cơ chế tự cập nhật **ACL — quyền truy cập file/thư mục**, trong khi gói tôi trình cấm đổi ACL. Vì vậy tôi dừng trước khi chạy, không tự bỏ sandbox hoặc nới quyền.
 
-Tiếp theo cần kiểm tra **AI có dùng đúng skill và giữ đúng quyền**, không chỉ mã chạy đúng. Đề nghị **3 phiên AI mới**, tối đa **3 phút/phiên**, mỗi phiên thử: đủ quyền tạo mới, thiếu quyền, và init khi đã có hồ sơ. Chỉ được ghi vào phần dữ liệu giả được chỉ định; không dự án thật, không tự phục hồi hoặc chạy bù. Có tiêu thụ hạn mức AI; hiện chưa chạy phiên nào.
+Đề nghị làm rõ một ngoại lệ hẹp: cho sandbox thiết lập ACL **chỉ trong cây dữ liệu giả dành cho ba phiên thử**. Không cho đổi ACL mã nguồn, runtime hoặc dự án thật; nếu cần vượt phạm vi này thì dừng và trình lại. [Phạm vi và bằng chứng](D:/Code/kynderis/kidea/tests/r02-t07/launcher-preflight.md).
 
-[Gói thử R02-T07-S03-trial-r1](D:/Code/kynderis/kidea/tests/r02-t07/ai-trial-protocol.md) đã có dữ liệu/hash cố định. Đây là xin quyền thử tiếp, không xin duyệt lại thiết kế hoặc nhận toàn Kidea đã xong.
+Đã lưu kết quả vào `answer.md` và đồng bộ `master`. **Bạn đồng ý ngoại lệ ACL chỉ trong vùng dữ liệu thử này nhé?**
 
-Đã lưu `answer.md` và đồng bộ lên `master`. Bạn duyệt gói **3 phiên thử AI** này nhé?
+<oai-mem-citation>
+<citation_entries>
+extensions/ad_hoc/notes/2026-09-14T070400-communication-clarity-over-word-limit.md:5-5|note=[Saved explanation preference at user request]
+</citation_entries>
+<rollout_ids>
+</rollout_ids>
+</oai-mem-citation>
