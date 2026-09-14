@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { parseTree, getNodeValue, findNodeAtLocation } from 'jsonc-parser';
 import { validate, validPath, schemas } from './schema.mjs';
 import { inspectPendingWrites, PendingWriteReadError, pendingWritesPath } from './pending-writes.mjs';
+import { isRecordedComplete } from './recorded-completion.mjs';
 
 const start = '<!-- kidea:data:start -->', end = '<!-- kidea:data:end -->';
 const utf8 = bytes => new TextDecoder('utf-8',{fatal:true}).decode(bytes);
@@ -13,10 +14,26 @@ const keyOf = r => JSON.stringify([r.path,r.anchor]);
 const inside = (root,p) => { const rel=path.relative(root,p); return rel !== '..' && !rel.startsWith(`..${path.sep}`) && !path.isAbsolute(rel); };
 class Stop extends Error {}
 
+export function snapshotAnchorCount(data,anchor) {
+  return [...utf8(data).matchAll(/<(?:a|[a-z][a-z0-9]*)\b[^>]*\bid=["']([^"']+)["'][^>]*>/gi)].filter(m=>m[1]===anchor).length;
+}
+
 // The optional hook is test-only dependency injection, not a CLI capability.
 export function readStatus(cwd, { beforeRecheck } = {}) {
+  return statusEngine(cwd,{beforeRecheck});
+}
+
+// Internal writer preflight only. This is a projected graph, never public progress
+// and never authorization. The writer must bind every read byte under native locks.
+export function inspectStatusGraph(cwd, projectedBytes = new Map(), checkpointPaths = []) {
+  let graph;
+  const status=statusEngine(cwd,{projectedBytes,checkpointPaths,capture:value=>{graph=value;}});
+  return {status,...graph};
+}
+
+function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpointPaths = [], capture } = {}) {
   const out={outputVersion:1,action:'status',observedAt:new Date().toISOString(),readState:'OK',projectId:null,data:null,diagnostics:[]};
-  const records=new Map(), reads=new Map(), absent=new Set(), gitReads=new Map();
+  const records=new Map(), reads=new Map(), absent=new Set(), gitReads=new Map(), directRefs=new Set();
   let root, pendingBefore;
   function issue(code,file=null,field=null,state='INVALID',record=null) {
     const priority={OK:0,UNSUPPORTED:1,INCOMPLETE:2,INVALID:3};
@@ -54,6 +71,12 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
   }
   function bytes(p,allowMissing=false) {
     const target=absolute(p);
+    if(projectedBytes.has(p)) {
+      const projected=projectedBytes.get(p);
+      if(projected!==null)return Buffer.from(projected);
+      if(allowMissing)return null;
+      issue('MISSING_FILE',p,null,'INCOMPLETE');throw new Stop();
+    }
     try {
       const resolved=realpathSync(target);
       if(!inside(root,resolved)) {issue('UNSAFE_PATH',p);throw new Stop();}
@@ -108,12 +131,11 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
   }
   function anchor(data,ref,file,field) {
     if(ref.anchor===null)return;
-    let text;try{text=utf8(data);}catch{issue('INVALID_UTF8',file,field);return;}
     // Explicit Markdown HTML anchors are unambiguous. Generated heading slugs are not guessed.
-    const anchors=[...text.matchAll(/<(?:a|[a-z][a-z0-9]*)\b[^>]*\bid=["']([^"']+)["'][^>]*>/gi)].map(m=>m[1]);
-    if(anchors.filter(a=>a===ref.anchor).length!==1)issue('ANCHOR_MISSING_OR_AMBIGUOUS',file,field,'INCOMPLETE');
+    try{if(snapshotAnchorCount(data,ref.anchor)!==1)issue('ANCHOR_MISSING_OR_AMBIGUOUS',file,field,'INCOMPLETE');}
+    catch{issue('INVALID_UTF8',file,field);}
   }
-  function checkRef(ref,record,field) {anchor(bytes(ref.path),ref,record.file,field);}
+  function checkRef(ref,record,field) {directRefs.add(ref.path);anchor(bytes(ref.path),ref,record.file,field);}
   function integrity(bytesValue,i,record,field) {
     if(i.method!=='SHA256'){issue('UNSUPPORTED_INTEGRITY',record.file,field,'UNSUPPORTED',record);return;}
     if(!/^[a-f0-9]{64}$/.test(i.value)||i.byteLength===null){issue('INTEGRITY_FORMAT',record.file,field,'INVALID',record);return;}
@@ -166,6 +188,12 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
       if(v.cleanup) {
         if(loc.kind!=='SNAPSHOT'||!loc.ref.path.startsWith('.kidea/checkpoints/'))issue('CLEANUP_LOCATION',record.file,field,'INVALID',record);
         checkRef(v.cleanup.evidenceRef,record,field);
+        // A cleanup receipt withdraws this payload from recovery availability.
+        // Preserve/check identity metadata and the receipt's live evidence, but
+        // never load a later file at this retired path as the old recovery copy.
+        if(v.version.source===null)issue('VERSION_SOURCE',record.file,field,'INVALID',record);
+        if(loc.kind==='SNAPSHOT'&&loc.ref.anchor!==null)issue('SNAPSHOT_ANCHOR',record.file,field,'INVALID',record);
+        integrity(null,v.version.integrity,record,field);return;
       }
       version(v.version,record,field,{missing:v.cleanup!==null});return;
     }
@@ -228,7 +256,9 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
     const plans=w.planRefs.map(r=>load(r.path,'plan'));
     for(const p of plans)requireValue(p.file.startsWith('.kidea/plans/'),p,null);
     const reviews=w.reviewRefs.map(r=>load(r.path,'review'));
-    const checkpoint=w.checkpointRef?load(w.checkpointRef.path,'checkpoint'):null;
+    const checkpoints=new Map();
+    if(w.checkpointRef)checkpoints.set(w.checkpointRef.path,load(w.checkpointRef.path,'checkpoint'));
+    for(const p of checkpointPaths)checkpoints.set(p,load(p,'checkpoint'));
     checkRef(idx.workRef,index,'.workRef');
     for(const r of [...w.planRefs,...w.reviewRefs,...(w.checkpointRef?[w.checkpointRef]:[])])checkRef(r,work,null);
     for(const p of plans)requireValue(p.data.items.length>0,p,'.items');
@@ -268,7 +298,7 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
       for(const owner of r.data.ownerIds)requireValue(items.has(owner),r,'.ownerIds');
       reviewHistory(r);
     }
-    if(checkpoint) {
+    for(const checkpoint of checkpoints.values()) {
       const c=checkpoint.data;
       requireValue(checkpoint.file.startsWith('.kidea/checkpoints/')&&items.has(c.ownerId)&&c.targets.length>0,checkpoint,'.ownerId');
       unique(c.targets,t=>t.path,checkpoint,'.targets');
@@ -276,7 +306,7 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
         requireValue((t.action==='CREATE')===(t.before===null),checkpoint,`.targets[${i}].before`);
         for(const copy of [t.before,t.planned].filter(Boolean))requireValue(copy.version.source?.path===t.path,checkpoint,`.targets[${i}]`);
         if(t.before?.cleanup||t.planned.cleanup) {
-          requireValue(items.get(c.ownerId)?.item.executionStatus==='DONE',checkpoint,`.targets[${i}]`);
+          requireValue(isRecordedComplete(c.ownerId,itemRows.map(r=>r.item),new Set(reviews.filter(r=>r.data.status==='APPROVED').map(r=>r.data.id))),checkpoint,`.targets[${i}]`);
           const latest=[...c.observations].reverse().find(o=>o.phase==='VERIFY');
           requireValue(c.targets.every(target=>latest?.results.some(x=>x.path===target.path&&x.match==='PLANNED')),checkpoint,'.observations');
         }
@@ -320,6 +350,8 @@ export function readStatus(cwd, { beforeRecheck } = {}) {
       nextAction:{text:w.nextAction,source:{file:work.file}},deploymentObservations:operations.map(r=>({id:r.data.id,file:r.file,environment:r.data.environment,targetId:r.data.targetId,startedAt:r.data.startedAt,observations:r.data.observations,verification:'RECORDED_OBSERVATIONS_NOT_LIVE_HEALTH'}))};
   } catch(e) {if(!(e instanceof Stop))issue('READ_FAILED',null,null,'INCOMPLETE');}
   out.observedAt=new Date().toISOString();
+  capture?.({reads:new Map([...reads].map(([p,v])=>[p,Buffer.from(v.data)])),absent:new Set(absent),gitReadCount:gitReads.size,
+    records:new Map([...records].map(([p,r])=>[p,structuredClone(r.data)])),directRefs:new Set(directRefs)});
   return out;
 }
 const messages={

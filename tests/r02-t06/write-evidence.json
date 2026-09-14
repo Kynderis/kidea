@@ -1,0 +1,78 @@
+{
+  "scope": "Synthetic Windows/local-NTFS internal primitive and read-only status regression; not AI trials, authenticated approval, full KA acceptance, pilot, or a performance SLA.",
+  "observedHost": {
+    "node": "v24.21.0",
+    "nodeSha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+    "powershell": "7.6.5",
+    "powershellSha256": "362a356ce7f0940ec74f73a8fc2c990a2cc24a38a11c90bbd8eca947110ad139",
+    "drive": "D: Fixed NTFS",
+    "namespaceModel": "R02-T06-S01-r2 approved after answer 5466a4230e5edafe243aca0bad2d0a95e1596f48"
+  },
+  "runs": [
+    {
+      "runDirectory": ".test-output/r02-t06/run-2026-09-14T03-33-06-287Z",
+      "at": "2026-09-14T03:33:06.287Z",
+      "node": "v24.21.0",
+      "exitCode": 0,
+      "inputsUnchanged": true,
+      "tests": 117,
+      "passed": 117,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "durationMs": 90462.338,
+      "localByteSha256": {
+        ".agents/skills/kidea/SKILL.md": "d905fae41313c67477397c24becd03e29ee43743326f89ea0bf91c63ac7abb46",
+        ".agents/skills/kidea/scripts/kidea.mjs": "f8ef6027a08f6a436165d6e50fd91892688026f5cbc20b6a0f66c8a49280d647",
+        ".agents/skills/kidea/scripts/status.mjs": "f1c3342afea4562cdb8c05860b04df6c5cc8aa61f40e28ffc1a36cd24e95386d",
+        ".agents/skills/kidea/scripts/schema.mjs": "f5018d76cce5edc50b38c4e009a877427109c7ad6a2912059348946897c60347",
+        ".agents/skills/kidea/scripts/pending-writes.mjs": "0f4f91036e9e940b19480c09cb6b2c8bdc47a917b5e7267fab6d298bcac75bcc",
+        ".agents/skills/kidea/scripts/recorded-completion.mjs": "3729c7a6b1422b0e752799a438d2646f4038eb710970d6e8d27ef98fd1a58b19",
+        ".agents/skills/kidea/scripts/write-internal.mjs": "ff3ddfc85d5f47e15644b79de0b403495c2aac60513d9c1a524974ebf7d2240d",
+        ".agents/skills/kidea/scripts/native-write.cs": "7416eb998f40aff108911368986b3a4d7cce55ea3bf28c63cfd2dd71ac2830de",
+        ".agents/skills/kidea/scripts/native-write.ps1": "0e464a1a75e25ab9e67ac48dddaea05526b38f21d7ab1206519bef5ef22551f1",
+        "tests/fixtures/r02-t04/catalog.mjs": "5cf9261558abeb89cb64967f4482748e7e24054f546425ccec5a07374e28543b",
+        "tests/r02-t06/write-preflight.test.mjs": "4becf13710ca51dd33b6bf134a8abf61d1a2785d0da564013db1518026c18528",
+        "tests/r02-t06/native-write.test.mjs": "9bcbe74f49f6f5dd55032866436a439231a498bf04a881e80175a95193cb0a8b",
+        "tests/r02-t06/mapped-write.test.mjs": "0e602d06b0cc37d5921d77139834a69b3ded6018e382d28fa73d5d1de9b7875e",
+        "tests/r02-t06/cleanup.test.mjs": "8ca06ae168a4d40e472534bc0fb60ecdb462ef8493f3dd7ad43f94bdb435511d",
+        "tests/r02-t06/mapping-probe.cs": "a508071e7ff2168c23a460612e76edc8f36184067d45cdce883a8c631043aab9",
+        "tests/r02-t06/mapping-probe.ps1": "e2610069a98a47dacb89ccea1422d56cb3449ee14ec8e2c0a412bd4e5cbe146c",
+        "tests/r02-t06/run-write-tests.mjs": "10d3e1afaff877316f6acfe2f4bb37ba7cbaf1161d71b8716294ce5d34dddbaa",
+        "package.json": "a12f3942ac8ffaa685b2fde5be217ac4e1aac482d7bb0fac2544af75b232a2ca",
+        "package-lock.json": "0017e76426d9d469bbfa8d8d791dde4dc512581ca4966d54e34ffe21a3477f79"
+      }
+    },
+    {
+      "runDirectory": ".test-output/r02-t05/run-2026-09-14T03-28-18-096Z",
+      "at": "2026-09-14T03:28:18.096Z",
+      "node": "v24.21.0",
+      "exitCode": 0,
+      "inputsUnchanged": true,
+      "tests": 92,
+      "passed": 92,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "durationMs": 31882.8243,
+      "localByteSha256": {
+        ".agents/skills/kidea/SKILL.md": "d905fae41313c67477397c24becd03e29ee43743326f89ea0bf91c63ac7abb46",
+        ".agents/skills/kidea/scripts/kidea.mjs": "f8ef6027a08f6a436165d6e50fd91892688026f5cbc20b6a0f66c8a49280d647",
+        ".agents/skills/kidea/scripts/status.mjs": "f1c3342afea4562cdb8c05860b04df6c5cc8aa61f40e28ffc1a36cd24e95386d",
+        ".agents/skills/kidea/scripts/schema.mjs": "f5018d76cce5edc50b38c4e009a877427109c7ad6a2912059348946897c60347",
+        ".agents/skills/kidea/scripts/pending-writes.mjs": "0f4f91036e9e940b19480c09cb6b2c8bdc47a917b5e7267fab6d298bcac75bcc",
+        ".agents/skills/kidea/scripts/recorded-completion.mjs": "3729c7a6b1422b0e752799a438d2646f4038eb710970d6e8d27ef98fd1a58b19",
+        "package.json": "a12f3942ac8ffaa685b2fde5be217ac4e1aac482d7bb0fac2544af75b232a2ca",
+        "package-lock.json": "0017e76426d9d469bbfa8d8d791dde4dc512581ca4966d54e34ffe21a3477f79",
+        "tests/helper.test.mjs": "5e28f4374e9238bf9bfd8a25f82ec098d7a9b97a30283a80f64bb105a906482a",
+        "tests/status.test.mjs": "04927d2ec83c16be918a82f9b634537901a2de23edf788f6eb6fa8a36ec29c16",
+        "tests/fixtures/r02-t04/catalog.mjs": "5cf9261558abeb89cb64967f4482748e7e24054f546425ccec5a07374e28543b",
+        "tests/run-status-tests.mjs": "eca6287a997412a323805a4a97954a94d00ec59f176b9bb7cb7bc50fa9ac2126"
+      }
+    }
+  ],
+  "rawEvidence": "Full stdout/stderr and before/after hashes remain under each local run directory; stdout records the child evidence directories holding requests, worker results and synthetic fixtures. Local byte hashes are not Git blob IDs; Git may normalize CRLF.",
+  "aiTrialsExecuted": 0
+}

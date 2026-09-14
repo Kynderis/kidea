@@ -73,6 +73,26 @@ test('CLI pending write is stderr exit 1 with no verified progress',()=>{
 // V07 needs semantic review even if a file declares its own change non-semantic.
 const expected={V01:'INCOMPLETE',V02:'INCOMPLETE',V03:'INCOMPLETE',V04:'INVALID',V05:'INVALID',V06:'INCOMPLETE',V07:'INCOMPLETE',V08:'INCOMPLETE',A01:'OK',A02:'INVALID',A03:'OK',A04:'INVALID',A05:'INVALID',A06:'INVALID',A07:'INVALID',A08:'INVALID',A09:'INVALID',C01:'OK',C02:'OK',C03:'OK',C04:'OK',C05:'INVALID',C06:'INVALID',C07:'INCOMPLETE',C08:'INCOMPLETE',C09:'INCOMPLETE',C10:'INVALID',C11:'OK',C12:'INVALID',C13:'OK',C14:'INVALID',C15:'INVALID',C16:'OK',R01:'INCOMPLETE',R02:'OK',R03:'OK',R04:'OK',R06:'INVALID',R07:'INVALID',R08:'OK',S01:'UNSUPPORTED',S02:'INVALID',S03:'INVALID',S04:'INVALID',S05:'INVALID',S06:'UNSUPPORTED',S07:'OK',S08:'INVALID',S09:'INVALID'};
 for(const c of buildCases())if(expected[c.id])test(`schema-2 ${c.id}: ${c.reason}`,()=>check(c.world,expected[c.id]));
+
+test('retired recovery payload is never reloaded from a later file at the same path',()=>{
+  const c=buildCases().find(c=>c.id==='C11'),data=dataAt(c.world,paths.checkpoint);
+  const retired=data.targets[0].before.version.location.ref.path;
+  c.world.files[retired]=Buffer.from([0xff,0xfe,0x00]);
+  const {root,result}=check(c.world,'OK');
+  assert.equal(result.data.items.find(i=>i.id==='W-002').executionStatus,'DONE');
+  assert.deepEqual(readFileSync(path.join(root,retired)),Buffer.from([0xff,0xfe,0x00]));
+});
+
+test('retired recovery still requires valid identity metadata and live cleanup evidence',()=>{
+  for(const mutation of [
+    c=>{c.targets[0].before.version.integrity.value='invalid';},
+    c=>{c.targets[0].before.version.source=null;},
+    c=>{c.targets[0].before.version.location.ref.anchor='not-a-whole-file';},
+  ]) {
+    const row=buildCases().find(c=>c.id==='C11');edit(row.world,paths.checkpoint,mutation);check(row.world,'INVALID');
+  }
+  const row=buildCases().find(c=>c.id==='C11');delete row.world.files['docs/cleanup.md'];check(row.world,'INCOMPLETE');
+});
 test('strict syntax: comments, trailing commas, escaped duplicate keys',()=>{
   for(const replacement of ['"schemaVersion": 2, // comment','"schemaVersion": 2, "schema\\u0056ersion": 2,']){
     const {world}=buildBase();world.files[paths.index]=world.files[paths.index].replace('"schemaVersion": 2,',replacement);check(world,'INVALID');

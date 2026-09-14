@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 const root=fileURLToPath(new URL('../',import.meta.url));
-const inputs=['.agents/skills/kidea/SKILL.md','.agents/skills/kidea/scripts/kidea.mjs','.agents/skills/kidea/scripts/status.mjs','.agents/skills/kidea/scripts/schema.mjs','.agents/skills/kidea/scripts/pending-writes.mjs','package.json','package-lock.json','tests/helper.test.mjs','tests/status.test.mjs','tests/fixtures/r02-t04/catalog.mjs','tests/run-status-tests.mjs'];
+const inputs=['.agents/skills/kidea/SKILL.md','.agents/skills/kidea/scripts/kidea.mjs','.agents/skills/kidea/scripts/status.mjs','.agents/skills/kidea/scripts/schema.mjs','.agents/skills/kidea/scripts/pending-writes.mjs','.agents/skills/kidea/scripts/recorded-completion.mjs','package.json','package-lock.json','tests/helper.test.mjs','tests/status.test.mjs','tests/fixtures/r02-t04/catalog.mjs','tests/run-status-tests.mjs'];
 const hashes=()=>Object.fromEntries(inputs.map(p=>[p,createHash('sha256').update(readFileSync(path.join(root,p))).digest('hex')]));
 const at=new Date().toISOString();
 const dir=path.join(root,'.test-output','r02-t05',`run-${at.replace(/[:.]/g,'-')}`);mkdirSync(dir,{recursive:true});

@@ -7,6 +7,8 @@ description: Use Kidea for its init, resume, status, approve, change, or visuali
 
 Only `status` is implemented. It reads schema-2 project records and their references without modifying the project. Do not simulate init/resume/approve/change/visualize, initialize `.kidea`, record approval, generate a view, or continue work on behalf of the missing core.
 
+Internal write/cleanup helpers under `scripts/` are development primitives, not available skill actions. Do not call them for a target project or infer authority from their existence. They are currently verified only on synthetic Windows/local-NTFS fixtures; a successful byte write does not approve or complete a task.
+
 When invoked:
 
 1. Identify the requested action. If missing or unknown, explain the available action names and the current development limit. Do not select a mutating action on the user's behalf.
