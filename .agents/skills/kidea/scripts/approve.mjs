@@ -9,6 +9,7 @@ import {inspectStatusGraph} from './status.mjs';
 import {validate} from './schema.mjs';
 import {initToolIdentity} from './init.mjs';
 import {findGitVersion} from './git-versions.mjs';
+import {preserveReview} from './review-validity.mjs';
 import {prepareInternalReviewWrite,executeInternalWrite} from './write-internal.mjs';
 
 const fail=code=>{throw Object.assign(new Error(code),{code});};
@@ -20,19 +21,21 @@ const rewrite=(bytes,record)=>Buffer.from(new TextDecoder('utf-8',{fatal:true}).
 export function prepareReview(root,request) {
   if(typeof root!=='string'||!path.isAbsolute(root)||path.resolve(realpathSync(root))!==path.resolve(root))fail('ROOT_NOT_EXPLICIT');
   root=realpathSync(root);
-  if(!closed(request,['operation','id','revision','expectedDigest','ownerIds','package','human','comparison','permission'])||!['CREATE','SUBMIT','FEEDBACK','REVISE','APPROVE'].includes(request.operation))fail('REVIEW_INPUT_INVALID');
+  if(!closed(request,['operation','id','revision','expectedDigest','ownerIds','package','human','comparison','permission'])||!['CREATE','SUBMIT','FEEDBACK','REVISE','APPROVE','REVALIDATE'].includes(request.operation))fail('REVIEW_INPUT_INVALID');
   const {operation,id}=request;
   if(!/^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$/.test(id??''))fail('REVIEW_ID_REQUIRED');
   if(!Array.isArray(request.ownerIds)||!request.ownerIds.length||new Set(request.ownerIds).size!==request.ownerIds.length)fail('OWNER_SCOPE_REQUIRED');
   const reviewPath=`.kidea/reviews/${id}.md`,grant=request.permission;
-  if(!closed(grant,['root','reviewPath','ownerIds','allowReviewMetadata','allowLinkOwners','allowCreateEvidence','createDirectories','allowReadLocalGit','assumptions','statement'])||grant.root!==root||grant.reviewPath!==reviewPath||!same(grant.ownerIds,request.ownerIds)||grant.allowReviewMetadata!==true||grant.allowCreateEvidence!==true||!text(grant.statement))fail('AUTHORIZATION_REQUIRED');
+  if(!closed(grant,['root','reviewPath','ownerIds','allowReviewMetadata','allowLinkOwners','allowCreateEvidence','createDirectories','allowReadLocalGit','allowPreserveApproval','assumptions','statement'])||grant.root!==root||grant.reviewPath!==reviewPath||!same(grant.ownerIds,request.ownerIds)||grant.allowReviewMetadata!==true||grant.allowCreateEvidence!==true||!text(grant.statement))fail('AUTHORIZATION_REQUIRED');
+  if(operation==='REVALIDATE'&&(grant.allowPreserveApproval!==true||request.package!==undefined||request.human!==undefined))fail('PRESERVATION_SCOPE_REQUIRED');
   if(grant.allowReadLocalGit!==undefined&&typeof grant.allowReadLocalGit!=='boolean')fail('AUTHORIZATION_REQUIRED');
   if(!grant.assumptions||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>grant.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
   const tool=initToolIdentity();tool.version='kidea-schema2-review-cooperative-r1';
   tool.components.push({name:'approve.mjs',integrity:byteIntegrity(readFileSync(new URL('./approve.mjs',import.meta.url)))});
+  tool.components.push({name:'review-validity.mjs',integrity:byteIntegrity(readFileSync(new URL('./review-validity.mjs',import.meta.url)))});
   const graph=inspectStatusGraph(root,new Map(),[],{allowGit:grant.allowReadLocalGit===true});
   const stale=graph.status.readState!=='OK';
-  if(stale&&!(operation==='REVISE'&&graph.status.diagnostics.length&&graph.status.diagnostics.every(d=>d.code==='CURRENT_SOURCE_DIFFERS'&&d.file===reviewPath&&/^\.(subjectVersions|inputVersions)\[\d+\]$/.test(d.fieldOrId))))throw Object.assign(new Error('GRAPH_NOT_VALID'),{code:'GRAPH_NOT_VALID',diagnostics:graph.status.diagnostics});
+  if(stale&&!(['REVISE','REVALIDATE'].includes(operation)&&graph.status.diagnostics.length&&graph.status.diagnostics.every(d=>d.code==='CURRENT_SOURCE_DIFFERS'&&d.file===reviewPath&&/^\.(subjectVersions|inputVersions)\[\d+\]$/.test(d.fieldOrId))))throw Object.assign(new Error('GRAPH_NOT_VALID'),{code:'GRAPH_NOT_VALID',diagnostics:graph.status.diagnostics});
   if(graph.absent.size)fail('SOURCE_MISSING');
   const rows=[...graph.records].filter(([,r])=>['work','plan'].includes(r.kind));
   for(const owner of request.ownerIds)if(!rows.some(([,r])=>r.items.some(i=>i.id===owner)))fail('OWNER_NOT_FOUND');
@@ -109,6 +112,8 @@ export function prepareReview(root,request) {
     if(review.status==='APPROVED'&&request.human.intent==='EXPLAIN')fail('REVIEW_ALREADY_APPROVED');
     archive();review.feedbackRefs.push(capture(Buffer.from(JSON.stringify(request.human))));
     if(request.human.intent!=='EXPLAIN'){review.status='DRAFT';review.confirmationRef=null;}
+  } else if(operation==='REVALIDATE') {
+    Object.assign(review,preserveReview(current,request.comparison,{read:readRef,capture,oldBytes,reviewPath,knownIds:rows.flatMap(([,r])=>r.items.map(i=>i.id))}));
   } else {
     checkHuman();
     if(request.human.intent!=='APPROVE')fail('APPROVAL_INTENT_REQUIRED');

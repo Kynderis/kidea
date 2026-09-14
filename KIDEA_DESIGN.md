@@ -393,7 +393,7 @@ Hồ sơ bước con cần nêu phần việc, kết quả kiểm tra và trạn
 
 #### R02-T03-S01-r1 — duyệt, yêu cầu sửa và không áp dụng, đã duyệt
 
-Runtime R02-T08 hiện thực lát cắt theo [giao diện được duyệt](KIDEA_ROADMAP.md#approve-interface-approved): một entrypoint approve cho tạo/trình/góp ý/đổi bản/ghi xác nhận. Điều kiện, ý nghĩa và quyền vẫn do caller đối chiếu; helper kiểm tra đúng bản/byte/cấu trúc, không xác thực Human. Chỉ REVISE có ngoại lệ review STALE giới hạn sau so sánh; không sửa nguồn sản phẩm, kế thừa xác nhận cũ hoặc tự mở phần tiếp theo. Nhánh giữ approval sau sửa thuần trình bày của S02 chưa có thao tác ghi trong candidate, không được giả đã hỗ trợ toàn T03.
+Runtime R02-T08 hiện thực lát cắt theo [giao diện được duyệt](KIDEA_ROADMAP.md#approve-interface-approved): một entrypoint approve cho tạo/trình/góp ý/đổi bản/ghi xác nhận. Điều kiện, ý nghĩa và quyền vẫn do caller đối chiếu; helper kiểm tra đúng bản/byte/cấu trúc, không xác thực Human. REVISE mở lại review; bổ sung REVALIDATE theo [phạm vi ngày 2026-09-15](KIDEA_ROADMAP.md#nonsemantic-preservation-approved) giữ xác nhận gốc chỉ sau đánh giá NON_SEMANTIC có căn cứ và quyền metadata cụ thể. SAVE có thể dùng cùng phép đối chiếu cho ghi chú work đã chọn. Không sửa nguồn sản phẩm, tự chứng minh ngữ nghĩa hoặc mở phần tiếp theo; kiểm chứng AI độc lập vẫn riêng.
 
 Human “Duyệt” sau [answer 67b13b7](https://github.com/Kynderis/kidea/blob/67b13b7fbe8aecd44ad77d1be7358075d7fa1550/answer.md), xác nhận D1–D2 của S01-r1 cùng bản; [kết quả](KIDEA_ROADMAP.md#r02-t03-s01-result). T03 cụ thể hóa cách lưu kết quả Human review; không cấp quyền Git/deploy hoặc cho AI tự duyệt. S01 chốt hai quyết định dưới đây; hiệu lực khi đầu vào/nội dung đổi và nhận diện bản thuộc S02/T04.
 

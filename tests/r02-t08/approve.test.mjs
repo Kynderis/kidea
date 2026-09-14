@@ -41,6 +41,50 @@ async function perform(f,op='CREATE',change=q=>q) {
 }
 const reject=(f,q,code)=>{const before=fingerprint(f);assert.throws(()=>prepareReview(f.root,q),e=>e.code===code,code);assert.deepEqual(fingerprint(f),before);};
 
+function revalidation(f) {
+  const q=request(f,'REVALIDATE'),r=record(f),beforeRefs=[...r.subjectVersions,...r.inputVersions];
+  q.permission.allowPreserveApproval=true;
+  q.comparison={result:'NON_SEMANTIC',reason:'Synthetic typography-only change; obligations remain identical.',affectedIds:r.ownerIds,beforeRefs,currentSources:beforeRefs.map(v=>({ref:v.source,integrity:byteIntegrity(bytes(f,v.source.path))})),assessment:Object.fromEntries(['scope','permissions','prerequisites','checks','dependencies'].map(k=>[k,{unchanged:true,reason:`Synthetic ${k} comparison of old and current content.`}]))};
+  return q;
+}
+test('non-semantic source change preserves exact original confirmation and revision with old/new evidence',async()=>{
+  const f=await fixture();await perform(f);await perform(f,'SUBMIT');await perform(f,'APPROVE');
+  const before=record(f),old=bytes(f,rp),confirmation=bytes(f,before.confirmationRef.location.ref.path);
+  writeFileSync(path.join(f.root,'docs/features.md'),Buffer.concat([bytes(f,'docs/features.md'),Buffer.from('\n')]));
+  assert.equal(readStatus(f.root).data,null);
+  assert.equal((await approve(f.root,revalidation(f))).state,'REVIEW_RECORDED');
+  const after=record(f);assert.equal(after.status,'APPROVED');assert.equal(after.revision,before.revision);assert.deepEqual(after.confirmationRef,before.confirmationRef);
+  assert.deepEqual(bytes(f,after.confirmationRef.location.ref.path),confirmation);assert.deepEqual(bytes(f,after.historyRefs[0].location.ref.path),old);
+  assert.deepEqual(after.validityChecks.at(-1).beforeRefs,[...before.subjectVersions,...before.inputVersions]);assert.equal(after.validityChecks.at(-1).result,'NON_SEMANTIC');assert.equal(readStatus(f.root).readState,'OK');
+});
+test('non-semantic proof rejects unknown/semantic changes, missing evidence, authority or package replacement without writes',async()=>{
+  const f=await fixture();await perform(f);await perform(f,'SUBMIT');await perform(f,'APPROVE');
+  for(const [mutate,code]of [
+    [q=>q.comparison.result='UNKNOWN','NON_SEMANTIC_COMPARISON_REQUIRED'],
+    [q=>q.comparison.result='REOPEN','NON_SEMANTIC_COMPARISON_REQUIRED'],
+    [q=>q.comparison.assessment.permissions.unchanged=false,'SEMANTIC_ASSESSMENT_REQUIRED'],
+    [q=>delete q.comparison.assessment.dependencies,'SEMANTIC_ASSESSMENT_REQUIRED'],
+    [q=>q.comparison.beforeRefs=[],'COMPARISON_BEFORE_DIFFERS'],
+    [q=>q.comparison.currentSources=[],'COMPARISON_SOURCE_DIFFERS'],
+    [q=>q.comparison.affectedIds.push('unknown'),'COMPARISON_SCOPE_DIFFERS'],
+    [q=>q.permission.allowPreserveApproval=false,'PRESERVATION_SCOPE_REQUIRED'],
+    [q=>q.human={intent:'APPROVE'},'PRESERVATION_SCOPE_REQUIRED'],
+    [q=>q.package={purpose:'NOT_APPLICABLE'},'PRESERVATION_SCOPE_REQUIRED'],
+  ]){const q=revalidation(f);mutate(q);reject(f,q,code);}
+});
+test('revalidation source race rejects execution without writes',async()=>{
+  const f=await fixture();await perform(f);await perform(f,'SUBMIT');await perform(f,'APPROVE');
+  const plan=prepareReview(f.root,revalidation(f));writeFileSync(path.join(f.root,'docs/features.md'),'Changed permission after comparison');
+  const before=fingerprint(f);assert.equal((await executeInternalWrite(plan.prepared)).state,'REJECTED');assert.deepEqual(fingerprint(f),before);
+});
+test('N/A revalidation retains waiver, ownership and confirmation without completing the item',async()=>{
+  const f=await fixture();await perform(f,'CREATE',q=>{q.package.purpose='NOT_APPLICABLE';q.package.waiverReason='Synthetic web-only scope; all web obligations retained.';return q;});await perform(f,'SUBMIT');await perform(f,'APPROVE');
+  const before=record(f);writeFileSync(path.join(f.root,'docs/features.md'),Buffer.concat([bytes(f,'docs/features.md'),Buffer.from('\n')]));
+  assert.equal((await approve(f.root,revalidation(f))).state,'REVIEW_RECORDED');
+  const after=record(f);for(const k of ['purpose','waiverReasonRef','ownerIds','confirmationRef','revision'])assert.deepEqual(after[k],before[k]);
+  assert.equal(record(f,'.kidea/work.md').items[0].executionStatus,null);assert.equal(readStatus(f.root).readState,'OK');
+});
+
 test('real init -> draft -> submit -> explicit approval; no product write or task advance',async()=>{
   const f=await fixture(),source=bytes(f,'docs/features.md');
   await perform(f);assert.equal(record(f).status,'DRAFT');

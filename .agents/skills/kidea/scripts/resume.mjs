@@ -12,23 +12,24 @@ import {readGitContext,readGitVersion,findGitVersion} from './git-versions.mjs';
 import {isRecordedComplete} from './recorded-completion.mjs';
 import {prepareInternalContinuationWrite,executeInternalWrite} from './write-internal.mjs';
 import {validate} from './schema.mjs';
+import {preserveReview} from './review-validity.mjs';
 
 const fail=(code,diagnostics=[])=>{throw Object.assign(new Error(code),{code,diagnostics});};
 const closed=(v,keys)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).every(k=>keys.includes(k));
 const text=v=>typeof v==='string'&&v.trim().length>0;
 const ref=p=>({path:p,anchor:null});
-const allowed=['operation','permission','expectedProjectId','expectedGit','requiredFiles','expectedBasis','checkpoint'];
+const allowed=['operation','permission','expectedProjectId','expectedGit','requiredFiles','expectedBasis','checkpoint','reviewComparisons'];
 function input(root,request) {
   if(typeof root!=='string'||!path.isAbsolute(root)||path.resolve(realpathSync(root))!==path.resolve(root))fail('ROOT_NOT_EXPLICIT');
   root=realpathSync(root);
   if(!closed(request,allowed)||!['READ','SAVE'].includes(request.operation))fail('RESUME_INPUT_INVALID');
   const p=request.permission;
-  if(!closed(p,['root','readProject','allowReadLocalGit','allowSaveContinuation','assumptions','statement'])||p.root!==root||p.readProject!==true||typeof p.allowReadLocalGit!=='boolean')fail('READ_PERMISSION_REQUIRED');
+  if(!closed(p,['root','readProject','allowReadLocalGit','allowSaveContinuation','preserveReviewIds','assumptions','statement'])||p.root!==root||p.readProject!==true||typeof p.allowReadLocalGit!=='boolean')fail('READ_PERMISSION_REQUIRED');
   return root;
 }
 function identity() {
   const tool=initToolIdentity();tool.version='kidea-schema2-resume-cooperative-r1';
-  for(const name of ['resume.mjs','diagnose-pending.mjs'])tool.components.push({name,integrity:byteIntegrity(readFileSync(new URL(name,import.meta.url)))});
+  for(const name of ['resume.mjs','diagnose-pending.mjs','review-validity.mjs'])tool.components.push({name,integrity:byteIntegrity(readFileSync(new URL(name,import.meta.url)))});
   return tool;
 }
 function inspect(root,request,{beforeRecheck}={}) {
@@ -101,14 +102,40 @@ export function prepareContinuation(root,request) {
     const p=prefix+`context-${evidence.length}.bin`;evidence.push({path:p,bytes});return {source:source??ref(p),location:{kind:'SNAPSHOT',ref:ref(p)},integrity:byteIntegrity(bytes)};
   };
   const permission=capture(Buffer.from(grant.statement));
-  const inputs=[capture(Buffer.from(JSON.stringify({basis:result.basis,checkout,note},null,2)))];
+  const inputs=[capture(Buffer.from(JSON.stringify({basis:result.basis,checkout,note,reviewComparisons:request.reviewComparisons},null,2)))];
   for(const r of note.sourceRefs){if(!validate(r,'Ref',()=>{})||!reads.has(r.path))fail('NOTE_SOURCE_NOT_IN_BASIS');inputs.push(capture(reads.get(r.path),r));}
   const next=structuredClone(work);
   next.nextAction=`Đã làm (ghi nhận, không tự xác nhận DONE): ${note.completed}\nCòn dở: ${note.remaining}\nTiếp theo: ${note.nextAction}`;
   next.checkpointRef=ref(prefix+'checkpoint.md');
   const old=graph.reads.get(workPath),planned=Buffer.from(new TextDecoder('utf-8',{fatal:true}).decode(old).replace(/(<!-- kidea:data:start -->\r?\n```json\r?\n)[\s\S]*?(\r?\n```\r?\n<!-- kidea:data:end -->)/,(_m,a,b)=>a+JSON.stringify(next,null,2)+b));
-  const targets=[{path:workPath,action:'UPDATE',plannedBytes:planned}],authorization={root,metadataRoot:'.kidea/checkpoints',targets:[{path:workPath,action:'UPDATE'}],allowRestoreUpdate:false,allowRetireOwnPending:true,allowReadLocalGit:grant.allowReadLocalGit,assumptions:grant.assumptions};
-  const prepared=prepareInternalContinuationWrite({root,authorization,context:{projectId:graph.status.projectId,ownerId:work.currentItemId,tool,permissionRefs:[permission],inputRefs:inputs},targets,operationId},{evidence,checkout,inputs:reads});
+  const targets=[{path:workPath,action:'UPDATE',plannedBytes:planned}],comparisons=request.reviewComparisons??[],reviewPaths=[];
+  if(!Array.isArray(comparisons)||!same(grant.preserveReviewIds??[],comparisons.map(c=>c.id))||new Set(comparisons.map(c=>c.id)).size!==comparisons.length)fail('PRESERVATION_SCOPE_REQUIRED');
+  for(const c of comparisons) {
+    if(!closed(c,['id','revision','expectedDigest','checkpoint','comparison'])||!same(c.checkpoint,note))fail('CONTINUATION_COMPARISON_REQUIRED');
+    const reviewPath=`.kidea/reviews/${c.id}.md`,current=graph.records.get(reviewPath),oldBytes=reads.get(reviewPath);
+    if(!current||current.kind!=='review'||c.revision!==current.revision||c.expectedDigest!==hashBytes(oldBytes))fail('REVIEW_VERSION_OR_SCOPE_DIFFERS');
+    const versions=[...current.subjectVersions,...current.inputVersions];
+    if(!versions.some(v=>v.source?.path===workPath))fail('REVIEW_NOT_AFFECTED');
+    if(versions.some(v=>!v.source||!reads.has(v.source.path)))fail('COMPARISON_SOURCE_DIFFERS');
+    const currentSources=versions.map(v=>({ref:v.source,integrity:byteIntegrity(reads.get(v.source.path))}));
+    if(!same(c.comparison?.currentSources,currentSources))fail('COMPARISON_SOURCE_DIFFERS');
+    const cmp=structuredClone(c.comparison);
+    // The caller assesses the exact note against the READ basis. Only its two
+    // derived work fields (including the generated checkpoint ID) are rebased.
+    cmp.currentSources=versions.map(v=>({ref:v.source,integrity:byteIntegrity(v.source.path===workPath?planned:reads.get(v.source.path))}));
+    const captureReview=(bytes,source)=>{
+      if(grant.allowReadLocalGit){const git=findGitVersion(root,source.path,bytes,source.anchor);if(git)return git;}
+      if(!localEntry(root,'.kidea/reviews/evidence')?.stat.isDirectory())fail('REVIEW_EVIDENCE_DIRECTORY_REQUIRED');
+      const p=`.kidea/reviews/evidence/${c.id}-${operationId}-${targets.length}.md`;
+      targets.push({path:p,action:'CREATE',plannedBytes:bytes});
+      return {source,location:{kind:'SNAPSHOT',ref:ref(p)},integrity:byteIntegrity(bytes)};
+    };
+    const updated=preserveReview(current,cmp,{read:r=>r.path===workPath?planned:reads.get(r.path),capture:captureReview,oldBytes,reviewPath,knownIds:graph.status.data.items.map(i=>i.id)});
+    const bytes=Buffer.from(new TextDecoder('utf-8',{fatal:true}).decode(oldBytes).replace(/(<!-- kidea:data:start -->\r?\n```json\r?\n)[\s\S]*?(\r?\n```\r?\n<!-- kidea:data:end -->)/,(_m,a,b)=>a+JSON.stringify(updated,null,2)+b));
+    targets.push({path:reviewPath,action:'UPDATE',plannedBytes:bytes});reviewPaths.push(reviewPath);
+  }
+  const authorization={root,metadataRoot:'.kidea/checkpoints',targets:targets.map(({path,action})=>({path,action})),allowRestoreUpdate:false,allowRetireOwnPending:true,allowReadLocalGit:grant.allowReadLocalGit,assumptions:grant.assumptions};
+  const prepared=prepareInternalContinuationWrite({root,authorization,context:{projectId:graph.status.projectId,ownerId:work.currentItemId,tool,permissionRefs:[permission],inputRefs:inputs},targets,operationId},{evidence,checkout,inputs:reads,reviewPaths});
   const bound=new Map(JSON.parse(prepared.line).inputs.map(i=>[i.path,i.expectedBase64]));
   for(const [p,b]of reads)if(bound.get(p)!==b.toString('base64'))fail('SOURCE_CHANGED');
   return {prepared,itemId:work.currentItemId};

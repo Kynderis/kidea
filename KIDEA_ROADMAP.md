@@ -1,6 +1,6 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
-Ngày cập nhật: 2026-09-14.
+Ngày cập nhật: 2026-09-15.
 
 Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đầu vòng rà soát mới từ đầu, mỗi lần đọc/duyệt chỉ vài đầu mục. **Đã có status, primitive ghi nội bộ và init được thử xác định trên dữ liệu giả, chưa có lõi đầy đủ hoặc code pilot.** R01 đã được duyệt làm căn cứ, R02 triển khai từng lát cắt trong quyền; các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
@@ -10,7 +10,7 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
-**Đã hoàn tất lát cắt R02-T09-S02: 227/227 test xác định đạt, nguồn theo dõi không đổi.** [Hợp đồng](#resume-interface-approved), [bằng chứng/lỗi/giới hạn](tests/evidence/r02-t09.md): đọc context đúng việc, lưu điểm dở và chẩn đoán pending; không tự phục hồi hoặc chạy lại tác dụng phụ. Chưa hoàn tất toàn resume/lõi; bước tiếp theo là rà bài thử AI tích hợp và các gate R02-T10/T11 còn thiếu. T07 AI vẫn **0/3**, protocol cũ tạm dừng; không tự dùng quota đó cho nguồn/bài thử mới. Sự cố launcher/ACL [vẫn chưa giải quyết riêng](tests/r02-t07/launcher-preflight.md); không dựng VM, đổi ACL hoặc chạy sandbox trong lượt này.
+**Đã bổ sung giữ approval sau đối chiếu không đổi nghĩa: 234/234 test xác định đạt, 27 đầu vào theo dõi không đổi.** [Phạm vi](#nonsemantic-preservation-approved), [bằng chứng/lỗi/giới hạn](tests/evidence/nonsemantic-preservation.md): REVALIDATE giữ xác nhận gốc; SAVE có thể giữ review của work trong đúng note/quyền đã đối chiếu. Không tự chứng minh ngữ nghĩa, mở task, phục hồi hoặc chạy lại tác dụng phụ. Chưa hoàn tất toàn resume/lõi; bước tiếp theo là rà bài thử AI tích hợp và các gate R02-T10/T11 còn thiếu. T07 AI vẫn **0/3**, protocol cũ tạm dừng; không tự dùng quota đó cho nguồn/bài thử mới. Sự cố launcher/ACL [vẫn chưa giải quyết riêng](tests/r02-t07/launcher-preflight.md); không dựng VM, đổi ACL hoặc chạy sandbox trong lượt này.
 
 <a id="resume-interface-approved"></a>
 
@@ -23,7 +23,17 @@ Human **“Duyệt nhé”** sau gói R02-T09 trong hội thoại ngày 2026-09-
 - Chẩn đoán pending là đường chỉ đọc độc lập, không nới chốt status/writer. Chỉ đọc marker/prepared checkpoint/copy/target đúng phạm vi; BEFORE/PLANNED/OTHER/UNKNOWN không là chứng nhận hoàn tất. Mọi file khớp PLANNED vẫn không xóa marker, SAVE, replay hoặc restore.
 - Git local chỉ đọc khi được cấp quyền, đối chiếu project/checkout và index conflict; không fetch/pull/switch/reset. Kết quả deployment/job/migration cũ không thành quan sát live; thiếu phép tra hiện hành phải dừng hành động phụ thuộc. Không tự mở connector hoặc retry bên ngoài.
 
-Candidate chưa có chuyển task/phân rã hoặc executor sản phẩm mới. Trường hợp SAVE làm cũ review của toàn work record phải dừng, không miễn kiểm tra hay tự giữ approval; nhánh non-semantic của T03 vẫn chưa có thao tác ghi. T09-S03/bài thử AI tích hợp trình phạm vi/quota riêng sau mã; approval này không đổi ngưỡng hay khép R02.
+Candidate chưa có chuyển task/phân rã hoặc executor sản phẩm mới. SAVE mặc định vẫn dừng nếu làm cũ review; nhánh giữ approval được bổ sung theo phạm vi bên dưới, không tự miễn kiểm tra. T09-S03/bài thử AI tích hợp trình phạm vi/quota riêng sau mã; approval này không đổi ngưỡng hay khép R02.
+
+<a id="nonsemantic-preservation-approved"></a>
+
+### Bổ sung đối chiếu không đổi nghĩa — 2026-09-15
+
+Human **“Ok làm đi”** sau khuyến nghị xử lý khoảng trống giữ approval trước bài thử AI đã cho triển khai nhánh này và kiểm thử xác định. Không mở AI trial, dùng lại quota cũ, launcher/sandbox, ACL/VM hoặc pilot.
+
+- `approve` thêm operation nội bộ REVALIDATE, vẫn sáu hành động công khai. Chỉ APPROVED với đúng ID/revision/digest/owners; so bản cũ/hiện tại và phạm vi, quyền, điều kiện, kiểm tra, dependency. Giữ nguyên confirmationRef/revision/purpose/owners, lưu bản review cũ và NON_SEMANTIC trước–sau. UNKNOWN phải dừng; đổi nghĩa dùng REVISE, không tự xác nhận Human mới.
+- `resume SAVE` nhận đối chiếu tùy chọn cho đúng review của work và đúng note/basis đã đọc; grant liệt kê review IDs. Work và review/evidence cùng lượt ghi hợp tác; không phải giao dịch filesystem nguyên tử. Không đổi task/gate/blocker/returnStack; thiếu phép đối chiếu hoặc làm cũ review phụ thuộc vẫn chặn. Pending vẫn cần đối chiếu chỉ đọc, không tự replay/restore.
+- Helper ràng buộc byte và cấu trúc của đánh giá từ caller, không chứng minh đánh giá ngữ nghĩa đúng hoặc xác thực Human. Kiểm chứng xác định và các giới hạn ghi tại [bằng chứng bổ sung](tests/evidence/nonsemantic-preservation.md); không khép T08/T09 AI hoặc R02-T10/T11.
 
 <a id="approve-interface-approved"></a>
 
@@ -35,7 +45,7 @@ Một hành động công khai `approve`, request nội bộ CREATE/SUBMIT/FEEDB
 
 Ngoại lệ STALE chỉ nhận CURRENT_SOURCE_DIFFERS ở subjectVersions/inputVersions của review được chọn; yêu cầu đối chiếu bản cũ, nguồn hiện tại và ảnh hưởng. Nguồn thiếu, hồ sơ sai, review/profile khác đã cũ, thiếu quyền hoặc pending đều chặn. Writer thông thường không được nới. Git-first đúng byte khi có quyền đọc; snapshot khi cần. Runtime vẫn không xác thực người nói hoặc chứng minh đánh giá ngữ nghĩa của caller.
 
-S02 gồm mã/hướng dẫn và kiểm thử xác định project giả từ init thật. S03 thử AI tích hợp vẫn chờ phạm vi/quota mới. Giữ hiệu lực sau sửa thuần trình bày là nghĩa T03 nhưng chưa có thao tác ghi tương ứng ở candidate này; không giả dùng REVISE hoặc helper nội bộ để vượt giới hạn.
+S02 gồm mã/hướng dẫn và kiểm thử xác định project giả từ init thật. S03 thử AI tích hợp vẫn chờ phạm vi/quota mới. Giữ hiệu lực sau sửa thuần trình bày có operation bổ sung theo [phạm vi riêng](#nonsemantic-preservation-approved); không dùng REVISE hoặc helper nội bộ để bỏ phép đối chiếu.
 
 <a id="lean-core-review"></a>
 
@@ -256,7 +266,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T07-S02 | DONE | [A] — theo S01-r1 đã APPROVED | Template/caller init và bootstrap CREATE-only đã chạy; D1 chặn hoàn tất/cleanup STEP thiếu gate. 229/229 gồm 19 init + 118 writer/cleanup + 92 helper/status trên nguồn không đổi; [bằng chứng/lỗi/giới hạn](tests/evidence/r02-t07.md). Chưa chứng nhận hành vi AI hoặc project thật |
 | R02-T07-S03 | IN_PROGRESS | Gói cũ APPROVED; tạm dừng launcher, không đang thực thi | **0/3 AI**; quyền ACL hẹp/sự cố giữ tại [preflight](tests/r02-t07/launcher-preflight.md). Nguồn/protocol cũ cố định; không dùng quota T06 hoặc chuyển quota này sang writer/luồng mới. T08/T09 chỉ chờ prerequisite thực |
 | R02-T08-S01 | DONE | [H] — S01-r1 APPROVED ngày 2026-09-14 | Human “Duyệt nhé” xác nhận [giao diện/phạm vi](#approve-interface-approved); không mở resume hoặc AI trial |
-| R02-T08-S02 | DONE | [A] — theo S01-r1 | Luồng review metadata, lịch sử Git/snapshot, ngoại lệ STALE giới hạn và procedure đã có; 196/196 = 15 helper + 78 status + 61 writer + 20 init + 22 review, nguồn không đổi; [bằng chứng/giới hạn](tests/evidence/r02-t08.md). Chưa có nhánh giữ approval sau sửa thuần trình bày hoặc behavioral AI acceptance |
+| R02-T08-S02 | DONE | [A] — theo S01-r1 | Luồng review metadata, lịch sử Git/snapshot, ngoại lệ STALE giới hạn và procedure; lượt ban đầu 196/196, nguồn không đổi, [bằng chứng](tests/evidence/r02-t08.md). Nhánh giữ approval bổ sung theo [phạm vi riêng](#nonsemantic-preservation-approved); chưa có behavioral AI acceptance |
 | R02-T08-S03 | TODO | [A] — chưa cấp phiên AI | Chờ bài thử luồng tích hợp, nguồn/quota/phạm vi/quyền mới; không tự tái dùng 0/3 của T07 |
 | R02-T09-S01 | DONE | [H] — S01-r1 APPROVED ngày 2026-09-14 | Human “Duyệt nhé” xác nhận [hợp đồng/phạm vi resume](#resume-interface-approved); không mở AI trial hoặc phục hồi tự động |
 | R02-T09-S02 | DONE | [A] — theo S01-r1 | Resume READ/SAVE và chẩn đoán pending chỉ đọc; 227/227 = 15 helper + 78 status + 61 writer + 20 init + 22 review + 31 resume trên nguồn không đổi. [Bằng chứng/lỗi/giới hạn](tests/evidence/r02-t09.md); skill validator đạt; chưa là behavioral AI, executor sản phẩm hoặc recovery |

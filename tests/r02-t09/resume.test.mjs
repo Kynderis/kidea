@@ -34,6 +34,40 @@ function saveRequest(f) {
 }
 const reject=(f,fn,code)=>{const before=fingerprint(f);assert.throws(fn,e=>e.code===code,code);assert.deepEqual(fingerprint(f),before);};
 
+function preservingNote() {
+  const f=fixture((w,refs)=>{const v=snapshot(w,paths.work,'.kidea/reviews/evidence/work.snapshot');edit(w,paths.review,r=>{r.subjectRefs=[ref(paths.work)];r.subjectVersions=[v];r.status='APPROVED';r.confirmationRef=refs.confirmation;});});
+  const q=saveRequest(f),r=record(f,paths.review),beforeRefs=[...r.subjectVersions,...r.inputVersions];
+  q.permission.preserveReviewIds=[r.id];
+  q.reviewComparisons=[{id:r.id,revision:r.revision,expectedDigest:hashBytes(bytes(f,paths.review)),checkpoint:structuredClone(q.checkpoint),comparison:{result:'NON_SEMANTIC',reason:'Synthetic context note only; no scope or gate transition.',affectedIds:r.ownerIds,beforeRefs,currentSources:beforeRefs.map(v=>({ref:v.source,integrity:byteIntegrity(bytes(f,v.source.path))})),assessment:Object.fromEntries(['scope','permissions','prerequisites','checks','dependencies'].map(k=>[k,{unchanged:true,reason:`Synthetic exact-note ${k} assessment.`}]))}}];
+  return {f,q};
+}
+test('SAVE can preserve assessed work review in the same checkpoint without changing its original approval',async()=>{
+  const {f,q}=preservingNote(),before=record(f,paths.review),old=bytes(f,paths.review);
+  const result=await resume(f.root,q);assert.equal(result.state,'CONTINUATION_SAVED',JSON.stringify(result));
+  const after=record(f,paths.review);assert.equal(after.revision,before.revision);assert.deepEqual(after.confirmationRef,before.confirmationRef);assert.equal(after.status,'APPROVED');
+  assert.deepEqual(bytes(f,after.historyRefs[0].location.ref.path),old);assert.equal(after.validityChecks.at(-1).result,'NON_SEMANTIC');assert.equal(readStatus(f.root).readState,'OK');
+  assert.equal(record(f).currentItemId,'W-002');assert.ok(record(f,record(f).checkpointRef.path).targets.some(t=>t.path===paths.review));
+});
+test('SAVE preservation binds exact note, grant, old review and semantic assessment',()=>{
+  const {f,q}=preservingNote();
+  for(const [mutate,code]of [
+    [r=>r.permission.preserveReviewIds=[],'PRESERVATION_SCOPE_REQUIRED'],
+    [r=>r.checkpoint.nextAction='Different requested action','CONTINUATION_COMPARISON_REQUIRED'],
+    [r=>r.reviewComparisons[0].expectedDigest='0'.repeat(64),'REVIEW_VERSION_OR_SCOPE_DIFFERS'],
+    [r=>r.reviewComparisons[0].comparison.assessment.checks.unchanged=false,'SEMANTIC_ASSESSMENT_REQUIRED'],
+  ]){const copy=structuredClone(q);mutate(copy);reject(f,()=>prepareContinuation(f.root,copy),code);}
+  const r=record(f,paths.review);r.inputVersions[0].source=null;put(f,paths.review,envelope(r));
+  assert.equal(readResume(f.root,request(f)).state,'READ_BLOCKED');
+  reject(f,()=>prepareContinuation(f.root,q),'CONTINUATION_NOT_AVAILABLE');
+});
+test('interrupted preservation keeps all targets pending and never treats PLANNED as completion',async()=>{
+  const {f,q}=preservingNote(),plan=prepareContinuation(f.root,q);
+  assert.equal((await executeInternalWrite(plan.prepared,{testFault:'AFTER_VERIFY'})).state,'PENDING');
+  const r=readResume(f.root,request(f));assert.equal(r.state,'RECONCILIATION_REQUIRED');
+  assert.equal(readStatus(f.root).data,null);assert.ok(existsSync(path.join(f.root,'.kidea/checkpoints/pending/active.json')));
+  reject(f,()=>prepareContinuation(f.root,q),'CONTINUATION_NOT_AVAILABLE');
+});
+
 test('resume reads current item, parents, reviews, source paths and unknown operations without writes',()=>{
   const f=fixture(),before=fingerprint(f),r=readResume(f.root,request(f));
   assert.equal(r.state,'CONTEXT_READY');assert.equal(r.context.currentItem.id,'W-002');assert.equal(r.context.parents[0].id,'W-001');

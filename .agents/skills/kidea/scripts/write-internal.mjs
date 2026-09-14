@@ -77,9 +77,11 @@ export function prepareInternalWrite(args) { return preparePlan(args); }
 
 // Save the current continuation note and a real checkpoint, never item/gate
 // transitions. Evidence is confined to this operation's metadata directory.
-export function prepareInternalContinuationWrite(args,{evidence=[],checkout=null,inputs=new Map()}={}) {
+export function prepareInternalContinuationWrite(args,{evidence=[],checkout=null,inputs=new Map(),reviewPaths=[]}={}) {
   const prefix=`.kidea/checkpoints/operations/${args.operationId}/`;
-  if(args.targets?.length!==1||args.targets[0].action!=='UPDATE'||!evidence.length)fail('CONTINUATION_SCOPE');
+  if(!args.targets?.length||args.targets[0].action!=='UPDATE'||!evidence.length||!Array.isArray(reviewPaths)||new Set(reviewPaths).size!==reviewPaths.length)fail('CONTINUATION_SCOPE');
+  if(reviewPaths.some(p=>!/^\.kidea\/reviews\/[A-Za-z0-9][A-Za-z0-9_-]{0,79}\.md$/.test(p)))fail('CONTINUATION_SCOPE');
+  for(const t of args.targets.slice(1))if(!(t.action==='UPDATE'&&reviewPaths.includes(t.path))&&!(t.action==='CREATE'&&reviewPaths.some(p=>t.path.startsWith(p.slice(0,-3).replace('.kidea/reviews/','.kidea/reviews/evidence/')+'-'+args.operationId+'-'))))fail('CONTINUATION_SCOPE');
   const seen=new Set();
   for(const e of evidence) {
     if(!validPath(e.path)||!e.path.startsWith(prefix)||!/^context-[0-9]+\.bin$/.test(e.path.slice(prefix.length))||seen.has(e.path)||!Buffer.isBuffer(e.bytes))fail('CONTINUATION_EVIDENCE_SCOPE');
@@ -88,7 +90,7 @@ export function prepareInternalContinuationWrite(args,{evidence=[],checkout=null
   if(!(inputs instanceof Map))fail('CONTINUATION_INPUTS_REQUIRED');
   if(checkout!==null&&args.authorization.allowReadLocalGit!==true)fail('GIT_READ_NOT_AUTHORIZED');
   if(checkout===null?localEntry(args.root,'.git',true)!==null:!same(readGitContext(args.root),checkout))fail('CHECKOUT_CHANGED');
-  return preparePlan(args,null,null,null,{evidence,checkout,inputs});
+  return preparePlan(args,null,null,null,{evidence,checkout,inputs,reviewPaths});
 }
 
 // Narrow metadata-only reconciliation. Never relax the generic product writer.
@@ -159,6 +161,13 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
     if(!next||next.kind!=='work'||next.currentItemId!==context.ownerId||!same(next.checkpointRef,{path:`.kidea/checkpoints/operations/${operationId}/checkpoint.md`,anchor:null}))fail('CONTINUATION_SCOPE');
     for(const r of [old,next]){delete r.nextAction;delete r.checkpointRef;}
     if(!same(old,next))fail('CONTINUATION_TRANSITION_NOT_ALLOWED');
+    for(const p of continuation.reviewPaths) {
+      const before=structuredClone(current.records.get(p)),after=structuredClone(projected.records.get(p));
+      if(before?.kind!=='review'||before.status!=='APPROVED'||after?.status!=='APPROVED'||after.validityChecks.length!==before.validityChecks.length+1||after.validityChecks.at(-1).result!=='NON_SEMANTIC'||!same(after.validityChecks.slice(0,-1),before.validityChecks))fail('CONTINUATION_REVIEW_SCOPE');
+      for(const key of ['subjectVersions','inputVersions'])if(!same(before[key].map(v=>v.source),after[key].map(v=>v.source)))fail('CONTINUATION_REVIEW_SCOPE');
+      for(const r of [before,after])for(const key of ['subjectVersions','inputVersions','historyRefs','validityChecks'])delete r[key];
+      if(!same(before,after))fail('CONTINUATION_REVIEW_SCOPE');
+    }
   }
   const currentItems=[...current.records.values()].filter(r=>['work','plan'].includes(r.kind)).flatMap(r=>r.items);
   if(context?.projectId!==current.status.projectId||context.projectId!==projected.status.projectId||!currentItems.some(i=>i.id===context.ownerId)||!projected.status.data.items.some(i=>i.id===context.ownerId))fail('CONTEXT_IDENTITY');
