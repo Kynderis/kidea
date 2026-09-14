@@ -1,6 +1,6 @@
 # R02-T06-S03 — đề xuất lượt thử AI hữu hạn
 
-Trạng thái: **CHƯA CHẠY, CHỜ HUMAN CẤP QUOTA AI**. Tài liệu này không cấp quyền chạy phiên AI, dùng internal writer, sửa project thật hoặc mở gate mới. S02/r2 và kết quả code test không thay thế quota S03.
+Human **“Ok nhé”** sau [answer cfa374a](https://github.com/Kynderis/kidea/blob/cfa374a9b5ebc870ba79eafbc44afad6f1703d34/answer.md) đã cấp đúng quota/phạm vi dưới đây. Không cấp quyền dùng internal writer, sửa project thật hoặc mở gate mới. **Quota đã dùng hết: 3/3 phiên, 9/9 báo cáo case đạt qua chấm thủ công**; [kết quả/giới hạn](../evidence/r02-t06.md#ai-trial-result), [evidence](ai-trial-evidence.json). Không chạy lại controller hoặc suy quyền thêm từ tài liệu này; approval không tự là PASS. Nội dung protocol/prompt lúc chạy được giữ bằng manifest/hash.
 
 ## Gói xin phép duy nhất
 
@@ -35,7 +35,7 @@ Controller copy vào `ai-trial-1/worlds/F01`, `F02`, `F03`; không tạo fixture
 
 ## Chuẩn bị và thực thi lặp lại được
 
-Chỉ thực hiện đoạn này **sau quyền Human cho gói trên**. Controller không phải evaluated AI. `tests/status-ai-trial.mjs` là ví dụ controller hữu hạn của T05, **không chạy file đó**: nó có bộ case/quota riêng đã dùng. Runner T06 chưa được tạo/chạy trong bước docs-only này.
+Controller T06 là [ai-trial.mjs](ai-trial.mjs), có chế độ `prepare` và `run`, dùng Node đã duyệt từ root repo. Giữa các phiên, controller đợi người điều phối kiểm transcript rồi mới nhận `CONTINUE`; `STOP` chấm dứt phần quota còn lại. Đây là kiểm tra điều kiện an toàn, không xin thêm approval sản phẩm. Controller không phải evaluated AI. `tests/status-ai-trial.mjs` chỉ là ví dụ T05, **không chạy file đó**: bộ case/quota riêng đã dùng hết.
 
 1. Đóng băng skill/helper/source sau các sửa đổi đã thống nhất; kiểm tra hash/runtime/source fixture. Không chạy test gây sửa cùng đầu vào trong lượt AI. Tạo output directory mới theo kiểu exclusive; nếu `ai-trial-1` hoặc `run-start.json` đã có thì dừng, không xóa/ghi đè/đổi tên để chạy lại.
 2. Copy nguyên ba source root sang `worlds/F01..F03`, chỉ dưới output nói trên; từ chối symlink/reparse/hardlink hoặc target ra ngoài output. Xác nhận manifest file/hash bản sao bằng source; ghi `manifest.json`, `prompt.txt` và `before.json` kiểu create-new. Manifest lưu ba source/copy root, checkpoint path, file hashes, CLI/Node version+SHA-256, model/effort, prompt+args và quota `sessions:3, timeoutMs:180000, automaticRetries:0`. Không copy expected/log vào `worlds`.

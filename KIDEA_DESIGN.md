@@ -765,6 +765,10 @@ project/
 
 Init tối thiểu chỉ cần `.kidea/INDEX.md`, `.kidea/work.md` và `docs/features.md` (hoặc link tới Feature Map đã tồn tại ở vị trí được đối chiếu). `plans/`, `reviews/` và các tài liệu khác chỉ tạo khi có nội dung cần lưu; không tạo sẵn cây rỗng. Chưa có hồ sơ Kidea không cho phép ghi đè `docs/` hiện có: đọc và xác định nguồn có hiệu lực trước khi dùng hoặc sửa.
 
+<a id="init-contract-proposal"></a>
+
+**Gói T07-S01 đang trình, chưa có hiệu lực:** [R02-T07-S01-r1](proposals/r02-t07-init-r1.md) cụ thể hóa init mới/cũ, template và bootstrap; D1 đề xuất phân biệt bước bắt buộc duyệt nhưng chưa lập phiếu với mục được miễn gate. Chưa thay quy tắc `gateIds` đã duyệt hoặc mã nguồn; phần phụ thuộc chỉ thực thi sau xác nhận đúng gói. Không coi mẫu cấu trúc T02 hoặc primitive T06 là init đã hoạt động.
+
 ### INDEX.md
 
 Dùng tên `INDEX.md` vì bản thân thư mục `.kidea` đã cho biết ngữ cảnh. File này chứa:
