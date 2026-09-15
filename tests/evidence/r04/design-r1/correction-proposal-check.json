@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-15T16:41:00.522Z",
+  "pilotUnchanged": true,
+  "changedCoreInputs": [],
+  "candidateChanges": [],
+  "appendOnlyOutsideArchitecture": true,
+  "links": {
+    "links": 826,
+    "errors": []
+  },
+  "missingDesignBacklinks": [],
+  "missingSharedBacklinks": [],
+  "architectureSha256": "6e91cc904bea0e6f1e521b839d0a6e28bc1f0dd2c518e65e5cb1d4cd48b0bc16",
+  "operationsSha256": "a86b489d55766771cf2cff71d21b62f3971a8f379a870a0f7552e80664036736",
+  "readOnlyCheckSource": "import fs from 'node:fs'; import path from 'node:path'; import {inventory,digest} from './tests/r04/evidence.mjs'; import {checkDocuments,readDocuments,missingSharedBacklinks} from './tests/r03/link-check.mjs';\nconst p='.test-output/r04/correction-proposal-r1',docs=readDocuments(p+'/docs'),missing=[];\nconst address=(file,link)=>{const [rel,id]=link.split('#');return (rel?path.posix.normalize(path.posix.join(path.posix.dirname(file),rel)):file)+'#'+id;};\nfor(const [file,body] of Object.entries(docs).filter(([f])=>f.startsWith('design/')))for(const section of body.matchAll(/<a id=\"([^\"]+)\"><\\/a>([\\s\\S]*?)(?=<a id=\"|$)/g)){\nif(section[1]==='design-relations')continue;\nfor(const m of section[2].matchAll(/\\[[^\\]]+\\]\\(([^)]+)\\)/g)){\nif(/^[A-Za-z]+:/.test(m[1])||!m[1].includes('#'))continue;\nconst target=address(file,m[1]),tf=target.split('#')[0];if(tf===file)continue;\nconst refs=s=>[...s.matchAll(/\\[[^\\]]+\\]\\(([^)]+)\\)/g)].map(m=>address(tf,m[1]));\nif(!(docs[tf]??'').split('\\n').some(row=>{const c=row.split('|');return row.startsWith('|')&&refs(c[1]??'').includes(target)&&refs(c[2]??'').includes(file+'#'+section[1]);}))missing.push({from:file+'#'+section[1],target});\n}}\nconst baseline=JSON.parse(fs.readFileSync('tests/evidence/r04/design-r1/integration-FCCoGx.json','utf8')), live=inventory('../kidea-workshop-pilot'),candidate=inventory(p),frozen=JSON.parse(fs.readFileSync('tests/evidence/r04/design-r1/correction-proposal-final.json','utf8'));\nconst changedCoreInputs=Object.entries(baseline.inputFiles).filter(([f,v])=>digest(fs.readFileSync(f))!==v.sha256).map(([f])=>f);\nconst candidateChanges=Object.entries(candidate).filter(([f,v])=>v.sha256!==frozen.allProposedHashes[f]).map(([f])=>f);\nconst appendOnly=Object.entries(frozen.targets).filter(([f])=>f!=='docs/design/architecture.md').every(([f,v])=>Buffer.from(v.base64,'base64').toString().replaceAll('\\r\\n','\\n').trimEnd().startsWith(Buffer.from(baseline.pilot[f].base64,'base64').toString().replaceAll('\\r\\n','\\n').trimEnd()+'\\n\\n'));\nconsole.log(JSON.stringify({at:new Date().toISOString(),pilotUnchanged:JSON.stringify(live)===JSON.stringify(baseline.pilot),changedCoreInputs,candidateChanges,appendOnlyOutsideArchitecture:appendOnly,links:checkDocuments(docs),missingDesignBacklinks:missing,missingSharedBacklinks:missingSharedBacklinks(docs),architectureSha256:candidate['docs/design/architecture.md'].sha256,operationsSha256:candidate['docs/design/operations.md'].sha256}));"
+}

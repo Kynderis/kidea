@@ -1,0 +1,12 @@
+{
+  "agent": "/root/r04_design_review",
+  "dispatchWindowStart": "2026-09-15T16:24:01Z",
+  "deadline": "2026-09-15T16:39:01Z",
+  "forkTurns": "none",
+  "permission": "R04 D5/P3; 1 read-only session, at most 15 minutes, no subagents",
+  "prompt": "tests/r04/prompt-review.md",
+  "inputSnapshot": "integration-FCCoGx.json",
+  "initialMessage": "Execute the read-only independent review request in D:/Code/kynderis/kidea/tests/r04/prompt-review.md. Read that entire prompt first and follow its input/scope instructions. Dispatch window begins 2026-09-15 16:24:01 UTC; hard deadline 2026-09-15 16:39:01 UTC (15 minutes, no extension or other agents). Return the raw V1–V8 report with exact source sections and findings. Do not read author's self-assessments, do not write/edit or run tests/services, and do not use network or any mutating tool. Approval facts are in the prompt; assess the actual design even though its gates were approved. If a relevant instruction/reading skill is required, obey it without widening the read-only review scope.",
+  "isolation": "Instruction-scoped, not OS sandbox enforcement",
+  "completion": "See separate raw result and closure records; this dispatch record is immutable."
+}

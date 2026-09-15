@@ -82,3 +82,15 @@ test('accepted admin is unchanged before appended architecture references',()=>{
   const old=Buffer.from(file.base64,'base64').toString('utf8').replaceAll('\r\n','\n').trimEnd();
   assert.ok(docs['design/admin.md'].replaceAll('\r\n','\n').startsWith(old+'\n\n<a id="design-relations"></a>'));
 });
+
+test('approved architecture and complete pilot bytes match the presented AR-r1',()=>{
+  const post=JSON.parse(fs.readFileSync(path.join(repo,'tests/evidence/r04/design-r1/architecture-post.json'),'utf8'));
+  for(const [rel,file] of Object.entries(post.files))assert.equal(digest(fs.readFileSync(path.join(pilot,rel))),file.sha256,rel);
+});
+
+test('skill routes to an existing local product-design reference',()=>{
+  const root=path.join(repo,'.agents/skills/kidea'),body=fs.readFileSync(path.join(root,'SKILL.md'),'utf8');
+  const refs=[...body.matchAll(/\[[^\]]+\]\((references\/[^)]+)\)/g)].map(m=>m[1]);
+  assert.ok(refs.includes('references/product-design.md'));
+  for(const ref of refs)assert.ok(fs.statSync(path.join(root,ref)).isFile(),ref);
+});

@@ -12,6 +12,8 @@ Ranh giới thử: `.kidea` là hồ sơ điều phối/review; `docs/` hoặc v
 
 Kiểm tra Kidea có điều phối, lưu trạng thái, truy ảnh hưởng và báo kết quả đúng trong phạm vi [thiết kế](KIDEA_DESIGN.md#first-release-scope). Không thay test nghiệp vụ hoặc kỹ thuật của [pilot](KIDEA_DESIGN.md#pilot-scope).
 
+Trace R04: [phương pháp bước 3–7](.agents/skills/kidea/references/product-design.md) và [bằng chứng tích hợp](tests/evidence/r04/design-r1.md) hỗ trợ rà KA-14/15/23/27/28; không tự nhận các họ nghiệm thu này PASS. Năm hồ sơ pilot được duyệt là căn cứ thiết kế, không số đo ứng dụng, năng lực product-writer hoặc thay kiểm môi trường đích R09/hồi quy cuối R10. Giữ nguyên tiêu chí bên dưới.
+
 Ví dụ: test pilot kiểm tra hai người tranh một chỗ chỉ một người được nhận; test Kidea kiểm tra yêu cầu ấy có đặc tả, test có assertion đúng, bằng chứng đúng phiên bản và task không DONE khi test thất bại. Ứng dụng chạy đúng không tự chứng minh Kidea làm đúng.
 
 - Mỗi dòng là một họ kịch bản có ID ổn định, không phải một lần chạy. Các biến thể phân cách bằng dấu chấm phẩy phải chạy riêng, không chọn một biến thể đại diện rồi nhận cả dòng đạt. Khi hiện thực, đặt ID con như `KA-05-a`, giữ liên kết về dòng gốc.

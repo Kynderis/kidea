@@ -2,7 +2,7 @@
 
 Ngày 2026-09-15. Kế hoạch đã soạn; chưa phải phương pháp hoặc thiết kế sản phẩm được duyệt.
 
-Cập nhật: A1–A6 đã được Human “Duyệt thiết kế quản trị R04” sau `ccaeb1d`; gate bước 6 DONE. Đã soạn architecture AR-r1, K1–K7 IN_REVIEW cho bước 7; chưa tích hợp skill hoặc dùng phiên AI. [Bằng chứng và giới hạn](../tests/evidence/r04/design-r1.md).
+Cập nhật: K1–K7/AR-r1 đã được Human duyệt sau `6abd985`. Tích hợp và hồi quy đã chạy; review độc lập phát hiện F01–F05, bản sửa AR-r2/C1–C5 đã được kiểm nhưng CHƯA áp dụng/duyệt. Quay gate kiến trúc T05-S02 cho đúng phần sửa; T06-S01 chờ áp dụng sau gate, không khép R04. [Gói sửa](../tests/evidence/r04/design-r1/correction-request.md), [bằng chứng](../tests/evidence/r04/design-r1.md).
 
 ## Căn cứ và kết quả mở phase
 
@@ -38,8 +38,8 @@ R03 hướng dẫn viết rõ sản phẩm phải làm gì. R04 hướng dẫn b
 | R04-T04-S01 | Soạn/diễn tập admin truy nguồn rule/quyền, xác nhận/audit/lỗi; rà không thêm rule | DONE [A], admin AD-r1, 15 nhóm ca NOT_RUN và kiểm tài liệu; không ứng dụng đã chạy |
 | R04-T04-S02 | Review đầu ra bước 6; bước 5 có gate riêng T03-S02 | DONE [H], Human “Duyệt thiết kế quản trị R04” sau ccaeb1d, A1–A6/AD-r1; không tự duyệt hợp đồng kiến trúc |
 | R04-T05-S01 | Soạn/diễn tập kiến trúc và hợp đồng: owner/API/event/cache/lỗi/deploy/recovery/tương thích/quyền; đối chiếu thiết kế đã duyệt | DONE [A], AR-r1, 18 nhóm runtime NOT_RUN; kiểm nguồn và backlink, không cài/chạy |
-| R04-T05-S02 | Review đầu ra bước 7 đúng bản, nêu phần cần đo sau | IN_REVIEW [H], K1–K7/AR-r1 gồm admin correlation và cùng trường lần xử lý sau thắng; chưa nghiệm thu số đo |
-| R04-T06-S01 | Tích hợp hướng dẫn đã duyệt; kiểm tra tài liệu và hồi quy liên quan; thử độc lập chỉ theo protocol được cấp | TODO [A], đọc skill-creator khi sửa skill; 1 phiên ×15 phút đã cấp ở D5, chưa dùng/chưa đủ gate để chạy |
+| R04-T05-S02 | Review đầu ra bước 7 đúng bản, nêu phần cần đo sau | IN_REVIEW [H], approval K1–K7/AR-r1 giữ lịch sử; quay gate cho C1–C5/AR-r2 sau findings, không reset Q/UX/OP/AD |
+| R04-T06-S01 | Tích hợp hướng dẫn đã duyệt; kiểm tra tài liệu và hồi quy liên quan; thử độc lập chỉ theo protocol được cấp | BLOCKED [A] chỉ ở áp dụng bản sửa chờ gate; đã tích hợp, core 265/265, R04 15/15, validator PASS, dùng đúng 1 reviewer và recheck cùng cửa sổ; chưa nhận bản sửa đã vào pilot |
 | R04-T06-S02 | Báo cáo bằng chứng/giới hạn và chấp nhận kết quả R04 | TODO [H], sau kiểm chứng; không gọi thiết kế monitoring là hệ thống đang hoạt động |
 
 S02 chuẩn bị cả phase để không xin lắt nhắt từng file. Trình trước các lựa chọn và quyền đã nhận diện được; những đầu ra phụ thuộc chưa tồn tại chỉ được duyệt khi có bản cụ thể, không gộp mất năm gate sản phẩm hoặc SEO. Chỉ một subtask triển khai hiện hành.

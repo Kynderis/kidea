@@ -10,6 +10,10 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R0
 
 <a id="review-current"></a>
 
+**Đã tích hợp phương pháp R04; bản sửa sau kiểm độc lập chờ duyệt C1–C5.** K1–K7/AR-r1 đã được duyệt sau `6abd985`, nhưng reviewer phát hiện mâu thuẫn/thiếu hợp đồng và traceability. [Gói sửa dễ đọc](tests/evidence/r04/design-r1/correction-request.md), [bằng chứng](tests/evidence/r04/design-r1.md). Bản đề xuất AR-r2 đã qua recheck V1–V8, chưa áp dụng vào pilot. Core 265/265, R04 15/15 và validator đạt trên nguồn đã tích hợp; runtime NOT_RUN, lỗi inventory R03 lịch sử giữ riêng. T05-S02 quay gate đúng bản sửa; T06-S01 chờ áp dụng sau duyệt. Không cần thêm AI trong gói này, không cài/code/deploy. Các đoạn dưới là lịch sử.
+
+**K1–K7/AR-r1 đã được duyệt.** Human “Duyệt kiến trúc R04” sau `6abd985` khép bước 7. T05-S02 DONE; T06-S01 đang tích hợp hướng dẫn và kiểm chứng theo quota đã cấp. [Bằng chứng](tests/evidence/r04/design-r1.md). Chưa nghiệm thu kết quả cuối R04, không quyền cài/code/deploy. Các đoạn dưới là lịch sử.
+
 **A1–A6 đã được duyệt; kiến trúc AR-r1 chờ duyệt K1–K7.** Human “Duyệt thiết kế quản trị R04” sau `ccaeb1d` khép bước 6. [Bản đọc và bằng chứng](tests/evidence/r04/design-r1.md): một backend C++/SQLite, transaction/outbox, đối chiếu mã admin không tự gửi lại, patch cùng trường lần xử lý sau thắng, HTTPS/quyền, backup/epoch và quan sát độc lập. 13/13 test tài liệu R04 PASS; ca sản phẩm NOT_RUN. T04-S02/T05-S01 DONE, T05-S02 IN_REVIEW. Chưa tích hợp skill hoặc dùng phiên AI độc lập; không cài/build/deploy. Các đoạn dưới là lịch sử.
 
 **O1–O6 đã được duyệt; thiết kế quản trị AD-r1 chờ duyệt A1–A6.** Human “Duyệt thiết kế vận hành R04” sau `86c051c` khép bước 5. [Bản đọc và bằng chứng](tests/evidence/r04/design-r1.md): tạo nháp/sửa/state riêng, xác nhận nhạy cảm, unknown/đồng thời và audit; 12/12 test R04, 659 link hợp lệ. A5 bảo toàn dấu thao tác chờ chốt; retry admin không tự kế thừa retry đăng ký, hợp đồng chi tiết còn thuộc kiến trúc. T04-S01 DONE/T04-S02 IN_REVIEW; chưa mở kiến trúc, sửa skill hoặc dùng phiên AI độc lập. Các đoạn dưới là lịch sử.
@@ -908,7 +912,7 @@ Xây hướng dẫn bước 1–2. Phê duyệt phương pháp không tự duy�
 
 Xây bước 3–7 với từng gate riêng. Tài liệu sản phẩm ở nguồn ngoài .kidea; review chỉ tham chiếu.
 
-R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): T01–T04 đã khép gate chất lượng, UX/SEO, vận hành và admin; T05-S01 DONE, T05-S02 IN_REVIEW cho K1–K7/AR-r1. Chưa tích hợp hoặc chạy thử AI/sản phẩm. Các task còn lại chỉ là kế hoạch, mở sau đúng phụ thuộc/quyền. Không dùng kế hoạch này để duyệt trước đầu ra hoặc bỏ gate bước 3–7/SEO.
+R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): năm gate bản đầu đã được duyệt; review tích hợp phát hiện F01–F05 nên T05-S02 quay IN_REVIEW cho C1–C5, không reset nguồn khác. T06-S01 chờ áp dụng bản sửa sau gate, T06-S02 chưa khép. Chưa chạy sản phẩm; không dùng test tài liệu thay runtime hoặc bỏ gate nghiệm thu cuối.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|

@@ -1,20 +1,22 @@
-Đã ghi nhận **duyệt quản trị R04**. Tôi đã soạn xong [gói kiến trúc](D:/Code/kynderis/kidea-workshop-pilot/docs/design/architecture.md), gom 7 điểm cần chốt:
+Đã ghi nhận duyệt kiến trúc và tích hợp hướng dẫn vào Kidea. **Chưa khép R04:** kiểm độc lập phát hiện 5 điểm trong bản thiết kế tôi viết cần sửa/bổ sung.
 
-| Mục | Đề xuất, nói đơn giản |
+Tôi đã gom thành [một gói sửa C1–C5](D:/Code/kynderis/kidea/tests/evidence/r04/design-r1/correction-request.md):
+
+| Mục | Sửa gì — ví dụ dễ hiểu |
 |---|---|
-| K1 — Bộ khung | Một backend C++ và SQLite lưu dữ liệu; giữ web, Android và iOS như đã chốt. Không tách nhiều dịch vụ. |
-| K2 — Lưu chắc | Lưu thay đổi, kết quả và dấu thao tác cùng nhau; sập giữa chừng vẫn biết việc cập nhật nào còn thiếu. |
-| K3 — Mất phản hồi | Mỗi lần admin thao tác có mã để tra kết quả. Không tự gửi lại hoặc đoán thành công bằng tên workshop. |
-| K4 — Hai bản sửa | Chỉ gửi trường vừa sửa. **Nếu cùng sửa một trường, lần máy chủ xử lý sau thắng**; không khóa form. |
-| K5 — Quyền truy cập | Kết nối HTTPS; máy chủ kiểm quyền, không tin vai trò client tự khai. Không tự cài chứng chỉ lên máy bạn. |
-| K6 — Sao lưu | Đề xuất mỗi 5 phút sang nơi độc lập máy chủ. Phục hồi phải chặn yêu cầu cũ tự chạy lại. Chưa cần dựng VM trên ổ C. |
-| K7 — Cảnh báo | Màn dự phòng chạy độc lập máy chủ trong phiên thử; không thêm dịch vụ trả phí hoặc yêu cầu trực 24/7. |
+| C1 | Phân biệt mã đăng ký theo từng người: A và B cùng dùng mã X không bị coi nhầm là một yêu cầu. |
+| C2 | Không để dữ liệu cũ ghi đè dữ liệu mới: đã hủy thì phản hồi cũ đến muộn không được hiện lại “đang đăng ký”. |
+| C3 | Bổ sung trình tự mở/dừng an toàn; khi dừng, chờ xử lý tối đa 30 giây và không báo kết quả giả. |
+| C4 | Giới hạn tải để tránh gửi tràn: 128 yêu cầu đang xử lý, 64 chờ ghi, 100 lượt/giây toàn hệ thống và 20/người; giới hạn kết nối chi tiết có trong gói. |
+| C5 | Bổ sung liên kết truy nguồn và ca kiểm tra cho các điểm trên. |
 
-Đã kiểm: **13/13 test tài liệu, 777 liên kết hợp lệ**. Bộ test R03 cũ còn 1 lỗi đếm file vì nay có thêm 5 thiết kế; đã ghi rõ, không che thành PASS. **Chưa cài/chạy ứng dụng; hiệu năng và phục hồi chưa được đo.**
+**Bản sửa đã được reviewer kiểm lại: 8/8 tiêu chí đạt**, trong đúng phiên đã cấp. Nhưng chưa áp vào pilot vì cần chốt phần thay đổi của bản đã duyệt.
 
-Bạn có thể chốt: **“Duyệt kiến trúc R04”** hoặc sửa mục cụ thể. Sau đó tôi sẽ tích hợp hướng dẫn vào Kidea, chạy hồi quy và phiên kiểm độc lập đã được cấp, rồi báo kết quả cuối R04.
+Hồi quy: **265/265 test lõi, 15/15 test tài liệu và validator đạt**. Lỗi đếm file của bộ R03 cũ được ghi riêng. Chưa cài/chạy ứng dụng.
 
-Đã lưu hồ sơ và đồng bộ lên GitHub.
+Bạn chỉ cần chốt **“Duyệt gói sửa R04”**. Tôi sẽ áp đúng bản đã kiểm, kiểm lại và trình kết quả cuối R04; không cần xin thêm phiên AI cho bản này.
+
+Đã lưu hồ sơ và đồng bộ GitHub.
 
 <oai-mem-citation>
 <citation_entries>

@@ -1,6 +1,6 @@
 # Kidea — Thiết kế cách hoạt động
 
-Trạng thái: `R01/R02 ĐÃ DUYỆT ĐÚNG PHẠM VI — R03 MỞ PHẦN PHƯƠNG PHÁP`
+Trạng thái: `R01–R03 ĐÃ DUYỆT ĐÚNG PHẠM VI — R04 TÍCH HỢP, CHỜ DUYỆT BẢN SỬA SAU REVIEW`
 
 Ngày cập nhật: 2026-09-15
 
@@ -1244,6 +1244,8 @@ Yêu cầu sự cố cần phân biệt **mất tối đa bao nhiêu dữ liệu
 Không cam kết test mọi giá trị/chuỗi vô hạn hoặc phần mềm chắc chắn không còn lỗi. Cam kết kiểm tra đủ mô hình/phạm vi/rủi ro đã thống nhất, chỉ rõ khoảng trống và không giả mạo kết quả.
 
 <a id="business-method"></a>
+
+Phương pháp thiết kế sản phẩm bước 3–7 được dẫn từ [skill](.agents/skills/kidea/SKILL.md) tới [product-design.md](.agents/skills/kidea/references/product-design.md), theo M0–M5/D1–D6 và năm gate pilot đã duyệt đến AR-r1. Đây là hướng dẫn soạn/review trong quyền riêng, không thêm action/runtime hoặc tự điều phối DONE. [Trạng thái tích hợp và kiểm chứng R04](tests/evidence/r04/design-r1.md) là căn cứ hiện hành; công nghệ/ngưỡng của workshop không thành mặc định cho mọi project. Chưa thay nghiệm thu tổng hoặc bỏ R09/R10.
 
 ### 8.1. Tích hợp phương pháp nghiệp vụ
 

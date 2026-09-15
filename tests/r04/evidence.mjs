@@ -52,8 +52,41 @@ function check(prefix='quality'){
   fs.writeFileSync(path.join(evidenceRoot,prefix+'-check.json'),JSON.stringify(result,null,2)+'\n',{flag:'wx'});
   console.log(JSON.stringify({runs:runs.map(({file,exitCode})=>({file,exitCode})),links:result.links}));
 }
+function integration(){
+  const output=path.join(repo,'.test-output/r04');fs.mkdirSync(output,{recursive:true});
+  const run=fs.mkdtempSync(path.join(output,'integration-')),isolated=path.join(run,'workspace');fs.mkdirSync(isolated);
+  const selected=['.agents/skills/kidea','tests','package.json','package-lock.json'];
+  const inputFiles={};
+  function copyEntry(rel){
+    if(rel==='tests/evidence')return;
+    const source=path.join(repo,rel),target=path.join(isolated,rel),s=fs.lstatSync(source);
+    if(s.isSymbolicLink())throw Error('Linked input '+rel);
+    if(s.isDirectory()){fs.mkdirSync(target,{recursive:true});for(const n of fs.readdirSync(source))copyEntry(rel+'/'+n);}
+    else if(s.isFile()){const b=fs.readFileSync(source);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,b,{flag:'wx'});inputFiles[rel]={bytes:b.length,sha256:digest(b)};}
+    else throw Error('Unsupported input '+rel);
+  }
+  selected.forEach(copyEntry);
+  const at=new Date().toISOString(),before=inventory(pilot);
+  const command=(name,exe,args,options={})=>{const r=spawnSync(exe,args,{cwd:repo,encoding:'utf8',windowsHide:true,timeout:300000,maxBuffer:32*1024*1024,...options});const result={name,exe,args,exitCode:r.status,error:r.error?.message??null,stdout:r.stdout??'',stderr:r.stderr??''};fs.writeFileSync(path.join(run,name+'.json'),JSON.stringify(result,null,2),{flag:'wx'});return result;};
+  // The unchanged runner/fixtures write relative to their source root. Copying
+  // exact source bytes keeps all generated output under the authorized R04 root.
+  const core=command('core',process.execPath,[path.join(isolated,'tests/r02-t07/run-tests.mjs')],{cwd:isolated});
+  const documents=command('documents',process.execPath,['--test','tests/r04/design-docs.test.mjs']);
+  const legacy=command('legacy-r03',process.execPath,['--test','tests/r03/link-check.test.mjs']);
+  const python='C:/Users/vuhoa/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
+  const validator='C:/Users/vuhoa/.codex/skills/.system/skill-creator/scripts/quick_validate.py';
+  const validation=command('skill-validation',python,['-B','-X','utf8',validator,path.join(repo,'.agents/skills/kidea')],{env:{...process.env,PYTHONPATH:path.join(repo,'.tools/skill-validation/lib'),PYTHONDONTWRITEBYTECODE:'1'}});
+  const changed=Object.entries(inputFiles).filter(([f,v])=>digest(fs.readFileSync(path.join(repo,f)))!==v.sha256).map(([f])=>f);
+  const after=inventory(pilot),pilotUnchanged=JSON.stringify(before)===JSON.stringify(after);
+  const skill={};for(const rel of ['.agents/skills/kidea/SKILL.md','.agents/skills/kidea/references/product-design.md','tests/r04/prompt-review.md']){const b=fs.readFileSync(path.join(repo,rel));skill[rel]={sha256:digest(b),base64:b.toString('base64')};}
+  const result={at,completedAt:new Date().toISOString(),run,node:process.version,nodeSha256:digest(fs.readFileSync(process.execPath)),pythonSha256:digest(fs.readFileSync(python)),validatorSha256:digest(fs.readFileSync(validator)),inputFiles,changed,pilotUnchanged,pilot:after,skill,runs:[core,documents,legacy,validation],links:checkDocuments(readDocuments(path.join(pilot,'docs')))};
+  fs.writeFileSync(path.join(evidenceRoot,path.basename(run)+'.json'),JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+  console.log(JSON.stringify({run,changed,pilotUnchanged,runs:result.runs.map(({name,exitCode})=>({name,exitCode})),core:core.stdout,links:result.links}));
+  process.exitCode=core.exitCode===0&&documents.exitCode===0&&validation.exitCode===0&&changed.length===0&&pilotUnchanged?0:1;
+}
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
-  if(['quality-check','experience-check','operations-check','admin-check','architecture-check'].includes(process.argv[2]))check(process.argv[2].split('-')[0]);
+  if(process.argv[2]==='integration')integration();
+  else if(['quality-check','experience-check','operations-check','admin-check','architecture-check'].includes(process.argv[2]))check(process.argv[2].split('-')[0]);
   else if(['quality-export','experience-export','operations-export','admin-export','architecture-export'].includes(process.argv[2])){
     const prefix=process.argv[2].split('-')[0];
     const pre=JSON.parse(fs.readFileSync(path.join(evidenceRoot,prefix+'-pre.json'),'utf8'));

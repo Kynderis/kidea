@@ -1,5 +1,41 @@
 # R04 — bằng chứng triển khai gói thiết kế
 
+## Hiện hành — tích hợp đã kiểm; chờ duyệt bản sửa C1–C5
+
+**Chưa khép R04.** Human đã duyệt K1–K7/AR-r1; review độc lập sau tích hợp phát hiện F01–F05 nên quay gate bước 7 đúng phần sửa, không reset Q/UX/OP/AD. [Gói sửa dễ đọc C1–C5](design-r1/correction-request.md) và [AR-r2 đề xuất](design-r1/architecture-r2-proposed.md) đã được kiểm độc lập nhưng **chưa áp dụng vào pilot, chưa được Human duyệt**. Không biến approval AR-r1 thành approval sửa nghĩa AR-r2.
+
+### Kết quả đã có
+
+- Hướng dẫn M0–M5 đã tích hợp qua skill-creator, giữ public helper/runtime/schema và ranh giới tác vụ. Core **265/265**, tài liệu R04 **15/15**, validator **PASS**; byte nguồn/test và pilot không đổi sau run. [Raw run](design-r1/integration-FCCoGx.json), [stdout đủ 265](design-r1/integration-FCCoGx-core-stdout.json). Bộ R03 giữ **7/8** với giả định đếm `15 !== 10`, không hạ assertion; kiểm cây hiện hành do R04 đảm nhiệm.
+- [Review đầu](design-r1/review-initial.md): V1–V5/V8 PASS, V6/V7 FAIL. F01 khóa mã đăng ký thiếu actor; F02 version lịch sử cá nhân chưa đủ; F03 lifecycle còn thiếu; F04 chống lạm dụng chưa khép; F05 thiếu cạnh nguồn trực tiếp. Đây là lỗi/thiếu thiết kế, không phải test ứng dụng thất bại.
+- [Recheck đề xuất lần 1](design-r1/review-recheck-1.md): F01–F03 PASS; F04 PARTIAL/F05 FAIL do mapping admission vào M2/M7 và cạnh mới còn thiếu. [Bản kiến trúc lúc đó](design-r1/correction-proposal-initial-architecture.md), [operations lúc đó](design-r1/correction-proposal-initial-operations.md) giữ nguyên; không xóa kết quả chưa đạt.
+- [Closure trên đề xuất cuối](design-r1/review-closure.md): **F01–F05 và V1–V8 PASS** trong review hồ sơ hữu hạn. AR SHA `6e91cc904bea0e6f1e521b839d0a6e28bc1f0dd2c518e65e5cb1d4cd48b0bc16`; OP SHA `a86b489d55766771cf2cff71d21b62f3971a8f379a870a0f7552e80664036736`. Chỉ làm rõ M7 tính lỗi kỹ thuật trong mẫu WQ; M2 vẫn lỗi xử lý còn mở, không biến một lần 429 thành incident không khép; queue/socket là bộ đếm nội bộ, không thêm dashboard.
+- [Dispatch](design-r1/review-dispatch.json), [biên nhận thời gian và toàn followup](design-r1/review-receipt.json): **một reviewer**, fork none; dispatch thực 16:24:17.417 UTC, closure nhận 16:37:19.243 UTC, trước deadline bảo thủ 16:39:01 UTC. Hai recheck cùng phiên, không thêm phiên hoặc gia hạn. Timestamps đối chiếu event log local của chính task. Agent chỉ đọc theo chỉ dẫn; không gọi đó là cách ly OS.
+- [Kiểm đề xuất cuối](design-r1/correction-proposal-check.json): **826 link hợp lệ**, không thiếu backlink đã khai báo; ngoài kiến trúc chỉ append reference. Tại 16:41:00 UTC, pilot vẫn nguyên byte, các input của run tích hợp và bản đề xuất khớp hash; không có thay đổi sau review cần tự nhận lại PASS. Kiểm này không phát hiện mọi cạnh ngữ nghĩa, nên cần review độc lập như trên.
+- Kiểm whitespace Git ghi nhận đúng hai Markdown hard-break (hai dấu cách cuối dòng) trong raw `review-closure.md`; giữ nguyên văn reviewer, không sửa để làm sạch raw. Các file khác không có lỗi `git diff --check`; đây không phải test runtime hoặc thay assertion hồi quy.
+
+### Phần còn lại và quyền
+
+Chỉ còn gate C1–C5 → áp đúng bảy đích trong [manifest byte](design-r1/correction-proposal-final.json) → kiểm/readback trên pilot → trình kết quả cuối R04. Chưa cần thêm AI nếu áp đúng byte đã review. Nội dung runtime AR có 22 nhóm ca NOT_RUN; không app/service/backup/monitoring thật, không cài toolchain/VM hoặc phát sinh chi phí. Đầu ra đang chờ là **bản sửa thiết kế**, không một hạng mục bị bỏ quên hay ngầm DONE.
+
+Snapshot Markdown dưới evidence giữ đường tương đối của pilot để xem nội dung, không là cây nguồn điều hướng độc lập. Manifest giữ đầy đủ byte bảy đích để áp sau approval; các nguồn gốc trước sửa đã có trong run tích hợp. Các mục “hiện hành/đang chạy” bên dưới là lịch sử các chặng, phần này là trạng thái mới nhất.
+
+---
+
+## Hiện hành — kiến trúc đã duyệt; tích hợp và kiểm chứng
+
+Human “Duyệt kiến trúc R04” sau `6abd98505ac13064b56f5a070480db48827dc4f1` chấp nhận **K1–K7/AR-r1**, SHA256 `d74ed6937dd616fccc004db890cfa44cfc5c2b835a13bca5986e3913c3551e36`, khép bước 7. Năm gate thiết kế và SEO đầu vào đã đủ; không đồng nghĩa các ca runtime đạt hoặc cấp quyền cài/code/deploy.
+
+Đã tích hợp M0–M5 vào `.agents/skills/kidea/references/product-design.md` và dẫn hướng từ SKILL.md; giữ nguyên public action, runtime/schema. Theo skill-creator, hướng dẫn phân biệt quyết định riêng pilot với phương pháp tái dùng, dùng reference thay làm dài entrypoint, và giữ ranh giới authoring/quyền/gate. Chưa mở kết quả R04 DONE trước kiểm chứng.
+
+Kiểm tự động hoàn tất bằng `tests/r04/evidence.mjs integration`: [run FCCoGx](design-r1/integration-FCCoGx.json), 2026-09-15 16:21:07–16:23:52 UTC. **265/265 core PASS, 15/15 R04 PASS, validator PASS, 777 link hợp lệ**. Bộ R03 **7/8**, giữ đúng lỗi inventory `15 !== 10` đã công khai khi trình AR-r1; không thay assertion hoặc gọi bộ cũ xanh. Điều kiện kiểm nguồn hiện hành do 15 test R04 bảo vệ, bao gồm đúng 10 nguồn + 5 thiết kế và toàn byte đã trình AR-r1. Không phát hiện input thay đổi trong run, toàn pilot nguyên byte.
+
+Vì runner lõi có đường output tương đối thuộc R02, harness chép nguyên byte nguồn vào một root mới bên trong `.test-output/r04/`, rồi chạy runner hiện hữu ở đó; không sửa assertion hay ghi vào output R02 của repo gốc. Mọi file sinh nằm dưới run R04, không dọn/xóa. [Toàn stdout core, byte/base64/hash](design-r1/integration-FCCoGx-core-stdout.json) giữ đủ 265 kết quả, không chỉ tail trong summary; raw stderr/summary/fixtures cũng còn tại run local. Node v24.21.0 đúng bản đã cấp; Python/PyYAML có sẵn, validator skill-creator kiểm cấu trúc chứ không chứng minh hành vi. Hash runtime/validator và nguồn, byte pilot/skill/prompt cùng raw kiểm tài liệu/legacy/validator nằm trong run JSON.
+
+Phiên độc lập theo [prompt](../../r04/prompt-review.md), [dispatch](design-r1/review-dispatch.json) bắt đầu cửa sổ 16:24:01 UTC, deadline 16:39:01 UTC; tối đa 1 phiên ×15 phút, chỉ đọc, fork không truyền kết luận tác giả. R04/core/validator đã qua trước dispatch; failure inventory R03 được giữ riêng như trên. Kết quả và trạng thái cuối được bổ sung khi có bằng chứng. Đây là giới hạn bằng chỉ dẫn/hashes, không sandbox OS.
+
+---
+
 ## Hiện hành — quản trị đã duyệt; kiến trúc chờ duyệt
 
 Human “Duyệt thiết kế quản trị R04” sau `ccaeb1d3b1a5e6ebd5fd09016b5ffd52ae72048c` chấp nhận **A1–A6/AD-r1**, SHA256 `0547ea80c04f4c961b18212281b722643301c8c0332832db80de181ca2692775`, khép bước 6. Đây là approval thiết kế gồm audit bền vững, không cấp quyền cài/chạy hay tự mở retry admin.

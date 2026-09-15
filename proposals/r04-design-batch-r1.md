@@ -4,6 +4,8 @@ Ngày 2026-09-15. **APPROVED D1–D6/P1–P3 và protocol:** Human “Duyệt g�
 
 ## 1. Chốt gì trong một lượt?
 
+Cập nhật thực thi: năm gate bản đầu đến K1–K7/AR-r1 đã được Human duyệt; M0–M5 đã tích hợp, kiểm lõi/tài liệu/validator đã chạy. D5 đã dùng đúng một reviewer và hai lượt recheck trong cùng cửa sổ; chưa cấp phiên mới. Findings đưa kiến trúc trở lại gate cho [C1–C5](../tests/evidence/r04/design-r1/correction-request.md); bản sửa còn đề xuất, không tự áp vào pilot. Các mục quyền/protocol bên dưới giữ nguyên bản được duyệt.
+
 R03 giúp Kidea viết rõ sản phẩm phải làm gì. R04 bổ sung cách thiết kế sản phẩm trước khi code. Workshop vẫn chỉ là bài mẫu kiểm chứng Kidea. Không xây workshop hoặc thêm hạ tầng trong gói này.
 
 | ID | Đề xuất cần chốt | Ví dụ / điều phải chấp nhận |
