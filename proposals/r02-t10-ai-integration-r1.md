@@ -1,5 +1,9 @@
 # T10 — bài thử AI tích hợp r1
 
+## Cập nhật phạm vi ngày 2026-09-15
+
+Human đã đồng ý thu gọn trước mắt thành kiểm thử chức năng đọc/ghi trên project giả ở D, không thiết lập sandbox, VM hoặc thay bảo mật Windows. Thực hiện qua phiên điều phối hiện tại và public CLI, theo `tests/r02-t10/functional-flow.mjs`. Đây là bài thử riêng, không phải sáu phiên AI độc lập của bản DRAFT dưới đây. Điều kiện launcher bên dưới chỉ còn áp dụng nếu mở lại bài thử AI riêng; không chặn bài thử chức năng đã được đồng ý. Giữ nguyên lịch sử và quota T07, không diễn giải kết quả script thành khả năng suy luận của AI qua hai phiên.
+
 Ngày 2026-09-15. **DRAFT — chưa cấp quota, chưa có manifest chạy được.** Human “Ok làm đi” sau [answer a8524fd](https://github.com/Kynderis/kidea/blob/a8524fd421a59651cd3c672ba7f91451ee9c2346/answer.md) cho chuẩn bị và xác minh launcher, không chạy AI. Gói này cụ thể hóa [thiết kế AI trước đó](r02-t10-core-trial-r1.md), không chuyển quota T07 0/3 hoặc quota status sang AI.
 
 ## Luồng và phạm vi chấm

@@ -1,0 +1,148 @@
+{
+  "kind": "FUNCTIONAL_PUBLIC_CLI_NOT_AI_ISOLATION",
+  "run": "D:\\Code\\kynderis\\kidea\\.test-output\\r02-t10\\functional-flow-3q67aY",
+  "result": "PASS",
+  "startedAt": "2026-09-15T09:59:18.617Z",
+  "finishedAt": "2026-09-15T09:59:39.802Z",
+  "node": "v24.21.0",
+  "nodeHash": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+  "cases": [
+    {
+      "name": "init creates draft, retains idea without approving MVP",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat init preserves every existing byte",
+      "result": "PASS"
+    },
+    {
+      "name": "project file cannot supply missing init permission",
+      "result": "PASS"
+    },
+    {
+      "name": "review CREATE",
+      "result": "PASS"
+    },
+    {
+      "name": "review SUBMIT",
+      "result": "PASS"
+    },
+    {
+      "name": "approval rejects missing Human without writes",
+      "result": "PASS"
+    },
+    {
+      "name": "approval rejects stale digest without writes",
+      "result": "PASS"
+    },
+    {
+      "name": "approval rejects wrong revision without writes",
+      "result": "PASS"
+    },
+    {
+      "name": "approval rejects missing metadata authority without writes",
+      "result": "PASS"
+    },
+    {
+      "name": "scripted feedback flow FEEDBACK",
+      "result": "PASS"
+    },
+    {
+      "name": "scripted feedback flow REVISE",
+      "result": "PASS"
+    },
+    {
+      "name": "scripted feedback flow SUBMIT",
+      "result": "PASS"
+    },
+    {
+      "name": "scripted feedback flow APPROVE",
+      "result": "PASS"
+    },
+    {
+      "name": "approval does not complete or advance work",
+      "result": "PASS"
+    },
+    {
+      "name": "save then fresh CLI process resumes actual handoff files",
+      "result": "PASS"
+    },
+    {
+      "name": "missing required file blocks without writes",
+      "result": "PASS"
+    },
+    {
+      "name": "changed reviewed source blocks without guessing approval",
+      "result": "PASS"
+    },
+    {
+      "name": "unknown pending marker stops without cleanup or replay",
+      "result": "PASS"
+    },
+    {
+      "name": "unknown deployment stays unknown and does not authorize execution",
+      "result": "PASS"
+    },
+    {
+      "name": "change explicitly unavailable without writes",
+      "result": "PASS"
+    },
+    {
+      "name": "visualize explicitly unavailable without writes",
+      "result": "PASS"
+    },
+    {
+      "name": "final status consistent and read-only",
+      "result": "PASS"
+    }
+  ],
+  "commands": 24,
+  "sourceBefore": {
+    "references/approve.md": "e00e813e5ebe8f9f2cab341ffa543c4771819e14f519fa0cb9162c555111d507",
+    "references/init.md": "c060fbe6e74f5fb0d719ab65e0dd744bd44b33cdb8acbe3155f440593cb54fe7",
+    "references/resume.md": "313a735fef9493d7125a2aea9cae9817e268de134da0e20195d53f4c088bb51d",
+    "scripts/approve.mjs": "da186e21ebf7de3ee138a3d441d0f62c0843b6a78369837f86d9ef4d5771f4f9",
+    "scripts/bootstrap-plan.mjs": "8084496445138a5a3b4fb34f5def011949d206d84d11a1d4b1a77267824ff911",
+    "scripts/diagnose-pending.mjs": "8371dc7b2ceb5081a36f27c65c2ba11c0e1f6be0a8fe6d69ca78eec235d8c851",
+    "scripts/git-versions.mjs": "e960421c88c0426f97b2a779607ae5198ffdbb5caaa1449c2dd94a656eddbd0e",
+    "scripts/init.mjs": "b875603ba3f399121e2e7c9fcf1bdb5a825d569b404d72c183b55903d34c1015",
+    "scripts/kidea.mjs": "f6076b65fd95e0c697729ab5f88f31d78cc0e5c527b712e3470fc1a6fe1d4114",
+    "scripts/pending-writes.mjs": "0f4f91036e9e940b19480c09cb6b2c8bdc47a917b5e7267fab6d298bcac75bcc",
+    "scripts/recorded-completion.mjs": "3ae0fc74fff1796f56e7ebdad092aec13de74408d2e4ba8e4c436430c3ff3054",
+    "scripts/resume.mjs": "51de5e449564272573a2b370c5bcec25b16a4ff1575d9be8e4c62c4472f7984d",
+    "scripts/review-validity.mjs": "705d60562b9751e1620fade778517eef114b38807ab47e9d29239f311a4a492e",
+    "scripts/schema.mjs": "f5018d76cce5edc50b38c4e009a877427109c7ad6a2912059348946897c60347",
+    "scripts/status.mjs": "5ccac5c47977f26ff4cf76aa493bddafe324649acf04a7376b0818408b94de13",
+    "scripts/write-internal.mjs": "f5cdd831e267c4349823ca1b17c1e90ca0918684641d8c64120756660ebf5e8c",
+    "SKILL.md": "24bc295a946f9424b8bd9a3f3a27aad06324bd47776cddc92742d07d61295e6f"
+  },
+  "sourceAfter": {
+    "references/approve.md": "e00e813e5ebe8f9f2cab341ffa543c4771819e14f519fa0cb9162c555111d507",
+    "references/init.md": "c060fbe6e74f5fb0d719ab65e0dd744bd44b33cdb8acbe3155f440593cb54fe7",
+    "references/resume.md": "313a735fef9493d7125a2aea9cae9817e268de134da0e20195d53f4c088bb51d",
+    "scripts/approve.mjs": "da186e21ebf7de3ee138a3d441d0f62c0843b6a78369837f86d9ef4d5771f4f9",
+    "scripts/bootstrap-plan.mjs": "8084496445138a5a3b4fb34f5def011949d206d84d11a1d4b1a77267824ff911",
+    "scripts/diagnose-pending.mjs": "8371dc7b2ceb5081a36f27c65c2ba11c0e1f6be0a8fe6d69ca78eec235d8c851",
+    "scripts/git-versions.mjs": "e960421c88c0426f97b2a779607ae5198ffdbb5caaa1449c2dd94a656eddbd0e",
+    "scripts/init.mjs": "b875603ba3f399121e2e7c9fcf1bdb5a825d569b404d72c183b55903d34c1015",
+    "scripts/kidea.mjs": "f6076b65fd95e0c697729ab5f88f31d78cc0e5c527b712e3470fc1a6fe1d4114",
+    "scripts/pending-writes.mjs": "0f4f91036e9e940b19480c09cb6b2c8bdc47a917b5e7267fab6d298bcac75bcc",
+    "scripts/recorded-completion.mjs": "3ae0fc74fff1796f56e7ebdad092aec13de74408d2e4ba8e4c436430c3ff3054",
+    "scripts/resume.mjs": "51de5e449564272573a2b370c5bcec25b16a4ff1575d9be8e4c62c4472f7984d",
+    "scripts/review-validity.mjs": "705d60562b9751e1620fade778517eef114b38807ab47e9d29239f311a4a492e",
+    "scripts/schema.mjs": "f5018d76cce5edc50b38c4e009a877427109c7ad6a2912059348946897c60347",
+    "scripts/status.mjs": "5ccac5c47977f26ff4cf76aa493bddafe324649acf04a7376b0818408b94de13",
+    "scripts/write-internal.mjs": "f5cdd831e267c4349823ca1b17c1e90ca0918684641d8c64120756660ebf5e8c",
+    "SKILL.md": "24bc295a946f9424b8bd9a3f3a27aad06324bd47776cddc92742d07d61295e6f"
+  },
+  "rawReportSha256": "76d04fa146e267766c702bd21fe6798a6f195ed32e7d34da46ec155d8bc90a98",
+  "runnerSha256": "1d9c99382cac2a97aa6e5aeefde0dcb58364b47a1a5c8af7e99ecc4052648ef6",
+  "priorAttempt": {
+    "result": "FAIL",
+    "passed": 14,
+    "commands": 15,
+    "root": ".test-output/r02-t10/functional-flow-KtiirQ",
+    "rawReportSha256": "c03f934d1e574abc33c0d961cd2c58a8f5caf6f5593dca11e0fdf78edfe8f5d0",
+    "cause": "Test expected CONTEXT_READY although init retains W-001 blocker. Corrected test to WAITING and assert blocker preservation; runtime and failed evidence unchanged."
+  }
+}
