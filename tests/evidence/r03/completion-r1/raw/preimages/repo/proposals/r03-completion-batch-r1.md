@@ -2,8 +2,6 @@
 
 Ngày 2026-09-15. `R03-COMPLETE-BATCH-r1`: **IN_REVIEW**, chưa được cấp quyền thực hiện phần mới. Mục đích: gom toàn bộ lựa chọn nghiệp vụ còn nhận diện được, quyền soạn/tích hợp và kiểm chứng để Human quyết một lần; không chia lượt theo số lượng câu hỏi.
 
-Cập nhật ngày 2026-09-15: Human **“Duyệt toàn bộ gói R03”** xác nhận toàn B1–B8, C1–C3, D và E của bản trình tại `a52808792a8905601ec1baa32506db52a52d86cb` (gói được soạn tại `c4092c8663375050199b868f72191ec7abbe57f0`). Quyền thực hiện đã APPROVED; câu chữ đề xuất phía dưới giữ lịch sử. Approval này không duyệt trước đầu ra cuối E5, không mở R04. Preimage được giữ trước sửa tại evidence completion-r1.
-
 ## A. Giữ nguyên phần đã duyệt
 
 - [Phương pháp Feature/cụm](r03-feature-method-r1.md), [mẫu rule/flow/AC/test](r03-business-template-r1.md), [ba nhóm trách nhiệm và cụm đầu](r03-pilot-boundary-review-r1.md).

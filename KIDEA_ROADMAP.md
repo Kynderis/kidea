@@ -10,6 +10,10 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R0
 
 <a id="review-current"></a>
 
+**Đã thực hiện xong gói R03; kết quả E5 đang IN_REVIEW.** [Báo cáo duy nhất cần chốt](tests/evidence/r03/completion-r1.md): 10 tài liệu pilot, 53 nhóm ca đặc tả, 257 liên kết hợp lệ; lõi 265/265 và kiểm tài liệu 5/5 PASS. Đúng hai phiên A→B hoàn tất trong hạn; rubric 7 PASS/1 PARTIAL vì thiếu traceability và hai ca retry. Hồ sơ chính đã bổ sung, chưa AI kiểm lại; giữ nguyên kết quả và hết quota, không mở phiên thứ ba. Skill tích hợp hướng dẫn, runtime/schema không đổi. Human quyết định chấp nhận hồ sơ/giới hạn này để khép R03 và mở R04 hoặc cần gói kiểm bổ sung; không tự bỏ gate. Các đoạn sau giữ lịch sử.
+
+**R03-COMPLETE-BATCH-r1 đã được Human “Duyệt toàn bộ gói R03”.** Approval tại baseline a528087 bao phủ B1–B8/C1–C3/D/E. Đang hoàn thành 10 tài liệu pilot, tích hợp hướng dẫn nghiệp vụ và kiểm chứng đúng hai phiên A→B ×15 phút; preimages và mọi kết quả giữ trong evidence completion-r1. Chỉ còn gate đầu ra E5 sau khi có kết quả cụ thể; chưa khép R03/mở R04, không runtime mới/code pilot. Các đoạn bên dưới là lịch sử trước xác nhận này.
+
 **Ba rule đăng ký D1–D3 đã được duyệt; toàn phần còn lại R03 được gom thành một gói.** Human “duyệt tất cả” sau answer 2659512, rồi yêu cầu áp dụng duyệt gói đầy đủ cho mọi phase sau. [R03-COMPLETE-BATCH-r1](proposals/r03-completion-batch-r1.md) đang IN_REVIEW: B1–B8 nghiệp vụ; C1 hồ sơ pilot hữu hạn, C2 tích hợp hướng dẫn/kiểm lõi, C3 hai phiên mới ×15 phút; D rubric; E trình tự/gate kết quả. Chưa thực hiện quyền mới hoặc mở AI. Không hỏi lại phần đã duyệt hoặc xin từng file sau khi gói được chốt.
 
 **Ba nhóm và cụm đăng ký/hủy đã được duyệt.** Human xác nhận sau answer d539cc9; INDEX pilot đã dẫn đúng [căn cứ approval](proposals/r03-pilot-boundary-review-r1.md), giữ snapshot phiên 2 làm preimage. [Ba quyết định hành vi D1–D3](proposals/r03-registration-decisions-r1.md) đang IN_REVIEW: gửi lại yêu cầu, thứ tự từ chối, đăng ký/sửa sức chứa đồng thời. Chưa áp dụng rule đề xuất vào pilot hoặc cấp file mới/AI/code/deploy.
@@ -330,7 +334,9 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R03-T04-S01 | DONE | [A] — mẫu đề xuất | AC/test có input/state/expected và giới hạn bao phủ; không nhận test đã chạy |
 | R03-T03/T04-S02 | DONE | [H] — D1 APPROVED sau answer c91fba7 | Human duyệt cách viết và kiểm nghiệp vụ; chưa duyệt coverage/chi tiết pilot hoặc AI |
 | R03-T05-S01 | DONE | [H/A] — protocol lượt đầu đã duyệt và dùng hết | [Hai phiên ×10 phút](proposals/r03-pilot-permission-r1.md), đủ 2/2; loạt rule/flow/test sau cần gói riêng |
-| R03-T05-S02 | IN_PROGRESS | [A/H] — ranh giới/cụm và rule D1–D3 APPROVED | [Gói toàn phần còn lại đang review](proposals/r03-completion-batch-r1.md); chưa đặc tả/kiểm toàn nghiệp vụ hoặc tích hợp skill |
+| R03-T05-S02 | IN_REVIEW | [A/H] — phần soạn/thử đã thực hiện, chờ E5 | [Kết quả](tests/evidence/r03/completion-r1.md): 10 docs, 53 nhóm ca; AI 7 PASS/1 PARTIAL, hồ sơ bổ sung chưa AI kiểm lại |
+| R03-T06-S01 | DONE | [A] — tích hợp hướng dẫn và hồi quy trong C2 | SKILL/business reference; runtime giữ nguyên; 265/265 core, 5/5 document checks; không là nghiệm thu toàn phương pháp |
+| R03-T06-S02 | IN_REVIEW | [H] — gate E5 kết quả cụ thể | Cùng một gói với T05-S02; quyết định đầu ra/giới hạn và việc khép R03/mở R04; không xin lại từng file |
 
 R01/R02 đã APPROVED đúng phạm vi. Quota launcher T07 cũ vẫn 0/3, AI r2 hết sáu phiên, không chuyển quota. R03 mở phương pháp, R04–R10 chưa mở; chưa có quyền tạo/ghi hồ sơ pilot. Bằng chứng cũ giữ đúng phiên bản.
 
