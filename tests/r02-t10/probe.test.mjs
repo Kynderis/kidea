@@ -53,14 +53,14 @@ test('unknown controller action cannot initialize or reset the run directory',()
   assert.equal(r.status,1);assert.match(r.stderr,/no retry\/reset\/recovery/);assert.equal(existsSync(runRoot),existed);
 });
 
-test('D2 baseline guard checks exact fixture bytes, stats and expected output',()=>{
+test('D4 baseline guard checks exact fixture bytes, stats and expected output',()=>{
   const built=buildFixture(workloads[0]);
   const baseline={stats:structuredClone(built.stats),inventory:{files:Object.fromEntries([...built.files].map(([p,b])=>[p,{sha256:hash(b),bytes:b.length}]))},expectedHash:hash(JSON.stringify(built.expected,null,2)+'\n')};
-  assertBaselineFixture(built,baseline);assert.throws(()=>assertBaselineFixture(built,undefined),/Missing D1 workload/);
+  assertBaselineFixture(built,baseline);assert.throws(()=>assertBaselineFixture(built,undefined),/Missing D2 workload/);
   for(const mutate of [b=>b.stats.tasks++,b=>delete b.inventory.files['docs/yeu-cau/san-0001.md'],b=>b.inventory.files['docs/yeu-cau/san-0001.md'].sha256='0'.repeat(64),b=>b.expectedHash='0'.repeat(64)]){
     const bad=structuredClone(baseline);mutate(bad);assert.throws(()=>assertBaselineFixture(built,bad));
   }
 });
-test('D2 controller is fixed to a new root, never the retained D1 root',()=>{
-  assert.match(runRoot,/[\\/]probe-r2$/);assert.doesNotMatch(runRoot,/[\\/]probe-r1$/);
+test('D4 controller is fixed to a new root, never any retained run root',()=>{
+  assert.match(runRoot,/[\\/]probe-r3$/);assert.doesNotMatch(runRoot,/[\\/](probe-r1|probe-r2|profile-r1)$/);
 });
