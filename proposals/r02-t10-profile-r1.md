@@ -1,6 +1,6 @@
 # R02-T10 D3 — profiling bộ vừa
 
-Ngày 2026-09-15. **IN_REVIEW — chưa cấp lượt chạy**. Human **“Ok làm đi”** sau [answer 01e3fb1](https://github.com/Kynderis/kidea/blob/01e3fb1d2902f91acf4db115d54f0a08bc193bfd/answer.md) cho tiếp tục hướng profiling. Bản trả lời trước chưa trình số lượt/quyền ghi profile; gói này trình phần cụ thể đó theo chính sách thử hữu hạn. Không lấy lại quota D1/D2 đã hết.
+Ngày 2026-09-15. **APPROVED**: Human **“Ok duyệt”** sau [answer 8a2aea3](https://github.com/Kynderis/kidea/blob/8a2aea3159eb9137646ae42832e7d8fc6cb02d2a/answer.md) duyệt đúng D3 dưới đây. Phản hồi “Ok làm đi” sau 01e3fb1 trước đó chỉ mở chuẩn bị gói; nay được chuẩn bị và chạy một lượt theo phạm vi đã trình, không xin lại từng hash. Không lấy lại quota D1/D2 đã hết.
 
 ## Kết quả rà chỉ đọc
 
@@ -8,7 +8,7 @@ Ngày 2026-09-15. **IN_REVIEW — chưa cấp lượt chạy**. Human **“Ok l�
 - Đọc mã `fs` tích hợp trong đúng Node riêng v24.21.0 thấy `realpathSync()` tự duyệt các đoạn đường dẫn và gọi `binding.lstat`, kể cả kiểm root trên Windows. Vì vậy có việc duyệt lồng nhau trong code; **chưa biết tỷ trọng hoặc xác nhận đây là nguyên nhân chi phối**. Không thay sang `.native`, thêm cache I/O hoặc sửa runtime trong lượt này.
 - `node --help` của runtime đã xác nhận có `--cpu-prof`, `--cpu-prof-dir`, `--cpu-prof-name`, `--cpu-prof-interval` (mặc định 1000 microsecond). Chưa chạy profiler hoặc `status` mới; các kiểm tra trên chỉ đọc code/help, không phải số đo hiệu năng.
 
-## Quyết định xin duyệt — D3
+## Quyết định đã duyệt — D3
 
 **Cho chuẩn bị harness/manifest và chạy đúng 1 lượt profiling trên QF-M-R02 (1.000 task), watchdog 30 giây, không retry/bù.** Bộ vừa là phần đang mất khoảng 9,76 giây; không cần lặp cả bộ nhỏ để bắt đầu xác định vùng tốn thời gian.
 
