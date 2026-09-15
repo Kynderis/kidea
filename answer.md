@@ -1,6 +1,7 @@
-Đã xác định điểm nóng trên bộ 1.000 task: **kiểm đường dẫn/metadata**.
+Đã chuyển ba lời gọi sang `realpathSync.native` và push lên `master`.
 
-- `realpathSync` chiếm **87,6% thời gian lấy mẫu**, chủ yếu nằm trong `lstat`; đọc nội dung file chỉ khoảng 5,4%.
-- Một lượt profiling hoàn tất, output đúng; **258/258 kiểm thử đạt**, bằng chứng D1/D2 nguyên vẹn. [Báo cáo](D:/Code/kynderis/kidea/tests/evidence/r02-t10-profile-r1.md).
+- Giữ nguyên các kiểm tra an toàn và đọc lại nguồn.
+- **264/264 kiểm thử đạt**, gồm sáu ca mới về đường dẫn/junction và nguồn thay đổi. [Báo cáo](D:/Code/kynderis/kidea/tests/evidence/r02-t10-native-resolver.md).
+- Chưa đo lại nên chưa kết luận mức tăng tốc.
 
-Khuyến nghị: **thử `realpathSync.native`**, giữ nguyên các kiểm tra an toàn rồi kiểm chứng lại. Chưa sửa runtime hoặc chạy thêm; tỷ trọng profile không phải cam kết mức tăng tốc.
+Bạn duyệt **22 lượt đo lại trên cùng hai bộ dữ liệu, tối đa 30 giây/lượt, không chạy bù**, lưu riêng và giữ nguyên bằng chứng cũ nhé?

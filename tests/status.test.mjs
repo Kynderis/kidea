@@ -11,8 +11,8 @@ import { buildBase, buildCases, edit, paths, digest, dataAt, envelope } from './
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const output=path.join(repo,'.test-output','r02-t05');mkdirSync(output,{recursive:true});
-function materialize(world) {
-  const root=mkdtempSync(path.join(output,'case-'));
+function materialize(world,prefix='case-') {
+  const root=mkdtempSync(path.join(output,prefix));
   for(const [p,value] of Object.entries(world.files)){const dest=path.join(root,p);mkdirSync(path.dirname(dest),{recursive:true});writeFileSync(dest,value);}
   return root;
 }
@@ -25,6 +25,46 @@ test('baseline returns actual pending work and unknown backend, not authority',(
   assert.equal(result.data.reviews[0].recordedStatus,'IN_REVIEW');
   assert.equal(result.data.reviews[0].verification.authority,'NOT_VERIFIED');
   assert.equal(result.data.deploymentObservations[0].observations[0].components[1].result,'UNKNOWN');
+});
+
+test('native resolver supports Unicode paths, spaces and normalized cwd spelling',()=>{
+  const {world}=buildBase(),document='docs/đường dẫn/nguồn.md';world.files[document]=world.files['docs/plan.md'];
+  edit(world,paths.work,d=>{d.items[1].scopeRef.path=document;});
+  const root=materialize(world,'Tiếng Việt-'),before=fingerprint(root);
+  const result=readStatus(path.join(root,'.').toLowerCase());
+  assert.equal(result.readState,'OK',JSON.stringify(result.diagnostics));assert.deepEqual(fingerprint(root),before);
+});
+test('native resolver accepts an internal junction without changing logical source paths',()=>{
+  const {world}=buildBase();edit(world,paths.work,d=>{d.items[1].scopeRef.path='linked/plan.md';});
+  const root=materialize(world);symlinkSync(path.join(root,'docs'),path.join(root,'linked'),'junction');
+  const before=fingerprint(root),result=readStatus(root);
+  assert.equal(result.readState,'OK',JSON.stringify(result.diagnostics));assert.equal(result.data.items[1].scopeRef.path,'linked/plan.md');assert.deepEqual(fingerprint(root),before);
+});
+for(const outside of [false,true])test(`native resolver rechecks a retargeted junction with identical bytes: outside=${outside}`,()=>{
+  const {world}=buildBase();edit(world,paths.work,d=>{d.items[1].scopeRef.path='linked/plan.md';});
+  const root=materialize(world),link=path.join(root,'linked'),retained=path.join(root,'retained-link');
+  const target=outside?path.join(materialize(buildBase().world),'docs'):path.join(root,'alternate');
+  if(!outside){mkdirSync(target);writeFileSync(path.join(target,'plan.md'),world.files['docs/plan.md']);}
+  symlinkSync(path.join(root,'docs'),link,'junction');
+  const result=readStatus(root,{beforeRecheck:()=>{
+    assert.equal(path.dirname(path.resolve(link)),root);assert.equal(path.dirname(path.resolve(retained)),root);
+    renameSync(link,retained);symlinkSync(target,link,'junction');
+  }});
+  assert.equal(result.readState,outside?'INVALID':'INCOMPLETE');assert.equal(result.data,null);
+  assert.ok(result.diagnostics.some(d=>d.code===(outside?'UNSAFE_PATH':'SOURCE_CHANGED')));
+});
+test('native resolver still rejects a directory used as a document',()=>{
+  const {world}=buildBase();edit(world,paths.work,d=>{d.items[1].scopeRef={path:'docs',anchor:null};});
+  const {result}=check(world,'INVALID');assert.ok(result.diagnostics.some(d=>d.code==='NOT_FILE'));
+});
+test('native resolver reports a source removed before final recheck without restoring it',()=>{
+  const root=materialize(buildBase().world),source=path.join(root,'docs/plan.md'),retained=path.join(root,'docs/retained-plan.md');
+  const result=readStatus(root,{beforeRecheck:()=>{
+    assert.equal(path.dirname(path.resolve(source)),path.join(root,'docs'));assert.equal(path.dirname(path.resolve(retained)),path.join(root,'docs'));
+    renameSync(source,retained);
+  }});
+  assert.equal(result.readState,'INCOMPLETE');assert.equal(result.data,null);assert.ok(result.diagnostics.some(d=>d.code==='MISSING_FILE'));
+  assert.equal(readFileSync(retained,'utf8'),buildBase().world.files['docs/plan.md']);
 });
 
 test('anchor index preserves exact counts, case, duplicates and prototype-like names',()=>{

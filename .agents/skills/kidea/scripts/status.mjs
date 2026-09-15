@@ -64,6 +64,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     out.diagnostics.push({code,file,line:pre===undefined?null:pre.split('\n').length,column:pre===undefined?null:offset-pre.lastIndexOf('\n'),fieldOrId:field,message:messages[code]??'Hồ sơ không đáp ứng hợp đồng đã duyệt.',needed:'Đối chiếu nguồn và xử lý đúng phạm vi; lệnh status không tự sửa hoặc cấp quyền.'});
   }
   function absolute(p) {
+    // Native resolution replaces only Node's JS walk, not any live path/byte recheck.
     if(!validPath(p)) {issue('UNSAFE_PATH',p);throw new Stop();}
     const target=path.resolve(root,...p.split('/'));
     if(boundOnly)return target;
@@ -71,7 +72,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     let part=root;
     for(const segment of p.split('/')) {
       part=path.join(part,segment);
-      try {if(!inside(root,realpathSync(part))) {issue('UNSAFE_PATH',p);throw new Stop();}}
+      try {if(!inside(root,realpathSync.native(part))) {issue('UNSAFE_PATH',p);throw new Stop();}}
       catch(e) {if(e instanceof Stop) throw e;if(e.code==='ENOENT') break;issue('READ_FAILED',p,null,'INCOMPLETE');throw new Stop();}
     }
     return target;
@@ -98,7 +99,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     }
     if(boundOnly){issue('MISSING_BOUND_INPUT',p,null,'INCOMPLETE');throw new Stop();}
     try {
-      const resolved=realpathSync(target);
+      const resolved=realpathSync.native(target);
       if(!inside(root,resolved)) {issue('UNSAFE_PATH',p);throw new Stop();}
       if(!statSync(resolved).isFile()) {issue('NOT_FILE',p);throw new Stop();}
       const data=readFileSync(resolved);
@@ -277,7 +278,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     }
   }
   try {
-    root=boundOnly?path.resolve(cwd):realpathSync(cwd);
+    root=boundOnly?path.resolve(cwd):realpathSync.native(cwd);
     pendingBefore=pendingState();
     const index=load('.kidea/INDEX.md','index');out.projectId=index.data.projectId;
     const idx=index.data;

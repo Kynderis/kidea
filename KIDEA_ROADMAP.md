@@ -10,9 +10,9 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
-**D2 đã hoàn tất 22/22 mẫu đúng, không timeout; chưa thấy cải thiện tốc độ tổng thể.** Trung vị sau tối ưu **1,57 giây / 9,76 giây** (100 / 1.000 task), so với D1 **1,57 / 9,61 giây**; [đủ số đo, bằng chứng và giới hạn](tests/evidence/r02-t10-probe-r2.md). Hồi quy 252/252 đạt; 54 file nguồn và toàn bộ evidence D1 giữ nguyên. [D2](proposals/r02-t10-probe-r2.md) hết lượt, chưa profiling hoặc thêm tối ưu; đề xuất phân rã chi phí trước bước tiếp. Không nâng ngân sách nháp 2/5 giây. Phần AI còn DRAFT, T07 cũ giữ 0/3 và sự cố launcher chưa khép; không mở R03/pilot.
+**Đã đổi ba lời gọi sang `realpathSync.native` theo Human “Ok làm đi” sau ee0551c; 264/264 hồi quy đạt, chưa đo lại tốc độ.** [Phạm vi, kiểm chứng và D4 đề xuất 22 lượt đo lại](tests/evidence/r02-t10-native-resolver.md). Giữ các lượt kiểm path/byte và final recheck; D4 chưa duyệt. Phần AI còn DRAFT, T07 cũ giữ 0/3 và sự cố launcher chưa khép; không mở R03/pilot hoặc nâng ngân sách nháp 2/5 giây.
 
-**D3 đã hoàn tất 1/1 lượt** theo Human “Ok duyệt” sau 8a2aea3: [profile bộ vừa](tests/evidence/r02-t10-profile-r1.md) tập trung **87,6% thời gian lấy mẫu tại `realpathSync`**, chủ yếu `lstat` tra metadata. Output đúng, 258/258 hồi quy đạt; nguồn/host và 1.026 file evidence D1/D2 giữ nguyên. Đề xuất thử resolver native nhưng chưa sửa runtime hoặc cấp benchmark mới; không dùng tỷ trọng profile như cam kết tăng tốc. [Quyền D3](proposals/r02-t10-profile-r1.md) đã hết lượt.
+**D3 đã hoàn tất 1/1 lượt** trước bản native: [profile](tests/evidence/r02-t10-profile-r1.md) tập trung 87,6% thời gian lấy mẫu tại `realpathSync`, chủ yếu `lstat`. Đây là căn cứ chọn vùng sửa, không là cam kết tăng tốc. Baseline D2 trước native có trung vị 1,57/9,76 giây, so với D1 1,57/9,61 giây; [báo cáo D2](tests/evidence/r02-t10-probe-r2.md). D1/D2/D3 đều đã hết lượt, không chạy lại hoặc ghi đè evidence cũ.
 
 <a id="r02-t10-review"></a>
 
