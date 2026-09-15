@@ -2,7 +2,7 @@
 
 Ngày 2026-09-15. Kế hoạch đã soạn; chưa phải phương pháp hoặc thiết kế sản phẩm được duyệt.
 
-Cập nhật: UX1–UX6 đã được Human “Duyệt trải nghiệm và SEO R04” sau `6790a9e`; gate bước 4/SEO DONE. Đã soạn operations OP-r1, O1–O6 IN_REVIEW cho bước 5; chưa mở admin chi tiết hoặc phiên AI. [Bằng chứng và giới hạn](../tests/evidence/r04/design-r1.md).
+Cập nhật: O1–O6 đã được Human “Duyệt thiết kế vận hành R04” sau `86c051c`; gate bước 5 DONE. Đã soạn admin AD-r1, A1–A6 IN_REVIEW cho bước 6; chưa mở kiến trúc hoặc phiên AI. [Bằng chứng và giới hạn](../tests/evidence/r04/design-r1.md).
 
 ## Căn cứ và kết quả mở phase
 
@@ -34,9 +34,9 @@ R03 hướng dẫn viết rõ sản phẩm phải làm gì. R04 hướng dẫn b
 | R04-T02-S01 | Soạn/diễn tập UX và SEO theo phương pháp được duyệt; rà loading/rỗng/lỗi/quyền và nguồn nghiệp vụ | DONE [A], experience UX-r1, 15 nhóm ca NOT_RUN và kiểm tài liệu; chưa browser/device test |
 | R04-T02-S02 | Review đầu ra bước 4 và SEO đúng bản; bước 3 đã khép ở T01-S05 | DONE [H], UX1–UX6 APPROVED sau 6790a9e; không phải giao diện đã chạy |
 | R04-T03-S01 | Soạn/diễn tập tín hiệu, độ tươi, ngưỡng, người nhận và đường cảnh báo độc lập phiên AI; rà mất telemetry | DONE [A], operations OP-r1; 15 nhóm ca NOT_RUN và kiểm tài liệu, chưa hệ thống giám sát |
-| R04-T03-S02 | Duyệt đầu ra bước 5: O1–O6, đúng OP-r1 | IN_REVIEW [H], gồm vai Human trong phiên thử/kênh dự phòng/ngưỡng; không cấp cài/chạy |
-| R04-T04-S01 | Soạn/diễn tập admin truy nguồn rule/quyền, xác nhận/audit/lỗi; rà không thêm rule | TODO [A], sau đầu vào UX/nghiệp vụ đủ rõ và quyền ghi tương ứng |
-| R04-T04-S02 | Review đầu ra bước 6; bước 5 có gate riêng T03-S02 | TODO [H], sau đầu ra admin cụ thể; không tự suy PASS là approval |
+| R04-T03-S02 | Duyệt đầu ra bước 5: O1–O6, đúng OP-r1 | DONE [H], Human “Duyệt thiết kế vận hành R04” sau 86c051c; không cấp cài/chạy |
+| R04-T04-S01 | Soạn/diễn tập admin truy nguồn rule/quyền, xác nhận/audit/lỗi; rà không thêm rule | DONE [A], admin AD-r1, 15 nhóm ca NOT_RUN và kiểm tài liệu; không ứng dụng đã chạy |
+| R04-T04-S02 | Review đầu ra bước 6; bước 5 có gate riêng T03-S02 | IN_REVIEW [H], A1–A6/AD-r1 gồm yêu cầu bảo toàn audit; hợp đồng retry admin/đồng thời phải chốt tại kiến trúc |
 | R04-T05-S01 | Soạn/diễn tập kiến trúc và hợp đồng: owner/API/event/cache/lỗi/deploy/recovery/tương thích/quyền; đối chiếu thiết kế đã duyệt | TODO [A], sau các gate đầu vào gồm SEO, không cài/chạy dịch vụ |
 | R04-T05-S02 | Review đầu ra bước 7 đúng bản, nêu phần cần đo sau | TODO [H], không dùng approval phương pháp thay thiết kế cụ thể |
 | R04-T06-S01 | Tích hợp hướng dẫn đã duyệt; kiểm tra tài liệu và hồi quy liên quan; thử độc lập chỉ theo protocol được cấp | TODO [A], đọc skill-creator khi sửa skill; 1 phiên ×15 phút đã cấp ở D5, chưa dùng/chưa đủ gate để chạy |

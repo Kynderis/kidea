@@ -24,8 +24,8 @@ function missingDesignBacklinks(all){
     }
   }return missing;
 }
-test('operations stage retains ten R03 sources and exactly three permitted designs',()=>{
-  assert.deepEqual(Object.keys(docs).sort(),[...baselineFiles,'design/quality.md','design/experience.md','design/operations.md'].sort());
+test('admin stage retains ten R03 sources and exactly four permitted designs',()=>{
+  assert.deepEqual(Object.keys(docs).sort(),[...baselineFiles,'design/quality.md','design/experience.md','design/operations.md','design/admin.md'].sort());
 });
 test('all live pilot links resolve to unique exact anchors',()=>assert.deepEqual(checkDocuments(docs).errors,[]));
 test('R03 source text is unchanged except line endings and appended references',()=>{
@@ -35,7 +35,7 @@ test('R03 source text is unchanged except line endings and appended references',
     // apply_patch may normalize line endings: verify unchanged logical source, not byte identity of edited files.
     const oldText=b.toString('utf8').replaceAll('\r\n','\n').trimEnd(),now=current.toString('utf8').replaceAll('\r\n','\n').trimEnd();
     assert.ok(now===oldText||now.startsWith(oldText+'\n\n'),file+' source changed');
-    if(now!==oldText){const extra=now.slice(oldText.length);assert.match(extra,/Nơi dùng trong thiết kế (chất lượng|trải nghiệm|vận hành)/);assert.ok(!extra.includes('## R-'));}
+    if(now!==oldText){const extra=now.slice(oldText.length);assert.match(extra,/Nơi dùng trong thiết kế (chất lượng|trải nghiệm|vận hành|quản trị)/);assert.ok(!extra.includes('## R-'));}
   }
 });
 test('existing R03 shared reverse references remain valid',()=>assert.deepEqual(missingSharedBacklinks(docs),[]));
@@ -68,4 +68,10 @@ test('accepted experience is unchanged before appended operations references',()
   const file=pre.files['docs/design/experience.md'];assert.equal(file.sha256,'62f24ffdd808c5e1a3f12f71fc790084d0a0b303870949307cef0f8337a8c9de');
   const old=Buffer.from(file.base64,'base64').toString('utf8').replaceAll('\r\n','\n').trimEnd();
   assert.ok(docs['design/experience.md'].replaceAll('\r\n','\n').startsWith(old+'\n\n<a id="design-relations"></a>'));
+});
+test('accepted operations is unchanged before appended admin references',()=>{
+  const pre=JSON.parse(fs.readFileSync(path.join(repo,'tests/evidence/r04/design-r1/admin-pre.json'),'utf8'));
+  const file=pre.files['docs/design/operations.md'];assert.equal(file.sha256,'6414b6ad4680f362ef65c223d7f8a51ffa7883346bb77e2e3a3ad187cdc47b2e');
+  const old=Buffer.from(file.base64,'base64').toString('utf8').replaceAll('\r\n','\n').trimEnd();
+  assert.ok(docs['design/operations.md'].replaceAll('\r\n','\n').startsWith(old+'\n\n<a id="design-relations"></a>'));
 });

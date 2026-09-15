@@ -24,11 +24,12 @@ export function inventory(root){
   }}walk(root);return files;
 }
 function snapshot(stage){
-  if(!['quality-pre','quality-post','experience-pre','experience-post','operations-pre','operations-post'].includes(stage))throw Error('Unsupported stage');
+  if(!['quality-pre','quality-post','experience-pre','experience-post','operations-pre','operations-post','admin-pre','admin-post'].includes(stage))throw Error('Unsupported stage');
   const files=inventory(pilot),expected=baselineFiles.map(f=>'docs/'+f);
   if(stage!=='quality-pre')expected.push('docs/design/quality.md');
-  if(stage==='experience-post'||stage.startsWith('operations-'))expected.push('docs/design/experience.md');
-  if(stage==='operations-post')expected.push('docs/design/operations.md');
+  if(stage==='experience-post'||stage.startsWith('operations-')||stage.startsWith('admin-'))expected.push('docs/design/experience.md');
+  if(stage==='operations-post'||stage.startsWith('admin-'))expected.push('docs/design/operations.md');
+  if(stage==='admin-post')expected.push('docs/design/admin.md');
   if(JSON.stringify(Object.keys(files).sort())!==JSON.stringify(expected.sort()))throw Error('Unexpected pilot inventory');
   fs.mkdirSync(evidenceRoot,{recursive:true});
   const output={stage,observedAt:new Date().toISOString(),pilot,files};
@@ -51,8 +52,8 @@ function check(prefix='quality'){
   console.log(JSON.stringify({runs:runs.map(({file,exitCode})=>({file,exitCode})),links:result.links}));
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
-  if(['quality-check','experience-check','operations-check'].includes(process.argv[2]))check(process.argv[2].split('-')[0]);
-  else if(['quality-export','experience-export','operations-export'].includes(process.argv[2])){
+  if(['quality-check','experience-check','operations-check','admin-check'].includes(process.argv[2]))check(process.argv[2].split('-')[0]);
+  else if(['quality-export','experience-export','operations-export','admin-export'].includes(process.argv[2])){
     const prefix=process.argv[2].split('-')[0];
     const pre=JSON.parse(fs.readFileSync(path.join(evidenceRoot,prefix+'-pre.json'),'utf8'));
     const post=JSON.parse(fs.readFileSync(path.join(evidenceRoot,prefix+'-post.json'),'utf8'));

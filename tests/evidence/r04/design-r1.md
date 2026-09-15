@@ -1,5 +1,26 @@
 # R04 — bằng chứng triển khai gói thiết kế
 
+## Hiện hành — vận hành đã duyệt; quản trị chờ duyệt
+
+Human “Duyệt thiết kế vận hành R04” sau `86c051ca7968980a25c502e635c5808c8d1eda93` chấp nhận **O1–O6/OP-r1**, khép bước 5. Vai Human chỉ trong phiên thử được xác nhận; kênh dự phòng/ngưỡng là yêu cầu thiết kế, chưa quyền chạy job hoặc cam kết trực nền.
+
+Đã soạn `D:/Code/kynderis/kidea-workshop-pilot/docs/design/admin.md`; [snapshot AD-r1](design-r1/admin-r1.md), SHA256 `0547ea80c04f4c961b18212281b722643301c8c0332832db80de181ca2692775`. **A1–A6 IN_REVIEW** cho bước 6, chưa mở kiến trúc. Nội dung: một nhóm trang admin, tạo nháp/sửa/state tách ý định, xác nhận nhạy cảm, unknown/đồng thời và dấu thao tác an toàn. Không thêm xóa/hủy hộ/điều khiển vận hành.
+
+### Bằng chứng chặng quản trị
+
+- [Preimage 13 file](design-r1/admin-pre.json), [postimage 14 file](design-r1/admin-post.json), [diff](design-r1/admin-diff.json). Thêm đúng admin.md; append reference vào 4 nguồn R03 và 3 hồ sơ Q/UX/OP, giữ nội dung trước đó. Kiểm root/ancestor không link/reparse bất ngờ; không xóa/restore hoặc thêm code tại pilot.
+- [Raw check](design-r1/admin-check.json): **12/12 test R04 PASS**, **659 liên kết nội bộ hợp lệ**. Kiểm danh sách 10 nguồn + đúng 4 file thiết kế, nguồn đã duyệt giữ nguyên trước backlink, liên kết hai chiều đúng rule và ca âm. Bộ R03 lịch sử vẫn **7/8**, lỗi tổng file `14 !== 10` giữ nguyên; không dùng nó nhận toàn cây R04 đạt hoặc sửa ngoài allowlist.
+- Review tác giả: đối chiếu W-DATA/ACCESS/STATE/EDIT, R-INV/SERIAL, V-PUBLISH và AC-A1–A5. Không biến hộp xác nhận thành khóa dữ liệu/ưu tiên admin. No-op có thể có audit attempt nhưng không event thay đổi nghiệp vụ. Tạm dừng workshop khác dừng workload/server/alert. Admin chỉ thấy N tổng hợp, không danh tính tham gia.
+- **A5 là lựa chọn mới cần chốt:** mutation thực phải giữ chắc dấu truy vết hoặc nghĩa vụ phục hồi audit cùng kết quả trước khi báo thành công cuối; lỗi lưu chưa rõ không tự thành thất bại. Không giả cơ chế đã tồn tại. Audit không là payload đầy đủ hoặc API/trang đọc log mới; retention trong vòng đời lab và giới hạn Q5.
+- **Ranh giới retry admin còn phải giải quyết ở kiến trúc:** R-RETRY R03 chỉ thuộc đăng ký/hủy. A4 không tự mở retry admin hoặc dùng trùng tên/state hiện tại làm bằng chứng ý định trước đã thành công. Correlation/đối chiếu/đồng thời/API cần hợp đồng cụ thể trước code; nếu đổi nghĩa nghiệp vụ phải quay gate nguồn, không lén bổ sung vào runtime.
+- 15 nhóm AD-T01–AD-T15 là **NOT_RUN**, không browser/service test. Skill/runtime/schema chưa đổi, chưa chạy 265 core/validator của chặng tích hợp, chưa dùng 1 phiên AI ×15 phút.
+
+### Chốt kế tiếp
+
+Human chốt A1–A6/AD-r1 để khép bước 6 và mở thiết kế kiến trúc bước 7. Không xin lại quyền file đã cấp; chưa được cài/build/deploy. Các mục “hiện hành/chờ duyệt” bên dưới là lịch sử trước xác nhận mới này.
+
+---
+
 ## Hiện hành — UX/SEO đã duyệt; theo dõi vận hành chờ duyệt
 
 Human “Duyệt trải nghiệm và SEO R04” sau `6790a9e143c1338fa9a6a47e30aab69e9662f074` chấp nhận **UX1–UX6/UX-r1**, khép bước 4 và gate thiết kế SEO. Phạm vi không Event markup cho pilot hiện tại được chấp nhận; không bỏ năng lực hướng dẫn structured data cho project phù hợp hoặc mở indexing lab. Không dùng approval này thay bằng chứng browser/device.
