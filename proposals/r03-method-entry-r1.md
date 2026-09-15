@@ -30,8 +30,8 @@ Kiểm tra chỉ đọc ngày 2026-09-15: `D:\Code\kynderis\kidea-workshop-pilot
 |---|---|---|
 | T01-S01 | Đối chiếu nguồn cũ/hiện hành, phạm vi pilot và quyền | DONE, kết quả tại tài liệu này; không có nguồn cũ nào được nâng thành quy chuẩn |
 | T01-S02 | Gói quyền hữu hạn cho docs/.kidea pilot, kiểm root trước ghi; nêu Git/AI riêng | TODO; Human trước lần tạo/ghi, không chặn T02–T04 soạn trong Kidea |
-| T02-S01 | Bản phương pháp ý tưởng → Feature Map → ứng viên dùng chung/cụm; mẫu phân biệt lời Human, đề xuất và OPEN | TODO; bước tiếp hiện tại, soạn đề xuất trong repo, không tự chốt nghiệp vụ |
-| T02-S02 | Review ranh giới dùng chung, điểm dừng và gói Feature | TODO; Human trước áp dụng phần còn lựa chọn mới |
+| T02-S01 | Bản phương pháp ý tưởng → Feature Map → ứng viên dùng chung/cụm; mẫu phân biệt lời Human, đề xuất và OPEN | DONE; [bản đề xuất](r03-feature-method-r1.md), chưa tích hợp skill |
+| T02-S02 | Review cách xác định ranh giới dùng chung, điểm dừng và gói Feature | IN_REVIEW; [D1 phương pháp](r03-feature-method-r1.md), không tự duyệt ranh giới nghiệp vụ pilot |
 | T03-S01 | Mẫu nhỏ rule/state/flow/data và link hai chiều, ví dụ có success/rejection | TODO; kiểm input→output/state, ownership, link; không chọn database/lock |
 | T04-S01 | Mẫu AC/business test và bảng bao phủ có lý do loại tổ hợp | TODO; test expected truy được nguồn; không báo test sản phẩm đã chạy |
 | T03/T04-S02 | Gói review mẫu phương pháp + phạm vi bao phủ hữu hạn | TODO; gom đầu ra đủ căn cứ để Human duyệt, không duyệt tài liệu chưa có |
