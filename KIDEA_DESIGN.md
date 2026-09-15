@@ -239,6 +239,8 @@ Gói `P01-T03-PILOT-r1`, ngày 2026-09-07: **APPROVED, Human duyệt ngày 2026-
 
 #### Môi trường, chi phí và giới hạn
 
+Cập nhật ngày 2026-09-15: Human đã cấp gói hồ sơ r1 sau answer ab75b09; root pilot hiện có `docs/features.md` và `docs/business/INDEX.md`, chưa có `.kidea`, Git hoặc code. [Hai phiên đọc phương pháp đã hoàn tất](tests/evidence/r03/document-trial-r1.md); ranh giới nghiệp vụ đang chờ review, không chứng minh public Kidea đã có hành động sửa sản phẩm. Đoạn sau giữ căn cứ chọn root và giới hạn từ R01, không phủ nhận lần tạo hồ sơ đã được cấp riêng.
+
 Human đã duyệt nơi giữ hồ sơ, lab và ngân sách ở vòng R2, `R01-T04-S03-r1`; [bằng chứng](KIDEA_ROADMAP.md#r01-t04-result). Chọn một repo workshop riêng tại thư mục local `D:\Code\kynderis\kidea-workshop-pilot`, bên cạnh repo xây Kidea. Trong repo pilot, `docs/` giữ tài liệu sản phẩm, `.kidea/` giữ điều phối/review; source/test/config cùng repo. Không chuyển các file thiết kế/lộ trình Kidea sang đây. Đã kiểm tra đường dẫn chưa tồn tại khi trình gói ngày 2026-09-08; chưa tạo thư mục/repo, chưa chọn remote GitHub hoặc được phép ghi hồ sơ. Xác nhận lại root/quyền trước lần ghi đầu ở R03-T01; schema chi tiết vẫn thuộc R02.
 
 - Chỉ lab phi production, tài khoản và dữ liệu giả; không public release, người dùng thật, thanh toán, email/SMS, danh sách chờ, thông báo push hoặc cộng tác nhiều agent. Không tự thuê server/domain hay dùng dịch vụ tính phí.

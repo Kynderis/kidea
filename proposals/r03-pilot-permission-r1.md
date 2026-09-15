@@ -2,6 +2,8 @@
 
 Ngày 2026-09-15. `R03-T01-S02/T05-S01-r1`: **IN_REVIEW**, chưa thực thi. [Phương pháp](r03-feature-method-r1.md) và [mẫu nghiệp vụ/test](r03-business-template-r1.md) đã được Human duyệt; không coi đó là quyền ghi pilot hoặc mở phiên AI.
 
+Cập nhật: Human “Duyệt tạo hồ sơ và hai phiên thử” sau answer ab75b09 đã duyệt đúng gói này. Đã tạo hai file và hoàn tất hai phiên; [kết quả/giới hạn](../tests/evidence/r03/document-trial-r1.md). Quota 2/2 đã dùng hết, không tự mở phiên khác. Nội dung dưới giữ bản đã trình, không là quota mới.
+
 ## 1. Quyền đề nghị
 
 Root đã chọn từ R01: `D:\Code\kynderis\kidea-workshop-pilot`. Kiểm chỉ đọc hiện tại: chưa tồn tại. Đề nghị cho tạo root và các tài liệu Markdown dưới `docs/`, bắt đầu bằng `docs/features.md` và `docs/business/INDEX.md`; dùng nội dung workshop đã chốt trong DESIGN làm nguồn, ghi rõ quyết định gốc và đề xuất mới. Chưa tạo hàng loạt file shared/features khi ranh giới chưa duyệt.

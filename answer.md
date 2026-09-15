@@ -1,10 +1,13 @@
-**Đã ghi nhận phương pháp được duyệt. Gói tiếp theo có hai phần cần bạn cho phép:**
+**Đã tạo hai tài liệu pilot và chạy xong 2/2 phiên AI.** Cả hai đọc đúng phạm vi, nhận diện phần chưa rõ và không tự duyệt nghiệp vụ. [Báo cáo đã push](D:/Code/kynderis/kidea/tests/evidence/r03/document-trial-r1.md); chưa có code, Git hay `.kidea` trong pilot.
 
-1. **Tạo hồ sơ workshop ở ổ D:** ghi phạm vi tính năng và đề xuất nghiệp vụ dùng chung tại `D:\Code\kynderis\kidea-workshop-pilot`. Chỉ tài liệu, chưa code, cài đặt, tạo Git remote hay triển khai.
-2. **Hai phiên AI mới, tối đa 10 phút/phiên:** chỉ đọc hồ sơ để kiểm có hiểu đúng phạm vi, phát hiện mâu thuẫn và chỉ ra câu hỏi còn thiếu không. Không tự duyệt nghiệp vụ hoặc chạy thêm phiên.
+**Bạn cần chốt cách chia ba nhóm trách nhiệm sau:**
 
-**Lưu ý:** Kidea hiện chưa có hành động sửa tài liệu sản phẩm. Lượt này thử phương pháp bằng quyền soạn tài liệu riêng, chưa chứng minh Kidea tự chạy trọn quy trình.
+| Nhóm | Hiểu đơn giản |
+|---|---|
+| Đăng ký và sức chứa | Quyết định có nhận thêm người không; đăng ký/hủy và admin sửa sức chứa phải cùng giữ giới hạn chỗ. |
+| Trạng thái workshop | Thống nhất khi nào đang nháp, mở hoặc tạm dừng, và hành vi liên quan. |
+| Hiển thị và cập nhật | Cập nhật số chỗ cho người xem; không dùng số hiển thị có thể cũ để quyết định nhận đăng ký. |
 
-Kết quả bạn nhận là **bộ phạm vi và đề xuất phần dùng chung để duyệt**, không phải ứng dụng. Không dựng VM hoặc thay bảo mật Windows. [Gói chi tiết](D:/Code/kynderis/kidea/proposals/r03-pilot-permission-r1.md) đã được push.
+Tôi đề xuất **làm rõ đăng ký/hủy trước**, cùng các phần phụ thuộc cần thiết. Ba nhóm này chỉ giúp tổ chức nghiệp vụ, không bắt xây ba service.
 
-Nếu đồng ý cả hai, trả lời **“Duyệt tạo hồ sơ và hai phiên thử”**. Bạn không cần chuẩn bị gì trên máy.
+Nếu đồng ý, nói **“Duyệt ba nhóm và cụm đăng ký/hủy”**. Các chi tiết như retry, thứ tự báo lỗi và hiển thị khi tạm dừng vẫn chưa được chốt; tôi sẽ đề xuất cụ thể ở phần đặc tả.
