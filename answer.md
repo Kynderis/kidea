@@ -1,9 +1,9 @@
-Đã kiểm tra máy hiện tại:
+Đã kiểm tra sâu hơn và tìm ra điểm cần quyết định:
 
-- **C còn 17,86 GiB; D còn 236,32 GiB.** Dung lượng chưa phải trở ngại cho dữ liệu thử; chưa cần dựng VM.
-- Tài khoản và firewall sandbox đã có sẵn. Tuy nhiên, nhóm sandbox hiện có quyền đọc tại `Documents`, `Downloads` và `.codex`. Đây **không phải bằng chứng AI đã đọc dữ liệu cá nhân**, cũng chưa thể quy cho sự cố T07.
-- CLI hỗ trợ profile quyền riêng. Vì vậy cần kiểm cả **giới hạn đọc lẫn ghi**, không chỉ đặt thư mục thử trên D. [OpenAI Docs](https://learn.chatgpt.com/docs/permissions).
+- CLI đã đổi sang **0.154.0-alpha.6.2**; bản cũ không còn. Tôi đã kiểm đúng binary mới và xuất schema giao tiếp trên D.
+- Giao diện được kiểm **không có chức năng xem trước danh sách ACL mà setup sẽ đổi**. Vì vậy chưa chứng minh được điều kiện “setup chỉ tác động thư mục thử”.
+- Thiết lập sandbox tiêu chuẩn có thể tác động tài khoản, ACL và firewall ngoài fixture; **không đồng nghĩa cấp toàn quyền cho AI**. [OpenAI Docs](https://learn.chatgpt.com/docs/windows/windows-sandbox).
 
-**Chưa chạy sandbox/AI hoặc thay ACL/cấu hình.** Tôi đã lập [báo cáo và phạm vi dự kiến](D:/Code/kynderis/kidea/tests/evidence/r02-t10-native-host-check.md), lưu lên `master`.
+Chưa chạy sandbox/AI hay thay quyền máy. Đã lưu [báo cáo](D:/Code/kynderis/kidea/tests/evidence/r02-t10-launcher-0154-interface.md) và push `master`.
 
-Điểm chưa xác minh được là launcher có tự cập nhật quyền ngoài phạm vi đó khi áp profile hay không. Vì vậy **chưa có gói quyền đủ chắc để xin bạn duyệt chạy**; cần làm rõ đường thiết lập của launcher trước, không chạy thử rồi mới biết nó sửa gì.
+**Bạn có chấp nhận cho Codex thiết lập sandbox tiêu chuẩn trên máy, không giới hạn thay đổi hạ tầng trong thư mục thử, để tiến tới kiểm tra không gọi AI không?** Nếu vẫn giữ giới hạn chỉ-fixture, hiện tôi chưa có cách đã được xác minh để chạy tiếp.
