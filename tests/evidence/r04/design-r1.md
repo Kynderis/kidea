@@ -1,5 +1,27 @@
 # R04 — bằng chứng triển khai gói thiết kế
 
+## Hiện hành — UX/SEO đã duyệt; theo dõi vận hành chờ duyệt
+
+Human “Duyệt trải nghiệm và SEO R04” sau `6790a9e143c1338fa9a6a47e30aab69e9662f074` chấp nhận **UX1–UX6/UX-r1**, khép bước 4 và gate thiết kế SEO. Phạm vi không Event markup cho pilot hiện tại được chấp nhận; không bỏ năng lực hướng dẫn structured data cho project phù hợp hoặc mở indexing lab. Không dùng approval này thay bằng chứng browser/device.
+
+Đã soạn `D:/Code/kynderis/kidea-workshop-pilot/docs/design/operations.md`; [snapshot OP-r1](design-r1/operations-r1.md), SHA256 `6414b6ad4680f362ef65c223d7f8a51ffa7883346bb77e2e3a3ad187cdc47b2e`. **O1–O6 IN_REVIEW** cho bước 5: tín hiệu/ngưỡng, kênh dự phòng không phụ thuộc dashboard/AI, vai Human trong phiên thử, gom cảnh báo và giới hạn chỉ đọc. Chưa có hệ thống giám sát, job hoặc kênh cảnh báo được cài/chạy.
+
+### Bằng chứng chặng vận hành
+
+- [Preimage 12 file](design-r1/operations-pre.json), [postimage 13 file](design-r1/operations-post.json), [diff](design-r1/operations-diff.json). Thêm đúng operations.md; chỉ thêm backlink vào 4 file nghiệp vụ, quality.md và experience.md; giữ nguồn đã duyệt/byte snapshots, không xóa/restore. Kiểm root/ancestor/directory không reparse/link bất ngờ.
+- [Raw check](design-r1/operations-check.json): **11/11 test R04 PASS**, **551 liên kết nội bộ hợp lệ**. Kiểm đúng tập 10 nguồn + 3 tài liệu thiết kế, nội dung Q/UX không đổi trước phần reference, link/backlink theo source section và ca âm. Bộ R03 giữ **7/8**, đúng lỗi đếm `13 !== 10`, không biến thành PASS. Bộ R04 dùng để kiểm tập nguồn hiện hành; không sửa bộ cũ ngoài allowlist.
+- Review tác giả: nguồn M1–M9 có ý nghĩa/đơn vị/nhịp/thiếu dữ liệu/ngưỡng/action; last-processing khác last-observation; cảnh báo không nới Q; pending cũ không phụ thuộc count tăng; sai invariant phải truy authority, không tự repair. Probe đọc không chứng minh ghi/backup/restore. Không có mutation giám sát nền hoặc nút replay/xóa/restart/restore mới.
+- Kênh dự phòng là **yêu cầu thiết kế**, chưa lựa chọn công nghệ/host hoặc chứng minh miền lỗi độc lập. O4 là **đề xuất vai trò** trong phiên đã xác nhận, không tự giao Human trực 24/7. Chưa có người/target/kênh thực đã được kiểm thì không nhận phiên vận hành sẵn sàng. Không tạo automation Codex, email/SMS/push/thông báo OS hoặc thêm dịch vụ ngoài app.
+- Có 15 nhóm OP-T01–OP-T15 **NOT_RUN** trên sản phẩm. Chưa chạy core 265/validator vì chưa sửa skill/runtime/schema; nghĩa vụ hồi quy cuối vẫn giữ. Quota 1 phiên AI ×15 phút chưa dùng, chỉ chạy khi đủ năm hồ sơ/gate và tích hợp hướng dẫn.
+
+### Chốt kế tiếp
+
+Human chốt O1–O6 của OP-r1 để khép thiết kế bước 5 và mở admin bước 6. Không xin lại quyền tài liệu đã cấp. Quyền cài/chạy/ngắt/restore vẫn thuộc gói thực thi sau; ngưỡng cảnh báo và trách nhiệm chỉ áp dụng trong phạm vi lab đã nêu.
+
+---
+
+Các mục “hiện hành/chờ duyệt” bên dưới giữ lịch sử từng chặng; không phủ nhận các xác nhận mới phía trên.
+
 ## Hiện hành — chất lượng đã duyệt, trải nghiệm/SEO chờ duyệt
 
 Human “Duyệt chất lượng R04” sau answer `a24681b9db77e0f8618094e805500d6e6f37b174` chấp nhận **Q1–Q6 của Q-r1**, gồm workload/cách đo và ngoại lệ mất ổ chỉ trong lab. T01-S05/gate bước 3 DONE; không xem là mục tiêu đã đo đạt hoặc quyền diễn tập phá hủy. Các nhãn “đề xuất/chờ duyệt” trong snapshot Q-r1 phía dưới là lịch sử đúng bản đã trình; chỉ thêm backlink, không viết lại mục tiêu đã chốt.

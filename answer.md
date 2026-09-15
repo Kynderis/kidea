@@ -1,19 +1,19 @@
-Đã ghi nhận **Q1–Q6 được duyệt** và soạn xong [thiết kế trải nghiệm/SEO](D:/Code/kynderis/kidea-workshop-pilot/docs/design/experience.md).
+Đã ghi nhận **UX1–UX6 được duyệt** và hoàn thành [thiết kế theo dõi vận hành](D:/Code/kynderis/kidea-workshop-pilot/docs/design/operations.md).
 
-Gói cần chốt lần này:
+Gói cần chốt:
 
 | Mục | Đề xuất |
 |---|---|
-| UX1 — Màn hình | Web giữ sáu nhóm trang; mobile hai màn hình: danh sách và chi tiết. Có phác thảo bố cục trong hồ sơ. |
-| UX2 — Mất mạng | Sau khi gửi đăng ký mà chưa biết kết quả, hiện **“Chưa xác nhận”** và kiểm lại yêu cầu cũ; không tự đăng ký lần nữa. |
-| UX3 — Xác nhận hủy | Hủy chỗ phải xác nhận đúng workshop; đăng ký không thêm hộp xác nhận. |
-| UX4 — Đường dẫn | Chi tiết dùng ID cố định: đổi tên workshop không đổi URL. Nội dung công khai đọc được trước khi JavaScript chạy. |
-| UX5 — SEO lab | Giữ lab kín, metadata và ranh giới riêng tư; chưa thêm dữ liệu Event cho kết quả tìm kiếm khi thiếu dữ kiện như địa điểm. Đã đối chiếu [hướng dẫn Google](https://developers.google.com/search/docs/appearance/structured-data/event). |
-| UX6 — Dễ sử dụng | Tiếng Việt, lịch có múi giờ rõ; hỗ trợ bàn phím, nhãn lỗi, chữ lớn và màn hình hẹp. |
+| O1 — Cần xem gì | Một màn hình admin xem cập nhật tồn đọng/lỗi, độ trễ, mất tín hiệu, dung lượng và tình trạng sao lưu. |
+| O2 — Khi nào báo | Quá 5 giây không có quan sát hợp lệ thì báo **“Không rõ”**; cập nhật chờ quá 5 giây cảnh báo, từ 30 giây báo nghiêm trọng. |
+| O3 — Giám sát bị hỏng | Có đường hiển thị cảnh báo dự phòng, không phụ thuộc dashboard chính hoặc phiên AI. Chưa chọn hay cài công cụ. |
+| O4 — Ai xử lý | Đề xuất bạn phụ trách **chỉ trong phiên thử đã xác nhận**, không trực 24/7. Lỗi nghiêm trọng thì dừng bài thử để kiểm tra. |
+| O5 — Không báo dồn | Gom lỗi cùng loại; báo khi phát sinh, tăng mức hoặc khôi phục. Lỗi nghiêm trọng còn tồn tại nhắc mỗi 5 phút. |
+| O6 — Không tự sửa | Màn vận hành chỉ xem/làm mới; không tự phát lại yêu cầu, xóa dữ liệu, khởi động lại hay phục hồi. Cảnh báo không chứa dữ liệu riêng hoặc secret. |
 
-**Kiểm tài liệu: 10/10 đạt, 448 liên kết hợp lệ.** [Bằng chứng và bản lưu](D:/Code/kynderis/kidea/tests/evidence/r04/design-r1.md) đã đẩy lên GitHub. Chưa xây giao diện hoặc dùng phiên AI độc lập.
+**Kiểm tài liệu đạt 11/11, 551 liên kết hợp lệ**; [bằng chứng](D:/Code/kynderis/kidea/tests/evidence/r04/design-r1.md) đã đẩy lên GitHub. Chưa chạy giám sát thật hoặc dùng phiên AI độc lập.
 
-Bạn có thể chốt chung: **“Duyệt trải nghiệm và SEO R04”**. Sau đó tôi làm phần theo dõi vận hành theo quyền đã cấp.
+Nếu đồng ý, chốt **“Duyệt thiết kế vận hành R04”**; tôi tiếp tục phần quản trị theo quyền đã cấp.
 <oai-mem-citation>
 <citation_entries>
 MEMORY.md:473-473|note=[Use current approved sources rather than forgotten Kidea decisions]
