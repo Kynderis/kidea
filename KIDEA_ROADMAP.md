@@ -10,6 +10,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
+**Bài thử AI đã có [kịch bản tích hợp r1](proposals/r02-t10-ai-integration-r1.md), nhưng launcher chưa đủ điều kiện chạy.** Human “Ok làm đi” sau a8524fd cho chuẩn bị/kiểm tra chỉ đọc. [Xác minh hiện tại](tests/evidence/r02-t10-launcher-readiness.md): CLI cùng hash với bản T07, cấu hình elevated và log read-ACL sự cố còn hiện hữu; chưa chứng minh giới hạn side effect. Chưa chạy binary/model, thay ACL/config, tạo fixture/manifest/runner thực hoặc cấp quota mới. Cần Human chọn môi trường; khuyến nghị Windows thử nghiệm riêng, chưa tự tạo/cài VM. Kế hoạch 3 cặp A/B, 14 tình huống mỗi cặp vẫn DRAFT; T07 0/3 giữ nguyên, không khép sự cố hoặc R02.
+
 **Phần status local đã đạt nghiệm thu T10-S04: 22/22 mẫu đúng và trong ngưỡng đã duyệt 2/5 giây.** [Báo cáo](tests/evidence/r02-t10-status-acceptance-r1.md): lớn nhất S/M 0,66/3,17 giây; hồi quy 265/265, 1.550 file evidence D1–D4 nguyên vẹn. [Approval T10-S03 sau answer 85866d9](proposals/r02-t10-status-acceptance-r1.md). Hết 22/22 lượt, không chạy bù. Tiếp theo còn chuẩn bị bài thử AI tích hợp và xác minh launcher trước trình quyền chạy; chưa cấp phiên AI, tối ưu thêm, R03/pilot hoặc khép toàn bộ T10/R02.
 
 **D4 là bằng chứng thăm dò trước nghiệm thu:** 22/22 đúng, trung vị S/M 0,60/3,10 giây, giảm 61,93%/68,27% so với D2. [Báo cáo D4](tests/evidence/r02-t10-probe-r3.md) giữ trạng thái/ngưỡng tại thời điểm đó; không chuyển D4 thành lượt nghiệm thu. Ngưỡng và loạt mới đã xử lý riêng ở gói hiện tại phía trên. Phần AI còn DRAFT, T07 cũ giữ 0/3 và sự cố launcher chưa khép.

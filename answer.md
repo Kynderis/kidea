@@ -1,10 +1,13 @@
-**Phần status đã đạt nghiệm thu**, đủ 22/22 lượt đúng output và trong ngưỡng:
+Đã chuẩn bị [kịch bản thử AI tích hợp](D:/Code/kynderis/kidea/proposals/r02-t10-ai-integration-r1.md): 14 tình huống, dự kiến 3 cặp phiên A/B. Đã push tài liệu lên `master`; **chưa chạy AI**.
 
-| Bộ | Ngưỡng | Chậm nhất | Kết quả |
-|---|---:|---:|---:|
-| Nhỏ | 2 giây | **0,66 giây** | 11/11 đạt |
-| Vừa | 5 giây | **3,17 giây** | 11/11 đạt |
+**Còn vướng launcher:** binary vẫn trùng bản gặp sự cố T07; chưa chứng minh tác động chỉ nằm trong thư mục thử. Hướng dẫn OpenAI Docs xác nhận sandbox Windows có sử dụng quyền filesystem/ACL, nên tôi chưa chạy preflight hoặc đổi cấu hình. [Kết quả kiểm tra](D:/Code/kynderis/kidea/tests/evidence/r02-t10-launcher-readiness.md), [tài liệu OpenAI](https://learn.chatgpt.com/docs/windows/windows-sandbox).
 
-**265/265 kiểm thử đạt**, không lỗi/timeout/chạy bù; bằng chứng D1–D4 nguyên vẹn. Đã lưu [báo cáo](D:/Code/kynderis/kidea/tests/evidence/r02-t10-status-acceptance-r1.md) và push lên `master`.
+Tôi khuyến nghị **Windows thử nghiệm riêng**, tránh tác động máy làm việc. Bạn có máy/VM Windows riêng để dùng, hay muốn tiếp tục xử lý launcher trên máy hiện tại?
 
-Tiếp theo còn **bài thử AI tích hợp và xác minh launcher trước xin quyền chạy**. Chưa khép toàn bộ R02 hoặc mở pilot.
+<oai-mem-citation>
+<citation_entries>
+MEMORY.md:473-473|note=[excluded forgotten Kidea decisions; used current repository evidence]
+</citation_entries>
+<rollout_ids>
+</rollout_ids>
+</oai-mem-citation>
