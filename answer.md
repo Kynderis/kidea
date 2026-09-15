@@ -1,16 +1,15 @@
-Đã áp dụng xong **C1–C5**, đúng bản đã được duyệt và kiểm độc lập. Cả 5 phát hiện đã được xử lý trên hồ sơ chính thức.
+Đã **khép R04 và mở R05**. Hồ sơ đã đồng bộ GitHub; chưa cài thêm gì lên máy.
 
-Kết quả kiểm lại:
+R05 sẽ quy định **viết code thế nào và kiểm đúng/sai ra sao**, gồm:
 
-- **265/265 test lõi**, **15/15 test tài liệu**, validator đạt.
-- **826 liên kết hợp lệ**; bản áp dụng khớp bản review **8/8 tiêu chí đạt**.
-- Lỗi đếm file của bộ R03 cũ vẫn được ghi riêng, không che thành PASS.
+- Quy tắc chung và bốn bộ riêng: C++, web, Android, iOS.
+- Ca kiểm thử cụ thể. Ví dụ: hai người tranh ghế cuối thì chỉ một người đăng ký thành công.
+- Kiểm hồ sơ, giữ nguyên thiết kế đã duyệt; test ứng dụng chưa chạy sẽ ghi rõ.
+- Chưa cài SDK/VM, build, deploy hoặc mở thêm phiên AI. Khi cần môi trường thật, sẽ trình chung máy, dung lượng và quyền cần dùng.
 
-Không thêm phiên AI, không cài/chạy ứng dụng. Hiệu năng và phục hồi thực tế vẫn chưa được kiểm chứng.
+[Gói đầy đủ để duyệt](D:/Code/kynderis/kidea/proposals/r05-profile-test-r1.md) đã gom lựa chọn, danh sách file và quyền thực hiện.
 
-[Hồ sơ kết quả R04](D:/Code/kynderis/kidea/tests/evidence/r04/design-r1.md) đã lưu và đồng bộ GitHub. **R04 chỉ còn chờ bạn nghiệm thu kết quả.**
-
-Bạn có thể chốt: **“Duyệt kết quả R04, mở R05”** — R05 là phần quy tắc viết code và đặc tả kiểm thử theo từng nền tảng.
+Bạn chỉ cần chốt **“Duyệt gói R05”** để tôi làm liền phần soạn và kiểm hồ sơ; hiện chưa cần thao tác gì trên máy.
 
 <oai-mem-citation>
 <citation_entries>

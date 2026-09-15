@@ -1,14 +1,16 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
-Ngày cập nhật: 2026-09-15.
+Ngày cập nhật: 2026-09-16.
 
-Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R02/R03 đã được Human duyệt trong phạm vi từng gói; R04 đã mở phần chuẩn bị phương pháp thiết kế sản phẩm, chưa có code pilot hoặc toàn Kidea hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
+Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–R04 đã được Human duyệt trong phạm vi từng gói; R05 mở chuẩn bị, chưa có code pilot hoặc toàn Kidea hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
 <a id="current"></a>
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
 <a id="review-current"></a>
+
+**R04 đã nghiệm thu; R05 mở chuẩn bị.** Human “Duyệt kết quả R04, mở R05” sau `a72e3a10775a9ca5b47bc5f1a6d2ccdc975d36ee` khép R04-T06-S02 đúng [bằng chứng/giới hạn](tests/evidence/r04/design-r1.md). [Gói R05 D1–D6/P1–P4](proposals/r05-profile-test-r1.md) trình chung quy tắc bốn nền tảng, đặc tả test, file/quyền và điều kiện kiểm chứng. T01-S01 DONE, T01-S02 IN_REVIEW. Chưa sửa pilot, tích hợp skill, cài/build/code/deploy hoặc mở AI mới; build đích vẫn là nghĩa vụ R05, không coi hồ sơ là hỗ trợ đã chạy. Các đoạn dưới là lịch sử.
 
 **R04 đã hoàn tất tích hợp và sửa phát hiện; chờ duyệt kết quả cuối.** Human duyệt C1–C5 sau `bcd9877`; đã áp đúng byte reviewer kiểm, F01–F05 khép ở mức thiết kế. [Kết quả và giới hạn](tests/evidence/r04/design-r1.md): 265/265 core, 15/15 R04, validator PASS, 826 link, V1–V8 review PASS đúng bản; lỗi inventory R03 lịch sử vẫn ghi riêng, ca ứng dụng NOT_RUN. T05-S02/T06-S01 DONE, T06-S02 IN_REVIEW. R05 chưa mở, không quyền cài/code/deploy mới. Các đoạn dưới là lịch sử.
 
@@ -914,7 +916,7 @@ Xây hướng dẫn bước 1–2. Phê duyệt phương pháp không tự duy�
 
 Xây bước 3–7 với từng gate riêng. Tài liệu sản phẩm ở nguồn ngoài .kidea; review chỉ tham chiếu.
 
-R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): năm gate và C1–C5 đã được duyệt; bản sửa đã áp và kiểm, T05-S02/T06-S01 DONE, T06-S02 IN_REVIEW chờ nghiệm thu cuối. Chưa chạy sản phẩm hoặc mở R05; không dùng test tài liệu thay runtime.
+R04 được Human nghiệm thu sau `a72e3a1`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): năm gate và C1–C5 đã duyệt, bản sửa đã áp/kiểm; T05-S02/T06-S01/T06-S02 DONE. R05 mở chuẩn bị; chưa chạy sản phẩm, không dùng test tài liệu thay runtime.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|
@@ -930,6 +932,8 @@ R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, �
 ## R05 — Quy tắc code theo nền tảng và đặc tả test
 
 Mỗi profile là một task riêng. Mẫu build nhỏ chỉ kiểm tra khả thi, không thay pilot; đến phần iOS mới kiểm tra/cài/nâng Mac khi có quyền.
+
+Đã mở theo approval sau `a72e3a1`. [Phân rã và gói duyệt đầy đủ](proposals/r05-profile-test-r1.md): T01-S01 DONE, T01-S02 IN_REVIEW. Phần mô tả “chưa phân rã” dưới đây là quy tắc trước khi mở phase, nay được cụ thể hóa tại đề xuất; không cấp trước quyền build hoặc duyệt trước kết quả.
 
 Subtask: **chưa phân rã**. Khi phase tới lượt, rà mục tiêu/phụ thuộc/lựa chọn/quyền/kiểm chứng và tổ chức gói theo [cách phối hợp đã duyệt](#risk-first-review-approved); ghi lát cắt/đầu ra/test/gate trước mở task. Không dùng một hàng hoặc danh mục dự kiến để duyệt trước đầu ra/quyền của cả cụm.
 

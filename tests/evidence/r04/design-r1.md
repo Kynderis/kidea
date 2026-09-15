@@ -1,5 +1,11 @@
 # R04 — bằng chứng triển khai gói thiết kế
 
+## Nghiệm thu hiện hành — R04 đã được Human duyệt
+
+Human **“Duyệt kết quả R04, mở R05”** chấp nhận kết quả tại commit `a72e3a10775a9ca5b47bc5f1a6d2ccdc975d36ee`. Ghi nhận ngày 2026-09-16: R04-T06-S02 DONE; R04 khép đúng phạm vi hồ sơ/phương pháp và hồi quy đã báo cáo. Không chạy lại hoặc tạo số đo mới trong lượt ghi nhận này. Giữ nguyên 265/265 core, 15/15 R04, validator, 826 link và closure đúng bản từ run dưới đây; lỗi inventory R03 7/8 và ca ứng dụng NOT_RUN không bị xóa hoặc chuyển PASS.
+
+[R05 đã mở chuẩn bị, gói rule/test chờ duyệt](../../../proposals/r05-profile-test-r1.md). Không cấp thêm quyền môi trường/AI/build/deploy. Các mục dưới là lịch sử trước nghiệm thu.
+
 ## Kết quả hiện hành — C1–C5 đã áp dụng, R04 chờ nghiệm thu cuối
 
 Human **“Duyệt gói sửa R04”** sau `bcd9877a7f4dc5de75b45861512bc8abd33d5a45` chấp nhận C1–C5/AR-r2. Đã áp đúng bảy đích trong [manifest được duyệt](design-r1/correction-proposal-final.json): [preimage/approval](design-r1/correction-apply-pre.json), [readback từng SHA](design-r1/correction-apply-post.json). Tám file pilot khác giữ nguyên byte; sáu nguồn ngoài architecture chỉ thêm reference, không đổi rule/AC hoặc ngưỡng đã duyệt. Không có file pilot mới/xóa, không thay runtime/schema/skill trong lượt áp sửa này.

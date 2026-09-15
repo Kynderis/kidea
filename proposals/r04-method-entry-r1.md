@@ -2,7 +2,7 @@
 
 Ngày 2026-09-15. Kế hoạch đã soạn; chưa phải phương pháp hoặc thiết kế sản phẩm được duyệt.
 
-Cập nhật: Human “Duyệt gói sửa R04” sau `bcd9877` chấp nhận C1–C5/AR-r2; đã áp đúng byte đã review và kiểm xong. T06-S01 DONE, T06-S02 IN_REVIEW chờ nghiệm thu cuối, chưa mở R05. [Gói sửa](../tests/evidence/r04/design-r1/correction-request.md), [bằng chứng](../tests/evidence/r04/design-r1.md).
+Cập nhật 2026-09-16: Human “Duyệt kết quả R04, mở R05” sau `a72e3a10775a9ca5b47bc5f1a6d2ccdc975d36ee` nghiệm thu R04 đúng giới hạn; T06-S02 DONE. [Bằng chứng](../tests/evidence/r04/design-r1.md); [R05 mở chuẩn bị](r05-profile-test-r1.md), chưa cấp quyền cài/build/code/deploy.
 
 ## Căn cứ và kết quả mở phase
 
@@ -40,7 +40,7 @@ R03 hướng dẫn viết rõ sản phẩm phải làm gì. R04 hướng dẫn b
 | R04-T05-S01 | Soạn/diễn tập kiến trúc và hợp đồng: owner/API/event/cache/lỗi/deploy/recovery/tương thích/quyền; đối chiếu thiết kế đã duyệt | DONE [A], AR-r1, 18 nhóm runtime NOT_RUN; kiểm nguồn và backlink, không cài/chạy |
 | R04-T05-S02 | Review đầu ra bước 7 đúng bản, nêu phần cần đo sau | DONE [H], Human duyệt C1–C5/AR-r2 sau bcd9877; đã áp đúng byte, giữ lịch sử AR-r1/FAIL, không reset Q/UX/OP/AD |
 | R04-T06-S01 | Tích hợp hướng dẫn đã duyệt; kiểm tra tài liệu và hồi quy liên quan; thử độc lập chỉ theo protocol được cấp | DONE [A], đã áp đúng byte; 265/265 core, 15/15 R04, validator PASS, 826 link; closure V1–V8 đúng bản, R03 legacy 7/8 giữ riêng, runtime NOT_RUN |
-| R04-T06-S02 | Báo cáo bằng chứng/giới hạn và chấp nhận kết quả R04 | IN_REVIEW [H], kết quả đã trình; không tự khép R04/mở R05 hoặc gọi thiết kế monitoring là hệ thống đang hoạt động |
+| R04-T06-S02 | Báo cáo bằng chứng/giới hạn và chấp nhận kết quả R04 | DONE [H], Human duyệt kết quả sau a72e3a1; runtime NOT_RUN và lỗi inventory R03 giữ riêng, không gọi thiết kế monitoring là hệ thống đang hoạt động |
 
 S02 chuẩn bị cả phase để không xin lắt nhắt từng file. Trình trước các lựa chọn và quyền đã nhận diện được; những đầu ra phụ thuộc chưa tồn tại chỉ được duyệt khi có bản cụ thể, không gộp mất năm gate sản phẩm hoặc SEO. Chỉ một subtask triển khai hiện hành.
 

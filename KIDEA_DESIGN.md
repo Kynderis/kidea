@@ -1,8 +1,8 @@
 # Kidea — Thiết kế cách hoạt động
 
-Trạng thái: `R01–R03 ĐÃ DUYỆT ĐÚNG PHẠM VI — R04 ĐÃ TÍCH HỢP/KIỂM, CHỜ DUYỆT KẾT QUẢ CUỐI`
+Trạng thái: `R01–R04 ĐÃ DUYỆT ĐÚNG PHẠM VI — R05 MỞ CHUẨN BỊ, GÓI RULE/TEST CHỜ DUYỆT`
 
-Ngày cập nhật: 2026-09-15
+Ngày cập nhật: 2026-09-16
 
 Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. [Roadmap](KIDEA_ROADMAP.md) giữ trạng thái xây Kidea: Human “Duyệt R02, mở R03” sau answer 158f24e đã chấp nhận [kết quả lõi R02 trong giới hạn đã thử](tests/evidence/r02-t10-agent-trial-r2.md) và mở phần phương pháp R03. Change/visualize và pilot chưa hoàn tất; không coi kết quả lõi là toàn Kidea đã xong hoặc quyền tạo/ghi pilot, thêm AI, cài/code/deploy.
 
