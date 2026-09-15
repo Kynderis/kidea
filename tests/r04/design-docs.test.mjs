@@ -83,9 +83,15 @@ test('accepted admin is unchanged before appended architecture references',()=>{
   assert.ok(docs['design/admin.md'].replaceAll('\r\n','\n').startsWith(old+'\n\n<a id="design-relations"></a>'));
 });
 
-test('approved architecture and complete pilot bytes match the presented AR-r1',()=>{
+test('approved correction targets match reviewed AR-r2 bytes; other pilot files retain AR-r1',()=>{
   const post=JSON.parse(fs.readFileSync(path.join(repo,'tests/evidence/r04/design-r1/architecture-post.json'),'utf8'));
-  for(const [rel,file] of Object.entries(post.files))assert.equal(digest(fs.readFileSync(path.join(pilot,rel))),file.sha256,rel);
+  const correction=JSON.parse(fs.readFileSync(path.join(repo,'tests/evidence/r04/design-r1/correction-proposal-final.json'),'utf8'));
+  assert.equal(Object.keys(correction.targets).length,7);
+  for(const [rel,file] of Object.entries(post.files)){
+    const target=correction.targets[rel];
+    if(target){assert.equal(target.beforeSha256,file.sha256);assert.equal(digest(Buffer.from(target.base64,'base64')),target.sha256);}
+    assert.equal(digest(fs.readFileSync(path.join(pilot,rel))),target?.sha256??file.sha256,rel);
+  }
 });
 
 test('skill routes to an existing local product-design reference',()=>{

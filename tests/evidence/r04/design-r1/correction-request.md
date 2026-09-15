@@ -1,5 +1,7 @@
 # R04 — Gói sửa C1–C5 sau kiểm độc lập
 
+Cập nhật: Human **“Duyệt gói sửa R04”** sau `bcd9877a7f4dc5de75b45861512bc8abd33d5a45` đã chấp nhận C1–C5. Đã áp đúng byte bảy đích, [preimage](correction-apply-pre.json), [readback](correction-apply-post.json). Các nhãn IN_REVIEW/chưa áp dụng bên dưới và trong snapshot giữ nguyên bản từng trình; không là trạng thái hiện hành. Kết quả kiểm sau áp dụng được giữ tại [báo cáo](../design-r1.md); gate nghiệm thu cuối R04 vẫn riêng.
+
 **IN_REVIEW, chưa áp dụng.** K1–K7/AR-r1 được Human duyệt sau `6abd985`; review sau đó phát hiện F01–F05. Không đổi lựa chọn công nghệ hoặc nghiệp vụ R03. [Bản kiến trúc đề xuất đầy đủ](architecture-r2-proposed.md), [byte/đích chính xác](correction-proposal-final.json), [review cuối](review-closure.md).
 
 | Mục | Cần chốt | Ví dụ / tác động |

@@ -1,6 +1,6 @@
 # Kidea — Thiết kế cách hoạt động
 
-Trạng thái: `R01–R03 ĐÃ DUYỆT ĐÚNG PHẠM VI — R04 TÍCH HỢP, CHỜ DUYỆT BẢN SỬA SAU REVIEW`
+Trạng thái: `R01–R03 ĐÃ DUYỆT ĐÚNG PHẠM VI — R04 ĐÃ TÍCH HỢP/KIỂM, CHỜ DUYỆT KẾT QUẢ CUỐI`
 
 Ngày cập nhật: 2026-09-15
 

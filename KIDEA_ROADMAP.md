@@ -10,6 +10,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R0
 
 <a id="review-current"></a>
 
+**R04 đã hoàn tất tích hợp và sửa phát hiện; chờ duyệt kết quả cuối.** Human duyệt C1–C5 sau `bcd9877`; đã áp đúng byte reviewer kiểm, F01–F05 khép ở mức thiết kế. [Kết quả và giới hạn](tests/evidence/r04/design-r1.md): 265/265 core, 15/15 R04, validator PASS, 826 link, V1–V8 review PASS đúng bản; lỗi inventory R03 lịch sử vẫn ghi riêng, ca ứng dụng NOT_RUN. T05-S02/T06-S01 DONE, T06-S02 IN_REVIEW. R05 chưa mở, không quyền cài/code/deploy mới. Các đoạn dưới là lịch sử.
+
 **Đã tích hợp phương pháp R04; bản sửa sau kiểm độc lập chờ duyệt C1–C5.** K1–K7/AR-r1 đã được duyệt sau `6abd985`, nhưng reviewer phát hiện mâu thuẫn/thiếu hợp đồng và traceability. [Gói sửa dễ đọc](tests/evidence/r04/design-r1/correction-request.md), [bằng chứng](tests/evidence/r04/design-r1.md). Bản đề xuất AR-r2 đã qua recheck V1–V8, chưa áp dụng vào pilot. Core 265/265, R04 15/15 và validator đạt trên nguồn đã tích hợp; runtime NOT_RUN, lỗi inventory R03 lịch sử giữ riêng. T05-S02 quay gate đúng bản sửa; T06-S01 chờ áp dụng sau duyệt. Không cần thêm AI trong gói này, không cài/code/deploy. Các đoạn dưới là lịch sử.
 
 **K1–K7/AR-r1 đã được duyệt.** Human “Duyệt kiến trúc R04” sau `6abd985` khép bước 7. T05-S02 DONE; T06-S01 đang tích hợp hướng dẫn và kiểm chứng theo quota đã cấp. [Bằng chứng](tests/evidence/r04/design-r1.md). Chưa nghiệm thu kết quả cuối R04, không quyền cài/code/deploy. Các đoạn dưới là lịch sử.
@@ -912,7 +914,7 @@ Xây hướng dẫn bước 1–2. Phê duyệt phương pháp không tự duy�
 
 Xây bước 3–7 với từng gate riêng. Tài liệu sản phẩm ở nguồn ngoài .kidea; review chỉ tham chiếu.
 
-R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): năm gate bản đầu đã được duyệt; review tích hợp phát hiện F01–F05 nên T05-S02 quay IN_REVIEW cho C1–C5, không reset nguồn khác. T06-S01 chờ áp dụng bản sửa sau gate, T06-S02 chưa khép. Chưa chạy sản phẩm; không dùng test tài liệu thay runtime hoặc bỏ gate nghiệm thu cuối.
+R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): năm gate và C1–C5 đã được duyệt; bản sửa đã áp và kiểm, T05-S02/T06-S01 DONE, T06-S02 IN_REVIEW chờ nghiệm thu cuối. Chưa chạy sản phẩm hoặc mở R05; không dùng test tài liệu thay runtime.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|

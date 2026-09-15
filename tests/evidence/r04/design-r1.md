@@ -1,5 +1,24 @@
 # R04 — bằng chứng triển khai gói thiết kế
 
+## Kết quả hiện hành — C1–C5 đã áp dụng, R04 chờ nghiệm thu cuối
+
+Human **“Duyệt gói sửa R04”** sau `bcd9877a7f4dc5de75b45861512bc8abd33d5a45` chấp nhận C1–C5/AR-r2. Đã áp đúng bảy đích trong [manifest được duyệt](design-r1/correction-proposal-final.json): [preimage/approval](design-r1/correction-apply-pre.json), [readback từng SHA](design-r1/correction-apply-post.json). Tám file pilot khác giữ nguyên byte; sáu nguồn ngoài architecture chỉ thêm reference, không đổi rule/AC hoặc ngưỡng đã duyệt. Không có file pilot mới/xóa, không thay runtime/schema/skill trong lượt áp sửa này.
+
+**F01–F05 đã xử lý ở bản chính thức, không còn bản sửa chờ áp dụng.** Kiến trúc SHA `6e91cc904bea0e6f1e521b839d0a6e28bc1f0dd2c518e65e5cb1d4cd48b0bc16`, operations SHA `a86b489d55766771cf2cff71d21b62f3971a8f379a870a0f7552e80664036736`, đúng bản [closure review V1–V8 PASS](design-r1/review-closure.md). Dùng lại bằng chứng đúng byte theo gói được duyệt, không mở thêm agent/gia hạn. FAIL/PARTIAL của các bản trước giữ nguyên. Các chữ “đề xuất/chưa áp dụng” trong nội dung snapshot là trạng thái lúc trình được giữ nguyên để bảo toàn byte; approval và kết quả hiện hành nằm tại đây.
+
+### Kiểm sau áp dụng
+
+- [Run integration-yrKnEk](design-r1/integration-yrKnEk.json): **265/265 core PASS, 15/15 R04 PASS, validator PASS; 826 liên kết nội bộ hợp lệ**, không thiếu backlink đã khai báo. Nguồn trước/sau run không đổi, pilot nguyên byte trong run. [Toàn stdout core](design-r1/integration-yrKnEk-core-stdout.json) giữ đủ kết quả; fixture/raw bổ sung còn dưới `.test-output/r04/integration-yrKnEk/`, không dọn/xóa.
+- Kiểm bảo toàn được cập nhật theo **revision C1–C5 đã được Human duyệt**, vẫn so exact SHA của bảy đích và byte AR-r1 của tám file không đổi; không bỏ assertion cho bản chưa được duyệt. Các kiểm nội dung R03/Q/UX/OP/AD trước backlink và ca âm giữ nguyên.
+- Bộ R03 lịch sử **7/8**, vẫn lỗi giả định tổng 10 file (`15 !== 10`); raw giữ trong run, không tuyên bố toàn bộ mọi suite đều xanh. Bộ R04 kiểm đúng tập nguồn hiện tại. Lần gọi chuẩn bị patch đầu có output bị cắt trước parse, chưa ghi gì; lần kế giữ preimage rồi áp/readback đúng byte, không có ghi dở.
+- Phân biệt: các kiểm trên là hồi quy Kidea và tài liệu; **22 nhóm ca kiến trúc cùng các ca sản phẩm khác vẫn NOT_RUN**. Không chứng minh hiệu năng, native, giám sát hay phục hồi đã chạy, không miễn R09/R10. Không cài VM/toolchain, không deploy/dữ liệu thật/chi phí mới.
+
+### Handoff
+
+T05-S02 và T06-S01 DONE đúng phạm vi; **T06-S02 IN_REVIEW**, chờ Human duyệt kết quả cuối R04. R05 chưa mở. Bước tiếp theo đề nghị: “Duyệt kết quả R04, mở R05” để bắt đầu gói quy tắc code/đặc tả test theo nền tảng; quyền cài/chạy vẫn phải được xác định riêng, không suy từ việc mở phase. Các mục bên dưới là lịch sử trước kết quả này.
+
+---
+
 ## Hiện hành — tích hợp đã kiểm; chờ duyệt bản sửa C1–C5
 
 **Chưa khép R04.** Human đã duyệt K1–K7/AR-r1; review độc lập sau tích hợp phát hiện F01–F05 nên quay gate bước 7 đúng phần sửa, không reset Q/UX/OP/AD. [Gói sửa dễ đọc C1–C5](design-r1/correction-request.md) và [AR-r2 đề xuất](design-r1/architecture-r2-proposed.md) đã được kiểm độc lập nhưng **chưa áp dụng vào pilot, chưa được Human duyệt**. Không biến approval AR-r1 thành approval sửa nghĩa AR-r2.
