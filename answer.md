@@ -1,7 +1,10 @@
-Đã tối ưu `status` và push lên `master`.
+Đã hoàn tất 22 lượt đo và push kết quả lên `master`. **Chưa thấy cải thiện tốc độ.**
 
-- Giảm quét lặp anchor và tìm task con; giữ nguyên kiểm đường dẫn, đọc lại nguồn và phát hiện thay đổi.
-- **250/250 kiểm thử đạt**. [Báo cáo](D:/Code/kynderis/kidea/tests/evidence/r02-t10-status-optimization.md).
-- Chưa đo lại nên chưa kết luận nhanh hơn bao nhiêu.
+| Bộ dữ liệu | Trung vị trước | Sau tối ưu |
+|---|---:|---:|
+| 100 task | 1,57 giây | 1,57 giây |
+| 1.000 task | 9,61 giây | 9,76 giây |
 
-Bạn duyệt **22 lượt đo lại trên cùng hai bộ dữ liệu, tối đa 30 giây/lượt, không chạy bù**, lưu riêng và giữ nguyên bằng chứng cũ nhé?
+22/22 mẫu đúng output, không timeout; **252/252 kiểm thử đạt**, bằng chứng cũ nguyên vẹn. [Báo cáo đầy đủ](D:/Code/kynderis/kidea/tests/evidence/r02-t10-probe-r2.md).
+
+Khuyến nghị tiếp theo: **profiling — đo thời gian từng phần để tìm chỗ chậm** trước khi tối ưu tiếp. Chưa chạy thêm hoặc thay ngưỡng nghiệm thu.
