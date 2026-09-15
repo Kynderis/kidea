@@ -10,7 +10,15 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
-**Đã bổ sung giữ approval sau đối chiếu không đổi nghĩa: 234/234 test xác định đạt, 27 đầu vào theo dõi không đổi.** [Phạm vi](#nonsemantic-preservation-approved), [bằng chứng/lỗi/giới hạn](tests/evidence/nonsemantic-preservation.md): REVALIDATE giữ xác nhận gốc; SAVE có thể giữ review của work trong đúng note/quyền đã đối chiếu. Không tự chứng minh ngữ nghĩa, mở task, phục hồi hoặc chạy lại tác dụng phụ. Chưa hoàn tất toàn resume/lõi; bước tiếp theo là rà bài thử AI tích hợp và các gate R02-T10/T11 còn thiếu. T07 AI vẫn **0/3**, protocol cũ tạm dừng; không tự dùng quota đó cho nguồn/bài thử mới. Sự cố launcher/ACL [vẫn chưa giải quyết riêng](tests/r02-t07/launcher-preflight.md); không dựng VM, đổi ACL hoặc chạy sandbox trong lượt này.
+**Đang trình D1 của R02-T10-S01-r1: chuẩn bị hai fixture và 22 lượt đo thăm dò status; chưa đo hoặc mở phiên AI.** [Gói đầy đủ](proposals/r02-t10-core-trial-r1.md) tách phép đo Node khỏi AI đang thiếu điều kiện launcher. Không duyệt ngầm ngưỡng 2/5 giây; số đo dùng để trình chuẩn tại T10-S03, trước loạt nghiệm thu mới. Bài thử AI tích hợp đã có thiết kế biến thể nhưng còn DRAFT, chưa xin quota. Kết quả bản runtime gần nhất vẫn là [234/234 trên nguồn cố định](tests/evidence/nonsemantic-preservation.md), không thay nghiệm thu AI/T10/T11. T07 cũ giữ 0/3 và sự cố launcher chưa khép, không chuyển quota hoặc ngoại lệ ACL sang gói mới.
+
+<a id="r02-t10-review"></a>
+
+### R02-T10-S01-r1 — đo sớm và bài thử lõi
+
+Human **“Ok làm đi”** ngày 2026-09-15 cho chuẩn bị gói sau phần giữ approval; không coi đó là approval số lần/fixture hoặc quyền mở AI chưa trình. [D1 đang IN_REVIEW](proposals/r02-t10-core-trial-r1.md): workload R02 nhỏ/vừa, 11 mẫu mỗi bộ, watchdog 30 giây/lượt chỉ là giới hạn dừng. Quyền đề nghị giới hạn generator/runner, dữ liệu giả và evidence, không sửa runtime hoặc môi trường. Khi D1 được duyệt, được chuẩn bị và đo theo đúng manifest/precondition, không xin lại từng hash; sai khác trọng yếu phải trình lại.
+
+Phần AI còn DRAFT: dự kiến ba lượt lặp × hai phiên tách lịch sử để kiểm init/review rồi resume, 14 biến thể mỗi lượt; chưa cấp sáu phiên, model hoặc launcher. Chỉ trình quyền chạy khi manifest thực và ranh giới launcher đã xác minh. T10-S03 chốt ngưỡng sau đo, T10-S04 chạy nghiệm thu mới, T11-S03 Human review khép R02; không mở R03/pilot trước các gate. Lượt hiện tại chỉ thay tài liệu, không tạo fixture/runner, benchmark, AI, ACL hoặc sandbox.
 
 <a id="resume-interface-approved"></a>
 
@@ -271,6 +279,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T09-S01 | DONE | [H] — S01-r1 APPROVED ngày 2026-09-14 | Human “Duyệt nhé” xác nhận [hợp đồng/phạm vi resume](#resume-interface-approved); không mở AI trial hoặc phục hồi tự động |
 | R02-T09-S02 | DONE | [A] — theo S01-r1 | Resume READ/SAVE và chẩn đoán pending chỉ đọc; 227/227 = 15 helper + 78 status + 61 writer + 20 init + 22 review + 31 resume trên nguồn không đổi. [Bằng chứng/lỗi/giới hạn](tests/evidence/r02-t09.md); skill validator đạt; chưa là behavioral AI, executor sản phẩm hoặc recovery |
 | R02-T09-S03 | TODO | [A] — chưa cấp phiên AI | Cần bài thử tích hợp hữu hạn, nguồn/quota/quyền mới; không diễn tập PROD |
+| R02-T10-S01 | IN_PROGRESS | [H] — D1 IN_REVIEW; phần AI DRAFT | [Gói r1](proposals/r02-t10-core-trial-r1.md) xin chuẩn bị/đo thăm dò hữu hạn, tách manifest/quyền/quota AI chưa đủ; chưa đo, chưa cấp ngưỡng hoặc đóng toàn S01 |
 
 R01 đã APPROVED; các kết quả T01–T06 trước tinh gọn và T07-S01/S02 giữ bằng chứng đúng bản trong sổ. S04, lát cắt T08-S02 và T09-S02 đã hoàn tất kiểm thử xác định; T07-S03 đã bắt đầu preflight nhưng tạm dừng, 0/3 AI. Kết quả native/T07 cũ không tự chứng nhận writer mới. Toàn T08/T09 và gate tích hợp/AI chưa hoàn tất; R02 chưa khép, R03–R10 chưa mở/pilot chưa có.
 

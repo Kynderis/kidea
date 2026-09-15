@@ -1,9 +1,17 @@
-Đã triển khai và push lên `master`.
+Đã soạn [gói R02-T10-S01-r1](D:/Code/kynderis/kidea/proposals/r02-t10-core-trial-r1.md) và push lên `master`.
 
-- Giữ approval gốc khi có đối chiếu không đổi nghĩa; lưu bằng chứng trước–sau.
-- SAVE lưu điểm dở cùng cập nhật review được cấp quyền, không đổi task/gate.
-- Thiếu căn cứ, đổi nghĩa hoặc ghi dở vẫn bị chặn; không tự tạo xác nhận Human.
+**Cần duyệt D1:** chuẩn bị hai bộ dữ liệu giả nhỏ/vừa và chạy **22 lượt đo thăm dò `status`** bằng Node hiện có. Có số đo mới đề xuất ngưỡng tốc độ; chưa lấy 2/5 giây làm chuẩn.
 
-**234/234 test đạt**, đầu vào kiểm thử không đổi. Hướng dẫn đã cập nhật bằng `skill-creator`, validator đạt. [Bằng chứng](D:/Code/kynderis/kidea/tests/evidence/nonsemantic-preservation.md).
+Đã lập bài thử AI cho init → review → phiên mới/resume, gồm đổi nghĩa, giữ approval, thiếu quyền và ghi dở. Phần này vẫn **DRAFT, chưa xin quota** vì manifest thực và phạm vi launcher chưa đủ; không dùng lại quota cũ hoặc tự chạy sandbox.
 
-Chưa chạy AI trial. Helper không tự chứng minh ngữ nghĩa; bước tiếp theo là chốt bài thử AI tích hợp và các gate còn thiếu.
+T10 còn chốt ngưỡng rồi nghiệm thu; T11 cần Human review trước mở R03. Lượt này chỉ cập nhật tài liệu, chưa chạy benchmark hay AI.
+
+Bạn duyệt D1 để tôi chuẩn bị và đo thăm dò nhé?
+
+<oai-mem-citation>
+<citation_entries>
+MEMORY.md:473-473|note=[Excluded old Kidea decisions and used current repository sources]
+</citation_entries>
+<rollout_ids>
+</rollout_ids>
+</oai-mem-citation>
