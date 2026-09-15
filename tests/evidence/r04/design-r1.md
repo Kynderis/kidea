@@ -1,5 +1,26 @@
 # R04 — bằng chứng triển khai gói thiết kế
 
+## Hiện hành — quản trị đã duyệt; kiến trúc chờ duyệt
+
+Human “Duyệt thiết kế quản trị R04” sau `ccaeb1d3b1a5e6ebd5fd09016b5ffd52ae72048c` chấp nhận **A1–A6/AD-r1**, SHA256 `0547ea80c04f4c961b18212281b722643301c8c0332832db80de181ca2692775`, khép bước 6. Đây là approval thiết kế gồm audit bền vững, không cấp quyền cài/chạy hay tự mở retry admin.
+
+Đã soạn `D:/Code/kynderis/kidea-workshop-pilot/docs/design/architecture.md`; [snapshot AR-r1](design-r1/architecture-r1.md), SHA256 `d74ed6937dd616fccc004db890cfa44cfc5c2b835a13bca5986e3913c3551e36`. **K1–K7 IN_REVIEW** cho bước 7: một backend C++/SQLite, atomic result/audit/outbox, hợp đồng admin correlation, sửa đồng thời, HTTP/socket/quyền, backup/restore/epoch, observer độc lập, môi trường và tương thích phát hành.
+
+### Bằng chứng chặng kiến trúc
+
+- [Preimage 14 file](design-r1/architecture-pre.json), [postimage 15 file](design-r1/architecture-post.json), [diff append-only](design-r1/architecture-diff.json). Thêm đúng file kiến trúc; chỉ append backlink vào 3 nguồn shared R03 và Q/UX/OP/AD. Nội dung trước đó giữ nguyên sau chuẩn hóa line ending, không tuyên bố tất cả byte nguồn không đổi. Không có code/.kidea/VM/toolchain mới tại pilot.
+- [Raw check](design-r1/architecture-check.json): **13/13 test R04 PASS**, **777 liên kết nội bộ hợp lệ**, kiểm đúng 10 nguồn + 5 thiết kế, nguồn đã duyệt trước backlink, truy hai chiều đúng anchor và ca âm. Bộ R03 lịch sử **7/8**, lỗi `15 !== 10` vì giả định cây chỉ có 10 file; raw failure giữ nguyên, không sửa ngoài allowlist hoặc gọi toàn bộ test đều xanh.
+- Đối chiếu tài liệu chính thức Drogon, SQLite transaction/WAL/FULL/backup, SvelteKit adapter-node, Caddy proxy/local TLS và OWASP session; link tại AR-r1. Đây là căn cứ lựa chọn khả năng, không compatibility/security/performance test. Version chính xác còn ở R05, host/cert/secret/quyền chạy ở gói môi trường sau.
+- Review tác giả: K3 chỉ chống thực thi trùng và đọc đúng kết quả; không tự POST lại hoặc tìm create bằng title, GET không có result vẫn unknown. K4 gửi field thay đổi, lịch một nhóm, cùng field lần được authority xử lý sau thắng; không dùng expectedVersion làm nhánh nghiệp vụ mới hoặc tuyên bố chống mọi lost update. Không đổi R03 source/AC. Nếu Human muốn khóa/từ chối bản cũ hoặc retry tự động thì phải chốt nguồn nghiệp vụ trước code.
+- Crash ACK và disaster recovery tách rõ; online backup có verified recovery watermark và miền lỗi độc lập, restore đổi epoch/revoke session/chặn replay. 2 GiB tính cả backup/tạm/log, không SDK; không có quyền tự dọn/xóa. Chưa chứng minh có host độc lập, không yêu cầu VM trên C hoặc bỏ native iOS.
+- **18 nhóm AR-T01–AR-T18 NOT_RUN**. Chưa ứng dụng, dịch vụ, màn dự phòng hoặc backup đang chạy. Skill/runtime/schema chưa đổi; chưa chạy lại 265 core/validator của chặng tích hợp; **1 phiên AI ×15 phút chưa dùng** và đợi gate AR cùng tích hợp.
+
+### Chốt kế tiếp
+
+Human chốt K1–K7/AR-r1 để khép bước 7. Sau đó tích hợp hướng dẫn vào skill, chạy hồi quy và phiên review độc lập trong quyền đã cấp, rồi trình kết quả cuối R04. Không xin lại quyền file thường lệ. Snapshot trong repo giữ nguyên byte và đường dẫn tương đối của pilot để đọc từ xa, không phải nguồn thứ hai có cây link độc lập; duyệt liên kết tại pilot gốc. Các mục “hiện hành/chờ duyệt” bên dưới là lịch sử trước approval mới này.
+
+---
+
 ## Hiện hành — vận hành đã duyệt; quản trị chờ duyệt
 
 Human “Duyệt thiết kế vận hành R04” sau `86c051ca7968980a25c502e635c5808c8d1eda93` chấp nhận **O1–O6/OP-r1**, khép bước 5. Vai Human chỉ trong phiên thử được xác nhận; kênh dự phòng/ngưỡng là yêu cầu thiết kế, chưa quyền chạy job hoặc cam kết trực nền.

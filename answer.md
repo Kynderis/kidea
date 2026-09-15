@@ -1,19 +1,21 @@
-Đã ghi nhận **O1–O6 được duyệt** và hoàn thành [thiết kế quản trị](D:/Code/kynderis/kidea-workshop-pilot/docs/design/admin.md).
+Đã ghi nhận **duyệt quản trị R04**. Tôi đã soạn xong [gói kiến trúc](D:/Code/kynderis/kidea-workshop-pilot/docs/design/architecture.md), gom 7 điểm cần chốt:
 
-Gói cần chốt:
-
-| Mục | Đề xuất |
+| Mục | Đề xuất, nói đơn giản |
 |---|---|
-| A1 — Phạm vi | Chỉ quản trị workshop trên web; không thêm xóa workshop, hủy hộ hoặc xem danh tính người tham gia. |
-| A2 — Tạo/sửa | Tạo luôn là bản nháp. Lưu nội dung và xuất bản là hai thao tác riêng, tránh vô tình mở đăng ký. |
-| A3 — Xác nhận | Xác nhận trước xuất bản/tạm dừng/mở lại, giảm sức chứa hoặc đổi lịch khi có người đăng ký. Sửa chữ thông thường không hỏi thêm. |
-| A4 — Lỗi/mất mạng | Không tự gửi lại hoặc ghi đè khi kết quả chưa rõ. Ví dụ: tạo bị mất phản hồi thì không tự tạo thêm một workshop. |
-| A5 — Dấu thao tác | Giữ được **ai làm gì, khi nào, kết quả ra sao** trước khi báo thành công cuối; không lưu toàn bộ dữ liệu nhập hoặc secret. |
-| A6 — Lưu giữ | Giữ dấu thao tác suốt vòng đời lab trong ngân sách đã duyệt; không tự xóa khi thiếu dung lượng, không mở thêm trang xem log. |
+| K1 — Bộ khung | Một backend C++ và SQLite lưu dữ liệu; giữ web, Android và iOS như đã chốt. Không tách nhiều dịch vụ. |
+| K2 — Lưu chắc | Lưu thay đổi, kết quả và dấu thao tác cùng nhau; sập giữa chừng vẫn biết việc cập nhật nào còn thiếu. |
+| K3 — Mất phản hồi | Mỗi lần admin thao tác có mã để tra kết quả. Không tự gửi lại hoặc đoán thành công bằng tên workshop. |
+| K4 — Hai bản sửa | Chỉ gửi trường vừa sửa. **Nếu cùng sửa một trường, lần máy chủ xử lý sau thắng**; không khóa form. |
+| K5 — Quyền truy cập | Kết nối HTTPS; máy chủ kiểm quyền, không tin vai trò client tự khai. Không tự cài chứng chỉ lên máy bạn. |
+| K6 — Sao lưu | Đề xuất mỗi 5 phút sang nơi độc lập máy chủ. Phục hồi phải chặn yêu cầu cũ tự chạy lại. Chưa cần dựng VM trên ổ C. |
+| K7 — Cảnh báo | Màn dự phòng chạy độc lập máy chủ trong phiên thử; không thêm dịch vụ trả phí hoặc yêu cầu trực 24/7. |
 
-**Kiểm tài liệu đạt 12/12, 659 liên kết hợp lệ**; [bằng chứng](D:/Code/kynderis/kidea/tests/evidence/r04/design-r1.md) đã đẩy lên GitHub. Chưa xây ứng dụng hoặc dùng phiên AI độc lập.
+Đã kiểm: **13/13 test tài liệu, 777 liên kết hợp lệ**. Bộ test R03 cũ còn 1 lỗi đếm file vì nay có thêm 5 thiết kế; đã ghi rõ, không che thành PASS. **Chưa cài/chạy ứng dụng; hiệu năng và phục hồi chưa được đo.**
 
-Nếu đồng ý, chốt **“Duyệt thiết kế quản trị R04”**; tôi sẽ làm phần kiến trúc, gồm cả cách xử lý yêu cầu admin chưa rõ kết quả và bảo toàn dấu thao tác.
+Bạn có thể chốt: **“Duyệt kiến trúc R04”** hoặc sửa mục cụ thể. Sau đó tôi sẽ tích hợp hướng dẫn vào Kidea, chạy hồi quy và phiên kiểm độc lập đã được cấp, rồi báo kết quả cuối R04.
+
+Đã lưu hồ sơ và đồng bộ lên GitHub.
+
 <oai-mem-citation>
 <citation_entries>
 MEMORY.md:473-473|note=[Use current approved sources rather than forgotten Kidea decisions]

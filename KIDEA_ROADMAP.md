@@ -10,6 +10,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R0
 
 <a id="review-current"></a>
 
+**A1–A6 đã được duyệt; kiến trúc AR-r1 chờ duyệt K1–K7.** Human “Duyệt thiết kế quản trị R04” sau `ccaeb1d` khép bước 6. [Bản đọc và bằng chứng](tests/evidence/r04/design-r1.md): một backend C++/SQLite, transaction/outbox, đối chiếu mã admin không tự gửi lại, patch cùng trường lần xử lý sau thắng, HTTPS/quyền, backup/epoch và quan sát độc lập. 13/13 test tài liệu R04 PASS; ca sản phẩm NOT_RUN. T04-S02/T05-S01 DONE, T05-S02 IN_REVIEW. Chưa tích hợp skill hoặc dùng phiên AI độc lập; không cài/build/deploy. Các đoạn dưới là lịch sử.
+
 **O1–O6 đã được duyệt; thiết kế quản trị AD-r1 chờ duyệt A1–A6.** Human “Duyệt thiết kế vận hành R04” sau `86c051c` khép bước 5. [Bản đọc và bằng chứng](tests/evidence/r04/design-r1.md): tạo nháp/sửa/state riêng, xác nhận nhạy cảm, unknown/đồng thời và audit; 12/12 test R04, 659 link hợp lệ. A5 bảo toàn dấu thao tác chờ chốt; retry admin không tự kế thừa retry đăng ký, hợp đồng chi tiết còn thuộc kiến trúc. T04-S01 DONE/T04-S02 IN_REVIEW; chưa mở kiến trúc, sửa skill hoặc dùng phiên AI độc lập. Các đoạn dưới là lịch sử.
 
 **UX1–UX6 đã được duyệt; thiết kế vận hành OP-r1 chờ duyệt O1–O6.** Human “Duyệt trải nghiệm và SEO R04” sau `6790a9e` khép bước 4/SEO. [Bản đọc và bằng chứng](tests/evidence/r04/design-r1.md): một màn vận hành, chín nhóm tín hiệu/ngưỡng, kênh dự phòng/người trực trong phiên thử, chống báo dồn và quyền chỉ đọc; 11/11 test R04, 551 link hợp lệ. Các ca sản phẩm vẫn NOT_RUN, bộ R03 cũ còn lỗi đếm tổng file được giữ trong raw. T03-S01 DONE/T03-S02 IN_REVIEW; chưa mở admin chi tiết/kiến trúc, chưa cài giám sát hoặc dùng AI độc lập. Các đoạn dưới là lịch sử.
@@ -906,7 +908,7 @@ Xây hướng dẫn bước 1–2. Phê duyệt phương pháp không tự duy�
 
 Xây bước 3–7 với từng gate riêng. Tài liệu sản phẩm ở nguồn ngoài .kidea; review chỉ tham chiếu.
 
-R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): T01–T03 đã khép gate chất lượng, UX/SEO và vận hành; T04-S01 DONE, T04-S02 IN_REVIEW cho A1–A6/AD-r1. Chưa tích hợp hoặc chạy thử AI/sản phẩm. Các task còn lại chỉ là kế hoạch, mở sau đúng phụ thuộc/quyền. Không dùng kế hoạch này để duyệt trước đầu ra hoặc bỏ gate bước 3–7/SEO.
+R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): T01–T04 đã khép gate chất lượng, UX/SEO, vận hành và admin; T05-S01 DONE, T05-S02 IN_REVIEW cho K1–K7/AR-r1. Chưa tích hợp hoặc chạy thử AI/sản phẩm. Các task còn lại chỉ là kế hoạch, mở sau đúng phụ thuộc/quyền. Không dùng kế hoạch này để duyệt trước đầu ra hoặc bỏ gate bước 3–7/SEO.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|
