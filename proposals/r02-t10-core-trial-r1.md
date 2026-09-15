@@ -1,8 +1,8 @@
 # R02-T10-S01-r1 — chuẩn bị đo và thử AI tích hợp
 
-Ngày 2026-09-15. **D1 IN_REVIEW; phần AI DRAFT, chưa xin quyền mở phiên.** Human “Ok làm đi” cho chuẩn bị gói này sau bổ sung giữ approval; không được ghi thành đã duyệt số đo, quota hoặc sandbox. Trạng thái công việc chỉ ở [ROADMAP](../KIDEA_ROADMAP.md#r02-t10-review).
+Ngày 2026-09-15. **D1 APPROVED; phần AI DRAFT, chưa xin quyền mở phiên.** Human **“Duyệt nhé”** sau [bản trình tại 8aad5d2](https://github.com/Kynderis/kidea/blob/8aad5d2297195400a2cc3421af5654185e2531b3/answer.md) duyệt D1 chuẩn bị/đo thăm dò dưới đây. Không duyệt ngưỡng nghiệm thu, quota AI hoặc sandbox. Trạng thái công việc chỉ ở [ROADMAP](../KIDEA_ROADMAP.md#r02-t10-review).
 
-## Quyết định cần duyệt lúc này — D1
+## Quyết định đã duyệt — D1
 
 **Cho chuẩn bị hai bộ dữ liệu giả và chạy 22 lượt đo thăm dò `status`, bằng Node hiện có, sau khi khóa/kiểm tra manifest.** Mục tiêu là biết thời gian thực tế trước đề xuất ngưỡng; không lấy số nháp 2/5 giây trong QUALITY làm chuẩn đã duyệt. Không cần AI hoặc launcher cho phần này.
 
