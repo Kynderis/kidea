@@ -2,6 +2,8 @@
 
 Ngày 2026-09-15. Kế hoạch đã soạn; chưa phải phương pháp hoặc thiết kế sản phẩm được duyệt.
 
+Cập nhật: [R04-DESIGN-BATCH-r1](r04-design-batch-r1.md) đã soạn đủ phương pháp, quyền hữu hạn và protocol; T01-S02 DONE, T01-S03 IN_REVIEW. Chưa thực thi quyền đề xuất hoặc mở phiên AI.
+
 ## Căn cứ và kết quả mở phase
 
 Human “Duyệt kết quả R03, mở R04” sau answer tại `0dd5a25c9aab9dfb05fe503520ea5e6b183d5807` chấp nhận [kết quả cuối R03](../tests/evidence/r03/recheck-r1.md) cùng giới hạn: review hồ sơ, không phải ứng dụng đã chạy. R03-T05-S02 và T06-S02 DONE. Lịch sử FAIL/PARTIAL giữ nguyên cho các bản trước.
@@ -25,8 +27,8 @@ R03 hướng dẫn viết rõ sản phẩm phải làm gì. R04 hướng dẫn b
 | Subtask | Đầu ra / kiểm tra | Trạng thái và điều kiện |
 |---|---|---|
 | R04-T01-S01 | Đối chiếu phạm vi phase, ghi kế hoạch/quyền/gate tại đây; kiểm khép R03 đúng bản | DONE [A], chỉ kế hoạch mở phase |
-| R04-T01-S02 | Soạn một gói phương pháp cho toàn bước 3–7: mẫu tối thiểu, cách hỏi, ví dụ, tiêu chí review; phân loại đã chốt/mới/chưa đủ căn cứ | TODO [A], việc kế tiếp trong repo Kidea; không cần xin lại quyền soạn đề xuất |
-| R04-T01-S03 | Trình chung lựa chọn phương pháp, ngưỡng đề xuất nếu đủ căn cứ, danh sách quyền và protocol kiểm chứng hữu hạn | TODO [H], chờ gói cụ thể từ S02; không xin duyệt danh mục trống |
+| R04-T01-S02 | Soạn một gói phương pháp cho toàn bước 3–7: mẫu tối thiểu, cách hỏi, ví dụ, tiêu chí review; phân loại đã chốt/mới/chưa đủ căn cứ | DONE [A], M0–M5/D1–D6/P1–P3/V1–V8 tại gói r1; chưa tích hợp |
+| R04-T01-S03 | Trình chung lựa chọn phương pháp, ngưỡng đề xuất nếu đủ căn cứ, danh sách quyền và protocol kiểm chứng hữu hạn | IN_REVIEW [H], R04-DESIGN-BATCH-r1; không duyệt trước ngưỡng/kiến trúc chưa có |
 | R04-T02-S01 | Soạn/diễn tập UX và SEO theo phương pháp được duyệt; rà loading/rỗng/lỗi/quyền và nguồn nghiệp vụ | TODO [A], có nguồn bước 3; ghi pilot chỉ sau quyền cụ thể |
 | R04-T02-S02 | Review đầu ra bước 3–4 và SEO đúng bản | TODO [H], trước kiến trúc; có thể cùng lượt nhưng xác nhận riêng phạm vi từng gate |
 | R04-T03-S01 | Soạn/diễn tập tín hiệu, độ tươi, ngưỡng, người nhận và đường cảnh báo độc lập phiên AI; rà mất telemetry | TODO [A], sau đầu vào chất lượng đủ rõ và quyền ghi tương ứng |
