@@ -1,10 +1,9 @@
-Đã đo đủ **22/22 lượt**, output đúng, không lỗi hoặc timeout; đã push lên `master`.
+Gói nghiệm thu đề xuất:
 
-| Bộ dữ liệu | Trung vị trước → sau | Giảm thời gian |
-|---|---:|---:|
-| Nhỏ — 100 task | 1,57 → **0,60 giây** | **61,93%** |
-| Vừa — 1.000 task | 9,76 → **3,10 giây** | **68,27%** |
+- **Bộ nhỏ: mỗi lượt ≤ 2 giây; bộ vừa: mỗi lượt ≤ 5 giây.** Tất cả output phải đúng; chỉ một lượt vượt ngưỡng cũng không đạt.
+- Chạy **22 lượt mới, 11 mỗi bộ**, cùng dữ liệu/máy/runtime D4; tối đa 30 giây/lượt, không chạy bù. Lưu riêng, giữ nguyên bằng chứng cũ.
+- Không tối ưu thêm, chạy AI hoặc khép toàn bộ R02.
 
-**264/264 kiểm thử đạt**, bằng chứng cũ nguyên vẹn. [Báo cáo đầy đủ](D:/Code/kynderis/kidea/tests/evidence/r02-t10-probe-r3.md).
+D4 có thời gian lớn nhất **0,62/3,13 giây**, nên tôi đề xuất giữ ngưỡng 2/5 giây. Chưa chạy nghiệm thu mới.
 
-Kết quả cải thiện rõ trên máy và dữ liệu này; chưa phải nghiệm thu ngưỡng 2/5 giây hoặc thử AI. **Đề xuất tiếp theo: trình tiêu chí nghiệm thu và ngưỡng 2/5 giây để bạn duyệt, chưa tối ưu thêm.**
+Đã lưu [gói chi tiết](D:/Code/kynderis/kidea/proposals/r02-t10-status-acceptance-r1.md) và push lên `master`. **Bạn duyệt tiêu chí cùng 22 lượt nghiệm thu này nhé?**

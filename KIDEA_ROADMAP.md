@@ -10,6 +10,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
+**Đang trình [T10-S03 — tiêu chí/nghiệm thu status r1](proposals/r02-t10-status-acceptance-r1.md).** Human “Duyệt” sau answer 44da82d đồng ý chuẩn bị gói này. Xin chốt từng lượt S ≤ 2 giây, M ≤ 5 giây, output đúng và cấp một loạt mới 22 lượt/11 mỗi bộ, watchdog 30 giây, không chạy bù; chỉ root mới `acceptance-r1`, giữ toàn bộ D1–D4. Chưa duyệt chi tiết/chạy loạt nghiệm thu, chưa mở AI hoặc tối ưu thêm.
+
 **D4 hoàn tất 22/22 đúng output, không lỗi/timeout; trung vị S/M 0,60/3,10 giây, giảm 61,93%/68,27% so với D2.** [Kết quả và đủ số đo](tests/evidence/r02-t10-probe-r3.md), [quyền Human “Ok nhé” sau 090290a](proposals/r02-t10-probe-r3.md). Hồi quy 264/264 đạt; 1.037 file evidence D1/D2/D3 nguyên vẹn. Khuyến nghị chuyển sang trình tiêu chí/ngưỡng T10-S03, không tối ưu thêm lúc này. Số nháp 2/5 giây chưa được duyệt, D4 không phải nghiệm thu T10-S04. Phần AI còn DRAFT, T07 cũ giữ 0/3 và sự cố launcher chưa khép; không mở R03/pilot hoặc lượt đo mới.
 
 **D3 đã hoàn tất 1/1 lượt** trước bản native: [profile](tests/evidence/r02-t10-profile-r1.md) tập trung 87,6% thời gian lấy mẫu tại `realpathSync`, chủ yếu `lstat`. Đây là căn cứ chọn vùng sửa, không là cam kết tăng tốc. Baseline D2 trước native có trung vị 1,57/9,76 giây, so với D1 1,57/9,61 giây; [báo cáo D2](tests/evidence/r02-t10-probe-r2.md). D1/D2/D3 đều đã hết lượt, không chạy lại hoặc ghi đè evidence cũ.
