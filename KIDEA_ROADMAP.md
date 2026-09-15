@@ -10,6 +10,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R0
 
 <a id="review-current"></a>
 
+**D1–D6 R04 đã được duyệt; hồ sơ chất lượng Q-r1 đã soạn và chờ duyệt bước 3.** Human “Duyệt gói R04” sau `7ef7f1b` cấp đúng gói phương pháp/quyền/kiểm. [Kết quả và bản đọc Q1–Q6](tests/evidence/r04/design-r1.md): thêm quality.md, giữ nội dung nghiệp vụ R03, bổ sung backlink; 8/8 test R04 và 345 link hợp lệ. Bộ R03 cũ 7/8 vì giả định tổng 10 file nay thành 11; ghi nguyên failure, bộ R04 kiểm đúng tập nguồn mới. Ngưỡng thời gian/tải/phục hồi là đề xuất chưa đo; đặc biệt ngoại lệ mất ổ tối đa 15 phút dữ liệu cần Human chốt. Chưa mở UX/SEO, sửa skill hoặc dùng phiên AI. Các đoạn bên dưới là lịch sử.
+
 **Gói R04 đã soạn xong, đang chờ duyệt D1–D6.** [R04-DESIGN-BATCH-r1](proposals/r04-design-batch-r1.md) có năm mẫu thiết kế, quyền đúng năm file mới và link trong mười file R03, tích hợp hướng dẫn không thêm runtime, một phiên kiểm độc lập tối đa 15 phút và tám tiêu chí. Đề xuất N/A chỉ kết quả tìm kiếm thật của lab kín, không bỏ SEO kỹ thuật. T01-S02 DONE/T01-S03 IN_REVIEW; chưa sửa pilot/skill hoặc chạy AI. Ngưỡng chất lượng và thiết kế từng bước chưa có không được duyệt trước; giữ gate bước 3–7/SEO, gom quyết định đủ căn cứ và không xin lại quyền từng file. Các đoạn bên dưới giữ lịch sử.
 
 **R03 DONE; R04 đã mở.** Human “Duyệt kết quả R03, mở R04” chấp nhận kết quả tại `0dd5a25c9aab9dfb05fe503520ea5e6b183d5807`: review cuối 8/8 PASS, kiểm tài liệu 8/8 PASS, 305 liên kết; giữ giới hạn chỉ kiểm hồ sơ. Gate E5/T05-S02/T06-S02 đã khép. [Kế hoạch mở R04](proposals/r04-method-entry-r1.md) phân rã đầu ra, phụ thuộc và cách gom quyết định/quyền/kiểm chứng. Kế tiếp soạn một gói phương pháp đầy đủ; chưa cần Human thao tác môi trường hoặc xác nhận thêm. Không mở AI mới, cài đặt, code/deploy hay tự duyệt thiết kế chưa có. **Các đoạn trạng thái dưới đây là lịch sử trước approval này.**
@@ -898,7 +900,7 @@ Xây hướng dẫn bước 1–2. Phê duyệt phương pháp không tự duy�
 
 Xây bước 3–7 với từng gate riêng. Tài liệu sản phẩm ở nguồn ngoài .kidea; review chỉ tham chiếu.
 
-R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): T01-S01/S02 DONE cho kế hoạch và gói phương pháp; T01-S03 IN_REVIEW cho [D1–D6](proposals/r04-design-batch-r1.md), chưa tích hợp hoặc chạy thử. Các task còn lại chỉ là kế hoạch, mở sau đúng phụ thuộc/quyền. Không dùng kế hoạch này để duyệt trước đầu ra hoặc bỏ gate bước 3–7/SEO.
+R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): T01-S01–S04 DONE; T01-S03 ghi D1–D6 APPROVED sau 7ef7f1b; T01-S05 IN_REVIEW cho Q1–Q6 hồ sơ chất lượng. Chưa tích hợp hoặc chạy thử AI/sản phẩm. Các task còn lại chỉ là kế hoạch, mở sau đúng phụ thuộc/quyền. Không dùng kế hoạch này để duyệt trước đầu ra hoặc bỏ gate bước 3–7/SEO.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|

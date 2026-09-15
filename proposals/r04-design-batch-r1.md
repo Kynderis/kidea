@@ -1,6 +1,6 @@
 # R04-DESIGN-BATCH-r1 — Gói phương pháp, quyền và kiểm chứng
 
-Ngày 2026-09-15. **IN_REVIEW — đề xuất, chưa được duyệt.** Human “ok làm đi” sau `5aeb590` cho phép soạn gói này, không tự duyệt nội dung mới. [Kế hoạch vào phase](r04-method-entry-r1.md); [nguồn quy trình](../KIDEA_DESIGN.md#workflow); [phạm vi R04](../KIDEA_ROADMAP.md#r04).
+Ngày 2026-09-15. **APPROVED D1–D6/P1–P3 và protocol:** Human “Duyệt gói R04” sau answer tại `7ef7f1b5a91deed4cd100c275b9fde45e66d320d`. D3 N/A kết quả tìm kiếm thật có hiệu lực cho lab; các gate đầu ra vẫn giữ. Đã mở soạn chất lượng, chưa dùng phiên AI. Những chữ đề xuất/chưa thực thi bên dưới giữ nội dung bản đã được duyệt, không tự xác nhận đầu ra mới. [Kế hoạch vào phase](r04-method-entry-r1.md); [nguồn quy trình](../KIDEA_DESIGN.md#workflow); [phạm vi R04](../KIDEA_ROADMAP.md#r04).
 
 ## 1. Chốt gì trong một lượt?
 

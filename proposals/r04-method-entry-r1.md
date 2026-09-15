@@ -2,7 +2,7 @@
 
 Ngày 2026-09-15. Kế hoạch đã soạn; chưa phải phương pháp hoặc thiết kế sản phẩm được duyệt.
 
-Cập nhật: [R04-DESIGN-BATCH-r1](r04-design-batch-r1.md) đã soạn đủ phương pháp, quyền hữu hạn và protocol; T01-S02 DONE, T01-S03 IN_REVIEW. Chưa thực thi quyền đề xuất hoặc mở phiên AI.
+Cập nhật: [R04-DESIGN-BATCH-r1](r04-design-batch-r1.md) đã được Human duyệt D1–D6 sau `7ef7f1b`; T01-S03 DONE. Hồ sơ chất lượng đã soạn, Q1–Q6 chờ duyệt bước 3; chưa mở UX/SEO hoặc phiên AI. [Bằng chứng và giới hạn](../tests/evidence/r04/design-r1.md).
 
 ## Căn cứ và kết quả mở phase
 
@@ -28,7 +28,9 @@ R03 hướng dẫn viết rõ sản phẩm phải làm gì. R04 hướng dẫn b
 |---|---|---|
 | R04-T01-S01 | Đối chiếu phạm vi phase, ghi kế hoạch/quyền/gate tại đây; kiểm khép R03 đúng bản | DONE [A], chỉ kế hoạch mở phase |
 | R04-T01-S02 | Soạn một gói phương pháp cho toàn bước 3–7: mẫu tối thiểu, cách hỏi, ví dụ, tiêu chí review; phân loại đã chốt/mới/chưa đủ căn cứ | DONE [A], M0–M5/D1–D6/P1–P3/V1–V8 tại gói r1; chưa tích hợp |
-| R04-T01-S03 | Trình chung lựa chọn phương pháp, ngưỡng đề xuất nếu đủ căn cứ, danh sách quyền và protocol kiểm chứng hữu hạn | IN_REVIEW [H], R04-DESIGN-BATCH-r1; không duyệt trước ngưỡng/kiến trúc chưa có |
+| R04-T01-S03 | Trình chung lựa chọn phương pháp, ngưỡng đề xuất nếu đủ căn cứ, danh sách quyền và protocol kiểm chứng hữu hạn | DONE [H], D1–D6 APPROVED sau 7ef7f1b; không duyệt trước ngưỡng/kiến trúc chưa có |
+| R04-T01-S04 | Soạn hồ sơ quality Q-r1 theo M1, snapshot trước/sau và kiểm nguồn/link | DONE [A], một file mới và backlink; không đổi nghiệp vụ R03 |
+| R04-T01-S05 | Duyệt Q1–Q6 của quality Q-r1, gate bước 3 | IN_REVIEW [H], gồm ngoại lệ mất ổ lab và các mục tiêu chưa đo; chặn bước 4 |
 | R04-T02-S01 | Soạn/diễn tập UX và SEO theo phương pháp được duyệt; rà loading/rỗng/lỗi/quyền và nguồn nghiệp vụ | TODO [A], có nguồn bước 3; ghi pilot chỉ sau quyền cụ thể |
 | R04-T02-S02 | Review đầu ra bước 3–4 và SEO đúng bản | TODO [H], trước kiến trúc; có thể cùng lượt nhưng xác nhận riêng phạm vi từng gate |
 | R04-T03-S01 | Soạn/diễn tập tín hiệu, độ tươi, ngưỡng, người nhận và đường cảnh báo độc lập phiên AI; rà mất telemetry | TODO [A], sau đầu vào chất lượng đủ rõ và quyền ghi tương ứng |
