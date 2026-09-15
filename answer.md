@@ -1,11 +1,13 @@
-Đã soạn [gói mẫu nghiệp vụ và test](D:/Code/kynderis/kidea/proposals/r03-business-template-r1.md), gồm:
+**Hiện bạn chỉ cần chốt một việc: đồng ý cho Kidea viết nghiệp vụ và chọn test theo cách dưới đây hay không.**
 
-- Quy tắc: điều kiện nào dẫn đến kết quả gì, dữ liệu đổi hay giữ nguyên.
-- Luồng: đi qua bước nào, rẽ nhánh và kết thúc ở đâu.
-- Điều kiện chấp nhận và test: đầu vào, trạng thái ban đầu, kết quả mong đợi, căn cứ nguồn và phần chưa bao phủ.
+| Cách làm đề xuất | Ví dụ đăng ký workshop |
+|---|---|
+| Viết rõ điều kiện, kết quả và dữ liệu thay đổi | Còn chỗ → nhận đăng ký, tăng số người; hết chỗ → từ chối, số người giữ nguyên. |
+| Kiểm các nhánh và rủi ro quan trọng, ghi rõ phần chưa kiểm | Thử còn chỗ, hết chỗ, hai người tranh chỗ cuối; không nhận cả hai. Không lấy vài test này để tuyên bố đã kiểm hết. |
+| Chỗ chưa rõ thì hỏi bạn, không tự đoán | Người không có quyền đăng ký vào workshop đã đóng: báo lỗi nào trước? AI đề xuất, bạn chốt trước khi hoàn tất phần liên quan. |
 
-Ví dụ “tranh chỗ cuối” cho thấy: kiểm được **không vượt sức chứa** chưa có nghĩa đã kiểm đủ retry, lỗi hoặc toàn bộ luồng đăng ký.
+**Lợi ích:** tài liệu nói rõ sản phẩm phải làm gì và kiểm thế nào. **Điều cần chấp nhận:** không hứa test mọi tổ hợp; phần thiếu phải được chỉ ra, phần quan trọng phải xử lý trước khi nghiệm thu.
 
-Đã rà nội dung, kiểm tra liên kết và commit/push; chưa sửa skill hoặc chạy test sản phẩm.
+Bạn **chưa cần chốt câu hỏi lỗi trong ví dụ**, công nghệ, cài đặt hay quyền chạy thử ở lượt này.
 
-**Bạn duyệt mẫu và cách chọn test này nhé?** Chỉ duyệt phương pháp, chưa chốt nghiệp vụ pilot. Sau đó tôi chuẩn bị một gói quyền tạo hồ sơ pilot và thử phương pháp, gồm rõ phạm vi, số phiên và giới hạn trước khi chạy.
+Nếu đồng ý, chỉ cần nói **“Duyệt cách viết và kiểm nghiệp vụ này”**.
