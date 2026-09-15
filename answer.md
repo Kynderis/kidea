@@ -1,15 +1,19 @@
-Tôi định **kiểm tra khả năng cách ly trên Windows bằng script cố định trước, chưa chạy AI**, theo trình tự:
+**Đúng — với phần lõi Kidea đang kiểm thử, bạn hiểu đúng: chủ yếu là đọc/ghi file và chạy các script xử lý những file đó.** Nó không cần VM, tài khoản Windows riêng hay chỉnh firewall để thực hiện chức năng này.
 
-1. **Ghi nhận trạng thái trước khi thử:** cấu hình Codex, tài khoản sandbox, quyền thư mục liên quan và quy tắc firewall. Đây là bản đối chiếu, không phải bản sao lưu toàn máy.
+Cụ thể, tôi cần kiểm tra Kidea có làm đúng những việc sau không:
 
-2. **Chuẩn bị dữ liệu giả trên ổ D:** một thư mục được phép đọc/ghi, một thư mục phải bị chặn và nơi lưu bằng chứng riêng. Không dùng tài liệu cá nhân để thử, không sửa mã nguồn Kidea.
+- **Khởi tạo:** tạo bộ hồ sơ project, không ghi đè hồ sơ đã có.
+- **Review và duyệt:** lưu phản hồi, chỉ ghi nhận duyệt khi bạn thực sự duyệt đúng bản.
+- **Tiếp tục công việc:** đọc hồ sơ đã lưu để biết đang ở đâu, không làm lại phần đã xong.
+- **Gặp dữ liệu thiếu hoặc việc ghi dở:** báo đúng tình trạng, không tự đoán rồi sửa.
 
-3. **Cho Codex thiết lập sandbox Windows tiêu chuẩn:** không dựng VM/WSL, không chạy AI với toàn quyền. Tuy nhiên, bước này có thể tạo hoặc cập nhật tài khoản sandbox, quyền truy cập thư mục và firewall ngoài thư mục thử, kể cả trạng thái trên C. Đây chính là phần quyền bổ sung tôi đang đề xuất. [OpenAI Docs](https://learn.chatgpt.com/docs/windows/windows-sandbox).
+**Những thứ phức tạp vừa rồi là lớp cách ly cho bài thử AI mà tôi đề xuất thêm, không phải yêu cầu của Kidea.** Tôi đã trộn hai câu hỏi khác nhau:
 
-4. **Chạy một lượt kiểm tra có giới hạn thời gian:** xác nhận đọc/ghi được nơi cho phép, bị chặn ở nơi cấm và không truy cập được mạng. Nếu lỗi hoặc quá hạn thì dừng tiến trình thử và giữ log; không tự chạy lại liên tục.
+1. Kidea có đọc/ghi và tuân thủ quy trình đúng không?
+2. Nếu AI làm sai, hệ điều hành có chặn nó đụng ra ngoài thư mục thử không?
 
-5. **Đối chiếu sau thử và báo kết quả:** nêu rõ kiểm tra nào đạt, thay đổi nào quan sát được. Nếu có thay đổi ngoài dự kiến, dừng để xử lý; không tự gỡ quyền hoặc sửa firewall theo phỏng đoán. Chỉ sau đó mới chốt việc chạy các phiên AI kiểm chứng Kidea.
+Câu thứ hai mới dẫn đến sandbox, quyền thư mục, tài khoản và firewall. Tôi đã khiến việc kiểm thử Kidea bị kéo sang kiểm chứng cơ chế bảo vệ của môi trường chạy, mà chưa giải thích rõ vì sao cần mức đó.
 
-**Giới hạn cần nói thẳng:** hiện chưa xem trước được đầy đủ những quyền mà setup sẽ thay đổi, nên tôi không thể hứa “chỉ tác động ổ D” hoặc “hoàn tác tuyệt đối mọi thay đổi”.
+**Với mục tiêu hiện tại, tôi đề xuất thu gọn:** dùng project giả trong thư mục riêng trên D, kiểm tra hành vi và file trước/sau; không dựng VM, không thay tài khoản, quyền Windows hay firewall. Đây là kiểm thử chức năng, **không phải bằng chứng cách ly tuyệt đối** — thư mục riêng tự nó không ngăn một tiến trình truy cập chỗ khác.
 
-Đây là kế hoạch đề xuất; tôi chưa thực hiện các bước thiết lập và chạy thử trên.
+Tôi chưa thực hiện phương án thu gọn này hay thay đổi thiết lập máy.
