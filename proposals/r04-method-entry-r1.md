@@ -1,0 +1,54 @@
+# R04 — Kế hoạch mở phần thiết kế sản phẩm
+
+Ngày 2026-09-15. Kế hoạch đã soạn; chưa phải phương pháp hoặc thiết kế sản phẩm được duyệt.
+
+## Căn cứ và kết quả mở phase
+
+Human “Duyệt kết quả R03, mở R04” sau answer tại `0dd5a25c9aab9dfb05fe503520ea5e6b183d5807` chấp nhận [kết quả cuối R03](../tests/evidence/r03/recheck-r1.md) cùng giới hạn: review hồ sơ, không phải ứng dụng đã chạy. R03-T05-S02 và T06-S02 DONE. Lịch sử FAIL/PARTIAL giữ nguyên cho các bản trước.
+
+Nguồn áp dụng: [R04 và sáu task](../KIDEA_ROADMAP.md#r04), [cách duyệt gói](../KIDEA_ROADMAP.md#risk-first-review-approved), [thiết kế Kidea](../KIDEA_DESIGN.md), [tiêu chí nghiệm thu](../KIDEA_ACCEPTANCE.md). Các ngưỡng chất lượng chưa duyệt không trở thành cam kết khi mở phase.
+
+## Kidea sẽ học làm gì?
+
+R03 hướng dẫn viết rõ sản phẩm phải làm gì. R04 hướng dẫn biến nghiệp vụ đó thành thiết kế đủ rõ để bước sau xây và kiểm tra. Workshop là bài mẫu xuyên suốt để thử hướng dẫn Kidea, không phải đổi mục tiêu sang kinh doanh workshop.
+
+| Phần | Ví dụ đầu ra cần rõ | Rủi ro cần tránh |
+|---|---|---|
+| Chất lượng | Với tải nào, người dùng chờ tối đa bao lâu; mất dữ liệu bao nhiêu là chấp nhận được | Tự đặt con số rồi báo đã đạt khi chưa đo |
+| Trải nghiệm và SEO | Bấm đăng ký gặp mất mạng thì hiện gì; trang công khai hiển thị nội dung thế nào | Cho bấm lại thành đăng ký mới; lấy thiết kế SEO làm quyền mở indexing lab |
+| Theo dõi vận hành | Dữ liệu cập nhật chậm hoặc mất tín hiệu phải hiện cảnh báo và ai xử lý | Không nhận được dữ liệu nhưng vẫn báo hệ thống tốt |
+| Quản trị | Ai được sửa sức chứa, lỗi hiển thị thế nào, lưu dấu thao tác gì | Màn hình admin tự thêm nghiệp vụ ngoài R03 |
+| Kiến trúc | Thành phần nào giữ dữ liệu đúng, web/mobile gọi chung backend thế nào | Thêm service/công cụ không cần thiết hoặc hiểu tài liệu là đã triển khai |
+
+## Phân rã hữu hạn và gate
+
+| Subtask | Đầu ra / kiểm tra | Trạng thái và điều kiện |
+|---|---|---|
+| R04-T01-S01 | Đối chiếu phạm vi phase, ghi kế hoạch/quyền/gate tại đây; kiểm khép R03 đúng bản | DONE [A], chỉ kế hoạch mở phase |
+| R04-T01-S02 | Soạn một gói phương pháp cho toàn bước 3–7: mẫu tối thiểu, cách hỏi, ví dụ, tiêu chí review; phân loại đã chốt/mới/chưa đủ căn cứ | TODO [A], việc kế tiếp trong repo Kidea; không cần xin lại quyền soạn đề xuất |
+| R04-T01-S03 | Trình chung lựa chọn phương pháp, ngưỡng đề xuất nếu đủ căn cứ, danh sách quyền và protocol kiểm chứng hữu hạn | TODO [H], chờ gói cụ thể từ S02; không xin duyệt danh mục trống |
+| R04-T02-S01 | Soạn/diễn tập UX và SEO theo phương pháp được duyệt; rà loading/rỗng/lỗi/quyền và nguồn nghiệp vụ | TODO [A], có nguồn bước 3; ghi pilot chỉ sau quyền cụ thể |
+| R04-T02-S02 | Review đầu ra bước 3–4 và SEO đúng bản | TODO [H], trước kiến trúc; có thể cùng lượt nhưng xác nhận riêng phạm vi từng gate |
+| R04-T03-S01 | Soạn/diễn tập tín hiệu, độ tươi, ngưỡng, người nhận và đường cảnh báo độc lập phiên AI; rà mất telemetry | TODO [A], sau đầu vào chất lượng đủ rõ và quyền ghi tương ứng |
+| R04-T04-S01 | Soạn/diễn tập admin truy nguồn rule/quyền, xác nhận/audit/lỗi; rà không thêm rule | TODO [A], sau đầu vào UX/nghiệp vụ đủ rõ và quyền ghi tương ứng |
+| R04-T04-S02 | Review đầu ra bước 5 và 6 theo từng phạm vi | TODO [H], gom cùng lượt nếu đủ căn cứ; không tự suy PASS là approval |
+| R04-T05-S01 | Soạn/diễn tập kiến trúc và hợp đồng: owner/API/event/cache/lỗi/deploy/recovery/tương thích/quyền; đối chiếu thiết kế đã duyệt | TODO [A], sau các gate đầu vào gồm SEO, không cài/chạy dịch vụ |
+| R04-T05-S02 | Review đầu ra bước 7 đúng bản, nêu phần cần đo sau | TODO [H], không dùng approval phương pháp thay thiết kế cụ thể |
+| R04-T06-S01 | Tích hợp hướng dẫn đã duyệt; kiểm tra tài liệu và hồi quy liên quan; thử độc lập chỉ theo protocol được cấp | TODO [A], đọc skill-creator khi sửa skill; chưa có quota AI mới |
+| R04-T06-S02 | Báo cáo bằng chứng/giới hạn và chấp nhận kết quả R04 | TODO [H], sau kiểm chứng; không gọi thiết kế monitoring là hệ thống đang hoạt động |
+
+S02 chuẩn bị cả phase để không xin lắt nhắt từng file. Trình trước các lựa chọn và quyền đã nhận diện được; những đầu ra phụ thuộc chưa tồn tại chỉ được duyệt khi có bản cụ thể, không gộp mất năm gate sản phẩm hoặc SEO. Chỉ một subtask triển khai hiện hành.
+
+## Gói kế tiếp phải chứa đủ gì?
+
+- Phương pháp: mỗi quyết định có lý do, lựa chọn khuyến nghị, ví dụ và hệ quả; mỗi yêu cầu chất lượng có workload, đơn vị, cách đo và trạng thái đề xuất/đã duyệt/chưa đo. Phân biệt chất lượng sản phẩm với chất lượng Kidea.
+- Phạm vi tài liệu: danh sách chính xác file mới/sửa ở repo và pilot, nguồn/anchor, bảo toàn hồ sơ R03; không xin quyền ghi không giới hạn. Chưa chọn tên file pilot hoặc tạo chúng trong lượt mở phase này.
+- Kiểm chứng: rubric theo năm nhóm trên, kiểm link hai chiều và tình huống lỗi; nêu rõ những gì kiểm bằng hồ sơ và những gì phải chạy trên môi trường đích ở phase sau.
+- Nếu cần AI độc lập: trình số phiên, thời gian, đầu vào, quyền chỉ đọc/ghi, cách giữ kết quả lỗi và điểm dừng trước khi chạy. Không dùng lại ngân sách R03.
+- Những gì chưa đủ căn cứ: con số hiệu năng/phục hồi, phương án lưu trữ/triển khai cụ thể và kết quả thử chưa có phải được ghi là chờ quyết định hoặc chờ đo, không tự điền như sự thật.
+
+## Giới hạn giữ nguyên
+
+Không thay nghiệp vụ R03 hoặc nền tảng đã chọn; không bỏ web/native khỏi phạm vi. Chưa có quyền thêm AI, cài toolchain/VM, tạo code, deploy, đổi bảo mật Windows, dùng dữ liệu thật hoặc phát sinh chi phí. Không khởi tạo `.kidea` cho chính repo này. Chỉ soạn kế hoạch trong repo Kidea và đồng bộ answer/Git theo quyền hiện hành.
+
+Human chưa cần thao tác môi trường hoặc xác nhận thêm để soạn gói S02. Lần trình tiếp phải đưa gói cụ thể để chốt, không chỉ xin phép chuẩn bị một gói khác.

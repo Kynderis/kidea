@@ -2,13 +2,15 @@
 
 Ngày cập nhật: 2026-09-15.
 
-Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R02 đã được Human duyệt trong phạm vi từng gói; R03 mở phần phương pháp nghiệp vụ, chưa có code pilot hoặc toàn Kidea hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
+Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R02/R03 đã được Human duyệt trong phạm vi từng gói; R04 đã mở phần chuẩn bị phương pháp thiết kế sản phẩm, chưa có code pilot hoặc toàn Kidea hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
 <a id="current"></a>
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
 <a id="review-current"></a>
+
+**R03 DONE; R04 đã mở.** Human “Duyệt kết quả R03, mở R04” chấp nhận kết quả tại `0dd5a25c9aab9dfb05fe503520ea5e6b183d5807`: review cuối 8/8 PASS, kiểm tài liệu 8/8 PASS, 305 liên kết; giữ giới hạn chỉ kiểm hồ sơ. Gate E5/T05-S02/T06-S02 đã khép. [Kế hoạch mở R04](proposals/r04-method-entry-r1.md) phân rã đầu ra, phụ thuộc và cách gom quyết định/quyền/kiểm chứng. Kế tiếp soạn một gói phương pháp đầy đủ; chưa cần Human thao tác môi trường hoặc xác nhận thêm. Không mở AI mới, cài đặt, code/deploy hay tự duyệt thiết kế chưa có. **Các đoạn trạng thái dưới đây là lịch sử trước approval này.**
 
 **R03 đã kiểm lại và xử lý các finding: kết quả cuối8/8 tiêu chí review PASS.** [Báo cáo chốt](tests/evidence/r03/recheck-r1.md): một agent trong hạn15phút, review toàn10docs rồi kiểm sửa trong cùng phiên;8/8 test tài liệu,305links hợp lệ,54 nhóm ca đặc tả. Không còn finding chưa xử lý trong phạm vi review; giữ mọi FAIL/PARTIAL của các snapshot trước. Skill/runtime không đổi, chưa chạy workshop. Đề nghị Human duyệt đầu ra để khép R03/mở R04; quyền kiểm lại không tự là approval đầu ra.
 
@@ -336,9 +338,9 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R03-T04-S01 | DONE | [A] — mẫu đề xuất | AC/test có input/state/expected và giới hạn bao phủ; không nhận test đã chạy |
 | R03-T03/T04-S02 | DONE | [H] — D1 APPROVED sau answer c91fba7 | Human duyệt cách viết và kiểm nghiệp vụ; chưa duyệt coverage/chi tiết pilot hoặc AI |
 | R03-T05-S01 | DONE | [H/A] — protocol lượt đầu đã duyệt và dùng hết | [Hai phiên ×10 phút](proposals/r03-pilot-permission-r1.md), đủ 2/2; loạt rule/flow/test sau cần gói riêng |
-| R03-T05-S02 | IN_REVIEW | [H] — đầu ra đã sửa/kiểm, chờ E5 | [Kết quả hiện tại](tests/evidence/r03/recheck-r1.md):10docs,54 nhóm ca; review cuối8/8PASS,8/8 document tests; không còn finding đang mở trong phạm vi review |
+| R03-T05-S02 | DONE | [H] — E5 APPROVED | Human “Duyệt kết quả R03, mở R04” sau bản 0dd5a25; [kết quả](tests/evidence/r03/recheck-r1.md): 10 docs, 54 nhóm ca, review 8/8 PASS; chấp nhận trong giới hạn kiểm hồ sơ |
 | R03-T06-S01 | DONE | [A] — tích hợp hướng dẫn và hồi quy trong C2 | SKILL/business reference; runtime giữ nguyên; 265/265 core, 5/5 document checks; không là nghiệm thu toàn phương pháp |
-| R03-T06-S02 | IN_REVIEW | [H] — gate E5 kết quả cụ thể | Cùng một gói với T05-S02; quyết định đầu ra/giới hạn và việc khép R03/mở R04; không xin lại từng file |
+| R03-T06-S02 | DONE | [H] — E5 APPROVED | Cùng approval sau 0dd5a25 với T05-S02; khép R03, mở R04 phần phương pháp; không thêm quyền pilot/AI/runtime |
 
 R01/R02 đã APPROVED đúng phạm vi. Quota launcher T07 cũ vẫn 0/3, AI r2 hết sáu phiên, không chuyển quota. R03 mở phương pháp, R04–R10 chưa mở; chưa có quyền tạo/ghi hồ sơ pilot. Bằng chứng cũ giữ đúng phiên bản.
 
@@ -894,7 +896,7 @@ Xây hướng dẫn bước 1–2. Phê duyệt phương pháp không tự duy�
 
 Xây bước 3–7 với từng gate riêng. Tài liệu sản phẩm ở nguồn ngoài .kidea; review chỉ tham chiếu.
 
-Subtask: **chưa phân rã**. Khi phase tới lượt, rà mục tiêu/phụ thuộc/lựa chọn/quyền/kiểm chứng và tổ chức gói theo [cách phối hợp đã duyệt](#risk-first-review-approved); ghi lát cắt/đầu ra/test/gate trước mở task. Không dùng một hàng hoặc danh mục dự kiến để duyệt trước đầu ra/quyền của cả cụm.
+R04 đã mở theo approval kết quả R03 sau `0dd5a25`. [Phân rã subtask, đầu ra/test/gate](proposals/r04-method-entry-r1.md): T01-S01 DONE cho kế hoạch mở phase; T01-S02 TODO là việc kế tiếp soạn gói phương pháp đầy đủ, chưa tích hợp hoặc chạy thử. Các task còn lại chỉ là kế hoạch, mở sau đúng phụ thuộc/quyền. Không dùng kế hoạch này để duyệt trước đầu ra hoặc bỏ gate bước 3–7/SEO.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|

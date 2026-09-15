@@ -1,12 +1,10 @@
-Đã xử lý xong các thiếu sót khiến hồ sơ R03 bị PARTIAL, và **AI đã kiểm lại bản cuối**:
+Đã ghi nhận duyệt kết quả, **khép R03 và mở R04**. Đã lưu và đẩy lên GitHub; kiểm lại 8/8 test tài liệu đạt.
 
-- **8/8 tiêu chí review đạt**, không còn phát hiện chưa xử lý trong phạm vi kiểm.
-- **8/8 test tài liệu đạt**, 305 liên kết hợp lệ.
-- Chỉ dùng một phiên AI, trong giới hạn 15 phút.
+R04 xây hướng dẫn để Kidea thiết kế chất lượng, màn hình, quản trị, theo dõi lỗi và kiến trúc sản phẩm. Ví dụ: người dùng bấm đăng ký rồi mất mạng thì màn hình báo gì, hệ thống xử lý ra sao.
 
-[Báo cáo kết quả](D:/Code/kynderis/kidea/tests/evidence/r03/recheck-r1.md) đã được lưu và đẩy lên GitHub. Đây là kiểm hồ sơ; ứng dụng workshop chưa được xây/chạy.
+Đã có [kế hoạch R04](D:/Code/kynderis/kidea/proposals/r04-method-entry-r1.md). Việc tiếp theo là soạn **một gói đầy đủ các lựa chọn, quyền cần dùng và cách kiểm chứng** để bạn chốt chung; chưa cài thêm gì hoặc xây ứng dụng.
 
-Giờ bạn chỉ cần chốt: **“Duyệt kết quả R03, mở R04”**.
+**Hiện bạn không cần làm gì thêm.**
 <oai-mem-citation>
 <citation_entries>
 MEMORY.md:473-473|note=[Use current approved sources rather than forgotten Kidea decisions]
