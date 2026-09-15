@@ -10,6 +10,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R0
 
 <a id="review-current"></a>
 
+**Ba nhóm và cụm đăng ký/hủy đã được duyệt.** Human xác nhận sau answer d539cc9; INDEX pilot đã dẫn đúng [căn cứ approval](proposals/r03-pilot-boundary-review-r1.md), giữ snapshot phiên 2 làm preimage. [Ba quyết định hành vi D1–D3](proposals/r03-registration-decisions-r1.md) đang IN_REVIEW: gửi lại yêu cầu, thứ tự từ chối, đăng ký/sửa sức chứa đồng thời. Chưa áp dụng rule đề xuất vào pilot hoặc cấp file mới/AI/code/deploy.
+
 **Đã tạo hồ sơ pilot và hoàn tất 2/2 phiên đọc được duyệt.** Human duyệt gói sau answer ab75b09; [kết quả](tests/evidence/r03/document-trial-r1.md) ghi sáu tiêu chí đọc mỗi phiên đạt, giữ snapshot trước/sau bổ sung OPEN. Pilot chỉ có hai Markdown; không `.kidea`/Git/code/deploy. [Gói ranh giới/cụm đầu đang IN_REVIEW](proposals/r03-pilot-boundary-review-r1.md); không tự duyệt rule hoặc khép R03. Quota hai phiên đã hết, chưa kiểm runtime hay toàn rule/flow/test bằng lượt này.
 
 **Mẫu và cách kiểm nghiệp vụ đã được duyệt.** Human “Duyệt cách viết và kiểm nghiệp vụ này” sau answer c91fba7 duyệt D1 T03/T04. [Gói quyền hồ sơ + thử phương pháp đầu tiên](proposals/r03-pilot-permission-r1.md) đang IN_REVIEW: chỉ docs pilot ở root đã chọn, hai phiên chỉ đọc mới ×10 phút. Chưa tạo pilot/`.kidea` hoặc mở AI. Public Kidea chưa hỗ trợ sửa sản phẩm/chuyển task, nên không nhận thử phương pháp bằng quyền soạn riêng là chạy trọn workflow. Các snapshot phía dưới giữ lịch sử.
@@ -324,7 +326,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R03-T04-S01 | DONE | [A] — mẫu đề xuất | AC/test có input/state/expected và giới hạn bao phủ; không nhận test đã chạy |
 | R03-T03/T04-S02 | DONE | [H] — D1 APPROVED sau answer c91fba7 | Human duyệt cách viết và kiểm nghiệp vụ; chưa duyệt coverage/chi tiết pilot hoặc AI |
 | R03-T05-S01 | DONE | [H/A] — protocol lượt đầu đã duyệt và dùng hết | [Hai phiên ×10 phút](proposals/r03-pilot-permission-r1.md), đủ 2/2; loạt rule/flow/test sau cần gói riêng |
-| R03-T05-S02 | IN_PROGRESS | [A/H] — lát cắt phạm vi/ứng viên đã đọc, chờ review | [D1 ranh giới/cụm đầu](proposals/r03-pilot-boundary-review-r1.md); chưa đặc tả/kiểm toàn nghiệp vụ hoặc tích hợp skill |
+| R03-T05-S02 | IN_PROGRESS | [A/H] — ranh giới/cụm APPROVED sau d539cc9 | [Rule D1–D3 đang review](proposals/r03-registration-decisions-r1.md); chưa đặc tả/kiểm toàn nghiệp vụ hoặc tích hợp skill |
 
 R01/R02 đã APPROVED đúng phạm vi. Quota launcher T07 cũ vẫn 0/3, AI r2 hết sáu phiên, không chuyển quota. R03 mở phương pháp, R04–R10 chưa mở; chưa có quyền tạo/ghi hồ sơ pilot. Bằng chứng cũ giữ đúng phiên bản.
 

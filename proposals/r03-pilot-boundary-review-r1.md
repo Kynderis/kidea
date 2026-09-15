@@ -2,6 +2,8 @@
 
 Ngày 2026-09-15. `R03-PILOT-BOUNDARY-r1`, **IN_REVIEW**. Nguồn sản phẩm: [Feature Map](D:/Code/kynderis/kidea-workshop-pilot/docs/features.md), [ứng viên nghiệp vụ](D:/Code/kynderis/kidea-workshop-pilot/docs/business/INDEX.md). Bản chụp phục vụ kiểm chứng sẽ giữ ở [bằng chứng lượt đầu](../tests/evidence/r03/document-trial-r1.md), không là nguồn sản phẩm thứ hai.
 
+Cập nhật: **D1 APPROVED** ngày 2026-09-15. Human “Duyệt ba nhóm và cụm đăng ký/hủy” sau answer `d539cc980d2b63513b69ae600550301132384ff9` duyệt ranh giới C-REG/C-LIFE/C-VIEW và cụm đầu; chưa duyệt các rule OPEN, tạo file mới, AI hoặc thực thi. Bản trình phía dưới được giữ nguyên để đối chiếu phạm vi.
+
 ## Phần giữ nguyên, không hỏi lại
 
 Bốn nhóm MVP đã chốt: xem workshop, đăng ký/hủy, quản trị, cập nhật/vận hành. Một ACTIVE/người/workshop, chỉ đăng ký/hủy khi OPEN; hai ACTIVE toàn hệ thống và hủy khi PAUSED vẫn là change về sau. Native và chuỗi event/số chỗ không bị cắt khỏi MVP. Feature Map ghi lại phạm vi đó, không mở phạm vi mới.
