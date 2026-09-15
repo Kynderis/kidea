@@ -1,9 +1,10 @@
-Gói nghiệm thu đề xuất:
+**Phần status đã đạt nghiệm thu**, đủ 22/22 lượt đúng output và trong ngưỡng:
 
-- **Bộ nhỏ: mỗi lượt ≤ 2 giây; bộ vừa: mỗi lượt ≤ 5 giây.** Tất cả output phải đúng; chỉ một lượt vượt ngưỡng cũng không đạt.
-- Chạy **22 lượt mới, 11 mỗi bộ**, cùng dữ liệu/máy/runtime D4; tối đa 30 giây/lượt, không chạy bù. Lưu riêng, giữ nguyên bằng chứng cũ.
-- Không tối ưu thêm, chạy AI hoặc khép toàn bộ R02.
+| Bộ | Ngưỡng | Chậm nhất | Kết quả |
+|---|---:|---:|---:|
+| Nhỏ | 2 giây | **0,66 giây** | 11/11 đạt |
+| Vừa | 5 giây | **3,17 giây** | 11/11 đạt |
 
-D4 có thời gian lớn nhất **0,62/3,13 giây**, nên tôi đề xuất giữ ngưỡng 2/5 giây. Chưa chạy nghiệm thu mới.
+**265/265 kiểm thử đạt**, không lỗi/timeout/chạy bù; bằng chứng D1–D4 nguyên vẹn. Đã lưu [báo cáo](D:/Code/kynderis/kidea/tests/evidence/r02-t10-status-acceptance-r1.md) và push lên `master`.
 
-Đã lưu [gói chi tiết](D:/Code/kynderis/kidea/proposals/r02-t10-status-acceptance-r1.md) và push lên `master`. **Bạn duyệt tiêu chí cùng 22 lượt nghiệm thu này nhé?**
+Tiếp theo còn **bài thử AI tích hợp và xác minh launcher trước xin quyền chạy**. Chưa khép toàn bộ R02 hoặc mở pilot.

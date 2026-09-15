@@ -1,6 +1,6 @@
 # R02-T10-S03 — tiêu chí nghiệm thu status r1
 
-Ngày 2026-09-15. **IN_REVIEW — chưa cấp lượt chạy.** Human “Duyệt” sau [answer 44da82d](https://github.com/Kynderis/kidea/blob/44da82ddd4029f55b4ed156cd066bf24b9bfa2d4/answer.md) đồng ý trình tiêu chí/ngưỡng; không coi đó là duyệt trước gói chi tiết hoặc quota dưới đây. Lượt này chỉ cập nhật tài liệu, không sửa runtime hay chạy status/AI.
+Ngày 2026-09-15. **APPROVED**: Human “Duyệt” sau [answer 85866d9](https://github.com/Kynderis/kidea/blob/85866d92de0a05c257818fc1114f46f87ccf896f/answer.md) chốt tiêu chí và cấp đúng 22 lượt nghiệm thu dưới đây. Approval trước đó sau 44da82d chỉ cho trình gói; approval lần này mới cấp lượt chạy. Không cấp tối ưu runtime hoặc AI.
 
 ## Quyết định xin duyệt
 

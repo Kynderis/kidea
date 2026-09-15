@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {existsSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
 import {workloads,buildFixture,assertStatus,hash} from './fixtures.mjs';
-import {timedProcess,summarize,mayContinue,runRoot,assertBaselineFixture} from './probe.mjs';
+import {timedProcess,summarize,mayContinue,runRoot,assertBaselineFixture,acceptance} from './probe.mjs';
 import {inspectBoundGraph} from '../../.agents/skills/kidea/scripts/status.mjs';
 
 for(const w of workloads)test(w.id+' has the approved load, semantic cases and complete read coverage',()=>{
@@ -56,11 +56,20 @@ test('unknown controller action cannot initialize or reset the run directory',()
 test('D4 baseline guard checks exact fixture bytes, stats and expected output',()=>{
   const built=buildFixture(workloads[0]);
   const baseline={stats:structuredClone(built.stats),inventory:{files:Object.fromEntries([...built.files].map(([p,b])=>[p,{sha256:hash(b),bytes:b.length}]))},expectedHash:hash(JSON.stringify(built.expected,null,2)+'\n')};
-  assertBaselineFixture(built,baseline);assert.throws(()=>assertBaselineFixture(built,undefined),/Missing D2 workload/);
+  assertBaselineFixture(built,baseline);assert.throws(()=>assertBaselineFixture(built,undefined),/Missing D4 workload/);
   for(const mutate of [b=>b.stats.tasks++,b=>delete b.inventory.files['docs/yeu-cau/san-0001.md'],b=>b.inventory.files['docs/yeu-cau/san-0001.md'].sha256='0'.repeat(64),b=>b.expectedHash='0'.repeat(64)]){
     const bad=structuredClone(baseline);mutate(bad);assert.throws(()=>assertBaselineFixture(built,bad));
   }
 });
-test('D4 controller is fixed to a new root, never any retained run root',()=>{
-  assert.match(runRoot,/[\\/]probe-r3$/);assert.doesNotMatch(runRoot,/[\\/](probe-r1|probe-r2|profile-r1)$/);
+test('acceptance controller is fixed to a new root, never any retained run root',()=>{
+  assert.match(runRoot,/[\\/]acceptance-r1$/);assert.doesNotMatch(runRoot,/[\\/](probe-r1|probe-r2|probe-r3|profile-r1)$/);
+});
+
+test('acceptance requires every sample within inclusive approved limits',()=>{
+  const rows=['QF-S-R02','QF-M-R02'].flatMap(fixture=>Array.from({length:11},(_,i)=>({fixture,iteration:i+1,elapsedMs:fixture==='QF-S-R02'?2000:5000,success:true,confirmedStopped:true})));
+  assert.equal(acceptance(rows,true,null).accepted,true);
+  for(const change of [r=>r[0].elapsedMs++,r=>r[11].elapsedMs++,r=>r[0].success=false,r=>r[0].confirmedStopped=false,r=>r[0].elapsedMs=NaN,r=>r[0].elapsedMs=-1,r=>r[0].iteration=2,r=>r[0].fixture='UNKNOWN',r=>r.pop()]){
+    const bad=structuredClone(rows);change(bad);assert.equal(acceptance(bad,true,null).accepted,false);
+  }
+  assert.equal(acceptance(rows,false,null).accepted,false);assert.equal(acceptance(rows,true,'source changed').accepted,false);
 });

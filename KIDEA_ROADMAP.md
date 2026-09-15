@@ -10,9 +10,9 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
-**Đang trình [T10-S03 — tiêu chí/nghiệm thu status r1](proposals/r02-t10-status-acceptance-r1.md).** Human “Duyệt” sau answer 44da82d đồng ý chuẩn bị gói này. Xin chốt từng lượt S ≤ 2 giây, M ≤ 5 giây, output đúng và cấp một loạt mới 22 lượt/11 mỗi bộ, watchdog 30 giây, không chạy bù; chỉ root mới `acceptance-r1`, giữ toàn bộ D1–D4. Chưa duyệt chi tiết/chạy loạt nghiệm thu, chưa mở AI hoặc tối ưu thêm.
+**Phần status local đã đạt nghiệm thu T10-S04: 22/22 mẫu đúng và trong ngưỡng đã duyệt 2/5 giây.** [Báo cáo](tests/evidence/r02-t10-status-acceptance-r1.md): lớn nhất S/M 0,66/3,17 giây; hồi quy 265/265, 1.550 file evidence D1–D4 nguyên vẹn. [Approval T10-S03 sau answer 85866d9](proposals/r02-t10-status-acceptance-r1.md). Hết 22/22 lượt, không chạy bù. Tiếp theo còn chuẩn bị bài thử AI tích hợp và xác minh launcher trước trình quyền chạy; chưa cấp phiên AI, tối ưu thêm, R03/pilot hoặc khép toàn bộ T10/R02.
 
-**D4 hoàn tất 22/22 đúng output, không lỗi/timeout; trung vị S/M 0,60/3,10 giây, giảm 61,93%/68,27% so với D2.** [Kết quả và đủ số đo](tests/evidence/r02-t10-probe-r3.md), [quyền Human “Ok nhé” sau 090290a](proposals/r02-t10-probe-r3.md). Hồi quy 264/264 đạt; 1.037 file evidence D1/D2/D3 nguyên vẹn. Khuyến nghị chuyển sang trình tiêu chí/ngưỡng T10-S03, không tối ưu thêm lúc này. Số nháp 2/5 giây chưa được duyệt, D4 không phải nghiệm thu T10-S04. Phần AI còn DRAFT, T07 cũ giữ 0/3 và sự cố launcher chưa khép; không mở R03/pilot hoặc lượt đo mới.
+**D4 là bằng chứng thăm dò trước nghiệm thu:** 22/22 đúng, trung vị S/M 0,60/3,10 giây, giảm 61,93%/68,27% so với D2. [Báo cáo D4](tests/evidence/r02-t10-probe-r3.md) giữ trạng thái/ngưỡng tại thời điểm đó; không chuyển D4 thành lượt nghiệm thu. Ngưỡng và loạt mới đã xử lý riêng ở gói hiện tại phía trên. Phần AI còn DRAFT, T07 cũ giữ 0/3 và sự cố launcher chưa khép.
 
 **D3 đã hoàn tất 1/1 lượt** trước bản native: [profile](tests/evidence/r02-t10-profile-r1.md) tập trung 87,6% thời gian lấy mẫu tại `realpathSync`, chủ yếu `lstat`. Đây là căn cứ chọn vùng sửa, không là cam kết tăng tốc. Baseline D2 trước native có trung vị 1,57/9,76 giây, so với D1 1,57/9,61 giây; [báo cáo D2](tests/evidence/r02-t10-probe-r2.md). D1/D2/D3 đều đã hết lượt, không chạy lại hoặc ghi đè evidence cũ.
 
@@ -289,6 +289,8 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T09-S03 | TODO | [A] — chưa cấp phiên AI | Cần bài thử tích hợp hữu hạn, nguồn/quota/quyền mới; không diễn tập PROD |
 | R02-T10-S01 | IN_PROGRESS | [H] — D1/D2/D3/D4 APPROVED ngày 2026-09-15; phần AI DRAFT | Human cấp D1 sau 8aad5d2, D2 sau 3e142f7, D3 sau 8a2aea3, [D4](proposals/r02-t10-probe-r3.md) sau 090290a; manifest và lượt hoàn tất đúng phạm vi. D4 hết 22 lượt, không tự cấp lượt mới. Manifest/quyền/quota AI vẫn thiếu, không đóng toàn S01 hoặc cấp ngưỡng |
 | R02-T10-S02 | IN_PROGRESS | [A] — phần đo/chẩn đoán theo D1/D2/D3/D4 đã duyệt | D1/D2 mỗi loạt 22/22; D3 1/1 profile. [D4 sau native](tests/evidence/r02-t10-probe-r3.md) 22/22 đúng, trung vị 0,60/3,10 giây, giảm 61,93%/68,27% so với D2; hồi quy 264/264 đạt, evidence D1/D2/D3 nguyên vẹn. Các lượt đã hết; AI chưa chạy, không đóng toàn S02 hoặc nghiệm thu tốc độ |
+| R02-T10-S03 | IN_PROGRESS | [H] — phần status APPROVED sau 85866d9; phần AI chưa chốt | [Chuẩn status](proposals/r02-t10-status-acceptance-r1.md): mọi mẫu S ≤ 2 giây, M ≤ 5 giây, output đúng; cấp 22 lượt mới, không tự duyệt tiêu chí/quota AI |
+| R02-T10-S04 | IN_PROGRESS | [A] — nghiệm thu lát cắt status PASS | [22/22 đạt](tests/evidence/r02-t10-status-acceptance-r1.md), lớn nhất 0,66/3,17 giây, 265/265 hồi quy; D1–D4 nguyên vẹn. Hết quota, chưa AI hoặc DONE toàn task/R02 |
 
 R01 đã APPROVED; các kết quả T01–T06 trước tinh gọn và T07-S01/S02 giữ bằng chứng đúng bản trong sổ. S04, lát cắt T08-S02 và T09-S02 đã hoàn tất kiểm thử xác định; T07-S03 đã bắt đầu preflight nhưng tạm dừng, 0/3 AI. Kết quả native/T07 cũ không tự chứng nhận writer mới. Toàn T08/T09 và gate tích hợp/AI chưa hoàn tất; R02 chưa khép, R03–R10 chưa mở/pilot chưa có.
 

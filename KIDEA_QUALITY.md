@@ -1,6 +1,6 @@
 # Kidea — Tiêu chí chất lượng và bằng chứng nghiệm thu
 
-Căn cứ `P01-T05-QUALITY-r2` ngày 2026-09-07: **CHỈ MỘT PHẦN ĐÃ DUYỆT — CHƯA ĐO/CHẠY**. Ngày 2026-09-08 chỉ đồng bộ điều hướng sang vòng R2, không đổi các giá trị đề xuất. Không còn một gate chờ duyệt cả file: [R01-T08/T09](KIDEA_ROADMAP.md#r01) chia theo nhóm nhỏ. [Roadmap](KIDEA_ROADMAP.md#work-state) giữ tiến trình; tài liệu này không thay thiết kế hoặc test pilot. Các số 2/5/3/10 giây, 11 mẫu, 3 lần AI và giới hạn cycle bên dưới chưa có hiệu lực trước đúng approval.
+Căn cứ `P01-T05-QUALITY-r2` ngày 2026-09-07: **CHỈ MỘT PHẦN ĐÃ DUYỆT**. Không còn một gate chờ duyệt cả file: [R01-T08/T09](KIDEA_ROADMAP.md#r01) chia theo nhóm nhỏ. [Roadmap](KIDEA_ROADMAP.md#work-state) giữ tiến trình; tài liệu này không thay thiết kế hoặc test pilot. Ngày 2026-09-15, 2/5 giây và 11 mẫu mỗi bộ được duyệt riêng cho status local R02 theo gói bên dưới; 3/10 giây sinh view, 3 lần AI và giới hạn cycle chưa tự có hiệu lực.
 
 <a id="control-acceptance-approved"></a>
 
@@ -66,6 +66,8 @@ KQ-02 dùng lỗi ghi/ngắt tiến trình được tiêm trên dữ liệu tổ
 <a id="benchmark-policy-approved"></a>
 
 ### Chính sách đo và chốt ngưỡng — đã duyệt
+
+**Status local R02 — tiêu chí đã duyệt ngày 2026-09-15:** Human “Duyệt” sau answer 85866d9 chốt [T10-S03 status acceptance r1](proposals/r02-t10-status-acceptance-r1.md): mỗi lượt S ≤ 2.000 ms, M ≤ 5.000 ms, đủ 11 mỗi bộ và output đúng, nguồn/host/bằng chứng nguyên vẹn, hồi quy đạt. Cấp một loạt mới 22 lượt tại `acceptance-r1`, watchdog 30 giây/lượt, không retry/bù. D4 là thăm dò, không chuyển thành nghiệm thu. Chỉ áp dụng đúng fixture/máy/runtime/phương pháp trong gói; không khép AI/T10 toàn bộ/R02. Các đoạn đề xuất lịch sử dưới đây được áp dụng theo ngoại lệ đã duyệt này; mọi loạt chạy lại cần quyền mới.
 
 Theo [T09-S02](KIDEA_ROADMAP.md#r01-t09-s02-result), đo đọc/status sớm ở R02 và sinh view ở R07 khi lát cắt chạy được; dùng số đo, nhu cầu và giới hạn máy để trình Human duyệt ngưỡng trước nghiệm thu phần đó. Không tự lấy số nháp làm chuẩn hoặc nới chuẩn vì chạy chậm; sau chốt phải sửa/đo lại hoặc trình thay đổi có căn cứ trước kết luận.
 
