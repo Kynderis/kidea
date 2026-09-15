@@ -2,6 +2,8 @@
 
 Ngày 2026-09-15. `R03-T03/T04-S02-r1`: **IN_REVIEW**. Chỉ là phương pháp và ví dụ trong repo Kidea; chưa là đặc tả pilot được duyệt, skill đã tích hợp hoặc test đã chạy.
 
+Cập nhật: **D1 APPROVED** ngày 2026-09-15. Human “Duyệt cách viết và kiểm nghiệp vụ này” sau bản giải thích tại answer `c91fba7` xác nhận mẫu và cách chọn/ghi test; không duyệt chi tiết nghiệp vụ, coverage pilot hoặc quyền chạy. Nhãn IN_REVIEW phía trên là lịch sử bản trình.
+
 Căn cứ: [phạm vi phương pháp](r03-feature-method-r1.md), [thiết kế và nguyên tắc nghiệp vụ](../KIDEA_DESIGN.md), [kế hoạch R03](r03-method-entry-r1.md). Human “ok làm đi” sau answer `dc2d196f10c61966fde606921c802ced0573597a` duyệt D1 phương pháp T02 và cho soạn mẫu tiếp theo. Không suy ra quyền ghi pilot hoặc mở AI mới.
 
 ## 1. Mẫu nhỏ, thêm nội dung khi có nhu cầu
