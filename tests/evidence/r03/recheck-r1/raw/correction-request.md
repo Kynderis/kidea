@@ -1,0 +1,5 @@
+# Same-agent correction verification request
+
+Sent to /root/r03_recheck after its initial review, within the original 2026-09-15T14:27:49.724Z deadline. No second fresh agent or time reset.
+
+Trong cùng phiên và deadline ban đầu 14:27:49.724Z, hãy kiểm một revision đã khóa tại D:/Code/kynderis/kidea/.test-output/r03/recheck-r1/revision/docs (10 files), manifest revision.json ở thư mục cha. Đây là quyền đọc bổ sung duy nhất; nguồn quyết định vẫn inputs/sources nguyên byte. F1: bảng quan hệ đã viết lại từng source rule với caller trực tiếp theo section, bỏ nhóm gộp. F2: bổ sung trạng thái tạo trong W-STATE, AC-A5 và D09 với input cụ thể. F3: W-DATA/D05 nay từ chối nội dung định dạng HTML/Markdown rõ ràng, không tạo/sửa dữ liệu; căn cứ là B2 “Không HTML/Markdown do người dùng nhập”, không chỉ cấm render. Hãy tự đánh giá cách diễn giải này có căn cứ hay còn cần Human, không coi lời tôi là oracle. Đối chiếu F1–F3 và regression nội dung của diff; trả kết luận từng finding đã xử lý/chưa xử lý, rubric bản revision và giới hạn. Không sửa file, thêm agent hoặc kéo dài deadline. Giữ review FAIL/PARTIAL bản đầu là lịch sử.

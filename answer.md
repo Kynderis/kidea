@@ -1,15 +1,15 @@
-Đã hoàn tất phần thực hiện gói R03:
+Đã xử lý xong các thiếu sót khiến hồ sơ R03 bị PARTIAL, và **AI đã kiểm lại bản cuối**:
 
-- Đủ 10 tài liệu pilot và hướng dẫn nghiệp vụ trong Kidea.
-- Lõi Kidea: **265/265 test đạt**; kiểm tài liệu: **5/5 đạt**, 257 liên kết hợp lệ.
-- Hai phiên AI: **7 tiêu chí đạt, 1 đạt một phần**. Các thiếu sót về liên kết và hai ca gửi lại yêu cầu đã được bổ sung; chưa chạy AI kiểm lại.
+- **8/8 tiêu chí review đạt**, không còn phát hiện chưa xử lý trong phạm vi kiểm.
+- **8/8 test tài liệu đạt**, 305 liên kết hợp lệ.
+- Chỉ dùng một phiên AI, trong giới hạn 15 phút.
 
-[Báo cáo kết quả và giới hạn](/D:/Code/kynderis/kidea/tests/evidence/r03/completion-r1.md). Đã commit/push lên master. Chưa xây/chạy ứng dụng workshop.
+[Báo cáo kết quả](D:/Code/kynderis/kidea/tests/evidence/r03/recheck-r1.md) đã được lưu và đẩy lên GitHub. Đây là kiểm hồ sơ; ứng dụng workshop chưa được xây/chạy.
 
-**Chốt cuối một lần:** bạn chấp nhận kết quả cùng giới hạn AI này để khép R03, mở R04; hay muốn kiểm AI bổ sung?
+Giờ bạn chỉ cần chốt: **“Duyệt kết quả R03, mở R04”**.
 <oai-mem-citation>
 <citation_entries>
-MEMORY.md:473-473|note=[Avoid inferring forgotten Kidea decisions; use current approved repository sources]
+MEMORY.md:473-473|note=[Use current approved sources rather than forgotten Kidea decisions]
 </citation_entries>
 <rollout_ids>
 </rollout_ids>

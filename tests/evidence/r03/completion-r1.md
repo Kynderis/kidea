@@ -1,5 +1,7 @@
 # R03 — gói kết quả completion-r1
 
+Cập nhật sau quyền “Duyệt kiểm lại R03”: [lượt kiểm bổ sung đã kết thúc8/8 PASS](recheck-r1.md) trên hồ sơ đã sửa và đối chiếu lại. Nội dung dưới đây giữ kết quả lịch sử của completion-r1, không phải trạng thái cuối hiện tại.
+
 **IN_REVIEW: đã thực hiện xong gói được giao, chưa duyệt đầu ra hoặc mở R04.** Căn cứ là xác nhận “Duyệt toàn bộ gói R03” cho B1–B8/C1–C3/D/E tại baseline a528087.
 
 ## Kết quả
