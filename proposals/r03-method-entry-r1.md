@@ -2,6 +2,8 @@
 
 Ngày 2026-09-15. Trạng thái: đối chiếu đầu vào hoàn tất; phương pháp chi tiết chưa được duyệt hoặc tích hợp vào skill.
 
+Cập nhật hiện hành: phương pháp T02/T03/T04, ranh giới cụm và rule đăng ký D1–D3 đã được duyệt; hai phiên đọc đầu đã hoàn tất. [Gói hoàn thiện R03](r03-completion-batch-r1.md) gom toàn bộ lựa chọn/quyền/kiểm chứng còn nhận diện được theo yêu cầu Human; các đoạn trạng thái mở phase phía dưới giữ lịch sử.
+
 ## Quyền và căn cứ
 
 Human “Duyệt R02, mở R03” sau answer tại `158f24e9a151184107354e7077c2d1dd67c38f4c` chấp nhận kết quả lõi R02 trong giới hạn đã trình và mở R03 phần phương pháp bước 1–2. Không cấp quyền tạo hồ sơ pilot, thêm phiên AI, cài đặt, code hoặc deploy sản phẩm. Không dùng gói này để khởi tạo `.kidea` cho repo xây Kidea.

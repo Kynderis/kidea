@@ -10,6 +10,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R0
 
 <a id="review-current"></a>
 
+**Ba rule đăng ký D1–D3 đã được duyệt; toàn phần còn lại R03 được gom thành một gói.** Human “duyệt tất cả” sau answer 2659512, rồi yêu cầu áp dụng duyệt gói đầy đủ cho mọi phase sau. [R03-COMPLETE-BATCH-r1](proposals/r03-completion-batch-r1.md) đang IN_REVIEW: B1–B8 nghiệp vụ; C1 hồ sơ pilot hữu hạn, C2 tích hợp hướng dẫn/kiểm lõi, C3 hai phiên mới ×15 phút; D rubric; E trình tự/gate kết quả. Chưa thực hiện quyền mới hoặc mở AI. Không hỏi lại phần đã duyệt hoặc xin từng file sau khi gói được chốt.
+
 **Ba nhóm và cụm đăng ký/hủy đã được duyệt.** Human xác nhận sau answer d539cc9; INDEX pilot đã dẫn đúng [căn cứ approval](proposals/r03-pilot-boundary-review-r1.md), giữ snapshot phiên 2 làm preimage. [Ba quyết định hành vi D1–D3](proposals/r03-registration-decisions-r1.md) đang IN_REVIEW: gửi lại yêu cầu, thứ tự từ chối, đăng ký/sửa sức chứa đồng thời. Chưa áp dụng rule đề xuất vào pilot hoặc cấp file mới/AI/code/deploy.
 
 **Đã tạo hồ sơ pilot và hoàn tất 2/2 phiên đọc được duyệt.** Human duyệt gói sau answer ab75b09; [kết quả](tests/evidence/r03/document-trial-r1.md) ghi sáu tiêu chí đọc mỗi phiên đạt, giữ snapshot trước/sau bổ sung OPEN. Pilot chỉ có hai Markdown; không `.kidea`/Git/code/deploy. [Gói ranh giới/cụm đầu đang IN_REVIEW](proposals/r03-pilot-boundary-review-r1.md); không tự duyệt rule hoặc khép R03. Quota hai phiên đã hết, chưa kiểm runtime hay toàn rule/flow/test bằng lượt này.
@@ -188,6 +190,8 @@ Human “Đồng ý nhé” ngày 2026-09-13 sau [đề xuất 0f5a472](https://
 
 <a id="risk-first-review-approved"></a>
 
+**Cập nhật ưu tiên ngày 2026-09-15:** Human xác nhận áp dụng duyệt gói đầy đủ cho cả các gói/phase sau. Gom toàn bộ lựa chọn đã biết, quyền và kiểm chứng trước khi xin duyệt; đề xuất dễ hiểu có ví dụ, cho duyệt tất cả hoặc sửa từng mục. Không tách lượt theo số lượng 2–3 quyết định. Sau duyệt làm liên tục, chỉ dừng vì phát sinh thật hoặc gate kết quả. Những hướng dẫn giới hạn số ý bên dưới giữ lịch sử và chỉ còn áp dụng khi không mâu thuẫn yêu cầu mới này.
+
 Human “Tôi đồng ý” ngày 2026-09-14 sau [đề xuất 34c6dc1](https://github.com/Kynderis/kidea/blob/34c6dc12aecf796d93165101f2c0a6d66a100192/answer.md) đã duyệt rà theo từng **big-step = phase xây Kidea**: trình điểm cần cân nhắc trước, gom đầu ra thường lệ đã đủ căn cứ, nêu rõ phần cần thử/đo rồi mới quyết và không hỏi lại điều đã thống nhất. Áp dụng từ phần R02 còn lại; các phase sau rà khi tới lượt. Approval này đổi cách tổ chức các lượt review, không duyệt trước hợp đồng/đầu ra, ngưỡng, số phiên AI, ngân sách hoặc quyền mới; không bỏ dependency, kiểm chứng, gate cuối phase hay gate sản phẩm riêng. Bổ sung cùng ngày: [hướng tinh gọn đã duyệt](#lean-core-review), bỏ phụ thuộc chỉ theo thứ tự task xây Kidea, tạo hồ sơ/subtask khi cần và gom thử AI theo luồng; giữ gate sản phẩm/quyền.
 
 ### 2.1. Phase → task → subtask
@@ -326,7 +330,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R03-T04-S01 | DONE | [A] — mẫu đề xuất | AC/test có input/state/expected và giới hạn bao phủ; không nhận test đã chạy |
 | R03-T03/T04-S02 | DONE | [H] — D1 APPROVED sau answer c91fba7 | Human duyệt cách viết và kiểm nghiệp vụ; chưa duyệt coverage/chi tiết pilot hoặc AI |
 | R03-T05-S01 | DONE | [H/A] — protocol lượt đầu đã duyệt và dùng hết | [Hai phiên ×10 phút](proposals/r03-pilot-permission-r1.md), đủ 2/2; loạt rule/flow/test sau cần gói riêng |
-| R03-T05-S02 | IN_PROGRESS | [A/H] — ranh giới/cụm APPROVED sau d539cc9 | [Rule D1–D3 đang review](proposals/r03-registration-decisions-r1.md); chưa đặc tả/kiểm toàn nghiệp vụ hoặc tích hợp skill |
+| R03-T05-S02 | IN_PROGRESS | [A/H] — ranh giới/cụm và rule D1–D3 APPROVED | [Gói toàn phần còn lại đang review](proposals/r03-completion-batch-r1.md); chưa đặc tả/kiểm toàn nghiệp vụ hoặc tích hợp skill |
 
 R01/R02 đã APPROVED đúng phạm vi. Quota launcher T07 cũ vẫn 0/3, AI r2 hết sáu phiên, không chuyển quota. R03 mở phương pháp, R04–R10 chưa mở; chưa có quyền tạo/ghi hồ sơ pilot. Bằng chứng cũ giữ đúng phiên bản.
 

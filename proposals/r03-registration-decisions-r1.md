@@ -2,6 +2,8 @@
 
 Ngày 2026-09-15. `R03-REG-RULES-r1`: **IN_REVIEW**. Đề xuất để Human chốt, chưa là rule sản phẩm hiện hành. Căn cứ [ranh giới đã duyệt](r03-pilot-boundary-review-r1.md) và [Feature Map](D:/Code/kynderis/kidea-workshop-pilot/docs/features.md). Chưa tạo file nghiệp vụ mới trong pilot hoặc sửa skill.
 
+Cập nhật: **D1–D3 APPROVED** ngày 2026-09-15. Human “duyệt tất cả” sau answer `2659512` chấp nhận ba quyết định đã trình, đồng thời yêu cầu gom toàn bộ quyết định/quyền/kiểm chứng trước thực hiện. Không mở rộng approval sang rule chưa trình, file mới hoặc quota AI. Nội dung phía dưới giữ bản đã duyệt.
+
 Giữ nguyên: chỉ đăng ký/hủy khi OPEN; một ACTIVE/người/workshop; không vượt sức chứa; admin không có quyền hủy hộ; cache không quyết định nhận đăng ký. D1 bên dưới phân biệt *đọc lại kết quả thao tác cũ* với *thực hiện thao tác mới*, không thêm quyền hủy khi PAUSED.
 
 ## D1 — gửi lại cùng yêu cầu không thực hiện lần hai
