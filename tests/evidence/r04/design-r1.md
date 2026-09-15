@@ -1,5 +1,28 @@
 # R04 — bằng chứng triển khai gói thiết kế
 
+## Hiện hành — chất lượng đã duyệt, trải nghiệm/SEO chờ duyệt
+
+Human “Duyệt chất lượng R04” sau answer `a24681b9db77e0f8618094e805500d6e6f37b174` chấp nhận **Q1–Q6 của Q-r1**, gồm workload/cách đo và ngoại lệ mất ổ chỉ trong lab. T01-S05/gate bước 3 DONE; không xem là mục tiêu đã đo đạt hoặc quyền diễn tập phá hủy. Các nhãn “đề xuất/chờ duyệt” trong snapshot Q-r1 phía dưới là lịch sử đúng bản đã trình; chỉ thêm backlink, không viết lại mục tiêu đã chốt.
+
+Đã soạn `D:/Code/kynderis/kidea-workshop-pilot/docs/design/experience.md`; [snapshot UX-r1 để đọc từ GitHub](design-r1/experience-r1.md), SHA256 `62f24ffdd808c5e1a3f12f71fc790084d0a0b303870949307cef0f8337a8c9de`. Snapshot giữ link tương đối theo root pilot, không nguồn hiệu lực thứ hai. **UX1–UX6 IN_REVIEW** cho bước 4 và gate thiết kế SEO; chưa mở monitoring/admin chi tiết/kiến trúc hoặc phiên AI độc lập.
+
+### Bằng chứng chặng UX
+
+- [Preimage 11 file](design-r1/experience-pre.json), [postimage 12 file](design-r1/experience-post.json), [diff](design-r1/experience-diff.json). Thêm đúng experience.md, thêm reference vào 8 nguồn R03 và quality.md; các nguồn còn lại nguyên. Không thay nghiệp vụ hoặc Q-r1, không xóa/restore dữ liệu, không thêm `.kidea`/Git/code tại pilot. Kiểm root và directory không có link/reparse bất ngờ.
+- [Kiểm nguyên văn](design-r1/experience-check.json): **10/10 test R04 PASS**, **448 liên kết nội bộ hợp lệ**, 0 lỗi link/anchor. Thêm kiểm nguồn chất lượng đúng bản trước backlink và dependency giữa hai tài liệu thiết kế; test đếm danh sách đúng 10 nguồn + 2 file được phép, không giảm assertion thành “ít nhất 10”.
+- Bộ R03 cũ vẫn **7/8**, đúng lỗi tổng file `12 !== 10`; giữ nguyên raw failure. Không đổi nó thành PASS, bộ R04 kiểm tập nguồn hiện hành. Nội dung source test/harness đã cập nhật theo chặng mới, evidence chặng quality không bị ghi đè.
+- Đối chiếu nguồn R03 về quyền/state/data/retry/registration/view/admin/updates và Q-r1. Review do tác giả: đường đăng ký/hủy/unknown/reload/đổi actor không tự tạo ý định; cache không nhận chỗ; public metadata/HTML không trộn dữ liệu riêng; native vẫn hai màn hình; xác nhận hủy chỉ thêm UX không đổi quyền; bố cục admin/ops chưa thay gate bước 5–6.
+- SEO đối chiếu nguồn Google chính thức trong UX-r1: noindex cần crawler đọc được, không là bảo vệ dữ liệu; canonical không bảo đảm index; không tự bịa địa điểm/thuộc tính cho Event rich results. UX5 đề xuất không dùng Event markup trên pilot hiện tại, **chưa là N/A được duyệt** cho structured data; D3 N/A kết quả tìm kiếm thật đã được duyệt trước đó giữ nguyên. Không mở lab/public/submit URL.
+- 15 nhóm UX-T01–UX-T15 là **test specification NOT_RUN**, không browser/native test thực tế. Chưa chạy 265 test lõi/validator vì skill/runtime/schema chưa đổi; chưa dùng 1 phiên AI ×15 phút, giữ tới đúng điều kiện cuối.
+
+### Điều cần Human chốt
+
+UX1 sáu nhóm web/hai màn native; UX2 kết quả lịch sử khác trạng thái hiện tại và unknown giữ mã; UX3 xác nhận hủy nhưng không thêm xác nhận đăng ký; UX4 route ID ổn định và HTML public đọc trước JS; UX5 SEO lab/metadata/canonical và không Event markup khi thiếu dữ kiện; UX6 nội dung tiếng Việt/timezone/bàn phím/focus/layout kiểm được. Duyệt UX1–UX6 chốt **đầu ra bước 4 và thiết kế SEO**, không kiến trúc hoặc phát hành. Sau đó mở bước 5 monitoring theo quyền đã cấp.
+
+---
+
+Phần dưới giữ báo cáo chặng chất lượng tại thời điểm trình, không phủ nhận approval hiện hành phía trên.
+
 ## Chặng chất lượng Q-r1 — chờ duyệt đầu ra bước 3
 
 Human “Duyệt gói R04” sau `7ef7f1b5a91deed4cd100c275b9fde45e66d320d` cấp D1–D6/P1–P3 đúng [gói](../../../proposals/r04-design-batch-r1.md). Đã soạn chất lượng; chưa mở UX/SEO/ops/admin/kiến trúc, chưa tích hợp skill hoặc chạy AI. Quota kiểm độc lập còn nguyên 1 phiên ×15 phút, chỉ dùng khi đủ gate.

@@ -24,20 +24,21 @@ export function inventory(root){
   }}walk(root);return files;
 }
 function snapshot(stage){
-  if(!['quality-pre','quality-post'].includes(stage))throw Error('Unsupported stage');
+  if(!['quality-pre','quality-post','experience-pre','experience-post'].includes(stage))throw Error('Unsupported stage');
   const files=inventory(pilot),expected=baselineFiles.map(f=>'docs/'+f);
-  if(stage==='quality-post')expected.push('docs/design/quality.md');
+  if(stage!=='quality-pre')expected.push('docs/design/quality.md');
+  if(stage==='experience-post')expected.push('docs/design/experience.md');
   if(JSON.stringify(Object.keys(files).sort())!==JSON.stringify(expected.sort()))throw Error('Unexpected pilot inventory');
   fs.mkdirSync(evidenceRoot,{recursive:true});
   const output={stage,observedAt:new Date().toISOString(),pilot,files};
-  if(stage==='quality-post'){
-    const before=JSON.parse(fs.readFileSync(path.join(evidenceRoot,'quality-pre.json'),'utf8'));
+  if(stage.endsWith('-post')){
+    const before=JSON.parse(fs.readFileSync(path.join(evidenceRoot,stage.replace('-post','-pre')+'.json'),'utf8'));
     output.changes=Object.entries(files).filter(([f,v])=>before.files[f]?.sha256!==v.sha256).map(([f,v])=>({file:f,before:before.files[f]?.sha256??null,after:v.sha256}));
   }
   fs.writeFileSync(path.join(evidenceRoot,stage+'.json'),JSON.stringify(output,null,2)+'\n',{flag:'wx'});
   console.log(JSON.stringify({stage,files:Object.keys(files).length,changes:output.changes}));
 }
-function check(){
+function check(prefix='quality'){
   fs.mkdirSync(evidenceRoot,{recursive:true});
   const runs=['tests/r04/design-docs.test.mjs','tests/r03/link-check.test.mjs'].map(file=>{
     const r=spawnSync(process.execPath,['--test',file],{cwd:repo,encoding:'utf8'});
@@ -45,17 +46,18 @@ function check(){
   });
   const result={observedAt:new Date().toISOString(),node:process.version,nodeSha256:digest(fs.readFileSync(process.execPath)),runs,
     links:checkDocuments(readDocuments(path.join(pilot,'docs'))),pilot:inventory(pilot)};
-  fs.writeFileSync(path.join(evidenceRoot,'quality-check.json'),JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+  fs.writeFileSync(path.join(evidenceRoot,prefix+'-check.json'),JSON.stringify(result,null,2)+'\n',{flag:'wx'});
   console.log(JSON.stringify({runs:runs.map(({file,exitCode})=>({file,exitCode})),links:result.links}));
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
-  if(process.argv[2]==='quality-check')check();
-  else if(process.argv[2]==='quality-export'){
-    const pre=JSON.parse(fs.readFileSync(path.join(evidenceRoot,'quality-pre.json'),'utf8'));
-    const post=JSON.parse(fs.readFileSync(path.join(evidenceRoot,'quality-post.json'),'utf8'));
-    const content=Buffer.from(post.files['docs/design/quality.md'].base64,'base64');
-    if(digest(content)!==digest(fs.readFileSync(path.join(pilot,'docs/design/quality.md'))))throw Error('Pilot changed');
-    fs.writeFileSync(path.join(evidenceRoot,'quality-r1.md'),content,{flag:'wx'});
+  if(['quality-check','experience-check'].includes(process.argv[2]))check(process.argv[2].split('-')[0]);
+  else if(['quality-export','experience-export'].includes(process.argv[2])){
+    const prefix=process.argv[2].split('-')[0];
+    const pre=JSON.parse(fs.readFileSync(path.join(evidenceRoot,prefix+'-pre.json'),'utf8'));
+    const post=JSON.parse(fs.readFileSync(path.join(evidenceRoot,prefix+'-post.json'),'utf8'));
+    const content=Buffer.from(post.files['docs/design/'+prefix+'.md'].base64,'base64');
+    if(digest(content)!==digest(fs.readFileSync(path.join(pilot,'docs/design/'+prefix+'.md'))))throw Error('Pilot changed');
+    fs.writeFileSync(path.join(evidenceRoot,prefix+'-r1.md'),content,{flag:'wx'});
     const changes=post.changes.map(({file,before,after})=>{
       const old=pre.files[file]?Buffer.from(pre.files[file].base64,'base64').toString('utf8'):'';
       const now=Buffer.from(post.files[file].base64,'base64').toString('utf8');
@@ -63,7 +65,7 @@ if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.ur
       if(before&&!normalizedNow.startsWith(normalizedOld+'\n\n'))throw Error('Non-append source edit');
       return {file,before,after,kind:before?'appended-references-and-possible-line-endings':'new-document',addedText:normalizedNow.slice(normalizedOld.length)};
     });
-    fs.writeFileSync(path.join(evidenceRoot,'quality-diff.json'),JSON.stringify(changes,null,2)+'\n',{flag:'wx'});
-    console.log('Exported exact quality bytes and append-only source diff');
+    fs.writeFileSync(path.join(evidenceRoot,prefix+'-diff.json'),JSON.stringify(changes,null,2)+'\n',{flag:'wx'});
+    console.log('Exported exact '+prefix+' bytes and append-only source diff');
   }else snapshot(process.argv[2]);
 }

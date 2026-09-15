@@ -2,7 +2,7 @@
 
 Ngày 2026-09-15. Kế hoạch đã soạn; chưa phải phương pháp hoặc thiết kế sản phẩm được duyệt.
 
-Cập nhật: [R04-DESIGN-BATCH-r1](r04-design-batch-r1.md) đã được Human duyệt D1–D6 sau `7ef7f1b`; T01-S03 DONE. Hồ sơ chất lượng đã soạn, Q1–Q6 chờ duyệt bước 3; chưa mở UX/SEO hoặc phiên AI. [Bằng chứng và giới hạn](../tests/evidence/r04/design-r1.md).
+Cập nhật: Q1–Q6 đã được Human “Duyệt chất lượng R04” sau `a24681b`; gate bước 3 DONE, giữ ngoại lệ mất ổ đúng phạm vi lab. Hồ sơ experience UX-r1 đã soạn, UX1–UX6 IN_REVIEW cho bước 4/SEO; chưa mở monitoring hoặc phiên AI. [Bằng chứng và giới hạn](../tests/evidence/r04/design-r1.md).
 
 ## Căn cứ và kết quả mở phase
 
@@ -30,15 +30,15 @@ R03 hướng dẫn viết rõ sản phẩm phải làm gì. R04 hướng dẫn b
 | R04-T01-S02 | Soạn một gói phương pháp cho toàn bước 3–7: mẫu tối thiểu, cách hỏi, ví dụ, tiêu chí review; phân loại đã chốt/mới/chưa đủ căn cứ | DONE [A], M0–M5/D1–D6/P1–P3/V1–V8 tại gói r1; chưa tích hợp |
 | R04-T01-S03 | Trình chung lựa chọn phương pháp, ngưỡng đề xuất nếu đủ căn cứ, danh sách quyền và protocol kiểm chứng hữu hạn | DONE [H], D1–D6 APPROVED sau 7ef7f1b; không duyệt trước ngưỡng/kiến trúc chưa có |
 | R04-T01-S04 | Soạn hồ sơ quality Q-r1 theo M1, snapshot trước/sau và kiểm nguồn/link | DONE [A], một file mới và backlink; không đổi nghiệp vụ R03 |
-| R04-T01-S05 | Duyệt Q1–Q6 của quality Q-r1, gate bước 3 | IN_REVIEW [H], gồm ngoại lệ mất ổ lab và các mục tiêu chưa đo; chặn bước 4 |
-| R04-T02-S01 | Soạn/diễn tập UX và SEO theo phương pháp được duyệt; rà loading/rỗng/lỗi/quyền và nguồn nghiệp vụ | TODO [A], có nguồn bước 3; ghi pilot chỉ sau quyền cụ thể |
-| R04-T02-S02 | Review đầu ra bước 3–4 và SEO đúng bản | TODO [H], trước kiến trúc; có thể cùng lượt nhưng xác nhận riêng phạm vi từng gate |
+| R04-T01-S05 | Duyệt Q1–Q6 của quality Q-r1, gate bước 3 | DONE [H], Human “Duyệt chất lượng R04” sau a24681b; không phải số đo thực tế |
+| R04-T02-S01 | Soạn/diễn tập UX và SEO theo phương pháp được duyệt; rà loading/rỗng/lỗi/quyền và nguồn nghiệp vụ | DONE [A], experience UX-r1, 15 nhóm ca NOT_RUN và kiểm tài liệu; chưa browser/device test |
+| R04-T02-S02 | Review đầu ra bước 4 và SEO đúng bản; bước 3 đã khép ở T01-S05 | IN_REVIEW [H], UX1–UX6; sau approval mới mở monitoring, không đi tắt tới kiến trúc |
 | R04-T03-S01 | Soạn/diễn tập tín hiệu, độ tươi, ngưỡng, người nhận và đường cảnh báo độc lập phiên AI; rà mất telemetry | TODO [A], sau đầu vào chất lượng đủ rõ và quyền ghi tương ứng |
 | R04-T04-S01 | Soạn/diễn tập admin truy nguồn rule/quyền, xác nhận/audit/lỗi; rà không thêm rule | TODO [A], sau đầu vào UX/nghiệp vụ đủ rõ và quyền ghi tương ứng |
 | R04-T04-S02 | Review đầu ra bước 5 và 6 theo từng phạm vi | TODO [H], gom cùng lượt nếu đủ căn cứ; không tự suy PASS là approval |
 | R04-T05-S01 | Soạn/diễn tập kiến trúc và hợp đồng: owner/API/event/cache/lỗi/deploy/recovery/tương thích/quyền; đối chiếu thiết kế đã duyệt | TODO [A], sau các gate đầu vào gồm SEO, không cài/chạy dịch vụ |
 | R04-T05-S02 | Review đầu ra bước 7 đúng bản, nêu phần cần đo sau | TODO [H], không dùng approval phương pháp thay thiết kế cụ thể |
-| R04-T06-S01 | Tích hợp hướng dẫn đã duyệt; kiểm tra tài liệu và hồi quy liên quan; thử độc lập chỉ theo protocol được cấp | TODO [A], đọc skill-creator khi sửa skill; chưa có quota AI mới |
+| R04-T06-S01 | Tích hợp hướng dẫn đã duyệt; kiểm tra tài liệu và hồi quy liên quan; thử độc lập chỉ theo protocol được cấp | TODO [A], đọc skill-creator khi sửa skill; 1 phiên ×15 phút đã cấp ở D5, chưa dùng/chưa đủ gate để chạy |
 | R04-T06-S02 | Báo cáo bằng chứng/giới hạn và chấp nhận kết quả R04 | TODO [H], sau kiểm chứng; không gọi thiết kế monitoring là hệ thống đang hoạt động |
 
 S02 chuẩn bị cả phase để không xin lắt nhắt từng file. Trình trước các lựa chọn và quyền đã nhận diện được; những đầu ra phụ thuộc chưa tồn tại chỉ được duyệt khi có bản cụ thể, không gộp mất năm gate sản phẩm hoặc SEO. Chỉ một subtask triển khai hiện hành.

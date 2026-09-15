@@ -11,11 +11,12 @@ function missingDesignBacklinks(all){
   const missing=[];
   for(const [file,body] of Object.entries(all).filter(([f])=>f.startsWith('design/'))){
     for(const section of body.matchAll(/<a id="([^"]+)"><\/a>([\s\S]*?)(?=<a id="|$)/g)){
+      if(section[1]==='design-relations')continue;
       const from=file+'#'+section[1];
       for(const link of section[2].matchAll(/\[[^\]]+\]\(([^)]+)\)/g)){
         if(/^[A-Za-z]+:/.test(link[1])||!link[1].includes('#'))continue;
         const target=address(file,link[1]),[targetFile]=target.split('#');
-        if(targetFile.startsWith('design/'))continue;
+        if(targetFile===file)continue;
         const rows=(all[targetFile]??'').split('\n').filter(l=>l.startsWith('|'));
         const ok=rows.some(row=>{const cells=row.split('|');const refs=s=>[...s.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)].map(m=>address(targetFile,m[1]));return refs(cells[1]??'').includes(target)&&refs(cells[2]??'').includes(from);});
         if(!ok)missing.push({from,target});
@@ -23,8 +24,8 @@ function missingDesignBacklinks(all){
     }
   }return missing;
 }
-test('quality stage retains all ten R03 sources and adds only quality',()=>{
-  assert.deepEqual(Object.keys(docs).sort(),[...baselineFiles,'design/quality.md'].sort());
+test('experience stage retains ten R03 sources and exactly the two permitted designs',()=>{
+  assert.deepEqual(Object.keys(docs).sort(),[...baselineFiles,'design/quality.md','design/experience.md'].sort());
 });
 test('all live pilot links resolve to unique exact anchors',()=>assert.deepEqual(checkDocuments(docs).errors,[]));
 test('R03 source text is unchanged except line endings and appended references',()=>{
@@ -34,7 +35,7 @@ test('R03 source text is unchanged except line endings and appended references',
     // apply_patch may normalize line endings: verify unchanged logical source, not byte identity of edited files.
     const oldText=b.toString('utf8').replaceAll('\r\n','\n').trimEnd(),now=current.toString('utf8').replaceAll('\r\n','\n').trimEnd();
     assert.ok(now===oldText||now.startsWith(oldText+'\n\n'),file+' source changed');
-    if(now!==oldText){const extra=now.slice(oldText.length);assert.ok(extra.includes('Nơi dùng trong thiết kế chất lượng'));assert.ok(!extra.includes('## R-'));}
+    if(now!==oldText){const extra=now.slice(oldText.length);assert.match(extra,/Nơi dùng trong thiết kế (chất lượng|trải nghiệm)/);assert.ok(!extra.includes('## R-'));}
   }
 });
 test('existing R03 shared reverse references remain valid',()=>assert.deepEqual(missingSharedBacklinks(docs),[]));
@@ -51,4 +52,14 @@ test('wrong source row is rejected even when backlink exists',()=>{
 test('broken links and duplicate anchors still fail',()=>{
   assert.equal(checkDocuments({'a.md':'[x](absent.md#x)'}).errors[0].kind,'MISSING_FILE');
   assert.equal(checkDocuments({'a.md':'<a id="x"></a><a id="x"></a>'}).errors[0].kind,'DUPLICATE_ANCHOR');
+});
+test('accepted quality content remains unchanged before appended UX references',()=>{
+  const pre=JSON.parse(fs.readFileSync(path.join(repo,'tests/evidence/r04/design-r1/experience-pre.json'),'utf8'));
+  const old=Buffer.from(pre.files['docs/design/quality.md'].base64,'base64').toString('utf8').replaceAll('\r\n','\n').trimEnd();
+  assert.equal(pre.files['docs/design/quality.md'].sha256,'55733ba73437e3c26f14009efd1f4f06f9c4100a0559ed7be8c8640b5883996b');
+  const current=docs['design/quality.md'].replaceAll('\r\n','\n').trimEnd();assert.ok(current.startsWith(old+'\n\n<a id="design-relations"></a>'));
+});
+test('cross-design dependency needs reverse reference and ignores navigation relations',()=>{
+  const f={'design/u.md':'<a id="u"></a>[q](q.md#q)','design/q.md':'<a id="q"></a>Rule<a id="design-relations"></a>\n| [q](#q) | [u](u.md#u) |'};
+  assert.deepEqual(missingDesignBacklinks(f),[]);f['design/q.md']=f['design/q.md'].split('<a id="design-relations">')[0];assert.equal(missingDesignBacklinks(f).length,1);
 });
