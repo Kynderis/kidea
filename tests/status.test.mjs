@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { readStatus,inspectStatusGraph,inspectBoundGraph } from '../.agents/skills/kidea/scripts/status.mjs';
+import { readStatus,inspectStatusGraph,inspectBoundGraph,snapshotAnchorCount } from '../.agents/skills/kidea/scripts/status.mjs';
 import { pendingWritesPath } from '../.agents/skills/kidea/scripts/pending-writes.mjs';
 import { buildBase, buildCases, edit, paths, digest, dataAt, envelope } from './fixtures/r02-t04/catalog.mjs';
 
@@ -25,6 +25,57 @@ test('baseline returns actual pending work and unknown backend, not authority',(
   assert.equal(result.data.reviews[0].recordedStatus,'IN_REVIEW');
   assert.equal(result.data.reviews[0].verification.authority,'NOT_VERIFIED');
   assert.equal(result.data.deploymentObservations[0].observations[0].components[1].result,'UNKNOWN');
+});
+
+test('anchor index preserves exact counts, case, duplicates and prototype-like names',()=>{
+  const data=Buffer.from(`<a id="scope"></a><DIV ID='scope'></DIV><a id="Scope"></a><section id="__proto__"></section><a id="constructor"></a><a id="đích"></a>`);
+  for(const [anchor,count] of [['scope',2],['Scope',1],['__proto__',1],['constructor',1],['đích',1],['missing',0]])assert.equal(snapshotAnchorCount(data,anchor),count);
+  assert.throws(()=>snapshotAnchorCount(Buffer.from([0xff]),'scope'));
+});
+
+test('repeated anchors share one decode per byte version, not reads or state across calls',t=>{
+  const {world}=buildBase(),plan=Buffer.from(world.files['docs/plan.md']);let decodes=0,reads=0;
+  const decode=TextDecoder.prototype.decode;
+  t.mock.method(TextDecoder.prototype,'decode',function(data,...args){if(Buffer.from(data).equals(plan))decodes++;return decode.call(this,data,...args);});
+  class TracedMap extends Map {get(p){if(p==='docs/plan.md')reads++;return super.get(p);}}
+  const files=new TracedMap(Object.entries(world.files));
+  for(let n=1;n<=2;n++){
+    assert.equal(inspectBoundGraph(repo,files).status.readState,'OK');
+    assert.equal(decodes,n);assert.ok(reads>=4*n,'references must still read their supplied bytes');
+  }
+});
+
+for(const variant of ['duplicate','missing','invalid-utf8'])test(`anchor cache rejects changed bytes at the same source path: ${variant}`,()=>{
+  const {world}=buildBase();let reads=0;
+  const changed=variant==='invalid-utf8'?Buffer.from([0xff]):world.files['docs/plan.md'].replace('<a id="completion"></a>',variant==='duplicate'?'<a id="completion"></a><a id="completion"></a>':'');
+  class ChangingMap extends Map {get(p){return p==='docs/plan.md'&&++reads>1?changed:super.get(p);}}
+  const result=inspectBoundGraph(repo,new ChangingMap(Object.entries(world.files))).status;
+  assert.equal(result.readState,variant==='invalid-utf8'?'INVALID':'INCOMPLETE');assert.equal(result.data,null);
+  assert.ok(result.diagnostics.some(d=>d.code===(variant==='invalid-utf8'?'INVALID_UTF8':'ANCHOR_MISSING_OR_AMBIGUOUS')));
+});
+
+test('historical and current bytes sharing a source path cannot share an anchor verdict',()=>{
+  const {world,refs}=buildBase();
+  const old=world.files[refs.subject.location.ref.path].replace('id="scope"','id="older"');
+  world.files['.kidea/reviews/evidence/older.snapshot']=old;
+  edit(world,paths.review,d=>{d.inputVersions.push({source:{path:'docs/features.md',anchor:'scope'},location:{kind:'SNAPSHOT',ref:{path:'.kidea/reviews/evidence/older.snapshot',anchor:null}},integrity:digest(old)});});
+  const result=inspectBoundGraph(repo,new Map(Object.entries(world.files))).status;
+  assert.equal(result.readState,'INCOMPLETE');assert.equal(result.data,null);
+  assert.ok(result.diagnostics.some(d=>d.code==='ANCHOR_MISSING_OR_AMBIGUOUS'&&d.fieldOrId==='.inputVersions[1]'));
+});
+
+test('parent membership still rejects a leaf owning a child, including duplicate parent IDs',()=>{
+  for(const duplicate of [false,true]){
+    const {world}=buildBase();edit(world,paths.work,d=>{
+      const leaf=d.items.find(i=>i.shape!=='GROUP');
+      d.items.push({...structuredClone(leaf),id:'CHILD',parentId:leaf.id,executionStatus:'TODO',gateIds:[]});
+      if(duplicate)d.items.push(structuredClone(leaf));
+    });
+    const result=inspectBoundGraph(repo,new Map(Object.entries(world.files))).status;
+    assert.equal(result.readState,'INVALID');assert.equal(result.data,null);
+    assert.ok(result.diagnostics.some(d=>d.code==='CONSTRAINT'));
+    if(duplicate)assert.ok(result.diagnostics.some(d=>d.code==='DUPLICATE_ID'));
+  }
 });
 test('empty pending registry permits a normal supported read',()=>{const root=materialize(buildBase().world);mkdirSync(path.join(root,pendingWritesPath));const before=fingerprint(root);assert.equal(readStatus(root).readState,'OK');assert.deepEqual(fingerprint(root),before);});
 for(const variant of ['empty-child','malformed-journal','claimed-done'])test(`pending write blocks even without work pointer: ${variant}`,()=>{

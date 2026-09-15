@@ -10,7 +10,7 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 <a id="review-current"></a>
 
-**Đã hoàn tất D1: 22/22 mẫu thăm dò có output đúng, nguồn không đổi; trung vị status 1,57 giây (100 task) và 9,61 giây (1.000 task).** [Báo cáo và đủ 22 số đo](tests/evidence/r02-t10-probe.md); hồi quy 243/243 trước khóa manifest. Không sửa runtime hoặc chạy bù. Bộ vừa cần xem xét hiệu năng trước chốt ngưỡng; đề xuất tối ưu riêng, chưa tự cấp quyền sửa/đo lại hoặc nâng ngân sách nháp 2/5 giây. Phần AI còn DRAFT, T07 cũ giữ 0/3 và sự cố launcher chưa khép; không mở R03/pilot.
+**Đã tối ưu tính toán `status` theo Human “Ok làm nhé” sau answer 620cd71; 250/250 kiểm thử đạt, chưa đo lại hiệu năng.** [Phạm vi, bằng chứng và D2 đề xuất 22 lượt đo lại](tests/evidence/r02-t10-status-optimization.md). Giữ nguyên các lượt đọc/kiểm đường dẫn và nguồn đổi; D2 chưa duyệt, không nâng ngân sách nháp 2/5 giây. D1 đã hoàn tất 22/22 mẫu đúng: trung vị 1,57 giây (100 task) và 9,61 giây (1.000 task) là **baseline trước tối ưu**, không phải kết quả bản mới; [báo cáo D1](tests/evidence/r02-t10-probe.md). Phần AI còn DRAFT, T07 cũ giữ 0/3 và sự cố launcher chưa khép; không mở R03/pilot.
 
 <a id="r02-t10-review"></a>
 

@@ -14,8 +14,13 @@ const keyOf = r => JSON.stringify([r.path,r.anchor]);
 const inside = (root,p) => { const rel=path.relative(root,p); return rel !== '..' && !rel.startsWith(`..${path.sep}`) && !path.isAbsolute(rel); };
 class Stop extends Error {}
 
+function snapshotAnchors(data) {
+  const counts=new Map();
+  for(const m of utf8(data).matchAll(/<(?:a|[a-z][a-z0-9]*)\b[^>]*\bid=["']([^"']+)["'][^>]*>/gi))counts.set(m[1],(counts.get(m[1])??0)+1);
+  return counts;
+}
 export function snapshotAnchorCount(data,anchor) {
-  return [...utf8(data).matchAll(/<(?:a|[a-z][a-z0-9]*)\b[^>]*\bid=["']([^"']+)["'][^>]*>/gi)].filter(m=>m[1]===anchor).length;
+  return snapshotAnchors(data).get(anchor)??0;
 }
 
 // The optional hook is test-only dependency injection, not a CLI capability.
@@ -43,6 +48,9 @@ export function inspectBoundGraph(cwd, files, {gitVersions = new Map(), checkpoi
 function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpointPaths = [], gitVersions = new Map(), capture, boundOnly=false, allowGit=true } = {}) {
   const out={outputVersion:1,action:'status',observedAt:new Date().toISOString(),readState:'OK',projectId:null,data:null,diagnostics:[]};
   const records=new Map(), reads=new Map(), absent=new Set(), gitReads=new Map(), directRefs=new Set();
+  // Per-call derived data only. Never cache filesystem reads/path checks. A
+  // source path can name different historical/current bytes in the same graph.
+  const anchorIndexes=new Map();
   let root, pendingBefore;
   function issue(code,file=null,field=null,state='INVALID',record=null) {
     const priority={OK:0,UNSUPPORTED:1,INCOMPLETE:2,INVALID:3};
@@ -144,7 +152,14 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
   function anchor(data,ref,file,field) {
     if(ref.anchor===null)return;
     // Explicit Markdown HTML anchors are unambiguous. Generated heading slugs are not guessed.
-    try{if(snapshotAnchorCount(data,ref.anchor)!==1)issue('ANCHOR_MISSING_OR_AMBIGUOUS',file,field,'INCOMPLETE');}
+    try{
+      let entry=anchorIndexes.get(ref.path);
+      if(!entry||!entry.data.equals(data)) {
+        entry={data:Buffer.from(data),counts:snapshotAnchors(data)};
+        anchorIndexes.set(ref.path,entry);
+      }
+      if((entry.counts.get(ref.anchor)??0)!==1)issue('ANCHOR_MISSING_OR_AMBIGUOUS',file,field,'INCOMPLETE');
+    }
     catch{issue('INVALID_UTF8',file,field);}
   }
   function checkRef(ref,record,field) {directRefs.add(ref.path);anchor(bytes(ref.path),ref,record.file,field);}
@@ -279,6 +294,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     for(const p of plans)requireValue(p.data.items.length>0,p,'.items');
     const itemRows=[work,...plans].flatMap(r=>r.data.items.map(item=>({item,record:r})));
     const items=new Map(itemRows.map(r=>[r.item.id,r]));
+    const parentIds=new Set(itemRows.map(r=>r.item.parentId));
     unique(itemRows,r=>r.item.id,work,'.items');unique(w.rounds,r=>r.id,work,'.rounds');unique(reviews,r=>r.data.id,work,'.reviewRefs');
     unique(w.planRefs,keyOf,work,'.planRefs');unique(w.reviewRefs,keyOf,work,'.reviewRefs');unique(idx.sources,s=>`${s.role}:${keyOf(s.ref)}`,index,'.sources');
     requireValue(idx.sources.filter(s=>s.role==='features').length===1,index,'.sources');
@@ -289,8 +305,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
       const field=`items:${i.id}`;
       requireValue(w.rounds.some(x=>x.id===i.roundId),r,field);
       requireValue(i.parentId===null?i.kind==='STEP':items.has(i.parentId)&&items.get(i.parentId).item.roundId===i.roundId,r,field);
-      const children=itemRows.filter(x=>x.item.parentId===i.id);
-      requireValue(i.shape==='GROUP'?i.executionStatus===null&&i.decomposition!==null:i.decomposition===null&&i.executionStatus!==null&&!children.length,r,field);
+      requireValue(i.shape==='GROUP'?i.executionStatus===null&&i.decomposition!==null:i.decomposition===null&&i.executionStatus!==null&&!parentIds.has(i.id),r,field);
       requireValue(!['STEP','PHASE'].includes(i.kind)||i.shape==='GROUP',r,field);
       requireValue(i.executionStatus!=='DONE'||i.resultRefs.length>0,r,field);
       for(const id of i.dependencyIds)requireValue(items.has(id)&&id!==i.id,r,field);
