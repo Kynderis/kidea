@@ -1,13 +1,9 @@
-**Có thể chạy trên máy hiện tại, không bắt buộc dựng VM.** Đề xuất VM trước đó là phương án cách ly mạnh hơn, không phải vì chạy trực tiếp chắc chắn sẽ làm hỏng máy.
+Đã kiểm tra máy hiện tại:
 
-Điểm cần thận trọng là **launcher**, không phải bản thân dữ liệu thử Kidea: sandbox Windows có thể thiết lập tài khoản phụ, quyền đọc/ghi thư mục (ACL), firewall và chính sách hệ thống. Đây có thể là hoạt động thiết lập bình thường, nhưng cần biết phạm vi trước khi cho chạy. [OpenAI Docs](https://learn.chatgpt.com/docs/windows/windows-sandbox).
+- **C còn 17,86 GiB; D còn 236,32 GiB.** Dung lượng chưa phải trở ngại cho dữ liệu thử; chưa cần dựng VM.
+- Tài khoản và firewall sandbox đã có sẵn. Tuy nhiên, nhóm sandbox hiện có quyền đọc tại `Documents`, `Downloads` và `.codex`. Đây **không phải bằng chứng AI đã đọc dữ liệu cá nhân**, cũng chưa thể quy cho sự cố T07.
+- CLI hỗ trợ profile quyền riêng. Vì vậy cần kiểm cả **giới hạn đọc lẫn ghi**, không chỉ đặt thư mục thử trên D. [OpenAI Docs](https://learn.chatgpt.com/docs/permissions).
 
-Sự cố T07 **chưa chứng minh gây mất dữ liệu hoặc hỏng máy**; vấn đề là thiếu bản đối chiếu trước nên chưa xác định quyền nào đã đổi. Vì vậy tôi không thể bảo đảm “chạy luôn thì không sao”.
+**Chưa chạy sandbox/AI hoặc thay ACL/cấu hình.** Tôi đã lập [báo cáo và phạm vi dự kiến](D:/Code/kynderis/kidea/tests/evidence/r02-t10-native-host-check.md), lưu lên `master`.
 
-Với việc ổ C ít dung lượng, tôi đề xuất:
-
-- **Chưa dựng VM**; ưu tiên kiểm tra để dùng máy hiện tại.
-- Đặt dữ liệu thử và log do bộ thử quản lý trên **ổ D**, dùng bản sao, không project thật. Một phần dữ liệu Codex vẫn có thể nằm trên C; thư mục D riêng không phải ranh giới cách ly.
-- Trước chạy AI, xác định các thay đổi quyền cần thiết, trình bạn duyệt rồi kiểm tra launcher không gọi model. Không tắt sandbox hoặc cấp toàn quyền để bỏ qua bước này.
-
-**Tóm lại: chạy trực tiếp là hướng khả thi, nhưng nên kiểm tra launcher trước, chưa chạy ngay sáu phiên AI.** Lượt này tôi chưa thay quyền hay cấu hình máy.
+Điểm chưa xác minh được là launcher có tự cập nhật quyền ngoài phạm vi đó khi áp profile hay không. Vì vậy **chưa có gói quyền đủ chắc để xin bạn duyệt chạy**; cần làm rõ đường thiết lập của launcher trước, không chạy thử rồi mới biết nó sửa gì.
