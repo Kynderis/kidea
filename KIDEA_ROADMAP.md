@@ -12,6 +12,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đ
 
 **D2 đã hoàn tất 22/22 mẫu đúng, không timeout; chưa thấy cải thiện tốc độ tổng thể.** Trung vị sau tối ưu **1,57 giây / 9,76 giây** (100 / 1.000 task), so với D1 **1,57 / 9,61 giây**; [đủ số đo, bằng chứng và giới hạn](tests/evidence/r02-t10-probe-r2.md). Hồi quy 252/252 đạt; 54 file nguồn và toàn bộ evidence D1 giữ nguyên. [D2](proposals/r02-t10-probe-r2.md) hết lượt, chưa profiling hoặc thêm tối ưu; đề xuất phân rã chi phí trước bước tiếp. Không nâng ngân sách nháp 2/5 giây. Phần AI còn DRAFT, T07 cũ giữ 0/3 và sự cố launcher chưa khép; không mở R03/pilot.
 
+Human “Ok làm đi” sau 01e3fb1 cho tiếp tục hướng profiling. Đã rà chỉ đọc code và Node help; trình [D3 — 1 lượt bộ vừa, watchdog 30 giây, không retry](proposals/r02-t10-profile-r1.md), **chưa chạy/chưa cấp lượt**. Ứng viên là duyệt path lồng nhau qua `realpathSync`, chưa xác định tỷ trọng hoặc thay kiểm tra an toàn.
+
 <a id="r02-t10-review"></a>
 
 ### R02-T10-S01-r1 — đo sớm và bài thử lõi

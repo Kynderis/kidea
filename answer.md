@@ -1,10 +1,5 @@
-Đã hoàn tất 22 lượt đo và push kết quả lên `master`. **Chưa thấy cải thiện tốc độ.**
+Đã rà code: phần kiểm đường dẫn đang duyệt lặp nhiều lớp, nhưng **chưa có số đo xác nhận đây là chỗ chậm chính**.
 
-| Bộ dữ liệu | Trung vị trước | Sau tối ưu |
-|---|---:|---:|
-| 100 task | 1,57 giây | 1,57 giây |
-| 1.000 task | 9,61 giây | 9,76 giây |
+Đề xuất **1 lượt profiling bộ 1.000 task, tối đa 30 giây, không chạy bù** bằng công cụ có sẵn của Node. Profile lưu riêng; giữ nguyên runtime và bằng chứng D1/D2. [Phạm vi D3](D:/Code/kynderis/kidea/proposals/r02-t10-profile-r1.md).
 
-22/22 mẫu đúng output, không timeout; **252/252 kiểm thử đạt**, bằng chứng cũ nguyên vẹn. [Báo cáo đầy đủ](D:/Code/kynderis/kidea/tests/evidence/r02-t10-probe-r2.md).
-
-Khuyến nghị tiếp theo: **profiling — đo thời gian từng phần để tìm chỗ chậm** trước khi tối ưu tiếp. Chưa chạy thêm hoặc thay ngưỡng nghiệm thu.
+D1/D2 đã hết lượt; bạn duyệt lượt chẩn đoán mới này nhé?
