@@ -1,11 +1,11 @@
-Đã soạn [bản phương pháp R03](D:/Code/kynderis/kidea/proposals/r03-feature-method-r1.md), kèm ví dụ workshop và rà tám tình huống.
+Đã soạn [gói mẫu nghiệp vụ và test](D:/Code/kynderis/kidea/proposals/r03-business-template-r1.md), gồm:
 
-Cách làm đề xuất:
+- Quy tắc: điều kiện nào dẫn đến kết quả gì, dữ liệu đổi hay giữ nguyên.
+- Luồng: đi qua bước nào, rẽ nhánh và kết thúc ở đâu.
+- Điều kiện chấp nhận và test: đầu vào, trạng thái ban đầu, kết quả mong đợi, căn cứ nguồn và phần chưa bao phủ.
 
-- Bạn nói ý tưởng; Kidea đọc hồ sơ và chỉ hỏi những điểm còn thiếu có thể đổi quyết định.
-- Chốt **làm gì / chưa làm gì** trước, chưa cần trả lời hết chi tiết nghiệp vụ.
-- Sau đó làm từng cụm tính năng: thống nhất phần dùng chung trước, rồi viết phần riêng. Không đặc tả toàn bộ sản phẩm ngay một lượt.
+Ví dụ “tranh chỗ cuối” cho thấy: kiểm được **không vượt sức chứa** chưa có nghĩa đã kiểm đủ retry, lỗi hoặc toàn bộ luồng đăng ký.
 
-Điều cần chấp nhận: khi đi sâu có thể phát hiện vấn đề buộc quay lại sửa phạm vi; phần bị ảnh hưởng phải được duyệt lại.
+Đã rà nội dung, kiểm tra liên kết và commit/push; chưa sửa skill hoặc chạy test sản phẩm.
 
-**Bạn duyệt cách làm này nhé?** Đây chỉ là duyệt phương pháp; chưa duyệt nghiệp vụ workshop, tạo hồ sơ pilot hay chạy thêm AI. Sau đó tôi soạn tiếp mẫu quy tắc, luồng và điều kiện/test chấp nhận. Đã commit/push bản đề xuất.
+**Bạn duyệt mẫu và cách chọn test này nhé?** Chỉ duyệt phương pháp, chưa chốt nghiệp vụ pilot. Sau đó tôi chuẩn bị một gói quyền tạo hồ sơ pilot và thử phương pháp, gồm rõ phạm vi, số phiên và giới hạn trước khi chạy.

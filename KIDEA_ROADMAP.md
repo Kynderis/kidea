@@ -10,6 +10,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R0
 
 <a id="review-current"></a>
 
+**Phương pháp T02 đã được duyệt; mẫu T03/T04 đã soạn và đang IN_REVIEW.** Human “ok làm đi” sau answer dc2d196 duyệt D1 của T02, không cấp quyền pilot/AI. [Gói mẫu nghiệp vụ và test](proposals/r03-business-template-r1.md) có rule/state/flow, AC, test và link hai chiều trên ví dụ tranh chỗ cuối; ghi rõ phần chưa bao phủ. Chỉ xin duyệt phương pháp, không nhận ba test là nghiệm thu Feature. Các snapshot bên dưới giữ lịch sử.
+
 **R03-T02-S01 đã soạn xong; T02-S02-r1 đang IN_REVIEW.** [Bản phương pháp ý tưởng → phạm vi → phần dùng chung](proposals/r03-feature-method-r1.md) cụ thể hóa cách hỏi, bảng Feature tối thiểu, điểm dừng bước 1 và cách chọn cụm cho bước 2; có ví dụ workshop và tám tình huống rà bàn giấy. Chỉ xin duyệt phương pháp, không xin duyệt nghiệp vụ pilot hoặc quyền ghi ở root pilot. Runtime/skill chưa đổi, chưa chạy AI mới. Sau gói này là mẫu rule/state/flow và AC/test.
 
 **R02 đã được duyệt; R03 đã mở phần phương pháp.** Human “Duyệt R02, mở R03” sau answer `158f24e9a151184107354e7077c2d1dd67c38f4c` chấp nhận đúng [kết quả và giới hạn R02](tests/evidence/r02-t10-agent-trial-r2.md). Không cấp thêm AI, root/quyền hồ sơ pilot, cài/code/deploy. [Đối chiếu nguồn và kế hoạch R03](proposals/r03-method-entry-r1.md) đã có: T01-S01 DONE; kế tiếp T02-S01 soạn phương pháp ý tưởng/phạm vi/ứng viên dùng chung. Chưa cần Human thao tác môi trường. Những mục IN_REVIEW/chưa mở R03 dưới đây là lịch sử trước approval này.
@@ -313,7 +315,10 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R03-T01-S01 | DONE | [A] — đối chiếu đầu vào | [Nguồn tham khảo/ranh giới/phạm vi quyền](proposals/r03-method-entry-r1.md); chưa tạo hồ sơ pilot |
 | R03-T01-S02 | TODO | [H] — quyền hồ sơ pilot còn thiếu | Root đã chọn, chưa tồn tại ở lần kiểm hiện tại; trình quyền trước ghi, không chặn soạn phương pháp |
 | R03-T02-S01 | DONE | [A] — bản đề xuất đã soạn | [Phương pháp r1](proposals/r03-feature-method-r1.md), tám tình huống đối chiếu bàn giấy; không tự chốt rule hoặc tích hợp skill |
-| R03-T02-S02 | IN_REVIEW | [H] — R03-T02-S02-r1, D1 | Duyệt cách ghi phạm vi, hỏi điểm mở và đi theo cụm; ví dụ không là approval ranh giới pilot |
+| R03-T02-S02 | DONE | [H] — D1 APPROVED sau answer dc2d196 | Human “ok làm đi”; phương pháp phạm vi/cụm, không duyệt nghiệp vụ pilot |
+| R03-T03-S01 | DONE | [A] — mẫu đề xuất | [Rule/state/flow và quan hệ hai chiều](proposals/r03-business-template-r1.md), rà bàn giấy; chưa tích hợp skill |
+| R03-T04-S01 | DONE | [A] — mẫu đề xuất | AC/test có input/state/expected và giới hạn bao phủ; không nhận test đã chạy |
+| R03-T03/T04-S02 | IN_REVIEW | [H] — r1, D1 phương pháp | [Mẫu và cách chọn test](proposals/r03-business-template-r1.md); chưa duyệt coverage/chi tiết pilot hoặc AI |
 
 R01/R02 đã APPROVED đúng phạm vi. Quota launcher T07 cũ vẫn 0/3, AI r2 hết sáu phiên, không chuyển quota. R03 mở phương pháp, R04–R10 chưa mở; chưa có quyền tạo/ghi hồ sơ pilot. Bằng chứng cũ giữ đúng phiên bản.
 

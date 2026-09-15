@@ -2,6 +2,8 @@
 
 Ngày 2026-09-15. Gói `R03-T02-S02-r1`: **IN_REVIEW**. Bản đề xuất phương pháp, chưa tích hợp vào skill hoặc áp dụng để duyệt nghiệp vụ pilot.
 
+Cập nhật: **D1 đã APPROVED** ngày 2026-09-15, Human “ok làm đi” sau answer `dc2d196f10c61966fde606921c802ced0573597a`. Chỉ duyệt phương pháp tại mục 2–3 và 5; ví dụ/ranh giới pilot, quyền hồ sơ và AI không được duyệt kèm. Nhãn IN_REVIEW phía trên giữ trạng thái bản trình ban đầu.
+
 Căn cứ: [thiết kế hiện hành](../KIDEA_DESIGN.md), [kế hoạch R03](r03-method-entry-r1.md), [nguồn tham khảo và giới hạn](../references/business-spec/README.md). Human “ok làm đi” sau answer `5a9fbdb5620bd8098114dac4f410116a7a970f91` cho soạn bản này, không duyệt trước kết quả.
 
 ## 1. Kidea sẽ làm gì

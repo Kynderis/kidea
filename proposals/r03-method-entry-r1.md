@@ -31,10 +31,10 @@ Kiểm tra chỉ đọc ngày 2026-09-15: `D:\Code\kynderis\kidea-workshop-pilot
 | T01-S01 | Đối chiếu nguồn cũ/hiện hành, phạm vi pilot và quyền | DONE, kết quả tại tài liệu này; không có nguồn cũ nào được nâng thành quy chuẩn |
 | T01-S02 | Gói quyền hữu hạn cho docs/.kidea pilot, kiểm root trước ghi; nêu Git/AI riêng | TODO; Human trước lần tạo/ghi, không chặn T02–T04 soạn trong Kidea |
 | T02-S01 | Bản phương pháp ý tưởng → Feature Map → ứng viên dùng chung/cụm; mẫu phân biệt lời Human, đề xuất và OPEN | DONE; [bản đề xuất](r03-feature-method-r1.md), chưa tích hợp skill |
-| T02-S02 | Review cách xác định ranh giới dùng chung, điểm dừng và gói Feature | IN_REVIEW; [D1 phương pháp](r03-feature-method-r1.md), không tự duyệt ranh giới nghiệp vụ pilot |
-| T03-S01 | Mẫu nhỏ rule/state/flow/data và link hai chiều, ví dụ có success/rejection | TODO; kiểm input→output/state, ownership, link; không chọn database/lock |
-| T04-S01 | Mẫu AC/business test và bảng bao phủ có lý do loại tổ hợp | TODO; test expected truy được nguồn; không báo test sản phẩm đã chạy |
-| T03/T04-S02 | Gói review mẫu phương pháp + phạm vi bao phủ hữu hạn | TODO; gom đầu ra đủ căn cứ để Human duyệt, không duyệt tài liệu chưa có |
+| T02-S02 | Review cách xác định ranh giới dùng chung, điểm dừng và gói Feature | DONE; [D1 APPROVED](r03-feature-method-r1.md) sau answer dc2d196, không duyệt ranh giới nghiệp vụ pilot |
+| T03-S01 | Mẫu nhỏ rule/state/flow/data và link hai chiều, ví dụ có success/rejection | DONE; [mẫu đề xuất](r03-business-template-r1.md), không chọn database/lock |
+| T04-S01 | Mẫu AC/business test và bảng bao phủ có lý do loại tổ hợp | DONE; [mẫu đề xuất](r03-business-template-r1.md), không báo test sản phẩm đã chạy |
+| T03/T04-S02 | Gói review mẫu phương pháp + cách ghi phạm vi bao phủ hữu hạn | IN_REVIEW; D1 mẫu/cách chọn test, không duyệt coverage pilot bằng ví dụ |
 | T05-S01 | Chuẩn bị gói kiểm chứng hồ sơ pilot: phiên mới, kịch bản, số lần/thời gian, quyền và log | TODO; Human duyệt quota/quyền trước chạy, không dùng lại AI r2 |
 | T05-S02 | Thực hiện lát cắt nghiệp vụ pilot qua phương pháp, đối chiếu đầu ra | TODO; cần T01-S02 và các gate phương pháp; từng gói nghiệp vụ có Human review |
 | T06-S01 | Sửa mơ hồ theo bằng chứng, tích hợp skill và hồi quy lõi đúng nguồn cuối | TODO; dùng skill-creator khi thực sự sửa skill; chưa thực hiện ở gói mở phase |
