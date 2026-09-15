@@ -2,13 +2,15 @@
 
 Ngày cập nhật: 2026-09-15.
 
-Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08: bắt đầu vòng rà soát mới từ đầu, mỗi lần đọc/duyệt chỉ vài đầu mục. **Đã có status, primitive ghi nội bộ và init được thử xác định trên dữ liệu giả, chưa có lõi đầy đủ hoặc code pilot.** R01 đã được duyệt làm căn cứ, R02 triển khai từng lát cắt trong quyền; các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
+Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01/R02 đã được Human duyệt trong phạm vi từng gói; R03 mở phần phương pháp nghiệp vụ, chưa có code pilot hoặc toàn Kidea hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
 <a id="current"></a>
 
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
 <a id="review-current"></a>
+
+**R02 đã được duyệt; R03 đã mở phần phương pháp.** Human “Duyệt R02, mở R03” sau answer `158f24e9a151184107354e7077c2d1dd67c38f4c` chấp nhận đúng [kết quả và giới hạn R02](tests/evidence/r02-t10-agent-trial-r2.md). Không cấp thêm AI, root/quyền hồ sơ pilot, cài/code/deploy. [Đối chiếu nguồn và kế hoạch R03](proposals/r03-method-entry-r1.md) đã có: T01-S01 DONE; kế tiếp T02-S01 soạn phương pháp ý tưởng/phạm vi/ứng viên dùng chung. Chưa cần Human thao tác môi trường. Những mục IN_REVIEW/chưa mở R03 dưới đây là lịch sử trước approval này.
 
 **Hiện tại: AI trial r2 hoàn tất sáu phiên, 42/42 tình huống đạt kết quả cuối; hồi quy mới 265/265 PASS.** Human “Duyệt điều chỉnh” sau answer dc3898c đã cấp sáu phiên mới ×10 phút, tổng chín kể cả r1. [Gói kết quả R02-T11-S03 đang IN_REVIEW](tests/evidence/r02-t10-agent-trial-r2.md) giữ cả lỗi đọc A3 và request SAVE B3 bị chặn trước khi sửa thành công; không tuyên bố mọi thao tác đạt lần đầu. Nguồn/runtime không đổi, không VM hoặc thay bảo mật Windows. Đề nghị chấp nhận lõi R02 trong giới hạn đã thử và mở R03 phần phương pháp ý tưởng/phạm vi/nghiệp vụ; chưa mở R03 trước Human, chưa cấp pilot hoặc AI mới. Các đoạn sau là lịch sử các lượt trước, không phải blocker/quota hiện tại.
 
@@ -305,9 +307,12 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 | R02-T10-S04 | DONE | [A] — kết quả giới hạn đã đối chiếu | [Status 22/22](tests/evidence/r02-t10-status-acceptance-r1.md); [AI 42/42 kết quả cuối](tests/evidence/r02-t10-agent-trial-r2.md), có lỗi request rồi sửa. Không tự nghiệm thu toàn sản phẩm |
 | R02-T11-S01 | DONE | [A] — tích hợp đúng nguồn cuối | Hồi quy mới 265/265, input hashes nguyên; ba cặp AI A/B trên cùng nguồn khóa, [evidence](tests/evidence/r02-t10-agent-trial-r2.json) |
 | R02-T11-S02 | DONE | [A] — rà phạm vi và bằng chứng | Schema 2, skill validator đạt; runtime/procedure không đổi, action thiếu báo NOT_IMPLEMENTED; giữ toàn bộ fixture/pending/lỗi, không cleanup hoặc nhận OS isolation |
-| R02-T11-S03 | IN_REVIEW | [H] — chưa chấp nhận kết quả R02 | [Gói kết quả/giới hạn](tests/evidence/r02-t10-agent-trial-r2.md); đề nghị mở R03 phần phương pháp, chưa cấp root/quyền pilot hoặc phiên AI mới |
+| R02-T11-S03 | DONE | [H] — APPROVED ngày 2026-09-15 | Human “Duyệt R02, mở R03” sau answer 158f24e; chấp nhận [kết quả/giới hạn](tests/evidence/r02-t10-agent-trial-r2.md), chỉ mở phần phương pháp R03 |
+| R03-T01-S01 | DONE | [A] — đối chiếu đầu vào | [Nguồn tham khảo/ranh giới/phạm vi quyền](proposals/r03-method-entry-r1.md); chưa tạo hồ sơ pilot |
+| R03-T01-S02 | TODO | [H] — quyền hồ sơ pilot còn thiếu | Root đã chọn, chưa tồn tại ở lần kiểm hiện tại; trình quyền trước ghi, không chặn soạn phương pháp |
+| R03-T02-S01 | TODO | [A] — bước tiếp đã xác định | Soạn đề xuất phương pháp ý tưởng/Feature/cụm dùng chung trong repo; không tự chốt rule hoặc tích hợp skill |
 
-R01 đã APPROVED. Kết quả R02-T07–T10 đã được đối chiếu qua gói AI r2 riêng; quota launcher T07 cũ vẫn 0/3 và không được chuyển sang loạt này. Bằng chứng cũ giữ đúng phiên bản. R02 đang chờ Human ở T11-S03; R03–R10 chưa mở/pilot chưa có.
+R01/R02 đã APPROVED đúng phạm vi. Quota launcher T07 cũ vẫn 0/3, AI r2 hết sáu phiên, không chuyển quota. R03 mở phương pháp, R04–R10 chưa mở; chưa có quyền tạo/ghi hồ sơ pilot. Bằng chứng cũ giữ đúng phiên bản.
 
 <a id="r01-t01-result"></a>
 
@@ -844,7 +849,7 @@ Phiên AI ở từng task chỉ chạy sau khi chốt đầu vào/biến thể, 
 
 Xây hướng dẫn bước 1–2. Phê duyệt phương pháp không tự duyệt nghiệp vụ của pilot; hồ sơ pilot phải có nơi giữ và quyền trước khi ghi.
 
-Subtask: **chưa phân rã**. Khi phase tới lượt, rà mục tiêu/phụ thuộc/lựa chọn/quyền/kiểm chứng và tổ chức gói theo [cách phối hợp đã duyệt](#risk-first-review-approved); ghi lát cắt/đầu ra/test/gate trước mở task. Không dùng một hàng hoặc danh mục dự kiến để duyệt trước đầu ra/quyền của cả cụm.
+Đã mở phần phương pháp theo Human ngày 2026-09-15 sau answer 158f24e. [Subtask, dependency, kiểm chứng và gate](proposals/r03-method-entry-r1.md) đã phân rã; T01-S01 đối chiếu nguồn hoàn tất. Không coi mở phase là duyệt trước phương pháp chi tiết, hồ sơ pilot hoặc quota AI. Quyền pilot T01-S02 không chặn các bản đề xuất T02–T04 trong repo Kidea.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|

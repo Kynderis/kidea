@@ -1,10 +1,10 @@
 # Kidea — Thiết kế cách hoạt động
 
-Trạng thái: `R01 ĐÃ DUYỆT — R02 ĐANG HOÀN THIỆN LÕI, CHƯA NGHIỆM THU TOÀN BỘ`
+Trạng thái: `R01/R02 ĐÃ DUYỆT ĐÚNG PHẠM VI — R03 MỞ PHẦN PHƯƠNG PHÁP`
 
 Ngày cập nhật: 2026-09-15
 
-Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. [Roadmap](KIDEA_ROADMAP.md) giữ trạng thái xây Kidea: status/init, writer hợp tác, review và resume cơ bản đã có bản thử; AI tích hợp r2 hoàn tất trong giới hạn project giả, [kết quả R02 đang chờ Human](tests/evidence/r02-t10-agent-trial-r2.md). Change/visualize và pilot chưa hoàn tất; không coi kết quả lõi là toàn Kidea đã xong.
+Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. [Roadmap](KIDEA_ROADMAP.md) giữ trạng thái xây Kidea: Human “Duyệt R02, mở R03” sau answer 158f24e đã chấp nhận [kết quả lõi R02 trong giới hạn đã thử](tests/evidence/r02-t10-agent-trial-r2.md) và mở phần phương pháp R03. Change/visualize và pilot chưa hoàn tất; không coi kết quả lõi là toàn Kidea đã xong hoặc quyền tạo/ghi pilot, thêm AI, cài/code/deploy.
 
 Human đã duyệt kết quả tích hợp R01 và cho mở R02 từng phần tại [gate khép căn cứ](KIDEA_ROADMAP.md#r01-result). Không coi đây là duyệt mọi chi tiết còn đề xuất, số đo/fixture, runtime/schema hoặc quyền cài/chạy pilot/deploy.
 
