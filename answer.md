@@ -1,26 +1,20 @@
-**Đã ghi quy tắc duyệt theo gói cho cả các phase sau. Ba quyết định đăng ký vừa rồi đã được ghi nhận là duyệt, không hỏi lại.**
+Đúng, tôi đã làm mất bối cảnh. Bạn có thể đã quên vì phần này kéo dài qua nhiều lượt; lỗi là tôi cứ nói thẳng vào ví dụ “workshop” mà không nhắc nó là gì.
 
-Đây là **toàn bộ gói còn lại của R03 tôi đề xuất chốt lúc này**:
+**Kidea** là phương pháp/skill giúp Human và AI biến một ý tưởng thành sản phẩm: chốt phạm vi, viết nghiệp vụ, tạo test, rồi sau này mới thiết kế/code/test/deploy.
 
-### 1. Quy tắc nghiệp vụ còn lại
+**“Workshop” chỉ là bài toán mẫu để thử Kidea**, không phải sản phẩm bạn đang yêu cầu xây. Bài toán là một ứng dụng đăng ký sự kiện:
 
-| Mục | Đề xuất cụ thể |
-|---|---|
-| Ai thấy workshop | Bản nháp chỉ admin thấy. Đã mở hoặc tạm dừng vẫn công khai; tạm dừng thì không đăng ký/hủy mới. Đăng ký cá nhân chỉ chủ sở hữu xem. |
-| Dữ liệu hợp lệ | Sức chứa 1–1000, không thấp hơn số đang đăng ký; tiêu đề 1–120 ký tự, mô tả 1–5000; giờ kết thúc sau giờ bắt đầu. Không tự đóng theo đồng hồ. |
-| Admin sửa gì | Được sửa nội dung, lịch và sức chứa ở mọi trạng thái. **Đổi lịch khi đã có người đăng ký vẫn được phép**, nhưng chưa có email/push thông báo. Không xóa hoặc đưa workshop đã mở về nháp. |
-| Hủy rồi đăng ký lại | Lần mới có mã đăng ký mới. Ví dụ hủy A rồi đăng ký B: thao tác hủy cũ của A không được hủy B. Giữ lịch sử. |
-| Cập nhật số chỗ | Phải giữ thông tin đủ để phục hồi cập nhật; bản cũ/lặp không làm sai số chỗ. Ví dụ đã nhận bản 12 thì bản 11 đến muộn không được ghi đè. |
-| Mất kết nối | Giữ số chỗ biết gần nhất, kèm thời điểm và nhãn chưa cập nhật; không giả thành 0. Chưa rõ đăng ký thành công thì tra lại cùng yêu cầu. |
-| Riêng tư/vận hành | Cập nhật công khai không chứa danh tính người đăng ký. Chỉ admin xem tình trạng cập nhật/lỗi; chưa có nút chạy lại hoặc xóa dữ liệu. |
-| Danh sách | Xếp workshop theo giờ bắt đầu; người dùng xem được đăng ký hiện tại và lịch sử đã hủy. Không thêm thử nghiệm A/B vào pilot. |
+- Người dùng xem các workshop đã mở.
+- Người tham gia đăng ký hoặc hủy chỗ, xem đăng ký của mình.
+- Admin tạo/sửa workshop, sức chứa và trạng thái mở/tạm dừng.
+- Hệ thống tính số chỗ còn, cập nhật thông tin cho các màn hình và xử lý trường hợp hai người tranh chỗ cuối.
 
-### 2. Quyền để làm hết gói
+Ví dụ: workshop có 10 chỗ, đã có 9 người. Hai người cùng đăng ký thì hệ thống không được nhận cả hai. Nếu điện thoại mất phản hồi rồi gửi lại cùng yêu cầu, hệ thống không được tạo đăng ký lần hai.
 
-- Viết đủ hồ sơ bốn nhóm MVP tại **đúng thư mục pilot trên D**: dự kiến 10 file Markdown kể cả hai file đã có; giữ bản trước khi sửa.
-- Tích hợp hướng dẫn nghiệp vụ vào skill và chạy kiểm tra tài liệu/hồi quy lõi. **Không thêm runtime sửa sản phẩm hoặc tự chuyển task**, không cài đặt, VM, Git pilot hay deploy.
-- Chạy **hai phiên AI mới, tối đa 15 phút/phiên**: một phiên soạn lát cắt trong vùng thử riêng, một phiên đọc/kiểm từ file. Không tự chạy thêm phiên; giữ cả lỗi và phần chưa đạt.
+Chọn bài toán này vì nó nhỏ nhưng có đủ vấn đề để kiểm tra phương pháp: quyền người dùng, trạng thái, dữ liệu dùng chung, tranh chấp đồng thời, gửi lại khi mạng lỗi và cập nhật bất đồng bộ. Dữ liệu đều là giả; chưa xây ứng dụng, chưa chạy server, chưa deploy và không liên quan thanh toán.
 
-Sau khi bạn chốt, tôi làm liên tục đến **một gói kết quả cuối**. Chỉ hỏi giữa chừng nếu phát sinh thật; ngưỡng hiệu năng và triển khai thuộc phase sau, không tự tuyên bố đạt ở R03.
+**Việc tôi đã làm thực tế:** tạo hai file Markdown phạm vi/ứng viên nghiệp vụ ở D:\Code\kynderis\kidea-workshop-pilot, rồi cho hai phiên AI đọc kiểm tra. Mục tiêu là kiểm tra Kidea có giúp viết tài liệu nghiệp vụ rõ hay không — không phải làm ứng dụng workshop.
 
-Bạn có thể nói **“Duyệt toàn bộ gói R03”**, hoặc sửa các dòng muốn đổi. [Gói đầy đủ đã push](D:/Code/kynderis/kidea/proposals/r03-completion-batch-r1.md).
+Ba nhóm trách nhiệm và cụm “đăng ký/hủy” đã được bạn duyệt. Ba quy tắc đăng ký đầu tiên cũng đã được bạn duyệt. **Gói mở rộng tám quy tắc, quyền ghi thêm tài liệu và hai phiên AI mới mà tôi vừa trình vẫn chưa được bạn duyệt, tôi chưa thực hiện.**
+
+Tóm lại: chúng ta đang thử **phương pháp xây tài liệu của Kidea**, còn workshop chỉ là đối tượng thử. Bạn chưa cần duyệt gì thêm trong câu trả lời này.
