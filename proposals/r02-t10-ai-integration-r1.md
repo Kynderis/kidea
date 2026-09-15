@@ -2,6 +2,8 @@
 
 ## Cập nhật phạm vi ngày 2026-09-15
 
+**Hiện tại r2 đã hoàn tất.** Human “Duyệt điều chỉnh” sau answer dc3898c cấp sáu phiên mới ×600 giây, tổng chín kể cả r1. [Protocol](../tests/evidence/r02-t10-agent-protocol-r2.md) và [kết quả/R02 IN_REVIEW](../tests/evidence/r02-t10-agent-trial-r2.md): 42/42 kết quả chức năng cuối, có lỗi request được giữ; hồi quy mới 265/265. Không còn quota tự mở phiên; các đoạn sau giữ lịch sử, không nói AI hiện còn DRAFT/chưa chạy.
+
 Human đã duyệt gói agent tại answer db184fa: sáu phiên qua collaboration, không launcher sandbox. Đợt r1 thực dùng ba phiên A rồi dừng do thiếu SAVE handoff; ba B chưa chạy. [Kết quả, lỗi hướng dẫn đã sửa và đề xuất quota/thời gian tiếp](../tests/evidence/r02-t10-agent-trial-r1.md). Phần DRAFT bên dưới là bản gốc; không còn mô tả quota hiện tại, không ghi đè hoặc xóa lịch sử launcher.
 
 Human đã đồng ý thu gọn trước mắt thành kiểm thử chức năng đọc/ghi trên project giả ở D, không thiết lập sandbox, VM hoặc thay bảo mật Windows. Thực hiện qua phiên điều phối hiện tại và public CLI, theo `tests/r02-t10/functional-flow.mjs`. Đây là bài thử riêng, không phải sáu phiên AI độc lập của bản DRAFT dưới đây. Điều kiện launcher bên dưới chỉ còn áp dụng nếu mở lại bài thử AI riêng; không chặn bài thử chức năng đã được đồng ý. Giữ nguyên lịch sử và quota T07, không diễn giải kết quả script thành khả năng suy luận của AI qua hai phiên.
