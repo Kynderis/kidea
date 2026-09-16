@@ -1,0 +1,22 @@
+--- r4/cpp/domain.cpp
++++ r5/cpp/domain.cpp
+@@ -100,6 +100,8 @@
+   void bind(int index, const std::string &data) {
+     if (data.size() > static_cast<std::size_t>(std::numeric_limits<int>::max()) ||
+         sqlite3_bind_text(value, index, data.data(), static_cast<int>(data.size()),
++                          // R05-TIDY-01: SQLite 3.53.4 API copy-lifetime sentinel.
++                          // NOLINTNEXTLINE(performance-no-int-to-ptr)
+                           SQLITE_TRANSIENT) != SQLITE_OK)
+       throw DatabaseError("bind failed");
+   }
+--- r4/cpp/server.cpp
++++ r5/cpp/server.cpp
+@@ -60,7 +60,7 @@
+   return req->getHeader("origin") == origin &&
+          equal_secret(req->getHeader("x-csrf-token"), s.csrf) && req->getParameter("token").empty();
+ }
+-std::string trim(std::string value) {
++std::string trim(const std::string &value) {
+   const auto start = value.find_first_not_of(" \t\r\n");
+   if (start == std::string::npos)
+     return {};

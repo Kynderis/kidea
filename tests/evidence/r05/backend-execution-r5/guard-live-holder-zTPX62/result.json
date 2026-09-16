@@ -1,0 +1,33 @@
+{
+  "stage": "guard-live-holder",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--detach",
+    "--name",
+    "kidea-r05-e2-r5-budget-holder",
+    "--label",
+    "kidea.run=E2-BW-r5",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "kidea-r05-e2:toolchain",
+    "sleep",
+    "45"
+  ],
+  "at": "2026-09-16T15:48:11.040Z",
+  "durationMs": 4226,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

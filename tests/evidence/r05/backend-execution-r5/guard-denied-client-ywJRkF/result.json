@@ -1,0 +1,26 @@
+{
+  "stage": "guard-denied-client",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r5-must-not-exist",
+    "--label",
+    "kidea.run=E2-BW-r5",
+    "--cpus",
+    "0.5",
+    "--memory",
+    "1g",
+    "--memory-swap",
+    "1g",
+    "--network",
+    "none",
+    "kidea-r05-e2:toolchain",
+    "true"
+  ],
+  "at": "2026-09-16T15:48:26.903Z",
+  "durationMs": 104,
+  "code": 1,
+  "launched": false,
+  "preflightError": "Error: Docker quota would exceed 2 CPU/4 GiB: 2.5 CPU, 5368709120 bytes"
+}

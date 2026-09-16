@@ -1,0 +1,4 @@
+/src/cpp/server.cpp:63:30: error: the parameter 'value' is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param,-warnings-as-errors]
+   63 | std::string trim(std::string value) {
+      |                              ^
+      |                  const      &

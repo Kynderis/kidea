@@ -6,19 +6,22 @@ import {acquireBudget} from './backend-budget-r4.mjs';
 
 const root=path.resolve(import.meta.dirname,'../..');
 const runId=process.env.KIDEA_E2_RUN || 'backend-execution-r1';
-if(!/^backend-execution-r[1234]$/.test(runId))throw Error('Unknown evidence run');
+if(!/^backend-execution-r[12345]$/.test(runId))throw Error('Unknown evidence run');
 const evidence=path.join(root,'tests/evidence/r05',runId);
 const sample=path.resolve(root,'../kidea-workshop-pilot/samples/r05/backend-integration-r1');
 const docker='/Applications/Docker.app/Contents/Resources/bin/docker';
 const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 fs.mkdirSync(evidence,{recursive:true});
 const startFile=path.join(evidence,'start.json');
+const approval=runId==='backend-execution-r5'
+  ? 'Human: tôi duyệt nhé, làm đi, after 9b93e10; R05-TIDY-01 r1 and continuation with unchanged quotas; see approval.md'
+  : 'Human: ok làm đi, after explanation and E2-BW-r1 at 74a2772. Docker-only execution authorized.';
 if(!fs.existsSync(startFile)){
   if(process.getuid()===0)throw Error('Host must be nonroot');
   const git=spawnSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'});
   const stat=fs.statfsSync(root);
   if(stat.bavail*stat.bsize<100*1024**3)throw Error('Insufficient free disk');
-  fs.writeFileSync(startFile,JSON.stringify({at:new Date().toISOString(),sourceHead:spawnSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).stdout.trim(),approval:'Human: ok làm đi, after explanation and E2-BW-r1 at 74a2772. Docker-only execution authorized.',host:{platform:process.platform,arch:process.arch,uid:process.getuid(),node:process.version},freeBytes:stat.bavail*stat.bsize,initialGitStatus:git.stdout,sample,manifestSha256:sha(path.join(root,'tests/r05/fixtures/backend-build-r1/manifest.json')),maxSessionSeconds:10800},null,2)+'\n',{flag:'wx'});
+  fs.writeFileSync(startFile,JSON.stringify({at:new Date().toISOString(),sourceHead:spawnSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).stdout.trim(),approval,host:{platform:process.platform,arch:process.arch,uid:process.getuid(),node:process.version},freeBytes:stat.bavail*stat.bsize,initialGitStatus:git.stdout,sample,manifestSha256:sha(path.join(root,'tests/r05/fixtures/backend-build-r1/manifest.json')),maxSessionSeconds:10800},null,2)+'\n',{flag:'wx'});
 }
 const start=JSON.parse(fs.readFileSync(startFile));
 const remaining=10800_000-(Date.now()-Date.parse(start.at));
@@ -32,7 +35,7 @@ const began=Date.now();
 const executable=command==='docker'?docker:command;
 let reservation;
 try {
-  if(runId==='backend-execution-r4'&&executable===docker)reservation=acquireBudget(args);
+  if(['backend-execution-r4','backend-execution-r5'].includes(runId)&&executable===docker)reservation=acquireBudget(args);
   if(reservation?.receipt)fs.writeFileSync(path.join(dir,'budget.json'),JSON.stringify(reservation.receipt,null,2)+'\n');
 } catch(error) {
   fs.writeSync(err,String(error));fs.closeSync(out);fs.closeSync(err);

@@ -1,7 +1,8 @@
-Đã sửa và kiểm: core 283/283; mỗi preset C++ 12/12; Web 32 unit, 18 browser, 4 server; HTTPS 38/38 PASS. Đã lưu [báo cáo](tests/evidence/r05/backend-execution-r4.md), commit/push master.
+Đã hoàn tất phần backend/Web được duyệt:
 
-Lượt cuối phải dừng vì tôi để hai client chồng nhau, tổng quota cấu hình vượt trần khoảng 18 giây. Container đã dừng; đã thêm guard quota, còn kiểm lại browser/drain. **R05 chưa hoàn tất.**
+- Áp ngoại lệ SQLite đúng phạm vi; clang-tidy PASS.
+- Core 283/283; bốn cấu hình C++ mỗi cấu hình 12/12; sáu lỗi cố tình đưa vào đều bị bắt.
+- HTTPS, browser và kiểm dừng dịch vụ đều PASS. Guard quota đã kiểm thật; container đã dừng.
+- Lưu đầy đủ bằng chứng, lỗi trung gian và điểm tiếp tục tại [báo cáo r5](tests/evidence/r05/backend-execution-r5.md).
 
-Bạn duyệt [ngoại lệ duy nhất cho cảnh báo tối ưu hóa của macro SQLite](proposals/r05-sqlite-transient-tidy-r1.md) và tiếp tục phần kiểm còn thiếu với quota hiện tại nhé? Ngoại lệ không tắt sanitizer hay kiểm an toàn.
-
-Cần xác nhận vì quy tắc ngoại lệ của pilot (`docs/engineering/rules.md#exceptions`) yêu cầu: “Chưa duyệt thì không được áp.”
+Tiếp theo: review kết quả backend/Web, rồi chuẩn bị môi trường/mẫu Android và iOS. R05 chưa hoàn tất; Apple Silicon chưa kiểm. Chưa cần cài thêm gì trên Mac trong lượt này.

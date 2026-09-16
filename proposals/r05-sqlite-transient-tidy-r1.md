@@ -1,6 +1,6 @@
 # R05 — Ngoại lệ hẹp cho macro SQLite trong clang-tidy
 
-Ngày 2026-09-16. **PROPOSED — chưa áp dụng, chờ Human duyệt.** ID `R05-TIDY-01`, revision 1, chỉ mẫu backend tổng hợp `backend-integration-r1`.
+Ngày 2026-09-16. **APPROVED — Human: “tôi duyệt nhé, làm đi”, sau hồ sơ tại `9b93e10`.** ID `R05-TIDY-01`, revision 1, chỉ mẫu backend tổng hợp `backend-integration-r1`. Đã áp đúng patch trong lượt r5; kết quả thực thi ghi riêng tại evidence r5. Các mô tả chưa chạy bên dưới là trạng thái khi trình duyệt r1.
 
 ## Quyết định cần duyệt
 
@@ -18,10 +18,12 @@ Kiểm thay thế/giữ nguyên: bound SQL và quote/injection; transaction bố
 
 ## Quyền, thời hạn và hết hiệu lực
 
-Người duyệt: Human của Kidea, **chưa duyệt**. Chỉ hiệu lực cho profile `workshop-rules-r1`/mẫu lab với SQLite 3.53.4 và clang-tidy 18.1.3 hiện tại, tới khi khép gate R05 hoặc 2026-10-16, tùy mốc đến trước. Đổi dependency/checker, vị trí bind, lifetime, phạm vi sản phẩm hoặc patch khác thì phải review lại; không kế thừa sang production/native.
+Người duyệt: Human của Kidea, **đã duyệt r1 ngày 2026-09-16**. Chỉ hiệu lực cho profile `workshop-rules-r1`/mẫu lab với SQLite 3.53.4 và clang-tidy 18.1.3 hiện tại, tới khi khép gate R05 hoặc 2026-10-16, tùy mốc đến trước. Đổi dependency/checker, vị trí bind, lifetime, phạm vi sản phẩm hoặc patch khác thì phải review lại; không kế thừa sang production/native.
 
 Lý do cần xác nhận riêng: hồ sơ `kidea-workshop-pilot/docs/engineering/rules.md#exceptions` quy định: “Chưa duyệt thì không được áp.” Đây là ngoại lệ của checker nên quyền sửa lỗi thông thường chưa thay thế approval đó. Đề xuất không miễn invariant nghiệp vụ hay kiểm an toàn.
 
 Sau duyệt: kiểm hash/ngữ cảnh còn đúng, áp đúng comment, chạy formatter + clang-tidy rồi kiểm cuối phù hợp trên nguồn sau comment, cập nhật bằng chứng và trạng thái. Không cần cài thêm gì trên Mac.
 
 Lượt r4 sau đó đã dừng vì [sự cố điều phối quota](../tests/evidence/r05/backend-execution-r4/resource-incident.md). Phần tiếp tục dùng guard quota mới, NSS riêng mỗi lần, giữ đúng 2 CPU/4 GiB và các trần đã duyệt; không đề nghị tăng CPU/RAM. Kiểm Docker của guard/bootstrap, browser cuối và edge drain cuối còn phải chạy, không được coi unit guard hoặc các lượt PASS trước là thay thế.
+
+**Kết quả sau duyệt:** [r5](../tests/evidence/r05/backend-execution-r5.md) đã áp đúng patch, clang-tidy PASS sau sửa tham số trim thành const-reference (không ngoại lệ mới). Bốn preset, sáu mutant, backend drain, HTTPS/browser và edge drain cuối đạt; guard Docker và bootstrap NSS lặp đạt. R05 vẫn chờ review/nghiệm thu đúng phạm vi, không tự mở rộng hiệu lực ngoại lệ.

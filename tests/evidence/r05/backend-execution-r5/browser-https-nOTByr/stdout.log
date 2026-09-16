@@ -1,0 +1,9 @@
+trusted Chromium HTTPS and isolated SSR actors PASS
+real server cookie refresh remains HttpOnly Secure Strict host-only PASS
+browser role cookie and localStorage cannot grant authority PASS
+cookie override real HTTPS create read replace delete PASS
+cross-origin form reaches denial without side effects PASS
+cross-origin credentialed fetch has no permissive CORS PASS
+query proof cannot authorize a browser mutation PASS
+cookie deletion uses matching scope and revoked session denied PASS
+{"passed":8,"failed":0,"scope":"Real Chromium HTTPS with isolated NSS trust; no TLS bypass"}
