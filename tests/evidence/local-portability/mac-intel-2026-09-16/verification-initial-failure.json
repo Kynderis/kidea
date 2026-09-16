@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-09-16T01:38:36.470Z",
+  "kind": "Post-test evidence/document verifier, not core regression",
+  "result": "FAIL",
+  "capture": "Observation transcribed from tool outputs; the first attempt did not have separate stdout/stderr files.",
+  "error": "AssertionError: null !== 0 at verify-final.mjs:27:72",
+  "diagnosis": {
+    "file": "tests/evidence/r02-t10-agent-trial-r2.json",
+    "gitShow": {
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": "ENOBUFS",
+      "stdoutBytes": 1114112
+    },
+    "blobBytes": 3299786
+  },
+  "correction": "Increase temporary verifier spawnSync buffer to 16 MiB, keep every file and SHA assertion, also assert child-process errors. No project helper/test/expectation changes."
+}

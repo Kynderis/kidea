@@ -2,6 +2,8 @@
 
 Ngày 2026-09-16. Đây là hướng dẫn tiếp tục, không là nguồn trạng thái mới hoặc approval bổ sung cho R05. Đọc trạng thái hiện hành trong [roadmap](../KIDEA_ROADMAP.md#review-current).
 
+Phiên Mac Intel ngày 2026-09-16 đã có [bằng chứng môi trường, lệnh thực và kết quả](../tests/evidence/local-portability-mac-intel-2026-09-16.md). Đọc cùng roadmap trước khi tiếp tục, không coi bàn giao Windows bên dưới là tình trạng mới nhất. Trên máy này `node` mặc định vẫn là 22.22.2; lượt kiểm dùng đường tuyệt đối tới Node 24.19.0 đã có trong runtime Codex. Kiểm lại runtime khả dụng ở phiên sau; đường đó là thông tin máy đã kiểm, không là đường bắt buộc của Kidea.
+
 ## Bắt đầu
 
 - Dùng một checkout local độc lập của `https://github.com/Kynderis/kidea.git`, nhánh `master`; ví dụ thư mục `~/Code/kidea` nếu đã xác nhận không đồng bộ. Không đặt trong iCloud/OneDrive hoặc chạy writer Windows và Mac cùng lúc.
