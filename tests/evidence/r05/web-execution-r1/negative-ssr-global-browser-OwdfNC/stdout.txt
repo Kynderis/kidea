@@ -1,0 +1,116 @@
+
+Running 11 tests using 1 worker
+
+  ✓   1 [chromium] › tests/browser/sample.spec.ts:2:1 › S01 real UI rejects delayed response after switching actor (422ms)
+  ✓   2 [chromium] › tests/browser/sample.spec.ts:3:1 › S09 delayed callback after model unmount (334ms)
+  ✓   3 [chromium] › tests/browser/sample.spec.ts:4:1 › S07 reload keeps unknown intent and only reconciles (407ms)
+  ✓   4 [chromium] › tests/browser/sample.spec.ts:5:1 › S08 literal is escaped in SSR and after hydration (230ms)
+  ✘   5 [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR U then V (53ms)
+  ✘   6 [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR V then U (96ms)
+  ✓   7 [chromium] › tests/browser/sample.spec.ts:7:1 › private SSR also works with JS disabled (227ms)
+  ✓   8 [chromium] › tests/browser/sample.spec.ts:8:1 › cookie override through SvelteKit HTTP create/read/replace/delete (68ms)
+  ✓   9 [chromium] › tests/browser/sample.spec.ts:10:1 › S09 actual Svelte component destruction rejects pending callback (376ms)
+  ✓  10 [chromium] › tests/browser/sample.spec.ts:12:1 › S04 SSR keeps independent public/private versions (181ms)
+  ✓  11 [chromium] › tests/browser/sample.spec.ts:13:1 › S05 rendered history retains cancellation and rebooking (276ms)
+
+
+  1) [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR U then V ──────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "PRIVATE_U_ONLY"
+    Received string:    "<!doctype html>
+    <html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><!--1xwjdf7--><meta name=\"robots\" content=\"noindex,nofollow\"/><!----><title>Private SSR fixture</title></head><body data-sveltekit-preload-data=\"off\"><div style=\"display: contents\"><!--[--><!--[0--><!--[--><!--[--><h1>Fake actor U</h1><p data-testid=\"private\">PRIVATE_V_ONLY</p> <!--[--><p data-testid=\"public-audience\">100:PUBLIC_ONLY</p><p data-testid=\"private-audience\">4:PRIVATE_V_ONLY</p><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->····
+    			<script>
+    				{
+    					__sveltekit_1owg8m2 = {
+    						base: new URL(\".\", location).pathname.slice(0, -1)
+    					};·
+    					const element = document.currentScript.parentElement;·
+    					Promise.all([
+    						import(\"./_app/immutable/entry/start.DJHPMdEN.js\"),
+    						import(\"./_app/immutable/entry/app.Dc_Zf3Rm.js\")
+    					]).then(([kit, app]) => {
+    						kit.start(app, element, {
+    							node_ids: [0, 3],
+    							data: [null,{type:\"data\",data:{actor:\"U\",privateValue:\"PRIVATE_V_ONLY\",audiences:[{audience:\"public\",version:\"100\",value:\"PUBLIC_ONLY\"},{audience:\"private\",version:\"4\",value:\"PRIVATE_V_ONLY\"}]},uses:{search_params:[\"actor\",\"barrier\"]}}],
+    							form: null,
+    							error: null
+    						});
+    					});
+    				}
+    			</script>
+    		</div></body></html>
+    "
+
+      4 | test('S07 reload keeps unknown intent and only reconciles',async({page})=>{await page.goto('/');const button=page.getByRole('button',{name:'Send or reconcile admin X'});await button.click();await expect(page.getByTestId('result')).toContainText('"UNKNOWN"');await page.reload();await button.click();await expect(page.getByTestId('result')).toContainText('["POST","GET"]');await page.getByRole('button',{name:'Resolve admin X FINAL'}).click();await expect(page.getByTestId('result')).toContainText('"FINAL"');});
+      5 | test('S08 literal is escaped in SSR and after hydration',async({page,request})=>{const r=await request.get('/');const html=await r.text();expect(html).not.toContain('<img src=x');expect(html).toContain('&lt;img');await page.goto('/');await expect(page.getByTestId('literal')).toHaveText('<img src=x onerror=alert(1)> & Workshop');await expect(page.getByTestId('literal').locator('img')).toHaveCount(0);});
+    > 6 | for(const [first,second] of [['U','V'],['V','U']])test(`S06 concurrent SSR ${first} then ${second}`,async({request})=>{const id=`${first}-${second}`;const pending=request.get(`/ssr?actor=${first}&barrier=${id}`);try{await expect.poll(async()=>{const r=await request.get(`/control?id=${id}`);return (await r.json()).waiting;}).toBe(true);const b=await request.get(`/ssr?actor=${second}`);expect(b.headers()['cache-control']).toBe('no-store');const bh=await b.text();expect(bh).toContain(`PRIVATE_${second}_ONLY`);expect(bh).not.toContain(`PRIVATE_${first}_ONLY`);}finally{await request.post(`/control?id=${id}`);}const a=await pending;expect(a.headers()['cache-control']).toBe('no-store');const ah=await a.text();expect(ah).toContain(`PRIVATE_${first}_ONLY`);expect(ah).not.toContain(`PRIVATE_${second}_ONLY`);});
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      7 | test('private SSR also works with JS disabled',async({browser})=>{const context=await browser.newContext({javaScriptEnabled:false});try{const page=await context.newPage();await page.goto('http://127.0.0.1:4173/ssr?actor=U');await expect(page.getByTestId('private')).toHaveText('PRIVATE_U_ONLY');}finally{await context.close();}});
+      8 | test('cookie override through SvelteKit HTTP create/read/replace/delete',async({request})=>{const set=await request.post('/cookie',{data:{actor:'U'}});expect(set.status()).toBe(200);const h=set.headers()['set-cookie'];expect(h).toContain('HttpOnly');expect(h).toContain('Secure');expect(h.toLowerCase()).toContain('samesite=strict');expect(h).toContain('Path=/');const read=await request.get('/cookie',{headers:{cookie:'lab_actor=U'}});expect((await read.json()).actor).toBe('U');const other=await request.get('/cookie',{headers:{cookie:'lab_actor=V'}});expect((await other.json()).actor).toBe('V');const del=await request.delete('/cookie');expect(del.headers()['set-cookie']).toContain('Max-Age=0');expect((await (await request.get('/cookie',{headers:{cookie:''}})).json()).actor).toBe(null);});
+      9 |
+        at /Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts:6:724
+
+    Error Context: test-results/sample-S06-concurrent-SSR-U-then-V-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sample-S06-concurrent-SSR-U-then-V-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sample-S06-concurrent-SSR-U-then-V-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR V then U ──────────────────
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "PRIVATE_V_ONLY"
+    Received string:    "<!doctype html>
+    <html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><!--1xwjdf7--><meta name=\"robots\" content=\"noindex,nofollow\"/><!----><title>Private SSR fixture</title></head><body data-sveltekit-preload-data=\"off\"><div style=\"display: contents\"><!--[--><!--[0--><!--[--><!--[--><h1>Fake actor V</h1><p data-testid=\"private\">PRIVATE_U_ONLY</p> <!--[--><p data-testid=\"public-audience\">100:PUBLIC_ONLY</p><p data-testid=\"private-audience\">4:PRIVATE_U_ONLY</p><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->····
+    			<script>
+    				{
+    					__sveltekit_1owg8m2 = {
+    						base: new URL(\".\", location).pathname.slice(0, -1)
+    					};·
+    					const element = document.currentScript.parentElement;·
+    					Promise.all([
+    						import(\"./_app/immutable/entry/start.DJHPMdEN.js\"),
+    						import(\"./_app/immutable/entry/app.Dc_Zf3Rm.js\")
+    					]).then(([kit, app]) => {
+    						kit.start(app, element, {
+    							node_ids: [0, 3],
+    							data: [null,{type:\"data\",data:{actor:\"V\",privateValue:\"PRIVATE_U_ONLY\",audiences:[{audience:\"public\",version:\"100\",value:\"PUBLIC_ONLY\"},{audience:\"private\",version:\"4\",value:\"PRIVATE_U_ONLY\"}]},uses:{search_params:[\"actor\",\"barrier\"]}}],
+    							form: null,
+    							error: null
+    						});
+    					});
+    				}
+    			</script>
+    		</div></body></html>
+    "
+
+      4 | test('S07 reload keeps unknown intent and only reconciles',async({page})=>{await page.goto('/');const button=page.getByRole('button',{name:'Send or reconcile admin X'});await button.click();await expect(page.getByTestId('result')).toContainText('"UNKNOWN"');await page.reload();await button.click();await expect(page.getByTestId('result')).toContainText('["POST","GET"]');await page.getByRole('button',{name:'Resolve admin X FINAL'}).click();await expect(page.getByTestId('result')).toContainText('"FINAL"');});
+      5 | test('S08 literal is escaped in SSR and after hydration',async({page,request})=>{const r=await request.get('/');const html=await r.text();expect(html).not.toContain('<img src=x');expect(html).toContain('&lt;img');await page.goto('/');await expect(page.getByTestId('literal')).toHaveText('<img src=x onerror=alert(1)> & Workshop');await expect(page.getByTestId('literal').locator('img')).toHaveCount(0);});
+    > 6 | for(const [first,second] of [['U','V'],['V','U']])test(`S06 concurrent SSR ${first} then ${second}`,async({request})=>{const id=`${first}-${second}`;const pending=request.get(`/ssr?actor=${first}&barrier=${id}`);try{await expect.poll(async()=>{const r=await request.get(`/control?id=${id}`);return (await r.json()).waiting;}).toBe(true);const b=await request.get(`/ssr?actor=${second}`);expect(b.headers()['cache-control']).toBe('no-store');const bh=await b.text();expect(bh).toContain(`PRIVATE_${second}_ONLY`);expect(bh).not.toContain(`PRIVATE_${first}_ONLY`);}finally{await request.post(`/control?id=${id}`);}const a=await pending;expect(a.headers()['cache-control']).toBe('no-store');const ah=await a.text();expect(ah).toContain(`PRIVATE_${first}_ONLY`);expect(ah).not.toContain(`PRIVATE_${second}_ONLY`);});
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      7 | test('private SSR also works with JS disabled',async({browser})=>{const context=await browser.newContext({javaScriptEnabled:false});try{const page=await context.newPage();await page.goto('http://127.0.0.1:4173/ssr?actor=U');await expect(page.getByTestId('private')).toHaveText('PRIVATE_U_ONLY');}finally{await context.close();}});
+      8 | test('cookie override through SvelteKit HTTP create/read/replace/delete',async({request})=>{const set=await request.post('/cookie',{data:{actor:'U'}});expect(set.status()).toBe(200);const h=set.headers()['set-cookie'];expect(h).toContain('HttpOnly');expect(h).toContain('Secure');expect(h.toLowerCase()).toContain('samesite=strict');expect(h).toContain('Path=/');const read=await request.get('/cookie',{headers:{cookie:'lab_actor=U'}});expect((await read.json()).actor).toBe('U');const other=await request.get('/cookie',{headers:{cookie:'lab_actor=V'}});expect((await other.json()).actor).toBe('V');const del=await request.delete('/cookie');expect(del.headers()['set-cookie']).toContain('Max-Age=0');expect((await (await request.get('/cookie',{headers:{cookie:''}})).json()).actor).toBe(null);});
+      9 |
+        at /Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts:6:724
+
+    Error Context: test-results/sample-S06-concurrent-SSR-V-then-U-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sample-S06-concurrent-SSR-V-then-U-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sample-S06-concurrent-SSR-V-then-U-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR U then V ───────────────────
+    [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR V then U ───────────────────
+  9 passed (5.6s)

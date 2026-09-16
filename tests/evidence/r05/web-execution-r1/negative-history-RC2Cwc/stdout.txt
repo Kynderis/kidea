@@ -1,0 +1,84 @@
+✔ S01 actor switch rejects old response and clears prior values (1.660699ms)
+✔ S01 same actor logout/login still rejects prior generation (0.211571ms)
+✔ epoch reset rejects high-version old response (0.205466ms)
+✖ S02 large versions retain exact ordering and string (1.246004ms)
+✖ reject invalid/duplicate versions without changing state (0.352634ms)
+✔ S03 workshop versions are independent (0.230108ms)
+✔ S04 audience versions are independent (0.201937ms)
+✖ S05 stale history cannot revive A or remove B (0.311473ms)
+✔ new history replaces the whole group (0.21253ms)
+✔ S07 unknown admin intent reconciles GET without new POST (1.103315ms)
+✔ S09 unmounted callback cannot update state (1.199923ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 8
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 169.462909
+
+✖ failing tests:
+
+test at tests/unit/model.test.mjs:10:1
+✖ S02 large versions retain exact ordering and string (1.246004ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/unit/model.test.mjs:10:234)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/model.test.mjs:11:1
+✖ reject invalid/duplicate versions without changing state (0.352634ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/unit/model.test.mjs:11:165)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/model.test.mjs:14:1
+✖ S05 stale history cannot revive A or remove B (0.311473ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/unit/model.test.mjs:14:213)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

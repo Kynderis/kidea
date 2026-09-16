@@ -1,0 +1,49 @@
+✔ S01 actor switch rejects old response and clears prior values (1.677544ms)
+✔ S01 same actor logout/login still rejects prior generation (0.220567ms)
+✔ epoch reset rejects high-version old response (0.193794ms)
+✔ S02 large versions retain exact ordering and string (0.30479ms)
+✔ reject invalid/duplicate versions without changing state (0.296889ms)
+✔ S03 workshop versions are independent (0.211932ms)
+✔ S04 audience versions are independent (0.262138ms)
+✔ S05 stale history cannot revive A or remove B (0.248946ms)
+✔ new history replaces the whole group (0.258775ms)
+✖ S07 unknown admin intent reconciles GET without new POST (2.55471ms)
+✔ S09 unmounted callback cannot update state (0.23825ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 173.112039
+
+✖ failing tests:
+
+test at tests/unit/model.test.mjs:16:1
+✖ S07 unknown admin intent reconciles GET without new POST (2.55471ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'POST',
+  +   'POST',
+  +   'POST'
+  -   'GET',
+  -   'GET'
+    ]
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/unit/model.test.mjs:16:174)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'POST', 'POST', 'POST' ],
+    expected: [ 'POST', 'GET', 'GET' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

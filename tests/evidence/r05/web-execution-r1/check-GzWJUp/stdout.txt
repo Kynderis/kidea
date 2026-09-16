@@ -1,0 +1,32 @@
+Loading svelte-check in workspace: /Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web
+Getting Svelte diagnostics...
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/src/routes/+page.svelte:3:15
+Warn: It looks like you're using the `$state` rune, but there is a local binding called `state`. Referencing a local variable with a `$` prefix will create a store subscription. Please rename `state` to avoid the ambiguity
+https://svelte.dev/e/store_rune_conflict (svelte)
+ import { ViewState, AdminIntent, type Snapshot } from '$lib/model';
+ let output = $state('ready');
+ let pending: Snapshot | undefined;
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/src/routes/+page.svelte:3:15
+Error: Block-scoped variable '$state' used before its declaration. (ts)
+ import { ViewState, AdminIntent, type Snapshot } from '$lib/model';
+ let output = $state('ready');
+ let pending: Snapshot | undefined;
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/src/routes/+page.svelte:3:15
+Error: Cannot use 'state' as a store. 'state' needs to be an object with a subscribe method on it.
+
+No overload matches this call.
+  Overload 1 of 2, '(store: SvelteStore<any>): any', gave the following error.
+    Argument of type 'ViewState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ViewState' but required in type 'SvelteStore<any>'.
+  Overload 2 of 2, '(store: SvelteStore<any> | null | undefined): any', gave the following error.
+    Argument of type 'ViewState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ViewState' but required in type 'SvelteStore<any>'. (ts)
+ import { ViewState, AdminIntent, type Snapshot } from '$lib/model';
+ let output = $state('ready');
+ let pending: Snapshot | undefined;
+
+====================================
+svelte-check found 2 errors and 1 warning in 1 file

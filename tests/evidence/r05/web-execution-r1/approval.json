@@ -1,0 +1,21 @@
+{
+  "approval": "Ok làm đi",
+  "afterCommit": "ced8b31",
+  "scope": "Implement and run the described Web sample with project-local dependencies and browser; Docker/system config remain deferred",
+  "target": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web",
+  "runtime": "Node24.19.0/npm12.0.2 already installed",
+  "limits": {
+    "diskGiB": 8,
+    "perStageMinutes": 30,
+    "overallMinutes": 90,
+    "server": "127.0.0.1:4173",
+    "browser": "pinned Chromium headless shell only"
+  },
+  "notAuthorized": [
+    "Docker",
+    "system tools/OS/PATH changes",
+    "cloud",
+    "deployment",
+    "real accounts/data"
+  ]
+}

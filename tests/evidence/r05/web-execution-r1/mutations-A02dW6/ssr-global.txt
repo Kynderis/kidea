@@ -1,0 +1,17 @@
+let sharedPrivate = "";
+import { ViewState } from '$lib/model';
+import { hold } from '$lib/server/barriers';
+import type { PageServerLoad } from './$types';
+export const load: PageServerLoad = async ({url, setHeaders}) => {
+ setHeaders({'cache-control':'no-store','x-robots-tag':'noindex, nofollow'});
+ const actor = url.searchParams.get('actor') === 'V' ? 'V' : 'U';
+ sharedPrivate = `PRIVATE_${actor}_ONLY`; // REQUEST_LOCAL
+ const barrier = url.searchParams.get('barrier');
+ if (barrier) await hold(barrier);
+ const privateValue = sharedPrivate;
+ const view = new ViewState(actor);
+ const common = {...view.context,workshop:'W1'};
+ view.apply({...common,audience:'public',version:'100',value:'PUBLIC_ONLY'});
+ view.apply({...common,audience:'private',version:'4',value:privateValue});
+ return {actor, privateValue, audiences:[...view.values.values()].map(s=>({audience:s.audience,version:s.version,value:s.value}))};
+};

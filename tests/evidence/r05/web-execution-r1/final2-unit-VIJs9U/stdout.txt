@@ -1,0 +1,22 @@
+✔ cookie override serializes and parses valid session (1.923588ms)
+✔ cookie rejects adversarial name/path/domain (0.609726ms)
+✔ cookie expiration and actor replacement (0.283157ms)
+✔ S01 actor switch rejects old response and clears prior values (1.621277ms)
+✔ S01 same actor logout/login still rejects prior generation (0.190897ms)
+✔ epoch reset rejects high-version old response (0.186412ms)
+✔ S02 large versions retain exact ordering and string (0.275005ms)
+✔ reject invalid/duplicate versions without changing state (0.258572ms)
+✔ S03 workshop versions are independent (0.203221ms)
+✔ S04 audience versions are independent (0.19503ms)
+✔ S05 stale history cannot revive A or remove B (0.227655ms)
+✔ new history replaces the whole group (0.230258ms)
+✔ S07 unknown admin intent reconciles GET without new POST (1.071716ms)
+✔ S09 unmounted callback cannot update state (0.226154ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.211266

@@ -59,3 +59,5 @@ Kiểm tập file đúng allowlist; byte cũ chỉ đổi backlink được phé
 Đã thực hiện lượt soạn/kiểm theo approval sau cfffe0c. [Kết quả và snapshot đúng bản](../tests/evidence/r05/profile-r1.md), [phương pháp đề xuất](r05-profile-method-r1.md). Chỉ hồ sơ và kiểm nhẹ; chưa tích hợp skill, tạo app/config, build hoặc cài công cụ. T07-S01 DONE là đã hoàn tất lượt kiểm và báo đúng cả FAIL/NOT_RUN, không là nghiệm thu phase hoặc mọi test đều PASS.
 
 Human đã duyệt nội dung R05 r1 sau a39f79f và giao chuẩn bị [gói môi trường/build](r05-environment-build-r1.md). Sự kiện mới này không đổi kết quả test r1, không cấp quyền E1/E2 hoặc tích hợp skill.
+
+R05-T03-S03 hiện IN_PROGRESS: [mẫu Web Mac Intel đã chạy](../tests/evidence/r05/web-execution-r1.md) theo approval sau ced8b31; không suy quyền Web thành cài Docker/SDK hoặc nghiệm thu toàn bốn profile. T02/T04/T05-S03 vẫn chờ môi trường/quyền tương ứng.

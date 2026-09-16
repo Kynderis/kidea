@@ -1,0 +1,543 @@
+{
+  "config": {
+    "argv": [
+      "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/node_modules/playwright/cli.js",
+      "test",
+      "--project=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--forbid-only"
+    ],
+    "configFile": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/playwright.config.ts",
+    "rootDir": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "\"/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node\" build/index.js",
+      "url": "http://127.0.0.1:4173",
+      "reuseExistingServer": false,
+      "timeout": 15000,
+      "env": {
+        "HOST": "127.0.0.1",
+        "PORT": "4173",
+        "ORIGIN": "http://127.0.0.1:4173"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "sample.spec.ts",
+      "file": "sample.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "S01 real UI rejects delayed response after switching actor",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 422,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:43.438Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-c41f199351bb774cff13",
+          "file": "sample.spec.ts",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "S09 delayed callback after model unmount",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 334,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:44.105Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-341fdbe8be5c49f5dd02",
+          "file": "sample.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "S07 reload keeps unknown intent and only reconciles",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 407,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:44.456Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-e6028c6ce0a96817837a",
+          "file": "sample.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "S08 literal is escaped in SSR and after hydration",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 230,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:44.878Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-b96e75b340c536d1483f",
+          "file": "sample.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "S06 concurrent SSR U then V",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 53,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"PRIVATE_U_ONLY\"\u001b[39m\nReceived string:    \u001b[31m\"<!doctype html>\u001b[39m\n\u001b[31m<html lang=\\\"en\\\"><head><meta charset=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\"/><!--1xwjdf7--><meta name=\\\"robots\\\" content=\\\"noindex,nofollow\\\"/><!----><title>Private SSR fixture</title></head><body data-sveltekit-preload-data=\\\"off\\\"><div style=\\\"display: contents\\\"><!--[--><!--[0--><!--[--><!--[--><h1>Fake actor U</h1><p data-testid=\\\"private\\\">PRIVATE_V_ONLY</p> <!--[--><p data-testid=\\\"public-audience\\\">100:PUBLIC_ONLY</p><p data-testid=\\\"private-audience\\\">4:PRIVATE_V_ONLY</p><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->····\u001b[39m\n\u001b[31m\t\t\t<script>\u001b[39m\n\u001b[31m\t\t\t\t{\u001b[39m\n\u001b[31m\t\t\t\t\t__sveltekit_1owg8m2 = {\u001b[39m\n\u001b[31m\t\t\t\t\t\tbase: new URL(\\\".\\\", location).pathname.slice(0, -1)\u001b[39m\n\u001b[31m\t\t\t\t\t};·\u001b[39m\n\u001b[31m\t\t\t\t\tconst element = document.currentScript.parentElement;·\u001b[39m\n\u001b[31m\t\t\t\t\tPromise.all([\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/start.DJHPMdEN.js\\\"),\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/app.Dc_Zf3Rm.js\\\")\u001b[39m\n\u001b[31m\t\t\t\t\t]).then(([kit, app]) => {\u001b[39m\n\u001b[31m\t\t\t\t\t\tkit.start(app, element, {\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tnode_ids: [0, 3],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tdata: [null,{type:\\\"data\\\",data:{actor:\\\"U\\\",privateValue:\\\"PRIVATE_V_ONLY\\\",audiences:[{audience:\\\"public\\\",version:\\\"100\\\",value:\\\"PUBLIC_ONLY\\\"},{audience:\\\"private\\\",version:\\\"4\\\",value:\\\"PRIVATE_V_ONLY\\\"}]},uses:{search_params:[\\\"actor\\\",\\\"barrier\\\"]}}],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tform: null,\u001b[39m\n\u001b[31m\t\t\t\t\t\t\terror: null\u001b[39m\n\u001b[31m\t\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t}\u001b[39m\n\u001b[31m\t\t\t</script>\u001b[39m\n\u001b[31m\t\t</div></body></html>\u001b[39m\n\u001b[31m\"\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"PRIVATE_U_ONLY\"\u001b[39m\nReceived string:    \u001b[31m\"<!doctype html>\u001b[39m\n\u001b[31m<html lang=\\\"en\\\"><head><meta charset=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\"/><!--1xwjdf7--><meta name=\\\"robots\\\" content=\\\"noindex,nofollow\\\"/><!----><title>Private SSR fixture</title></head><body data-sveltekit-preload-data=\\\"off\\\"><div style=\\\"display: contents\\\"><!--[--><!--[0--><!--[--><!--[--><h1>Fake actor U</h1><p data-testid=\\\"private\\\">PRIVATE_V_ONLY</p> <!--[--><p data-testid=\\\"public-audience\\\">100:PUBLIC_ONLY</p><p data-testid=\\\"private-audience\\\">4:PRIVATE_V_ONLY</p><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->····\u001b[39m\n\u001b[31m\t\t\t<script>\u001b[39m\n\u001b[31m\t\t\t\t{\u001b[39m\n\u001b[31m\t\t\t\t\t__sveltekit_1owg8m2 = {\u001b[39m\n\u001b[31m\t\t\t\t\t\tbase: new URL(\\\".\\\", location).pathname.slice(0, -1)\u001b[39m\n\u001b[31m\t\t\t\t\t};·\u001b[39m\n\u001b[31m\t\t\t\t\tconst element = document.currentScript.parentElement;·\u001b[39m\n\u001b[31m\t\t\t\t\tPromise.all([\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/start.DJHPMdEN.js\\\"),\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/app.Dc_Zf3Rm.js\\\")\u001b[39m\n\u001b[31m\t\t\t\t\t]).then(([kit, app]) => {\u001b[39m\n\u001b[31m\t\t\t\t\t\tkit.start(app, element, {\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tnode_ids: [0, 3],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tdata: [null,{type:\\\"data\\\",data:{actor:\\\"U\\\",privateValue:\\\"PRIVATE_V_ONLY\\\",audiences:[{audience:\\\"public\\\",version:\\\"100\\\",value:\\\"PUBLIC_ONLY\\\"},{audience:\\\"private\\\",version:\\\"4\\\",value:\\\"PRIVATE_V_ONLY\\\"}]},uses:{search_params:[\\\"actor\\\",\\\"barrier\\\"]}}],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tform: null,\u001b[39m\n\u001b[31m\t\t\t\t\t\t\terror: null\u001b[39m\n\u001b[31m\t\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t}\u001b[39m\n\u001b[31m\t\t\t</script>\u001b[39m\n\u001b[31m\t\t</div></body></html>\u001b[39m\n\u001b[31m\"\u001b[39m\n    at /Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts:6:724",
+                    "location": {
+                      "file": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts",
+                      "column": 724,
+                      "line": 6
+                    },
+                    "snippet": "  4 | test('S07 reload keeps unknown intent and only reconciles',async({page})=>{await page.goto('/');const button=page.getByRole('button',{name:'Send or reconcile admin X'});await button.click();await expect(page.getByTestId('result')).toContainText('\"UNKNOWN\"');await page.reload();await button.click();await expect(page.getByTestId('result')).toContainText('[\"POST\",\"GET\"]');await page.getByRole('button',{name:'Resolve admin X FINAL'}).click();await expect(page.getByTestId('result')).toContainText('\"FINAL\"');});\n  5 | test('S08 literal is escaped in SSR and after hydration',async({page,request})=>{const r=await request.get('/');const html=await r.text();expect(html).not.toContain('<img src=x');expect(html).toContain('&lt;img');await page.goto('/');await expect(page.getByTestId('literal')).toHaveText('<img src=x onerror=alert(1)> & Workshop');await expect(page.getByTestId('literal').locator('img')).toHaveCount(0);});\n> 6 | for(const [first,second] of [['U','V'],['V','U']])test(`S06 concurrent SSR ${first} then ${second}`,async({request})=>{const id=`${first}-${second}`;const pending=request.get(`/ssr?actor=${first}&barrier=${id}`);try{await expect.poll(async()=>{const r=await request.get(`/control?id=${id}`);return (await r.json()).waiting;}).toBe(true);const b=await request.get(`/ssr?actor=${second}`);expect(b.headers()['cache-control']).toBe('no-store');const bh=await b.text();expect(bh).toContain(`PRIVATE_${second}_ONLY`);expect(bh).not.toContain(`PRIVATE_${first}_ONLY`);}finally{await request.post(`/control?id=${id}`);}const a=await pending;expect(a.headers()['cache-control']).toBe('no-store');const ah=await a.text();expect(ah).toContain(`PRIVATE_${first}_ONLY`);expect(ah).not.toContain(`PRIVATE_${second}_ONLY`);});\n    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^\n  7 | test('private SSR also works with JS disabled',async({browser})=>{const context=await browser.newContext({javaScriptEnabled:false});try{const page=await context.newPage();await page.goto('http://127.0.0.1:4173/ssr?actor=U');await expect(page.getByTestId('private')).toHaveText('PRIVATE_U_ONLY');}finally{await context.close();}});\n  8 | test('cookie override through SvelteKit HTTP create/read/replace/delete',async({request})=>{const set=await request.post('/cookie',{data:{actor:'U'}});expect(set.status()).toBe(200);const h=set.headers()['set-cookie'];expect(h).toContain('HttpOnly');expect(h).toContain('Secure');expect(h.toLowerCase()).toContain('samesite=strict');expect(h).toContain('Path=/');const read=await request.get('/cookie',{headers:{cookie:'lab_actor=U'}});expect((await read.json()).actor).toBe('U');const other=await request.get('/cookie',{headers:{cookie:'lab_actor=V'}});expect((await other.json()).actor).toBe('V');const del=await request.delete('/cookie');expect(del.headers()['set-cookie']).toContain('Max-Age=0');expect((await (await request.get('/cookie',{headers:{cookie:''}})).json()).actor).toBe(null);});\n  9 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts",
+                        "column": 724,
+                        "line": 6
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"PRIVATE_U_ONLY\"\u001b[39m\nReceived string:    \u001b[31m\"<!doctype html>\u001b[39m\n\u001b[31m<html lang=\\\"en\\\"><head><meta charset=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\"/><!--1xwjdf7--><meta name=\\\"robots\\\" content=\\\"noindex,nofollow\\\"/><!----><title>Private SSR fixture</title></head><body data-sveltekit-preload-data=\\\"off\\\"><div style=\\\"display: contents\\\"><!--[--><!--[0--><!--[--><!--[--><h1>Fake actor U</h1><p data-testid=\\\"private\\\">PRIVATE_V_ONLY</p> <!--[--><p data-testid=\\\"public-audience\\\">100:PUBLIC_ONLY</p><p data-testid=\\\"private-audience\\\">4:PRIVATE_V_ONLY</p><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->····\u001b[39m\n\u001b[31m\t\t\t<script>\u001b[39m\n\u001b[31m\t\t\t\t{\u001b[39m\n\u001b[31m\t\t\t\t\t__sveltekit_1owg8m2 = {\u001b[39m\n\u001b[31m\t\t\t\t\t\tbase: new URL(\\\".\\\", location).pathname.slice(0, -1)\u001b[39m\n\u001b[31m\t\t\t\t\t};·\u001b[39m\n\u001b[31m\t\t\t\t\tconst element = document.currentScript.parentElement;·\u001b[39m\n\u001b[31m\t\t\t\t\tPromise.all([\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/start.DJHPMdEN.js\\\"),\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/app.Dc_Zf3Rm.js\\\")\u001b[39m\n\u001b[31m\t\t\t\t\t]).then(([kit, app]) => {\u001b[39m\n\u001b[31m\t\t\t\t\t\tkit.start(app, element, {\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tnode_ids: [0, 3],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tdata: [null,{type:\\\"data\\\",data:{actor:\\\"U\\\",privateValue:\\\"PRIVATE_V_ONLY\\\",audiences:[{audience:\\\"public\\\",version:\\\"100\\\",value:\\\"PUBLIC_ONLY\\\"},{audience:\\\"private\\\",version:\\\"4\\\",value:\\\"PRIVATE_V_ONLY\\\"}]},uses:{search_params:[\\\"actor\\\",\\\"barrier\\\"]}}],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tform: null,\u001b[39m\n\u001b[31m\t\t\t\t\t\t\terror: null\u001b[39m\n\u001b[31m\t\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t}\u001b[39m\n\u001b[31m\t\t\t</script>\u001b[39m\n\u001b[31m\t\t</div></body></html>\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  4 | test('S07 reload keeps unknown intent and only reconciles',async({page})=>{await page.goto('/');const button=page.getByRole('button',{name:'Send or reconcile admin X'});await button.click();await expect(page.getByTestId('result')).toContainText('\"UNKNOWN\"');await page.reload();await button.click();await expect(page.getByTestId('result')).toContainText('[\"POST\",\"GET\"]');await page.getByRole('button',{name:'Resolve admin X FINAL'}).click();await expect(page.getByTestId('result')).toContainText('\"FINAL\"');});\n  5 | test('S08 literal is escaped in SSR and after hydration',async({page,request})=>{const r=await request.get('/');const html=await r.text();expect(html).not.toContain('<img src=x');expect(html).toContain('&lt;img');await page.goto('/');await expect(page.getByTestId('literal')).toHaveText('<img src=x onerror=alert(1)> & Workshop');await expect(page.getByTestId('literal').locator('img')).toHaveCount(0);});\n> 6 | for(const [first,second] of [['U','V'],['V','U']])test(`S06 concurrent SSR ${first} then ${second}`,async({request})=>{const id=`${first}-${second}`;const pending=request.get(`/ssr?actor=${first}&barrier=${id}`);try{await expect.poll(async()=>{const r=await request.get(`/control?id=${id}`);return (await r.json()).waiting;}).toBe(true);const b=await request.get(`/ssr?actor=${second}`);expect(b.headers()['cache-control']).toBe('no-store');const bh=await b.text();expect(bh).toContain(`PRIVATE_${second}_ONLY`);expect(bh).not.toContain(`PRIVATE_${first}_ONLY`);}finally{await request.post(`/control?id=${id}`);}const a=await pending;expect(a.headers()['cache-control']).toBe('no-store');const ah=await a.text();expect(ah).toContain(`PRIVATE_${first}_ONLY`);expect(ah).not.toContain(`PRIVATE_${second}_ONLY`);});\n    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^\n  7 | test('private SSR also works with JS disabled',async({browser})=>{const context=await browser.newContext({javaScriptEnabled:false});try{const page=await context.newPage();await page.goto('http://127.0.0.1:4173/ssr?actor=U');await expect(page.getByTestId('private')).toHaveText('PRIVATE_U_ONLY');}finally{await context.close();}});\n  8 | test('cookie override through SvelteKit HTTP create/read/replace/delete',async({request})=>{const set=await request.post('/cookie',{data:{actor:'U'}});expect(set.status()).toBe(200);const h=set.headers()['set-cookie'];expect(h).toContain('HttpOnly');expect(h).toContain('Secure');expect(h.toLowerCase()).toContain('samesite=strict');expect(h).toContain('Path=/');const read=await request.get('/cookie',{headers:{cookie:'lab_actor=U'}});expect((await read.json()).actor).toBe('U');const other=await request.get('/cookie',{headers:{cookie:'lab_actor=V'}});expect((await other.json()).actor).toBe('V');const del=await request.delete('/cookie');expect(del.headers()['set-cookie']).toContain('Max-Age=0');expect((await (await request.get('/cookie',{headers:{cookie:''}})).json()).actor).toBe(null);});\n  9 |\n    at /Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts:6:724"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:45.124Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/test-results/sample-S06-concurrent-SSR-U-then-V-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/test-results/sample-S06-concurrent-SSR-U-then-V-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts",
+                    "column": 724,
+                    "line": 6
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-3ba5f141c70e0537f9ae",
+          "file": "sample.spec.ts",
+          "line": 6,
+          "column": 51
+        },
+        {
+          "title": "S06 concurrent SSR V then U",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 96,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"PRIVATE_V_ONLY\"\u001b[39m\nReceived string:    \u001b[31m\"<!doctype html>\u001b[39m\n\u001b[31m<html lang=\\\"en\\\"><head><meta charset=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\"/><!--1xwjdf7--><meta name=\\\"robots\\\" content=\\\"noindex,nofollow\\\"/><!----><title>Private SSR fixture</title></head><body data-sveltekit-preload-data=\\\"off\\\"><div style=\\\"display: contents\\\"><!--[--><!--[0--><!--[--><!--[--><h1>Fake actor V</h1><p data-testid=\\\"private\\\">PRIVATE_U_ONLY</p> <!--[--><p data-testid=\\\"public-audience\\\">100:PUBLIC_ONLY</p><p data-testid=\\\"private-audience\\\">4:PRIVATE_U_ONLY</p><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->····\u001b[39m\n\u001b[31m\t\t\t<script>\u001b[39m\n\u001b[31m\t\t\t\t{\u001b[39m\n\u001b[31m\t\t\t\t\t__sveltekit_1owg8m2 = {\u001b[39m\n\u001b[31m\t\t\t\t\t\tbase: new URL(\\\".\\\", location).pathname.slice(0, -1)\u001b[39m\n\u001b[31m\t\t\t\t\t};·\u001b[39m\n\u001b[31m\t\t\t\t\tconst element = document.currentScript.parentElement;·\u001b[39m\n\u001b[31m\t\t\t\t\tPromise.all([\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/start.DJHPMdEN.js\\\"),\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/app.Dc_Zf3Rm.js\\\")\u001b[39m\n\u001b[31m\t\t\t\t\t]).then(([kit, app]) => {\u001b[39m\n\u001b[31m\t\t\t\t\t\tkit.start(app, element, {\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tnode_ids: [0, 3],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tdata: [null,{type:\\\"data\\\",data:{actor:\\\"V\\\",privateValue:\\\"PRIVATE_U_ONLY\\\",audiences:[{audience:\\\"public\\\",version:\\\"100\\\",value:\\\"PUBLIC_ONLY\\\"},{audience:\\\"private\\\",version:\\\"4\\\",value:\\\"PRIVATE_U_ONLY\\\"}]},uses:{search_params:[\\\"actor\\\",\\\"barrier\\\"]}}],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tform: null,\u001b[39m\n\u001b[31m\t\t\t\t\t\t\terror: null\u001b[39m\n\u001b[31m\t\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t}\u001b[39m\n\u001b[31m\t\t\t</script>\u001b[39m\n\u001b[31m\t\t</div></body></html>\u001b[39m\n\u001b[31m\"\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"PRIVATE_V_ONLY\"\u001b[39m\nReceived string:    \u001b[31m\"<!doctype html>\u001b[39m\n\u001b[31m<html lang=\\\"en\\\"><head><meta charset=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\"/><!--1xwjdf7--><meta name=\\\"robots\\\" content=\\\"noindex,nofollow\\\"/><!----><title>Private SSR fixture</title></head><body data-sveltekit-preload-data=\\\"off\\\"><div style=\\\"display: contents\\\"><!--[--><!--[0--><!--[--><!--[--><h1>Fake actor V</h1><p data-testid=\\\"private\\\">PRIVATE_U_ONLY</p> <!--[--><p data-testid=\\\"public-audience\\\">100:PUBLIC_ONLY</p><p data-testid=\\\"private-audience\\\">4:PRIVATE_U_ONLY</p><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->····\u001b[39m\n\u001b[31m\t\t\t<script>\u001b[39m\n\u001b[31m\t\t\t\t{\u001b[39m\n\u001b[31m\t\t\t\t\t__sveltekit_1owg8m2 = {\u001b[39m\n\u001b[31m\t\t\t\t\t\tbase: new URL(\\\".\\\", location).pathname.slice(0, -1)\u001b[39m\n\u001b[31m\t\t\t\t\t};·\u001b[39m\n\u001b[31m\t\t\t\t\tconst element = document.currentScript.parentElement;·\u001b[39m\n\u001b[31m\t\t\t\t\tPromise.all([\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/start.DJHPMdEN.js\\\"),\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/app.Dc_Zf3Rm.js\\\")\u001b[39m\n\u001b[31m\t\t\t\t\t]).then(([kit, app]) => {\u001b[39m\n\u001b[31m\t\t\t\t\t\tkit.start(app, element, {\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tnode_ids: [0, 3],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tdata: [null,{type:\\\"data\\\",data:{actor:\\\"V\\\",privateValue:\\\"PRIVATE_U_ONLY\\\",audiences:[{audience:\\\"public\\\",version:\\\"100\\\",value:\\\"PUBLIC_ONLY\\\"},{audience:\\\"private\\\",version:\\\"4\\\",value:\\\"PRIVATE_U_ONLY\\\"}]},uses:{search_params:[\\\"actor\\\",\\\"barrier\\\"]}}],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tform: null,\u001b[39m\n\u001b[31m\t\t\t\t\t\t\terror: null\u001b[39m\n\u001b[31m\t\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t}\u001b[39m\n\u001b[31m\t\t\t</script>\u001b[39m\n\u001b[31m\t\t</div></body></html>\u001b[39m\n\u001b[31m\"\u001b[39m\n    at /Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts:6:724",
+                    "location": {
+                      "file": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts",
+                      "column": 724,
+                      "line": 6
+                    },
+                    "snippet": "  4 | test('S07 reload keeps unknown intent and only reconciles',async({page})=>{await page.goto('/');const button=page.getByRole('button',{name:'Send or reconcile admin X'});await button.click();await expect(page.getByTestId('result')).toContainText('\"UNKNOWN\"');await page.reload();await button.click();await expect(page.getByTestId('result')).toContainText('[\"POST\",\"GET\"]');await page.getByRole('button',{name:'Resolve admin X FINAL'}).click();await expect(page.getByTestId('result')).toContainText('\"FINAL\"');});\n  5 | test('S08 literal is escaped in SSR and after hydration',async({page,request})=>{const r=await request.get('/');const html=await r.text();expect(html).not.toContain('<img src=x');expect(html).toContain('&lt;img');await page.goto('/');await expect(page.getByTestId('literal')).toHaveText('<img src=x onerror=alert(1)> & Workshop');await expect(page.getByTestId('literal').locator('img')).toHaveCount(0);});\n> 6 | for(const [first,second] of [['U','V'],['V','U']])test(`S06 concurrent SSR ${first} then ${second}`,async({request})=>{const id=`${first}-${second}`;const pending=request.get(`/ssr?actor=${first}&barrier=${id}`);try{await expect.poll(async()=>{const r=await request.get(`/control?id=${id}`);return (await r.json()).waiting;}).toBe(true);const b=await request.get(`/ssr?actor=${second}`);expect(b.headers()['cache-control']).toBe('no-store');const bh=await b.text();expect(bh).toContain(`PRIVATE_${second}_ONLY`);expect(bh).not.toContain(`PRIVATE_${first}_ONLY`);}finally{await request.post(`/control?id=${id}`);}const a=await pending;expect(a.headers()['cache-control']).toBe('no-store');const ah=await a.text();expect(ah).toContain(`PRIVATE_${first}_ONLY`);expect(ah).not.toContain(`PRIVATE_${second}_ONLY`);});\n    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^\n  7 | test('private SSR also works with JS disabled',async({browser})=>{const context=await browser.newContext({javaScriptEnabled:false});try{const page=await context.newPage();await page.goto('http://127.0.0.1:4173/ssr?actor=U');await expect(page.getByTestId('private')).toHaveText('PRIVATE_U_ONLY');}finally{await context.close();}});\n  8 | test('cookie override through SvelteKit HTTP create/read/replace/delete',async({request})=>{const set=await request.post('/cookie',{data:{actor:'U'}});expect(set.status()).toBe(200);const h=set.headers()['set-cookie'];expect(h).toContain('HttpOnly');expect(h).toContain('Secure');expect(h.toLowerCase()).toContain('samesite=strict');expect(h).toContain('Path=/');const read=await request.get('/cookie',{headers:{cookie:'lab_actor=U'}});expect((await read.json()).actor).toBe('U');const other=await request.get('/cookie',{headers:{cookie:'lab_actor=V'}});expect((await other.json()).actor).toBe('V');const del=await request.delete('/cookie');expect(del.headers()['set-cookie']).toContain('Max-Age=0');expect((await (await request.get('/cookie',{headers:{cookie:''}})).json()).actor).toBe(null);});\n  9 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts",
+                        "column": 724,
+                        "line": 6
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"PRIVATE_V_ONLY\"\u001b[39m\nReceived string:    \u001b[31m\"<!doctype html>\u001b[39m\n\u001b[31m<html lang=\\\"en\\\"><head><meta charset=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\"/><!--1xwjdf7--><meta name=\\\"robots\\\" content=\\\"noindex,nofollow\\\"/><!----><title>Private SSR fixture</title></head><body data-sveltekit-preload-data=\\\"off\\\"><div style=\\\"display: contents\\\"><!--[--><!--[0--><!--[--><!--[--><h1>Fake actor V</h1><p data-testid=\\\"private\\\">PRIVATE_U_ONLY</p> <!--[--><p data-testid=\\\"public-audience\\\">100:PUBLIC_ONLY</p><p data-testid=\\\"private-audience\\\">4:PRIVATE_U_ONLY</p><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->····\u001b[39m\n\u001b[31m\t\t\t<script>\u001b[39m\n\u001b[31m\t\t\t\t{\u001b[39m\n\u001b[31m\t\t\t\t\t__sveltekit_1owg8m2 = {\u001b[39m\n\u001b[31m\t\t\t\t\t\tbase: new URL(\\\".\\\", location).pathname.slice(0, -1)\u001b[39m\n\u001b[31m\t\t\t\t\t};·\u001b[39m\n\u001b[31m\t\t\t\t\tconst element = document.currentScript.parentElement;·\u001b[39m\n\u001b[31m\t\t\t\t\tPromise.all([\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/start.DJHPMdEN.js\\\"),\u001b[39m\n\u001b[31m\t\t\t\t\t\timport(\\\"./_app/immutable/entry/app.Dc_Zf3Rm.js\\\")\u001b[39m\n\u001b[31m\t\t\t\t\t]).then(([kit, app]) => {\u001b[39m\n\u001b[31m\t\t\t\t\t\tkit.start(app, element, {\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tnode_ids: [0, 3],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tdata: [null,{type:\\\"data\\\",data:{actor:\\\"V\\\",privateValue:\\\"PRIVATE_U_ONLY\\\",audiences:[{audience:\\\"public\\\",version:\\\"100\\\",value:\\\"PUBLIC_ONLY\\\"},{audience:\\\"private\\\",version:\\\"4\\\",value:\\\"PRIVATE_U_ONLY\\\"}]},uses:{search_params:[\\\"actor\\\",\\\"barrier\\\"]}}],\u001b[39m\n\u001b[31m\t\t\t\t\t\t\tform: null,\u001b[39m\n\u001b[31m\t\t\t\t\t\t\terror: null\u001b[39m\n\u001b[31m\t\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t\t});\u001b[39m\n\u001b[31m\t\t\t\t}\u001b[39m\n\u001b[31m\t\t\t</script>\u001b[39m\n\u001b[31m\t\t</div></body></html>\u001b[39m\n\u001b[31m\"\u001b[39m\n\n  4 | test('S07 reload keeps unknown intent and only reconciles',async({page})=>{await page.goto('/');const button=page.getByRole('button',{name:'Send or reconcile admin X'});await button.click();await expect(page.getByTestId('result')).toContainText('\"UNKNOWN\"');await page.reload();await button.click();await expect(page.getByTestId('result')).toContainText('[\"POST\",\"GET\"]');await page.getByRole('button',{name:'Resolve admin X FINAL'}).click();await expect(page.getByTestId('result')).toContainText('\"FINAL\"');});\n  5 | test('S08 literal is escaped in SSR and after hydration',async({page,request})=>{const r=await request.get('/');const html=await r.text();expect(html).not.toContain('<img src=x');expect(html).toContain('&lt;img');await page.goto('/');await expect(page.getByTestId('literal')).toHaveText('<img src=x onerror=alert(1)> & Workshop');await expect(page.getByTestId('literal').locator('img')).toHaveCount(0);});\n> 6 | for(const [first,second] of [['U','V'],['V','U']])test(`S06 concurrent SSR ${first} then ${second}`,async({request})=>{const id=`${first}-${second}`;const pending=request.get(`/ssr?actor=${first}&barrier=${id}`);try{await expect.poll(async()=>{const r=await request.get(`/control?id=${id}`);return (await r.json()).waiting;}).toBe(true);const b=await request.get(`/ssr?actor=${second}`);expect(b.headers()['cache-control']).toBe('no-store');const bh=await b.text();expect(bh).toContain(`PRIVATE_${second}_ONLY`);expect(bh).not.toContain(`PRIVATE_${first}_ONLY`);}finally{await request.post(`/control?id=${id}`);}const a=await pending;expect(a.headers()['cache-control']).toBe('no-store');const ah=await a.text();expect(ah).toContain(`PRIVATE_${first}_ONLY`);expect(ah).not.toContain(`PRIVATE_${second}_ONLY`);});\n    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^\n  7 | test('private SSR also works with JS disabled',async({browser})=>{const context=await browser.newContext({javaScriptEnabled:false});try{const page=await context.newPage();await page.goto('http://127.0.0.1:4173/ssr?actor=U');await expect(page.getByTestId('private')).toHaveText('PRIVATE_U_ONLY');}finally{await context.close();}});\n  8 | test('cookie override through SvelteKit HTTP create/read/replace/delete',async({request})=>{const set=await request.post('/cookie',{data:{actor:'U'}});expect(set.status()).toBe(200);const h=set.headers()['set-cookie'];expect(h).toContain('HttpOnly');expect(h).toContain('Secure');expect(h.toLowerCase()).toContain('samesite=strict');expect(h).toContain('Path=/');const read=await request.get('/cookie',{headers:{cookie:'lab_actor=U'}});expect((await read.json()).actor).toBe('U');const other=await request.get('/cookie',{headers:{cookie:'lab_actor=V'}});expect((await other.json()).actor).toBe('V');const del=await request.delete('/cookie');expect(del.headers()['set-cookie']).toContain('Max-Age=0');expect((await (await request.get('/cookie',{headers:{cookie:''}})).json()).actor).toBe(null);});\n  9 |\n    at /Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts:6:724"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:45.775Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/test-results/sample-S06-concurrent-SSR-V-then-U-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/test-results/sample-S06-concurrent-SSR-V-then-U-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/browser/sample.spec.ts",
+                    "column": 724,
+                    "line": 6
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-1a19a99cd1073378e40f",
+          "file": "sample.spec.ts",
+          "line": 6,
+          "column": 51
+        },
+        {
+          "title": "private SSR also works with JS disabled",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 227,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:46.462Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-42ab36423de5d698e466",
+          "file": "sample.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "cookie override through SvelteKit HTTP create/read/replace/delete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 68,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:46.928Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-2b8cb80c3883603269eb",
+          "file": "sample.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "S09 actual Svelte component destruction rejects pending callback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 376,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:47.014Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-b6e59d5ce4c227568d66",
+          "file": "sample.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "S04 SSR keeps independent public/private versions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 181,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:47.408Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-7127d1b5634e662df926",
+          "file": "sample.spec.ts",
+          "line": 12,
+          "column": 1
+        },
+        {
+          "title": "S05 rendered history retains cancellation and rebooking",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 276,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-16T07:28:47.603Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b92766bcf73bd5c029a8-6107d0581a35d7108c78",
+          "file": "sample.spec.ts",
+          "line": 13,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-16T07:28:42.372Z",
+    "duration": 5575.751,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

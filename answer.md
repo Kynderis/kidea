@@ -1,7 +1,9 @@
-Đã hoàn thiện [dependency và bộ lệnh kiểm mẫu Web](proposals/r05-web-toolchain-r1.md), không cần Docker:
+Đã hiện thực và chạy mẫu Web trên Mac Intel, không cần Docker:
 
-- Tạo lockfile237package và kế hoạch7bước: cài theo lock, sync, kiểm kiểu, lint, unit, build, browser.
-- Metadata dependency phù hợp Node24.19 có sẵn; chưa cần cài Node mới.
-- Audit phát hiện cảnh báo low ở cookie. Đã giữ lock/log ban đầu và tạo candidate override cookie0.7.2; candidate audit0cảnh báo, nhưng vẫn phải kiểm tương thích cookie/session thực trước khi sử dụng.
+- Kiểm kiểu, lint và production build: **PASS**.
+- **14/14 unit,11/11 SSR/browser PASS**, thêm một kiểm SSR trên process mới.
+- **8/8 phiên bản cố ý sai bị phát hiện**; giữ cả log lỗi và kết quả cuối.
 
-Chưa cài dependency/browser hoặc chạy app/build. Phần tiếp theo là hiện thực và chạy mẫu Web trong gói quyền thực thi; Docker vẫn chờ bạn báo. R05 chưa hoàn tất.
+Dependency/browser chỉ nằm trong thư mục mẫu riêng; không cài công cụ hệ thống. Server đã dừng, nguồn Kidea và hồ sơ pilot cũ được bảo toàn. [Báo cáo và snapshot mã](tests/evidence/r05/web-execution-r1.md).
+
+Phần Web mẫu đã có bằng chứng thực. HTTPS/CSRF/backend, các nền tảng khác và Apple Silicon chưa kiểm; R05 chưa hoàn tất. Docker vẫn chờ bạn báo khi ngồi máy.

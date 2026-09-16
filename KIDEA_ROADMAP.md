@@ -10,6 +10,9 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
+**Đã chạy lát cắt mẫu Web trên Mac Intel theo approval sau ced8b31.** [Kết quả Web](tests/evidence/r05/web-execution-r1.md):14/14unit,11/11SSR/browser,1kiểm SSR process mới; type/lint/buildPASS;8mutation sai đều bị bắt. Cài dependency/browser chỉ trong mẫu sibling, không Docker hoặc công cụ hệ thống; lock/root metadata/hồ sơ pilot/evidence cũ bảo toàn. T03-S03 **IN_PROGRESS** đúng giới hạn mẫu; HTTPS/CSRF/backend và phần còn lại profile chưa chứng minh, R05 chưa nghiệm thu. Docker vẫn chờ Human. Các đoạn dưới là lịch sử.
+
+
 **Web: đã hoàn thành phần dependency và thiết kế lệnh kiểm không cần Docker.** [Toolchain r1](proposals/r05-web-toolchain-r1.md) có lock237package, engines phù hợp Node24.19 theo metadata, command manifest7bước. Audit baseline exit1 (3mục low cùng chuỗi cookie); candidate scoped override cookie0.7.2 audit exit0, chưa xác minh tương thích runtime, chưa áp pilot. Không node_modules/browser/app/server, không thay root package/lock hoặc nguồn profile. Docker vẫn hoãn; R05-T03-S03 và9ca mẫu vẫn NOT_RUN. Các đoạn dưới là lịch sử.
 
 

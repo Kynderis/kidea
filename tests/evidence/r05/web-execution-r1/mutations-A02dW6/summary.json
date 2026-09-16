@@ -1,0 +1,64 @@
+{
+  "results": [
+    {
+      "name": "context",
+      "sourceHash": "79413d44e9b95c24bb6516533ddcb47c338dd095984bf0f888b73ac0e78bf8c8",
+      "mutatedHash": "560ad852c72fd0fb9aff6140bf22fe583723381db4b40ef2c0b27d5b6869a713",
+      "detected": true,
+      "evidence": "tests/evidence/r05/web-execution-r1/negative-context-W6uXh5"
+    },
+    {
+      "name": "precision",
+      "sourceHash": "79413d44e9b95c24bb6516533ddcb47c338dd095984bf0f888b73ac0e78bf8c8",
+      "mutatedHash": "f766a2e6a8fd2fef3232085b7c2f297397ddad0f39e7de9ff810df868df1e8eb",
+      "detected": true,
+      "evidence": "tests/evidence/r05/web-execution-r1/negative-precision-e3jkZh"
+    },
+    {
+      "name": "scope",
+      "sourceHash": "79413d44e9b95c24bb6516533ddcb47c338dd095984bf0f888b73ac0e78bf8c8",
+      "mutatedHash": "54340ff8879c78771a067439173042486ced21940887cafaee173349d56f86fd",
+      "detected": true,
+      "evidence": "tests/evidence/r05/web-execution-r1/negative-scope-SeDWyd"
+    },
+    {
+      "name": "history",
+      "sourceHash": "79413d44e9b95c24bb6516533ddcb47c338dd095984bf0f888b73ac0e78bf8c8",
+      "mutatedHash": "50d169d0fc73bd0d79cd31f2dc27977676413686829e888bbda4960e6e98e01b",
+      "detected": true,
+      "evidence": "tests/evidence/r05/web-execution-r1/negative-history-RC2Cwc"
+    },
+    {
+      "name": "admin",
+      "sourceHash": "79413d44e9b95c24bb6516533ddcb47c338dd095984bf0f888b73ac0e78bf8c8",
+      "mutatedHash": "9305349bdb41dcf87c44b56172b13eb7d4b5b16921f4d0477ed64cf1683174df",
+      "detected": true,
+      "evidence": "tests/evidence/r05/web-execution-r1/negative-admin-lFWoB4"
+    },
+    {
+      "name": "unmount",
+      "sourceHash": "79413d44e9b95c24bb6516533ddcb47c338dd095984bf0f888b73ac0e78bf8c8",
+      "mutatedHash": "551a459982527d009e51912ec214cae52ed90c790e2de14adbbdb9b83ac1657c",
+      "detected": true,
+      "evidence": "tests/evidence/r05/web-execution-r1/negative-unmount-EBTRJm"
+    },
+    {
+      "name": "ssr-global",
+      "sourceHash": "913ed2065992963d5eaa9aa490157190dcaba60643de21dfcb6471c9eeb2d5ea",
+      "mutatedHash": "cf080fdc2266dff5cf9224f0834946fcecf1c269f445b7e7e9a53b72169a9e7c",
+      "detected": true,
+      "build": "tests/evidence/r05/web-execution-r1/negative-ssr-global-build-OF7qHW",
+      "evidence": "tests/evidence/r05/web-execution-r1/negative-ssr-global-browser-OwdfNC"
+    },
+    {
+      "name": "raw-html",
+      "sourceHash": "06c7078fb233ea4e8e7b5fa85ee949fac88edb1b4fb3b9b1928fe75894302355",
+      "mutatedHash": "529abf8487a40ef3951fe85f05c851c088c85a4798a0a779c265a7d0f8329a0d",
+      "detected": true,
+      "build": "tests/evidence/r05/web-execution-r1/negative-raw-html-build-QS0nRp",
+      "evidence": "tests/evidence/r05/web-execution-r1/negative-raw-html-browser-MVJsYp"
+    }
+  ],
+  "modelUnchanged": true,
+  "scope": "Eight intentional faulty sample variants must fail; not eight additional app passes"
+}

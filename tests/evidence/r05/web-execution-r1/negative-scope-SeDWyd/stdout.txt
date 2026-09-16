@@ -1,0 +1,63 @@
+✔ S01 actor switch rejects old response and clears prior values (1.623793ms)
+✔ S01 same actor logout/login still rejects prior generation (0.209036ms)
+✔ epoch reset rejects high-version old response (0.187406ms)
+✔ S02 large versions retain exact ordering and string (0.268778ms)
+✔ reject invalid/duplicate versions without changing state (0.269206ms)
+✖ S03 workshop versions are independent (1.115528ms)
+✖ S04 audience versions are independent (0.309397ms)
+✔ S05 stale history cannot revive A or remove B (0.232106ms)
+✔ new history replaces the whole group (0.213603ms)
+✔ S07 unknown admin intent reconciles GET without new POST (1.104219ms)
+✔ S09 unmounted callback cannot update state (1.189121ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 169.034598
+
+✖ failing tests:
+
+test at tests/unit/model.test.mjs:12:1
+✖ S03 workshop versions are independent (1.115528ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/unit/model.test.mjs:12:133)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/model.test.mjs:13:1
+✖ S04 audience versions are independent (0.309397ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/unit/model.test.mjs:13:137)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

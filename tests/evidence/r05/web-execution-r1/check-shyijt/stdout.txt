@@ -1,0 +1,10 @@
+Loading svelte-check in workspace: /Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web
+Getting Svelte diagnostics...
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/src/routes/ssr/+page.svelte:5:13
+Error: Property 'audiences' does not exist on type '{ actor: string; privateValue: string; }'. (ts)
+
+{#each data.audiences as item}<p data-testid={item.audience+"-audience"}>{item.version}:{item.value}</p>{/each}
+
+====================================
+svelte-check found 1 error and 0 warnings in 1 file
