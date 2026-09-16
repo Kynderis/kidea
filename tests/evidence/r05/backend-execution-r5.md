@@ -29,7 +29,7 @@ Không chạy lại phần có đầu vào không đổi chỉ để cộng lư�
 
 [Môi trường thật](backend-execution-r5/environment.json): macOS 14.7 Intel x64, UID 501, đúng `Kynderis/kidea`, master. Node mặc định vẫn 22.22.2; core dùng Node 24.19.0 có sẵn. Yêu cầu Kidea vẫn ≥24, không khóa patch hoặc đường runtime của máy này. Docker Linux/amd64; không cài công cụ hệ thống, SDK, trust, cloud hay deploy.
 
-[Quota](backend-execution-r5/quota-verification.json): reservation thành công tối đa 2 CPU/4 GiB; workload chạy tuần tự, không còn client chồng vượt trần. Từ đầu r5 tới collector khoảng 10,6 phút, trong 3 giờ. Không tải artifact mới. Delta dung lượng toàn filesystem từ baseline E2 khoảng 19,00 GiB/24 GiB; còn trên 360 GiB, cao hơn sàn 100 GiB. Đây là phép đo bảo thủ gồm hoạt động khác trên host, không phải số byte riêng workload. Các container đã dừng, port 8443 đóng; cache/volume giữ nguyên. Evidence được quét token/CSRF của fixture và PEM private-key marker.
+[Quota](backend-execution-r5/quota-verification.json): reservation thành công tối đa 2 CPU/4 GiB; workload chạy tuần tự, không còn client chồng vượt trần. Từ đầu r5 tới collector khoảng 14,3 phút, trong 3 giờ. Không tải artifact mới. Delta dung lượng toàn filesystem từ baseline E2 khoảng 19,00 GiB/24 GiB; còn khoảng 360 GiB, cao hơn sàn 100 GiB. Đây là phép đo bảo thủ gồm hoạt động khác trên host, không phải số byte riêng workload. Các container đã dừng, port 8443 đóng; cache/volume giữ nguyên. Evidence được quét token/CSRF của fixture và PEM private-key marker.
 
 ## Giới hạn và điểm tiếp tục
 

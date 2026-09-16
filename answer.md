@@ -6,3 +6,5 @@
 - Lưu đầy đủ bằng chứng, lỗi trung gian và điểm tiếp tục tại [báo cáo r5](tests/evidence/r05/backend-execution-r5.md).
 
 Tiếp theo: review kết quả backend/Web, rồi chuẩn bị môi trường/mẫu Android và iOS. R05 chưa hoàn tất; Apple Silicon chưa kiểm. Chưa cần cài thêm gì trên Mac trong lượt này.
+
+Đã commit/push master; báo cáo và answer.md được lưu trong repo.
