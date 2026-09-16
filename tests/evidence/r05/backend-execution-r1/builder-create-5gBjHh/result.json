@@ -1,0 +1,21 @@
+{
+  "stage": "builder-create",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "buildx",
+    "create",
+    "--name",
+    "kidea-r05-e2-r1",
+    "--driver",
+    "docker-container",
+    "--driver-opt",
+    "image=docker.io/moby/buildkit@sha256:040d34121c27906c4ff9ac152a30d52bf2c5d328d3bb748916bb3d2743c02528",
+    "--driver-opt",
+    "memory=4g,memory-swap=4g,cpu-period=100000,cpu-quota=200000,restart-policy=no"
+  ],
+  "at": "2026-09-16T12:51:14.523Z",
+  "durationMs": 566,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

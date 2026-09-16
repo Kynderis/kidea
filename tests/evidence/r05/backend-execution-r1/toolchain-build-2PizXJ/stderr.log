@@ -1,0 +1,220 @@
+#0 building with "kidea-r05-e2-r1" instance using docker-container driver
+
+#1 [internal] booting buildkit
+#1 pulling image docker.io/moby/buildkit@sha256:040d34121c27906c4ff9ac152a30d52bf2c5d328d3bb748916bb3d2743c02528
+#1 pulling image docker.io/moby/buildkit@sha256:040d34121c27906c4ff9ac152a30d52bf2c5d328d3bb748916bb3d2743c02528 1.8s done
+#1 creating container buildx_buildkit_kidea-r05-e2-r10
+#1 creating container buildx_buildkit_kidea-r05-e2-r10 0.8s done
+#1 DONE 2.7s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.06kB 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu@sha256:496754492fb28b4d3049432f2ca787449331e23fb14f0dd3fffea86bf5a93eb4
+#3 ...
+
+#4 [auth] library/ubuntu:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu@sha256:496754492fb28b4d3049432f2ca787449331e23fb14f0dd3fffea86bf5a93eb4
+#3 DONE 2.3s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 152B done
+#5 DONE 0.0s
+
+#6 [toolchain 1/6] FROM docker.io/library/ubuntu@sha256:496754492fb28b4d3049432f2ca787449331e23fb14f0dd3fffea86bf5a93eb4
+#6 resolve docker.io/library/ubuntu@sha256:496754492fb28b4d3049432f2ca787449331e23fb14f0dd3fffea86bf5a93eb4 done
+#6 sha256:edd1ed89f0d443580bd42e5a10cd8736aba5a3438b2a0645c2ebb50119bb0eba 0B / 29.76MB 0.2s
+#6 sha256:edd1ed89f0d443580bd42e5a10cd8736aba5a3438b2a0645c2ebb50119bb0eba 2.10MB / 29.76MB 0.5s
+#6 sha256:edd1ed89f0d443580bd42e5a10cd8736aba5a3438b2a0645c2ebb50119bb0eba 7.34MB / 29.76MB 0.6s
+#6 sha256:edd1ed89f0d443580bd42e5a10cd8736aba5a3438b2a0645c2ebb50119bb0eba 13.63MB / 29.76MB 0.8s
+#6 sha256:edd1ed89f0d443580bd42e5a10cd8736aba5a3438b2a0645c2ebb50119bb0eba 19.92MB / 29.76MB 0.9s
+#6 sha256:edd1ed89f0d443580bd42e5a10cd8736aba5a3438b2a0645c2ebb50119bb0eba 25.17MB / 29.76MB 1.1s
+#6 sha256:edd1ed89f0d443580bd42e5a10cd8736aba5a3438b2a0645c2ebb50119bb0eba 29.76MB / 29.76MB 1.2s done
+#6 extracting sha256:edd1ed89f0d443580bd42e5a10cd8736aba5a3438b2a0645c2ebb50119bb0eba
+#6 extracting sha256:edd1ed89f0d443580bd42e5a10cd8736aba5a3438b2a0645c2ebb50119bb0eba 3.6s done
+#6 DONE 4.8s
+
+#7 [internal] load build context
+#7 transferring context: 171.12MB 5.0s
+#7 transferring context: 208.92MB 5.9s done
+#7 DONE 6.0s
+
+#8 [toolchain 2/6] COPY downloads/debs/ /debs/
+#8 DONE 1.5s
+
+#9 [toolchain 3/6] COPY downloads/debs.sha256 /debs.sha256
+#9 DONE 0.1s
+
+#10 [toolchain 4/6] COPY downloads/node.tar.xz /node.tar.xz
+#10 DONE 0.3s
+
+#11 [toolchain 5/6] RUN sha256sum -c /debs.sha256 &&     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-download --no-install-recommends /debs/*.deb &&     printf '%s  %s\n' '14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647' /node.tar.xz | sha256sum -c - &&     mkdir -p /opt/node /build /work /out /data &&     tar -xJf /node.tar.xz --strip-components=1 -C /opt/node &&     chown 1000:1000 /build /work /out /data &&     dpkg-query -W -f='${Package}\t${Version}\t${Architecture}\n' > /opt/package-inventory.tsv
+#11 0.175 /debs/libpython3.12-minimal.deb: OK
+#11 0.175 /debs/libexpat1.deb: OK
+#11 0.184 /debs/python3.12-minimal.deb: OK
+#11 0.184 /debs/python3-minimal.deb: OK
+#11 0.184 /debs/media-types.deb: OK
+#11 0.184 /debs/netbase.deb: OK
+#11 0.186 /debs/tzdata.deb: OK
+#11 0.186 /debs/readline-common.deb: OK
+#11 0.187 /debs/libreadline8t64.deb: OK
+#11 0.191 /debs/libsqlite3-0.deb: OK
+#11 0.198 /debs/libpython3.12-stdlib.deb: OK
+#11 0.200 /debs/python3.12.deb: OK
+#11 0.200 /debs/libpython3-stdlib.deb: OK
+#11 0.200 /debs/python3.deb: OK
+#11 0.204 /debs/openssl.deb: OK
+#11 0.205 /debs/ca-certificates.deb: OK
+#11 0.205 /debs/libbsd0.deb: OK
+#11 0.206 /debs/libkrb5support0.deb: OK
+#11 0.198 /debs/libk5crypto3.deb: OK
+#11 0.198 /debs/libkeyutils1.deb: OK
+#11 0.199 /debs/libkrb5-3.deb: OK
+#11 0.200 /debs/libgssapi-krb5-2.deb: OK
+#11 0.235 /debs/libicu74.deb: OK
+#11 0.238 /debs/libxml2.deb: OK
+#11 0.238 /debs/libyaml-0-2.deb: OK
+#11 0.239 /debs/python3-yaml.deb: OK
+#11 0.239 /debs/libedit2.deb: OK
+#11 0.240 /debs/libjansson4.deb: OK
+#11 0.240 /debs/libnghttp2-14.deb: OK
+#11 0.241 /debs/libpsl5t64.deb: OK
+#11 0.241 /debs/libuv1t64.deb: OK
+#11 0.243 /debs/xz-utils.deb: OK
+#11 0.244 /debs/binutils-common.deb: OK
+#11 0.244 /debs/libsframe1.deb: OK
+#11 0.247 /debs/libbinutils.deb: OK
+#11 0.248 /debs/libctf-nobfd0.deb: OK
+#11 0.248 /debs/libctf0.deb: OK
+#11 0.252 /debs/libgprofng0.deb: OK
+#11 0.260 /debs/binutils-x86-64-linux-gnu.deb: OK
+#11 0.260 /debs/binutils.deb: OK
+#11 0.345 /debs/libllvm18.deb: OK
+#11 0.387 /debs/libclang-cpp18.deb: OK
+#11 0.387 /debs/gcc-13-base.deb: OK
+#11 0.388 /debs/libgomp1.deb: OK
+#11 0.388 /debs/libitm1.deb: OK
+#11 0.389 /debs/libatomic1.deb: OK
+#11 0.401 /debs/libasan8.deb: OK
+#11 0.407 /debs/liblsan0.deb: OK
+#11 0.419 /debs/libtsan2.deb: OK
+#11 0.423 /debs/libubsan1.deb: OK
+#11 0.430 /debs/libhwasan0.deb: OK
+#11 0.431 /debs/libquadmath0.deb: OK
+#11 0.440 /debs/libgcc-13-dev.deb: OK
+#11 0.440 /debs/libc-dev-bin.deb: OK
+#11 0.446 /debs/linux-libc-dev.deb: OK
+#11 0.446 /debs/libcrypt-dev.deb: OK
+#11 0.447 /debs/rpcsvc-proto.deb: OK
+#11 0.454 /debs/libc6-dev.deb: OK
+#11 0.462 /debs/libstdc++-13-dev.deb: OK
+#11 0.463 /debs/libgc1.deb: OK
+#11 0.463 /debs/libobjc4.deb: OK
+#11 0.464 /debs/libobjc-13-dev.deb: OK
+#11 0.467 /debs/libclang-common-18-dev.deb: OK
+#11 0.474 /debs/llvm-18-linker-tools.deb: OK
+#11 0.499 /debs/libclang1-18.deb: OK
+#11 0.500 /debs/clang-18.deb: OK
+#11 0.500 /debs/clang-format-18.deb: OK
+#11 0.528 /debs/clang-tools-18.deb: OK
+#11 0.546 /debs/clang-tidy-18.deb: OK
+#11 0.547 /debs/libarchive13t64.deb: OK
+#11 0.548 /debs/libbrotli1.deb: OK
+#11 0.548 /debs/libsasl2-modules-db.deb: OK
+#11 0.549 /debs/libsasl2-2.deb: OK
+#11 0.550 /debs/libldap2.deb: OK
+#11 0.550 /debs/librtmp1.deb: OK
+#11 0.551 /debs/libssh-4.deb: OK
+#11 0.553 /debs/libcurl4t64.deb: OK
+#11 0.554 /debs/libjsoncpp25.deb: OK
+#11 0.554 /debs/librhash0.deb: OK
+#11 0.562 /debs/cmake-data.deb: OK
+#11 0.597 /debs/cmake.deb: OK
+#11 0.600 /debs/libisl23.deb: OK
+#11 0.601 /debs/libmpfr6.deb: OK
+#11 0.601 /debs/libmpc3.deb: OK
+#11 0.636 /debs/cpp-13-x86-64-linux-gnu.deb: OK
+#11 0.636 /debs/cpp-13.deb: OK
+#11 0.636 /debs/curl.deb: OK
+#11 0.637 /debs/libcc1-0.deb: OK
+#11 0.706 /debs/gcc-13-x86-64-linux-gnu.deb: OK
+#11 0.744 /debs/g++-13-x86-64-linux-gnu.deb: OK
+#11 0.747 /debs/gcc-13.deb: OK
+#11 0.747 /debs/g++-13.deb: OK
+#11 0.747 /debs/libnspr4.deb: OK
+#11 0.752 /debs/libnss3.deb: OK
+#11 0.755 /debs/libnss3-tools.deb: OK
+#11 0.755 /debs/libpkgconf3.deb: OK
+#11 0.763 /debs/libssl-dev.deb: OK
+#11 0.764 /debs/ninja-build.deb: OK
+#11 0.764 /debs/pkgconf-bin.deb: OK
+#11 0.764 /debs/pkgconf.deb: OK
+#11 0.764 /debs/pkg-config.deb: OK
+#11 0.768 /debs/zlib1g-dev.deb: OK
+#11 0.768 /debs/libjsoncpp-dev.deb: OK
+#11 0.768 /debs/uuid-dev.deb: OK
+#11 0.785 Reading package lists...
+#11 0.830 Building dependency tree...
+#11 0.831 Reading state information...
+#11 0.837 Suggested packages:
+#11 0.837   binutils-doc gprofng-gui clang-18-doc wasi-libc cmake-doc cmake-format
+#11 0.837   elpa-cmake-mode gcc-13-locales cpp-13-doc g++-13-multilib gcc-13-doc
+#11 0.837   gcc-13-multilib lrzip glibc-doc manpages-dev krb5-doc krb5-user libssl-doc
+#11 0.837   libstdc++-13-doc python3-doc python3-tk python3-venv python3.12-venv
+#11 0.837   python3.12-doc binfmt-support readline-doc
+#11 0.837 Recommended packages:
+#11 0.837   llvm-18-dev gcc make manpages manpages-dev libc-devtools libclang-rt-18-dev
+#11 0.837   krb5-locales libldap-common publicsuffix libsasl2-modules
+#11 0.978 The following NEW packages will be installed:
+#11 0.978   binutils binutils-common binutils-x86-64-linux-gnu ca-certificates clang-18
+#11 0.978   clang-format-18 clang-tidy-18 clang-tools-18 cmake cmake-data cpp-13
+#11 0.978   cpp-13-x86-64-linux-gnu curl g++-13 g++-13-x86-64-linux-gnu gcc-13
+#11 0.978   gcc-13-base gcc-13-x86-64-linux-gnu libarchive13t64 libasan8 libatomic1
+#11 0.978   libbinutils libbrotli1 libbsd0 libc-dev-bin libc6-dev libcc1-0
+#11 0.978   libclang-common-18-dev libclang-cpp18 libclang1-18 libcrypt-dev
+#11 0.978   libctf-nobfd0 libctf0 libcurl4t64 libedit2 libexpat1 libgc1 libgcc-13-dev
+#11 0.978   libgomp1 libgprofng0 libgssapi-krb5-2 libhwasan0 libicu74 libisl23 libitm1
+#11 0.978   libjansson4 libjsoncpp-dev libjsoncpp25 libk5crypto3 libkeyutils1 libkrb5-3
+#11 0.978   libkrb5support0 libldap2 libllvm18 liblsan0 libmpc3 libmpfr6 libnghttp2-14
+#11 0.978   libnspr4 libnss3 libnss3-tools libobjc-13-dev libobjc4 libpkgconf3
+#11 0.978   libpsl5t64 libpython3-stdlib libpython3.12-minimal libpython3.12-stdlib
+#11 0.978   libquadmath0 libreadline8t64 librhash0 librtmp1 libsasl2-2
+#11 0.978   libsasl2-modules-db libsframe1 libsqlite3-0 libssh-4 libssl-dev
+#11 0.978   libstdc++-13-dev libtsan2 libubsan1 libuv1t64 libxml2 libyaml-0-2
+#11 0.978   linux-libc-dev llvm-18-linker-tools media-types netbase ninja-build openssl
+#11 0.978   pkg-config pkgconf pkgconf-bin python3 python3-minimal python3-yaml
+#11 0.978   python3.12 python3.12-minimal readline-common rpcsvc-proto tzdata uuid-dev
+#11 0.978   xz-utils zlib1g-dev
+#11 1.188 E: Internal Error, Pathname to install is not absolute 'libpython3.12-minimal_3.12.3-1ubuntu0.17_amd64.deb'
+#11 1.188 0 upgraded, 104 newly installed, 0 to remove and 0 not upgraded.
+#11 1.188 After this operation, 707 MB of additional disk space will be used.
+#11 ERROR: process "/bin/sh -c sha256sum -c /debs.sha256 &&     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-download --no-install-recommends /debs/*.deb &&     printf '%s  %s\\n' '14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647' /node.tar.xz | sha256sum -c - &&     mkdir -p /opt/node /build /work /out /data &&     tar -xJf /node.tar.xz --strip-components=1 -C /opt/node &&     chown 1000:1000 /build /work /out /data &&     dpkg-query -W -f='${Package}\\t${Version}\\t${Architecture}\\n' > /opt/package-inventory.tsv" did not complete successfully: exit code: 100
+------
+ > [toolchain 5/6] RUN sha256sum -c /debs.sha256 &&     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-download --no-install-recommends /debs/*.deb &&     printf '%s  %s\n' '14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647' /node.tar.xz | sha256sum -c - &&     mkdir -p /opt/node /build /work /out /data &&     tar -xJf /node.tar.xz --strip-components=1 -C /opt/node &&     chown 1000:1000 /build /work /out /data &&     dpkg-query -W -f='${Package}\t${Version}\t${Architecture}\n' > /opt/package-inventory.tsv:
+0.978   libquadmath0 libreadline8t64 librhash0 librtmp1 libsasl2-2
+0.978   libsasl2-modules-db libsframe1 libsqlite3-0 libssh-4 libssl-dev
+0.978   libstdc++-13-dev libtsan2 libubsan1 libuv1t64 libxml2 libyaml-0-2
+0.978   linux-libc-dev llvm-18-linker-tools media-types netbase ninja-build openssl
+0.978   pkg-config pkgconf pkgconf-bin python3 python3-minimal python3-yaml
+0.978   python3.12 python3.12-minimal readline-common rpcsvc-proto tzdata uuid-dev
+0.978   xz-utils zlib1g-dev
+1.188 E: Internal Error, Pathname to install is not absolute 'libpython3.12-minimal_3.12.3-1ubuntu0.17_amd64.deb'
+1.188 0 upgraded, 104 newly installed, 0 to remove and 0 not upgraded.
+1.188 After this operation, 707 MB of additional disk space will be used.
+------
+Dockerfile:5
+--------------------
+   4 |     COPY downloads/node.tar.xz /node.tar.xz
+   5 | >>> RUN sha256sum -c /debs.sha256 && \
+   6 | >>>     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-download --no-install-recommends /debs/*.deb && \
+   7 | >>>     printf '%s  %s\n' '14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647' /node.tar.xz | sha256sum -c - && \
+   8 | >>>     mkdir -p /opt/node /build /work /out /data && \
+   9 | >>>     tar -xJf /node.tar.xz --strip-components=1 -C /opt/node && \
+  10 | >>>     chown 1000:1000 /build /work /out /data && \
+  11 | >>>     dpkg-query -W -f='${Package}\t${Version}\t${Architecture}\n' > /opt/package-inventory.tsv
+  12 |     ENV PATH="/opt/node/bin:${PATH}"
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c sha256sum -c /debs.sha256 &&     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-download --no-install-recommends /debs/*.deb &&     printf '%s  %s\\n' '14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647' /node.tar.xz | sha256sum -c - &&     mkdir -p /opt/node /build /work /out /data &&     tar -xJf /node.tar.xz --strip-components=1 -C /opt/node &&     chown 1000:1000 /build /work /out /data &&     dpkg-query -W -f='${Package}\\t${Version}\\t${Architecture}\\n' > /opt/package-inventory.tsv" did not complete successfully: exit code: 100

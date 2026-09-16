@@ -1,0 +1,29 @@
+{
+  "stage": "apt-resolve-retry",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r1-resolve2",
+    "--label",
+    "kidea.run=E2-BW-r1",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/input,readonly",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/receipts,dst=/output",
+    "docker.io/library/ubuntu@sha256:496754492fb28b4d3049432f2ca787449331e23fb14f0dd3fffea86bf5a93eb4",
+    "sh",
+    "/input/resolve-apt.sh"
+  ],
+  "at": "2026-09-16T12:42:56.458Z",
+  "durationMs": 20471,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

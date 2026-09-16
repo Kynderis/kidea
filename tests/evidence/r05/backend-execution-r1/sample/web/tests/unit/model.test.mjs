@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {pathToFileURL} from 'node:url';
+const file = process.env.SAMPLE_MODEL ? pathToFileURL(process.env.SAMPLE_MODEL).href : new URL('../../src/lib/model.ts',import.meta.url).href;
+const {ViewState,AdminIntent} = await import(file);
+const snapshot=(state,extra={})=>({...state.context,workshop:'W1',audience:'private',version:'1',value:'U-only',...extra});
+test('S01 actor switch rejects old response and clears prior values',()=>{const s=new ViewState();const old=snapshot(s);s.apply(old);s.switchActor('V');assert.equal(s.apply(old),false);assert.equal(s.values.size,0);});
+test('S01 same actor logout/login still rejects prior generation',()=>{const s=new ViewState();const old=snapshot(s);s.switchActor('U');assert.equal(s.apply(old),false);});
+test('epoch reset rejects high-version old response',()=>{const s=new ViewState();const old=snapshot(s,{version:'999'});s.switchActor('U','E2');assert.equal(s.apply(old),false);});
+test('S02 large versions retain exact ordering and string',()=>{const s=new ViewState();assert.equal(s.apply(snapshot(s,{version:'9007199254740992'})),true);assert.equal(s.apply(snapshot(s,{version:'9007199254740993'})),true);assert.equal(s.apply(snapshot(s,{version:'9007199254740992'})),false);assert.equal(s.apply(snapshot(s,{version:'9007199254740994'})),true);assert.equal([...s.values.values()][0].version,'9007199254740994');});
+test('reject invalid/duplicate versions without changing state',()=>{const s=new ViewState();s.apply(snapshot(s));for(const v of ['1','-1','1.5','1e9','01'])assert.equal(s.apply(snapshot(s,{version:v})),false);assert.equal([...s.values.values()][0].version,'1');});
+test('S03 workshop versions are independent',()=>{const s=new ViewState();s.apply(snapshot(s,{workshop:'W1',version:'100'}));assert.equal(s.apply(snapshot(s,{workshop:'W2',version:'4'})),true);assert.equal(s.values.size,2);});
+test('S04 audience versions are independent',()=>{const s=new ViewState();s.apply(snapshot(s,{audience:'public',version:'100'}));assert.equal(s.apply(snapshot(s,{audience:'private',version:'4'})),true);assert.equal(s.values.size,2);});
+test('S05 stale history cannot revive A or remove B',()=>{const s=new ViewState();const value=JSON.stringify([{id:'A',state:'CANCELLED'},{id:'B',state:'ACTIVE'}]);s.apply(snapshot(s,{version:'20',value}));assert.equal(s.apply(snapshot(s,{version:'19',value:'A ACTIVE'})),false);assert.equal([...s.values.values()][0].value,value);});
+test('new history replaces the whole group',()=>{const s=new ViewState();s.apply(snapshot(s,{value:'old entries'}));s.apply(snapshot(s,{version:'2',value:'new whole group'}));assert.equal([...s.values.values()][0].value,'new whole group');});
+test('S07 unknown admin intent reconciles GET without new POST',()=>{const i=new AdminIntent('X');i.attempt();assert.equal(i.state,'UNKNOWN');i.attempt();i.attempt();assert.deepEqual(i.calls,['POST','GET','GET']);i.reconcile('FINAL');assert.equal(i.state,'FINAL');assert.equal(i.id,'X');});
+test('S09 unmounted callback cannot update state',()=>{const s=new ViewState();const old=snapshot(s);s.unmount();assert.equal(s.apply(old),false);assert.equal(s.values.size,0);});

@@ -1,0 +1,15 @@
+{
+  "at": "2026-09-16T12:51:14.412Z",
+  "sourceQueries": 51,
+  "result": "No pending/deferred/needed high/critical records returned for selected non-kernel source packages. Not a comprehensive security certification.",
+  "linuxSource": "API returned kernel CVEs. Only linux-libc-dev userspace headers are selected; no Ubuntu kernel image/modules are installed or executed. Host Docker kernel is not modified.",
+  "linuxPackages": [
+    {
+      "name": "linux-libc-dev",
+      "version": "6.8.0-139.139"
+    }
+  ],
+  "limitations": [
+    "Released advisories and source/image components require separate version/application review; no claim of zero vulnerabilities."
+  ]
+}

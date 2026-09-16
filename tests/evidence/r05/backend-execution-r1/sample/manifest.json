@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "status": "PROPOSED_EXECUTION_PACKAGE; NOT_RUNTIME_VERIFIED",
+  "sourceCommit": "6d300db6c7143fabb75b1a982c1cd276efd44f25",
+  "platform": "linux/amd64",
+  "images": [
+    {
+      "name": "ubuntu",
+      "reference": "docker.io/library/ubuntu@sha256:496754492fb28b4d3049432f2ca787449331e23fb14f0dd3fffea86bf5a93eb4",
+      "compressedBytes": 29764116
+    },
+    {
+      "name": "caddy",
+      "reference": "docker.io/library/caddy@sha256:98eb57d882ccd5213d1688764db10c1ca2c58a1ca3a6717a3411ad798f7a423a",
+      "compressedBytes": 23907283
+    },
+    {
+      "name": "browser",
+      "reference": "mcr.microsoft.com/playwright@sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+      "compressedBytes": 955790767
+    },
+    {
+      "name": "buildkit",
+      "reference": "docker.io/moby/buildkit@sha256:040d34121c27906c4ff9ac152a30d52bf2c5d328d3bb748916bb3d2743c02528",
+      "compressedBytes": 109493395
+    }
+  ],
+  "sourceArchives": [
+    {
+      "name": "drogon",
+      "version": "1.9.13",
+      "url": "https://codeload.github.com/drogonframework/drogon/tar.gz/4c5430757ea5451a7c38fbbef4b4bef7dbb47f2f",
+      "bytes": 667186,
+      "sha256": "d1d569734e77c1841d840ed9fd1bfeb3b109cab00598e3880f5aec7261e79bf4",
+      "sha3_256": "30a3895580781412866fbfe69ed128961adba931ee921379688ce32146da60f7"
+    },
+    {
+      "name": "trantor",
+      "version": "63a4e5e164e219dc3bf30cdbfa1462ae5602fa97",
+      "url": "https://codeload.github.com/an-tao/trantor/tar.gz/63a4e5e164e219dc3bf30cdbfa1462ae5602fa97",
+      "bytes": 158611,
+      "sha256": "5ced9bc71563a1af734ed57acc368b324e9f5545b0b0bec187db581309e3a458",
+      "sha3_256": "482ee8fff7c09ce2a6590fe665cbb715f56249d484d7f928efc816a5a1e3e5e5"
+    },
+    {
+      "name": "cmark",
+      "version": "0.31.2",
+      "url": "https://codeload.github.com/commonmark/cmark/tar.gz/refs/tags/0.31.2",
+      "bytes": 267259,
+      "sha256": "f9bc5ca38bcb0b727f0056100fac4d743e768872e3bacec7746de28f5700d697",
+      "sha3_256": "3c8b3acdd0e03caf5da3a274e79a34e12206f5c87ec8d3d6d4cd8bd009bcac40"
+    },
+    {
+      "name": "sqlite",
+      "version": "3.53.4",
+      "url": "https://sqlite.org/2026/sqlite-amalgamation-3530400.zip",
+      "bytes": 2946650,
+      "sha256": "1e71ddf93849c6a6ecf58b827c0692073d2dd7ee40196158068f7b29f422e87d",
+      "sha3_256": "628a44cfe82c66aed1ccbbe85a562d2e33ebe64b3288981ed76285612227934e",
+      "matchesOfficialArchiveAndSourceSha3": true,
+      "retry": "curl --fail --location --max-time 45 --max-filesize 4000000",
+      "exit": 0,
+      "previousFailureRetained": "sources.json"
+    }
+  ],
+  "node": {
+    "version": "24.19.0",
+    "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.xz",
+    "sha256": "14b342e71204f811bde6153be8e04b62aef63c236fef92b55f9c83154b409647",
+    "downloadCapBytes": 67108864,
+    "actualBytes": "NOT_DOWNLOADED"
+  },
+  "aptDirectLock": "apt-direct-lock.json",
+  "aptSnapshot": "20260916T000000Z",
+  "webLock": {
+    "path": "tests/evidence/r05/web-dependencies-r1/candidate-package-lock.json",
+    "sha256": "45f0a6b360bc70fa127e47c5df2ce3db3c9c5cb21d40216166bda80b63954545"
+  },
+  "limits": {
+    "downloadBytes": 4294967296,
+    "addedDiskBytes": 17179869184,
+    "minimumFreeDiskBytes": 107374182400,
+    "buildCPUs": 2,
+    "buildMemoryBytes": 4294967296,
+    "buildTimeoutSeconds": 3600,
+    "testTimeoutSeconds": 1800,
+    "totalSessionSeconds": 10800,
+    "network": "runtime internal Docker network; only 127.0.0.1:8443 published",
+    "runtimeTotalCPUs": 2,
+    "runtimeTotalMemoryBytes": 4294967296
+  },
+  "forbidden": [
+    "sudo on host",
+    "host tool installs",
+    "host CA/keychain changes",
+    "public ACME",
+    "ignoreHTTPSErrors",
+    "NODE_TLS_REJECT_UNAUTHORIZED=0",
+    "curl -k",
+    "Docker prune",
+    "host Docker socket mounted into workloads",
+    "cloud",
+    "deploy",
+    "ARM emulation as ARM PASS"
+  ],
+  "pendingAutomaticChecks": [
+    "APT InRelease signature and transitive solution/URI/SHA256 inventory before package installation",
+    "full resolved package license/advisory receipt; stop on unresolved applicable high/critical issue",
+    "download hash and source archive safe extraction",
+    "Caddy adapt/validate and forbidden-module check",
+    "browser CA positive and missing-CA negative controls",
+    "all source-defined test assertions plus intentional mutants; no skipped cases"
+  ]
+}

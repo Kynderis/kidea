@@ -1,0 +1,860 @@
+{
+  "queries": 145,
+  "findings": [
+    {
+      "id": "GO-2026-4970",
+      "summary": "Root escape via symlink plus trailing slash in os",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "os",
+                "symbols": [
+                  "OpenInRoot",
+                  "Root.Create",
+                  "Root.Open",
+                  "Root.OpenFile",
+                  "Root.OpenRoot",
+                  "Root.ReadFile",
+                  "Root.WriteFile",
+                  "openRootInRoot",
+                  "rootFS.Open",
+                  "rootFS.ReadDir",
+                  "rootFS.ReadFile",
+                  "rootOpenFileNolog"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5026",
+      "summary": "Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "net/http",
+                "symbols": [
+                  "Client.CloseIdleConnections",
+                  "Client.Do",
+                  "Client.Get",
+                  "Client.Head",
+                  "Client.Post",
+                  "Client.PostForm",
+                  "ClientConn.Close",
+                  "ClientConn.RoundTrip",
+                  "Get",
+                  "Head",
+                  "Post",
+                  "PostForm",
+                  "Transport.CloseIdleConnections",
+                  "Transport.NewClientConn",
+                  "Transport.RoundTrip",
+                  "http1ClientConn.Close",
+                  "http1ClientConn.RoundTrip",
+                  "http2ClientConn.RoundTrip",
+                  "http2RoundTripper.RoundTrip",
+                  "idnaASCII"
+                ]
+              },
+              {
+                "symbols": [
+                  "Transport.AddConn",
+                  "Transport.RoundTrip",
+                  "Transport.RoundTripOpt",
+                  "authorityAddr"
+                ],
+                "path": "net/http/internal/http2"
+              }
+            ]
+          }
+        },
+        {
+          "name": "golang.org/x/net",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "Profile.ToASCII",
+                  "Profile.ToUnicode",
+                  "Profile.process",
+                  "ToASCII",
+                  "ToUnicode"
+                ],
+                "path": "golang.org/x/net/idna"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5037",
+      "summary": "Inefficient candidate hostname parsing in crypto/x509",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "crypto/x509",
+                "symbols": [
+                  "Certificate.Verify",
+                  "Certificate.VerifyHostname",
+                  "HostnameError.Error",
+                  "matchHostnames"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5038",
+      "summary": "Quadratic complexity in WordDecoder.DecodeHeader in mime",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "WordDecoder.DecodeHeader"
+                ],
+                "path": "mime"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5039",
+      "summary": "Arbitrary inputs are included in errors without any escaping in net/textproto",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "Error.Error",
+                  "Reader.ReadCodeLine",
+                  "Reader.ReadMIMEHeader",
+                  "Reader.ReadResponse",
+                  "parseCodeLine",
+                  "readMIMEHeader"
+                ],
+                "path": "net/textproto"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5856",
+      "summary": "Invoking Encrypted Client Hello privacy leak in crypto/tls",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "crypto/tls",
+                "symbols": [
+                  "Conn.Handshake",
+                  "Conn.HandshakeContext",
+                  "Conn.Read",
+                  "Conn.Write",
+                  "Dial",
+                  "DialWithDialer",
+                  "Dialer.Dial",
+                  "Dialer.DialContext",
+                  "QUICConn.HandleData",
+                  "QUICConn.SendSessionTicket",
+                  "QUICConn.Start",
+                  "clientHelloMsg.marshalMsg"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5942",
+      "summary": "Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "LookupCNAME",
+                  "Resolver.LookupCNAME",
+                  "cgoResSearch"
+                ],
+                "path": "net"
+              }
+            ]
+          }
+        },
+        {
+          "name": "golang.org/x/net",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "golang.org/x/net/dns/dnsmessage",
+                "symbols": [
+                  "Message.Unpack",
+                  "Parser.Additional",
+                  "Parser.AllAdditionals",
+                  "Parser.AllAnswers",
+                  "Parser.AllAuthorities",
+                  "Parser.Answer",
+                  "Parser.Authority",
+                  "Parser.HTTPSResource",
+                  "Parser.SVCBResource",
+                  "unpackSVCBResource"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5972",
+      "summary": "Enforce maximum recursion depth in encoding/asn1",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "encoding/asn1",
+                "symbols": [
+                  "Unmarshal",
+                  "UnmarshalWithParams",
+                  "parseField",
+                  "parseSequenceOf"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6088",
+      "summary": "Add recursion depth guard during decode in encoding/xml",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "Decoder.Decode",
+                  "Decoder.DecodeElement",
+                  "Decoder.RawToken",
+                  "Decoder.Skip",
+                  "Decoder.Token",
+                  "Decoder.pop",
+                  "Decoder.push",
+                  "Decoder.unmarshal",
+                  "Decoder.unmarshalPath",
+                  "Unmarshal"
+                ],
+                "path": "encoding/xml"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6089",
+      "summary": "Apply ReadHeaderTimeout when doing unencrypted HTTP/2 check in net/http",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "net/http",
+                "symbols": [
+                  "ListenAndServe",
+                  "ListenAndServeTLS",
+                  "Serve",
+                  "ServeTLS",
+                  "Server.ListenAndServe",
+                  "Server.ListenAndServeTLS",
+                  "Server.Serve",
+                  "Server.ServeTLS",
+                  "conn.readRequest",
+                  "conn.serve"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6090",
+      "summary": "Limit handshake messages we are willing to accept post-handshake in crypto/tls",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "crypto/tls",
+                "symbols": [
+                  "Conn.Handshake",
+                  "Conn.HandshakeContext",
+                  "Conn.Read",
+                  "Conn.Write",
+                  "Conn.readRecordOrCCS",
+                  "Dial",
+                  "DialWithDialer",
+                  "Dialer.Dial",
+                  "Dialer.DialContext",
+                  "QUICConn.HandleData",
+                  "QUICConn.Start"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6091",
+      "summary": "Fix Javascript regexp context tracking in html/template",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "Template.Execute",
+                  "Template.ExecuteTemplate",
+                  "tJS"
+                ],
+                "path": "html/template"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6218",
+      "summary": "Avoid quadratic complexity in resolvePath in net/url",
+      "affected": [
+        {
+          "name": "stdlib",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "net/url",
+                "symbols": [
+                  "URL.Parse",
+                  "URL.ResolveReference",
+                  "resolvePath"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5774",
+      "summary": "Chi has an IP spoofing vulnerability in middleware.RealIP in github.com/go-chi/chi",
+      "affected": [
+        {
+          "name": "github.com/go-chi/chi/v5",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "RealIP"
+                ],
+                "path": "github.com/go-chi/chi/v5/middleware"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5775",
+      "summary": "Chi Middleware vulnerable to IP spoofing via X-Forwarded-For header in github.com/go-chi/chi",
+      "affected": [
+        {
+          "name": "github.com/go-chi/chi/v5",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "github.com/go-chi/chi/v5/middleware",
+                "symbols": [
+                  "RealIP"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5777",
+      "summary": "Chi's RealIP Middleware allows IP spoofing via unvalidated X-Forwarded-For header in github.com/go-chi/chi",
+      "affected": [
+        {
+          "name": "github.com/go-chi/chi/v5",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "RealIP"
+                ],
+                "path": "github.com/go-chi/chi/v5/middleware"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GHSA-gcjh-h69q-9w9g",
+      "summary": "cel-go: JSON Private Fields Exposed via NativeTypes and ParseStructTag",
+      "severity": "MODERATE",
+      "affected": [
+        {
+          "name": "github.com/google/cel-go"
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6094",
+      "summary": "JSON private fields exposed via NativeTypes and ParseStructTag in github.com/google/cel-go",
+      "affected": [
+        {
+          "name": "github.com/google/cel-go",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "github.com/google/cel-go/ext",
+                "symbols": [
+                  "NativeTypes",
+                  "ParseStructTag"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5841",
+      "summary": "OOB read in github.com/klauspost/compress/s2",
+      "affected": [
+        {
+          "name": "github.com/klauspost/compress",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "github.com/klauspost/compress/s2",
+                "symbols": [
+                  "NewDict"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5158",
+      "summary": "Opentelemetry-go's baggage parsing no longer caps raw header length in go.opentelemetry.io/otel",
+      "affected": [
+        {
+          "name": "go.opentelemetry.io/otel",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "go.opentelemetry.io/otel/baggage",
+                "symbols": [
+                  "New",
+                  "Parse"
+                ]
+              },
+              {
+                "path": "go.opentelemetry.io/otel/propagation",
+                "symbols": [
+                  "Baggage.Extract"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5932",
+      "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+      "affected": [
+        {
+          "name": "golang.org/x/crypto",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "golang.org/x/crypto/openpgp"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/packet"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/armor"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/clearsign"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/errors"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/elgamal"
+              },
+              {
+                "path": "golang.org/x/crypto/openpgp/s2k"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6303",
+      "summary": "Source-address critical option not enforced for non-public-key auth callbacks in golang.org/x/crypto/ssh",
+      "affected": [
+        {
+          "name": "golang.org/x/crypto",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "NewServerConn",
+                  "connection.serverAuthenticate"
+                ],
+                "path": "golang.org/x/crypto/ssh"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6354",
+      "summary": "Prevent DoS on deadlocked undecided channel in golang.org/x/crypto/ssh",
+      "affected": [
+        {
+          "name": "golang.org/x/crypto",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "golang.org/x/crypto/ssh",
+                "symbols": [
+                  "Dial",
+                  "NewClientConn",
+                  "NewControlClientConn",
+                  "NewServerConn",
+                  "channel.Accept",
+                  "channel.handlePacket",
+                  "channel.responseMessageReceived"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6355",
+      "summary": "Prevent DoS on deadlocked established channel in golang.org/x/crypto/ssh",
+      "affected": [
+        {
+          "name": "golang.org/x/crypto",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "golang.org/x/crypto/ssh",
+                "symbols": [
+                  "Dial",
+                  "NewClientConn",
+                  "NewControlClientConn",
+                  "NewServerConn",
+                  "channel.handlePacket"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-5970",
+      "summary": "Infinite loop on invalid input in golang.org/x/text",
+      "affected": [
+        {
+          "name": "golang.org/x/text",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "golang.org/x/text/unicode/norm",
+                "symbols": [
+                  "Form.Append",
+                  "Form.AppendString",
+                  "Form.Bytes",
+                  "Form.FirstBoundary",
+                  "Form.FirstBoundaryInString",
+                  "Form.IsNormal",
+                  "Form.IsNormalString",
+                  "Form.LastBoundary",
+                  "Form.NextBoundary",
+                  "Form.NextBoundaryInString",
+                  "Form.Properties",
+                  "Form.PropertiesString",
+                  "Form.QuickSpan",
+                  "Form.QuickSpanString",
+                  "Form.Span",
+                  "Form.SpanString",
+                  "Form.String",
+                  "Form.Transform",
+                  "Iter.Init",
+                  "Iter.InitString",
+                  "Iter.Next",
+                  "Iter.Seek",
+                  "nextComposed",
+                  "normReader.Read",
+                  "normWriter.Write"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GHSA-2v4p-qf9q-27wj",
+      "summary": "gRPC-Go xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers",
+      "severity": "HIGH",
+      "affected": [
+        {
+          "name": "google.golang.org/grpc"
+        },
+        {
+          "name": "google.golang.org/grpc"
+        },
+        {
+          "name": "google.golang.org/grpc"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-hrxh-6v49-42gf",
+      "summary": "gRPC-Go: xDS RBAC and HTTP/2 Vulnerabilities",
+      "severity": "HIGH",
+      "affected": [
+        {
+          "name": "google.golang.org/grpc"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-qc2q-p7wx-3px3",
+      "summary": "gRPC-Go: xDS RBAC HTTP Filter bypass via mixed-case Header Matching and gRFC A41 validation evasion",
+      "severity": "MODERATE",
+      "affected": [
+        {
+          "name": "google.golang.org/grpc"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-vp52-pcj8-j9qc",
+      "summary": "gRPC-Go: Heap Memory Exhaustion (OOM) via HTTP/2 DATA Frame Fragmentation",
+      "severity": "HIGH",
+      "affected": [
+        {
+          "name": "google.golang.org/grpc"
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6061",
+      "summary": "Vulnerabilities in the xDS RBAC authorization engine and the HTTP/2 transport server implementation in google.golang.org/grpc",
+      "affected": [
+        {
+          "name": "google.golang.org/grpc",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "google.golang.org/grpc/internal/transport",
+                "symbols": [
+                  "ClientStream.Close",
+                  "ClientStream.Header",
+                  "ClientStream.Read",
+                  "ClientStream.RecvCompress",
+                  "ClientStream.TrailersOnly",
+                  "ClientStream.Write",
+                  "NewHTTP2Client",
+                  "NewServerTransport",
+                  "ServerStream.Read",
+                  "ServerStream.SendHeader",
+                  "ServerStream.Write",
+                  "ServerStream.WriteStatus",
+                  "Stream.ReadMessageHeader",
+                  "controlBuffer.executeAndPut",
+                  "controlBuffer.getOnceLocked",
+                  "http2Client.Close",
+                  "http2Client.GracefulClose",
+                  "http2Client.NewStream",
+                  "http2Server.Drain",
+                  "http2Server.HandleStreams",
+                  "recvBufferReader.Read",
+                  "recvBufferReader.ReadMessageHeader",
+                  "transportReader.Read",
+                  "transportReader.ReadMessageHeader"
+                ]
+              },
+              {
+                "path": "google.golang.org/grpc/internal/xds/rbac",
+                "symbols": [
+                  "ChainEngine.IsAuthorized",
+                  "NewChainEngine",
+                  "matchersFromPermissions",
+                  "matchersFromPrincipals"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6348",
+      "summary": "Heap Memory Exhaustion (OOM) via HTTP/2 DATA Frame Fragmentation in google.golang.org/grpc",
+      "affected": [
+        {
+          "name": "google.golang.org/grpc",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "google.golang.org/grpc/internal/transport",
+                "symbols": [
+                  "ClientStream.Close",
+                  "ClientStream.Header",
+                  "ClientStream.Read",
+                  "ClientStream.RecvCompress",
+                  "ClientStream.TrailersOnly",
+                  "NewHTTP2Client",
+                  "NewServerTransport",
+                  "ServerStream.Read",
+                  "Stream.ReadMessageHeader",
+                  "http2Client.Close",
+                  "http2Client.GracefulClose",
+                  "http2Client.NewStream",
+                  "http2Client.newStream",
+                  "http2Server.Close",
+                  "http2Server.HandleStreams",
+                  "http2Server.operateHeaders",
+                  "recvBuffer.init",
+                  "recvBuffer.load",
+                  "recvBuffer.put",
+                  "recvBufferReader.Read",
+                  "recvBufferReader.ReadMessageHeader",
+                  "serverHandlerTransport.HandleStreams",
+                  "transportReader.Read",
+                  "transportReader.ReadMessageHeader"
+                ]
+              },
+              {
+                "path": "google.golang.org/grpc/mem",
+                "symbols": [
+                  "BufferSlice.MaterializeToBuffer",
+                  "Copy",
+                  "IsBelowBufferPoolingThreshold",
+                  "NewBuffer",
+                  "ReadAll",
+                  "writer.Write"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6441",
+      "summary": "Bypass of xDS RBAC HTTP filter header matching in google.golang.org/grpc",
+      "affected": [
+        {
+          "name": "google.golang.org/grpc",
+          "ecosystem": {
+            "imports": [
+              {
+                "path": "google.golang.org/grpc/internal/xds/httpfilter/rbac",
+                "symbols": [
+                  "builder.ParseFilterConfig",
+                  "builder.ParseFilterConfigOverride",
+                  "parseConfig"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GO-2026-6443",
+      "summary": "Server panic via missing authority or Host headers in google.golang.org/grpc",
+      "affected": [
+        {
+          "name": "google.golang.org/grpc",
+          "ecosystem": {
+            "imports": [
+              {
+                "symbols": [
+                  "http2Server.HandleStreams",
+                  "http2Server.operateHeaders"
+                ],
+                "path": "google.golang.org/grpc/internal/transport"
+              },
+              {
+                "path": "google.golang.org/grpc/internal/xds/server",
+                "symbols": [
+                  "RouteAndProcess"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

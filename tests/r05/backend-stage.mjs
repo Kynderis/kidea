@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const sample=path.resolve(import.meta.dirname,'../../../kidea-workshop-pilot/samples/r05/backend-integration-r1');
+const closure=JSON.parse(fs.readFileSync(path.join(sample,'receipts/apt-closure.json')));
+fs.writeFileSync(path.join(sample,'downloads/debs.sha256'),closure.packages.map(p=>p.SHA256+'  /debs/'+p.Package+'.deb').join('\n')+'\n');
+const target=path.join(sample,'vendor/drogon/trantor');
+if(fs.existsSync(target)&&fs.readdirSync(target).length)throw Error('Trantor target occupied');
+fs.cpSync(path.join(sample,'vendor/trantor'),target,{recursive:true,errorOnExist:true,force:false});
+const advisory=JSON.parse(fs.readFileSync(path.join(sample,'receipts/ubuntu-advisory-review-input.json')));
+if(advisory.some(x=>x.error||x.status!==200||x.total===null||(x.source!=='linux'&&x.total!==0)))throw Error('Advisory requires review');
+const linux=closure.packages.filter(p=>(p.Source||p.Package).split(' ')[0]==='linux');
+if(linux.some(p=>p.Package!=='linux-libc-dev'))throw Error('Unexpected kernel package');
+fs.writeFileSync(path.join(sample,'receipts/advisory-decision.json'),JSON.stringify({at:new Date().toISOString(),sourceQueries:advisory.length,result:'No pending/deferred/needed high/critical records returned for selected non-kernel source packages. Not a comprehensive security certification.',linuxSource:'API returned kernel CVEs. Only linux-libc-dev userspace headers are selected; no Ubuntu kernel image/modules are installed or executed. Host Docker kernel is not modified.',linuxPackages:linux.map(p=>({name:p.Package,version:p.Version})),limitations:['Released advisories and source/image components require separate version/application review; no claim of zero vulnerabilities.']},null,2)+'\n');
+console.log('Staged checksummed offline dependency context and matched Trantor submodule');

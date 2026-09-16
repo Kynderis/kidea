@@ -1,0 +1,159 @@
+{
+  "status": "COMMAND_CONTRACT; application and runner scripts are to be implemented after execution approval",
+  "workingDirectory": "../kidea-workshop-pilot/samples/r05/backend-integration-r1",
+  "dockerExecutable": "resolve existing trusted Docker CLI; current Mac /Applications/Docker.app/Contents/Resources/bin/docker",
+  "commands": [
+    {
+      "id": "preflight",
+      "argv": [
+        "node",
+        "scripts/preflight.mjs"
+      ],
+      "timeoutSeconds": 60,
+      "expected": "local root, nonroot host, exact source/lock, disk >=100GiB, target absent or owned; port8443 free; capture Docker inventory"
+    },
+    {
+      "id": "fetch",
+      "argv": [
+        "node",
+        "scripts/fetch-locked.mjs",
+        "--manifest",
+        "manifest.json"
+      ],
+      "timeoutSeconds": 900,
+      "expected": "digest-addressed images, bounded source downloads, verify SHA256/SHA3, preserve failure receipt; no tag fallback"
+    },
+    {
+      "id": "builder-create",
+      "argv": [
+        "docker",
+        "buildx",
+        "create",
+        "--name",
+        "kidea-r05-e2-r1",
+        "--driver",
+        "docker-container",
+        "--driver-opt",
+        "image=docker.io/moby/buildkit@sha256:040d34121c27906c4ff9ac152a30d52bf2c5d328d3bb748916bb3d2743c02528",
+        "--driver-opt",
+        "memory=4g,memory-swap=4g,cpu-period=100000,cpu-quota=200000,restart-policy=no"
+      ],
+      "timeoutSeconds": 60,
+      "expected": "new owned builder only; never --use or change global Desktop settings"
+    },
+    {
+      "id": "toolchain",
+      "argv": [
+        "docker",
+        "buildx",
+        "build",
+        "--builder",
+        "kidea-r05-e2-r1",
+        "--platform",
+        "linux/amd64",
+        "--target",
+        "toolchain",
+        "--load",
+        "--tag",
+        "kidea-r05-e2:toolchain",
+        "--file",
+        "Dockerfile",
+        "."
+      ],
+      "timeoutSeconds": 3600,
+      "expected": "one Dockerfile; signed snapshot; apt simulation and locks before install; all exact package/library versions captured"
+    },
+    {
+      "id": "compile-and-test",
+      "argv": [
+        "node",
+        "scripts/run-cpp-presets.mjs",
+        "dev",
+        "asan-ubsan",
+        "tsan",
+        "release"
+      ],
+      "timeoutSeconds": 3600,
+      "expected": "each preset separate container --cpus=2 --memory=4g --memory-swap=4g --network=none; cmake configure/build/ctest; full libraries instrumented for sanitizer presets"
+    },
+    {
+      "id": "web-regression",
+      "argv": [
+        "node",
+        "scripts/run-web.mjs"
+      ],
+      "timeoutSeconds": 1800,
+      "expected": "copy preserved R2 source into new integration workdir; npm ci --ignore-scripts; sync/check/lint/unit/build; rerun all R2 vectors"
+    },
+    {
+      "id": "caddy-config",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "kidea-r05-e2-r1",
+        "run",
+        "--rm",
+        "--no-deps",
+        "caddy",
+        "caddy",
+        "validate",
+        "--config",
+        "/etc/caddy/Caddyfile",
+        "--adapter",
+        "caddyfile"
+      ],
+      "timeoutSeconds": 60,
+      "expected": "validate plus adapt JSON; no forward_auth, dynamic upstreams, FastCGI, templates, file_server or admin API"
+    },
+    {
+      "id": "stack",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "kidea-r05-e2-r1",
+        "up",
+        "--detach",
+        "--wait",
+        "backend",
+        "web",
+        "caddy"
+      ],
+      "timeoutSeconds": 120,
+      "expected": "explicit localhost:8443, private upstreams, health probes, owned local volumes, synthetic sessions only"
+    },
+    {
+      "id": "https-tests",
+      "argv": [
+        "node",
+        "scripts/run-https.mjs"
+      ],
+      "timeoutSeconds": 1800,
+      "expected": "Node TLS custom CA; Linux browser container isolated NSS CA store; TLS negative controls must fail; no insecure bypass"
+    },
+    {
+      "id": "mutants",
+      "argv": [
+        "node",
+        "scripts/run-mutants.mjs"
+      ],
+      "timeoutSeconds": 1800,
+      "expected": "intentional bad variants fail matching oracle; restore exact sources; rerun positive suites"
+    },
+    {
+      "id": "teardown",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "kidea-r05-e2-r1",
+        "down",
+        "--timeout",
+        "35"
+      ],
+      "timeoutSeconds": 60,
+      "expected": "save evidence first, stop owned resources only, no --volumes; then stop owned builder; preserve DB/log/CA volume and receipt; never quit Docker"
+    }
+  ]
+}

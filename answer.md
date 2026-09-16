@@ -1,5 +1,7 @@
-Đã chuẩn bị [gói E2-BW-r1](proposals/r05-backend-build-r1.md): dependency/image có hash, cấu hình HTTPS,22nhóm kiểm backend/CSRF và lệnh thực thi dự kiến. Kiểm tĩnh đạt; chưa build/chạy container.
+Đã chạy trong Docker: toolchain build thành công và 8/8 ca C++ dev đạt. Không cài công cụ lên macOS. [Báo cáo](tests/evidence/r05/backend-execution-r1.md).
 
-Đề nghị duyệt chạy trọn gói trong Docker local: tối đa4GiB tải,16GiB đĩa,2CPU/4GiB RAM và3giờ; chỉ localhost8443, CA riêng trong container. Gói đề xuất SQLite3.53.4 và cmark0.31.2; Caddy2.11.4 chỉ dùng cấu hình không forward_auth theo giới hạn advisory đã ghi. Không cài công cụ hoặc CA lên macOS.
+HTTPS dừng vì image Caddy dùng Go có lỗi bảo mật TLS; Docker bạn cài hoạt động bình thường. Container test đã dừng. R05 chưa hoàn tất; sanitizer, Web/HTTPS integration và mutation chưa chạy.
 
-Bạn duyệt E2-BW-r1 để tôi triển khai và kiểm trọn gói nhé? Cần xác nhận vì yêu cầu ban đầu chưa cho tự build/chạy ứng dụng; lượt vừa rồi chỉ giao chuẩn bị gói. R05 vẫn chưa hoàn tất.
+Bạn duyệt [gói thay dependency Caddy](proposals/r05-caddy-remediation-r1.md) để tôi resolve, kiểm và build bản thay trong Docker, giữ nguyên hạn mức rồi tiếp tục nhé?
+
+Cần xác nhận vì gói E2 khóa image cụ thể và yêu cầu dừng khi advisory có ảnh hưởng chưa xử lý; đây là thay dependency, không xin lại quyền chạy Docker hoặc cài gì lên Mac.

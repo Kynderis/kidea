@@ -1,5 +1,7 @@
 # R05 — Gói thực thi mẫu backend và HTTPS r1
 
+**Cập nhật thực thi:** Human đã duyệt sau `74a2772`. [Lượt Docker](../tests/evidence/r05/backend-execution-r1.md) đạt toolchain và 8/8 unit dev, dừng trước HTTPS vì advisory TLS trong Go của Caddy. [Thay dependency](r05-caddy-remediation-r1.md) chờ duyệt. Phần chuẩn bị dưới đây giữ để đối chiếu lịch sử.
+
 Ngày 2026-09-16. **Đã chuẩn bị để Human duyệt thực thi; chưa pull image, build hoặc chạy container.** Human “ok bạn làm đi” sau `6d300db` giao hoàn thiện gói dependency/image/lệnh kiểm. Gói này cụ thể hóa E2 backend/Caddy/HTTPS/CSRF; không coi lời giao chuẩn bị là duyệt build ứng dụng. [Môi trường đã kiểm](../tests/evidence/r05/docker-check-2026-09-16.json), [phạm vi E2 trước](r05-environment-build-r1.md), [Web r2 đã chạy](../tests/evidence/r05/web-execution-r2.md).
 
 ## Một gói cần duyệt

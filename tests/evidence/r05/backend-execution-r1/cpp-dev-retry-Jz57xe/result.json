@@ -1,0 +1,32 @@
+{
+  "stage": "cpp-dev-retry",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r1-dev2",
+    "--label",
+    "kidea.run=E2-BW-r1",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+    "--mount",
+    "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "/src/scripts/cpp-preset.sh",
+    "dev"
+  ],
+  "at": "2026-09-16T12:57:42.811Z",
+  "durationMs": 174641,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

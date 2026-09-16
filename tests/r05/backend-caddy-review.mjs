@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+const root=path.resolve(import.meta.dirname,'../..');
+const receipts=path.resolve(root,'../kidea-workshop-pilot/samples/r05/backend-integration-r1/receipts');
+const release=JSON.parse(fs.readFileSync(path.join(root,'tests/evidence/r05/backend-plan-r1/caddy-release.txt')));
+const asset=release.assets.find(a=>a.name==='caddy_2.11.4_linux_amd64.sbom');
+const response=await fetch(asset.browser_download_url,{signal:AbortSignal.timeout(60000)});
+if(!response.ok)throw Error('SBOM download '+response.status);
+const body=Buffer.from(await response.arrayBuffer());
+if(body.length!==asset.size||'sha256:'+crypto.createHash('sha256').update(body).digest('hex')!==asset.digest)throw Error('SBOM hash mismatch');
+fs.writeFileSync(path.join(receipts,'caddy-upstream-sbom.json'),body);
+const data=JSON.parse(body);
+console.log(JSON.stringify({keys:Object.keys(data),first:(data.components||data.packages||[]).slice(0,2)},null,2));

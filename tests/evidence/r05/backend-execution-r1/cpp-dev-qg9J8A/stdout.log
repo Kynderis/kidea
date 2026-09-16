@@ -1,0 +1,205 @@
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/gcc-13 - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++-13 - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- compiler: GNU
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
+-- Looking for C++ include any
+-- Looking for C++ include any - found
+-- Looking for C++ include string_view
+-- Looking for C++ include string_view - found
+-- Looking for C++ include coroutine
+-- Looking for C++ include coroutine - found
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+-- Trantor using SSL library: OpenSSL
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Looking for C++ include filesystem
+-- Looking for C++ include filesystem - found
+-- Performing Test CXX_FILESYSTEM_NO_LINK_NEEDED
+-- Performing Test CXX_FILESYSTEM_NO_LINK_NEEDED - Success
+-- Found std::filesystem
+-- use c++20
+-- Found Jsoncpp: /usr/include/jsoncpp  
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.3")  
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1") 
+-- Checking for module 'jsoncpp'
+--   Found jsoncpp, version 1.9.5
+-- Configuring done (3.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/dev
+[1/137] Building CXX object CMakeFiles/domain.dir/cpp/domain.cpp.o
+[2/137] Building CXX object CMakeFiles/domain.dir/cpp/input.cpp.o
+[3/137] Building CXX object CMakeFiles/domain_tests.dir/cpp/tests.cpp.o
+[4/137] Building C object CMakeFiles/sqlite_amalgamation.dir/vendor/sqlite/sqlite3.c.o
+[5/137] Linking C static library libsqlite_amalgamation.a
+[6/137] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/AOPAdvice.cc.o
+[7/137] Building CXX object CMakeFiles/backend.dir/cpp/server.cpp.o
+FAILED: CMakeFiles/backend.dir/cpp/server.cpp.o 
+/usr/bin/g++-13 -DCMARK_STATIC_DEFINE -I/src/cpp -I/src/vendor/cmark/src -I/build/dev/vendor/cmark/src -I/src/vendor/sqlite -I/src/vendor/drogon/trantor -I/src/vendor/drogon/lib/inc -I/build/dev/vendor/drogon/lib/inc -I/src/vendor/drogon/orm_lib/inc -I/src/vendor/drogon/nosql_lib/redis/inc -I/build/dev/vendor/drogon -I/build/dev/vendor/drogon/exports -I/build/dev/vendor/drogon/trantor/exports -isystem /usr/include/jsoncpp -g -std=gnu++20 -fPIE -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -MD -MT CMakeFiles/backend.dir/cpp/server.cpp.o -MF CMakeFiles/backend.dir/cpp/server.cpp.o.d -o CMakeFiles/backend.dir/cpp/server.cpp.o -c /src/cpp/server.cpp
+In file included from /src/vendor/drogon/trantor/trantor/utils/Logger.h:19,
+                 from /src/vendor/drogon/lib/inc/drogon/DrClassMap.h:18,
+                 from /src/vendor/drogon/lib/inc/drogon/DrObject.h:18,
+                 from /src/vendor/drogon/lib/inc/drogon/HttpFilter.h:17,
+                 from /src/cpp/server.cpp:6:
+/src/vendor/drogon/trantor/trantor/utils/LogStream.h:113:20: error: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Werror=sign-conversion]
+  113 |     char data_[SIZE];
+      |                    ^
+/src/vendor/drogon/trantor/trantor/utils/LogStream.h:160:41: error: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Werror=sign-conversion]
+  160 |     self &operator<<(const char (&buf)[N])
+      |                                         ^
+/src/vendor/drogon/trantor/trantor/utils/LogStream.h: In member function 'void trantor::LogStream::append(const char*, size_t)':
+/src/vendor/drogon/trantor/trantor/utils/LogStream.h:210:64: error: conversion to 'std::__cxx11::basic_string<char>::size_type' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Werror=sign-conversion]
+  210 |                 exBuffer_.append(buffer_.data(), buffer_.length());
+      |                                                  ~~~~~~~~~~~~~~^~
+/src/vendor/drogon/trantor/trantor/utils/LogStream.h: In member function 'size_t trantor::LogStream::bufferLength() const':
+/src/vendor/drogon/trantor/trantor/utils/LogStream.h:235:30: error: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Werror=sign-conversion]
+  235 |         return buffer_.length();
+      |                ~~~~~~~~~~~~~~^~
+/src/vendor/drogon/trantor/trantor/utils/LogStream.h: In function 'trantor::LogStream& trantor::operator<<(LogStream&, const Fmt&)':
+/src/vendor/drogon/trantor/trantor/utils/LogStream.h:273:36: error: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Werror=sign-conversion]
+  273 |     s.append(fmt.data(), fmt.length());
+      |                          ~~~~~~~~~~^~
+/src/vendor/drogon/trantor/trantor/utils/Logger.h: At global scope:
+/src/vendor/drogon/trantor/trantor/utils/Logger.h:61:46: error: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Werror=sign-conversion]
+   61 |         inline SourceFile(const char (&arr)[N]) : data_(arr), size_(N - 1)
+      |                                              ^
+/src/vendor/drogon/trantor/trantor/utils/Logger.h: In static member function 'static void trantor::Logger::setOutputFunction(std::function<void(const char*, long unsigned int)>, std::function<void()>, int)':
+/src/vendor/drogon/trantor/trantor/utils/Logger.h:136:25: error: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Werror=sign-conversion]
+  136 |             outputFunc_(index) = outputFunc;
+      |                         ^~~~~
+/src/vendor/drogon/trantor/trantor/utils/Logger.h:137:24: error: conversion to 'size_t' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Werror=sign-conversion]
+  137 |             flushFunc_(index) = flushFunc;
+      |                        ^~~~~
+In file included from /src/vendor/drogon/lib/inc/drogon/HttpTypes.h:20,
+                 from /src/vendor/drogon/lib/inc/drogon/drogon_callbacks.h:17,
+                 from /src/vendor/drogon/lib/inc/drogon/HttpFilter.h:18:
+/src/vendor/drogon/lib/inc/drogon/utils/Utilities.h: In member function 'size_t drogon::utils::internal::SafeStringHash::operator()(const std::string&) const':
+/src/vendor/drogon/lib/inc/drogon/utils/Utilities.h:731:28: error: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Werror=sign-conversion]
+  731 |             h = (h * A) ^ (ch * B);
+      |                            ^~
+In file included from /src/vendor/drogon/trantor/trantor/net/TcpConnection.h:20,
+                 from /src/vendor/drogon/lib/inc/drogon/HttpRequest.h:33,
+                 from /src/vendor/drogon/lib/inc/drogon/HttpFilter.h:19:
+/src/vendor/drogon/trantor/trantor/utils/MsgBuffer.h: At global scope:
+/src/vendor/drogon/trantor/trantor/utils/MsgBuffer.h:174:36: error: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Werror=sign-conversion]
+  174 |     void append(const char (&buf)[N])
+      |                                    ^
+/src/vendor/drogon/trantor/trantor/utils/MsgBuffer.h: In member function 'void trantor::MsgBuffer::retrieveUntil(const char*)':
+/src/vendor/drogon/trantor/trantor/utils/MsgBuffer.h:287:22: error: conversion to 'size_t' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  287 |         retrieve(end - peek());
+      |                  ~~~~^~~~~~~~
+In file included from /src/vendor/drogon/lib/inc/drogon/HttpResponse.h:24,
+                 from /src/vendor/drogon/lib/inc/drogon/HttpFilter.h:20:
+/src/vendor/drogon/lib/inc/drogon/HttpViewData.h: In member function 'void drogon::HttpViewData::insertFormattedString(const std::string&, const char*, ...)':
+/src/vendor/drogon/lib/inc/drogon/HttpViewData.h:107:45: error: conversion to 'std::__cxx11::basic_string<char>::size_type' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Werror=sign-conversion]
+  107 |                     strBuffer.resize(result + 1);
+      |                                      ~~~~~~~^~~
+/src/vendor/drogon/lib/inc/drogon/HttpViewData.h:120:38: error: conversion to 'std::__cxx11::basic_string<char>::size_type' {aka 'long unsigned int'} from 'int' may change the sign of the result [-Werror=sign-conversion]
+  120 |                     strBuffer.resize(result);
+      |                                      ^~~~~~
+/src/vendor/drogon/lib/inc/drogon/HttpResponse.h: At global scope:
+/src/vendor/drogon/lib/inc/drogon/HttpResponse.h:219:70: error: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Werror=sign-conversion]
+  219 |                                            const char (&typeString)[N])
+      |                                                                      ^
+/src/vendor/drogon/lib/inc/drogon/HttpResponse.h:306:38: error: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Werror=sign-conversion]
+  306 |     void setBody(const char (&body)[N])
+      |                                      ^
+In file included from /src/vendor/drogon/orm_lib/inc/drogon/orm/DbClient.h:19,
+                 from /src/vendor/drogon/lib/inc/drogon/HttpAppFramework.h:32,
+                 from /src/vendor/drogon/lib/inc/drogon/WebSocketController.h:18,
+                 from /src/cpp/server.cpp:7:
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'size_t drogon::orm::Field::length() const':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:66:40: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+   66 |         return result_.getLength(row_, column_);
+      |                                        ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'drogon::orm::ArrayParser drogon::orm::Field::getArrayParser() const':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:119:51: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  119 |         return ArrayParser(result_.getValue(row_, column_));
+      |                                                   ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = std::basic_string_view<char>]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:176:41: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  176 |     auto first = result_.getValue(row_, column_);
+      |                                         ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:177:43: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  177 |     auto length = result_.getLength(row_, column_);
+      |                                           ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = float]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:186:45: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  186 |     return std::stof(result_.getValue(row_, column_));
+      |                                             ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = double]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:194:45: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  194 |     return std::stod(result_.getValue(row_, column_));
+      |                                             ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = bool]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:200:33: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  200 |     if (result_.getLength(row_, column_) != 1)
+      |                                 ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:204:41: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  204 |     auto value = result_.getValue(row_, column_);
+      |                                         ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = int]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:215:45: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  215 |     return std::stoi(result_.getValue(row_, column_));
+      |                                             ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = long int]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:223:45: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  223 |     return std::stol(result_.getValue(row_, column_));
+      |                                             ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = signed char]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:231:60: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  231 |     return static_cast<int8_t>(atoi(result_.getValue(row_, column_)));
+      |                                                            ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = long long int]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:239:41: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  239 |     return atoll(result_.getValue(row_, column_));
+      |                                         ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = unsigned int]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:248:43: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  248 |         std::stoul(result_.getValue(row_, column_)));
+      |                                           ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = long unsigned int]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:256:46: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  256 |     return std::stoul(result_.getValue(row_, column_));
+      |                                              ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = unsigned char]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:264:61: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  264 |     return static_cast<uint8_t>(atoi(result_.getValue(row_, column_)));
+      |                                                             ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h: In member function 'T drogon::orm::Field::as() const [with T = long long unsigned int]':
+/src/vendor/drogon/orm_lib/inc/drogon/orm/Field.h:272:47: error: conversion to 'drogon::orm::Result::RowSizeType' {aka 'long unsigned int'} from 'long int' may change the sign of the result [-Werror=sign-conversion]
+  272 |     return std::stoull(result_.getValue(row_, column_));
+      |                                               ^~~~~~~
+/src/vendor/drogon/orm_lib/inc/drogon/orm/DbClient.h: At global scope:
+/src/vendor/drogon/orm_lib/inc/drogon/orm/DbClient.h:260:55: error: conversion to 'long unsigned int' from 'int' may change the sign of the result [-Werror=sign-conversion]
+  260 |     internal::SqlBinder operator<<(const char (&sql)[N])
+      |                                                       ^
+cc1plus: all warnings being treated as errors
+[8/137] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/AccessLogger.cc.o
+ninja: build stopped: subcommand failed.

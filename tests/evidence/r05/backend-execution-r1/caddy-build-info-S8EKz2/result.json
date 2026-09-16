@@ -1,0 +1,24 @@
+{
+  "stage": "caddy-build-info",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--rm",
+    "--label",
+    "kidea.run=E2-BW-r1",
+    "--cpus",
+    "0.25",
+    "--memory",
+    "256m",
+    "--network",
+    "none",
+    "docker.io/library/caddy@sha256:98eb57d882ccd5213d1688764db10c1ca2c58a1ca3a6717a3411ad798f7a423a",
+    "caddy",
+    "build-info"
+  ],
+  "at": "2026-09-16T12:59:31.005Z",
+  "durationMs": 768,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

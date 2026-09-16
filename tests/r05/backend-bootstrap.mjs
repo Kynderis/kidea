@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+const root=path.resolve(import.meta.dirname,'../..');
+const sample=path.resolve(root,'../kidea-workshop-pilot/samples/r05/backend-integration-r1');
+const lock=JSON.parse(fs.readFileSync(path.join(sample,'apt-direct-lock.json')));
+const pkg=lock.packages['ca-certificates'];
+const url='https://snapshot.ubuntu.com/ubuntu/20260916T000000Z/'+pkg.Filename;
+const response=await fetch(url,{signal:AbortSignal.timeout(60000)});
+if(!response.ok)throw Error('Bootstrap CA download: '+response.status);
+const data=Buffer.from(await response.arrayBuffer());
+if(data.length!==Number(pkg.Size)||crypto.createHash('sha256').update(data).digest('hex')!==pkg.SHA256)throw Error('Bootstrap CA hash mismatch');
+fs.writeFileSync(path.join(sample,'downloads/ca-certificates.deb'),data,{flag:'wx'});
+fs.copyFileSync(path.join(root,'tests/evidence/r05/backend-plan-r1/noble-security-InRelease.txt'),path.join(sample,'downloads/bootstrap-InRelease'));
+fs.copyFileSync(path.join(root,'.test-output/r05/backend-plan-r1/noble-security-main-Packages'),path.join(sample,'downloads/bootstrap-Packages'));
+fs.writeFileSync(path.join(sample,'receipts/bootstrap.json'),JSON.stringify({url,bytes:data.length,sha256:pkg.SHA256,purpose:'Extract public CA data only after InRelease/index/package chain verification inside Ubuntu; no host trust changes'},null,2)+'\n');
+console.log('Downloaded pinned public Ubuntu CA data for container bootstrap');

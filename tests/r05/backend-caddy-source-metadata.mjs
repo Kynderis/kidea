@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+const root=path.resolve(import.meta.dirname,'../..');
+const dir=path.join(root,'tests/evidence/r05/backend-execution-r1');
+const get=async url=>{const r=await fetch(url,{headers:{'User-Agent':'Kidea-R05'},signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error(url+' '+r.status);return r;};
+const ref=await (await get('https://api.github.com/repos/caddyserver/caddy/git/ref/tags/v2.11.4')).json();
+const tag=ref.object.type==='tag'?await (await get(ref.object.url)).json():ref;
+const commit=tag.object.sha;
+const url='https://codeload.github.com/caddyserver/caddy/tar.gz/'+commit;
+const response=await get(url);const bytes=Buffer.from(await response.arrayBuffer());
+if(bytes.length>10*1024**2)throw Error('Source archive too large');
+const cache=path.join(root,'.test-output/r05/backend-plan-r1/caddy-source.tar.gz');fs.writeFileSync(cache,bytes);
+const record={at:new Date().toISOString(),tag:'v2.11.4',tagObject:ref.object.sha,commit,url,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex'),status:'DOWNLOADED_FOR_REVIEW_NOT_EXECUTED'};
+fs.writeFileSync(path.join(dir,'caddy-source-candidate.json'),JSON.stringify(record,null,2)+'\n');console.log(JSON.stringify(record,null,2));
