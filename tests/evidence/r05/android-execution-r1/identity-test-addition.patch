@@ -1,0 +1,46 @@
+--- before/app/src/test/java/org/kidea/lab/LabControllerTest.kt
++++ after/app/src/test/java/org/kidea/lab/LabControllerTest.kt
+@@ -2,6 +2,8 @@
+ 
+ import kotlinx.coroutines.CancellationException
+ import kotlinx.coroutines.CompletableDeferred
++import kotlinx.coroutines.CoroutineDispatcher
++import kotlin.coroutines.CoroutineContext
+ import kotlinx.coroutines.CoroutineScope
+ import kotlinx.coroutines.ExperimentalCoroutinesApi
+ import kotlinx.coroutines.SupervisorJob
+@@ -86,6 +88,13 @@
+         for (identity in listOf(a, b, a.copy(epoch = 2), a.copy(workshop = "W2"))) assertEquals(identity.toString(), model.cached(identity))
+         model.close()
+     }
++    @Test fun cacheSeparatesIdentitiesContainingDelimiters() = labTest {
++        val model = LabController(this, StandardTestDispatcher(testScheduler), Fake())
++        val identities = listOf(Identity("A", 1, "B:2:C"), Identity("A:1:B", 2, "C"))
++        for (identity in identities) model.acceptResponse(model.switchActor(identity)!!, identity.toString())
++        for (identity in identities) assertEquals(identity.toString(), model.cached(identity))
++        model.close()
++    }
+     @Test fun versionsAreExactAndOverflowRejected() {
+         assertEquals(9007199254740993uL, decodeVersion("9007199254740993"))
+         assertEquals(ULong.MAX_VALUE, decodeVersion("18446744073709551615"))
+@@ -111,11 +120,19 @@
+         model.close()
+     }
+     @Test fun workUsesInjectedDispatcher() = labTest {
+-        val fake = Fake(); val io = StandardTestDispatcher(testScheduler)
++        val fake = Fake(); val delegate = StandardTestDispatcher(testScheduler)
++        var ioDispatches = 0
++        val io = object : CoroutineDispatcher() {
++            override fun dispatch(context: CoroutineContext, block: Runnable) {
++                ioDispatches++
++                delegate.dispatch(context, block)
++            }
++        }
+         val model = LabController(this, io, fake)
+         model.switchActor(a); model.load()
+         assertEquals("", model.snapshot().title)
+         advanceUntilIdle(); assertEquals("private-A", model.snapshot().title)
++        assertTrue("Injected IO dispatcher must execute repository work", ioDispatches > 0)
+         model.close()
+     }
+     @Test fun closedOwnerRejectsCallback() = labTest {

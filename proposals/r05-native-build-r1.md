@@ -1,6 +1,8 @@
 # R05 — Android trong Docker và điểm chặn iOS, r1
 
-Ngày 2026-09-16. **PROPOSED — chờ duyệt gói A1; chưa tải binary/cài SDK/build native.** Human “ok làm đi” sau `7ce22e0` giao review backend/Web và chuẩn bị bước native. Quyền chuẩn bị này không tự mở quyền cài SDK, tăng hạn mức hoặc nâng macOS. [Roadmap](../KIDEA_ROADMAP.md#review-current), [baseline đã duyệt](r05-profile-method-r1.md), [manifest artifact](../tests/evidence/r05/native-plan-r1/manifest.json).
+Ngày 2026-09-16. **APPROVED — Human “tôi duyệt” sau gói A1 tại `ca5a96f`.** Duyệt thực thi Android trong Docker, điều khoản SDK và các hạn mức A1 nêu dưới; không duyệt nâng macOS/iOS hoặc trước kết quả. Những chữ “đề nghị/chưa duyệt” bên dưới mô tả bản r1 lúc trình, được sự kiện này thay thế trong đúng phạm vi A1. Human “ok làm đi” sau `7ce22e0` trước đó chỉ giao review/chuẩn bị. [Roadmap](../KIDEA_ROADMAP.md#review-current), [baseline đã duyệt](r05-profile-method-r1.md), [manifest artifact](../tests/evidence/r05/native-plan-r1/manifest.json).
+
+**Amendment hiện hành:** Human đã duyệt [SDK37.0/target37](r05-android-sdk37-r1.md) trong lúc kiểm A1, thay đúng baseline36.1/36 bên dưới. Các artifact/budget khác giữ nguyên; kết quả theo [báo cáo A1](../tests/evidence/r05/android-execution-r1.md). Bảng36.1 bên dưới giữ nguyên lịch sử bản trình đầu.
 
 ## Kết quả review backend/Web
 

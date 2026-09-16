@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+const a=JSON.parse(fs.readFileSync('/out/sdk37-proposal-manifest.json'));
+const counter='/work/network-counter';const bytes=Number(fs.readFileSync(counter,'utf8'));const cap=4*1024**3-64*1024**2;
+if(bytes+a.bytes>cap)throw Error('Download quota');
+const file='/work/downloads/platform-37.0_r02.zip',dest='/work/android-sdk/platforms/android-37.0',temp='/work/unpack-sdk37';
+if(fs.existsSync(file)||fs.existsSync(dest)||fs.existsSync(temp))throw Error('CREATE-only SDK37');
+fs.writeFileSync(counter,String(bytes+a.bytes));
+const receipt={at:new Date().toISOString(),url:a.url,reservedBytes:a.bytes,actualBytes:0,status:'STARTED'};
+const save=()=>{fs.writeFileSync('/out/sdk37-download.json',JSON.stringify(receipt,null,2)+'\n');fs.writeFileSync('/out/network-count.json',JSON.stringify({payloadBytes:Number(fs.readFileSync(counter,'utf8')),capBytes:cap,protocolHeadroomBytes:64*1024**2})+'\n');};save();
+const response=await fetch(a.url,{redirect:'error',signal:AbortSignal.timeout(180000)});if(!response.ok)throw Error('HTTP '+response.status);
+const fd=fs.openSync(file+'.part','wx');try{for await(const chunk of response.body){receipt.actualBytes+=chunk.length;if(receipt.actualBytes>a.bytes)throw Error('Size limit');fs.writeSync(fd,chunk);}}finally{fs.closeSync(fd);save();}
+if(receipt.actualBytes!==a.bytes)throw Error('Truncated');const data=fs.readFileSync(file+'.part');receipt.sha1=crypto.createHash('sha1').update(data).digest('hex');receipt.sha256=crypto.createHash('sha256').update(data).digest('hex');if(receipt.sha1!==a.publisherChecksum.value)throw Error('Publisher checksum');
+fs.renameSync(file+'.part',file);
+const run=args=>{const r=spawnSync('/work/tools/jdk-17/bin/jar',args,{cwd:temp,encoding:'utf8',maxBuffer:16*1024**2});if(r.status!==0)throw Error(r.stderr);return r.stdout;};
+fs.mkdirSync(temp);const listing=run(['tf',file]);for(const e of listing.trim().split('\n'))if(e.startsWith('/')||e.includes('\\')||e.split('/').includes('..')||/^[A-Za-z]:/.test(e))throw Error('Unsafe archive path');
+run(['xf',file]);const names=fs.readdirSync(temp).filter(x=>x!=='META-INF');if(names.length!==1)throw Error('Archive layout');fs.renameSync(path.join(temp,names[0]),dest);fs.copyFileSync('/src/sdk-metadata/platform37-package.xml',dest+'/package.xml',fs.constants.COPYFILE_EXCL);
+receipt.status='VERIFIED_INSTALLED_IN_VOLUME';receipt.sourceProperties=fs.readFileSync(dest+'/source.properties','utf8');save();console.log(JSON.stringify(receipt));

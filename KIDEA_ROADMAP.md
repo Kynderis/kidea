@@ -1,6 +1,6 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
-Ngày cập nhật: 2026-09-16.
+Ngày cập nhật: 2026-09-17.
 
 Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–R04 đã được Human duyệt trong phạm vi từng gói; R05 mở chuẩn bị, chưa có code pilot hoặc toàn Kidea hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
@@ -9,6 +9,13 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 ## 1. Chỉ cần đọc phần này ở lượt hiện tại
 
 <a id="review-current"></a>
+
+**Android A1 đã kiểm lab PASS trên Docker/Mac Intel; R05 vẫn IN_PROGRESS.** Human duyệt A1 sau `ca5a96f`, rồi duyệt riêng [SDK37.0/target37](proposals/r05-android-sdk37-r1.md) khi lint phát hiện baseline36.1/36 cũ. [Kết quả A1](tests/evidence/r05/android-execution-r1.md): full lint debug/release PASS; mỗi variant11/11unit; build debug/release và shrinking PASS; sáu mutant bị bắt trên nguồn hoàn chỉnh, full positive chạy lại từ đầu sau đó. Có tái hiện/sửa lỗi trùng khóa cache bằng identity có cấu trúc; giữ toàn bộ FAIL/PASS. Release unsigned, chưa cài/chạy trên thiết bị.
+
+Graph304tọa độ/publisher checksum được giữ;48advisory tooling đã phân loại giới hạn lab offline, không gọi graph sạch bảo mật hoặc miễn review khi mở network/device. Khoảng0.91GiB gồm headroom/metadata,4.09GiB đĩa thêm/23.10GiB tích lũy,2CPU/4GiB,70.1phút; mọi container dừng, không cổng host hoặc cài SDK/JDK lên macOS. Backend78file/Web27file không đổi; chỉ profile Android trong21hồ sơ pilot được amendment theo approval,20file khác nguyên hash. [Khôi phục profile r2](tests/evidence/r05/android-execution-r1/pilot-amendment-sdk37.json).
+
+T04-S03 có lab evidence sẵn review nhưng vẫn IN_PROGRESS vì phần thiết bị/UX/lifecycle/network thật còn thiếu; iOS BLOCKED_ENV_PENDING, Apple Silicon NOT_RUN, T07-S02 và toàn R05 chưa khép. Bước tiếp tục: review A1, chuẩn bị gói thiết bị Android được chọn và quyết định môi trường iOS; không tự cài/nâng OS/Xcode, kết nối thiết bị, ký phát hành hoặc deploy. Các đoạn dưới giữ lịch sử trước A1.
+
 
 **Đã review kỹ thuật backend/Web và chuẩn bị gói native A1, chờ duyệt thực thi Android.** Human “ok làm đi” sau `7ce22e0` giao tiếp tục review/chuẩn bị. [Review](tests/evidence/r05/native-plan-r1.md) xác nhận 78 nguồn mẫu, 21 hồ sơ pilot, 22 nhóm vector và provenance r4/r5; không tự nghiệm thu toàn R05. [Gói A1](proposals/r05-native-build-r1.md) đề nghị JDK17/Gradle9.4.1/SDK36.1+build-tools36 trong Docker; bốn archive khoảng440 MiB đã xác minh metadata, graph chưa resolve. Đề nghị thêm4 GiB tải/15 GiB đĩa, trần tích lũy35 GiB; CPU/RAM giữ2/4,3giờ. **Các hạn mức mới chưa duyệt**, chưa tải binary/cài/build. Giữ iOS BLOCKED_ENV_PENDING trên macOS14.7, không tự nâng OS/cài Xcode. Điểm tiếp tục là duyệt một gói A1, sau đó kiểm graph/toolchain và mẫu theo gate; device/native còn thiếu, R05/T07-S02 vẫn mở, Apple Silicon NOT_RUN. Các đoạn dưới giữ lịch sử kiểm r5 và trước đó.
 

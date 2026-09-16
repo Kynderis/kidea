@@ -1,0 +1,19 @@
+--- before/MainActivity.kt
++++ after/MainActivity.kt
+@@ -40,7 +40,15 @@
+             }
+             Column(Modifier.padding(24.dp)) {
+                 BasicText(state.title.ifEmpty { stringResource(R.string.sample_title) })
+-                BasicText(stringResource(R.string.join), Modifier.padding(16.dp).clickable(role = Role.Button) { model.controller.submit() })
++                val intent = state.intent
++                if (intent == null) {
++                    BasicText(stringResource(R.string.join), Modifier.padding(16.dp).clickable(role = Role.Button) { model.controller.submit() })
++                } else {
++                    BasicText(stringResource(if (intent.outcome == Outcome.UNKNOWN) R.string.result_unknown else R.string.result_confirmed))
++                    if (intent.outcome == Outcome.UNKNOWN) {
++                        BasicText(stringResource(R.string.check_result), Modifier.padding(16.dp).clickable(role = Role.Button) { model.controller.reconcile() })
++                    }
++                }
+             }
+         }
+     }

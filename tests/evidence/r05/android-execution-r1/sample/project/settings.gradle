@@ -1,0 +1,9 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url = uri('http://127.0.0.1:18765/google/'); allowInsecureProtocol = true }
+        maven { url = uri('http://127.0.0.1:18765/central/'); allowInsecureProtocol = true }
+    }
+}
+rootProject.name = 'KideaAndroidLab'
+include ':app'

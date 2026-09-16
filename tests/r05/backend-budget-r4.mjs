@@ -14,7 +14,8 @@ export function assertBudget(active,planned){
 }
 function read(args){const r=spawnSync(docker,args,{encoding:'utf8'});if(r.status!==0)throw Error(r.stderr);return r.stdout;}
 const resource=c=>({name:c.Name.replace(/^\//,''),cpu:c.HostConfig.NanoCpus/1e9,memory:c.HostConfig.Memory});
-const owned=c=>/^E2-BW-r[1-5]$/.test(c.Config.Labels?.['kidea.run']||'');
+export const isOwnedRunLabel=value=>/^(?:E2-BW-r[1-5]|A1-ANDROID-r1)$/.test(value||'');
+const owned=c=>isOwnedRunLabel(c.Config.Labels?.['kidea.run']);
 function memory(value){const m=/^(\d+(?:\.\d+)?)([kmg])$/i.exec(value||'');if(!m)throw Error('Explicit memory unit required');return Number(m[1])*1024**({k:1,m:2,g:3}[m[2].toLowerCase()]);}
 // Hold the lock until the CLI/container check finishes. A concurrent launcher
 // fails closed rather than racing a preflight before Docker publishes state.
@@ -29,11 +30,11 @@ export function acquireBudget(args){
   let planned;
   if(args[0]==='run'){
    const get=flag=>args[args.indexOf(flag)+1];
-   if(!args.includes('--name')||!args.includes('--cpus')||!args.includes('--memory')||!args.includes('--label')||!/^kidea.run=E2-BW-r[45]$/.test(get('--label')))throw Error('Explicit owned name/label/quota required');
+   if(!args.includes('--name')||!args.includes('--cpus')||!args.includes('--memory')||!args.includes('--label')||!/^kidea.run=(?:E2-BW-r[45]|A1-ANDROID-r1)$/.test(get('--label')))throw Error('Explicit owned name/label/quota required');
    planned=[{name:get('--name'),cpu:Number(get('--cpus')),memory:memory(get('--memory'))}];
   }else{
    const names=args.slice(1).filter(a=>!['--attach','--interactive'].includes(a));
-   if(!names.length||names.some(n=>!/^kidea-r05-e2-r[1-5]-[-a-z0-9]+$/.test(n)))throw Error('Unknown start/restart arguments');
+   if(!names.length||names.some(n=>!/^kidea-r05-(?:e2-r[1-5]|a1)-[-a-z0-9]+$/.test(n)))throw Error('Unknown start/restart arguments');
    const containers=JSON.parse(read(['inspect',...names]));
    if(containers.some(c=>!owned(c)))throw Error('Unowned target');
    planned=containers.map(resource);

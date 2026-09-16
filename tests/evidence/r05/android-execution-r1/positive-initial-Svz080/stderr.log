@@ -1,0 +1,22 @@
+Picked up JAVA_TOOL_OPTIONS: -Duser.home=/work/home
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugNavigationResources'.
+> A failure occurred while executing com.android.build.gradle.tasks.CompileNavigationXmlTask$CompileNavigationResourcesAction
+   > Could not isolate value com.android.build.gradle.tasks.CompileNavigationXmlTask$CompileNavigationResourcesParams_Decorated@289a4214 of type CompileNavigationXmlTask.CompileNavigationResourcesParams
+      > Could not resolve all files for configuration ':app:detachedConfiguration1'.
+         > Could not resolve com.android.tools.build:aapt2:9.2.1-15009934.
+           Required by:
+               project ':app'
+            > No cached version of com.android.tools.build:aapt2:9.2.1-15009934 available for offline mode.
+            > No cached version of com.android.tools.build:aapt2:9.2.1-15009934 available for offline mode.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 22s

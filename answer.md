@@ -1,13 +1,9 @@
-Đã review backend/Web và chuẩn bị [gói Android A1](proposals/r05-native-build-r1.md). Kiểm hồ sơ đạt; chưa tải binary/cài SDK/build native.
+Android A1 trong Docker đã đạt trên SDK37.0:
 
-Bạn chỉ cần duyệt một gói:
+- Lint, build debug/release và shrinking: **PASS**.
+- Unit: **11/11 mỗi bản**; **6/6 biến thể lỗi** bị bắt.
+- Đã sửa lỗi trùng khóa cache, giữ log FAIL/PASS và kiểm lại toàn bộ nguồn cuối.
 
-- Tải công cụ và kiểm mẫu Android **trong Docker**, giữ nguyên môi trường macOS.
-- Tối đa **4 GiB tải, 15 GiB đĩa thêm**; trần tích lũy **35 GiB**; giữ **2 CPU/4 GiB RAM, 3 giờ**.
-- Sử dụng SDK theo [điều khoản Google](https://developer.android.com/studio/terms). Chưa chạy trên điện thoại hoặc phát hành ứng dụng.
+[Bằng chứng](tests/evidence/r05/android-execution-r1.md) đã lưu; cập nhật roadmap/answer.md và push master. Container đã dừng, không cài thêm công cụ lên macOS.
 
-iOS giữ nguyên trạng thái chờ môi trường; chưa nâng macOS/cài Xcode. R05 chưa hoàn tất, Apple Silicon chưa kiểm.
-
-Bạn duyệt gói A1 này nhé?
-
-Cần xác nhận vì quyền backend/Web trước đó chưa bao gồm SDK Android và hạn mức đĩa mới; đây là giới hạn bạn đã yêu cầu từ đầu, không phải yêu cầu từ skill.
+Còn kiểm Android trên thiết bị và môi trường iOS; Apple Silicon chưa kiểm. **R05 chưa hoàn tất**. Bước tiếp theo là chuẩn bị các phần này theo roadmap.

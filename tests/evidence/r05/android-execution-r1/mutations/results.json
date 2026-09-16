@@ -1,0 +1,68 @@
+[
+  {
+    "name": "generation",
+    "oracle": "staleGenerationCannotReplaceNewerData",
+    "code": 1,
+    "signal": null,
+    "tests": 10,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "detected": true
+  },
+  {
+    "name": "owner-cancel",
+    "oracle": "closingOwnerCancelsSuspendedWork",
+    "code": 1,
+    "signal": null,
+    "tests": 10,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0,
+    "detected": true
+  },
+  {
+    "name": "render-command",
+    "oracle": "readingStateNeverSubmitsAndIntentIsSingle",
+    "code": 1,
+    "signal": null,
+    "tests": 10,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "detected": true
+  },
+  {
+    "name": "actor-cache",
+    "oracle": "cacheSeparatesActorEpochAndWorkshop",
+    "code": 1,
+    "signal": null,
+    "tests": 10,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "detected": true
+  },
+  {
+    "name": "intent-identity",
+    "oracle": "unknownReconciliationKeepsIntentAndDoesNotResubmit",
+    "code": 1,
+    "signal": null,
+    "tests": 10,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "detected": true
+  },
+  {
+    "name": "swallowed-cancellation",
+    "oracle": "cancellationDoesNotPublishFallbackState",
+    "code": 1,
+    "signal": null,
+    "tests": 10,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "detected": true
+  }
+]

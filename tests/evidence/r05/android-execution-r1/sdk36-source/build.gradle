@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        maven { url = uri('http://127.0.0.1:18765/google/'); allowInsecureProtocol = true }
+        maven { url = uri('http://127.0.0.1:18765/central/'); allowInsecureProtocol = true }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:9.2.1'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10'
+        classpath 'org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.3.10'
+    }
+    configurations.classpath.resolutionStrategy.activateDependencyLocking()
+}
+allprojects {
+    dependencyLocking { lockAllConfigurations() }
+    configurations.configureEach {
+        // Gradle disallows failOnDynamicVersions together with locking.
+        // Reject dynamic requests explicitly while retaining locked versions.
+        resolutionStrategy.eachDependency { details ->
+            def version = details.requested.version
+            def exactConstraint = version && version ==~ /\[[^,\[\]()]+\]/
+            if (version && !exactConstraint && (version.contains('+') || version.contains('SNAPSHOT') || version.startsWith('latest.') || version =~ /[\[\](),]/)) {
+                throw new GradleException('Dynamic dependency denied: '+details.requested)
+            }
+        }
+        withDependencies { deps ->
+            deps.each { dep ->
+                if (dep instanceof ExternalModuleDependency && dep.changing) throw new GradleException('Changing dependency denied: '+dep)
+            }
+        }
+    }
+}
+// AGP creates this detached tool configuration only when tasks execute.
+configurations { labAapt2 { canBeResolved = true; canBeConsumed = false } }
+dependencies { labAapt2 'com.android.tools.build:aapt2:9.2.1-15009934:linux' }
+tasks.register('resolveLab') {
+    doLast {
+        def report = []
+        allprojects.each { p ->
+            [p.buildscript.configurations, p.configurations].each { collection ->
+                collection.findAll { it.canBeResolved && !it.name.contains('AndroidTest') }.each { c ->
+                    c.incoming.artifactView { componentFilter { id -> id instanceof org.gradle.api.artifacts.component.ModuleComponentIdentifier } }.artifacts.artifacts.each { a ->
+                        report.add([project:p.path, configuration:c.name, coordinate:a.id.componentIdentifier.toString(), file:a.file.name])
+                    }
+                }
+            }
+        }
+        new File('/out/resolved-graph.json').text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(report))
+        def versions = report.findAll { it.coordinate.startsWith('org.jetbrains.kotlin:kotlin-gradle-plugin:') }.collect { it.coordinate }.unique()
+        if (versions != ['org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10']) throw new GradleException('Wrong resolved KGP: '+versions)
+        println('RESOLVED_KGP_2_3_10')
+    }
+}

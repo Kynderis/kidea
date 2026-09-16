@@ -1,0 +1,14 @@
+--- before/LabController.kt
++++ after/LabController.kt
+@@ -31,9 +31,9 @@
+     private var generation = 0L
+     private var serial = 0L
+     private var loadJob: Job? = null
+-    private val cache = mutableMapOf<String, String>()
++    private val cache = mutableMapOf<Identity, String>()
+ 
+-    private fun key(identity: Identity): String = "${identity.actor}:${identity.epoch}:${identity.workshop}"
++    private fun key(identity: Identity): Identity = identity
+     fun cached(identity: Identity): String? = cache[key(identity)]
+     fun snapshot(): UiState = mutable.value
+     fun switchActor(identity: Identity?): Ticket? {
