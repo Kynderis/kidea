@@ -9,6 +9,7 @@ import {prepareReview,approve} from '../../.agents/skills/kidea/scripts/approve.
 import {executeInternalWrite,prepareInternalWrite} from '../../.agents/skills/kidea/scripts/write-internal.mjs';
 import {readStatus} from '../../.agents/skills/kidea/scripts/status.mjs';
 import {hashBytes,byteIntegrity,recordBytes} from '../../.agents/skills/kidea/scripts/bootstrap-plan.mjs';
+import {fixtureGit} from '../support/host.mjs';
 
 const repo=fileURLToPath(new URL('../../',import.meta.url));
 const out=path.join(repo,'.test-output/r02-t08');mkdirSync(out,{recursive:true});
@@ -19,7 +20,7 @@ const record=(f,p=rp)=>JSON.parse(bytes(f,p).toString().match(/```json\r?\n([\s\
 const fingerprint=f=>Object.fromEntries(readdirSync(f.root,{recursive:true,withFileTypes:true}).filter(e=>e.isFile()).map(e=>{const p=path.join(e.parentPath,e.name);return [path.relative(f.root,p),hashBytes(readFileSync(p))];}));
 async function fixture() {
   const root=mkdtempSync(path.join(run,'project-'));
-  const assumptions={localNtfs:true,noActiveSync:true,singleKideaRun:true};
+  const assumptions={localFilesystem:true,noActiveSync:true,singleKideaRun:true};
   const result=await initialize(root,{projectName:'Synthetic',humanRequest:'Synthetic product',featureSource:{mode:'NEW',path:'docs/features.md',anchor:null},profiles:[],permission:{root,metadataRoot:'.kidea/checkpoints',targets:[{path:'.kidea/INDEX.md',action:'CREATE'},{path:'.kidea/work.md',action:'CREATE'},{path:'docs/features.md',action:'CREATE'}],createDirectories:['docs'],allowRestoreUpdate:false,allowRetireOwnPending:true,bootstrap:true,assumptions,statement:'Synthetic init grant'}});
   assert.equal(result.state,'INITIALIZED');
   return {root,assumptions};
@@ -160,8 +161,7 @@ test('public entry rejects missing input and extra ID argument without mutations
 
 test('Git-first review history reads exact old record without changing refs or index',async()=>{
   const f=await fixture();await perform(f);
-  const git='C:/Program Files/Git/cmd/git.exe';
-  const invoke=args=>{const r=spawnSync(git,args,{cwd:f.root,encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stderr);return r.stdout;};
+  const invoke=args=>fixtureGit(f.root,args);
   invoke(['init']);invoke(['add','.']);invoke(['-c','user.name=Synthetic','-c','user.email=synthetic@example.invalid','-c','core.autocrlf=false','commit','-m','Synthetic fixture only']);
   // Re-add with conversion disabled so the stored review bytes are exact.
   invoke(['-c','core.autocrlf=false','add','--renormalize','.']);

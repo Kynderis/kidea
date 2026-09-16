@@ -1,0 +1,83 @@
+{
+  "kind": "LP-01_PILOT_VERIFICATION",
+  "observedAt": "2026-09-16T00:55:15.838Z",
+  "runtime": {
+    "node": "v24.21.0",
+    "platform": "win32",
+    "arch": "x64",
+    "execPath": "D:\\Code\\kynderis\\kidea\\.tools\\node-v24.21.0-win-x64\\node.exe"
+  },
+  "inputs": {
+    "tests/r04/design-docs.test.mjs": "5476502c1b3ddaf2d8e15348c699c700267cd64bb0fa855dcfff565908041a12",
+    "tests/r04/evidence.mjs": "9bde6ff620b32120ceb51c0c0762558a2d398e059e23d0f09d6213dde3c122f8",
+    "tests/r03/link-check.mjs": "cca74222232b58dc66d2a0d52ef09896180725f29b8ee3d1f9e23f9aee5a6b67",
+    "tests/r03/link-check.test.mjs": "388b88f427fe58ecec7082ca16562db237ab3903a9bed246235965ce1903c597",
+    "tests/evidence/local-portability/pilot-amendment.json": "cff80e771cb19569319e4ac15f1725e4d3130d03cbf8812d01972e94749f6fc3",
+    "tests/evidence/r04/design-r1/architecture-post.json": "72bf867fdf3a9bef458e37dace5ddd4ce7119deaa7bb34d406445d3447850148",
+    "tests/evidence/r04/design-r1/correction-proposal-final.json": "a3b9990b783dd9318b9fd33175a4d7453469f2cf25dd34c350838e44c12fd51f"
+  },
+  "pilotInputs": {
+    "docs/business/INDEX.md": "8198d00159cda289e7eb38483a136476ffe4abf0f2cacee3999e9af043e1dc13",
+    "docs/business/features/admin.md": "e4a968c85edf8f6d940f6777e0de03eb39954f5debb227157a7dfcd6e067ee26",
+    "docs/business/features/register-cancel.md": "137c704bbdce987a4060306431066adad49cf1aa177c7ce3c8c6c900a653026d",
+    "docs/business/features/updates.md": "6fd19ef33398d07e3bdf905a977d4c21327036aac4e4e9e13a3883debe0a93d8",
+    "docs/business/features/view.md": "56511acbbae0853ef7c9496ed76a14d5305e1dacee5f3a340a0e2525af49c137",
+    "docs/business/shared/availability.md": "2eaddcd33b95a848806b7f7ae08d1708862cbb04ff06d44a8f3198b7ff62b291",
+    "docs/business/shared/registration.md": "1d01a83615653e48c1dfbe41b34c21eea9a5d039e6bd116393cfcc5439253e11",
+    "docs/business/shared/workshop.md": "abb2e330c4d250d3e4c2529f50dbcf464b54c080e432b07c1297fcbff6d9c4a6",
+    "docs/business/tests.md": "df566f34e32136e28607b40d90b29156fd1eef8fa1a0698647da3c83da822707",
+    "docs/design/admin.md": "b7c280e1c6fee1a4f36195652dab8bf8e4ce898dc0ba12b6051a726058a6ca09",
+    "docs/design/architecture.md": "550fe19aac7d00f26951437eac5666da95133a1ef7eca1c4cbb6968c9811cf35",
+    "docs/design/experience.md": "3b90f870838a4092322f930dc2fb69925bf2831be9cccb473da6fad41034c99a",
+    "docs/design/operations.md": "9014f733c72622c064aa4f5f4f0a5bc7a082c8b5cefc231ab4e3a08d53a53592",
+    "docs/design/quality.md": "01191f1801a47471e04aa81c559e5e8c8acf4b5659550d473bd3abc7d4ed815e",
+    "docs/features.md": "0c696dfea5ce26bd2c95dc12c599998f20273d0479276e0bcd7d16e961c10a71"
+  },
+  "runs": {
+    "r04": {
+      "command": [
+        "D:\\Code\\kynderis\\kidea\\.tools\\node-v24.21.0-win-x64\\node.exe",
+        "--test",
+        "tests/r04/design-docs.test.mjs"
+      ],
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 1332,
+        "sha256": "dbcc243d1c29308af6cfb68c75bc939bc0529fa085f0dd329e4902b89a3d7fa9",
+        "base64": "4pyUIGFyY2hpdGVjdHVyZSBzdGFnZSByZXRhaW5zIHRlbiBSMDMgc291cmNlcyBhbmQgZXhhY3RseSBmaXZlIHBlcm1pdHRlZCBkZXNpZ25zICgyLjIyNDZtcykK4pyUIGFsbCBsaXZlIHBpbG90IGxpbmtzIHJlc29sdmUgdG8gdW5pcXVlIGV4YWN0IGFuY2hvcnMgKDguNDcxNG1zKQrinJQgUjAzIHNvdXJjZSB0ZXh0IGlzIHVuY2hhbmdlZCBleGNlcHQgbGluZSBlbmRpbmdzIGFuZCBhcHBlbmRlZCByZWZlcmVuY2VzICg1Ljc2NjJtcykK4pyUIGV4aXN0aW5nIFIwMyBzaGFyZWQgcmV2ZXJzZSByZWZlcmVuY2VzIHJlbWFpbiB2YWxpZCAoOC43MTUzbXMpCuKclCBkZXNpZ24gY2FsbGVycyBoYXZlIHJldmVyc2UgcmVmZXJlbmNlcyB1bmRlciB0aGUgZXhhY3Qgc291cmNlIHJvdyAoMjcuMTc2OG1zKQrinJQgdmFsaWQgbGlua3MgYWxvbmUgY2Fubm90IGhpZGUgYW4gYWJzZW50IGRlc2lnbiBiYWNrbGluayAoMC43NTk3bXMpCuKclCB3cm9uZyBzb3VyY2Ugcm93IGlzIHJlamVjdGVkIGV2ZW4gd2hlbiBiYWNrbGluayBleGlzdHMgKDAuMjY5Mm1zKQrinJQgYnJva2VuIGxpbmtzIGFuZCBkdXBsaWNhdGUgYW5jaG9ycyBzdGlsbCBmYWlsICgwLjI0MzZtcykK4pyUIGFjY2VwdGVkIHF1YWxpdHkgY29udGVudCByZW1haW5zIHVuY2hhbmdlZCBiZWZvcmUgYXBwZW5kZWQgVVggcmVmZXJlbmNlcyAoMC45OTkybXMpCuKclCBjcm9zcy1kZXNpZ24gZGVwZW5kZW5jeSBuZWVkcyByZXZlcnNlIHJlZmVyZW5jZSBhbmQgaWdub3JlcyBuYXZpZ2F0aW9uIHJlbGF0aW9ucyAoMC40NjA5bXMpCuKclCBhY2NlcHRlZCBleHBlcmllbmNlIGlzIHVuY2hhbmdlZCBiZWZvcmUgYXBwZW5kZWQgb3BlcmF0aW9ucyByZWZlcmVuY2VzICgwLjg4NDZtcykK4pyUIGFjY2VwdGVkIG9wZXJhdGlvbnMgaXMgdW5jaGFuZ2VkIGJlZm9yZSBhcHBlbmRlZCBhZG1pbiByZWZlcmVuY2VzICgwLjg0MTNtcykK4pyUIGFjY2VwdGVkIGFkbWluIGlzIHVuY2hhbmdlZCBiZWZvcmUgYXBwZW5kZWQgYXJjaGl0ZWN0dXJlIHJlZmVyZW5jZXMgKDEuMDQ0bXMpCuKclCBhcHByb3ZlZCBSMDQgYnl0ZXMgcmVtYWluIGV4YWN0IHByZWZpeCBvZiBMUC0wMSBhbWVuZG1lbnRzOyBhbGwgb3RoZXIgcGlsb3QgZmlsZXMgcmVtYWluIGV4YWN0ICg5LjE1MTVtcykK4pyUIHNraWxsIHJvdXRlcyB0byBhbiBleGlzdGluZyBsb2NhbCBwcm9kdWN0LWRlc2lnbiByZWZlcmVuY2UgKDEuMzA0OG1zKQrihLkgdGVzdHMgMTUK4oS5IHN1aXRlcyAwCuKEuSBwYXNzIDE1CuKEuSBmYWlsIDAK4oS5IGNhbmNlbGxlZCAwCuKEuSBza2lwcGVkIDAK4oS5IHRvZG8gMArihLkgZHVyYXRpb25fbXMgMjMxLjI4NjEK"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "base64": ""
+      }
+    },
+    "legacyR03": {
+      "command": [
+        "D:\\Code\\kynderis\\kidea\\.tools\\node-v24.21.0-win-x64\\node.exe",
+        "--test",
+        "tests/r03/link-check.test.mjs"
+      ],
+      "status": 1,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "bytes": 1485,
+        "sha256": "7240d44148cda2645bc242edaa21f92c4df7b17e159ccadd9f4a3c6bbaba548a",
+        "base64": "4pyUIGNyb3NzLWZpbGUgZXhhY3QgYW5jaG9ycywgc2VsZiBsaW5rcyBhbmQgZXh0ZXJuYWwgcHJvdmVuYW5jZSAoNy4wNTg0bXMpCuKclCBtaXNzaW5nIGRlc3RpbmF0aW9uIGZpbGUgaXMgY2F1Z2h0ICgwLjQ2ODdtcykK4pyUIGV4aXN0aW5nIGZpbGUgd2l0aCB3cm9uZyBzZWN0aW9uIGlzIGNhdWdodCAoMC42NjE4bXMpCuKclCBhbWJpZ3VvdXMgZHVwbGljYXRlIGFuY2hvcnMgYXJlIGNhdWdodCAoMC41MTIxbXMpCuKcliByZWFsIHBpbG90IGhhcyB0ZW4gbGlua2VkIGRvY3VtZW50cyAoOC42MzI4bXMpCuKclCB2YWxpZCBmb3J3YXJkIGxpbmsgY2FuIHN0aWxsIGhhdmUgYSBtaXNzaW5nIHJldmVyc2UgcmVmZXJlbmNlICgxLjEyODhtcykK4pyUIHJldmVyc2UgbGluayB1bmRlciB0aGUgd3JvbmcgcnVsZSBkb2VzIG5vdCBzYXRpc2Z5IHRoZSBkZXBlbmRlbmN5ICgwLjI4MThtcykK4pyUIHJlYWwgc2hhcmVkIHNvdXJjZXMgbGluayBiYWNrIHRvIGV2ZXJ5IGRpcmVjdCBjb25zdW1pbmcgc2VjdGlvbiAoMTQuNjIyMm1zKQrihLkgdGVzdHMgOArihLkgc3VpdGVzIDAK4oS5IHBhc3MgNwrihLkgZmFpbCAxCuKEuSBjYW5jZWxsZWQgMArihLkgc2tpcHBlZCAwCuKEuSB0b2RvIDAK4oS5IGR1cmF0aW9uX21zIDE3NC45NTcKCuKcliBmYWlsaW5nIHRlc3RzOgoKdGVzdCBhdCB0ZXN0c1xyMDNcbGluay1jaGVjay50ZXN0Lm1qczoxMDoxCuKcliByZWFsIHBpbG90IGhhcyB0ZW4gbGlua2VkIGRvY3VtZW50cyAoOC42MzI4bXMpCiAgQXNzZXJ0aW9uRXJyb3IgW0VSUl9BU1NFUlRJT05dOiBFeHBlY3RlZCB2YWx1ZXMgdG8gYmUgc3RyaWN0bHkgZXF1YWw6CiAgCiAgMTUgIT09IDEwCiAgCiAgICAgIGF0IFRlc3RDb250ZXh0Ljxhbm9ueW1vdXM+IChmaWxlOi8vL0Q6L0NvZGUva3luZGVyaXMva2lkZWEvdGVzdHMvcjAzL2xpbmstY2hlY2sudGVzdC5tanM6MTE6ODEpCiAgICAgIGF0IFRlc3QucnVuSW5Bc3luY1Njb3BlIChub2RlOmFzeW5jX2hvb2tzOjIyNzoxNCkKICAgICAgYXQgVGVzdC5ydW4gKG5vZGU6aW50ZXJuYWwvdGVzdF9ydW5uZXIvdGVzdDoxNDAyOjI1KQogICAgICBhdCBUZXN0LnByb2Nlc3NQZW5kaW5nU3VidGVzdHMgKG5vZGU6aW50ZXJuYWwvdGVzdF9ydW5uZXIvdGVzdDo5NzQ6MTgpCiAgICAgIGF0IFRlc3QucG9zdFJ1biAobm9kZTppbnRlcm5hbC90ZXN0X3J1bm5lci90ZXN0OjE1NDI6MTkpCiAgICAgIGF0IFRlc3QucnVuIChub2RlOmludGVybmFsL3Rlc3RfcnVubmVyL3Rlc3Q6MTQ2NzoxMikKICAgICAgYXQgYXN5bmMgVGVzdC5wcm9jZXNzUGVuZGluZ1N1YnRlc3RzIChub2RlOmludGVybmFsL3Rlc3RfcnVubmVyL3Rlc3Q6OTc0OjcpIHsKICAgIGdlbmVyYXRlZE1lc3NhZ2U6IHRydWUsCiAgICBjb2RlOiAnRVJSX0FTU0VSVElPTicsCiAgICBhY3R1YWw6IDE1LAogICAgZXhwZWN0ZWQ6IDEwLAogICAgb3BlcmF0b3I6ICdzdHJpY3RFcXVhbCcsCiAgICBkaWZmOiAnc2ltcGxlJwogIH0K"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "base64": ""
+      }
+    }
+  },
+  "linkcheck": {
+    "links": 826,
+    "errors": []
+  },
+  "interpretation": "R04 tests and links verify document preservation only. Legacy R03 inventory expects 10 documents while accepted design inventory contains 15; raw failure retained, not waived or rewritten. Mac/Docker/cloud/product runtime NOT_RUN."
+}

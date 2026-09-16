@@ -5,6 +5,7 @@ import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,readdirSync,existsSync,
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
+import {directoryLinkType,fixtureGit} from '../support/host.mjs';
 import {buildBase,dataAt,edit,envelope,paths,ref,snapshot} from '../fixtures/r02-t04/catalog.mjs';
 import {readResume,resume,prepareContinuation} from '../../.agents/skills/kidea/scripts/resume.mjs';
 import {diagnosePending} from '../../.agents/skills/kidea/scripts/diagnose-pending.mjs';
@@ -16,7 +17,7 @@ import {approve} from '../../.agents/skills/kidea/scripts/approve.mjs';
 
 const repo=fileURLToPath(new URL('../../',import.meta.url)),output=path.join(repo,'.test-output/r02-t09');mkdirSync(output,{recursive:true});
 const runRoot=mkdtempSync(path.join(output,'resume-'));console.log('Resume fixtures retained: '+runRoot);
-const assumptions={localNtfs:true,noActiveSync:true,singleKideaRun:true};
+const assumptions={localFilesystem:true,noActiveSync:true,singleKideaRun:true};
 const bytes=(f,p)=>readFileSync(path.join(f.root,p));
 const record=(f,p=paths.work)=>JSON.parse(bytes(f,p).toString().match(/```json\r?\n([\s\S]*?)\r?\n```/)[1]);
 const put=(f,p,b)=>{mkdirSync(path.dirname(path.join(f.root,p)),{recursive:true});writeFileSync(path.join(f.root,p),b);};
@@ -141,8 +142,8 @@ test('additional execution file is bound through SAVE and detects late changes',
 test('source changing during resume is rejected',()=>{
   const f=fixture();assert.throws(()=>readResume(f.root,request(f),{beforeRecheck:()=>put(f,'docs/plan.md','Changed during read')}),e=>e.code==='SOURCE_CHANGED');
 });
-test('junction in required file path is never followed',()=>{
-  const f=fixture();symlinkSync(path.join(f.root,'docs'),path.join(f.root,'alias'),'junction');const q=request(f);q.requiredFiles=[ref('alias/plan.md')];reject(f,()=>readResume(f.root,q),'UNSAFE_PATH');
+test('directory link in required file path is never followed',()=>{
+  const f=fixture();symlinkSync(path.join(f.root,'docs'),path.join(f.root,'alias'),directoryLinkType);const q=request(f);q.requiredFiles=[ref('alias/plan.md')];reject(f,()=>readResume(f.root,q),'UNSAFE_PATH');
 });
 
 async function pending(f,fault) {
@@ -173,8 +174,8 @@ test('interrupted continuation save retains previous work and refuses another sa
 });
 
 test('Git checkout identity changes block without checkout/reset/replay',()=>{
-  const f=fixture(),git='C:/Program Files/Git/cmd/git.exe';
-  const invoke=args=>{const r=spawnSync(git,args,{cwd:f.root,encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
+  const f=fixture();
+  const invoke=args=>fixtureGit(f.root,args).trim();
   invoke(['init']);invoke(['-c','core.autocrlf=false','add','.']);invoke(['-c','user.name=Synthetic','-c','user.email=synthetic@example.invalid','commit','-m','Synthetic baseline']);
   reject(f,()=>readResume(f.root,request(f)),'GIT_CONTEXT_READ_REQUIRED');
   const q=request(f);q.permission.allowReadLocalGit=true;const r=readResume(f.root,q);assert.ok(r.context.checkout.head);
@@ -184,8 +185,8 @@ test('Git checkout identity changes block without checkout/reset/replay',()=>{
   return executeInternalWrite(plan.prepared).then(result=>assert.equal(result.state,'REJECTED'));
 });
 test('unmerged Git index names the conflicting path and stays unchanged',()=>{
-  const f=fixture(),git='C:/Program Files/Git/cmd/git.exe';
-  const invoke=(args,input)=>{const r=spawnSync(git,args,{cwd:f.root,input,encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
+  const f=fixture();
+  const invoke=(args,input)=>fixtureGit(f.root,args,input).trim();
   invoke(['init']);invoke(['-c','core.autocrlf=false','add','.']);invoke(['-c','user.name=Synthetic','-c','user.email=synthetic@example.invalid','commit','-m','Synthetic conflict baseline']);
   const blob=invoke(['rev-parse','HEAD:docs/notes.md']);
   invoke(['update-index','--index-info'],`0 ${'0'.repeat(40)}\tdocs/notes.md\n100644 ${blob} 1\tdocs/notes.md\n100644 ${blob} 2\tdocs/notes.md\n`);

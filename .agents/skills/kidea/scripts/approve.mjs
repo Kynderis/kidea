@@ -11,6 +11,7 @@ import {initToolIdentity} from './init.mjs';
 import {findGitVersion} from './git-versions.mjs';
 import {preserveReview} from './review-validity.mjs';
 import {prepareInternalReviewWrite,executeInternalWrite} from './write-internal.mjs';
+import {assertLocalRoot,hasLocalAssumptions} from './runtime.mjs';
 
 const fail=code=>{throw Object.assign(new Error(code),{code});};
 const text=v=>typeof v==='string'&&v.trim().length>0;
@@ -19,6 +20,7 @@ const ref=p=>({path:p,anchor:null});
 const rewrite=(bytes,record)=>Buffer.from(new TextDecoder('utf-8',{fatal:true}).decode(bytes).replace(/(<!-- kidea:data:start -->\r?\n```json\r?\n)[\s\S]*?(\r?\n```\r?\n<!-- kidea:data:end -->)/,(_m,a,b)=>a+JSON.stringify(record,null,2)+b));
 
 export function prepareReview(root,request) {
+  assertLocalRoot(root);
   if(typeof root!=='string'||!path.isAbsolute(root)||path.resolve(realpathSync(root))!==path.resolve(root))fail('ROOT_NOT_EXPLICIT');
   root=realpathSync(root);
   if(!closed(request,['operation','id','revision','expectedDigest','ownerIds','package','human','comparison','permission'])||!['CREATE','SUBMIT','FEEDBACK','REVISE','APPROVE','REVALIDATE'].includes(request.operation))fail('REVIEW_INPUT_INVALID');
@@ -29,8 +31,8 @@ export function prepareReview(root,request) {
   if(!closed(grant,['root','reviewPath','ownerIds','allowReviewMetadata','allowLinkOwners','allowCreateEvidence','createDirectories','allowReadLocalGit','allowPreserveApproval','assumptions','statement'])||grant.root!==root||grant.reviewPath!==reviewPath||!same(grant.ownerIds,request.ownerIds)||grant.allowReviewMetadata!==true||grant.allowCreateEvidence!==true||!text(grant.statement))fail('AUTHORIZATION_REQUIRED');
   if(operation==='REVALIDATE'&&(grant.allowPreserveApproval!==true||request.package!==undefined||request.human!==undefined))fail('PRESERVATION_SCOPE_REQUIRED');
   if(grant.allowReadLocalGit!==undefined&&typeof grant.allowReadLocalGit!=='boolean')fail('AUTHORIZATION_REQUIRED');
-  if(!grant.assumptions||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>grant.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
-  const tool=initToolIdentity();tool.version='kidea-schema2-review-cooperative-r1';
+  if(!hasLocalAssumptions(grant.assumptions))fail('ENVIRONMENT_NOT_CONFIRMED');
+  const tool=initToolIdentity();tool.version='kidea-schema2-review-local-r2';
   tool.components.push({name:'approve.mjs',integrity:byteIntegrity(readFileSync(new URL('./approve.mjs',import.meta.url)))});
   tool.components.push({name:'review-validity.mjs',integrity:byteIntegrity(readFileSync(new URL('./review-validity.mjs',import.meta.url)))});
   const graph=inspectStatusGraph(root,new Map(),[],{allowGit:grant.allowReadLocalGit===true});

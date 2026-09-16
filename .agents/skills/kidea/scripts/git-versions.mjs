@@ -2,21 +2,42 @@
 // or worktree writes. A retained commit is a recovery source, not authorization.
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { lstatSync } from 'node:fs';
+import { lstatSync,statSync,realpathSync,accessSync,constants } from 'node:fs';
 import path from 'node:path';
 import { validPath } from './schema.mjs';
+import { assertLocalRoot } from './runtime.mjs';
 
-export const approvedGitExecutable = 'C:/Program Files/Git/cmd/git.exe';
 const hash = /^[a-f0-9]{40}(?:[a-f0-9]{24})?$/;
 const fail = code => { throw Object.assign(new Error(code), { code }); };
+const within=(root,candidate)=>{const rel=path.relative(root,candidate);return rel===''||rel!=='..'&&!rel.startsWith('..'+path.sep)&&!path.isAbsolute(rel);};
+
+export function resolveGitExecutable(root,{env=process.env}={}) {
+  assertLocalRoot(root);
+  const selected=realpathSync(root),configured=env.KIDEA_GIT_EXECUTABLE;
+  const pathValue=Object.entries(env).find(([key])=>key.toUpperCase()==='PATH')?.[1]??'';
+  const candidates=configured!==undefined?[configured]:pathValue.split(path.delimiter)
+    .filter(dir=>dir&&path.isAbsolute(dir)).map(dir=>path.join(dir,process.platform==='win32'?'git.exe':'git'));
+  for(const candidate of candidates) {
+    if(!path.isAbsolute(candidate)||within(selected,path.resolve(candidate)))continue;
+    try {
+      assertLocalRoot(candidate);
+      const resolved=realpathSync(candidate);
+      assertLocalRoot(resolved);
+      if(within(selected,resolved)||!statSync(resolved).isFile())continue;
+      accessSync(resolved,constants.X_OK);return resolved;
+    } catch { /* Missing/unusable host PATH entry is not a fallback to project code. */ }
+  }
+  fail('GIT_UNAVAILABLE');
+}
 function git(root, args) {
+  assertLocalRoot(root);
   // Probe only the selected repository. Never discover a parent project's
   // metadata; an ordinary .git file remains valid for an explicit worktree.
   let entry;
   try { entry = lstatSync(path.join(root, '.git')); } catch { fail('GIT_UNAVAILABLE'); }
   if (entry.isSymbolicLink() || !entry.isDirectory() && !entry.isFile()) fail('GIT_UNAVAILABLE');
   const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.toUpperCase().startsWith('GIT_')));
-  const result = spawnSync(approvedGitExecutable, ['--no-optional-locks', '--no-lazy-fetch', ...args], {
+  const result = spawnSync(resolveGitExecutable(root), ['--no-optional-locks', '--no-lazy-fetch', ...args], {
     cwd: root, encoding: null, timeout: 10000, maxBuffer: 32 * 1024 * 1024, windowsHide: true,
     env: { ...env, GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: process.platform === 'win32' ? 'NUL' : '/dev/null',
       GIT_NO_REPLACE_OBJECTS: '1', GIT_NO_LAZY_FETCH: '1', GIT_TERMINAL_PROMPT: '0', GIT_CEILING_DIRECTORIES: path.dirname(path.resolve(root)) }

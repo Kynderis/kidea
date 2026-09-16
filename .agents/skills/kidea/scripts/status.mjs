@@ -1,4 +1,4 @@
-import { readFileSync, realpathSync, statSync } from 'node:fs';
+import { readFileSync, realpathSync, statSync,readdirSync } from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { parseTree, getNodeValue, findNodeAtLocation } from 'jsonc-parser';
@@ -6,6 +6,7 @@ import { validate, validPath, schemas } from './schema.mjs';
 import { inspectPendingWrites, PendingWriteReadError, pendingWritesPath } from './pending-writes.mjs';
 import { isRecordedComplete } from './recorded-completion.mjs';
 import { readGitVersion } from './git-versions.mjs';
+import { assertRuntime,assertLocalRoot,portablePathKey,checkedEntryName } from './runtime.mjs';
 
 const start = '<!-- kidea:data:start -->', end = '<!-- kidea:data:end -->';
 const utf8 = bytes => new TextDecoder('utf-8',{fatal:true}).decode(bytes);
@@ -46,9 +47,11 @@ export function inspectBoundGraph(cwd, files, {gitVersions = new Map(), checkpoi
 }
 
 function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpointPaths = [], gitVersions = new Map(), capture, boundOnly=false, allowGit=true } = {}) {
+  assertRuntime();
   const out={outputVersion:1,action:'status',observedAt:new Date().toISOString(),readState:'OK',projectId:null,data:null,diagnostics:[]};
   const records=new Map(), reads=new Map(), absent=new Set(), gitReads=new Map(), directRefs=new Set();
-  // Per-call derived data only. Never cache filesystem reads/path checks. A
+  const spellings=new Map(),directoryNames=new Map();
+  // Per-call derived data only. Never cache file bytes or realpath checks. A
   // source path can name different historical/current bytes in the same graph.
   const anchorIndexes=new Map();
   let root, pendingBefore;
@@ -66,16 +69,27 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
   function absolute(p) {
     // Native resolution replaces only Node's JS walk, not any live path/byte recheck.
     if(!validPath(p)) {issue('UNSAFE_PATH',p);throw new Stop();}
+    const key=portablePathKey(p);
+    if(spellings.has(key)&&spellings.get(key)!==p){issue('UNSAFE_PATH',p);throw new Stop();}
+    spellings.set(key,p);
     const target=path.resolve(root,...p.split('/'));
     if(boundOnly)return target;
     // Validate every existing component before opening the final file, including junctions.
     let part=root;
-    for(const segment of p.split('/')) {
-      part=path.join(part,segment);
-      try {if(!inside(root,realpathSync.native(part))) {issue('UNSAFE_PATH',p);throw new Stop();}}
-      catch(e) {if(e instanceof Stop) throw e;if(e.code==='ENOENT') break;issue('READ_FAILED',p,null,'INCOMPLETE');throw new Stop();}
+    const segments=p.split('/');
+    for(const [index,segment] of segments.entries()) {
+      try {
+        if(!directoryNames.has(part))directoryNames.set(part,readdirSync(part));
+        part=path.join(part,checkedEntryName(part,segment,directoryNames.get(part)));
+        if(!inside(root,realpathSync.native(part))) {issue('UNSAFE_PATH',p);throw new Stop();}
+      }
+      catch(e) {
+        if(e instanceof Stop)throw e;
+        if(e.code==='ENOENT')return path.join(part,...segments.slice(index+1));
+        issue(e.code==='AMBIGUOUS_PATH_ALIAS'?'UNSAFE_PATH':'READ_FAILED',p,null,e.code==='AMBIGUOUS_PATH_ALIAS'?'INVALID':'INCOMPLETE');throw new Stop();
+      }
     }
-    return target;
+    return part;
   }
   function pendingState() {
     if(boundOnly)return 'BOUND_INPUT_NOT_LIVE_STATUS';
@@ -278,6 +292,7 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     }
   }
   try {
+    assertLocalRoot(cwd);
     root=boundOnly?path.resolve(cwd):realpathSync.native(cwd);
     pendingBefore=pendingState();
     const index=load('.kidea/INDEX.md','index');out.projectId=index.data.projectId;
@@ -370,6 +385,9 @@ function statusEngine(cwd, { beforeRecheck, projectedBytes = new Map(), checkpoi
     function tools(value,r){if(!value||typeof value!=='object')return;if(typeof value.version==='string'&&Array.isArray(value.components)&&value.components.every(c=>'name'in c)){requireValue(value.components.length>0,r,'tool.components');unique(value.components,c=>c.name,r,'tool.components');}for(const v of Object.values(value))tools(v,r);}
     for(const r of records.values())tools(r.data,r);
     beforeRecheck?.();
+    // Directory spelling is reused only within a pass. File bytes/realpath are
+    // always live, and every directory is read again during the final pass.
+    directoryNames.clear();
     for(const [p,read] of reads) {const latest=bytes(p);if(!latest.equals(read.data))issue('SOURCE_CHANGED',p,null,'INCOMPLETE');}
     for(const p of absent)if(bytes(p,true)!==null)issue('SOURCE_CHANGED',p,null,'INCOMPLETE');
     for(const entry of [...gitReads.values()])if(!gitBytes(entry.location,entry.record,entry.field).equals(entry.bytes))issue('SOURCE_CHANGED',entry.record.file,entry.field,'INCOMPLETE');

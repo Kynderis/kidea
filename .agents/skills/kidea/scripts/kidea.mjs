@@ -1,4 +1,5 @@
 import { readStatus } from './status.mjs';
+import { runtimeInfo } from './runtime.mjs';
 const actions = ['init', 'resume', 'status', 'approve', 'change', 'visualize'];
 const args = process.argv.slice(2);
 const [action] = args;
@@ -15,8 +16,8 @@ async function initInput(prefix='INIT') {
   });
 }
 
-if (process.versions.node.split('.')[0] !== '24') {
-  console.error(JSON.stringify({ code: 'UNSUPPORTED_RUNTIME', message: 'Use the approved Node.js 24 runtime.' }));
+if (!runtimeInfo().compatibleVersion) {
+  console.error(JSON.stringify({ code: 'UNSUPPORTED_RUNTIME', message: 'Use Node.js 24 or later; a maintained LTS release is recommended.' }));
   process.exitCode = 2;
 } else if (action === '--help' && args.length === 1) {
   console.log(JSON.stringify({ stage: 'R02-T09 resume candidate', actions, implemented: ['status','init','approve','resume'], help: 'status is read-only; init creates initial records; approve manages scoped reviews; resume reads continuation context or saves a scoped note. Trusted stdin requests supply permission, never project files. No helper executes product commands or replays pending effects. change/visualize remain unavailable.' }));

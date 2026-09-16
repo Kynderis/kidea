@@ -10,8 +10,8 @@ import { prepareInternalBootstrap,executeInternalWrite } from './write-internal.
 import { readStatus } from './status.mjs';
 import { validPath } from './schema.mjs';
 import { findGitVersion } from './git-versions.mjs';
+import { assertRuntime,assertLocalRoot,hasLocalAssumptions } from './runtime.mjs';
 
-const nodeHash='ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32';
 const fail=code=>{throw Object.assign(new Error(code),{code});};
 const text=v=>typeof v==='string'&&v.trim().length>0;
 const closed=(v,keys)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).every(k=>keys.includes(k));
@@ -30,15 +30,16 @@ const steps=[
 ];
 
 export function initToolIdentity() {
-  if(process.platform!=='win32'||process.versions.node!=='24.21.0'||hashBytes(readFileSync(process.execPath))!==nodeHash)fail('RUNTIME_NOT_VERIFIED');
-  const components=['kidea.mjs','init.mjs','bootstrap-plan.mjs','write-internal.mjs','git-versions.mjs','status.mjs','schema.mjs','pending-writes.mjs','recorded-completion.mjs'].map(name=>({name,integrity:byteIntegrity(readFileSync(fileURLToPath(new URL(name,import.meta.url))))}));
-  components.push({name:'node-24.21.0',integrity:byteIntegrity(readFileSync(process.execPath))});
-  return {version:'kidea-schema2-init-cooperative-r1',components};
+  assertRuntime();
+  const components=['kidea.mjs','init.mjs','bootstrap-plan.mjs','write-internal.mjs','git-versions.mjs','runtime.mjs','status.mjs','schema.mjs','pending-writes.mjs','recorded-completion.mjs'].map(name=>({name,integrity:byteIntegrity(readFileSync(fileURLToPath(new URL(name,import.meta.url))))}));
+  components.push({name:`node-${process.versions.node}-${process.platform}-${process.arch}`,integrity:byteIntegrity(readFileSync(process.execPath))});
+  return {version:'kidea-schema2-init-local-r2',components};
 }
 
 // Read-only preparation. Profile/source bytes are captured in the operation's
 // metadata or exact local Git versions and checked again before creation.
 export function prepareInit(root,request) {
+  assertLocalRoot(root);
   if(typeof root!=='string'||!path.isAbsolute(root)||path.resolve(realpathSync(root))!==path.resolve(root))fail('ROOT_NOT_EXPLICIT');
   root=realpathSync(root);
   if(!closed(request,['projectName','humanRequest','featureSource','profiles','permission'])||!text(request.projectName)||!text(request.humanRequest))fail('INIT_INPUT_REQUIRED');
@@ -47,7 +48,7 @@ export function prepareInit(root,request) {
   const {statement,...authorization}=grant;
   if(authorization.root!==root||authorization.metadataRoot!=='.kidea/checkpoints'||authorization.bootstrap!==true||authorization.allowRestoreUpdate!==false||authorization.allowRetireOwnPending!==true)fail('AUTHORIZATION_REQUIRED');
   if(authorization.allowReadLocalGit!==undefined&&typeof authorization.allowReadLocalGit!=='boolean')fail('AUTHORIZATION_REQUIRED');
-  if(!authorization.assumptions||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>authorization.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
+  if(!hasLocalAssumptions(authorization.assumptions))fail('ENVIRONMENT_NOT_CONFIRMED');
   const existing=localEntry(root,'.kidea');
   if(existing) {
     const status=readStatus(root,{allowGit:authorization.allowReadLocalGit===true});

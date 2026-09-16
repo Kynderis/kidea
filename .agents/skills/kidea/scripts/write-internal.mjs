@@ -10,6 +10,7 @@ import { validPath, validate } from './schema.mjs';
 import { isRecordedComplete } from './recorded-completion.mjs';
 import { prepareBootstrapRequest,recordBytes } from './bootstrap-plan.mjs';
 import { findGitVersion,readGitVersion,readGitContext } from './git-versions.mjs';
+import { assertRuntime,assertLocalRoot,hasLocalAssumptions,portablePathKey,checkedEntryName } from './runtime.mjs';
 
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const integrity=bytes=>({method:'SHA256',value:sha(bytes),byteLength:bytes.length});
@@ -47,12 +48,10 @@ function localEntry(root,relative,missing=false) {
   let target=root;
   const parts=relative.split('/');
   for(const [i,part] of parts.entries()) {
-    const spelling=readdirSync(target).find(name=>name.toLowerCase()===part.toLowerCase());
-    if(spelling&&spelling!==part)fail('AMBIGUOUS_PATH_ALIAS');
-    target=path.join(target,part);
+    target=path.join(target,checkedEntryName(target,part));
     let stat;
     try{stat=lstatSync(target);}catch(e){if(missing&&e.code==='ENOENT')return null;throw e;}
-    if(stat.isSymbolicLink()||!inside(root,realpathSync(target))||path.resolve(realpathSync(target)).toLowerCase()!==path.resolve(target).toLowerCase())fail('UNSAFE_PATH');
+    if(stat.isSymbolicLink()||!inside(root,realpathSync(target))||path.resolve(realpathSync(target)).normalize('NFC')!==path.resolve(target).normalize('NFC'))fail('UNSAFE_PATH');
     if(i<parts.length-1&&!stat.isDirectory())fail('UNSAFE_PATH');
     if(i===parts.length-1) {
       if(!stat.isDirectory()&&(!stat.isFile()||stat.nlink!==1))fail('UNSAFE_PATH');
@@ -67,7 +66,8 @@ function localBytes(root,relative,missing=false) {
   return readFileSync(entry.full);
 }
 function safeRoot(root) {
-  if(typeof root!=='string'||!path.isAbsolute(root)||lstatSync(root).isSymbolicLink()||!lstatSync(root).isDirectory()||path.resolve(root).toLowerCase()!==realpathSync(root).toLowerCase())fail('UNSAFE_ROOT');
+  assertLocalRoot(root);
+  if(!path.isAbsolute(root)||lstatSync(root).isSymbolicLink()||!lstatSync(root).isDirectory()||path.resolve(root).normalize('NFC')!==realpathSync(root).normalize('NFC'))fail('UNSAFE_ROOT');
   return realpathSync(root);
 }
 
@@ -110,10 +110,10 @@ export function prepareInternalBootstrap(args) {
 }
 
 function preparePlan({root,authorization,context,targets,operationId=randomUUID()},cleanup=null,priorGraph=null,review=null,continuation=null) {
-  if(process.platform!=='win32')fail('UNSUPPORTED_HOST');
+  assertRuntime();
   root=safeRoot(root);
   if(!authorization||path.resolve(authorization.root)!==root||authorization.metadataRoot!=='.kidea/checkpoints')fail('AUTHORIZATION_REQUIRED');
-  if(!authorization.assumptions||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>authorization.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
+  if(!hasLocalAssumptions(authorization.assumptions))fail('ENVIRONMENT_NOT_CONFIRMED');
   if(typeof authorization.allowRestoreUpdate!=='boolean'||authorization.allowRetireOwnPending!==true)fail('AUTHORIZATION_REQUIRED');
   if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(operationId))fail('INVALID_OPERATION_ID');
   if(!Array.isArray(targets)||!targets.length||!Array.isArray(authorization.targets)||authorization.targets.length!==targets.length)fail('INVALID_TARGETS');
@@ -130,7 +130,7 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   const seen=new Set(),overlay=new Map(),planned=[];
   for(const t of targets) {
     if(!validPath(t.path)||!['UPDATE','CREATE'].includes(t.action)||!Buffer.isBuffer(t.plannedBytes))fail('INVALID_TARGET');
-    const key=t.path.toLowerCase();
+    const key=portablePathKey(t.path);
     const reserved=key.startsWith('.kidea/checkpoints/')||key==='.kidea/checkpoints';
     if(seen.has(key)||key==='.kidea'||reserved&&!(cleanup&&t.path===cleanup.checkpointPath&&t.action==='UPDATE')||t.action==='UPDATE'&&key.startsWith('.kidea/reviews/evidence/'))fail('INVALID_TARGET');
     seen.add(key);
@@ -201,7 +201,7 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   }
   const folded=new Map();
   for(const p of [...inputs.keys(),...planned.map(t=>t.path)]) {
-    const key=p.toLowerCase();if(folded.has(key)&&folded.get(key)!==p)fail('AMBIGUOUS_PATH_ALIAS');folded.set(key,p);
+    const key=portablePathKey(p);if(folded.has(key)&&folded.get(key)!==p)fail('AMBIGUOUS_PATH_ALIAS');folded.set(key,p);
   }
   for(const t of planned) {
     if(inputs.has(t.path)&&(t.beforeBase64===null||inputs.get(t.path).toString('base64')!==t.beforeBase64))fail('SOURCE_CHANGED');
@@ -225,7 +225,7 @@ export function prepareInternalCleanup({root,authorization,context,checkpointPat
   root=safeRoot(root);
   if(!authorization?.cleanup||authorization.allowRestoreUpdate!==false)fail('CLEANUP_AUTHORIZATION_REQUIRED');
   if(typeof authorization.root!=='string'||path.resolve(authorization.root)!==root||authorization.metadataRoot!=='.kidea/checkpoints'||authorization.allowRetireOwnPending!==true)fail('CLEANUP_AUTHORIZATION_REQUIRED');
-  if(!authorization.assumptions||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>authorization.assumptions[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
+  if(!hasLocalAssumptions(authorization.assumptions))fail('ENVIRONMENT_NOT_CONFIRMED');
   const conditions=authorization.cleanup.conditions;
   if(!conditions||!['ownerCompleted','requiredChecksPassed','retentionEnded'].every(k=>conditions[k]===true))fail('CLEANUP_CONDITIONS_REQUIRED');
   const match=/^\.kidea\/checkpoints\/operations\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/checkpoint\.md$/.exec(checkpointPath??'');
@@ -285,16 +285,20 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
   let pendingBytes,checkpoint,pendingOwned=false,effects=false,bytesVerified=false,barrierUsed=false;
   const now=()=>new Date().toISOString();
   const record=c=>Buffer.from('# Kidea write checkpoint — byte evidence, not approval\n\n<!-- kidea:data:start -->\n```json\n'+JSON.stringify(c,null,2)+'\n```\n<!-- kidea:data:end -->\n');
+  function destination(relative) {
+    const parent=path.posix.dirname(relative);
+    return path.join(parent==='.'?root:localEntry(root,parent).full,path.posix.basename(relative));
+  }
   function directory(relative,mustBeNew=false) {
     const entry=localEntry(root,relative,true);
     if(entry) {if(mustBeNew||!entry.stat.isDirectory())fail('DIRECTORY_ALREADY_EXISTS');return;}
-    mkdirSync(path.join(root,relative));effects=true;
+    mkdirSync(destination(relative));effects=true;
     if(!localEntry(root,relative)?.stat.isDirectory())fail('UNSAFE_PATH');
   }
   function writeBytes(relative,bytes,create=true) {
     const entry=localEntry(root,relative,true);
     if(create?entry!==null:!entry?.stat.isFile())fail('TARGET_PRECONDITION');
-    const fd=openSync(path.join(root,relative),create?'wx':'r+');
+    const fd=openSync(entry?.full??destination(relative),create?'wx':'r+');
     effects=true;
     try {
       let written=0;
@@ -348,7 +352,8 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
       verification:complete?'BOUND_GRAPH_AND_BYTES_NOT_APPROVAL':'NOT_COMPLETE'};
   }
   try {
-    if(request.protocolVersion!==2||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>authorization.assumptions?.[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
+    assertRuntime();assertLocalRoot(root);
+    if(request.protocolVersion!==2||!hasLocalAssumptions(authorization.assumptions))fail('ENVIRONMENT_NOT_CONFIRMED');
     if(authorization.allowReadLocalGit!==true&&(gitVersions.size||targets.some(t=>t.beforeVersion)))fail('GIT_READ_NOT_AUTHORIZED');
     checkInputs();
     if(localEntry(root,prefix.slice(0,-1),true))fail('OPERATION_ALREADY_EXISTS');
@@ -388,7 +393,7 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
       await barrier('CLEANUP_BEFORE_DELETE');fault('CLEANUP_DELETE_FAILURE');
       for(const c of request.cleanup.copies) {
         exact(c.path,expected.get(c.path),'COPY_BYTES_CHANGED');
-        unlinkSync(path.join(root,c.path));effects=true;deleted.set(c.path,c);
+        unlinkSync(localEntry(root,c.path).full);effects=true;deleted.set(c.path,c);
         exact(c.path,null,'CLEANUP_ABSENCE_UNVERIFIED');
         if(deleted.size===1){await barrier('CLEANUP_AFTER_FIRST_DELETE');fault('CLEANUP_AFTER_FIRST_DELETE');}
       }

@@ -28,7 +28,7 @@ const cases = [
 
 for (const entry of cases) {
   test(`scaffold ${JSON.stringify(entry.args)}`, () => {
-    assert.equal(process.versions.node.split('.')[0], '24');
+    assert.ok(Number(process.versions.node.split('.')[0]) >= 24, 'Node.js 24 or newer is required');
     const before = snapshot(fixture);
     const result = spawnSync(process.execPath, [helper, ...entry.args], { cwd: fixture, input:'', encoding: 'utf8', timeout: 10000, windowsHide:true });
     assert.ifError(result.error);

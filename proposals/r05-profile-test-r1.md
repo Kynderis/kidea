@@ -2,11 +2,13 @@
 
 Ngày 2026-09-16. **IN_REVIEW: đề xuất D1–D6/P1–P4, chưa được duyệt.** Human “Duyệt kết quả R04, mở R05” chấp nhận kết quả tại `a72e3a10775a9ca5b47bc5f1a6d2ccdc975d36ee`, chỉ mở chuẩn bị R05. Không suy ra quyền cài/build/code/deploy hoặc phiên AI mới.
 
+**Điều chỉnh nền đã được duyệt riêng sau answer f8b47b9:** [LP-01](local-portability-r1.md) cho sửa Kidea chạy local cùng workflow trên Windows/macOS Intel/Apple Silicon, Node ≥24 không khóa binary, Git theo host; backend Docker local, test nặng/performance trên cloud chỉ khi Human cấp máy/quyền. Thư mục mạng/iCloud/OneDrive/nhiều máy cùng ghi ngoài phạm vi, không làm sau. Đây là gói sửa nền hiện hành, **không phải approval toàn D1–D6/P1–P4 hoặc quyền soạn sáu hồ sơ pilot dưới đây**. Các giới hạn runtime/skill của P3 chỉ áp dụng gói R05 này, không phủ định quyền sửa đã cấp ở LP-01.
+
 ## Mục đích
 
 Kidea cần hướng dẫn người viết code tuân thủ thiết kế và biết kiểm đúng/sai. “Profile” ở đây chỉ là bộ quy tắc cho một nền tảng, không phải tài khoản hay một phần mềm phải cài. Workshop vẫn là bài mẫu để thử Kidea, không phải dự án kinh doanh mới.
 
-Căn cứ: [R05](../KIDEA_ROADMAP.md#r05), [thiết kế đã duyệt](../KIDEA_DESIGN.md), [KA-23/24/28/30](../KIDEA_ACCEPTANCE.md), [kết quả R04 và giới hạn](../tests/evidence/r04/design-r1.md). Không đổi nghiệp vụ/ngưỡng/kiến trúc R03–R04.
+Căn cứ: [R05](../KIDEA_ROADMAP.md#r05), [thiết kế đã duyệt](../KIDEA_DESIGN.md), [KA-23/24/28/30](../KIDEA_ACCEPTANCE.md), [kết quả R04 và giới hạn](../tests/evidence/r04/design-r1.md), [hợp đồng local](../KIDEA_DESIGN.md#local-portability-approved) và [Docker local/cloud](../KIDEA_DESIGN.md#docker-local-cloud). Giữ nghiệp vụ/ngưỡng/an toàn R03–R04; chỉ phương án host/build được điều chỉnh ở LP-01, không mở lại nền tảng native hoặc rule nghiệp vụ.
 
 ## Chốt một lần cho lượt soạn và kiểm hồ sơ
 
@@ -16,7 +18,7 @@ Căn cứ: [R05](../KIDEA_ROADMAP.md#r05), [thiết kế đã duyệt](../KIDEA_
 | D2 | Bộ nền cố định theo revision; project giữ bộ rule hiệu lực trong tài liệu của chính nó, ưu tiên quy ước sẵn có nhưng phải trình xung đột với tiêu chí bắt buộc. Lệnh/config chỉ tham chiếu nguồn thực thi, không chép thành kho thứ hai trong `.kidea`. | Project đã có lệnh test thì dùng lại, không tạo thêm một lệnh khác chỉ cho Kidea. Đổi phiên bản phải rà lại kết quả liên quan. |
 | D3 | C++ kiểm tài nguyên/đồng thời/transaction và lỗi; web kiểm kiểu dữ liệu, HTML/SEO công khai, state và quyền riêng tư; native kiểm vòng đời, hủy tác vụ, trạng thái mạng, version/build number. | Đăng xuất phải bỏ phản hồi cũ đang bay về; không để lịch sử người trước hiện ở tài khoản mới. C++ không mặc định tối ưu riêng CPU máy build. |
 | D4 | Mỗi ca test ghi nguồn yêu cầu, setup, dữ liệu vào, thao tác, kết quả cần kiểm, môi trường và nơi giữ bằng chứng. Tách kiểm tài liệu, mẫu nhỏ và ứng dụng thật. | Hai người tranh ghế cuối: chỉ một người thành công, số chỗ không âm. Mất phản hồi: hiện “chưa rõ”, không tự tạo đăng ký mới. Chưa có app thì ca này là NOT_RUN. |
-| D5 | Tra tài liệu chính thức để đề xuất tổ hợp phiên bản và lệnh kiểm; ghi nguồn/ngày/giới hạn tương thích, giấy phép và cảnh báo bảo mật liên quan. Chưa đoán version hoặc tuyên bố build được. | Có Node trên Windows không chứng minh backend build trên Ubuntu hay iOS build trên Mac. Chưa biết máy đích thì ghi chờ xác minh. |
+| D5 | Tra tài liệu chính thức để đề xuất tổ hợp phiên bản và lệnh kiểm; ghi nguồn/ngày/giới hạn tương thích, giấy phép và cảnh báo bảo mật liên quan. Backend dùng Docker local Ubuntu userspace; cloud chỉ sau cấp host/quyền. Node sản phẩm độc lập với minimum Node ≥24 của Kidea. | Windows/Mac có Node không chứng minh Docker backend hoặc Xcode đã build được. Local ưu tiên amd64/arm64 theo máy, release/performance đúng kiến trúc đích; chưa biết máy thì chờ xác minh. |
 | D6 | Sau khi soạn, kiểm cả bốn bộ rule và test specs trong một lượt, trình chung kết quả cùng gói môi trường/build nếu đã đủ dữ kiện. Không bỏ iOS hoặc hạ tiêu chí vì thiếu máy. | Hoàn tất hồ sơ không đồng nghĩa hoàn tất R05: mẫu build bắt buộc vẫn chờ môi trường/quyền; không đưa mọi phần thiếu sang R09 để đóng phase. |
 
 ## Quyền đề nghị cho gói này
@@ -25,6 +27,8 @@ Căn cứ: [R05](../KIDEA_ROADMAP.md#r05), [thiết kế đã duyệt](../KIDEA_
 - **P2 — Kiểm nhẹ:** dùng Node/Python đã có để kiểm cấu trúc, link, truy nguồn, ví dụ đúng/sai và hồi quy liên quan; fixture/bằng chứng mới chỉ trong vùng R05 dưới đây. Không chạy lệnh từ tài liệu bên ngoài, không tải dependency, không build hoặc chạy app. Giữ raw lỗi, không sửa test cũ để che lỗi inventory R03.
 - **P3 — Chưa tích hợp skill:** soạn bản đề xuất trong repo trước; chỉ tích hợp hướng dẫn vào skill sau duyệt đúng nội dung. Không đổi helper/schema/public actions, không khởi tạo `.kidea` cho repo này. Không mở agent mới.
 - **P4 — Không đụng môi trường:** không VM/WSL/SDK/cài đặt, đổi PATH/firewall/ACL, chạy nền, dữ liệu thật, tài khoản/secret, dịch vụ trả phí hoặc deploy. Chưa cần Human chuẩn bị máy. Khi đến build, phải có gói riêng chỉ rõ máy, quyền, dung lượng ổ D và phần buộc dùng C, download/cache, lệnh, thời hạn và cách dừng; không tự dọn ổ C.
+
+P4 theo phương án hiện hành: chỉ đề nghị Docker Desktop/cấu hình tài nguyên nếu máy chưa có và khi đến lượt build; Docker vẫn dùng lớp Linux/RAM/đĩa, không thêm Ubuntu VM tự quản lý. Cloud gộp host/SSH/Docker, image/kiến trúc, quyền/dữ liệu/giới hạn tải/chi phí/thời hạn và điều kiện dừng trong một lần chốt, không hỏi từng lệnh trong gói. Volume dữ liệu SQLite, backup/restore và observer độc lập phải được kiểm đúng nghĩa; container khác trên cùng laptop không thay nơi độc lập để chứng minh mất host. Chưa soạn/chạy Dockerfile, build hoặc SSH từ việc duyệt LP-01.
 
 ### Danh sách đích hữu hạn
 

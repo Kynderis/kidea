@@ -36,7 +36,7 @@ s.release = {...header('release'),id:'Text',revision:'Positive',productVersion:'
 s.operation = {...header('operation'),id:'Text',release:'ReleaseRef',previousAttemptId:'Text?',environment:'Text',targetId:'Text',actor:'Text',tool:'ToolIdentity?',startedAt:'Time?',observations:'OperationObservation[]'};
 
 export function validPath(value) {
-  return typeof value === 'string' && value.trim().length > 0 && !/[\\:\x00-\x1f]/.test(value) &&
+  return typeof value === 'string' && value.trim().length > 0 && !/[\\:<>"|?*\x00-\x1f]/.test(value) &&
     !value.startsWith('/') && value.split('/').every(p => p && p !== '.' && p !== '..' && !/[. ]$/.test(p) && !/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(p));
 }
 export function validate(value, type, report, field = '') {

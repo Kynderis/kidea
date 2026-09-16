@@ -7,6 +7,7 @@ import {localEntry,byteIntegrity} from './bootstrap-plan.mjs';
 import {inspectPendingWrites,pendingWritesPath} from './pending-writes.mjs';
 import {readGitVersion} from './git-versions.mjs';
 import {validate} from './schema.mjs';
+import {portablePathKey} from './runtime.mjs';
 
 const fail=code=>{throw Object.assign(new Error(code),{code});};
 const uuid=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
@@ -41,7 +42,7 @@ export function diagnosePending(root,{allowGit=false,beforeRecheck}={}) {
     const match=text.match(/<!-- kidea:data:start -->\r?\n```json\r?\n([\s\S]*?)\r?\n```\r?\n<!-- kidea:data:end -->/);
     if(!match)fail('INVALID_PREPARED_RECORD');
     const checkpoint=json(Buffer.from(match[1]));
-    if(!validate(checkpoint,'checkpoint',()=>{})||checkpoint.id!==marker.operationId||!checkpoint.targets.length||new Set(checkpoint.targets.map(t=>t.path.toLowerCase())).size!==checkpoint.targets.length)fail('INVALID_PREPARED_RECORD');
+    if(!validate(checkpoint,'checkpoint',()=>{})||checkpoint.id!==marker.operationId||!checkpoint.targets.length||new Set(checkpoint.targets.map(t=>portablePathKey(t.path))).size!==checkpoint.targets.length)fail('INVALID_PREPARED_RECORD');
     for(const [i,t]of checkpoint.targets.entries()) {
       const row={path:t.path,action:t.action,match:'UNKNOWN',matchesBefore:null,matchesPlanned:null,integrity:null,code:null};
       report.targets.push(row);

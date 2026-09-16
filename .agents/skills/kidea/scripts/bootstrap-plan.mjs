@@ -7,6 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 import { inspectBoundGraph,snapshotAnchorCount } from './status.mjs';
 import { validPath,validate } from './schema.mjs';
 import { readGitVersion } from './git-versions.mjs';
+import { assertRuntime,assertLocalRoot,hasLocalAssumptions,portablePathKey,checkedEntryName } from './runtime.mjs';
 
 export const hashBytes=b=>createHash('sha256').update(b).digest('hex');
 export const byteIntegrity=b=>({method:'SHA256',value:hashBytes(b),byteLength:b.length});
@@ -21,9 +22,9 @@ export function localEntry(root,relative) {
   if(!validPath(relative))fail('UNSAFE_PATH');
   let full=root;
   for(const [i,part]of relative.split('/').entries()) {
-    full=path.join(full,part);let stat;
+    full=path.join(full,checkedEntryName(full,part));let stat;
     try{stat=lstatSync(full);}catch(e){if(e.code==='ENOENT')return null;throw e;}
-    if(stat.isSymbolicLink()||path.resolve(realpathSync(full)).toLowerCase()!==path.resolve(full).toLowerCase())fail('UNSAFE_PATH');
+    if(stat.isSymbolicLink()||path.resolve(realpathSync(full)).normalize('NFC')!==path.resolve(full).normalize('NFC'))fail('UNSAFE_PATH');
     if(i===relative.split('/').length-1) {
       if(!stat.isDirectory()&&(!stat.isFile()||stat.nlink!==1))fail('UNSAFE_PATH');
       return {stat,full};
@@ -57,18 +58,24 @@ export function validateBootstrapGraph(request,checkpoint) {
   return graph;
 }
 export function prepareBootstrapRequest({root,authorization,context,targets,inputs=[],gitInputs=[],bootstrap,operationId}) {
-  if(process.platform!=='win32')fail('UNSUPPORTED_HOST');
+  assertRuntime();assertLocalRoot(root);
   if(typeof root!=='string'||!path.isAbsolute(root)||path.resolve(root)!==realpathSync(root))fail('UNSAFE_ROOT');
   if(!lstatSync(root).isDirectory()||lstatSync(root).isSymbolicLink())fail('UNSAFE_ROOT');
   root=realpathSync(root);
   if(!authorization||authorization.root!==root||authorization.metadataRoot!=='.kidea/checkpoints'||authorization.bootstrap!==true||authorization.allowRestoreUpdate!==false||authorization.allowRetireOwnPending!==true)fail('AUTHORIZATION_REQUIRED');
-  if(!['localNtfs','noActiveSync','singleKideaRun'].every(k=>authorization.assumptions?.[k]===true))fail('ENVIRONMENT_NOT_CONFIRMED');
+  if(!hasLocalAssumptions(authorization.assumptions))fail('ENVIRONMENT_NOT_CONFIRMED');
   if(authorization.allowReadLocalGit!==undefined&&typeof authorization.allowReadLocalGit!=='boolean')fail('AUTHORIZATION_REQUIRED');
   if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(operationId??''))fail('INVALID_OPERATION_ID');
   if(localEntry(root,'.kidea'))fail('KIDEA_ALREADY_EXISTS');
   if(!Array.isArray(targets)||targets.length<2||targets.length>256||!Array.isArray(inputs)||inputs.length>4096||!bootstrap||!Array.isArray(bootstrap.directories)||!Array.isArray(bootstrap.evidence))fail('INVALID_BOOTSTRAP');
-  const paths=new Map(),files=new Map(),directories=new Set();
-  const claim=p=>{if(!validPath(p)||paths.has(p.toLowerCase()))fail('AMBIGUOUS_PATH_ALIAS');paths.set(p.toLowerCase(),p);};
+  const paths=new Map(),prefixSpellings=new Map(),files=new Map(),directories=new Set();
+  const claim=p=>{
+    if(!validPath(p)||paths.has(portablePathKey(p)))fail('AMBIGUOUS_PATH_ALIAS');paths.set(portablePathKey(p),p);
+    let prefix='';for(const part of p.split('/')){
+      prefix=prefix?prefix+'/'+part:part;const key=portablePathKey(prefix);
+      if(prefixSpellings.has(key)&&prefixSpellings.get(key)!==prefix)fail('AMBIGUOUS_PATH_ALIAS');prefixSpellings.set(key,prefix);
+    }
+  };
   for(const t of targets) {
     claim(t.path);
     if(t.action!=='CREATE'||!Buffer.isBuffer(t.plannedBytes)||t.plannedBytes.length>16*1024*1024||t.path.startsWith('.kidea/')&&!['.kidea/INDEX.md','.kidea/work.md'].includes(t.path))fail('INVALID_TARGET');

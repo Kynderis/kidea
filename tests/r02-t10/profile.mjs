@@ -1,4 +1,6 @@
 // D3: one public status with Node's built-in CPU profiler. No runtime patch.
+// Historical Windows CPU-profile controller. Its pinned host/runtime and retained
+// evidence stay historical; active cross-platform tests use only pure exports.
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {mkdirSync,writeFileSync,readFileSync,readdirSync,lstatSync,realpathSync,existsSync} from 'node:fs';

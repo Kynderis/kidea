@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, symlinkSync, renameSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, symlinkSync, renameSync, existsSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
@@ -8,6 +8,7 @@ import { createHash } from 'node:crypto';
 import { readStatus,inspectStatusGraph,inspectBoundGraph,snapshotAnchorCount } from '../.agents/skills/kidea/scripts/status.mjs';
 import { pendingWritesPath } from '../.agents/skills/kidea/scripts/pending-writes.mjs';
 import { buildBase, buildCases, edit, paths, digest, dataAt, envelope } from './fixtures/r02-t04/catalog.mjs';
+import { directoryLinkType, fixtureGit } from './support/host.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const output=path.join(repo,'.test-output','r02-t05');mkdirSync(output,{recursive:true});
@@ -31,24 +32,34 @@ test('native resolver supports Unicode paths, spaces and normalized cwd spelling
   const {world}=buildBase(),document='docs/đường dẫn/nguồn.md';world.files[document]=world.files['docs/plan.md'];
   edit(world,paths.work,d=>{d.items[1].scopeRef.path=document;});
   const root=materialize(world,'Tiếng Việt-'),before=fingerprint(root);
-  const result=readStatus(path.join(root,'.').toLowerCase());
+  const result=readStatus(root+path.sep+'.');
   assert.equal(result.readState,'OK',JSON.stringify(result.diagnostics));assert.deepEqual(fingerprint(root),before);
 });
-test('native resolver accepts an internal junction without changing logical source paths',()=>{
+test('case-variant cwd follows the actual filesystem, never a guessed Windows spelling rule',()=>{
+  const root=materialize(buildBase().world,'Mixed-CASE-'),candidate=root.toLowerCase(),before=fingerprint(root);
+  assert.notEqual(candidate,root);
+  const original=statSync(root),variant=existsSync(candidate)?statSync(candidate):null;
+  const sameDirectory=variant!==null&&variant.dev===original.dev&&variant.ino===original.ino;
+  const result=readStatus(candidate);
+  if(sameDirectory)assert.equal(result.readState,'OK',JSON.stringify(result.diagnostics));
+  else {assert.notEqual(result.readState,'OK');assert.equal(result.data,null);}
+  assert.deepEqual(fingerprint(root),before);
+});
+test('native resolver accepts an internal directory link without changing logical source paths',()=>{
   const {world}=buildBase();edit(world,paths.work,d=>{d.items[1].scopeRef.path='linked/plan.md';});
-  const root=materialize(world);symlinkSync(path.join(root,'docs'),path.join(root,'linked'),'junction');
+  const root=materialize(world);symlinkSync(path.join(root,'docs'),path.join(root,'linked'),directoryLinkType);
   const before=fingerprint(root),result=readStatus(root);
   assert.equal(result.readState,'OK',JSON.stringify(result.diagnostics));assert.equal(result.data.items[1].scopeRef.path,'linked/plan.md');assert.deepEqual(fingerprint(root),before);
 });
-for(const outside of [false,true])test(`native resolver rechecks a retargeted junction with identical bytes: outside=${outside}`,()=>{
+for(const outside of [false,true])test(`native resolver rechecks a retargeted directory link with identical bytes: outside=${outside}`,()=>{
   const {world}=buildBase();edit(world,paths.work,d=>{d.items[1].scopeRef.path='linked/plan.md';});
   const root=materialize(world),link=path.join(root,'linked'),retained=path.join(root,'retained-link');
   const target=outside?path.join(materialize(buildBase().world),'docs'):path.join(root,'alternate');
   if(!outside){mkdirSync(target);writeFileSync(path.join(target,'plan.md'),world.files['docs/plan.md']);}
-  symlinkSync(path.join(root,'docs'),link,'junction');
+  symlinkSync(path.join(root,'docs'),link,directoryLinkType);
   const result=readStatus(root,{beforeRecheck:()=>{
     assert.equal(path.dirname(path.resolve(link)),root);assert.equal(path.dirname(path.resolve(retained)),root);
-    renameSync(link,retained);symlinkSync(target,link,'junction');
+    renameSync(link,retained);symlinkSync(target,link,directoryLinkType);
   }});
   assert.equal(result.readState,outside?'INVALID':'INCOMPLETE');assert.equal(result.data,null);
   assert.ok(result.diagnostics.some(d=>d.code===(outside?'UNSAFE_PATH':'SOURCE_CHANGED')));
@@ -150,8 +161,8 @@ test('pending path being a file is invalid and remains untouched',()=>{
   const root=materialize(buildBase().world);writeFileSync(path.join(root,pendingWritesPath),'not a directory');const before=fingerprint(root), result=readStatus(root);
   assert.equal(result.readState,'INVALID');assert.equal(result.data,null);assert.ok(result.diagnostics.some(d=>d.code==='PENDING_NOT_DIRECTORY'));assert.deepEqual(fingerprint(root),before);
 });
-test('pending registry junction is rejected rather than followed',()=>{
-  const root=materialize(buildBase().world);const target=path.join(root,'registry-target');mkdirSync(target);symlinkSync(target,path.join(root,pendingWritesPath),'junction');
+test('pending registry directory link is rejected rather than followed',()=>{
+  const root=materialize(buildBase().world);const target=path.join(root,'registry-target');mkdirSync(target);symlinkSync(target,path.join(root,pendingWritesPath),directoryLinkType);
   const result=readStatus(root);assert.equal(result.readState,'INVALID');assert.equal(result.data,null);assert.ok(result.diagnostics.some(d=>d.code==='UNSAFE_PENDING_PATH'));assert.deepEqual(readdirSync(target),[]);
 });
 test('CLI pending write is stderr exit 1 with no verified progress',()=>{
@@ -194,7 +205,7 @@ test('missing INDEX does not search ancestors, init, or write',()=>{const root=m
 test('detect mutation between read and output',()=>{const root=materialize(buildBase().world);const result=readStatus(root,{beforeRecheck:()=>writeFileSync(path.join(root,'docs/features.md'),'changed by test')});assert.equal(result.readState,'INCOMPLETE');assert.equal(result.data,null);assert.ok(result.diagnostics.some(d=>d.code==='SOURCE_CHANGED'));});
 test('Unicode and CRLF in record preserve snapshot byte identity',()=>{const {world}=buildBase();world.files[paths.index]=world.files[paths.index].replace(/\n/g,'\r\n');check(world,'OK');});
 test('invalid UTF8 does not use replacement characters',()=>{const root=materialize(buildBase().world);writeFileSync(path.join(root,paths.index),Buffer.from([0xff,0xfe]));assert.equal(readStatus(root).readState,'INVALID');});
-test('junction outside root is rejected before opening target',()=>{const {world}=buildBase();const outside=materialize(world);edit(world,paths.index,d=>{d.workRef.path='escape/.kidea/work.md';});const root=materialize(world);symlinkSync(outside,path.join(root,'escape'),'junction');const r=readStatus(root);assert.equal(r.readState,'INVALID');assert.ok(r.diagnostics.some(d=>d.code==='UNSAFE_PATH'));});
+test('directory link outside root is rejected before opening target',()=>{const {world}=buildBase();const outside=materialize(world);edit(world,paths.index,d=>{d.workRef.path='escape/.kidea/work.md';});const root=materialize(world);symlinkSync(outside,path.join(root,'escape'),directoryLinkType);const r=readStatus(root);assert.equal(r.readState,'INVALID');assert.ok(r.diagnostics.some(d=>d.code==='UNSAFE_PATH'));});
 test('CLI status output streams and exit codes',()=>{const {root}=check(buildBase().world,'OK');const helper=path.join(repo,'.agents/skills/kidea/scripts/kidea.mjs');const good=spawnSync(process.execPath,[helper,'status'],{cwd:root,encoding:'utf8'});assert.equal(good.status,0);assert.equal(good.stderr,'');assert.equal(JSON.parse(good.stdout).readState,'OK');const bad=spawnSync(process.execPath,[helper,'status'],{cwd:output,encoding:'utf8'});assert.equal(bad.status,1);assert.equal(bad.stdout,'');assert.equal(JSON.parse(bad.stderr).data,null);});
 
 test('parents, dependencies, current item and source uniqueness',()=>{
@@ -204,8 +215,8 @@ test('parents, dependencies, current item and source uniqueness',()=>{
 test('diagnostic positions point to original CRLF file and do not echo secret value',()=>{const {world}=buildBase();edit(world,paths.index,d=>{d.schemaVersion='SECRET_SENTINEL';});world.files[paths.index]=world.files[paths.index].replace(/\n/g,'\r\n');const {result}=check(world,'UNSUPPORTED');assert.ok(result.diagnostics[0].line>0);assert.ok(!JSON.stringify(result).includes('SECRET_SENTINEL'));});
 test('real local Git commit protects exact before bytes, rejects changed identity',()=>{
   const {world,refs}=buildBase();const root=materialize(world);
-  const git=args=>{const r=spawnSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
-  git(['init','--quiet']);git(['add','--','docs/notes.md']);git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','-c','core.hooksPath=NUL','commit','--quiet','-m','Synthetic before bytes']);
+  const git=args=>fixtureGit(root,args).trim();
+  git(['init','--quiet']);git(['add','--','docs/notes.md']);git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','--quiet','-m','Synthetic before bytes']);
   const commit=git(['rev-parse','HEAD']);
   edit(world,paths.checkpoint,d=>{d.targets[0].before.version={...refs.before,location:{kind:'GIT',commit,path:'docs/notes.md'}};});
   writeFileSync(path.join(root,paths.checkpoint),world.files[paths.checkpoint]);
@@ -217,8 +228,8 @@ test('review cannot use live source as its retained snapshot',()=>{const {world}
 
 test('review accepts fixed Git evidence, while bound validation requires all supplied Git bytes',()=>{
   const {world,refs}=buildBase(),root=materialize(world);
-  const git=args=>{const r=spawnSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
-  git(['init','--quiet']);git(['-c','core.autocrlf=false','add','--','docs/features.md']);git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','-c','core.hooksPath=NUL','commit','--quiet','-m','Synthetic review source']);
+  const git=args=>fixtureGit(root,args).trim();
+  git(['init','--quiet']);git(['-c','core.autocrlf=false','add','--','docs/features.md']);git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','--quiet','-m','Synthetic review source']);
   const location={kind:'GIT',commit:git(['rev-parse','HEAD']),path:'docs/features.md'};
   edit(world,paths.review,d=>{d.subjectVersions[0]={...refs.subject,location};});
   writeFileSync(path.join(root,paths.review),world.files[paths.review]);

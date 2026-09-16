@@ -1,0 +1,180 @@
+{
+  "collectedAt": "2026-09-16T00:58:39.027Z",
+  "mode": "final",
+  "collectorHash": "c8e74a315913b1d55191345a80904f65fb2274d38a8fc4525f0816f424d59e6e",
+  "runs": [
+    {
+      "name": "targeted-initial",
+      "originalDirectory": ".test-output/local-portability/targeted-069pUn",
+      "node": "v24.21.0",
+      "counts": {
+        "tests": 95,
+        "pass": 90,
+        "fail": 5,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "exitCode": 1,
+      "files": {
+        "summary.json": {
+          "sha256": "e85b58dbc465cea8fc9140da7664e7a6c8042f34957e9f514c80b6d102871ed6",
+          "bytes": 425
+        },
+        "stdout.txt": {
+          "sha256": "8b1ff1e8ecf032f6d1de5439c89031a86abfef1096507deb0b2308f9d6704937",
+          "bytes": 12859
+        },
+        "stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      },
+      "sourceBinding": "NOT_CAPTURED_IN_THIS_RUN"
+    },
+    {
+      "name": "git-helper-correction",
+      "originalDirectory": ".test-output/local-portability/git-correction-fQMO0n",
+      "node": "v24.21.0",
+      "counts": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "exitCode": 0,
+      "files": {
+        "summary.json": {
+          "sha256": "407d3cc5409a586f4e64c2c73fe054f49b04d1270e04a612c868aff2a6b48a44",
+          "bytes": 369
+        },
+        "stdout.txt": {
+          "sha256": "806359f43fe065aea90af72a24b98f16740d8d13047a05ba901b07f9703ab379",
+          "bytes": 824
+        },
+        "stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      },
+      "sourceBinding": "NOT_CAPTURED_IN_THIS_RUN"
+    },
+    {
+      "name": "interim-281",
+      "originalDirectory": ".test-output/r02-t07/regression-Urx0pn",
+      "node": "v24.21.0",
+      "counts": {
+        "tests": 281,
+        "pass": 281,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "exitCode": 0,
+      "files": {
+        "summary.json": {
+          "sha256": "74058844248e9ff2c8ec4cc024403833e0812cb6e7a07688e420fe965097fec3",
+          "bytes": 8941
+        },
+        "stdout.txt": {
+          "sha256": "1077ca26a8bd8727a71df674f2a5defdc24a74eade75aa170052ccaa9e43c714",
+          "bytes": 25398
+        },
+        "stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "before.json": {
+          "sha256": "4ed9c8554c0ce09682fc7c846e65ad4f2b20f5bc3006e2d59d5ece4a2edc9fca",
+          "bytes": 3911
+        }
+      },
+      "sourceBinding": "BEFORE_AFTER_CAPTURED",
+      "differencesFromCurrentSource": [
+        {
+          "path": "tests/local-portability/runtime.test.mjs",
+          "captured": "73f760990a3a8a76df2d207e85335d4e6f13cc2446d9d19b779ac9faf7733383",
+          "current": "9886a7d5a0108fd9dff01731638c712add90f0c46d7ed3fc38e51cfdf0c521b7"
+        },
+        {
+          "path": "tests/r02-t07/run-tests.mjs",
+          "captured": "b2be6dc7ffdca0eae1f0ae28c9baee27a345befb8feaa877d82138a51393c904",
+          "current": "54a1cb580bd8fa29c3915f73475b36a0dfe236d26dd760578edced603235693a"
+        }
+      ]
+    },
+    {
+      "name": "node24.21-final",
+      "originalDirectory": ".test-output/r02-t07/regression-yJn4gv",
+      "node": "v24.21.0",
+      "counts": {
+        "tests": 283,
+        "pass": 283,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "exitCode": 0,
+      "files": {
+        "summary.json": {
+          "sha256": "51ac8dc3488efbf814e228fb6e232bce97de37de3b10d486d2bb29164cae4b27",
+          "bytes": 9181
+        },
+        "stdout.txt": {
+          "sha256": "fe5ce0545c02e565398934fa9ab74bc50884c865a42556d1ab2fa73c8e083aa9",
+          "bytes": 25617
+        },
+        "stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "before.json": {
+          "sha256": "6066917151ae36c2beaaf4343dd48ef5f125893361b7666d65b11136aeb7c356",
+          "bytes": 3911
+        }
+      },
+      "sourceBinding": "BEFORE_AFTER_CAPTURED",
+      "differencesFromCurrentSource": []
+    },
+    {
+      "name": "node24.19-final",
+      "originalDirectory": ".test-output/r02-t07/regression-ojbyTl",
+      "node": "v24.19.0",
+      "counts": {
+        "tests": 283,
+        "pass": 283,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "exitCode": 0,
+      "files": {
+        "summary.json": {
+          "sha256": "257963c1b244d56e690080815b52b15273bc3174672bd70d20926feae3aec6b0",
+          "bytes": 9181
+        },
+        "stdout.txt": {
+          "sha256": "ebede2ac7fb6f1fe0c33fc6b545cb1cbfbcc514b30e942db1d3c2eb9a0185d5a",
+          "bytes": 25628
+        },
+        "stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "before.json": {
+          "sha256": "6066917151ae36c2beaaf4343dd48ef5f125893361b7666d65b11136aeb7c356",
+          "bytes": 3911
+        }
+      },
+      "sourceBinding": "BEFORE_AFTER_CAPTURED",
+      "differencesFromCurrentSource": []
+    }
+  ],
+  "finalSourceSetIdentical": true,
+  "finalSourceFileCount": 36
+}

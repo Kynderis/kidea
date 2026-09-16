@@ -13,9 +13,9 @@ import { buildBase, dataAt, envelope, paths, ref } from '../fixtures/r02-t04/cat
 import { prepareInternalWrite, prepareInternalCleanup, executeInternalWrite } from '../../.agents/skills/kidea/scripts/write-internal.mjs';
 import { inspectStatusGraph, readStatus } from '../../.agents/skills/kidea/scripts/status.mjs';
 import { validate } from '../../.agents/skills/kidea/scripts/schema.mjs';
+import { directoryLinkType, fixtureGit } from '../support/host.mjs';
 
-assert.equal(process.platform, 'win32', 'this is evidence for the approved Windows host');
-assert.equal(process.version, 'v24.21.0', 'run with the pinned Node runtime');
+assert.ok(Number(process.versions.node.split('.')[0]) >= 24, 'Node.js 24 or newer is required');
 const repo = fileURLToPath(new URL('../../', import.meta.url));
 const output = path.join(repo, '.test-output', 'r02-t06');
 mkdirSync(output, { recursive: true });
@@ -30,7 +30,7 @@ const integrity = b => ({ method: 'SHA256', value: sha(b), byteLength: b.length 
 function grants(root, targets) {
   return { root, metadataRoot: '.kidea/checkpoints', targets: targets.map(({ path, action }) => ({ path, action })),
     allowRestoreUpdate: true, allowRetireOwnPending: true,
-    assumptions: { localNtfs: true, noActiveSync: true, singleKideaRun: true } };
+    assumptions: { localFilesystem: true, noActiveSync: true, singleKideaRun: true } };
 }
 function fixture(label = 'case', transform = () => {}, parent = runRoot) {
   const { world, refs } = buildBase();
@@ -168,10 +168,10 @@ test('an invalid projected record relationship is rejected before any write', ()
 test('static hard-link target is rejected', () => {
   const f = fixture('hardlink'); linkSync(path.join(f.root, 'docs/notes.md'), path.join(f.root, 'docs/alias.md')); reject(f, 'UNSAFE_PATH');
 });
-test('static junction parent cannot redirect a target outside the selected root', () => {
+test('static directory link cannot redirect a target outside the selected root', () => {
   const f = fixture('junction'), outside = mkdtempSync(path.join(runRoot, 'outside-'));
   writeFileSync(path.join(outside, 'existing.md'), 'SYNTHETIC outside target', { flag: 'wx' });
-  symlinkSync(outside, path.join(f.root, 'linked'), 'junction');
+  symlinkSync(outside, path.join(f.root, 'linked'), directoryLinkType);
   targets(f, [{ path: 'linked/existing.md', action: 'UPDATE', plannedBytes: Buffer.from('not written') }]);
   reject(f, 'UNSAFE_PATH');
   assert.equal(readFileSync(path.join(outside, 'existing.md'), 'utf8'), 'SYNTHETIC outside target');
@@ -275,12 +275,8 @@ test('actual Node process interruption between two target writes leaves partial 
 
 // Synthetic Git repositories only; no global config, credentials, hooks,
 // stash, external remote, index mutation by the writer, or repository cleanup.
-const gitEnv = { ...Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.toUpperCase().startsWith('GIT_'))),
-  GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: 'NUL', GIT_TERMINAL_PROMPT: '0' };
 function git(f, ...args) {
-  const result = spawnSync('git', ['-c', 'core.hooksPath=NUL', '-c', 'user.name=Synthetic Test', '-c', 'user.email=synthetic@example.invalid', ...args],
-    { cwd: f.root, env: gitEnv, encoding: 'utf8', timeout: 15000, windowsHide: true });
-  assert.equal(result.status, 0, `${args.join(' ')}: ${result.stderr || result.error?.message}`); return result.stdout.trim();
+  return fixtureGit(f.root, ['-c', 'user.name=Synthetic Test', '-c', 'user.email=synthetic@example.invalid', ...args]).trim();
 }
 function gitFixture(label, { trackNotes = true, crlf = false, grant = true } = {}) {
   const f = fixture(label, world => { if (crlf) world.files['docs/notes.md'] = 'SYNTHETIC CRLF notes\r\n'; });

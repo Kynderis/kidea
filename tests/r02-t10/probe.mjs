@@ -1,4 +1,7 @@
 // Acceptance-r1 only. D1/D2/D3/D4 evidence is read-only; no replacement roots.
+// Historical Windows measurement controller: preserve its exact runtime/host and
+// authorization guards. Active cross-platform unit tests import only utilities;
+// these old measurements are not rerun or certified for a different host.
 import assert from 'node:assert/strict';
 import {spawn,spawnSync} from 'node:child_process';
 import {mkdirSync,writeFileSync,readFileSync,readdirSync,lstatSync,realpathSync,existsSync} from 'node:fs';

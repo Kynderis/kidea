@@ -13,6 +13,7 @@ import {isRecordedComplete} from './recorded-completion.mjs';
 import {prepareInternalContinuationWrite,executeInternalWrite} from './write-internal.mjs';
 import {validate} from './schema.mjs';
 import {preserveReview} from './review-validity.mjs';
+import {assertLocalRoot,hasLocalAssumptions} from './runtime.mjs';
 
 const fail=(code,diagnostics=[])=>{throw Object.assign(new Error(code),{code,diagnostics});};
 const closed=(v,keys)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).every(k=>keys.includes(k));
@@ -20,6 +21,7 @@ const text=v=>typeof v==='string'&&v.trim().length>0;
 const ref=p=>({path:p,anchor:null});
 const allowed=['operation','permission','expectedProjectId','expectedGit','requiredFiles','expectedBasis','checkpoint','reviewComparisons'];
 function input(root,request) {
+  assertLocalRoot(root);
   if(typeof root!=='string'||!path.isAbsolute(root)||path.resolve(realpathSync(root))!==path.resolve(root))fail('ROOT_NOT_EXPLICIT');
   root=realpathSync(root);
   if(!closed(request,allowed)||!['READ','SAVE'].includes(request.operation))fail('RESUME_INPUT_INVALID');
@@ -28,7 +30,7 @@ function input(root,request) {
   return root;
 }
 function identity() {
-  const tool=initToolIdentity();tool.version='kidea-schema2-resume-cooperative-r1';
+  const tool=initToolIdentity();tool.version='kidea-schema2-resume-local-r2';
   for(const name of ['resume.mjs','diagnose-pending.mjs','review-validity.mjs'])tool.components.push({name,integrity:byteIntegrity(readFileSync(new URL(name,import.meta.url)))});
   return tool;
 }
@@ -90,7 +92,7 @@ export function readResume(root,request,hooks={}) {return inspect(root,request,h
 export function prepareContinuation(root,request) {
   root=input(root,request);if(request.operation!=='SAVE')fail('SAVE_REQUEST_REQUIRED');
   const grant=request.permission;
-  if(grant.allowSaveContinuation!==true||!text(grant.statement)||!grant.assumptions||!['localNtfs','noActiveSync','singleKideaRun'].every(k=>grant.assumptions[k]===true))fail('SAVE_PERMISSION_REQUIRED');
+  if(grant.allowSaveContinuation!==true||!text(grant.statement)||!hasLocalAssumptions(grant.assumptions))fail('SAVE_PERMISSION_REQUIRED');
   const inspected=inspect(root,request),{result,graph,reads,workPath,work,checkout,tool}=inspected;
   if(!['CONTEXT_READY','WAITING'].includes(result.state)||!work?.currentItemId)fail('CONTINUATION_NOT_AVAILABLE');
   if(request.expectedBasis!==result.basis)fail('RESUME_BASIS_CHANGED');

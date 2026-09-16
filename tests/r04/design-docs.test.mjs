@@ -83,14 +83,37 @@ test('accepted admin is unchanged before appended architecture references',()=>{
   assert.ok(docs['design/admin.md'].replaceAll('\r\n','\n').startsWith(old+'\n\n<a id="design-relations"></a>'));
 });
 
-test('approved correction targets match reviewed AR-r2 bytes; other pilot files retain AR-r1',()=>{
+test('approved R04 bytes remain exact prefix of LP-01 amendments; all other pilot files remain exact',()=>{
   const post=JSON.parse(fs.readFileSync(path.join(repo,'tests/evidence/r04/design-r1/architecture-post.json'),'utf8'));
   const correction=JSON.parse(fs.readFileSync(path.join(repo,'tests/evidence/r04/design-r1/correction-proposal-final.json'),'utf8'));
+  const amendmentBytes=fs.readFileSync(path.join(repo,'tests/evidence/local-portability/pilot-amendment-r2.json'));
+  // Pin this accepted-direction amendment artifact, not whichever manifest happens to exist.
+  assert.equal(digest(amendmentBytes),'042a91e6838e8c007303ee30919c04ca0c9513ebc45ca10a10bb26261d906b17');
+  const amendment=JSON.parse(amendmentBytes.toString('utf8'));
+  assert.deepEqual(Object.keys(amendment.files).sort(),['docs/design/architecture.md','docs/design/operations.md','docs/design/quality.md']);
+  const preBytes=fs.readFileSync(path.join(repo,amendment.preEvidence.path));
+  assert.equal(digest(preBytes),amendment.preEvidence.sha256);
+  const pre=JSON.parse(preBytes.toString('utf8'));
+  for(const [rel,sha256] of Object.entries(amendment.sources))assert.equal(digest(fs.readFileSync(path.join(repo,rel))),sha256,rel+' historical evidence changed');
   assert.equal(Object.keys(correction.targets).length,7);
   for(const [rel,file] of Object.entries(post.files)){
     const target=correction.targets[rel];
     if(target){assert.equal(target.beforeSha256,file.sha256);assert.equal(digest(Buffer.from(target.base64,'base64')),target.sha256);}
-    assert.equal(digest(fs.readFileSync(path.join(pilot,rel))),target?.sha256??file.sha256,rel);
+    const baseline=target??file,before=Buffer.from(pre.files[rel].base64,'base64');
+    assert.equal(digest(before),baseline.sha256,rel+' preimage no longer matches R04');
+    assert.equal(pre.files[rel].base64,baseline.base64,rel+' raw R04 bytes changed');
+    const edit=amendment.files[rel],current=fs.readFileSync(path.join(pilot,rel));
+    if(edit){
+      assert.equal(edit.preservation,'EXACT_BYTE_PREFIX');
+      assert.equal(edit.before.base64,baseline.base64);
+      assert.equal(edit.before.sha256,baseline.sha256);
+      const append=Buffer.from(edit.append.base64,'base64'),after=Buffer.from(edit.after.base64,'base64');
+      assert.equal(digest(append),edit.append.sha256);
+      assert.equal(digest(after),edit.after.sha256);
+      assert.deepEqual(after,Buffer.concat([before,append]),rel+' amendment changed original bytes');
+      assert.deepEqual(current,after,rel+' current bytes differ from exact LP-01 amendment');
+    }else assert.deepEqual(current,before,rel+' outside amendment changed');
+    assert.equal(digest(current),amendment.allAfterHashes[rel],rel);
   }
 });
 

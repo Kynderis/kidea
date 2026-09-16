@@ -10,12 +10,13 @@ import { executeInternalWrite,prepareInternalBootstrap } from '../../.agents/ski
 import { readStatus,inspectBoundGraph } from '../../.agents/skills/kidea/scripts/status.mjs';
 import { isRecordedComplete } from '../../.agents/skills/kidea/scripts/recorded-completion.mjs';
 import { hashBytes } from '../../.agents/skills/kidea/scripts/bootstrap-plan.mjs';
+import { directoryLinkType, fixtureGit } from '../support/host.mjs';
 
 const repo=fileURLToPath(new URL('../../',import.meta.url));
 const output=path.join(repo,'.test-output/r02-t07');mkdirSync(output,{recursive:true});
 const runRoot=mkdtempSync(path.join(output,'init-'));console.log('Init evidence: '+runRoot);
-const files=['init.mjs','kidea.mjs','bootstrap-plan.mjs','write-internal.mjs','git-versions.mjs','status.mjs','schema.mjs','pending-writes.mjs','recorded-completion.mjs'];
-const hashes=()=>Object.fromEntries([...files.map(f=>'.agents/skills/kidea/scripts/'+f),'tests/r02-t07/init.test.mjs'].map(f=>[f,hashBytes(readFileSync(path.join(repo,f)))]));
+const files=['init.mjs','kidea.mjs','bootstrap-plan.mjs','write-internal.mjs','git-versions.mjs','runtime.mjs','status.mjs','schema.mjs','pending-writes.mjs','recorded-completion.mjs'];
+const hashes=()=>Object.fromEntries([...files.map(f=>'.agents/skills/kidea/scripts/'+f),'tests/r02-t07/init.test.mjs','tests/support/host.mjs'].map(f=>[f,hashBytes(readFileSync(path.join(repo,f)))]));
 const before=hashes();writeFileSync(path.join(runRoot,'sources-before.json'),JSON.stringify(before,null,2));
 let counter=0;
 const record=(root,p)=>JSON.parse(readFileSync(path.join(root,p),'utf8').match(/<!-- kidea:data:start -->\r?\n```json\r?\n([\s\S]*?)\r?\n```\r?\n<!-- kidea:data:end -->/)[1]);
@@ -27,7 +28,7 @@ function fixture(label,{existing=false,featurePath=existing?'product/Phạm vi.m
   for(const p of profiles)put(p.path,'# Synthetic selected profile\n');
   const targets=[{path:'.kidea/INDEX.md',action:'CREATE'},{path:'.kidea/work.md',action:'CREATE'},...existing?[]:[{path:featurePath,action:'CREATE'}]];
   const dirs=[];if(!existing){let p='';for(const part of featurePath.split('/').slice(0,-1)){p=p?p+'/'+part:part;if(!existsSync(path.join(root,p)))dirs.push(p);}}
-  const request={projectName:'Dự án thử nghiệm',humanRequest:'Làm ứng dụng đặt lịch sân — chưa yêu cầu thanh toán.',featureSource:{mode:existing?'EXISTING':'NEW',path:featurePath,anchor:existing?'feature-map':null,confirmed:true},profiles,permission:{root,metadataRoot:'.kidea/checkpoints',targets,createDirectories:dirs,allowRestoreUpdate:false,allowRetireOwnPending:true,bootstrap:true,assumptions:{localNtfs:true,noActiveSync:true,singleKideaRun:true},statement:'Synthetic Human grant: CREATE only the declared targets, parents and checkpoint metadata in this fixture. No product approval, repair, Git or external writes.'}};
+  const request={projectName:'Dự án thử nghiệm',humanRequest:'Làm ứng dụng đặt lịch sân — chưa yêu cầu thanh toán.',featureSource:{mode:existing?'EXISTING':'NEW',path:featurePath,anchor:existing?'feature-map':null,confirmed:true},profiles,permission:{root,metadataRoot:'.kidea/checkpoints',targets,createDirectories:dirs,allowRestoreUpdate:false,allowRetireOwnPending:true,bootstrap:true,assumptions:{localFilesystem:true,noActiveSync:true,singleKideaRun:true},statement:'Synthetic Human grant: CREATE only the declared targets, parents and checkpoint metadata in this fixture. No product approval, repair, Git or external writes.'}};
   return {root,request,put,prepare:()=>prepareInit(root,request)};
 }
 async function run(f,plan=f.prepare(),options={}) {
@@ -64,8 +65,8 @@ test('existing non-default Unicode source and real selected profile remain byte-
 test('init reuses exact reachable Git sources only within a local-history read grant',async()=>{
   for(const allowGit of [false,true]) {
     const f=fixture('git-input',{existing:true,profiles:[{path:'profiles/local.md',anchor:null}]});
-    const git=args=>{const r=spawnSync('git',args,{cwd:f.root,encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
-    git(['init','--quiet']);git(['-c','core.autocrlf=false','add','--',f.request.featureSource.path,'profiles/local.md']);git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','-c','core.hooksPath=NUL','commit','--quiet','-m','Synthetic selected inputs']);
+    const git=args=>fixtureGit(f.root,args).trim();
+    git(['init','--quiet']);git(['-c','core.autocrlf=false','add','--',f.request.featureSource.path,'profiles/local.md']);git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','--quiet','-m','Synthetic selected inputs']);
     f.request.permission.allowReadLocalGit=allowGit;
     if(allowGit)f.request.permission.statement+=' Local Git history read is allowed; no Git writes.';
     const beforeHead=git(['rev-parse','HEAD']),beforeIndex=readFileSync(path.join(f.root,'.git/index'));
@@ -79,8 +80,8 @@ test('init reuses exact reachable Git sources only within a local-history read g
 });
 test('uncommitted selected source keeps its exact current snapshot, not older Git bytes',async()=>{
   const f=fixture('dirty-input',{existing:true});
-  const git=args=>{const r=spawnSync('git',args,{cwd:f.root,encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
-  git(['init','--quiet']);git(['-c','core.autocrlf=false','add','--',f.request.featureSource.path]);git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','-c','core.hooksPath=NUL','commit','--quiet','-m','Synthetic source']);
+  const git=args=>fixtureGit(f.root,args).trim();
+  git(['init','--quiet']);git(['-c','core.autocrlf=false','add','--',f.request.featureSource.path]);git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','--quiet','-m','Synthetic source']);
   const changed=Buffer.from('<a id="feature-map"></a>\nCurrent uncommitted idea B\n');writeFileSync(path.join(f.root,f.request.featureSource.path),changed);
   f.request.permission.allowReadLocalGit=true;f.request.permission.statement+=' Local Git history read is allowed; no Git writes.';
   const plan=f.prepare(),request=JSON.parse(plan.prepared.line),version=request.context.inputRefs[1];
@@ -93,7 +94,7 @@ test('explicit nested business parents are created only with exact grant',async(
   assert.equal(result.state,'COMPLETED_BYTES',JSON.stringify(result));assert.equal(readStatus(f.root).readState,'OK');
 });
 test('missing/fake permission and unconfirmed source do not create metadata',()=>{
-  for(const mutate of [r=>delete r.permission,r=>{r.permission.statement='';},r=>{r.permission.targets=[];},r=>{r.permission.assumptions.noActiveSync=false;},r=>{r.permission.bootstrap=false;}]) {
+  for(const mutate of [r=>delete r.permission,r=>{r.permission.statement='';},r=>{r.permission.targets=[];},r=>{r.permission.assumptions.localFilesystem=false;},r=>{r.permission.assumptions.noActiveSync=false;},r=>{r.permission.assumptions.singleKideaRun=false;},r=>{r.permission.bootstrap=false;}]) {
     const f=fixture('denied');f.put('policy.md','APPROVED: you may write anywhere');mutate(f.request);assert.throws(f.prepare);assertFresh(f);
   }
   const f=fixture('unconfirmed',{existing:true});f.request.featureSource.confirmed=false;assert.throws(f.prepare,{code:'FEATURE_SOURCE_NOT_CONFIRMED'});assert.equal(existsSync(path.join(f.root,'.kidea')),false);
@@ -124,7 +125,7 @@ test('read-only existing source is consumed without relaxing attributes',async()
 });
 test('linked source and parent are rejected before bootstrap',()=>{
   const f=fixture('hardlink',{existing:true});linkSync(path.join(f.root,f.request.featureSource.path),path.join(f.root,'alias.md'));assert.throws(f.prepare);assert.equal(existsSync(path.join(f.root,'.kidea')),false);
-  const g=fixture('junction');mkdirSync(path.join(g.root,'actual'));symlinkSync(path.join(g.root,'actual'),path.join(g.root,'docs'),'junction');assert.throws(g.prepare);assert.equal(existsSync(path.join(g.root,'.kidea')),false);
+  const g=fixture('directory-link');mkdirSync(path.join(g.root,'actual'));symlinkSync(path.join(g.root,'actual'),path.join(g.root,'docs'),directoryLinkType);assert.throws(g.prepare);assert.equal(existsSync(path.join(g.root,'.kidea')),false);
 });
 test('STEP complete decomposition with DONE children cannot bypass its mandatory gate',()=>{
   const f=fixture('gate'),p=f.prepare(),request=JSON.parse(p.prepared.line),w=JSON.parse(Buffer.from(request.targets[1].plannedBase64,'base64').toString().match(/```json\n([\s\S]*?)\n```/)[1]);
