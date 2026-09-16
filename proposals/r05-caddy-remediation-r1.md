@@ -1,6 +1,6 @@
 # R05 — Đề xuất thay dependency Caddy r1
 
-Ngày 2026-09-16. **PROPOSED, chờ duyệt; chưa build ứng viên.**
+Ngày 2026-09-16. **APPROVED để thực thi** qua Human “ok bạn làm đi” gắn với yêu cầu thay Caddy sau `57319d7`. [Thực thi r2](../tests/evidence/r05/backend-execution-r2.md): resolve/checksum đạt, build FAIL do CEL API đổi. [Bản vá source hai vị trí](r05-caddy-cel-compat-r1.md) chưa áp dụng, chờ duyệt theo điều kiện dừng bên dưới. Nội dung đề xuất gốc được giữ để đối chiếu.
 
 [E2 đã được duyệt](r05-backend-build-r1.md) đạt toolchain và 8 ca C++ dev. Image Caddy thực chứa Go 1.26.3; GO-2026-6090 ảnh hưởng TLS dự kiến. Giới hạn không forward_auth không loại bỏ lỗi này. [Bằng chứng](../tests/evidence/r05/backend-execution-r1.md).
 

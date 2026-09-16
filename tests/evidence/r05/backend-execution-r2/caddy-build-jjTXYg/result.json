@@ -1,0 +1,32 @@
+{
+  "stage": "caddy-build",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r2-build",
+    "--label",
+    "kidea.run=E2-BW-r2",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=volume,src=kidea-r05-e2-r2-go,dst=/work",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r2,dst=/out",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "-c",
+    "cd /work/source && export GOTOOLCHAIN=local GOCACHE=/work/cache GOMODCACHE=/work/modcache GOPROXY=off GOMAXPROCS=2 && /work/sdk/go/bin/go build -p 2 -trimpath -o /work/caddy ./cmd/caddy && /work/caddy build-info > /out/build-info.txt && sha256sum /work/caddy > /out/binary.sha256"
+  ],
+  "at": "2026-09-16T13:24:47.304Z",
+  "durationMs": 111192,
+  "code": 1,
+  "signal": null,
+  "timedOut": false
+}

@@ -1,0 +1,32 @@
+{
+  "stage": "cpp-asan-ubsan",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r2-asan",
+    "--label",
+    "kidea.run=E2-BW-r2",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+    "--mount",
+    "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "/src/scripts/cpp-preset.sh",
+    "asan-ubsan"
+  ],
+  "at": "2026-09-16T13:28:02.415Z",
+  "durationMs": 273886,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

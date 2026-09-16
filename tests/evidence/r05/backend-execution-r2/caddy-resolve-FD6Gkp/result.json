@@ -1,0 +1,31 @@
+{
+  "stage": "caddy-resolve",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r2-resolve",
+    "--label",
+    "kidea.run=E2-BW-r2",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/caddy-r2,dst=/candidate,readonly",
+    "--mount",
+    "type=volume,src=kidea-r05-e2-r2-go,dst=/work",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r2,dst=/out",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "/candidate/resolve.sh"
+  ],
+  "at": "2026-09-16T13:21:18.905Z",
+  "durationMs": 25293,
+  "code": 1,
+  "signal": null,
+  "timedOut": false
+}

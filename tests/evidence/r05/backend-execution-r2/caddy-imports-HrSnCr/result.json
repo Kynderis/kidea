@@ -1,0 +1,31 @@
+{
+  "stage": "caddy-imports",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--rm",
+    "--label",
+    "kidea.run=E2-BW-r2",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=volume,src=kidea-r05-e2-r2-go,dst=/work",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r2,dst=/out",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "-c",
+    "cd /work/source && GOTOOLCHAIN=local GOCACHE=/work/cache GOMODCACHE=/work/modcache GOPROXY=off /work/sdk/go/bin/go list -deps ./cmd/caddy > /out/imports.txt"
+  ],
+  "at": "2026-09-16T13:24:01.472Z",
+  "durationMs": 681,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

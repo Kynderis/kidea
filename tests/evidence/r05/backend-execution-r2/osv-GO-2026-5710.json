@@ -1,0 +1,72 @@
+{
+  "id": "GO-2026-5710",
+  "summary": "Prometheus Azure AD remote write OAuth client secret exposed via config API in github.com/prometheus/prometheus",
+  "details": "Prometheus Azure AD remote write OAuth client secret exposed via config API in github.com/prometheus/prometheus",
+  "aliases": [
+    "BIT-prometheus-2026-42151",
+    "CVE-2026-42151",
+    "GHSA-wg65-39gg-5wfj"
+  ],
+  "modified": "2026-07-15T16:27:42.071811707Z",
+  "published": "2026-06-25T22:34:38Z",
+  "related": [
+    "CGA-g3p6-r972-ghhg"
+  ],
+  "database_specific": {
+    "url": "https://pkg.go.dev/vuln/GO-2026-5710",
+    "review_status": "UNREVIEWED"
+  },
+  "references": [
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/prometheus/prometheus/security/advisories/GHSA-wg65-39gg-5wfj"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42151"
+    },
+    {
+      "type": "FIX",
+      "url": "https://github.com/prometheus/prometheus/pull/18587"
+    },
+    {
+      "type": "FIX",
+      "url": "https://github.com/prometheus/prometheus/pull/18590"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/prometheus/prometheus/releases/tag/v3.11.3"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/prometheus/prometheus/releases/tag/v3.5.3"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "name": "github.com/prometheus/prometheus",
+        "ecosystem": "Go",
+        "purl": "pkg:golang/github.com/prometheus/prometheus"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0.45.2"
+            },
+            {
+              "fixed": "0.311.3"
+            }
+          ]
+        }
+      ],
+      "ecosystem_specific": {},
+      "database_specific": {
+        "source": "https://vuln.go.dev/ID/GO-2026-5710.json"
+      }
+    }
+  ],
+  "schema_version": "1.7.5"
+}

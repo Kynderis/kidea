@@ -1,0 +1,43 @@
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/dev
+[1/2] Building CXX object CMakeFiles/domain_tests.dir/cpp/tests.cpp.o
+[2/2] Linking CXX executable domain_tests
+Test project /build/dev
+    Start 1: grammar
+1/9 Test #1: grammar ..........................   Passed    0.00 sec
+    Start 2: unicode
+2/9 Test #2: unicode ..........................   Passed    0.00 sec
+    Start 3: atomicity
+3/9 Test #3: atomicity ........................   Passed    0.08 sec
+    Start 4: rollback
+4/9 Test #4: rollback .........................   Passed    0.01 sec
+    Start 5: sql
+5/9 Test #5: sql ..............................   Passed    0.01 sec
+    Start 6: concurrency
+6/9 Test #6: concurrency ......................   Passed    0.02 sec
+    Start 7: crash
+7/9 Test #7: crash ............................   Passed    0.07 sec
+    Start 8: lifetime
+8/9 Test #8: lifetime .........................   Passed    0.00 sec
+    Start 9: bounded_queue
+9/9 Test #9: bounded_queue ....................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 9
+
+Total Test time (real) =   0.21 sec

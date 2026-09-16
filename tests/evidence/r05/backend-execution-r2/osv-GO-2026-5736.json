@@ -1,0 +1,80 @@
+{
+  "id": "GO-2026-5736",
+  "summary": "Etcd RBAC bypass via PrevKv/lease in nested transactions in go.etcd.io/etcd/v3 in go.etcd.io/etcd/server",
+  "details": "Etcd RBAC bypass via PrevKv/lease in nested transactions in go.etcd.io/etcd/v3 in go.etcd.io/etcd/server",
+  "aliases": [
+    "BIT-etcd-2026-44283",
+    "CVE-2026-44283",
+    "GHSA-x35m-3gp4-4fh5"
+  ],
+  "modified": "2026-07-25T15:44:46.961229468Z",
+  "published": "2026-07-24T18:35:55Z",
+  "related": [
+    "CGA-wjgx-pjrx-8cjv"
+  ],
+  "database_specific": {
+    "review_status": "REVIEWED",
+    "url": "https://pkg.go.dev/vuln/GO-2026-5736"
+  },
+  "references": [
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/etcd-io/etcd/security/advisories/GHSA-x35m-3gp4-4fh5"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "name": "go.etcd.io/etcd/server/v3",
+        "ecosystem": "Go",
+        "purl": "pkg:golang/go.etcd.io/etcd/server/v3"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "3.5.0"
+            },
+            {
+              "fixed": "3.5.30"
+            },
+            {
+              "introduced": "3.6.0"
+            },
+            {
+              "fixed": "3.6.11"
+            }
+          ]
+        }
+      ],
+      "ecosystem_specific": {
+        "imports": [
+          {
+            "path": "go.etcd.io/etcd/server/v3/etcdserver",
+            "symbols": [
+              "EtcdServer.Txn"
+            ]
+          }
+        ],
+        "custom_ranges": [
+          {
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "3.4.44"
+              }
+            ],
+            "type": "ECOSYSTEM"
+          }
+        ]
+      },
+      "database_specific": {
+        "source": "https://vuln.go.dev/ID/GO-2026-5736.json"
+      }
+    }
+  ],
+  "schema_version": "1.7.5"
+}

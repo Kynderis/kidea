@@ -1,0 +1,214 @@
+{
+  "at": "2026-09-16T13:24:30.569Z",
+  "method": "go list -deps ./cmd/caddy, excluding test-only imports. Package absence is not a general vulnerability-free claim.",
+  "records": [
+    {
+      "id": "GHSA-29wx-vh33-7x7r",
+      "summary": "Bad documentation of error handling in ParseWithClaims can lead to potentially dangerous situations",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-6vch-q96h-7gc3",
+      "summary": "etcd: `tlsListener.acceptLoop` spawns unbounded handshake goroutines with no deadline",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-8rm2-7qqf-34qm",
+      "summary": "Prometheus: Remote read endpoint allows denial of service via crafted snappy payload",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-fw8g-cg8f-9j28",
+      "summary": "Prometheus vulnerable to stored XSS via crafted histogram bucket label values in the old web UI heatmap display",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-mh55-gqvf-xfwm",
+      "summary": "Denial of service via malicious preflight requests in github.com/rs/cors",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-mh63-6h87-95cp",
+      "summary": "jwt-go allows excessive memory allocation during header parsing",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-q8m4-xhhv-38mg",
+      "summary": "etcd: Authorization bypasses in multiple APIs",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-rfx7-8w68-q57q",
+      "summary": "etcd: Nested etcd transactions bypass RBAC authorization checks",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-vffh-x6r8-xx99",
+      "summary": "Prometheus has Stored XSS via metric names and label values in Prometheus web UI tooltips and metrics explorer",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-w67g-5rqw-f597",
+      "summary": "Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-wg65-39gg-5wfj",
+      "summary": "Prometheus Azure AD remote write OAuth client secret exposed via config API",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-x35m-3gp4-4fh5",
+      "summary": "etcd RBAC bypass allows unauthorized data access via PrevKv/lease attachment in nested transaction Put requests",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GHSA-xg4h-6gfc-h4m8",
+      "summary": "etcd: Watch API authorization bypass via open-ended range requests",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2022-0635",
+      "summary": "In-band key negotiation issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2022-0646",
+      "summary": "CBC padding oracle issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2024-2528",
+      "summary": "Etcd Gateway TLS endpoint validation only confirms TCP reachability in go.etcd.io/etcd",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2024-2529",
+      "summary": "Etcd embed auto compaction retention negative value causing a compaction loop or a crash in go.etcd.io/etcd",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2024-2530",
+      "summary": "Etcd auth Inaccurate logging of authentication attempts for users with CN-based auth only in go.etcd.io/etcd",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2024-2883",
+      "summary": "Denial of service via malicious preflight requests in github.com/rs/cors",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2024-3250",
+      "summary": "Improper error handling in ParseWithClaims and bad documentation may cause dangerous situations in github.com/golang-jwt/jwt",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2025-3553",
+      "summary": "Excessive memory allocation during header parsing in github.com/golang-jwt/jwt",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-4806",
+      "summary": "Authorization bypasses in multiple APIs in go.etcd.io/etcd",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-4808",
+      "summary": "Nested etcd transactions bypass RBAC authorization checks in go.etcd.io/etcd",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-5264",
+      "summary": "Prometheus: Remote read endpoint allows denial of service via crafted snappy payload in github.com/prometheus/prometheus",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-5381",
+      "summary": "Prometheus vulnerable to stored XSS via crafted histogram bucket label values in the old web UI heatmap display in github.com/prometheus/prometheus",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-5662",
+      "summary": "Prometheus has Stored XSS via metric names and label values in Prometheus web UI in github.com/prometheus/prometheus",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-5710",
+      "summary": "Prometheus Azure AD remote write OAuth client secret exposed via config API in github.com/prometheus/prometheus",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-5736",
+      "summary": "Etcd RBAC bypass via PrevKv/lease in nested transactions in go.etcd.io/etcd/v3 in go.etcd.io/etcd/server",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-5932",
+      "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-6107",
+      "summary": "Unbounded TLS handshake goroutines in go.etcd.io/etcd/client/pkg/v3",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-6114",
+      "summary": "Watch API authorization bypass in go.etcd.io/etcd/server/v3",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-6179",
+      "summary": "Fix transparency log tile verification bypass in golang.org/x/mod/sumdb/tlog",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-6180",
+      "summary": "Ignore unrelated, unauthenticated hashes in Lookup in golang.org/x/mod/sumdb",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    },
+    {
+      "id": "GO-2026-6278",
+      "summary": "Gorilla WebSocket Uses Cryptographically Weak PRNG for WebSocket Mask Key in github.com/gorilla/websocket",
+      "matchedImports": [],
+      "decision": "AFFECTED_PACKAGE_NOT_IMPORTED_IN_CADDY_COMMAND"
+    }
+  ],
+  "mainModule": {
+    "version": "2.11.4",
+    "restriction": "Existing forward_auth advisory remains; forbid forward_auth and check adapted config before HTTPS."
+  }
+}
