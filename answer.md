@@ -1,78 +1,115 @@
-**Có thể đưa Kidea sang Mac, nhưng tôi không khuyên chuyển toàn bộ sang chiếc MacBook Intel 2019 làm máy duy nhất.** Với thiết bị bạn đang có, tôi nghiêng về **giữ Windows làm máy điều phối, dùng Mac cho build/test iOS**. Nếu sau này muốn gom công việc về một Mac, Apple Silicon phù hợp hơn.
+**Bạn đúng ở phần cốt lõi: Kidea nên là công cụ đọc/ghi và điều phối nhẹ, chạy gần như giống nhau trên Windows, Mac Intel và Apple Silicon. Không có lý do nghiệp vụ để buộc nó chỉ chạy Windows hoặc đúng một bản Node.**
 
-Đây không phải vì Kidea cần Windows về bản chất, mà vì **giới hạn của chiếc Mac Intel và phần triển khai Kidea hiện tại**.
+Sau khi đọc lại mã, tôi thấy cần sửa cách phân biệt trong câu trả lời trước: **“mới kiểm chứng trên Windows” không đồng nghĩa “về kỹ thuật phải phụ thuộc Windows”.** Những hạn chế của Xcode/Mac Intel cũng không phải lý do để Kidea phụ thuộc Windows.
 
-## 1. Mac làm được nhiều việc, nhưng không thay mọi môi trường
+## 1. Vì sao bản đầu lại bị khóa Windows?
 
-| Công việc | MacBook Intel 2019 |
-|---|---|
-| Đọc/ghi hồ sơ, Git, soạn code | Có thể đảm nhiệm; riêng helper Kidea cần chuyển đổi và kiểm lại |
-| Phát triển web | Khả thi; bản chạy Ubuntu vẫn phải kiểm trên Ubuntu |
-| Android | Hiện còn công cụ cho Intel, nhưng hỗ trợ đang thu hẹp |
-| iOS | Có thể tận dụng dòng Xcode 26 phù hợp; không chạy Xcode 27 |
-| Backend C++ đích Ubuntu | Vẫn cần môi trường Ubuntu; build trên macOS không thay bằng chứng Linux |
-| Xác nhận Kidea hỗ trợ Windows | Vẫn cần kiểm trên Windows nếu giữ phạm vi hỗ trợ này |
+Bản thử đầu được giới hạn vào máy Windows/NTFS và bộ công cụ đã xác định để kiểm chứng trên một môi trường cụ thể. Nhưng giới hạn đó hiện được đưa thẳng vào code:
 
-**Đổi máy điều phối không có nghĩa mọi thứ đều phải chạy trên hệ điều hành của máy đó.** Ví dụ: bạn ngồi trên Mac, nhưng backend vẫn được build/test ở Ubuntu; bạn ngồi trên Windows, nhưng iOS được build/test ở Mac.
+- Chặn ngoài Windows và yêu cầu khai báo NTFS.
+- Chỉ nhận Node **24.21.0**, thậm chí so mã SHA của chính file Node.
+- Cố định đường dẫn Git vào `C:/Program Files/Git/cmd/git.exe`.
 
-## 2. Điểm đáng ngại nhất: giới hạn hỗ trợ Intel đã rất gần
+Có thể thấy trực tiếp tại [init.mjs](D:/Code/kynderis/kidea/.agents/skills/kidea/scripts/init.mjs:33), [writer](D:/Code/kynderis/kidea/.agents/skills/kidea/scripts/write-internal.mjs:113) và [Git helper](D:/Code/kynderis/kidea/.agents/skills/kidea/scripts/git-versions.mjs:9).
 
-Hồ sơ hiện tại từng ghi máy bạn là **MacBook Pro 16 inch 2019, RAM 16 GB, macOS Sonoma, khoảng 512 GB trống**. Tôi chưa kiểm lại máy nên coi đây là thông tin cũ cần xác nhận, không phải cấu hình hiện tại đã đo.
+**Các khóa này không chứng minh Kidea cần đặc tính riêng của Windows.** Đường ghi chính đang dùng những API chuẩn như mở file, ghi, flush và đọc lại. Package hiện chỉ khai báo thêm `jsonc-parser`; tôi chưa thấy ở phần lõi đã kiểm một dependency native buộc phải giữ Windows.
 
-- **Bản 16 inch 2019 được Apple hỗ trợ macOS Tahoe.** Không thể suy điều này cho mọi MacBook Pro đời 2019. [Danh sách Apple](https://support.apple.com/en-us/122867)
-- Tổ hợp đang dự kiến trong Kidea là **Xcode 26.6**, yêu cầu **macOS Tahoe 26.2–26.x**. Nếu máy vẫn ở Sonoma thì cần đánh giá nâng hệ điều hành trước. [Yêu cầu Xcode](https://developer.apple.com/xcode/system-requirements)
-- **Xcode 27 chỉ cài và chạy trên Apple Silicon**, không phải Intel. Nâng macOS trên máy Intel không giải quyết được giới hạn này. [Release notes Apple](https://developer.apple.com/documentation/xcode-release-notes/xcode-27-release-notes)
-- Apple đã công bố **từ tháng 4/2027, ứng dụng iOS tải lên App Store Connect phải build bằng SDK iOS 27 trở lên**. Như vậy, máy Intel không thể tự đảm nhiệm chặng build để phát hành theo yêu cầu đó; cần một máy/dịch vụ build khác. Điều này không có nghĩa app cũ lập tức ngừng chạy. [Thông báo Apple ngày 9/9/2026](https://developer.apple.com/news/?id=k1mtkt1k)
+Khóa môi trường giúp giải thích kết quả bản thử, nhưng **giữ nguyên nó thành yêu cầu sử dụng lâu dài là quá chặt**.
 
-**Kết luận:** máy này vẫn đáng tận dụng cho pilot với tổ hợp tương thích, nhưng không nên đặt toàn bộ quy trình iOS lâu dài lên nó.
+### Những khác biệt hệ điều hành thực sự cần xử lý
 
-## 3. Có thuận tiện hơn Windows không?
+Không nhiều nhóm, nhưng có vài nhóm ảnh hưởng tính đúng:
 
-**Có, ở một số việc:** dùng Xcode trực tiếp, kiểm Safari trên Mac, nối iPhone, giảm chuyển qua lại khi tập trung làm iOS.
+| Khác biệt | Ví dụ thực tế | Cách xử lý vừa đủ |
+|---|---|---|
+| Đường dẫn, chữ hoa/thường, tên có dấu | `Rules.md` và `rules.md` có thể là một hoặc hai file tùy hệ thống file | Dùng API đường dẫn; giữ đúng tên; phát hiện tên gây nhập nhằng |
+| Quyền và liên kết file | Một đường dẫn trong project có thể trỏ ra ngoài | Kiểm quyền/đích thực; không vượt phạm vi được cấp |
+| File đang được dùng, ghi bị ngắt, hết đĩa | Đã ghi một phần nhưng chưa hoàn tất | Giữ bằng chứng việc dở, báo chưa hoàn tất; không tự nhận thành công |
+| Lệnh ngoài và xuống dòng | Git nằm chỗ khác; checkout đổi CRLF/LF làm hash thay đổi | Tìm công cụ đúng môi trường; quy ước file rõ; không làm mất hiệu lực hồ sơ âm thầm |
 
-Nhưng có ba điểm đánh đổi:
+Node đã che nhiều khác biệt, nhưng không làm mọi hệ thống file có cùng hành vi. Chính tài liệu Node cũng lưu ý khác biệt về hoa/thường, Unicode và quyền. [Hướng dẫn Node](https://nodejs.org/learn/manipulating-files/working-with-different-filesystems)
 
-- **RAM:** nếu đúng 16 GB, nên chạy các việc nặng lần lượt. Riêng Android Studio kèm emulator đã có mức tối thiểu 16 GB và khuyến nghị 32 GB; mở thêm Xcode, giả lập iOS và Linux cùng lúc là phương án tôi không khuyên. Đây là đánh giá tài nguyên, chưa phải benchmark máy bạn. Google cũng ghi rõ đang thu hẹp hỗ trợ Mac Intel. [Yêu cầu Android Studio](https://developer.android.com/studio/install#mac)
-- **Dung lượng:** phần nặng chủ yếu là SDK, giả lập, cache và môi trường Linux — không phải hồ sơ Kidea. Chuyển sang Mac chỉ chuyển nơi tiêu thụ dung lượng; không tự giải phóng ổ C. Ta có thể tránh cài bộ iOS lên Windows mà không cần chuyển toàn bộ Kidea.
-- **Ứng dụng AI:** không nên mặc định giao diện Codex hiện tại sẽ dùng được y hệt trên Mac Intel. Trang chính thức hiện dẫn bản tải Mac **Apple Silicon**. Codex CLI có hướng cài macOS, nhưng khả năng chạy đúng bản trên Intel và các tính năng cần dùng phải kiểm riêng; CLI không đồng nghĩa trải nghiệm desktop. [Desktop](https://learn.chatgpt.com/docs/app), [CLI](https://learn.chatgpt.com/docs/codex/cli)
+**Giải pháp là một bộ code chung và các kiểm tra tập trung ở những điểm trên**, không phải ba phiên bản Kidea hay ba hệ thống lưu file riêng. Trước mắt hỗ trợ thư mục local; không cần giải luôn bài toán nhiều máy cùng ghi qua ổ mạng/iCloud/OneDrive.
 
-## 4. Chuyển Kidea có phải làm lại từ đầu không?
+Về thư viện, nhận định của bạn đúng với thư viện JavaScript thuần. Ngoại lệ là thư viện kèm mã native hoặc chương trình ngoài: chúng cần bản đúng OS/CPU. Ta chỉ xử lý ngoại lệ khi thực sự dùng đến, không thiết kế trước cả một cơ chế phức tạp.
 
-**Không. Phương pháp và hồ sơ R03–R04 phần lớn giữ được. Nhưng cũng không chỉ là copy thư mục.**
+## 2. Node.js: nên bỏ khóa chính xác một bản
 
-Tôi đã kiểm mã hiện tại:
+**Tôi đồng ý dùng “Node.js 24 trở lên” làm yêu cầu tối thiểu dự kiến.** Không thấy căn cứ ở đường đọc/ghi hiện tại để bắt buộc đúng 24.21.0.
 
-- Khởi tạo Kidea kiểm đúng Windows và dấu nhận diện bộ Node đã duyệt: [init.mjs](D:/Code/kynderis/kidea/.agents/skills/kidea/scripts/init.mjs:33).
-- Phần ghi hồ sơ chặn ngoài Windows và yêu cầu môi trường NTFS: [write-internal.mjs](D:/Code/kynderis/kidea/.agents/skills/kidea/scripts/write-internal.mjs:113).
-- Đường dẫn Git được cố định vào bản Windows: [git-versions.mjs](D:/Code/kynderis/kidea/.agents/skills/kidea/scripts/git-versions.mjs:9).
+Nhưng cần phân biệt:
 
-Nếu chuyển, cần một gói hữu hạn:
+- **Điều kiện cài/chạy:** Node từ 24 trở lên, có các API cần thiết.
+- **Khuyến nghị sử dụng:** bản LTS còn được bảo trì.
+- **Bằng chứng test:** ghi chính xác phiên bản đã chạy để tra lỗi, không biến số phiên bản đó thành khóa vĩnh viễn.
 
-1. Chọn và xác minh Node/Git/công cụ AI trên Mac.
-2. Điều chỉnh phần phụ thuộc hệ điều hành; kiểm đường dẫn, tên file có dấu/hoa–thường, quyền ghi và liên kết file.
-3. Kiểm ghi bị gián đoạn, phát hiện hồ sơ dở, bảo toàn nguồn và approval trên hệ thống file Mac.
-4. Chạy lại kiểm chứng liên quan trên Mac; kết quả Windows trước đây vẫn giữ, nhưng không tự trở thành PASS cho Mac.
+Không nên quảng cáo “mọi bản từ 24 trở lên đều đã được bảo đảm”. Ví dụ, hiện Node 25 đã hết hỗ trợ, Node 26 đang là Current, còn Node 24 là LTS: **số lớn hơn không tự động thích hợp hơn**. [Lịch phát hành Node](https://nodejs.org/en/about/previous-releases)
 
-**Không cần viết lại Kidea; cần bổ sung hỗ trợ Mac đúng nghĩa.** Bỏ điều kiện chặn Windows mà không kiểm những phần này là chưa đủ.
+Đề xuất thực dụng:
 
-## 5. Phương án tôi khuyên chọn
+- Bỏ kiểm bắt buộc hash của file Node khi sử dụng.
+- Giữ kiểm nguồn tải lúc cài đặt và ghi phiên bản trong kết quả test.
+- Cho cập nhật minor/patch bình thường, không hỏi Human từng lần.
+- Major mới chưa kiểm thì nêu rõ; chỉ chặn khi có bất tương thích thực hoặc thiếu điều kiện bắt buộc.
+- Giữ lockfile dependency để tái lập cài đặt. **Khóa dependency của một bản phát hành khác với bắt mọi máy dùng một file Node duy nhất.**
 
-**Hiện tại: tận dụng hai máy, không chuyển toàn bộ.**
+Bộ Node của Kidea cũng không cần ép mọi sản phẩm do Kidea quản lý dùng cùng phiên bản.
 
-- **Windows:** tiếp tục Kidea và công việc đang có.
-- **Mac Intel:** phục vụ build/test iOS trong phạm vi toolchain đã kiểm.
-- **Ubuntu:** giữ làm môi trường kiểm backend đúng đích.
-- Chuyển mã nguồn theo bản Git xác định; không để hai máy cùng sửa một thư mục đồng bộ. Chưa cần xây hệ thống điều phối từ xa phức tạp.
+## 3. Backend Docker local → cloud: tôi đồng ý
 
-Cách này giữ được công việc đã kiểm chứng, tận dụng Mac sẵn có và tránh đầu tư nhiều công chuyển đổi vào một máy đang bị thu hẹp hỗ trợ.
+**Tôi ghi nhận Docker local và cloud khi cần đo nặng là hướng bạn đã chọn, không cần xin lại quyết định định hướng này.**
 
-**Nếu mục tiêu là “một máy chính cho gần hết công việc trong vài năm tới”, tôi đồng ý với hướng Mac — nhưng không chọn Mac Intel 2019 làm nền lâu dài.** Chưa có lý do phải mua máy ngay chỉ để tiếp tục phần hồ sơ R05.
+Cách làm tối thiểu:
 
-Trước khi quyết định, bạn chỉ cần xác nhận một lượt: **máy có đúng bản 16 inch/RAM 16 GB không, hiện chạy macOS nào, còn trống bao nhiêu và Xcode đã cài bản nào?** Chưa cần nâng cấp hay cài gì. Tôi chưa thay đổi thiết kế hoặc mã Kidea.
+- Backend C++ build/chạy trong container Linux, có thể giữ nền Ubuntu 24.04 đã chọn.
+- Một Dockerfile; thêm một file Compose khi cần chạy chung backend, web và proxy.
+- Những lệnh build/test/start/stop có thể chạy lại được.
+- Khi bạn cấp máy cloud: AI dùng SSH và Docker để chạy bản đã xác định, thu log và kết quả. **Không cần Kidea tự xây hệ thống điều khiển máy từ xa.**
+
+Như vậy, **không cần cài thêm một Ubuntu riêng chỉ để test backend thường ngày**. Nói ở lượt trước rằng “vẫn cần Ubuntu” mà không làm rõ container đáp ứng phần môi trường ứng dụng là dễ gây hiểu nhầm.
+
+Có bốn chi tiết cần giữ:
+
+1. **Docker không loại bỏ hoàn toàn VM trên Windows/Mac.** Docker Desktop dùng lớp Linux bên dưới; bạn không phải tự dựng một VM riêng, nhưng nó vẫn dùng RAM/đĩa. Trên Windows, dữ liệu Docker mặc định có thể nằm ở C; cần chọn vị trí ở D và giới hạn tài nguyên khi cài. [Docker WSL](https://docs.docker.com/desktop/features/wsl/), [cấu hình tài nguyên](https://docs.docker.com/desktop/settings-and-maintenance/settings/)
+2. **Dữ liệu phải tồn tại ngoài vòng đời container.** SQLite nên nằm trong volume dữ liệu, không để mất khi thay container; dừng container phải cho backend thời gian xử lý việc đang chạy. Volume không tự trở thành backup. [Docker volumes](https://docs.docker.com/engine/storage/volumes/)
+3. **Local kiểm chức năng; cloud đo hiệu năng theo máy đích.** Ghi CPU/RAM/ổ đĩa, giới hạn container, bản image và workload. Docker giúp đồng nhất ứng dụng, không làm mọi máy có cùng hiệu năng.
+4. **Khi kết nối cloud**, cần chốt gộp máy đích, quyền, thời gian chạy và giới hạn chi phí/tải; secret giữ ngoài repo/log. Không hỏi lại từng lệnh trong phạm vi đã thống nhất.
+
+Có một yêu cầu cũ không được âm thầm bỏ: **kiểm mất cả máy/ổ đĩa và cảnh báo độc lập**. Backup hoặc observer nằm ở container khác nhưng cùng laptop không chứng minh chịu được laptop hỏng. Ta chỉ cần bố trí nơi độc lập khi tới bài kiểm đó, không phải thuê thêm hạ tầng ngay để viết code.
+
+## 4. Mac Intel → Apple Silicon: Kidea phải gần như không đổi
+
+Tôi đồng ý với yêu cầu này:
+
+- Cùng source Kidea, cấu trúc hồ sơ, lệnh và cách làm việc.
+- Cài Node/Git đúng máy; không yêu cầu người dùng đổi quy trình.
+- Kiểm cùng nhóm hành vi cốt lõi trên hai kiến trúc; không làm lại toàn bộ nghiệp vụ R03–R04.
+
+**Khác biệt CPU đáng chú ý nằm ở binary/container của sản phẩm hơn là hồ sơ Kidea:**
+
+- Intel dùng `amd64`; Apple Silicon dùng `arm64`.
+- Có thể dùng chung Dockerfile để build biến thể phù hợp, nếu dependency hỗ trợ.
+- Chạy image Intel trên ARM qua giả lập có thể chậm, nhất là compile; không dùng số đo đó để kết luận hiệu năng máy chủ Intel. [Docker multi-platform](https://docs.docker.com/build/building/multi-platform/)
+
+Tôi đề xuất local ưu tiên chạy đúng kiến trúc máy; bản đưa lên cloud build/test đúng kiến trúc cloud. Chưa cần dựng hệ thống build đa kiến trúc tự động ngay từ đầu.
+
+Giới hạn Xcode, SDK hay ứng dụng AI vẫn kiểm riêng. **Đó là khả năng của công cụ bên ngoài, không phải lý do tách Kidea thành bản Intel và bản Apple Silicon.**
+
+## 5. Phần nên sửa, phần phải giữ
+
+**Nên bỏ:** khóa Windows/NTFS như điều kiện mặc định, khóa đúng file Node, đường dẫn Git cố định và yêu cầu dựng Ubuntu riêng cho mọi lượt dev.
+
+**Phải giữ:** quyền ghi đúng phạm vi, không mất dữ liệu khi lỗi, approval gắn đúng nội dung, phát hiện việc dở và kết quả test có căn cứ.
+
+Phần việc thực tế là **một gói sửa tính di động và môi trường thực thi**: chỉnh các khóa trên, sửa test phụ thuộc Windows, kiểm lõi trên máy đích, cập nhật Docker/local/cloud trong hồ sơ. Không cần viết lại Kidea, thêm framework điều phối hay mở lại những quyết định nghiệp vụ không bị ảnh hưởng.
+
+**Tóm lại: hướng bạn muốn là hợp lý. Tôi không thấy trở ngại kiến trúc lớn; có những điểm tương thích cần sửa và kiểm, nhưng chúng không đáng bị biến thành cả một hệ thống mới.** Chưa thể hứa “cài là chạy” trước khi kiểm Mac thực tế, nhưng cũng không có căn cứ để tiếp tục ràng buộc Kidea chỉ Windows.
+
+Lượt này tôi chỉ đánh giá; chưa sửa code, thiết kế hay cài môi trường.
 
 <oai-mem-citation>
 <citation_entries>
-MEMORY.md:482-482|note=[Use current repository evidence rather than forgotten Kidea decisions]
+MEMORY.md:482-482|note=[Use current code and approved documents rather than forgotten Kidea decisions]
 </citation_entries>
 <rollout_ids>
 </rollout_ids>
