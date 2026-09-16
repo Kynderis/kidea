@@ -51,6 +51,8 @@ Phân biệt hai phạm vi Git: chính sách quyền project ở trên là hành
 
 Thiết kế tổng thể được chấp thuận không có nghĩa skill đã tồn tại, đã được test hoặc đủ tin cậy để quản lý sản phẩm thật. Các tiêu chí kiểm chứng và quyết định triển khai còn mở nằm ở mục 12 và roadmap.
 
+Ngày 2026-09-16: quyền soạn/kiểm hồ sơ R05 đã được duyệt sau answer cfffe0c. [Phương pháp/profile r1](proposals/r05-profile-method-r1.md) và [kết quả có giới hạn](tests/evidence/r05/profile-r1.md) đang chờ duyệt nội dung; chưa tích hợp skill hoặc thay các hợp đồng thiết kế bằng rule đề xuất, chưa build/cài/deploy.
+
 <a id="first-release-scope"></a>
 
 ### 1.1. Phạm vi bản đầu — căn cứ đã duyệt ở vòng trước
