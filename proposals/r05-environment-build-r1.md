@@ -69,3 +69,7 @@ Cần xác nhận vì yêu cầu Human ban đầu cấm tự cài công cụ/tha
 ## Nhánh tiếp tục không cần Docker
 
 Human cho tiếp tục phần độc lập khi đang xa máy. [Chuẩn bị mẫu Web](r05-web-samples-r1.md) có vector đầu vào/assertion cụ thể, không cài/build trong lượt này. Chuẩn bị E2 Web không phụ thuộc việc hoàn tất E1 Docker; runtime integration backend vẫn chờ Docker.
+
+## Docker đã có — kiểm sau khi Human tự cài
+
+Human báo đã cài Docker. Kiểm chỉ đọc đạt với Desktop4.91.0/Engine29.8.0, context desktop-linux trên Intel; [bằng chứng](../tests/evidence/r05/docker-check-2026-09-16.json). CLI chưa có trên PATH nhưng bản trong Docker.app hoạt động. Không cài thêm, đổi cấu hình, pull hoặc chạy container. Trạng thái hoãn do thiếu Docker được giải quyết ở mức kết nối Engine; E2 vẫn cần manifest và quyền thực thi cụ thể. Không tự quit Docker do Human đang chủ động sử dụng.

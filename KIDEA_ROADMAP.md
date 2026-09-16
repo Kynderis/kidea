@@ -10,6 +10,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
+**Docker đã được Human tự cài và kiểm kết nối thành công.** [Kiểm Docker](tests/evidence/r05/docker-check-2026-09-16.json): Desktop4.91.0, Engine29.8.0, client darwin/amd64 → server linux/amd64, context desktop-linux; 0 image/0 container. CLI chưa có trên PATH, dùng đường tuyệt đối trong Docker.app, không đổi cấu hình. Engine hiện cấp12CPU/~7.75GiB RAM; chưa áp hạn mức workload2CPU/4GiB của đề xuất. Chưa pull/build/chạy container. Tiếp theo hoàn thiện manifest dependency/image/command E2 backend và tích hợp Caddy/HTTPS/CSRF để trình gói thực thi cụ thể; chưa suy việc cài Docker thành duyệt E2. R05 vẫn IN_PROGRESS. Các đoạn dưới là lịch sử.
+
 **Đã hoàn tất ba phần Web không cần Docker được duyệt sau5611c77.** [Web r2](tests/evidence/r05/web-execution-r2.md):32/32unit,18/18SSR/browser,4/4Node server; type/lint/buildPASS;2mutation mới bị bắt. Có kiểm dữ liệu/phiên, keyboard/dialog,360/1280px font200%, HTML no-JS/noindex, body128KiB, header giả và drain30s (đo29,999ms). Cùng dependency/browser có sẵn, không cài mới; server đã dừng. T03-S03 vẫn IN_PROGRESS trước HTTPS/CSRF/Caddy/C++ integration và review đầy đủ; R05 chưa đóng. Docker vẫn chờ Human. Các đoạn dưới là lịch sử.
 
 
