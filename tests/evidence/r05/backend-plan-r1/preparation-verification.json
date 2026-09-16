@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-16T12:32:26.581559+00:00",
+  "status": "PASS_STATIC_PREPARATION_ONLY",
+  "testGroups": 22,
+  "aptDirectPackages": 16,
+  "digestVerifiedImageManifests": 4,
+  "hashVerifiedSourceArchives": 4,
+  "validLocalProposalLinks": 15,
+  "files": {
+    "tests/r05/fixtures/backend-build-r1/Caddyfile": "9e596a93864f143454b04552e053bfe0e5c98e3aceb102c754698fbef3008b3b",
+    "tests/r05/fixtures/backend-build-r1/apt-direct-lock.json": "6e7618d39e4552c4be4548a31e98766683b02c47a4ac045115419e3200848d0a",
+    "tests/r05/fixtures/backend-build-r1/apt-install-args.json": "b5d51f5021b3b3d890c54d517e14737913a10cbff24e9362b94810be8f8ad898",
+    "tests/r05/fixtures/backend-build-r1/command-plan.json": "7f82c760c00a705275d6459b58f4fd8e51da9d6c2f676e28cedf5e8b79a2ac45",
+    "tests/r05/fixtures/backend-build-r1/manifest.json": "756ec886a9aa21acd2074efdd406c5f981b976ff01b72bb76319aee41c24e4b7",
+    "tests/r05/fixtures/backend-build-r1/test-matrix.json": "8b3f1dd8d12d30fe504a41650a4ab3ad8cadf1b4a6222d2244e65b4cf8037e05",
+    "tests/r05/fixtures/backend-build-r1/ubuntu.sources": "8e4e9d6c9c4cf0f0d05a3133516e4454ab03a5131a4c2572dec3e7e59d80954a"
+  },
+  "notRun": [
+    "Docker image pull/build/run",
+    "APT dependency solver/signature validation",
+    "Caddy adapt/validate",
+    "backend/HTTPS/browser tests"
+  ],
+  "gitStatusBeforeDocumentationFinalization": "?? proposals/r05-backend-build-r1.md\n?? tests/evidence/r05/backend-plan-r1/\n?? tests/r05/fixtures/backend-build-r1/\n",
+  "webR2SourceFilesUnchanged": 27,
+  "dockerFinalObservation": "Images=0 Containers=0 Running=0",
+  "pilotDocsUnchanged": 21,
+  "historicalTrackedEvidenceUnchanged": true,
+  "documentationSha256": {
+    "proposals/r05-backend-build-r1.md": "daa02bb728efd26c1f6b7e8e8814cb7dd3ad1caa2cff8d7387e4caa525e8800b",
+    "proposals/r05-environment-build-r1.md": "28aa4ea5a862ec1dcbf38df8acbd3f543ca73d708c5b82c30cc7e1e86175bb15",
+    "KIDEA_ROADMAP.md": "ec9252816b86540c7db5d58139c2c9117364fa57203cee6d5cda17f5d6e3b187",
+    "answer.md": "ecd469404d106dbb88b9389e525c90c36bb23bfeb4f0b7237f2f3b766788d5c8"
+  }
+}

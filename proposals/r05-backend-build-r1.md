@@ -1,0 +1,72 @@
+# R05 — Gói thực thi mẫu backend và HTTPS r1
+
+Ngày 2026-09-16. **Đã chuẩn bị để Human duyệt thực thi; chưa pull image, build hoặc chạy container.** Human “ok bạn làm đi” sau `6d300db` giao hoàn thiện gói dependency/image/lệnh kiểm. Gói này cụ thể hóa E2 backend/Caddy/HTTPS/CSRF; không coi lời giao chuẩn bị là duyệt build ứng dụng. [Môi trường đã kiểm](../tests/evidence/r05/docker-check-2026-09-16.json), [phạm vi E2 trước](r05-environment-build-r1.md), [Web r2 đã chạy](../tests/evidence/r05/web-execution-r2.md).
+
+## Một gói cần duyệt
+
+Đề nghị duyệt **E2-BW-r1**: hiện thực và kiểm mẫu tổng hợp C++/SQLite + Web + Caddy trong Docker local, theo manifest và 22 nhóm vector bên dưới; cho tải tối đa **4 GiB**, tăng đĩa tối đa **16 GiB**, giữ ít nhất **100 GiB trống**, tối đa **3 giờ/lượt**. Build tuần tự tối đa **2 CPU/4 GiB RAM**, mỗi build 60 phút, mỗi lượt test 30 phút. Toàn runtime đồng thời tối đa 2 CPU/4 GiB; chỉ publish **127.0.0.1:8443**. Khi vượt hạn mức, sai hash, lỗi xác minh nguồn, advisory có ảnh hưởng chưa xử lý hoặc cần quyền ngoài phạm vi thì dừng và lưu bằng chứng.
+
+Approval bao gồm chọn **SQLite 3.53.4 thay ứng viên 3.53.3**, parser **cmark 0.31.2** cùng adapter nhận diện reference-definition, và **Caddy 2.11.4 chỉ trong cấu hình lab hữu hạn nêu dưới**. Các thay đổi này chưa áp vào snapshot 21 hồ sơ pilot; nếu được duyệt sẽ ghi amendment riêng có before/after hashes, không sửa evidence r1.
+
+Đích mới CREATE-only: sibling `kidea-workshop-pilot/samples/r05/backend-integration-r1/`. Nguồn/config/test và bản sao Web r2 ở đây; không ghi đè mẫu Web đã kiểm. Quyền trong gói bao gồm tạo Dockerfile, Compose, mã/test/runner tương ứng, sửa nguyên nhân lỗi trong mẫu và chạy lại toàn bộ trên nguồn cuối. Chưa phải triển khai sản phẩm đầy đủ hoặc release; không cloud, Android/iOS, nâng OS, công cụ host mới hoặc benchmark lịch sử.
+
+## Artifact, phiên bản và căn cứ chọn
+
+[Manifest máy đọc](../tests/r05/fixtures/backend-build-r1/manifest.json) chứa URL/hash/digest; [receipt image](../tests/evidence/r05/backend-plan-r1/images.json) và [receipt source](../tests/evidence/r05/backend-plan-r1/sources.json) là dữ liệu đọc trực tiếp. SHA archive GitHub do lượt này tính từ nội dung HTTPS, không được mô tả là chữ ký upstream. Chỉ tái tải đúng hash, không fallback sang tag mới.
+
+| Thành phần | Bản chọn / kiểm đã làm | Vai trò và giới hạn |
+|---|---|---|
+| Ubuntu | 24.04; manifest linux/amd64 `sha256:496754492fb28b4d3049432f2ca787449331e23fb14f0dd3fffea86bf5a93eb4` | Một userspace cho C++/Web, không native compiler trên Mac |
+| APT | Snapshot `20260916T000000Z`, 16 package trực tiếp có exact revision, URL, size, SHA256 | GCC/G++13.3.0, CMake3.28.3, Ninja1.11.1, clang-format/tidy18.1.3; OpenSSL3.0.13 distro revision15, JsonCpp1.9.5; xem lock đầy đủ |
+| Drogon | 1.9.13, commit `4c5430757ea5451a7c38fbbef4b4bef7dbb47f2f` | MIT; source archive 667,186 byte; đã đọc CMake options |
+| Trantor | `63a4e5e164e219dc3bf30cdbfa1462ae5602fa97` đúng gitlink của Drogon | BSD-3-Clause; 158,611 byte; không dùng nhánh master |
+| SQLite | Đề xuất 3.53.4, amalgamation 2,946,650 byte | Đã so SHA3 archive và sqlite3.c với nguồn chính thức; SHA256 lưu trong receipt retry; public domain |
+| cmark | 0.31.2, 267,259 byte | BSD-2-Clause và các notice đi kèm COPYING; grammar CommonMark0.31.2, không bật extension GFM |
+| Caddy | 2.11.4, manifest linux/amd64 `sha256:98eb57d882ccd5213d1688764db10c1ca2c58a1ca3a6717a3411ad798f7a423a` | Apache-2.0; giữ giới hạn advisory dưới đây |
+| Node/Web | Node24.19.0 linux-x64, SHA256 từ SHASUMS chính thức; Web giữ candidate lock đã kiểm r2 | Không cài Node lên host; Node archive chưa tải, trần64MiB. npm thực trong container phải ghi vào receipt, không giả là npm của Mac |
+| Browser | Playwright image v1.63.0-noble, linux/amd64 digest `sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7` | 955,790,767 byte layer nén; test Chromium, không suy PASS cho Firefox/WebKit. Image không chứa package @playwright/test, lấy từ lock Web |
+| Builder | Moby BuildKit digest trong manifest | 109,493,395 byte layer nén; builder riêng có CPU/RAM quota, không đổi builder mặc định hoặc cấu hình Docker Desktop |
+
+Tổng layer nén của bốn image **1,118,955,561 byte (~1.04 GiB)**, chưa tính APT, Node, npm, dữ liệu giải nén và cache. Đây là tổng size khai báo của registry, chưa đo lượng tải/cài thực. Ubuntu/Caddy có manifest ARM64 được lưu để đối chiếu; **chưa chạy Apple Silicon**, không dùng emulation để nhận PASS ARM. Một bộ source/Dockerfile; khóa artifact theo target khi có máy kiểm thật.
+
+[APT lock](../tests/r05/fixtures/backend-build-r1/apt-direct-lock.json) chỉ là **16 gói trực tiếp**, không giả là lock toàn bộ transitives. Sáu Packages index khớp SHA256 trong InRelease của snapshot; host chưa kiểm chữ ký InRelease. Khi thực thi, APT trong image phải xác minh bằng Ubuntu archive keyring, chạy simulate và print-URIs, lưu full solution (package/version/arch/URL/SHA256/license), kiểm ngân sách/advisory trước install. Không `trusted=yes`, không bỏ xác minh chữ ký hoặc dùng latest. Closure không resolve đúng snapshot thì dừng; không tự đổi baseline. [Snapshot chính thức](https://snapshot.ubuntu.com/).
+
+Drogon: tắt ORM/MySQL/PostgreSQL/Redis, drogon_ctl, examples, Brotli, YAML và c-ares không dùng; SQLite C API riêng là authority theo kiến trúc. Giữ JsonCpp/OpenSSL/zlib/UUID; JSON reader phải reject duplicate key và kiểm UTF-8 trước domain. Bốn preset `dev`, `asan-ubsan`, `tsan`, `release`; C++20/GCC13, Ninja, warning project `-Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror`, không `-march=native`. Instrument cả dependency liên quan cho sanitizer; không dùng cùng binary cho ASan và TSan. clang-format18 kiểm định dạng, clang-tidy18 phân tích source project theo compile_commands; không miễn cảnh báo dự án để lấy PASS.
+
+## Hai phát hiện ảnh hưởng lựa chọn
+
+**SQLite:** 3.53.4 có các sửa lỗi của 3.53.0–3.53.3; đề xuất bản này trước build mới, thay vì đóng băng ứng viên cũ. Nguồn: [release 3.53.4](https://sqlite.org/releaselog/3_53_4.html), [download/hash](https://sqlite.org/download.html). Lần tải đầu timeout được giữ trong sources.json; tải lại có thời hạn45s đạt và khớp cả hai SHA3 trong [receipt](../tests/evidence/r05/backend-plan-r1/sqlite-retry.json). Chưa compile hoặc chạy SQLite.
+
+**Caddy:** [GHSA-6365-7ppr-5r92](https://github.com/caddyserver/caddy/security/advisories/GHSA-6365-7ppr-5r92) ghi `<2.11.5` bị ảnh hưởng khi phối hợp forward_auth/reverse_proxy. Nhưng API release2.11.5 trả404; latest release API vẫn2.11.4. Giữ cả hai quan sát trong [receipt](../tests/evidence/r05/backend-plan-r1/followup-receipt.json) và [latest](../tests/evidence/r05/backend-plan-r1/caddy-latest.json); không bịa artifact bản vá. Gói chọn2.11.4 trong lab, **không forward_auth**, không FastCGI/templates/file_server/dynamic upstream, admin API tắt. C++ tự xác thực mọi request. Đây là đánh giá phạm vi từ cấu hình dự kiến, không tuyên bố Caddy2.11.4 sạch advisory. Trước chạy phải kiểm adapted JSON đúng các giới hạn và giữ test route/identity; nếu cần tính năng bị ảnh hưởng hoặc advisory khác có đường thực thi thì dừng chọn lại artifact.
+
+Drogon/cmark API advisory công khai trả danh sách rỗng, không có nghĩa không tồn tại lỗ hổng. Caddy có17 advisory đã lưu. Chưa có inventory runtime/transitive image để kết luận audit toàn bộ. Khi resolve thực, rà gói Ubuntu theo revision có backport và gói Go của Caddy theo SBOM, giữ nguồn/thời điểm/kết luận áp dụng; lỗi high/critical có ảnh hưởng chưa xử lý chặn build/run tiếp. Giữ LICENSE/COPYING và distro `/usr/share/doc/*/copyright` trong receipt/NOTICE; không tuyên bố hồ sơ license hoàn chỉnh từ tên SPDX trực tiếp.
+
+**Parser:** đã đọc source cmark0.31.2: `resolve_reference_link_definitions` tiêu thụ reference và có thể xóa paragraph rỗng. Chỉ whitelist AST sẽ nhận nhầm `[x]: https://example.test` là văn bản thuần. Đề xuất adapter/patch nhỏ trên source vendor: parser đánh dấu mỗi reference-definition được parse thành công, kể cả duplicate/unused, trả flag qua API riêng; grammar từ chối nếu có flag. Không dùng regex thay parser; lưu patch và SHA trước/sau, test removal mutant. Giữ nguyên literal đầu vào đã trim, không lấy text đã entity-decode để lưu. Source/CommonMark conformance vẫn phải kiểm sau build; lựa chọn thư viện chưa chứng minh đủ grammar.
+
+## Topology và TLS/phiên cụ thể
+
+Caddy là cổng duy nhất `https://localhost:8443`; Docker publish `127.0.0.1:8443:8443`, không bind LAN. Backend8080 và Node4173 chỉ trên network Docker riêng, không publish. Network runtime `internal`; tách khỏi network tải dependency. DB/WAL ở volume local có tên/ownership riêng, tồn tại sau thay container; không coi volume là backup. Không mount home, repo root hoặc Docker socket vào workload. Runtime chạy UID thường trong container, read-only rootfs và writable volume/tmpfs đúng đích; root chỉ ở bước cài package trong image, không root/sudo trên host.
+
+[Caddyfile dự thảo](../tests/r05/fixtures/backend-build-r1/Caddyfile) dùng `tls internal`, `skip_install_trust`, không public ACME, không redirect port80, không admin API, body128KiB và header16KB. Chưa `caddy adapt/validate`, chưa gọi là config đã chạy. Edge từ chối forwarded header từ client; upstream host/proto cố định, xóa header tự khai actor/role. Node đặt ORIGIN cố định `https://localhost:8443`, BODY_SIZE_LIMIT131072, SHUTDOWN_TIMEOUT30, không suy origin tùy ý từ proxy. Hook r2 hiện chỉ chấp nhận loopback4173 nên bản integration phải có mode riêng kiểm header/topology; giữ nguyên ca direct-mode cũ.
+
+Node SSR gọi backend bằng địa chỉ nội bộ cố định và cookie của đúng request; backend xác thực cookie cho từng lần, không default/global actor. Bootstrap các phiên giả từ fixture ngoài UI, không endpoint công khai tùy chọn role. Session ngẫu nhiên, TTL15phút, CSRF token gắn server-side với session; cookie `__Host-kidea_session`, HttpOnly/Secure/SameSite=Strict/Path=/ và không Domain. Token chỉ trong header `X-CSRF-Token` của mutation, không URL/localStorage/log. Origin phải bằng đúng origin đã chốt; missing/null/sai đều từ chối cho mutation. WebSocket kiểm Origin+session+CSRF ở handshake bằng subprotocol proof (echo protocol cố định, không echo secret); kiểm quyền lại trước mỗi phát private event. Đây là fixture kỹ thuật cho mẫu, không mở account management mới.
+
+CA chỉ ở volume test. Client Node dùng CA file riêng, kiểm chain/hostname bình thường. Browser Linux chạy image đã pin, `HOME`/NSS DB riêng trong container: import **public CA cert** bằng certutil (`libnss3-tools` đã pin), không mang private CA key sang browser. Browser dùng network namespace của Caddy để `localhost:8443` đúng origin/cert. Không thêm CA vào macOS/keychain/Chrome đang dùng; không ignoreHTTPSErrors, `-k`, insecure SPKI flags hoặc tắt TLS verification. Phải chứng minh positive CA test và negative missing-CA/wrong-host/expired-cert; NSS không được browser nhận thì ca bị BLOCKED/FAIL, không đổi expected. [Chromium certificate management](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/linux/cert_management.md), [Playwright Docker](https://playwright.dev/docs/docker).
+
+Giới hạn runtime: backend1CPU/1GiB, web0.25CPU/768MiB, Caddy0.25CPU/256MiB, browser0.5CPU/2GiB; không dùng host IPC. Browser chỉ mở fixture nội bộ, user thường; nếu cần sandbox/seccomp thay đổi phải ghi cụ thể, không chạy privileged hoặc thêm SYS_ADMIN để chữa lỗi. Private keys/cookie/token/bootstrap không commit; evidence chỉ public cert fingerprint, hash fixture không bí mật, counts và kết quả đã redaction. Không log body/cookie/auth headers; negative cases dùng sentinel riêng để kiểm rò rỉ.
+
+## Lệnh kiểm và tiêu chí kết thúc
+
+[Command manifest](../tests/r05/fixtures/backend-build-r1/command-plan.json) nêu argv/thứ tự/timeout/oracle. Đây là **hợp đồng hiện thực sau duyệt**, các `scripts/*.mjs`, Dockerfile, Compose và backend chưa được tạo; không phải lệnh có thể copy chạy ngay từ repo Kidea. [APT argv](../tests/r05/fixtures/backend-build-r1/apt-install-args.json) và [snapshot config](../tests/r05/fixtures/backend-build-r1/ubuntu.sources) đã cụ thể.
+
+Trình tự: preflight + receipt nguồn/đĩa/Docker → tải đúng hash trong trần → builder riêng giới hạn tài nguyên → APT closure/signature/advisory/NOTICE → toolchain → bốn preset C++ với cmake configure/build/ctest → Web check/lint/unit/build và hồi quy r2 → Caddy adapt/validate → stack nội bộ → HTTPS/CSRF/browser/SSR/socket → mutation âm → restore SHA và chạy full positive trên nguồn cuối → lưu log/snapshot → dừng tài nguyên của lượt. Không đổi Docker context/builder mặc định; builder tạo bằng driver-opt quota và được dừng sau lượt. [Docker container driver](https://docs.docker.com/build/builders/drivers/docker-container/).
+
+[22 nhóm vector](../tests/r05/fixtures/backend-build-r1/test-matrix.json): B01–B08 lifetime/transaction/concurrency/SQL/Unicode/grammar/drain/sanitizer; H01–H12 TLS/cookie/CSRF/auth/SSR/proxy/limits/browser/socket/override/drain/log; R01–R02 hồi quy r2 và sáu mutation. Mọi nhóm **NOT_RUN**. Test phải có assertion về state DB trước/sau, không chỉ HTTP status; mutant phải fail đúng oracle, không lỗi import/compile thay phát hiện. Không skip/todo/retry che lỗi. Giữ các FAIL ban đầu, source hash trước–sau, lock, toolchain thực, timestamps, raw stdout/stderr và exit; redaction secret trước ghi log ngay từ runner.
+
+Không dùng vài test mẫu để nhận137ca ứng dụng, toàn TC-08 rate/load, backup/host-loss, R09 performance, iOS/Android hoặc Apple Silicon PASS. SQLite local volume chưa chứng minh backup độc lập. R05 vẫn IN_PROGRESS; T02/T03 kiểm mẫu chỉ cập nhật theo số chạy thật, gate review đầu ra còn nguyên.
+
+Sau teardown, dừng đúng container/network/builder do lượt này tạo, kiểm port đóng, không `docker prune`, không `down --volumes`, không quit Docker của Human. Giữ named volumes/cache thuộc lượt trong ngân sách và receipt để review; chỉ dọn đúng đích có quyền, không xóa dữ liệu có sẵn.
+
+## Kết quả của lượt chuẩn bị này
+
+Đã đọc profile/architecture thực, xác minh metadata source/image/snapshot, tải source archive để tính hash (không chạy mã), lập manifest/config/vector/quyền và lưu cả timeout/404/415 cùng lần kiểm lại. Chưa tải image layer hoặc package `.deb`, chưa khởi động builder/container, chưa cài công cụ host hay tạo CA. `answer.md` và roadmap ghi đúng điểm tiếp tục. Đề nghị Human duyệt E2-BW-r1 để thực thi trọn gói; lý do cần approval là giới hạn ban đầu không tự build/chạy ứng dụng, không phải skill yêu cầu xin lại từng lệnh.

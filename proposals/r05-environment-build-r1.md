@@ -73,3 +73,7 @@ Human cho tiếp tục phần độc lập khi đang xa máy. [Chuẩn bị mẫ
 ## Docker đã có — kiểm sau khi Human tự cài
 
 Human báo đã cài Docker. Kiểm chỉ đọc đạt với Desktop4.91.0/Engine29.8.0, context desktop-linux trên Intel; [bằng chứng](../tests/evidence/r05/docker-check-2026-09-16.json). CLI chưa có trên PATH nhưng bản trong Docker.app hoạt động. Không cài thêm, đổi cấu hình, pull hoặc chạy container. Trạng thái hoãn do thiếu Docker được giải quyết ở mức kết nối Engine; E2 vẫn cần manifest và quyền thực thi cụ thể. Không tự quit Docker do Human đang chủ động sử dụng.
+
+## Gói thực thi cụ thể tiếp nối
+
+Sau khi Docker đã hoạt động, Human giao chuẩn bị [E2-BW-r1](r05-backend-build-r1.md): manifest source/image/APT, cấu hình HTTPS dự thảo,22nhóm kiểm và hạn mức. Lượt chuẩn bị đã kiểm hash/metadata, chưa pull/build/chạy container; gói đang chờ duyệt thực thi. Đề xuất SQLite3.53.4 thay3.53.3 và giới hạn advisory Caddy được trình rõ; không sửa snapshot profile r1 hoặc tự coi R05 hoàn tất.
