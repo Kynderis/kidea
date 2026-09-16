@@ -1,9 +1,9 @@
-Đã hiện thực và chạy mẫu Web trên Mac Intel, không cần Docker:
+Có. Tôi đề xuất tiếp tục **hoàn thiện kiểm mẫu Web**, dùng Node và Chromium đã có:
 
-- Kiểm kiểu, lint và production build: **PASS**.
-- **14/14 unit,11/11 SSR/browser PASS**, thêm một kiểm SSR trên process mới.
-- **8/8 phiên bản cố ý sai bị phát hiện**; giữ cả log lỗi và kết quả cuối.
+1. **Dữ liệu API và phiên:** JSON sai cấu trúc, version không hợp lệ, đổi actor/epoch, phản hồi lỗi hoặc đến muộn; bảo đảm UI không nhận thành công giả.
+2. **Khả năng sử dụng và HTML:** thao tác bàn phím/focus, màn hình360/1280px, chữ200%, HTML khi tắt JavaScript và noindex cho mẫu lab.
+3. **Giới hạn và dừng server Node:** request quá lớn, header giả, request đang xử lý khi shutdown; kiểm riêng phía Web, chưa thay kiểm Caddy/C++ thật.
 
-Dependency/browser chỉ nằm trong thư mục mẫu riêng; không cài công cụ hệ thống. Server đã dừng, nguồn Kidea và hồ sơ pilot cũ được bảo toàn. [Báo cáo và snapshot mã](tests/evidence/r05/web-execution-r1.md).
+Đây là các phần còn thiếu có thể làm độc lập Docker; không cần cài thêm công cụ hệ thống. Tôi ưu tiên **1 → 2 → 3**, vì trực tiếp bổ sung bằng chứng R05-Web.
 
-Phần Web mẫu đã có bằng chứng thực. HTTPS/CSRF/backend, các nền tảng khác và Apple Silicon chưa kiểm; R05 chưa hoàn tất. Docker vẫn chờ bạn báo khi ngồi máy.
+Backend C++/Caddy, kiểm tải/restore và các nền tảng khác vẫn giữ điều kiện môi trường riêng. Chưa cần chuyển sang R06 hoặc coi R05 đã hoàn tất.
