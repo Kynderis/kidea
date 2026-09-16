@@ -1,6 +1,6 @@
 # R05 — Đề xuất tăng riêng trần đĩa Docker
 
-Ngày 2026-09-16. **PROPOSED — chờ duyệt thay trần tài nguyên.**
+Ngày 2026-09-16. **APPROVED — người dùng trả lời “duyệt nhé” cho đề xuất này; thực thi tiếp trong lượt r4.**
 
 [Lượt r3](../tests/evidence/r05/backend-execution-r3.md) đã sửa và build Caddy, kiểm matcher và 33 ca HTTPS. Còn FAIL tại biên header 16 KiB, cùng các phần TSan đầy đủ, release, mutation, browser và full matrix chưa xong.
 

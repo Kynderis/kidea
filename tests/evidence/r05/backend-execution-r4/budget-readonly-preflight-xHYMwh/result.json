@@ -1,0 +1,14 @@
+{
+  "stage": "budget-readonly-preflight",
+  "executable": "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import assert from \"node:assert/strict\";import {acquireBudget} from \"./tests/r05/backend-budget-r4.mjs\";const args=[\"run\",\"--name\",\"kidea-r05-e2-r4-readonly-probe\",\"--label\",\"kidea.run=E2-BW-r4\",\"--cpus\",\"2\",\"--memory\",\"4g\",\"--memory-swap\",\"4g\",\"kidea-r05-e2:toolchain\"];const first=acquireBudget(args);try{assert.equal(first.receipt.cpu,2);assert.throws(()=>acquireBudget(args),/EEXIST/);console.log(JSON.stringify({readOnlyPreflight:\"PASS\",concurrentLauncherRejected:\"PASS\",containerLaunched:false}));}finally{first.release();}"
+  ],
+  "at": "2026-09-16T15:34:59.432Z",
+  "durationMs": 126,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

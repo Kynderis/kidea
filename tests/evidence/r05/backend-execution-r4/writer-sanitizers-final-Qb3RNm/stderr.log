@@ -1,0 +1,55 @@
+20260916 15:10:24.516736 UTC 15 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+LAB_WRITE_ENTERED
+20260916 15:10:24.580060 UTC 18 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+20260916 15:10:25.405485 UTC 21 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+LAB_WRITE_ENTERED
+20260916 15:10:25.472515 UTC 24 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+Drain deadline reached; unfinished outcomes UNKNOWN
+20260916 15:10:55.518951 UTC 27 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+20260916 15:10:55.740333 UTC 38 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+LAB_WRITE_ENTERED
+20260916 15:10:55.889334 UTC 42 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+20260916 15:10:56.820577 UTC 46 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+LAB_WRITE_ENTERED
+20260916 15:10:56.961667 UTC 50 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+Drain deadline reached; unfinished outcomes UNKNOWN
+20260916 15:11:27.089325 UTC 53 WARN  SIGTERM signal received. - HttpAppFrameworkImpl.cc:172
+==================
+WARNING: ThreadSanitizer: signal-unsafe call inside of a signal (pid=65)
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.2+0xa6fae) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::__new_allocator<char>::allocate(unsigned long, void const*) /usr/include/c++/13/bits/new_allocator.h:151 (backend+0x5916f) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #2 std::allocator<char>::allocate(unsigned long) /usr/include/c++/13/bits/allocator.h:198 (backend+0x4d9ed) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #3 std::allocator_traits<std::allocator<char> >::allocate(std::allocator<char>&, unsigned long) /usr/include/c++/13/bits/alloc_traits.h:482 (backend+0x4d9ed)
+    #4 std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned long) /usr/include/c++/13/bits/basic_string.h:126 (backend+0x4d9ed)
+    #5 std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) /usr/include/c++/13/bits/basic_string.tcc:159 (backend+0x47a12) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #6 void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) /usr/include/c++/13/bits/basic_string.tcc:229 (backend+0x41348) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #7 trantor::Date::toFormattedString[abi:cxx11](bool) const /src/vendor/drogon/trantor/trantor/utils/Date.cc:150 (backend+0x490305) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #8 trantor::Logger::formatTime() /src/vendor/drogon/trantor/trantor/utils/Logger.cc:130 (backend+0x497e79) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #9 trantor::Logger::Logger(trantor::Logger::SourceFile, int, trantor::Logger::LogLevel) /src/vendor/drogon/trantor/trantor/utils/Logger.cc:214 (backend+0x49849a) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #10 TERMFunction /src/vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:172 (backend+0x101364) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #11 CallUserSignalHandler ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:2096 (libtsan.so.2+0x517d5) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #12 trantor::EpollPoller::poll(int, std::vector<trantor::Channel*, std::allocator<trantor::Channel*> >*) /src/vendor/drogon/trantor/trantor/net/inner/poller/EpollPoller.cc:80 (backend+0x4ff3ed) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #13 trantor::EventLoop::loop() /src/vendor/drogon/trantor/trantor/net/EventLoop.cc:221 (backend+0x4a0c3b) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #14 drogon::HttpAppFrameworkImpl::run() /src/vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:689 (backend+0x1043ec) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+    #15 main /src/cpp/server.cpp:316 (backend+0x34ead) (BuildId: 026a9362e5f6477a1ab794c2f5e9b53fe8e1bd2f)
+
+SUMMARY: ThreadSanitizer: signal-unsafe call inside of a signal ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 in operator new(unsigned long)
+==================
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+66 !== 0
+
+    at file:///src/scripts/writer-drain-r4.mjs:25:8 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 66,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

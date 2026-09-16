@@ -2,6 +2,8 @@
 
 Ngày 2026-09-16. Đây là hướng dẫn tiếp tục, không là nguồn trạng thái mới hoặc approval bổ sung cho R05. Đọc trạng thái hiện hành trong [roadmap](../KIDEA_ROADMAP.md#review-current).
 
+Docker đã được Human cài và E2 được duyệt ở các lượt sau. [R4](../tests/evidence/r05/backend-execution-r4.md) dừng sau sự cố quota điều phối; đọc điểm tiếp tục, không restart browser container với bootstrap NSS cũ. Trần đĩa 24 GiB đã duyệt, CPU/RAM vẫn 2 CPU/4 GiB. Ngoại lệ clang-tidy một macro còn chờ duyệt; nguồn Windows/pilot lịch sử bên dưới giữ nguyên.
+
 Phiên Mac Intel ngày 2026-09-16 đã có [bằng chứng môi trường, lệnh thực và kết quả](../tests/evidence/local-portability-mac-intel-2026-09-16.md). Đọc cùng roadmap trước khi tiếp tục, không coi bàn giao Windows bên dưới là tình trạng mới nhất. Trên máy này `node` mặc định vẫn là 22.22.2; lượt kiểm dùng đường tuyệt đối tới Node 24.19.0 đã có trong runtime Codex. Kiểm lại runtime khả dụng ở phiên sau; đường đó là thông tin máy đã kiểm, không là đường bắt buộc của Kidea.
 
 ## Bắt đầu

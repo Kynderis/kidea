@@ -1,0 +1,32 @@
+{
+  "stage": "cpp-format-check",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r4-format",
+    "--label",
+    "kidea.run=E2-BW-r4",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "-c",
+    "mkdir /out/formatted-cpp; for f in /src/cpp/*.cpp /src/cpp/*.hpp; do clang-format-18 \"$f\" > /out/formatted-cpp/$(basename \"$f\"); done; clang-format-18 --dry-run --Werror /src/cpp/*.cpp /src/cpp/*.hpp"
+  ],
+  "at": "2026-09-16T15:00:59.422Z",
+  "durationMs": 1509,
+  "code": 1,
+  "signal": null,
+  "timedOut": false
+}

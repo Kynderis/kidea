@@ -1,0 +1,90 @@
+[
+  {
+    "name": "dangling-capture",
+    "detected": true,
+    "exit": 1,
+    "signal": null,
+    "before": "497dca14b30ffd7386e2e4df93a75dc1960e74bcdebf21028504bcd4818e0757",
+    "after": "bd2d49afb3d2aade9d2e92a5c4f500aa4a9849842b16b50319a29688a9e23d8c",
+    "oracle": "/AddressSanitizer: stack-use-after-scope/"
+  },
+  {
+    "name": "early-ack",
+    "detected": true,
+    "exit": 1,
+    "signal": null,
+    "before": "e96568cb8b9612b4be60af237099189a8efa2e42dd6091f8bb75a3d958b06618",
+    "after": "00257aa4602b0c0df8c08e68ea1964d0aec44d347dc21a51353edfa8d163e687",
+    "oracle": "/acknowledged write was not durable/"
+  },
+  {
+    "name": "queue-race",
+    "detected": true,
+    "exit": 66,
+    "signal": null,
+    "before": "8e90801c3487b6b9386c57d9301529f0d83f4d53088ca32d2d50ec18b83d0e53",
+    "after": "c1c54b57e8773aa1f02727cbb0c6c73eb20b7b95b8f2ff80cd5626310601680e",
+    "oracle": "/ThreadSanitizer: data race/"
+  },
+  {
+    "name": "lost-reference-hook",
+    "detected": true,
+    "exit": 1,
+    "signal": null,
+    "before": "e96568cb8b9612b4be60af237099189a8efa2e42dd6091f8bb75a3d958b06618",
+    "after": "294ed4142d652cbf53d1def69d9bf315d990aed00734e5d15454cf91ea7b987f",
+    "oracle": "/markup vector: \\[x\\]:/"
+  },
+  {
+    "name": "missing-origin",
+    "detected": true,
+    "baseline": {
+      "status": 403,
+      "unchanged": true,
+      "countsDelta": {
+        "audit": 0,
+        "domain": 0,
+        "outbox": 0,
+        "result": 0
+      }
+    },
+    "mutant": {
+      "status": 200,
+      "unchanged": false,
+      "countsDelta": {
+        "audit": 1,
+        "domain": 1,
+        "outbox": 1,
+        "result": 1
+      }
+    },
+    "before": "a1f95722cecb17cf721c11faa0d5a6a899ba173204c6fc9ad1b8f3166c8cff54",
+    "after": "813c58a68fdb7c0febd397f683aec2d6f02058c393b5f6e0d8339371c6508743"
+  },
+  {
+    "name": "missing-token",
+    "detected": true,
+    "baseline": {
+      "status": 403,
+      "unchanged": true,
+      "countsDelta": {
+        "audit": 0,
+        "domain": 0,
+        "outbox": 0,
+        "result": 0
+      }
+    },
+    "mutant": {
+      "status": 200,
+      "unchanged": false,
+      "countsDelta": {
+        "audit": 1,
+        "domain": 1,
+        "outbox": 1,
+        "result": 1
+      }
+    },
+    "before": "a1f95722cecb17cf721c11faa0d5a6a899ba173204c6fc9ad1b8f3166c8cff54",
+    "after": "e740d0b8d1ce89b94c310a860011ae50cbf5e65cb8c82cb3ba14d55f379ef96e"
+  }
+]

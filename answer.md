@@ -1,7 +1,7 @@
-Đã áp bản vá Caddy: build thành công, 54 ca matcher và 33 ca HTTPS đạt. Web có 32 unit PASS; C++ dev 9/9 PASS. Không cài thêm lên macOS. [Báo cáo r3](tests/evidence/r05/backend-execution-r3.md).
+Đã sửa và kiểm: core 283/283; mỗi preset C++ 12/12; Web 32 unit, 18 browser, 4 server; HTTPS 38/38 PASS. Đã lưu [báo cáo](tests/evidence/r05/backend-execution-r4.md), commit/push master.
 
-Còn một FAIL tại giới hạn header; browser, TSan đầy đủ, release/mutation và full matrix chưa xong. Đã dừng build tăng dung lượng khi quan sát mức giảm free space khoảng 15,5 GiB gần trần 16 GiB. Container đã dừng, cổng đóng; log và snapshot được lưu. R05 chưa hoàn tất.
+Lượt cuối phải dừng vì tôi để hai client chồng nhau, tổng quota cấu hình vượt trần khoảng 18 giây. Container đã dừng; đã thêm guard quota, còn kiểm lại browser/drain. **R05 chưa hoàn tất.**
 
-Bạn duyệt [nâng riêng trần đĩa từ 16 lên 24 GiB](proposals/r05-docker-disk-budget-r1.md) để tôi tiếp tục sửa/kiểm phần còn lại nhé? Máy còn hơn 363 GiB trống; các hạn mức khác giữ nguyên.
+Bạn duyệt [ngoại lệ duy nhất cho cảnh báo tối ưu hóa của macro SQLite](proposals/r05-sqlite-transient-tidy-r1.md) và tiếp tục phần kiểm còn thiếu với quota hiện tại nhé? Ngoại lệ không tắt sanitizer hay kiểm an toàn.
 
-Cần xác nhận vì gói E2 đã duyệt giới hạn đĩa 16 GiB; tôi không tự nâng trần hoặc xóa cache/bằng chứng. Không cần bạn cài thêm gì.
+Cần xác nhận vì quy tắc ngoại lệ của pilot (`docs/engineering/rules.md#exceptions`) yêu cầu: “Chưa duyệt thì không được áp.”

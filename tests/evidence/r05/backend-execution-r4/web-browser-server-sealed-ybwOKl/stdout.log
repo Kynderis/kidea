@@ -1,0 +1,37 @@
+v24.19.0
+✔ Node enforces exact128KiB boundary for declared and chunked bodies (400.597407ms)
+✔ Node rejects untrusted Host and proxy headers, fixed origin stays local (282.94037ms)
+✔ SIGTERM drains an accepted request and refuses new connections (990.679674ms)
+{"configuredDeadlineMs":30000,"observedMs":30005,"toleranceMs":5000}
+✔ stuck request is cut at30s drain deadline without a fabricated DONE (30182.84835ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32025.693147
+
+Running 18 tests using 1 worker
+
+  ✓   1 [chromium] › tests/browser/extended.spec.ts:3:1 › API malformed data never shows success; actor and epoch reset old replies (958ms)
+  ✓   2 [chromium] › tests/browser/extended.spec.ts:4:1 › UI distinguishes UNKNOWN, REJECTED, and matched SUCCESS (583ms)
+  ✓   3 [chromium] › tests/browser/extended.spec.ts:5:1 › corrupt saved intent reconciles rather than replaying POST (378ms)
+  ✓   4 [chromium] › tests/browser/extended.spec.ts:6:1 › keyboard opens dialog, traps focus, Escape restores trigger (465ms)
+  ✓   5 [chromium] › tests/browser/extended.spec.ts:7:31 › layout 360px at 200 percent font (873ms)
+  ✓   6 [chromium] › tests/browser/extended.spec.ts:7:31 › layout 1280px at 200 percent font (988ms)
+  ✓   7 [chromium] › tests/browser/extended.spec.ts:8:1 › no-JS HTML has title, landmarks, label and lab noindex; no Event markup (288ms)
+  ✓   8 [chromium] › tests/browser/sample.spec.ts:2:1 › S01 real UI rejects delayed response after switching actor (437ms)
+  ✓   9 [chromium] › tests/browser/sample.spec.ts:3:1 › S09 delayed callback after model unmount (410ms)
+  ✓  10 [chromium] › tests/browser/sample.spec.ts:4:1 › S07 reload keeps unknown intent and only reconciles (691ms)
+  ✓  11 [chromium] › tests/browser/sample.spec.ts:5:1 › S08 literal is escaped in SSR and after hydration (359ms)
+  ✓  12 [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR U then V (107ms)
+  ✓  13 [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR V then U (36ms)
+  ✓  14 [chromium] › tests/browser/sample.spec.ts:7:1 › private SSR also works with JS disabled (185ms)
+  ✓  15 [chromium] › tests/browser/sample.spec.ts:8:1 › cookie override through SvelteKit HTTP create/read/replace/delete (40ms)
+  ✓  16 [chromium] › tests/browser/sample.spec.ts:10:1 › S09 actual Svelte component destruction rejects pending callback (418ms)
+  ✓  17 [chromium] › tests/browser/sample.spec.ts:12:1 › S04 SSR keeps independent public/private versions (279ms)
+  ✓  18 [chromium] › tests/browser/sample.spec.ts:13:1 › S05 rendered history retains cancellation and rebooking (385ms)
+
+  18 passed (9.7s)

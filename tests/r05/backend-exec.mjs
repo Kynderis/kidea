@@ -2,10 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {spawn, spawnSync} from 'node:child_process';
+import {acquireBudget} from './backend-budget-r4.mjs';
 
 const root=path.resolve(import.meta.dirname,'../..');
 const runId=process.env.KIDEA_E2_RUN || 'backend-execution-r1';
-if(!/^backend-execution-r[123]$/.test(runId))throw Error('Unknown evidence run');
+if(!/^backend-execution-r[1234]$/.test(runId))throw Error('Unknown evidence run');
 const evidence=path.join(root,'tests/evidence/r05',runId);
 const sample=path.resolve(root,'../kidea-workshop-pilot/samples/r05/backend-integration-r1');
 const docker='/Applications/Docker.app/Contents/Resources/bin/docker';
@@ -29,11 +30,25 @@ const out=fs.openSync(path.join(dir,'stdout.log'),'wx');
 const err=fs.openSync(path.join(dir,'stderr.log'),'wx');
 const began=Date.now();
 const executable=command==='docker'?docker:command;
+let reservation;
+try {
+  if(runId==='backend-execution-r4'&&executable===docker)reservation=acquireBudget(args);
+  if(reservation?.receipt)fs.writeFileSync(path.join(dir,'budget.json'),JSON.stringify(reservation.receipt,null,2)+'\n');
+} catch(error) {
+  fs.writeSync(err,String(error));fs.closeSync(out);fs.closeSync(err);
+  fs.writeFileSync(path.join(dir,'result.json'),JSON.stringify({stage,executable,args,at:new Date(began).toISOString(),durationMs:Date.now()-began,code:1,launched:false,preflightError:String(error)},null,2)+'\n');
+  console.error(String(error));process.exit(1);
+}
 const child=spawn(executable,args,{cwd:root,stdio:['ignore',out,err],detached:true,env:{...process.env,PATH:path.dirname(docker)+path.delimiter+process.env.PATH,DOCKER_CONTEXT:'desktop-linux'}});
 let timedOut=false;
 const timeout=setTimeout(()=>{timedOut=true;try{process.kill(-child.pid,'SIGTERM');}catch{}},Math.min(Number(seconds)*1000,remaining));
 child.on('error',error=>fs.writeSync(err,String(error)));
 child.on('close',(code,signal)=>{
+  if(timedOut&&reservation?.receipt){
+    const cleanup=spawnSync(docker,['stop','--timeout','5',...reservation.receipt.planned.map(c=>c.name)],{encoding:'utf8',timeout:15000});
+    fs.writeFileSync(path.join(dir,'timeout-cleanup.json'),JSON.stringify({code:cleanup.status,stdout:cleanup.stdout,stderr:cleanup.stderr,error:cleanup.error?.message},null,2)+'\n');
+  }
+  reservation?.release();
   clearTimeout(timeout);fs.closeSync(out);fs.closeSync(err);
   const result={stage,executable,args,at:new Date(began).toISOString(),durationMs:Date.now()-began,code,signal,timedOut};
   fs.writeFileSync(path.join(dir,'result.json'),JSON.stringify(result,null,2)+'\n');

@@ -1,0 +1,32 @@
+{
+  "stage": "cpp-tidy",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r4-tidy",
+    "--label",
+    "kidea.run=E2-BW-r4",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+    "--mount",
+    "type=volume,src=kidea-r05-e2-r1-build,dst=/build,readonly",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "-c",
+    "failed=0; for f in domain input tests server; do clang-tidy-18 /src/cpp/$f.cpp -p /build/dev || failed=1; done; exit \"$failed\""
+  ],
+  "at": "2026-09-16T15:02:42.562Z",
+  "durationMs": 43133,
+  "code": 1,
+  "signal": null,
+  "timedOut": false
+}

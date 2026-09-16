@@ -1,0 +1,14 @@
+{
+  "stage": "current-document-scope",
+  "executable": "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import path from \"node:path\";import assert from \"node:assert/strict\";import {readTree,pilot} from \"./tests/r05/support.mjs\";import {validate} from \"./tests/r05/validate.mjs\";const files=Object.fromEntries(Object.entries(readTree(path.join(pilot,\"docs\"))).map(([p,b])=>[\"docs/\"+p,b]));const result=validate(files);assert.deepEqual(result.errors,[]);assert.equal(Object.keys(files).length,21);console.log(JSON.stringify({scope:\"All current pilot docs; samples are separately authorized runtime artifacts, not profile documents\",...result}));"
+  ],
+  "at": "2026-09-16T15:28:51.478Z",
+  "durationMs": 129,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

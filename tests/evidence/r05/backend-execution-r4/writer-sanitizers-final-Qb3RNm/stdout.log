@@ -1,0 +1,11 @@
+dev
+empty queue shutdown PASS
+{"delayMs":800,"elapsedMs":794,"healthMs":2,"forced":false,"code":0,"signal":null,"responseStatus":200,"persistedResult":"SUCCESS","countsDelta":{"audit":1,"domain":1,"outbox":1,"result":1}}
+{"delayMs":40000,"elapsedMs":30012,"healthMs":2,"forced":false,"code":0,"signal":null,"responseStatus":null,"persistedResult":"UNKNOWN","countsDelta":{"audit":0,"domain":0,"outbox":0,"result":0}}
+{"passed":2,"scope":"Actual queued writes, SIGTERM, bounded deadline and durable restart readback"}
+asan-ubsan
+empty queue shutdown PASS
+{"delayMs":800,"elapsedMs":841,"healthMs":3,"forced":false,"code":0,"signal":null,"responseStatus":200,"persistedResult":"SUCCESS","countsDelta":{"audit":1,"domain":1,"outbox":1,"result":1}}
+{"delayMs":40000,"elapsedMs":30038,"healthMs":2,"forced":false,"code":0,"signal":null,"responseStatus":null,"persistedResult":"UNKNOWN","countsDelta":{"audit":0,"domain":0,"outbox":0,"result":0}}
+{"passed":2,"scope":"Actual queued writes, SIGTERM, bounded deadline and durable restart readback"}
+tsan

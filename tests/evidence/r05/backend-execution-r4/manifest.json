@@ -1,0 +1,2891 @@
+{
+  "at": "2026-09-16T15:35:33.117Z",
+  "status": "HALTED_RESOURCE_BREACH_STATIC_EXCEPTION_PENDING",
+  "authority": "approval.md",
+  "sourceHead": "fbbcf9168e1fee77ac20882c99de0aa8618eb347",
+  "sources": {
+    ".clang-format": {
+      "bytes": 51,
+      "sha256": "55da651c09e391c5bba3e112f607f7d1cf7acfee584b97678b8bf04c30ef441d",
+      "previousSha256": "55da651c09e391c5bba3e112f607f7d1cf7acfee584b97678b8bf04c30ef441d"
+    },
+    ".clang-tidy": {
+      "bytes": 160,
+      "sha256": "2990b0d133afed856be1474b3959621f977927ee6a256f1f590cf61f471dccb2",
+      "previousSha256": "2990b0d133afed856be1474b3959621f977927ee6a256f1f590cf61f471dccb2"
+    },
+    ".dockerignore": {
+      "bytes": 112,
+      "sha256": "91b1cf714ff52f2bbd4d7ca56b9b6d4f7c9f4cc991b2a9af155d96e832cea719",
+      "previousSha256": "91b1cf714ff52f2bbd4d7ca56b9b6d4f7c9f4cc991b2a9af155d96e832cea719"
+    },
+    "CMakeLists.txt": {
+      "bytes": 2509,
+      "sha256": "9f314c9a3a575fb3f02fd536e3e3fccc6a1e110a148dccbb7108bff09bdc1fbf",
+      "previousSha256": "dccf6f41d92d67db3707f00a3f3f23ea8ee3287710311a657d7bd3ae7dd303f9"
+    },
+    "CMakePresets.json": {
+      "bytes": 1512,
+      "sha256": "4e3c2cf3dbfc5fc225a7096eebfbfdab893c15ea94abea2cb829e3a5a702c7fc",
+      "previousSha256": "4e3c2cf3dbfc5fc225a7096eebfbfdab893c15ea94abea2cb829e3a5a702c7fc"
+    },
+    "Caddyfile": {
+      "bytes": 1403,
+      "sha256": "7b941793ce7454e315bbf7192efcd340d6e70d19e42d760bf1c968d3bbbce1fe",
+      "previousSha256": "c025c5fae05cf3caac293fb39e1ba1f8bc136ab7d6f0698cdf498f409827f60f"
+    },
+    "Dockerfile": {
+      "bytes": 1010,
+      "sha256": "bc026279fd99071fa1f3111d3b0dbba715954055fe3028a0be5b2f2ffb81ae69",
+      "previousSha256": "bc026279fd99071fa1f3111d3b0dbba715954055fe3028a0be5b2f2ffb81ae69"
+    },
+    "apt-direct-lock.json": {
+      "bytes": 23328,
+      "sha256": "6e7618d39e4552c4be4548a31e98766683b02c47a4ac045115419e3200848d0a",
+      "previousSha256": "6e7618d39e4552c4be4548a31e98766683b02c47a4ac045115419e3200848d0a"
+    },
+    "apt-install-args.json": {
+      "bytes": 657,
+      "sha256": "b5d51f5021b3b3d890c54d517e14737913a10cbff24e9362b94810be8f8ad898",
+      "previousSha256": "b5d51f5021b3b3d890c54d517e14737913a10cbff24e9362b94810be8f8ad898"
+    },
+    "apt-packages.txt": {
+      "bytes": 470,
+      "sha256": "12fb5b8b727fa93bcb66db222e8ae64fa9f6d50dc88aff299efe697b6a5b7f6d",
+      "previousSha256": "12fb5b8b727fa93bcb66db222e8ae64fa9f6d50dc88aff299efe697b6a5b7f6d"
+    },
+    "command-plan.json": {
+      "bytes": 4580,
+      "sha256": "7f82c760c00a705275d6459b58f4fd8e51da9d6c2f676e28cedf5e8b79a2ac45",
+      "previousSha256": "7f82c760c00a705275d6459b58f4fd8e51da9d6c2f676e28cedf5e8b79a2ac45"
+    },
+    "cpp/domain.cpp": {
+      "bytes": 8995,
+      "sha256": "e96568cb8b9612b4be60af237099189a8efa2e42dd6091f8bb75a3d958b06618",
+      "previousSha256": "ccd7108956142d136050f222f65b9f4c795c7e15c3822ab0bc43a571b8489647"
+    },
+    "cpp/domain.hpp": {
+      "bytes": 1411,
+      "sha256": "ea4232bd039e27b93d2f1df0ce90a379879a214000d93d4926b06064579147b7",
+      "previousSha256": "8ad23bf1f5df8f8683373b573b35594643f6ecd51217a3c2981e59f3d56764eb"
+    },
+    "cpp/input.cpp": {
+      "bytes": 846,
+      "sha256": "8d0f793a5a8bd3f0ee3f01c4a02cc5c37d56b787089c0bb10f6cda6285301a1c",
+      "previousSha256": "287ba613b15be07d6afe624fe4fb60769214abcd173e0acf8ae4a05821bab7d5"
+    },
+    "cpp/input.hpp": {
+      "bytes": 162,
+      "sha256": "7089405d96ce51ce42f0dc540037605308a6cb28a0b92f58ff7f99297e72c810",
+      "previousSha256": "7089405d96ce51ce42f0dc540037605308a6cb28a0b92f58ff7f99297e72c810"
+    },
+    "cpp/server.cpp": {
+      "bytes": 13648,
+      "sha256": "2c241ddd63d468540fd16e80754372cec17038e5b573e1e42a7fab4b38a5aa07",
+      "previousSha256": "91845c2266ac162fd5f2d53f6f88b6a681851b3a88463936575e6202ce29c2e4"
+    },
+    "cpp/tests.cpp": {
+      "bytes": 11124,
+      "sha256": "497dca14b30ffd7386e2e4df93a75dc1960e74bcdebf21028504bcd4818e0757",
+      "previousSha256": "38f65930ab7be11a085779cf7dc194286c6447b2b063cd4921e4bf8a0dd8e306"
+    },
+    "cpp/worker.hpp": {
+      "bytes": 1475,
+      "sha256": "8e90801c3487b6b9386c57d9301529f0d83f4d53088ca32d2d50ec18b83d0e53",
+      "previousSha256": "311b377e8c3b44cbdccbc03bf3a0885dd8d14723e8017806d88a04b0fe6da739"
+    },
+    "manifest.json": {
+      "bytes": 4410,
+      "sha256": "756ec886a9aa21acd2074efdd406c5f981b976ff01b72bb76319aee41c24e4b7",
+      "previousSha256": "756ec886a9aa21acd2074efdd406c5f981b976ff01b72bb76319aee41c24e4b7"
+    },
+    "resolve-apt.sh": {
+      "bytes": 882,
+      "sha256": "47854c4d7b125a26cf286e8b366a7afbd79dad6212e0b8a70fc92ac79aa502dc",
+      "previousSha256": "47854c4d7b125a26cf286e8b366a7afbd79dad6212e0b8a70fc92ac79aa502dc"
+    },
+    "scripts/bootstrap-ca.sh": {
+      "bytes": 915,
+      "sha256": "54a458ade6f46e6f3ba19789dab715c4cc0b8c22b16b8adfe91a2b250991d371",
+      "previousSha256": "54a458ade6f46e6f3ba19789dab715c4cc0b8c22b16b8adfe91a2b250991d371"
+    },
+    "scripts/cpp-preset.sh": {
+      "bytes": 215,
+      "sha256": "087a1a67367dd46cb184679507109e509d1e1dd3a117e5a5d1ad1f159266258a",
+      "previousSha256": "087a1a67367dd46cb184679507109e509d1e1dd3a117e5a5d1ad1f159266258a"
+    },
+    "scripts/inspect-licenses.sh": {
+      "bytes": 630,
+      "sha256": "5d829baf0d918bb2f0322ffce146bad940f2dc5708e12c669442db44c681982f",
+      "previousSha256": "5d829baf0d918bb2f0322ffce146bad940f2dc5708e12c669442db44c681982f"
+    },
+    "scripts/web-build.sh": {
+      "bytes": 405,
+      "sha256": "837ddf26481ed013b8d78c28855579599f111ef77dc406061dca2466fc8071fe",
+      "previousSha256": "837ddf26481ed013b8d78c28855579599f111ef77dc406061dca2466fc8071fe"
+    },
+    "test-matrix.json": {
+      "bytes": 6237,
+      "sha256": "8b3f1dd8d12d30fe504a41650a4ab3ad8cadf1b4a6222d2244e65b4cf8037e05",
+      "previousSha256": "8b3f1dd8d12d30fe504a41650a4ab3ad8cadf1b4a6222d2244e65b4cf8037e05"
+    },
+    "ubuntu.sources": {
+      "bytes": 358,
+      "sha256": "96ae31adec0b4b3fd3de4df1bffdca69b219a4521513346b9109c00f9cb2a9ab",
+      "previousSha256": "96ae31adec0b4b3fd3de4df1bffdca69b219a4521513346b9109c00f9cb2a9ab"
+    },
+    "web/README.md": {
+      "bytes": 911,
+      "sha256": "5efca47adc388b6b600fe16ca0048407ec6013bdce84af2bf216bf587a89f0c8",
+      "previousSha256": "5efca47adc388b6b600fe16ca0048407ec6013bdce84af2bf216bf587a89f0c8"
+    },
+    "web/eslint.config.js": {
+      "bytes": 878,
+      "sha256": "40815e81d40e557c73198164ab74b6bb2c6e783f6ab59779274ea33f39f07e93",
+      "previousSha256": "40815e81d40e557c73198164ab74b6bb2c6e783f6ab59779274ea33f39f07e93"
+    },
+    "web/package-lock.json": {
+      "bytes": 122585,
+      "sha256": "45f0a6b360bc70fa127e47c5df2ce3db3c9c5cb21d40216166bda80b63954545",
+      "previousSha256": "45f0a6b360bc70fa127e47c5df2ce3db3c9c5cb21d40216166bda80b63954545"
+    },
+    "web/package.json": {
+      "bytes": 1070,
+      "sha256": "eaff7c1197077ec14ee2161fa1d0be6777eed231c7b230298c42ee737c2679ba",
+      "previousSha256": "eaff7c1197077ec14ee2161fa1d0be6777eed231c7b230298c42ee737c2679ba"
+    },
+    "web/playwright.config.ts": {
+      "bytes": 662,
+      "sha256": "7e62c04d3b8566f253306a59dcea5b198ed6b44f650776495e5803e217819571",
+      "previousSha256": "7e62c04d3b8566f253306a59dcea5b198ed6b44f650776495e5803e217819571"
+    },
+    "web/src/app.html": {
+      "bytes": 261,
+      "sha256": "ddc004bfa9c802eab188ea28993fee5c18f0ff3d6d389a0de320242e160f4418",
+      "previousSha256": "ddc004bfa9c802eab188ea28993fee5c18f0ff3d6d389a0de320242e160f4418"
+    },
+    "web/src/hooks.server.ts": {
+      "bytes": 843,
+      "sha256": "547eeec9eaf74c5039d71c1d9d6e44490bfc11310e60830118717e1514381677",
+      "previousSha256": "547eeec9eaf74c5039d71c1d9d6e44490bfc11310e60830118717e1514381677"
+    },
+    "web/src/lib/AsyncChild.svelte": {
+      "bytes": 571,
+      "sha256": "61b014665d6c23d76977fe4f2a332c934a4b22a8168bcc2af45810eaa41360f0",
+      "previousSha256": "61b014665d6c23d76977fe4f2a332c934a4b22a8168bcc2af45810eaa41360f0"
+    },
+    "web/src/lib/DataLab.svelte": {
+      "bytes": 1849,
+      "sha256": "7b0532bda101a753e7e37c7fce80770745d47755532b4e65c28f78f753814db0",
+      "previousSha256": "7b0532bda101a753e7e37c7fce80770745d47755532b4e65c28f78f753814db0"
+    },
+    "web/src/lib/model.ts": {
+      "bytes": 3080,
+      "sha256": "a021a8e8ba3636b8ad2b6caa6912137277a6d6ef4ce8378738bff928ff12985a",
+      "previousSha256": "a021a8e8ba3636b8ad2b6caa6912137277a6d6ef4ce8378738bff928ff12985a"
+    },
+    "web/src/lib/server/barriers.ts": {
+      "bytes": 509,
+      "sha256": "ea840d4f64ec74e79a79238f762d9bb6d63a90cc753c1a4f1d184d66472dbba5",
+      "previousSha256": "ea840d4f64ec74e79a79238f762d9bb6d63a90cc753c1a4f1d184d66472dbba5"
+    },
+    "web/src/routes/+page.svelte": {
+      "bytes": 3474,
+      "sha256": "3039d3d9be151fc87d1cbc85da2bcb946adb8490246e2f0feba5ca27472279e3",
+      "previousSha256": "3039d3d9be151fc87d1cbc85da2bcb946adb8490246e2f0feba5ca27472279e3"
+    },
+    "web/src/routes/api/echo/+server.ts": {
+      "bytes": 473,
+      "sha256": "fca9ea9b4c64d0bd5bade3445fa2ff1f558216fee46dd810e5ec15161ebca995",
+      "previousSha256": "fca9ea9b4c64d0bd5bade3445fa2ff1f558216fee46dd810e5ec15161ebca995"
+    },
+    "web/src/routes/control/+server.ts": {
+      "bytes": 409,
+      "sha256": "d562823ee654912c8b8e3d6b3a80d4e8abd12bda6944e4eb967a769875063c0d",
+      "previousSha256": "d562823ee654912c8b8e3d6b3a80d4e8abd12bda6944e4eb967a769875063c0d"
+    },
+    "web/src/routes/cookie/+server.ts": {
+      "bytes": 686,
+      "sha256": "3570930e0214c7a0693bb44ee85c1f69c7f1162f077b0e3157b28b8be4dfc99f",
+      "previousSha256": "3570930e0214c7a0693bb44ee85c1f69c7f1162f077b0e3157b28b8be4dfc99f"
+    },
+    "web/src/routes/drain/+server.ts": {
+      "bytes": 556,
+      "sha256": "2e42f13b32caf60647d2fa5d419bea9794b51b1fbf39a9408271395cc3099d9e",
+      "previousSha256": "2e42f13b32caf60647d2fa5d419bea9794b51b1fbf39a9408271395cc3099d9e"
+    },
+    "web/src/routes/secure/+page.server.ts": {
+      "bytes": 1500,
+      "sha256": "a73952658e316b4ab9224444ed39b07f6c5fd66be28497e1a8b6a785d2df0a3a",
+      "previousSha256": "a73952658e316b4ab9224444ed39b07f6c5fd66be28497e1a8b6a785d2df0a3a"
+    },
+    "web/src/routes/secure/+page.svelte": {
+      "bytes": 731,
+      "sha256": "d38bfe29bd617b069792700ea9ee760db28d35724630056fd0064ea098054c65",
+      "previousSha256": "d38bfe29bd617b069792700ea9ee760db28d35724630056fd0064ea098054c65"
+    },
+    "web/src/routes/ssr/+page.server.ts": {
+      "bytes": 867,
+      "sha256": "913ed2065992963d5eaa9aa490157190dcaba60643de21dfcb6471c9eeb2d5ea",
+      "previousSha256": "913ed2065992963d5eaa9aa490157190dcaba60643de21dfcb6471c9eeb2d5ea"
+    },
+    "web/src/routes/ssr/+page.svelte": {
+      "bytes": 370,
+      "sha256": "94732f3aab4bdd956601a36b4acb2662c1584ccb079bb723d424f8fb58a4409a",
+      "previousSha256": "94732f3aab4bdd956601a36b4acb2662c1584ccb079bb723d424f8fb58a4409a"
+    },
+    "web/svelte.config.js": {
+      "bytes": 187,
+      "sha256": "e205f6ea457920bd40b90d7d73950244fc2df05acc48fbfff926de796809c938",
+      "previousSha256": "e205f6ea457920bd40b90d7d73950244fc2df05acc48fbfff926de796809c938"
+    },
+    "web/tests/browser/extended.spec.ts": {
+      "bytes": 4298,
+      "sha256": "fba31943f78c46b6b3926f05a7dbc1ea6e73b96a8f649ef9fcd8696db0a5984b",
+      "previousSha256": "fba31943f78c46b6b3926f05a7dbc1ea6e73b96a8f649ef9fcd8696db0a5984b"
+    },
+    "web/tests/browser/sample.spec.ts": {
+      "bytes": 4815,
+      "sha256": "fbd9a4f631be5df8e28639da84a5b2459e1f1eba9b3b177f92a78b8ce06fbc67",
+      "previousSha256": "fbd9a4f631be5df8e28639da84a5b2459e1f1eba9b3b177f92a78b8ce06fbc67"
+    },
+    "web/tests/server/lifecycle.test.mjs": {
+      "bytes": 4433,
+      "sha256": "30d74d6a1a3679ce27d37f3f494ed5bfffb5dbaa54e9090009c6bafd5daf917c",
+      "previousSha256": "30d74d6a1a3679ce27d37f3f494ed5bfffb5dbaa54e9090009c6bafd5daf917c"
+    },
+    "web/tests/unit/cookie.test.mjs": {
+      "bytes": 1288,
+      "sha256": "623e95639db8b8a547a94ef04c918e5922a4f05bdbdddbc26cd2a2d8b5c0edff",
+      "previousSha256": "623e95639db8b8a547a94ef04c918e5922a4f05bdbdddbc26cd2a2d8b5c0edff"
+    },
+    "web/tests/unit/input.test.mjs": {
+      "bytes": 2679,
+      "sha256": "474b14f648f5c59277cfda19de81fad963a3b1e4a8ccf02be63eac14bb995bb3",
+      "previousSha256": "474b14f648f5c59277cfda19de81fad963a3b1e4a8ccf02be63eac14bb995bb3"
+    },
+    "web/tests/unit/model.test.mjs": {
+      "bytes": 3216,
+      "sha256": "d1d465af0b2f42ca47e2f9ffc49c651a56d61faee3d9c21a695a4a092e2196b7",
+      "previousSha256": "d1d465af0b2f42ca47e2f9ffc49c651a56d61faee3d9c21a695a4a092e2196b7"
+    },
+    "web/tsconfig.json": {
+      "bytes": 367,
+      "sha256": "6202643ccf59d3e51f4215e6c8cb5a96245ccacc7a47496afdf4eb7b748fe928",
+      "previousSha256": "6202643ccf59d3e51f4215e6c8cb5a96245ccacc7a47496afdf4eb7b748fe928"
+    },
+    "web/vite.config.ts": {
+      "bytes": 142,
+      "sha256": "1e849563c7b7403a43680ae811628bef59bf4b008af9f2f76d8968c5101ddf5f",
+      "previousSha256": "1e849563c7b7403a43680ae811628bef59bf4b008af9f2f76d8968c5101ddf5f"
+    },
+    "vendor/cmark/src/parser.h": {
+      "bytes": 816,
+      "sha256": "492abbefb247ca9545a0dbbe77ab8e5289bb8c6d0cae9698769814cc2f9b0f24",
+      "previousSha256": "492abbefb247ca9545a0dbbe77ab8e5289bb8c6d0cae9698769814cc2f9b0f24"
+    },
+    "vendor/cmark/src/blocks.c": {
+      "bytes": 42305,
+      "sha256": "9d21749ec4f357c5c0d299214c096854b108ce530a52217661806c219e25662c",
+      "previousSha256": "9d21749ec4f357c5c0d299214c096854b108ce530a52217661806c219e25662c"
+    },
+    "vendor/cmark/src/cmark.h": {
+      "bytes": 21085,
+      "sha256": "7e12de1a20a9db84270ffe2b875f88287e440b77e2d2911eaf0659a23bd46846",
+      "previousSha256": "7e12de1a20a9db84270ffe2b875f88287e440b77e2d2911eaf0659a23bd46846"
+    },
+    "caddy-r2/resolve.sh": {
+      "bytes": 776,
+      "sha256": "63b4eaa06f295fe2a75b28b512d27a5d916436f4ed62db5851b5601e6842414f",
+      "previousSha256": "63b4eaa06f295fe2a75b28b512d27a5d916436f4ed62db5851b5601e6842414f"
+    },
+    "caddy-r2/licenses.mjs": {
+      "bytes": 875,
+      "sha256": "a78d1041c75459d2aff2ad33b49489d5390b7bf6904e250d6d48f63935d0d0b7",
+      "previousSha256": "a78d1041c75459d2aff2ad33b49489d5390b7bf6904e250d6d48f63935d0d0b7"
+    },
+    "cpp/tsan_probe.cpp": {
+      "bytes": 309,
+      "sha256": "aa9130491bfb90ad8dcc6237e65bc94d3d9027748e11419c4f61fcc9b1586d95",
+      "previousSha256": "aa9130491bfb90ad8dcc6237e65bc94d3d9027748e11419c4f61fcc9b1586d95"
+    },
+    "scripts/https-check.mjs": {
+      "bytes": 9775,
+      "sha256": "bd260835b6a6514c917df1106b0f46d4059b5ca65aa84d80add9223eaf907989",
+      "previousSha256": "294c5750a39f0992aecb0c20a77249c5b5ad9272fe42ff54460aaed9c9a30a3a"
+    },
+    "scripts/header-boundary.mjs": {
+      "bytes": 1259,
+      "sha256": "9c256410fb2ea09aab0e2d7e27b2cecef03190453a2754851431ce2a2e8d82d6",
+      "previousSha256": "9c256410fb2ea09aab0e2d7e27b2cecef03190453a2754851431ce2a2e8d82d6"
+    },
+    "caddy-r2/source/modules/caddyhttp/celmatcher.go": {
+      "bytes": 28974,
+      "sha256": "e4a3578e3307cb0d97b3d140aff2a8d14fb2147d0fd5122c1d94e523c3ed89bb",
+      "previousSha256": "e4a3578e3307cb0d97b3d140aff2a8d14fb2147d0fd5122c1d94e523c3ed89bb"
+    },
+    "caddy-r2/source/modules/caddyhttp/kidea_cel_compat_test.go": {
+      "bytes": 2255,
+      "sha256": "4ebb2f057991e433f91ad0774764982e59b90dec5aa549041d8b370434e178a7",
+      "previousSha256": "4ebb2f057991e433f91ad0774764982e59b90dec5aa549041d8b370434e178a7"
+    },
+    "scripts/browser-https.mjs": {
+      "bytes": 5598,
+      "sha256": "4eacdca7e036ad1ae01801c882e8f96f903ecabce62ce301344052085a431f7a",
+      "previousSha256": null
+    },
+    "scripts/browser-bootstrap-r4.sh": {
+      "bytes": 502,
+      "sha256": "0db6eb8bf24a90e422fc173f8fcef1bc9dba3cdad5e8222fe34223df75a9abba",
+      "previousSha256": null
+    },
+    "scripts/layers-r4.mjs": {
+      "bytes": 2108,
+      "sha256": "fc98ea2b30372ab2411b80bce624c475dce3bbedf7e335a2abfc1fab4a1d5ef3",
+      "previousSha256": null
+    },
+    "scripts/expired-tls.mjs": {
+      "bytes": 2436,
+      "sha256": "2c4924ca48b7f45753b7916d68815f188714af2b551e51c09b111b7ab269ae4f",
+      "previousSha256": null
+    },
+    "scripts/mutations-r4.mjs": {
+      "bytes": 6770,
+      "sha256": "5406f081990a4d3f519474beeb95d823ba2530d4870aafb4466fba85695e6595",
+      "previousSha256": null
+    },
+    "scripts/drain-request.mjs": {
+      "bytes": 1007,
+      "sha256": "06082757c461d051ce3db1c50e094ed5b911da73b5cbd8314be4b89621e22880",
+      "previousSha256": null
+    },
+    "scripts/writer-drain-r4.mjs": {
+      "bytes": 4314,
+      "sha256": "927ae6e4189b5d2489ce63591463d7819bf05807d5a699bd2c26134a00b63075",
+      "previousSha256": null
+    },
+    "scripts/inventory-r4.mjs": {
+      "bytes": 1893,
+      "sha256": "dea7752c26983f0475429985c57a995449c2a583b121eca88113c99e3493e27d",
+      "previousSha256": null
+    },
+    "caddy-r2/source/modules/caddyhttp/server.go": {
+      "bytes": 43310,
+      "sha256": "ed816116d566f8337758604b0ab48d7a285599e659feb37d9a8c7147b82ca937",
+      "previousSha256": null
+    },
+    "caddy-r2/source/modules/caddyhttp/kidea_header_budget.go": {
+      "bytes": 756,
+      "sha256": "6e9ec4828c90de56fa2777897098eca9b71005db90b917ba2fb98c106bec1af0",
+      "previousSha256": null
+    },
+    "caddy-r2/source/modules/caddyhttp/kidea_header_budget_test.go": {
+      "bytes": 1375,
+      "sha256": "4cdfd642972e905e8627fd5799cdcfb39529dab6ddb62ebf0310e6842c7c2e0a",
+      "previousSha256": null
+    },
+    "caddy-r2/source/go.mod": {
+      "bytes": 8465,
+      "sha256": "2ce7537aecbdaf5b2fe42bf0cc42f2d7e7ce5e4186aab3586b736a53f5937abd",
+      "previousSha256": null
+    },
+    "caddy-r2/source/go.sum": {
+      "bytes": 52945,
+      "sha256": "d4e2d1812e7e38d24f947adf93afddb9b04b2bc8102fefc3e5b43fc2540dea79",
+      "previousSha256": null
+    }
+  },
+  "changed": [
+    "CMakeLists.txt",
+    "Caddyfile",
+    "cpp/domain.cpp",
+    "cpp/domain.hpp",
+    "cpp/input.cpp",
+    "cpp/server.cpp",
+    "cpp/tests.cpp",
+    "cpp/worker.hpp",
+    "scripts/https-check.mjs",
+    "scripts/browser-https.mjs",
+    "scripts/browser-bootstrap-r4.sh",
+    "scripts/layers-r4.mjs",
+    "scripts/expired-tls.mjs",
+    "scripts/mutations-r4.mjs",
+    "scripts/drain-request.mjs",
+    "scripts/writer-drain-r4.mjs",
+    "scripts/inventory-r4.mjs",
+    "caddy-r2/source/modules/caddyhttp/server.go",
+    "caddy-r2/source/modules/caddyhttp/kidea_header_budget.go",
+    "caddy-r2/source/modules/caddyhttp/kidea_header_budget_test.go",
+    "caddy-r2/source/go.mod",
+    "caddy-r2/source/go.sum"
+  ],
+  "pilotUnchanged": 21,
+  "webR2Unchanged": 27,
+  "vendorSqliteSha256": "b1dd5d74ec7f29055a6684fa06fb3c2f6821c87dd38f9a458dfd2e8a1db28189",
+  "stages": [
+    {
+      "directory": "cpp-tsan-6cJ8jS",
+      "stage": "cpp-tsan",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-tsan",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "/src/scripts/cpp-preset.sh",
+        "tsan"
+      ],
+      "at": "2026-09-16T14:35:25.513Z",
+      "durationMs": 151253,
+      "code": 8,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "browser-pull-rLnOXM",
+      "stage": "browser-pull",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "pull",
+        "mcr.microsoft.com/playwright@sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7"
+      ],
+      "at": "2026-09-16T14:35:26.427Z",
+      "durationMs": 131578,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "caddy-build-test-5gU371",
+      "stage": "caddy-build-test",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-caddy-build",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r2-go,dst=/work",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "cd /work/source && export GOTOOLCHAIN=local GOCACHE=/work/cache GOMODCACHE=/work/modcache GOPROXY=off GOMAXPROCS=2 && /work/sdk/go/bin/go test -p 2 -json ./modules/caddyhttp -run \"Test(MatchExpression|KideaCELFactory|KideaHeaderBudget)\" > /out/caddy-tests.jsonl && /work/sdk/go/bin/go build -p 2 -trimpath -o /work/caddy ./cmd/caddy && /work/caddy build-info > /out/build-info.txt && sha256sum /work/caddy modules/caddyhttp/server.go modules/caddyhttp/kidea_header_budget* > /out/caddy.sha256"
+      ],
+      "at": "2026-09-16T14:42:22.302Z",
+      "durationMs": 28995,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "header-boundary-K8DAfj",
+      "stage": "header-boundary",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-headers",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "0.5",
+        "--memory",
+        "1g",
+        "--memory-swap",
+        "1g",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--network",
+        "kidea-r05-e2-r3-net",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/scripts/header-boundary.mjs,dst=/check.mjs,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/public,dst=/fixtures,readonly",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/check.mjs"
+      ],
+      "at": "2026-09-16T14:43:27.333Z",
+      "durationMs": 721,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "https-check-eY9RiF",
+      "stage": "https-check",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-client",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "0.5",
+        "--memory",
+        "1g",
+        "--memory-swap",
+        "1g",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,nosuid,size=64m",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--network",
+        "kidea-r05-e2-r3-net",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/scripts/https-check.mjs,dst=/check.mjs,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/public,dst=/fixtures,readonly",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/check.mjs"
+      ],
+      "at": "2026-09-16T14:43:37.261Z",
+      "durationMs": 1175,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "web-browser-server-57yacS",
+      "stage": "web-browser-server",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-browser"
+      ],
+      "at": "2026-09-16T14:44:10.538Z",
+      "durationMs": 44555,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-all-presets-VCSmVv",
+      "stage": "cpp-all-presets",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-presets",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "failed=0; for preset in dev asan-ubsan tsan release; do sh /src/scripts/cpp-preset.sh \"$preset\" || failed=1; done; exit \"$failed\""
+      ],
+      "at": "2026-09-16T14:45:12.659Z",
+      "durationMs": 254318,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-final-presets-Gs6D4J",
+      "stage": "cpp-final-presets",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-final-presets",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "failed=0; for preset in dev asan-ubsan tsan release; do sh /src/scripts/cpp-preset.sh \"$preset\" || failed=1; done; exit \"$failed\""
+      ],
+      "at": "2026-09-16T14:49:49.831Z",
+      "durationMs": 22923,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "browser-https-yCnJ4U",
+      "stage": "browser-https",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-browser-https"
+      ],
+      "at": "2026-09-16T14:50:36.267Z",
+      "durationMs": 6498,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "independent-layers-GAlhZ1",
+      "stage": "independent-layers",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-layers",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "0.5",
+        "--memory",
+        "1g",
+        "--memory-swap",
+        "1g",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--network",
+        "kidea-r05-e2-r3-net",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/scripts/layers-r4.mjs,dst=/check.mjs,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/check.mjs"
+      ],
+      "at": "2026-09-16T14:50:55.042Z",
+      "durationMs": 837,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "mutations-abwsBF",
+      "stage": "mutations",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-mutants",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r4-mutants,dst=/work",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--tmpfs",
+        "/data:rw,uid=1000,gid=1000,size=64m",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/src/scripts/mutations-r4.mjs"
+      ],
+      "at": "2026-09-16T14:51:19.642Z",
+      "durationMs": 39680,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "mutations-final-JfDLdh",
+      "stage": "mutations-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-mutants-final",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r4-mutants,dst=/work",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--tmpfs",
+        "/data:rw,uid=1000,gid=1000,size=64m",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/src/scripts/mutations-r4.mjs"
+      ],
+      "at": "2026-09-16T14:53:15.634Z",
+      "durationMs": 41392,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "expired-tls-yCE3Ue",
+      "stage": "expired-tls",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-expiry",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,uid=1000,gid=1000,size=64m",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/scripts/expired-tls.mjs,dst=/check.mjs,readonly",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/check.mjs"
+      ],
+      "at": "2026-09-16T14:54:05.855Z",
+      "durationMs": 1373,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "caddy-final-config-dxMRIp",
+      "stage": "caddy-final-config",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-config",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r2-go,dst=/work",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "/work/caddy adapt --config /src/Caddyfile --adapter caddyfile > /out/caddy-final.json && for f in server.go kidea_header_budget.go kidea_header_budget_test.go; do /work/sdk/go/bin/gofmt /src/caddy-r2/source/modules/caddyhttp/$f > /out/formatted-$f; done"
+      ],
+      "at": "2026-09-16T14:54:33.316Z",
+      "durationMs": 482,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "caddy-final-build-IyRwYb",
+      "stage": "caddy-final-build",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-caddy-final",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r2-go,dst=/work",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "cd /work/source && export GOTOOLCHAIN=local GOCACHE=/work/cache GOMODCACHE=/work/modcache GOPROXY=off GOMAXPROCS=2 && /work/sdk/go/bin/go test -count=1 -p 2 -json ./modules/caddyhttp -run \"Test(MatchExpression|KideaCELFactory|KideaHeaderBudget)\" > /out/caddy-final-tests.jsonl && /work/sdk/go/bin/go build -p 2 -trimpath -o /work/caddy ./cmd/caddy && sha256sum /work/caddy modules/caddyhttp/server.go modules/caddyhttp/kidea_header_budget* > /out/caddy-final.sha256"
+      ],
+      "at": "2026-09-16T14:54:59.057Z",
+      "durationMs": 26831,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "web-final-ynBzdf",
+      "stage": "web-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-web-final",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r3-web,dst=/work",
+        "--workdir",
+        "/work",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "npm run sync && npm run check && npm run lint && npm run test:unit && npm run build"
+      ],
+      "at": "2026-09-16T14:55:37.101Z",
+      "durationMs": 20037,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-after-mutants-GxX7PE",
+      "stage": "cpp-after-mutants",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-final-presets"
+      ],
+      "at": "2026-09-16T14:56:09.311Z",
+      "durationMs": 4629,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "edge-drain-Jh7eht",
+      "stage": "edge-drain",
+      "executable": "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/r05/backend-drain-r4.mjs"
+      ],
+      "at": "2026-09-16T14:56:52.780Z",
+      "durationMs": 35431,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "writer-drain-before-JCoZG4",
+      "stage": "writer-drain-before",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-writer-before",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--tmpfs",
+        "/data:rw,uid=1000,gid=1000,size=64m",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "cmake --build /build/dev --target backend -j2 && node /src/scripts/writer-drain-r4.mjs"
+      ],
+      "at": "2026-09-16T14:58:06.965Z",
+      "durationMs": 45744,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "writer-drain-fixed-VNnPS2",
+      "stage": "writer-drain-fixed",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-writer-fixed",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--tmpfs",
+        "/data:rw,uid=1000,gid=1000,size=64m",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "cmake --build /build/dev --target backend -j2 && node /src/scripts/writer-drain-r4.mjs"
+      ],
+      "at": "2026-09-16T14:59:46.714Z",
+      "durationMs": 41490,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-format-check-Z2GVQf",
+      "stage": "cpp-format-check",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-format",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "mkdir /out/formatted-cpp; for f in /src/cpp/*.cpp /src/cpp/*.hpp; do clang-format-18 \"$f\" > /out/formatted-cpp/$(basename \"$f\"); done; clang-format-18 --dry-run --Werror /src/cpp/*.cpp /src/cpp/*.hpp"
+      ],
+      "at": "2026-09-16T15:00:59.422Z",
+      "durationMs": 1509,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-source-final-mpfeBY",
+      "stage": "cpp-source-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-source-final",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "clang-format-18 --dry-run --Werror /src/cpp/*.cpp /src/cpp/*.hpp || exit 2; failed=0; for preset in dev asan-ubsan tsan release; do sh /src/scripts/cpp-preset.sh \"$preset\" || failed=1; done; exit \"$failed\""
+      ],
+      "at": "2026-09-16T15:01:22.013Z",
+      "durationMs": 55900,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-tidy-Rg0NFi",
+      "stage": "cpp-tidy",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-tidy",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build,readonly",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "failed=0; for f in domain input tests server; do clang-tidy-18 /src/cpp/$f.cpp -p /build/dev || failed=1; done; exit \"$failed\""
+      ],
+      "at": "2026-09-16T15:02:42.562Z",
+      "durationMs": 43133,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-shared-authority-MkhQje",
+      "stage": "cpp-shared-authority",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-source-final"
+      ],
+      "at": "2026-09-16T15:04:34.129Z",
+      "durationMs": 57809,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-isolated-final-KqfBIv",
+      "stage": "cpp-isolated-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-isolated-final",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "clang-format-18 --dry-run --Werror /src/cpp/*.cpp /src/cpp/*.hpp || exit 2; failed=0; for preset in dev asan-ubsan tsan release; do sh /src/scripts/cpp-preset.sh \"$preset\" || failed=1; done; exit \"$failed\""
+      ],
+      "at": "2026-09-16T15:06:20.247Z",
+      "durationMs": 25760,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "authority-negative-before-Ooao7P",
+      "stage": "authority-negative-before",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-authority-before",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "0.5",
+        "--memory",
+        "1g",
+        "--memory-swap",
+        "1g",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,nosuid,size=64m",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--network",
+        "kidea-r05-e2-r3-net",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/scripts/https-check.mjs,dst=/check.mjs,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/public,dst=/fixtures,readonly",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/check.mjs"
+      ],
+      "at": "2026-09-16T15:07:13.940Z",
+      "durationMs": 899,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "caddy-authority-config-eP14aM",
+      "stage": "caddy-authority-config",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-authority-config",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r2-go,dst=/work,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/Caddyfile,dst=/Caddyfile,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "/work/caddy adapt --config /Caddyfile --adapter caddyfile > /out/caddy-authority-final.json"
+      ],
+      "at": "2026-09-16T15:07:37.404Z",
+      "durationMs": 583,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "mutations-source-final-ThO017",
+      "stage": "mutations-source-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-mutants-source-final",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--env",
+        "KIDEA_MUTATION_RUN=source-final",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r4-mutants,dst=/work",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--tmpfs",
+        "/data:rw,uid=1000,gid=1000,size=64m",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/src/scripts/mutations-r4.mjs"
+      ],
+      "at": "2026-09-16T15:07:55.117Z",
+      "durationMs": 488,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "mutations-source-final-retry-8vlbxw",
+      "stage": "mutations-source-final-retry",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-mutants-source-final"
+      ],
+      "at": "2026-09-16T15:08:10.253Z",
+      "durationMs": 45327,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-post-mutations-final-ZHfezY",
+      "stage": "cpp-post-mutations-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-isolated-final"
+      ],
+      "at": "2026-09-16T15:09:14.156Z",
+      "durationMs": 5312,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "writer-sanitizers-final-Qb3RNm",
+      "stage": "writer-sanitizers-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-writer-sanitizers",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--env",
+        "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1:detect_stack_use_after_return=1",
+        "--env",
+        "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+        "--env",
+        "TSAN_OPTIONS=halt_on_error=1",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--tmpfs",
+        "/data:rw,uid=1000,gid=1000,size=64m",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "for preset in dev asan-ubsan tsan; do echo \"$preset\"; KIDEA_BACKEND_BIN=/build/$preset/backend node /src/scripts/writer-drain-r4.mjs || exit 1; done"
+      ],
+      "at": "2026-09-16T15:10:23.987Z",
+      "durationMs": 63501,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-signal-final-q6L5JT",
+      "stage": "cpp-signal-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-isolated-final"
+      ],
+      "at": "2026-09-16T15:12:09.991Z",
+      "durationMs": 49876,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "environment-7F2Ixk",
+      "stage": "environment",
+      "executable": "/bin/zsh",
+      "args": [
+        "-c",
+        "sw_vers; uname -m; sysctl -n machdep.cpu.brand_string; id -u; command -v node; node --version; npm --version; git --version; git remote -v; git branch --show-current; git rev-parse HEAD; df -k .; /Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node --version"
+      ],
+      "at": "2026-09-16T15:13:00.847Z",
+      "durationMs": 663,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "writer-sanitizers-signal-fixed-fwlpNy",
+      "stage": "writer-sanitizers-signal-fixed",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-writer-signal-fixed",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--env",
+        "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1:detect_stack_use_after_return=1",
+        "--env",
+        "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+        "--env",
+        "TSAN_OPTIONS=halt_on_error=1",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--tmpfs",
+        "/data:rw,uid=1000,gid=1000,size=64m",
+        "kidea-r05-e2:toolchain",
+        "sh",
+        "-c",
+        "for preset in dev asan-ubsan tsan; do echo \"$preset\"; KIDEA_BACKEND_BIN=/build/$preset/backend node /src/scripts/writer-drain-r4.mjs || exit 1; done"
+      ],
+      "at": "2026-09-16T15:13:09.922Z",
+      "durationMs": 94555,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "mutations-sealed-bCbtoB",
+      "stage": "mutations-sealed",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-mutants-sealed",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--env",
+        "KIDEA_MUTATION_RUN=sealed",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r4-mutants,dst=/work",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--tmpfs",
+        "/data:rw,uid=1000,gid=1000,size=64m",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/src/scripts/mutations-r4.mjs"
+      ],
+      "at": "2026-09-16T15:15:23.474Z",
+      "durationMs": 46764,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-sealed-positive-Fqpnyg",
+      "stage": "cpp-sealed-positive",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-isolated-final"
+      ],
+      "at": "2026-09-16T15:16:14.433Z",
+      "durationMs": 5322,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "cpp-tidy-final-h4i3ln",
+      "stage": "cpp-tidy-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-tidy"
+      ],
+      "at": "2026-09-16T15:16:22.039Z",
+      "durationMs": 46330,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "runtime-inventory-299y9c",
+      "stage": "runtime-inventory",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-inventory",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "--memory-swap",
+        "4g",
+        "--network",
+        "none",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r1-build,dst=/build,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r2-go,dst=/go,readonly",
+        "--mount",
+        "type=volume,src=kidea-r05-e2-r3-web,dst=/work,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/src/scripts/inventory-r4.mjs"
+      ],
+      "at": "2026-09-16T15:17:48.609Z",
+      "durationMs": 558,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "web-source-aligned-Pqu3OB",
+      "stage": "web-source-aligned",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-web-final"
+      ],
+      "at": "2026-09-16T15:18:38.778Z",
+      "durationMs": 19056,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "runtime-inventory-aligned-g965zm",
+      "stage": "runtime-inventory-aligned",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-inventory"
+      ],
+      "at": "2026-09-16T15:19:11.704Z",
+      "durationMs": 2530,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "web-browser-server-sealed-ybwOKl",
+      "stage": "web-browser-server-sealed",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-browser"
+      ],
+      "at": "2026-09-16T15:19:28.642Z",
+      "durationMs": 43217,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "independent-layers-final-5Dd8mD",
+      "stage": "independent-layers-final",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-layers-final",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "0.5",
+        "--memory",
+        "1g",
+        "--memory-swap",
+        "1g",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--network",
+        "kidea-r05-e2-r3-net",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/scripts/layers-r4.mjs,dst=/check.mjs,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/check.mjs"
+      ],
+      "at": "2026-09-16T15:20:22.974Z",
+      "durationMs": 964,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "https-sealed-UZ8BGN",
+      "stage": "https-sealed",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-https-sealed",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "0.5",
+        "--memory",
+        "1g",
+        "--memory-swap",
+        "1g",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,nosuid,size=64m",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--network",
+        "kidea-r05-e2-r3-net",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/scripts/https-check.mjs,dst=/check.mjs,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/secrets,dst=/secrets,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/public,dst=/fixtures,readonly",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/check.mjs"
+      ],
+      "at": "2026-09-16T15:20:36.058Z",
+      "durationMs": 1450,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "header-sealed-KrGXY7",
+      "stage": "header-sealed",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "run",
+        "--name",
+        "kidea-r05-e2-r4-header-sealed",
+        "--label",
+        "kidea.run=E2-BW-r4",
+        "--cpus",
+        "0.5",
+        "--memory",
+        "1g",
+        "--memory-swap",
+        "1g",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--network",
+        "kidea-r05-e2-r3-net",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/scripts/header-boundary.mjs,dst=/check.mjs,readonly",
+        "--mount",
+        "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/runtime-r3/public,dst=/fixtures,readonly",
+        "kidea-r05-e2:toolchain",
+        "node",
+        "/check.mjs"
+      ],
+      "at": "2026-09-16T15:20:43.261Z",
+      "durationMs": 733,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "browser-https-sealed-6RzIfm",
+      "stage": "browser-https-sealed",
+      "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+      "args": [
+        "start",
+        "--attach",
+        "kidea-r05-e2-r4-browser-https"
+      ],
+      "at": "2026-09-16T15:21:06.636Z",
+      "durationMs": 43497,
+      "code": 137,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "edge-drain-sealed-Svjhhm",
+      "stage": "edge-drain-sealed",
+      "executable": "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/r05/backend-drain-r4.mjs"
+      ],
+      "at": "2026-09-16T15:21:27.740Z",
+      "durationMs": 33487,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "core-regression-5LnsDr",
+      "stage": "core-regression",
+      "executable": "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/r02-t07/run-tests.mjs"
+      ],
+      "at": "2026-09-16T15:26:51.003Z",
+      "durationMs": 107723,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "budget-guard-unit-zsgD8j",
+      "stage": "budget-guard-unit",
+      "executable": "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "--test",
+        "tests/r05/backend-budget-r4.test.mjs"
+      ],
+      "at": "2026-09-16T15:26:52.676Z",
+      "durationMs": 431,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "docs-regression-k2WMOb",
+      "stage": "docs-regression",
+      "executable": "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/r05/run-tests.mjs"
+      ],
+      "at": "2026-09-16T15:27:47.333Z",
+      "durationMs": 1390,
+      "code": 1,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "current-document-scope-3aDRgO",
+      "stage": "current-document-scope",
+      "executable": "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "--input-type=module",
+        "-e",
+        "import path from \"node:path\";import assert from \"node:assert/strict\";import {readTree,pilot} from \"./tests/r05/support.mjs\";import {validate} from \"./tests/r05/validate.mjs\";const files=Object.fromEntries(Object.entries(readTree(path.join(pilot,\"docs\"))).map(([p,b])=>[\"docs/\"+p,b]));const result=validate(files);assert.deepEqual(result.errors,[]);assert.equal(Object.keys(files).length,21);console.log(JSON.stringify({scope:\"All current pilot docs; samples are separately authorized runtime artifacts, not profile documents\",...result}));"
+      ],
+      "at": "2026-09-16T15:28:51.478Z",
+      "durationMs": 129,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    },
+    {
+      "directory": "budget-readonly-preflight-xHYMwh",
+      "stage": "budget-readonly-preflight",
+      "executable": "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "--input-type=module",
+        "-e",
+        "import assert from \"node:assert/strict\";import {acquireBudget} from \"./tests/r05/backend-budget-r4.mjs\";const args=[\"run\",\"--name\",\"kidea-r05-e2-r4-readonly-probe\",\"--label\",\"kidea.run=E2-BW-r4\",\"--cpus\",\"2\",\"--memory\",\"4g\",\"--memory-swap\",\"4g\",\"kidea-r05-e2:toolchain\"];const first=acquireBudget(args);try{assert.equal(first.receipt.cpu,2);assert.throws(()=>acquireBudget(args),/EEXIST/);console.log(JSON.stringify({readOnlyPreflight:\"PASS\",concurrentLauncherRejected:\"PASS\",containerLaunched:false}));}finally{first.release();}"
+      ],
+      "at": "2026-09-16T15:34:59.432Z",
+      "durationMs": 126,
+      "code": 0,
+      "signal": null,
+      "timedOut": false
+    }
+  ],
+  "containers": [
+    {
+      "name": "kidea-r05-e2-r4-drain-stuck-sealed",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 137,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:21:33.305320408Z",
+        "FinishedAt": "2026-09-16T15:22:00.713448059Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-drain-normal-sealed",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:21:29.480837811Z",
+        "FinishedAt": "2026-09-16T15:21:31.023759196Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-header-sealed",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:20:43.43633822Z",
+        "FinishedAt": "2026-09-16T15:20:43.900661684Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-https-sealed",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:20:36.243323753Z",
+        "FinishedAt": "2026-09-16T15:20:37.427237605Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-layers-final",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:20:23.253169396Z",
+        "FinishedAt": "2026-09-16T15:20:23.844878217Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-inventory",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:19:12.015654717Z",
+        "FinishedAt": "2026-09-16T15:19:14.120443878Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-mutants-sealed",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:15:23.875041916Z",
+        "FinishedAt": "2026-09-16T15:16:09.679145505Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-writer-signal-fixed",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:13:10.088785586Z",
+        "FinishedAt": "2026-09-16T15:14:44.412761178Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-writer-sanitizers",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:10:24.147526461Z",
+        "FinishedAt": "2026-09-16T15:11:27.425375432Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-mutants-source-final",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:08:10.394004445Z",
+        "FinishedAt": "2026-09-16T15:08:55.234138294Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-authority-config",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:07:37.654813369Z",
+        "FinishedAt": "2026-09-16T15:07:37.911480521Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-authority-before",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:07:14.318095003Z",
+        "FinishedAt": "2026-09-16T15:07:14.776304799Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-isolated-final",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:16:14.516123247Z",
+        "FinishedAt": "2026-09-16T15:16:19.67637581Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-tidy",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:16:22.120111989Z",
+        "FinishedAt": "2026-09-16T15:17:08.291735114Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-source-final",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:04:34.457236289Z",
+        "FinishedAt": "2026-09-16T15:05:31.581613283Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-format",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:00:59.586944407Z",
+        "FinishedAt": "2026-09-16T15:01:00.86230394Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-writer-fixed",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:59:47.071228099Z",
+        "FinishedAt": "2026-09-16T15:00:28.069355573Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-writer-before",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:58:07.208918731Z",
+        "FinishedAt": "2026-09-16T14:58:52.591552711Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-drain-stuck",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:56:57.155260761Z",
+        "FinishedAt": "2026-09-16T14:57:27.666777346Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-drain-normal",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:56:54.228999843Z",
+        "FinishedAt": "2026-09-16T14:56:55.426891724Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-web-final",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:18:39.022122663Z",
+        "FinishedAt": "2026-09-16T15:18:57.744365215Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-caddy-final",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:54:59.227801862Z",
+        "FinishedAt": "2026-09-16T14:55:25.080452513Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-config",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:54:33.478977185Z",
+        "FinishedAt": "2026-09-16T14:54:33.738558417Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-expiry",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:54:06.145261786Z",
+        "FinishedAt": "2026-09-16T14:54:07.171591488Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-mutants-final",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:53:16.04306708Z",
+        "FinishedAt": "2026-09-16T14:53:56.687437211Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-mutants",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:51:19.820468483Z",
+        "FinishedAt": "2026-09-16T14:51:59.072767289Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-layers",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:50:55.206135621Z",
+        "FinishedAt": "2026-09-16T14:50:55.781217951Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-browser-https",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 137,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:21:06.767937586Z",
+        "FinishedAt": "2026-09-16T15:21:49.886101788Z"
+      },
+      "image": "sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "container:fcd018d0a078c677f7092486c03a1f55d7ddca3e28a63236197bf7592a9f5254",
+      "readOnly": false,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-final-presets",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:56:09.408093408Z",
+        "FinishedAt": "2026-09-16T14:56:13.879227526Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-presets",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:45:12.813461691Z",
+        "FinishedAt": "2026-09-16T14:49:26.895886098Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-browser",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:19:28.727616613Z",
+        "FinishedAt": "2026-09-16T15:20:11.800409745Z"
+      },
+      "image": "sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-client",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:43:37.420263945Z",
+        "FinishedAt": "2026-09-16T14:43:38.346292335Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-headers",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:43:27.516117036Z",
+        "FinishedAt": "2026-09-16T14:43:27.960765191Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r4-caddy-build",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:42:22.566900764Z",
+        "FinishedAt": "2026-09-16T14:42:51.083188991Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r4-tsan",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 8,
+        "Error": "",
+        "StartedAt": "2026-09-16T14:35:25.68638281Z",
+        "FinishedAt": "2026-09-16T14:37:56.269983801Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 2000000000,
+        "memory": 4294967296,
+        "memorySwap": 4294967296
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "none",
+      "readOnly": false,
+      "securityOpt": null
+    },
+    {
+      "name": "kidea-r05-e2-r3-caddy",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 137,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:21:32.580644688Z",
+        "FinishedAt": "2026-09-16T15:22:00.711199879Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {
+        "8443/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8443"
+          }
+        ]
+      },
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r3-web",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:21:32.24131933Z",
+        "FinishedAt": "2026-09-16T15:22:01.043487113Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    },
+    {
+      "name": "kidea-r05-e2-r3-backend",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-16T15:21:31.918466587Z",
+        "FinishedAt": "2026-09-16T15:22:01.043679974Z"
+      },
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "resources": {
+        "nanoCpus": 500000000,
+        "memory": 1073741824,
+        "memorySwap": 1073741824
+      },
+      "ports": {},
+      "user": "1000:1000",
+      "network": "kidea-r05-e2-r3-net",
+      "readOnly": true,
+      "securityOpt": [
+        "no-new-privileges"
+      ]
+    }
+  ],
+  "port8443Closed": true,
+  "credentialScan": "PASS including decompressed logs for all current synthetic tokens/CSRF and PEM private-key marker",
+  "freeBytes": 387146711040,
+  "freeSpaceDeltaSinceE2Start": 19832684544,
+  "diskMeasurementNote": "Whole-filesystem free-space delta is conservative and includes unrelated host activity and Docker allocation overhead; not exact workload attribution.",
+  "dockerDisk": "TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE\nImages          5         4         5.758GB   75.43MB (1%)\nContainers      66        0         1.33GB    1.33GB (100%)\nLocal Volumes   7         7         7.269GB   0B (0%)\nBuild Cache     0         0         0B        0B\n"
+}

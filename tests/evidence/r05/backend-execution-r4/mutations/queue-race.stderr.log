@@ -1,0 +1,66 @@
+==================
+WARNING: ThreadSanitizer: data race (pid=44)
+  Write of size 8 at 0x7ffe380c1820 by thread T2:
+    #0 std::function<void ()>& std::deque<std::function<void ()>, std::allocator<std::function<void ()> > >::emplace_back<std::function<void ()> >(std::function<void ()>&&) <null> (mutant+0x265df) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #1 std::deque<std::function<void ()>, std::allocator<std::function<void ()> > >::push_back(std::function<void ()>&&) <null> (mutant+0x225c6) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #2 kidea::Worker::submit(std::function<void ()>) <null> (mutant+0x1ec06) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #3 operator() /work/mutants-r4/queue-race/tests.cpp:215 (mutant+0x1686d) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #4 __invoke_impl<void, (anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (mutant+0x1ccb2) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #5 __invoke<(anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (mutant+0x1caeb) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #6 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (mutant+0x1c998) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #7 operator() /usr/include/c++/13/bits/std_thread.h:299 (mutant+0x1c8aa) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #8 _M_run /usr/include/c++/13/bits/std_thread.h:244 (mutant+0x1c7bc) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #9 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Previous read of size 8 at 0x7ffe380c1820 by thread T1 (mutexes: write M0):
+    #0 std::operator==(std::_Deque_iterator<std::function<void ()>, std::function<void ()>&, std::function<void ()>*> const&, std::_Deque_iterator<std::function<void ()>, std::function<void ()>&, std::function<void ()>*> const&) <null> (mutant+0x267ef) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #1 std::deque<std::function<void ()>, std::allocator<std::function<void ()> > >::empty() const <null> (mutant+0x227e1) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #2 kidea::Worker::run()::{lambda()#1}::operator()() const <null> (mutant+0x1eda2) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #3 void std::condition_variable::wait<kidea::Worker::run()::{lambda()#1}>(std::unique_lock<std::mutex>&, kidea::Worker::run()::{lambda()#1}) <null> (mutant+0x22837) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #4 kidea::Worker::run() <null> (mutant+0x1ee2d) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #5 kidea::Worker::Worker(unsigned long)::{lambda()#1}::operator()() const <null> (mutant+0x1e8a9) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #6 void std::__invoke_impl<void, kidea::Worker::Worker(unsigned long)::{lambda()#1}>(std::__invoke_other, kidea::Worker::Worker(unsigned long)::{lambda()#1}&&) <null> (mutant+0x35da1) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #7 std::__invoke_result<kidea::Worker::Worker(unsigned long)::{lambda()#1}>::type std::__invoke<kidea::Worker::Worker(unsigned long)::{lambda()#1}>(kidea::Worker::Worker(unsigned long)::{lambda()#1}&&) <null> (mutant+0x35bda) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #8 void std::thread::_Invoker<std::tuple<kidea::Worker::Worker(unsigned long)::{lambda()#1}> >::_M_invoke<0ul>(std::_Index_tuple<0ul>) <null> (mutant+0x3596c) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #9 std::thread::_Invoker<std::tuple<kidea::Worker::Worker(unsigned long)::{lambda()#1}> >::operator()() <null> (mutant+0x357c4) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #10 std::thread::_State_impl<std::thread::_Invoker<std::tuple<kidea::Worker::Worker(unsigned long)::{lambda()#1}> > >::_M_run() <null> (mutant+0x35638) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Location is stack of main thread.
+
+  Location is global '<null>' at 0x000000000000 ([stack]+0x1f820)
+
+  Mutex M0 (0x7ffe380c1798) created at:
+    #0 pthread_mutex_lock ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1341 (libtsan.so.2+0x59a13) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 __gthread_mutex_lock /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:749 (mutant+0x1d889) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #2 std::mutex::lock() /usr/include/c++/13/bits/std_mutex.h:113 (mutant+0x1dfdc) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #3 std::unique_lock<std::mutex>::lock() <null> (mutant+0x266d1) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #4 std::unique_lock<std::mutex>::unique_lock(std::mutex&) <null> (mutant+0x22720) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #5 kidea::Worker::run() <null> (mutant+0x1ee12) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #6 kidea::Worker::Worker(unsigned long)::{lambda()#1}::operator()() const <null> (mutant+0x1e8a9) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #7 void std::__invoke_impl<void, kidea::Worker::Worker(unsigned long)::{lambda()#1}>(std::__invoke_other, kidea::Worker::Worker(unsigned long)::{lambda()#1}&&) <null> (mutant+0x35da1) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #8 std::__invoke_result<kidea::Worker::Worker(unsigned long)::{lambda()#1}>::type std::__invoke<kidea::Worker::Worker(unsigned long)::{lambda()#1}>(kidea::Worker::Worker(unsigned long)::{lambda()#1}&&) <null> (mutant+0x35bda) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #9 void std::thread::_Invoker<std::tuple<kidea::Worker::Worker(unsigned long)::{lambda()#1}> >::_M_invoke<0ul>(std::_Index_tuple<0ul>) <null> (mutant+0x3596c) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #10 std::thread::_Invoker<std::tuple<kidea::Worker::Worker(unsigned long)::{lambda()#1}> >::operator()() <null> (mutant+0x357c4) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #11 std::thread::_State_impl<std::thread::_Invoker<std::tuple<kidea::Worker::Worker(unsigned long)::{lambda()#1}> > >::_M_run() <null> (mutant+0x35638) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #12 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Thread T2 (tid=47, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 construct_at<std::thread, (anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/stl_construct.h:97 (mutant+0x1aa36) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #3 construct<std::thread, (anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/alloc_traits.h:540 (mutant+0x18ffb) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #4 _M_realloc_insert<(anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/vector.tcc:468 (mutant+0x18ffb)
+    #5 emplace_back<(anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/vector.tcc:123 (mutant+0x17cc5) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #6 queue_concurrency /work/mutants-r4/queue-race/tests.cpp:211 (mutant+0x16a44) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #7 main /work/mutants-r4/queue-race/tests.cpp:251 (mutant+0x16e21) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+
+  Thread T1 (tid=46, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 kidea::Worker::Worker(unsigned long) <null> (mutant+0x1ea78) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #3 queue_concurrency /work/mutants-r4/queue-race/tests.cpp:208 (mutant+0x16977) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+    #4 main /work/mutants-r4/queue-race/tests.cpp:251 (mutant+0x16e21) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493)
+
+SUMMARY: ThreadSanitizer: data race (/work/mutants-r4/queue-race/mutant+0x265df) (BuildId: 95dab54775091f5ba1077ceb91216e07ac7c1493) in std::function<void ()>& std::deque<std::function<void ()>, std::allocator<std::function<void ()> > >::emplace_back<std::function<void ()> >(std::function<void ()>&&)
+==================

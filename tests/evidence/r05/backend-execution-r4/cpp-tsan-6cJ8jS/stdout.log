@@ -1,0 +1,296 @@
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+  SANITIZER="thread"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- Found Jsoncpp: /usr/include/jsoncpp  
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.9s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/tsan
+[1/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpConnectionLimit.cc.o
+[2/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpClientImpl.cc.o
+[3/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpControllerBinder.cc.o
+[4/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpFileImpl.cc.o
+[5/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpFileUploadRequest.cc.o
+[6/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpControllersRouter.cc.o
+[7/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpRequestImpl.cc.o
+[8/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpRequestParser.cc.o
+[9/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RequestStream.cc.o
+[10/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpResponseParser.cc.o
+[11/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpResponseImpl.cc.o
+[12/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpUtils.cc.o
+/src/vendor/drogon/lib/src/HttpUtils.cc:62:10: warning: 'drogon::CT_APPLICATION_X_JAVASCRIPT' is deprecated: use CT_TEXT_JAVASCRIPT [-Wdeprecated-declarations]
+   62 |         {CT_APPLICATION_X_JAVASCRIPT,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /src/vendor/drogon/lib/src/HttpUtils.h:18,
+                 from /src/vendor/drogon/lib/src/HttpUtils.cc:15:
+/src/vendor/drogon/lib/inc/drogon/HttpTypes.h:106:5: note: declared here
+  106 |     CT_APPLICATION_X_JAVASCRIPT [[deprecated("use CT_TEXT_JAVASCRIPT")]],
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/src/vendor/drogon/lib/src/HttpUtils.cc: In lambda function:
+/src/vendor/drogon/lib/src/HttpUtils.cc:733:23: warning: 'drogon::CT_APPLICATION_X_JAVASCRIPT' is deprecated: use CT_TEXT_JAVASCRIPT [-Wdeprecated-declarations]
+  733 |         extensionMap_[CT_APPLICATION_X_JAVASCRIPT] =
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/src/vendor/drogon/lib/inc/drogon/HttpTypes.h:106:5: note: declared here
+  106 |     CT_APPLICATION_X_JAVASCRIPT [[deprecated("use CT_TEXT_JAVASCRIPT")]],
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+[13/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpViewData.cc.o
+[14/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpServer.cc.o
+[15/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/JsonConfigAdapter.cc.o
+[16/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/IntranetIpFilter.cc.o
+[17/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/LocalHostFilter.cc.o
+[18/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/ListenerManager.cc.o
+[19/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/MultipartStreamParser.cc.o
+[20/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/NotFound.cc.o
+[21/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/MultiPart.cc.o
+[22/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/PluginsManager.cc.o
+[23/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RangeParser.cc.o
+[24/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RateLimiter.cc.o
+[25/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/PromExporter.cc.o
+[26/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RealIpResolver.cc.o
+[27/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SecureSSLRedirector.cc.o
+[28/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/Redirector.cc.o
+[29/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SessionManager.cc.o
+[30/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SlashRemover.cc.o
+[31/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SlidingWindowRateLimiter.cc.o
+[32/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/TaskTimeoutFlag.cc.o
+[33/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/TokenBucketRateLimiter.cc.o
+[34/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/Utilities.cc.o
+[35/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/StaticFileRouter.cc.o
+[36/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/WebSocketConnectionImpl.cc.o
+[37/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/WebSocketClientImpl.cc.o
+[38/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/YamlConfigAdapter.cc.o
+[39/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/drogon_test.cc.o
+[40/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SharedLibManager.cc.o
+[41/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RedisResultSkipped.cc.o
+[42/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RedisClientSkipped.cc.o
+[43/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/ArrayParser.cc.o
+[44/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Criteria.cc.o
+[45/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RedisClientManagerSkipped.cc.o
+[46/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbClient.cc.o
+[47/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbClientImpl.cc.o
+[48/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbClientLockFree.cc.o
+[49/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbListener.cc.o
+[50/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Exception.cc.o
+[51/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Field.cc.o
+[52/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbConnection.cc.o
+[53/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Result.cc.o
+[54/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Row.cc.o
+[55/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/TransactionImpl.cc.o
+[56/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/SqlBinder.cc.o
+[57/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/RestfulController.cc.o
+[58/116] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/DbClientManagerSkipped.cc.o
+[59/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/AsyncFileLogger.cc.o
+[60/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/Date.cc.o
+[61/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/ConcurrentTaskQueue.cc.o
+[62/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/LogStream.cc.o
+[63/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/MsgBuffer.cc.o
+[64/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/Logger.cc.o
+[65/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/SerialTaskQueue.cc.o
+[66/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/TimingWheel.cc.o
+[67/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/Utilities.cc.o
+[68/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/EventLoop.cc.o
+[69/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/EventLoopThreadPool.cc.o
+[70/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/EventLoopThread.cc.o
+[71/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/InetAddress.cc.o
+[72/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/TcpClient.cc.o
+[73/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/Channel.cc.o
+[74/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/TcpServer.cc.o
+[75/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Acceptor.cc.o
+[76/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Connector.cc.o
+[77/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Poller.cc.o
+[78/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Socket.cc.o
+[79/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/MemBufferNode.cc.o
+[80/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/StreamBufferNode.cc.o
+[81/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/AsyncStreamBufferNode.cc.o
+[82/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Timer.cc.o
+[83/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/TimerQueue.cc.o
+[84/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/TcpConnectionImpl.cc.o
+[85/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/poller/KQueue.cc.o
+[86/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/poller/EpollPoller.cc.o
+[87/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/FileBufferNodeUnix.cc.o
+[88/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/poller/PollPoller.cc.o
+[89/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/crypto/openssl.cc.o
+[90/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/tlsprovider/OpenSSLProvider.cc.o
+[91/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/blocks.c.o
+[92/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/buffer.c.o
+[93/116] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/NormalResolver.cc.o
+[94/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/cmark.c.o
+[95/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/cmark_ctype.c.o
+[96/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/commonmark.c.o
+[97/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/houdini_href_e.c.o
+[98/116] Linking CXX static library vendor/drogon/trantor/libtrantor.a
+[99/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/houdini_html_e.c.o
+[100/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/houdini_html_u.c.o
+[101/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/html.c.o
+[102/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/inlines.c.o
+[103/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/iterator.c.o
+[104/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/latex.c.o
+[105/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/man.c.o
+[106/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/node.c.o
+[107/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/references.c.o
+[108/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/render.c.o
+[109/116] Linking CXX static library vendor/drogon/libdrogon.a
+[110/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/utf8.c.o
+[111/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/xml.c.o
+[112/116] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/scanners.c.o
+[113/116] Linking C static library vendor/cmark/src/libcmark.a
+[114/116] Linking CXX static library libdomain.a
+[115/116] Linking CXX executable domain_tests
+[116/116] Linking CXX executable backend
+Test project /build/tsan
+    Start 1: grammar
+1/9 Test #1: grammar ..........................   Passed    0.02 sec
+    Start 2: unicode
+2/9 Test #2: unicode ..........................   Passed    0.01 sec
+    Start 3: atomicity
+3/9 Test #3: atomicity ........................   Passed    0.16 sec
+    Start 4: rollback
+4/9 Test #4: rollback .........................   Passed    0.03 sec
+    Start 5: sql
+5/9 Test #5: sql ..............................   Passed    0.03 sec
+    Start 6: concurrency
+6/9 Test #6: concurrency ......................***Failed    0.10 sec
+==================
+WARNING: ThreadSanitizer: data race (pid=526)
+  Write of size 8 at 0x7f11762fe030 by thread T1 (mutexes: write M0, write M1):
+    #0 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 (libtsan.so.2+0x8bd30) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:107 (libtsan.so.2+0x8bd30)
+    #2 walIndexWriteHdr /src/vendor/sqlite/sqlite3.c:68469 (domain_tests+0x75014) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #3 walFrames /src/vendor/sqlite/sqlite3.c:71777 (domain_tests+0x7b52c) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #4 sqlite3WalFrames /src/vendor/sqlite/sqlite3.c:71803 (domain_tests+0x7b5c8) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #5 pagerWalFrames /src/vendor/sqlite/sqlite3.c:62900 (domain_tests+0x6baba) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #6 sqlite3PagerCommitPhaseOne /src/vendor/sqlite/sqlite3.c:66193 (domain_tests+0x722e8) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #7 sqlite3BtreeCommitPhaseOne /src/vendor/sqlite/sqlite3.c:77555 (domain_tests+0x86688) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #8 vdbeCommit /src/vendor/sqlite/sqlite3.c:90879 (domain_tests+0xab774) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #9 sqlite3VdbeHalt /src/vendor/sqlite/sqlite3.c:91295 (domain_tests+0xac78f) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #10 sqlite3VdbeExec /src/vendor/sqlite/sqlite3.c:100648 (domain_tests+0xc21c1) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #11 sqlite3Step /src/vendor/sqlite/sqlite3.c:94551 (domain_tests+0xb4467) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #12 sqlite3_step /src/vendor/sqlite/sqlite3.c:94612 (domain_tests+0xb48b8) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #13 sqlite3_exec /src/vendor/sqlite/sqlite3.c:142366 (domain_tests+0x1341dd) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #14 kidea::Store::exec(char const*) /src/cpp/domain.cpp:116 (domain_tests+0x33ed5) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #15 kidea::Store::apply(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::function<void (std::basic_string_view<char, std::char_traits<char> >)> const&) /src/cpp/domain.cpp:205 (domain_tests+0x34e61) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #16 operator() /src/cpp/tests.cpp:117 (domain_tests+0x14804) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #17 __invoke_impl<void, (anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (domain_tests+0x1b178) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #18 __invoke<(anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (domain_tests+0x1b066) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #19 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (domain_tests+0x1af28) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #20 operator() /usr/include/c++/13/bits/std_thread.h:299 (domain_tests+0x1ae74) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #21 _M_run /usr/include/c++/13/bits/std_thread.h:244 (domain_tests+0x1ade0) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #22 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Previous read of size 8 at 0x7f11762fe030 by thread T2 (mutexes: write M2, write M3):
+    #0 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 (libtsan.so.2+0x8bd30) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:107 (libtsan.so.2+0x8bd30)
+    #2 walIndexTryHdr /src/vendor/sqlite/sqlite3.c:70135 (domain_tests+0x786c1) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #3 walIndexReadHdr /src/vendor/sqlite/sqlite3.c:70218 (domain_tests+0x7895d) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #4 walTryBeginRead /src/vendor/sqlite/sqlite3.c:70600 (domain_tests+0x79239) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #5 walBeginReadTransaction /src/vendor/sqlite/sqlite3.c:70930 (domain_tests+0x796b0) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #6 sqlite3WalBeginReadTransaction /src/vendor/sqlite/sqlite3.c:71014 (domain_tests+0x79711) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #7 pagerBeginReadTransaction /src/vendor/sqlite/sqlite3.c:62941 (domain_tests+0x6bc1a) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #8 sqlite3PagerSharedLock /src/vendor/sqlite/sqlite3.c:65125 (domain_tests+0x70195) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #9 lockBtree /src/vendor/sqlite/sqlite3.c:76515 (domain_tests+0x83a90) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #10 btreeBeginTrans /src/vendor/sqlite/sqlite3.c:76936 (domain_tests+0x8498f) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #11 sqlite3BtreeBeginTrans /src/vendor/sqlite/sqlite3.c:77036 (domain_tests+0x84eb4) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #12 sqlite3VdbeExec /src/vendor/sqlite/sqlite3.c:100734 (domain_tests+0xc246e) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #13 sqlite3Step /src/vendor/sqlite/sqlite3.c:94551 (domain_tests+0xb4467) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #14 sqlite3_step /src/vendor/sqlite/sqlite3.c:94612 (domain_tests+0xb48b8) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #15 sqlite3_exec /src/vendor/sqlite/sqlite3.c:142366 (domain_tests+0x1341dd) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #16 kidea::Store::exec(char const*) /src/cpp/domain.cpp:116 (domain_tests+0x33ed5) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #17 kidea::Store::apply(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::function<void (std::basic_string_view<char, std::char_traits<char> >)> const&) /src/cpp/domain.cpp:170 (domain_tests+0x3491c) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #18 operator() /src/cpp/tests.cpp:121 (domain_tests+0x14a62) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #19 __invoke_impl<void, (anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (domain_tests+0x1b0ef) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #20 __invoke<(anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (domain_tests+0x1afc7) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #21 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (domain_tests+0x1aece) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #22 operator() /usr/include/c++/13/bits/std_thread.h:299 (domain_tests+0x1ae2a) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #23 _M_run /usr/include/c++/13/bits/std_thread.h:244 (domain_tests+0x1ad8e) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #24 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Location is global '<null>' at 0x000000000000 (kidea-526-0.db-shm+0x30)
+
+  Mutex M0 (0x7ffe5fd9f348) created at:
+    #0 pthread_mutex_lock ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1341 (libtsan.so.2+0x59a13) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 __gthread_mutex_lock /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:749 (domain_tests+0x1bc23) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #2 std::mutex::lock() /usr/include/c++/13/bits/std_mutex.h:113 (domain_tests+0x1c376) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #3 std::lock_guard<std::mutex>::lock_guard(std::mutex&) /usr/include/c++/13/bits/std_mutex.h:249 (domain_tests+0x2046c) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #4 kidea::Store::apply(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::function<void (std::basic_string_view<char, std::char_traits<char> >)> const&) /src/cpp/domain.cpp:160 (domain_tests+0x3484f) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #5 operator() /src/cpp/tests.cpp:117 (domain_tests+0x14804) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #6 __invoke_impl<void, (anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (domain_tests+0x1b178) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #7 __invoke<(anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (domain_tests+0x1b066) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #8 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (domain_tests+0x1af28) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #9 operator() /usr/include/c++/13/bits/std_thread.h:299 (domain_tests+0x1ae74) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #10 _M_run /usr/include/c++/13/bits/std_thread.h:244 (domain_tests+0x1ade0) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Mutex M1 (0x720c00000008) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1315 (libtsan.so.2+0x594cd) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 pthreadMutexAlloc /src/vendor/sqlite/sqlite3.c:30782 (domain_tests+0x42f5a) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #2 sqlite3MutexAlloc /src/vendor/sqlite/sqlite3.c:30301 (domain_tests+0x42cc8) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #3 openDatabase /src/vendor/sqlite/sqlite3.c:190800 (domain_tests+0x1b937d) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #4 sqlite3_open /src/vendor/sqlite/sqlite3.c:191097 (domain_tests+0x1b9d04) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #5 kidea::Store::Store(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) /src/cpp/domain.cpp:120 (domain_tests+0x33fe3) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #6 concurrency /src/cpp/tests.cpp:112 (domain_tests+0x14be1) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #7 main /src/cpp/tests.cpp:208 (domain_tests+0x162ef) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+
+  Mutex M2 (0x7ffe5fd9f388) created at:
+    #0 pthread_mutex_lock ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1341 (libtsan.so.2+0x59a13) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 __gthread_mutex_lock /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:749 (domain_tests+0x1bc23) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #2 std::mutex::lock() /usr/include/c++/13/bits/std_mutex.h:113 (domain_tests+0x1c376) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #3 std::lock_guard<std::mutex>::lock_guard(std::mutex&) /usr/include/c++/13/bits/std_mutex.h:249 (domain_tests+0x2046c) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #4 kidea::Store::apply(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::function<void (std::basic_string_view<char, std::char_traits<char> >)> const&) /src/cpp/domain.cpp:160 (domain_tests+0x3484f) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #5 operator() /src/cpp/tests.cpp:121 (domain_tests+0x14a62) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #6 __invoke_impl<void, (anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (domain_tests+0x1b0ef) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #7 __invoke<(anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (domain_tests+0x1afc7) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #8 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (domain_tests+0x1aece) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #9 operator() /usr/include/c++/13/bits/std_thread.h:299 (domain_tests+0x1ae2a) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #10 _M_run /usr/include/c++/13/bits/std_thread.h:244 (domain_tests+0x1ad8e) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Mutex M3 (0x720c000002d8) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1315 (libtsan.so.2+0x594cd) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 pthreadMutexAlloc /src/vendor/sqlite/sqlite3.c:30782 (domain_tests+0x42f5a) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #2 sqlite3MutexAlloc /src/vendor/sqlite/sqlite3.c:30301 (domain_tests+0x42cc8) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #3 openDatabase /src/vendor/sqlite/sqlite3.c:190800 (domain_tests+0x1b937d) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #4 sqlite3_open /src/vendor/sqlite/sqlite3.c:191097 (domain_tests+0x1b9d04) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #5 kidea::Store::Store(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) /src/cpp/domain.cpp:120 (domain_tests+0x33fe3) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #6 concurrency /src/cpp/tests.cpp:112 (domain_tests+0x14bf7) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #7 main /src/cpp/tests.cpp:208 (domain_tests+0x162ef) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+
+  Thread T1 (tid=528, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 concurrency /src/cpp/tests.cpp:118 (domain_tests+0x14ca1) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #3 main /src/cpp/tests.cpp:208 (domain_tests+0x162ef) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+
+  Thread T2 (tid=529, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 concurrency /src/cpp/tests.cpp:122 (domain_tests+0x14d16) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+    #3 main /src/cpp/tests.cpp:208 (domain_tests+0x162ef) (BuildId: 0e7bab0faacddf57ba65709eb2567151f662304c)
+
+SUMMARY: ThreadSanitizer: data race ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy
+==================
+
+    Start 7: crash
+7/9 Test #7: crash ............................   Passed    0.19 sec
+    Start 8: lifetime
+8/9 Test #8: lifetime .........................   Passed    0.02 sec
+    Start 9: bounded_queue
+9/9 Test #9: bounded_queue ....................   Passed    0.02 sec
+
+89% tests passed, 1 tests failed out of 9
+
+Total Test time (real) =   0.59 sec
+
+The following tests FAILED:
+	  6 - concurrency (Failed)

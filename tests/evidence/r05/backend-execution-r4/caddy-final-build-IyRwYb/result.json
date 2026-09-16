@@ -1,0 +1,32 @@
+{
+  "stage": "caddy-final-build",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r4-caddy-final",
+    "--label",
+    "kidea.run=E2-BW-r4",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=volume,src=kidea-r05-e2-r2-go,dst=/work",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r4,dst=/out",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "-c",
+    "cd /work/source && export GOTOOLCHAIN=local GOCACHE=/work/cache GOMODCACHE=/work/modcache GOPROXY=off GOMAXPROCS=2 && /work/sdk/go/bin/go test -count=1 -p 2 -json ./modules/caddyhttp -run \"Test(MatchExpression|KideaCELFactory|KideaHeaderBudget)\" > /out/caddy-final-tests.jsonl && /work/sdk/go/bin/go build -p 2 -trimpath -o /work/caddy ./cmd/caddy && sha256sum /work/caddy modules/caddyhttp/server.go modules/caddyhttp/kidea_header_budget* > /out/caddy-final.sha256"
+  ],
+  "at": "2026-09-16T14:54:59.057Z",
+  "durationMs": 26831,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

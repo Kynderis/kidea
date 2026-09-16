@@ -1,0 +1,31 @@
+{
+  "status": "INCOMPLETE_RESOURCE_HALT_AND_STATIC_WARNING",
+  "meaning": "PASS is scoped to specified synthetic vectors and retained evidence, not product acceptance. Final browser/edge rerun was interrupted; the whole run is not certified quota-compliant.",
+  "groups": {
+    "B01": "PASS: owned/cancelled/exception callbacks, ASan/UBSan and actual backend lifetime checks; dangling mutant detected",
+    "B02": "PASS: four-table transaction, faults/crashes, durable ACK readback and early-ACK mutant",
+    "B03": "PASS: barrier writers, bounded concurrent queue, raw SQLITE_BUSY timeout/recovery, HTTP event-loop liveness and duplicate-intent single result",
+    "B04": "PASS: bound SQL and injected prepare/step/commit/rollback faults retain UNKNOWN",
+    "B05": "PASS: JSON/UTF8/version unit vectors and invalid-before-write/Unicode uint64 HTTP controls",
+    "B06": "PASS_SPECIFIED_VECTORS: all profile examples/bounds/reference definitions and hook mutant; not full CommonMark conformance certification",
+    "B07": "PASS: actual queued normal/stuck writes, closed admission, 30-second deadline, restart durable result; idle teardown also checked",
+    "B08": "PASS: all 12 cases in four presets; dev/ASan/TSan actual server drain clean; actual race mutant detected without suppression",
+    "H01": "PASS: valid CA/hostname, missing CA, wrong hostname and separate expired-leaf control; isolated Chromium trust worked in earlier browser stage",
+    "H02": "PARTIAL_FINAL_RERUN: Node cookie scope/readback passes; seven-group earlier Chromium run passed, final Chromium source/config rerun blocked by NSS bootstrap",
+    "H03": "PASS: valid and negative Origin/token controls, unchanged counts, both removal mutants detected",
+    "H04": "PARTIAL_FINAL_RERUN: final Node expiry/revocation/forged headers pass; browser localStorage/role-cookie passed earlier, final browser pending",
+    "H05": "PASS: concurrent final-source SSR actors isolated with no-store; Web source hashes aligned with runtime volume",
+    "H06": "PASS: final Host/SNI/port and forwarded spoofs rejected; direct upstream authorization and unpublished host ports checked",
+    "H07": "PASS_SPECIFIED_VECTORS: body boundaries at edge/Node/backend; canonical header 16383/16385/22000; decoded-field accounting is not a strict arbitrary raw-wire byte claim",
+    "H08": "PARTIAL_FINAL_RERUN: actual attacker form/fetch and query-token controls passed earlier; final Chromium rerun pending",
+    "H09": "PASS: final authorized socket, invalid Origin/session/proof, revoke/close before another private event",
+    "H10": "PARTIAL: cookie override unit/direct regression pass; added real HTTPS override create/read/replace/delete browser case not yet executed",
+    "H11": "PARTIAL_FINAL_RERUN: earlier normal/stuck edge drain passed; final-config rerun aborted during resource halt, not accepted",
+    "H12": "PARTIAL: final Node public/headers and full credential/private-key-marker scan including gzip; final browser phase pending",
+    "R01": "PASS: aligned Web source check/lint/build, 32 unit, 18 browser, 4 server; original 27-file Web sample unchanged",
+    "R02": "PARTIAL: all six source-final mutants detected and four C++ presets pass afterward; full final browser/edge positive rerun incomplete"
+  },
+  "additionalGate": "clang-tidy FAIL at SQLite API sentinel; narrow exception is proposed, not applied. Quota guard unit passes but Docker integration is NOT_RUN after halt.",
+  "appleSilicon": "NOT_RUN",
+  "r05": "IN_PROGRESS"
+}

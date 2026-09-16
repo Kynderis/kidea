@@ -1,0 +1,340 @@
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/dev
+[1/7] Building CXX object CMakeFiles/domain.dir/cpp/domain.cpp.o
+[2/7] Building CXX object CMakeFiles/domain.dir/cpp/input.cpp.o
+[3/7] Linking CXX static library libdomain.a
+[4/7] Building CXX object CMakeFiles/domain_tests.dir/cpp/tests.cpp.o
+[5/7] Linking CXX executable domain_tests
+[6/7] Building CXX object CMakeFiles/backend.dir/cpp/server.cpp.o
+[7/7] Linking CXX executable backend
+Test project /build/dev
+      Start  1: grammar
+ 1/12 Test  #1: grammar ..........................   Passed    0.00 sec
+      Start  2: unicode
+ 2/12 Test  #2: unicode ..........................   Passed    0.00 sec
+      Start  3: atomicity
+ 3/12 Test  #3: atomicity ........................   Passed    0.08 sec
+      Start  4: rollback
+ 4/12 Test  #4: rollback .........................   Passed    0.01 sec
+      Start  5: sql
+ 5/12 Test  #5: sql ..............................   Passed    0.02 sec
+      Start  6: concurrency
+ 6/12 Test  #6: concurrency ......................   Passed    0.02 sec
+      Start  7: crash
+ 7/12 Test  #7: crash ............................   Passed    0.07 sec
+      Start  8: lifetime
+ 8/12 Test  #8: lifetime .........................   Passed    0.00 sec
+      Start  9: bounded_queue
+ 9/12 Test  #9: bounded_queue ....................   Passed    0.00 sec
+      Start 10: queue_concurrency
+10/12 Test #10: queue_concurrency ................   Passed    0.01 sec
+      Start 11: acknowledged_durable
+11/12 Test #11: acknowledged_durable .............   Passed    0.02 sec
+      Start 12: busy_timeout
+12/12 Test #12: busy_timeout .....................   Passed    0.12 sec
+
+100% tests passed, 0 tests failed out of 12
+
+Total Test time (real) =   0.36 sec
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+  SANITIZER="address,undefined"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/asan-ubsan
+[1/7] Building CXX object CMakeFiles/domain.dir/cpp/input.cpp.o
+[2/7] Building CXX object CMakeFiles/domain.dir/cpp/domain.cpp.o
+[3/7] Linking CXX static library libdomain.a
+[4/7] Building CXX object CMakeFiles/domain_tests.dir/cpp/tests.cpp.o
+[5/7] Linking CXX executable domain_tests
+[6/7] Building CXX object CMakeFiles/backend.dir/cpp/server.cpp.o
+[7/7] Linking CXX executable backend
+Test project /build/asan-ubsan
+      Start  1: grammar
+ 1/12 Test  #1: grammar ..........................   Passed    0.03 sec
+      Start  2: unicode
+ 2/12 Test  #2: unicode ..........................   Passed    0.03 sec
+      Start  3: atomicity
+ 3/12 Test  #3: atomicity ........................   Passed    0.14 sec
+      Start  4: rollback
+ 4/12 Test  #4: rollback .........................   Passed    0.04 sec
+      Start  5: sql
+ 5/12 Test  #5: sql ..............................   Passed    0.04 sec
+      Start  6: concurrency
+ 6/12 Test  #6: concurrency ......................   Passed    0.05 sec
+      Start  7: crash
+ 7/12 Test  #7: crash ............................   Passed    0.16 sec
+      Start  8: lifetime
+ 8/12 Test  #8: lifetime .........................   Passed    0.03 sec
+      Start  9: bounded_queue
+ 9/12 Test  #9: bounded_queue ....................   Passed    0.03 sec
+      Start 10: queue_concurrency
+10/12 Test #10: queue_concurrency ................   Passed    0.04 sec
+      Start 11: acknowledged_durable
+11/12 Test #11: acknowledged_durable .............   Passed    0.05 sec
+      Start 12: busy_timeout
+12/12 Test #12: busy_timeout .....................   Passed    0.15 sec
+
+100% tests passed, 0 tests failed out of 12
+
+Total Test time (real) =   0.80 sec
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+  SANITIZER="thread"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/tsan
+[1/7] Building CXX object CMakeFiles/domain.dir/cpp/input.cpp.o
+[2/7] Building CXX object CMakeFiles/domain.dir/cpp/domain.cpp.o
+[3/7] Linking CXX static library libdomain.a
+[4/7] Building CXX object CMakeFiles/domain_tests.dir/cpp/tests.cpp.o
+[5/7] Linking CXX executable domain_tests
+[6/7] Building CXX object CMakeFiles/backend.dir/cpp/server.cpp.o
+[7/7] Linking CXX executable backend
+Test project /build/tsan
+      Start  1: grammar
+ 1/12 Test  #1: grammar ..........................   Passed    0.02 sec
+      Start  2: unicode
+ 2/12 Test  #2: unicode ..........................   Passed    0.01 sec
+      Start  3: atomicity
+ 3/12 Test  #3: atomicity ........................   Passed    0.31 sec
+      Start  4: rollback
+ 4/12 Test  #4: rollback .........................   Passed    0.03 sec
+      Start  5: sql
+ 5/12 Test  #5: sql ..............................   Passed    0.04 sec
+      Start  6: concurrency
+ 6/12 Test  #6: concurrency ......................***Failed    0.12 sec
+==================
+WARNING: ThreadSanitizer: data race (pid=318)
+  Write of size 8 at 0x7f2d312e1030 by thread T2 (mutexes: write M0, write M1):
+    #0 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 (libtsan.so.2+0x8bd30) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:107 (libtsan.so.2+0x8bd30)
+    #2 walIndexWriteHdr /src/vendor/sqlite/sqlite3.c:68469 (domain_tests+0x7ce0c) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #3 walFrames /src/vendor/sqlite/sqlite3.c:71777 (domain_tests+0x83324) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #4 sqlite3WalFrames /src/vendor/sqlite/sqlite3.c:71803 (domain_tests+0x833c0) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #5 pagerWalFrames /src/vendor/sqlite/sqlite3.c:62900 (domain_tests+0x738b2) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #6 sqlite3PagerCommitPhaseOne /src/vendor/sqlite/sqlite3.c:66193 (domain_tests+0x7a0e0) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #7 sqlite3BtreeCommitPhaseOne /src/vendor/sqlite/sqlite3.c:77555 (domain_tests+0x8e480) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #8 vdbeCommit /src/vendor/sqlite/sqlite3.c:90879 (domain_tests+0xb356c) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #9 sqlite3VdbeHalt /src/vendor/sqlite/sqlite3.c:91295 (domain_tests+0xb4587) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #10 sqlite3VdbeExec /src/vendor/sqlite/sqlite3.c:100648 (domain_tests+0xc9fb9) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #11 sqlite3Step /src/vendor/sqlite/sqlite3.c:94551 (domain_tests+0xbc25f) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #12 sqlite3_step /src/vendor/sqlite/sqlite3.c:94612 (domain_tests+0xbc6b0) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #13 sqlite3_exec /src/vendor/sqlite/sqlite3.c:142366 (domain_tests+0x13bfd5) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #14 kidea::Store::exec(char const*) /src/cpp/domain.cpp:112 (domain_tests+0x3bccd) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #15 kidea::Store::apply(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::function<void (std::basic_string_view<char, std::char_traits<char> >)> const&) /src/cpp/domain.cpp:197 (domain_tests+0x3cc59) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #16 operator() /src/cpp/tests.cpp:107 (domain_tests+0x14b4c) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #17 __invoke_impl<void, (anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (domain_tests+0x2133d) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #18 __invoke<(anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (domain_tests+0x21062) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #19 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (domain_tests+0x20d7e) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #20 operator() /usr/include/c++/13/bits/std_thread.h:299 (domain_tests+0x20bb4) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #21 _M_run /usr/include/c++/13/bits/std_thread.h:244 (domain_tests+0x20a14) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #22 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Previous read of size 8 at 0x7f2d312e1030 by thread T1 (mutexes: write M2, write M3):
+    #0 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 (libtsan.so.2+0x8bd30) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:107 (libtsan.so.2+0x8bd30)
+    #2 walIndexTryHdr /src/vendor/sqlite/sqlite3.c:70135 (domain_tests+0x804b9) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #3 walIndexReadHdr /src/vendor/sqlite/sqlite3.c:70218 (domain_tests+0x80755) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #4 walTryBeginRead /src/vendor/sqlite/sqlite3.c:70600 (domain_tests+0x81031) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #5 walBeginReadTransaction /src/vendor/sqlite/sqlite3.c:70930 (domain_tests+0x814a8) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #6 sqlite3WalBeginReadTransaction /src/vendor/sqlite/sqlite3.c:71014 (domain_tests+0x81509) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #7 pagerBeginReadTransaction /src/vendor/sqlite/sqlite3.c:62941 (domain_tests+0x73a12) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #8 sqlite3PagerSharedLock /src/vendor/sqlite/sqlite3.c:65125 (domain_tests+0x77f8d) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #9 lockBtree /src/vendor/sqlite/sqlite3.c:76515 (domain_tests+0x8b888) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #10 btreeBeginTrans /src/vendor/sqlite/sqlite3.c:76936 (domain_tests+0x8c787) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #11 sqlite3BtreeBeginTrans /src/vendor/sqlite/sqlite3.c:77036 (domain_tests+0x8ccac) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #12 sqlite3VdbeExec /src/vendor/sqlite/sqlite3.c:100734 (domain_tests+0xca266) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #13 sqlite3Step /src/vendor/sqlite/sqlite3.c:94551 (domain_tests+0xbc25f) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #14 sqlite3_step /src/vendor/sqlite/sqlite3.c:94612 (domain_tests+0xbc6b0) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #15 sqlite3_exec /src/vendor/sqlite/sqlite3.c:142366 (domain_tests+0x13bfd5) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #16 kidea::Store::exec(char const*) /src/cpp/domain.cpp:112 (domain_tests+0x3bccd) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #17 kidea::Store::apply(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::function<void (std::basic_string_view<char, std::char_traits<char> >)> const&) /src/cpp/domain.cpp:165 (domain_tests+0x3c714) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #18 operator() /src/cpp/tests.cpp:103 (domain_tests+0x148ee) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #19 __invoke_impl<void, (anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (domain_tests+0x213c6) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #20 __invoke<(anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (domain_tests+0x21101) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #21 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (domain_tests+0x20dd8) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #22 operator() /usr/include/c++/13/bits/std_thread.h:299 (domain_tests+0x20bfe) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #23 _M_run /usr/include/c++/13/bits/std_thread.h:244 (domain_tests+0x20a66) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #24 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Location is global '<null>' at 0x000000000000 (kidea-318-0.db-shm+0x30)
+
+  Mutex M0 (0x7ffe93a12748) created at:
+    #0 pthread_mutex_lock ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1341 (libtsan.so.2+0x59a13) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 __gthread_mutex_lock /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:749 (domain_tests+0x21f2f) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #2 std::mutex::lock() /usr/include/c++/13/bits/std_mutex.h:113 (domain_tests+0x22682) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #3 std::lock_guard<std::mutex>::lock_guard(std::mutex&) /usr/include/c++/13/bits/std_mutex.h:249 (domain_tests+0x26bee) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #4 kidea::Store::apply(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::function<void (std::basic_string_view<char, std::char_traits<char> >)> const&) /src/cpp/domain.cpp:155 (domain_tests+0x3c647) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #5 operator() /src/cpp/tests.cpp:107 (domain_tests+0x14b4c) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #6 __invoke_impl<void, (anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (domain_tests+0x2133d) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #7 __invoke<(anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (domain_tests+0x21062) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #8 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (domain_tests+0x20d7e) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #9 operator() /usr/include/c++/13/bits/std_thread.h:299 (domain_tests+0x20bb4) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #10 _M_run /usr/include/c++/13/bits/std_thread.h:244 (domain_tests+0x20a14) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Mutex M1 (0x720c000002d8) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1315 (libtsan.so.2+0x594cd) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 pthreadMutexAlloc /src/vendor/sqlite/sqlite3.c:30782 (domain_tests+0x4ad52) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #2 sqlite3MutexAlloc /src/vendor/sqlite/sqlite3.c:30301 (domain_tests+0x4aac0) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #3 openDatabase /src/vendor/sqlite/sqlite3.c:190800 (domain_tests+0x1c1175) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #4 sqlite3_open /src/vendor/sqlite/sqlite3.c:191097 (domain_tests+0x1c1afc) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #5 kidea::Store::Store(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) /src/cpp/domain.cpp:116 (domain_tests+0x3bddb) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #6 concurrency /src/cpp/tests.cpp:98 (domain_tests+0x14ce1) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #7 main /src/cpp/tests.cpp:262 (domain_tests+0x17777) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+
+  Mutex M2 (0x7ffe93a12708) created at:
+    #0 pthread_mutex_lock ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1341 (libtsan.so.2+0x59a13) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 __gthread_mutex_lock /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:749 (domain_tests+0x21f2f) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #2 std::mutex::lock() /usr/include/c++/13/bits/std_mutex.h:113 (domain_tests+0x22682) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #3 std::lock_guard<std::mutex>::lock_guard(std::mutex&) /usr/include/c++/13/bits/std_mutex.h:249 (domain_tests+0x26bee) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #4 kidea::Store::apply(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::function<void (std::basic_string_view<char, std::char_traits<char> >)> const&) /src/cpp/domain.cpp:155 (domain_tests+0x3c647) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #5 operator() /src/cpp/tests.cpp:103 (domain_tests+0x148ee) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #6 __invoke_impl<void, (anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (domain_tests+0x213c6) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #7 __invoke<(anonymous namespace)::concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (domain_tests+0x21101) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #8 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (domain_tests+0x20dd8) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #9 operator() /usr/include/c++/13/bits/std_thread.h:299 (domain_tests+0x20bfe) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #10 _M_run /usr/include/c++/13/bits/std_thread.h:244 (domain_tests+0x20a66) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Mutex M3 (0x720c00000008) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1315 (libtsan.so.2+0x594cd) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 pthreadMutexAlloc /src/vendor/sqlite/sqlite3.c:30782 (domain_tests+0x4ad52) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #2 sqlite3MutexAlloc /src/vendor/sqlite/sqlite3.c:30301 (domain_tests+0x4aac0) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #3 openDatabase /src/vendor/sqlite/sqlite3.c:190800 (domain_tests+0x1c1175) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #4 sqlite3_open /src/vendor/sqlite/sqlite3.c:191097 (domain_tests+0x1c1afc) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #5 kidea::Store::Store(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) /src/cpp/domain.cpp:116 (domain_tests+0x3bddb) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #6 concurrency /src/cpp/tests.cpp:98 (domain_tests+0x14ccb) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #7 main /src/cpp/tests.cpp:262 (domain_tests+0x17777) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+
+  Thread T2 (tid=321, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 concurrency /src/cpp/tests.cpp:108 (domain_tests+0x14e00) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #3 main /src/cpp/tests.cpp:262 (domain_tests+0x17777) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+
+  Thread T1 (tid=320, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 concurrency /src/cpp/tests.cpp:104 (domain_tests+0x14d8b) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+    #3 main /src/cpp/tests.cpp:262 (domain_tests+0x17777) (BuildId: 2a55b8d8ab0890dbeb5ad8eea219d631de3d6185)
+
+SUMMARY: ThreadSanitizer: data race ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy
+==================
+
+      Start  7: crash
+ 7/12 Test  #7: crash ............................   Passed    0.21 sec
+      Start  8: lifetime
+ 8/12 Test  #8: lifetime .........................   Passed    0.01 sec
+      Start  9: bounded_queue
+ 9/12 Test  #9: bounded_queue ....................   Passed    0.01 sec
+      Start 10: queue_concurrency
+10/12 Test #10: queue_concurrency ................   Passed    0.03 sec
+      Start 11: acknowledged_durable
+11/12 Test #11: acknowledged_durable .............   Passed    0.04 sec
+      Start 12: busy_timeout
+12/12 Test #12: busy_timeout .....................   Passed    0.14 sec
+
+92% tests passed, 1 tests failed out of 12
+
+Total Test time (real) =   0.99 sec
+
+The following tests FAILED:
+	  6 - concurrency (Failed)
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Release"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/release
+[1/7] Building CXX object CMakeFiles/domain.dir/cpp/input.cpp.o
+[2/7] Building CXX object CMakeFiles/domain.dir/cpp/domain.cpp.o
+[3/7] Linking CXX static library libdomain.a
+[4/7] Building CXX object CMakeFiles/domain_tests.dir/cpp/tests.cpp.o
+[5/7] Linking CXX executable domain_tests
+[6/7] Building CXX object CMakeFiles/backend.dir/cpp/server.cpp.o
+[7/7] Linking CXX executable backend
+Test project /build/release
+      Start  1: grammar
+ 1/12 Test  #1: grammar ..........................   Passed    0.00 sec
+      Start  2: unicode
+ 2/12 Test  #2: unicode ..........................   Passed    0.00 sec
+      Start  3: atomicity
+ 3/12 Test  #3: atomicity ........................   Passed    0.08 sec
+      Start  4: rollback
+ 4/12 Test  #4: rollback .........................   Passed    0.01 sec
+      Start  5: sql
+ 5/12 Test  #5: sql ..............................   Passed    0.01 sec
+      Start  6: concurrency
+ 6/12 Test  #6: concurrency ......................   Passed    0.02 sec
+      Start  7: crash
+ 7/12 Test  #7: crash ............................   Passed    0.06 sec
+      Start  8: lifetime
+ 8/12 Test  #8: lifetime .........................   Passed    0.00 sec
+      Start  9: bounded_queue
+ 9/12 Test  #9: bounded_queue ....................   Passed    0.00 sec
+      Start 10: queue_concurrency
+10/12 Test #10: queue_concurrency ................   Passed    0.01 sec
+      Start 11: acknowledged_durable
+11/12 Test #11: acknowledged_durable .............   Passed    0.01 sec
+      Start 12: busy_timeout
+12/12 Test #12: busy_timeout .....................   Passed    0.12 sec
+
+100% tests passed, 0 tests failed out of 12
+
+Total Test time (real) =   0.33 sec

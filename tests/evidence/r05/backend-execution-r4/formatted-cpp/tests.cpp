@@ -1,0 +1,283 @@
+#include "domain.hpp"
+#include "input.hpp"
+#include "worker.hpp"
+#include <array>
+#include <atomic>
+#include <barrier>
+#include <chrono>
+#include <filesystem>
+#include <future>
+#include <iostream>
+#include <sys/wait.h>
+#include <thread>
+#include <unistd.h>
+
+namespace {
+void require(bool condition, const char *message) {
+  if (!condition)
+    throw std::runtime_error(message);
+}
+std::string db_file() {
+  static std::atomic<unsigned> sequence{0};
+  return "/tmp/kidea-" + std::to_string(getpid()) + "-" + std::to_string(sequence++) + ".db";
+}
+void grammar() {
+  for (const std::string text :
+       {"Lớp học thủ công", "C++ & C#", "2 * 3 < 10", "a_b_c", "https://example.test", "😀", "é",
+        "first\nsecond", "one\n\ntwo", "a &amp; b", "\\*literal\\*"})
+    require(kidea::plain_text(text, 5000, false), ("plain vector: " + text).c_str());
+  for (const std::string text :
+       {"<b>abc</b>", "**abc**", "_abc_", "[abc](https://example.test)", "# Tiêu đề", "- mục",
+        "```\ncode\n```", "<!-- x -->", "<https://example.test>", "[x]: https://example.test",
+        "[x]:\n  https://example.test", "[x]: /one\n[x]: /two", "a  \nb", "a\\\nb"})
+    require(!kidea::plain_text(text, 5000, false), ("markup vector: " + text).c_str());
+  require(kidea::plain_text(std::string(120, 'a'), 120, true), "title120");
+  require(kidea::plain_text("a", 120, true), "title1");
+  require(kidea::plain_text("a", 5000, false), "description1");
+  require(!kidea::plain_text(std::string(121, 'a'), 120, true), "title121");
+  require(kidea::plain_text(std::string(5000, 'a'), 5000, false), "description5000");
+  require(!kidea::plain_text(std::string(5001, 'a'), 5000, false), "description5001");
+  require(!kidea::plain_text(" \r\n\t ", 120, true), "empty");
+  require(!kidea::plain_text("a\r\nb", 120, true), "title newline");
+}
+void unicode() {
+  require(kidea::decode_json("{\"value\":\"safe\"}").has_value(), "valid JSON");
+  for (const std::string text :
+       {"{\"value\":1,\"value\":2}", "{\"x\":1,}", "{} extra", "[]", "{\"x\":NaN}"})
+    require(!kidea::decode_json(text).has_value(), "malformed JSON accepted");
+  require(kidea::utf8_count("😀") == 1, "emoji count");
+  require(kidea::utf8_count("é") == 2, "combining not normalized");
+  for (const auto &text :
+       {std::string("\xc0\xaf", 2), std::string("\xed\xa0\x80", 3),
+        std::string("\xf4\x90\x80\x80", 4), std::string("\xf0\x9f", 2), std::string("\0", 1)})
+    require(!kidea::plain_text(text, 120, true), "malformed UTF8 accepted");
+  for (const std::string v : {"0", "1", "18446744073709551615"})
+    require(kidea::valid_version(v), "valid version");
+  for (const std::string v :
+       {"", "01", "-1", "1.0", "1e2", "18446744073709551616", "99999999999999999999999"})
+    require(!kidea::valid_version(v), "invalid version accepted");
+}
+void atomicity() {
+  for (const std::string stage :
+       {"prepare", "domain", "result", "audit", "outbox", "step", "commit"}) {
+    kidea::Store store(db_file());
+    const auto result = store.apply("A", "id", "payload", [&](std::string_view at) {
+      if (at == stage)
+        throw kidea::DatabaseError("injected");
+    });
+    require(result == "UNKNOWN", "fault incorrectly FINAL");
+    require(store.counts() == kidea::Counts{0, 0, 0, 0}, "partial transaction");
+  }
+  kidea::Store store(db_file());
+  require(store.apply("A", "id", "payload") == "SUCCESS", "write");
+  require(store.counts() == kidea::Counts{1, 1, 1, 1}, "atomic four writes");
+  require(store.apply("A", "id", "payload") == "SUCCESS", "idempotency");
+  require(store.apply("B", "id", "payload") == "CONFLICT", "actor conflict");
+  require(store.apply("A", "id", "different") == "CONFLICT", "payload conflict");
+  require(store.lookup("B", "id") == "UNKNOWN", "result actor leak");
+  require(store.counts() == kidea::Counts{1, 1, 1, 1}, "repeated write");
+}
+void rollback() {
+  kidea::Store store(db_file());
+  const auto result = store.apply("A", "id", "payload", [](std::string_view at) {
+    if (at == "commit" || at == "rollback")
+      throw kidea::DatabaseError("injected");
+  });
+  require(result == "UNKNOWN", "rollback not UNKNOWN");
+  require(store.apply("A", "next", "payload") == "UNKNOWN", "poisoned connection reused");
+  require(store.counts() == kidea::Counts{0, 0, 0, 0}, "rollback state");
+}
+void sql() {
+  kidea::Store store(db_file());
+  require(store.apply("A'", "x'); DROP TABLE results;--", "quote';--") == "SUCCESS", "bound input");
+  require(store.counts() == kidea::Counts{1, 1, 1, 1}, "SQL injection");
+  require(store.pragma("foreign_keys") == 1 && store.pragma("synchronous") == 2, "PRAGMA state");
+}
+void concurrency() {
+  const auto file = db_file();
+  kidea::Store first(file), second(file);
+  std::barrier start(3);
+  std::string a, b;
+  std::thread one([&] {
+    start.arrive_and_wait();
+    a = first.apply("A", "one", "text");
+  });
+  std::thread two([&] {
+    start.arrive_and_wait();
+    b = second.apply("A", "two", "text");
+  });
+  start.arrive_and_wait();
+  one.join();
+  two.join();
+  require(a == "SUCCESS" && b == "SUCCESS", "writer contention");
+  require(first.counts() == kidea::Counts{2, 2, 2, 2}, "lost write");
+}
+void busy_timeout() {
+  const auto file = db_file();
+  kidea::Store store(file);
+  sqlite3 *raw = nullptr;
+  require(sqlite3_open(file.c_str(), &raw) == SQLITE_OK, "busy fixture open");
+  const auto blocker = std::unique_ptr<sqlite3, decltype(&sqlite3_close)>(raw, sqlite3_close);
+  require(sqlite3_exec(raw, "BEGIN IMMEDIATE", nullptr, nullptr, nullptr) == SQLITE_OK,
+          "busy fixture lock");
+  const auto began = std::chrono::steady_clock::now();
+  require(store.apply("A", "busy", "payload") == "UNKNOWN",
+          "busy transport failure fabricated a final result");
+  const auto elapsed = std::chrono::steady_clock::now() - began;
+  require(elapsed < std::chrono::seconds(2), "busy retry was not bounded");
+  require(sqlite3_exec(raw, "ROLLBACK", nullptr, nullptr, nullptr) == SQLITE_OK,
+          "busy fixture release");
+  require(store.counts() == kidea::Counts{0, 0, 0, 0}, "busy partial write");
+  require(store.apply("A", "busy", "payload") == "SUCCESS",
+          "connection did not recover after busy");
+}
+void crash() {
+  for (const std::string stage :
+       {"domain", "result", "audit", "outbox", "commit", "after-commit"}) {
+    const auto file = db_file();
+    { kidea::Store initialize(file); }
+    const auto child = fork();
+    require(child >= 0, "fork");
+    if (child == 0) {
+      kidea::Store store(file);
+      store.apply("A", "id", "text", [&](std::string_view at) {
+        if (at == stage)
+          _exit(23);
+      });
+      _exit(24);
+    }
+    int status = 0;
+    require(waitpid(child, &status, 0) == child, "waitpid");
+    require(WIFEXITED(status) && WEXITSTATUS(status) == 23, "fault point not reached");
+    kidea::Store reopened(file);
+    const int expected = stage == "after-commit" ? 1 : 0;
+    require(reopened.counts() == kidea::Counts{expected, expected, expected, expected},
+            "crash atomicity");
+  }
+}
+void acknowledged_durable() {
+  const auto file = db_file();
+  {
+    kidea::Store store(file);
+    require(store.apply("A", "ack", "payload") == "SUCCESS", "write ACK");
+  }
+  kidea::Store reopened(file);
+  require(reopened.lookup("A", "ack") == "SUCCESS" &&
+              reopened.counts() == kidea::Counts{1, 1, 1, 1},
+          "acknowledged write was not durable after connection closed");
+}
+void lifetime() {
+  std::function<int()> delayed;
+  {
+    const auto value = std::make_shared<int>(42);
+    delayed = [value] { return *value; };
+  }
+  require(std::async(std::launch::async, delayed).get() == 42, "callback lifetime");
+  std::weak_ptr<int> weak;
+  {
+    const auto value = std::make_shared<int>(7);
+    weak = value;
+    std::function<int()> cancelled = [value] { return *value; };
+    cancelled = {};
+  }
+  require(weak.expired(), "cancel resource leak");
+  {
+    const auto owned = std::make_shared<int>(9);
+    weak = owned;
+    auto exceptional = std::async(std::launch::async, [owned]() -> int {
+      throw std::runtime_error("injected callback error");
+    });
+    bool caught = false;
+    try {
+      static_cast<void>(exceptional.get());
+    } catch (const std::runtime_error &) {
+      caught = true;
+    }
+    require(caught, "callback exception lost");
+  }
+  require(weak.expired(), "exception resource leak");
+}
+void bounded_queue() {
+  std::atomic<unsigned> completed{0};
+  std::promise<void> entered, release;
+  auto gate = release.get_future().share();
+  bool accepted = false, overflow = false, closed = false;
+  {
+    kidea::Worker worker(2);
+    require(worker.submit([&] {
+      entered.set_value();
+      gate.wait();
+      ++completed;
+    }),
+            "initial task rejected");
+    entered.get_future().wait();
+    accepted = worker.submit([&] { ++completed; }) && worker.submit([&] { ++completed; });
+    overflow = !worker.submit([&] { ++completed; });
+    worker.close();
+    closed = !worker.submit([&] { ++completed; });
+    release.set_value();
+  }
+  require(accepted && overflow && closed, "queue capacity or admission gate");
+  require(completed == 3, "accepted queue did not drain exactly once");
+}
+void queue_concurrency() {
+  std::array<unsigned, 400> seen{};
+  std::barrier start(5);
+  {
+    kidea::Worker worker(16);
+    std::vector<std::thread> producers;
+    for (unsigned producer = 0; producer < 4; ++producer) {
+      producers.emplace_back([&, producer] {
+        start.arrive_and_wait();
+        for (unsigned i = 0; i < 100; ++i) {
+          const auto id = producer * 100 + i;
+          while (!worker.submit([&, id] { ++seen[id]; }))
+            std::this_thread::yield();
+        }
+      });
+    }
+    start.arrive_and_wait();
+    for (auto &producer : producers)
+      producer.join();
+  }
+  for (const auto count : seen)
+    require(count == 1, "concurrent queue lost or duplicated accepted work");
+}
+} // namespace
+int main(int argc, char **argv) {
+  try {
+    require(argc == 2, "test name");
+    const std::string name = argv[1];
+    if (name == "grammar")
+      grammar();
+    else if (name == "unicode")
+      unicode();
+    else if (name == "atomicity")
+      atomicity();
+    else if (name == "rollback")
+      rollback();
+    else if (name == "sql")
+      sql();
+    else if (name == "concurrency")
+      concurrency();
+    else if (name == "crash")
+      crash();
+    else if (name == "lifetime")
+      lifetime();
+    else if (name == "bounded_queue")
+      bounded_queue();
+    else if (name == "queue_concurrency")
+      queue_concurrency();
+    else if (name == "acknowledged_durable")
+      acknowledged_durable();
+    else if (name == "busy_timeout")
+      busy_timeout();
+    else
+      throw std::runtime_error("unknown test");
+    std::cout << name << " PASS\n";
+    return 0;
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << '\n';
+    return 1;
+  }
+}

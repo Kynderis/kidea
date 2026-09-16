@@ -1,0 +1,268 @@
+/src/cpp/domain.cpp:8:44: error: code should be clang-formatted [-Wclang-format-violations]
+  if (value.empty() || value.size() > 20 ||
+                                           ^
+/src/cpp/domain.cpp:72:22: error: code should be clang-formatted [-Wclang-format-violations]
+  const auto parser =
+                     ^
+/src/cpp/domain.cpp:73:67: error: code should be clang-formatted [-Wclang-format-violations]
+      std::unique_ptr<cmark_parser, decltype(&cmark_parser_free)>(
+                                                                  ^
+/src/cpp/domain.cpp:84:71: error: code should be clang-formatted [-Wclang-format-violations]
+    if (type != CMARK_NODE_DOCUMENT && type != CMARK_NODE_PARAGRAPH &&
+                                                                      ^
+/src/cpp/domain.cpp:85:35: error: code should be clang-formatted [-Wclang-format-violations]
+        type != CMARK_NODE_TEXT && type != CMARK_NODE_SOFTBREAK)
+                                  ^
+/src/cpp/domain.cpp:102:22: error: code should be clang-formatted [-Wclang-format-violations]
+    if (data.size() >
+                     ^
+/src/cpp/domain.cpp:104:53: error: code should be clang-formatted [-Wclang-format-violations]
+        sqlite3_bind_text(value, index, data.data(),
+                                                    ^
+/src/cpp/domain.cpp:134:52: error: code should be clang-formatted [-Wclang-format-violations]
+        std::string(reinterpret_cast<const char *>(
+                                                   ^
+/src/cpp/domain.cpp:177:28: error: code should be clang-formatted [-Wclang-format-violations]
+        return std::string(reinterpret_cast<const char *>(
+                           ^
+/src/cpp/domain.cpp:177:59: error: code should be clang-formatted [-Wclang-format-violations]
+        return std::string(reinterpret_cast<const char *>(
+                                                          ^
+/src/cpp/domain.cpp:180:33: error: code should be clang-formatted [-Wclang-format-violations]
+      const std::string result =
+                                ^
+/src/cpp/domain.cpp:189:44: error: code should be clang-formatted [-Wclang-format-violations]
+        "INSERT INTO domain VALUES(?,?,?)",
+                                           ^
+/src/cpp/domain.cpp:192:81: error: code should be clang-formatted [-Wclang-format-violations]
+    const std::array<std::string_view, 4> stages = {"domain", "result", "audit",
+                                                                                ^
+/src/cpp/domain.cpp:216:29: error: code should be clang-formatted [-Wclang-format-violations]
+        const int rollback =
+                            ^
+/src/cpp/domain.cpp:241:69: error: code should be clang-formatted [-Wclang-format-violations]
+      "SELECT count(*) FROM domain", "SELECT count(*) FROM results",
+                                                                    ^
+/src/cpp/domain.cpp:242:36: error: code should be clang-formatted [-Wclang-format-violations]
+      "SELECT count(*) FROM audit", "SELECT count(*) FROM outbox"};
+                                   ^
+/src/cpp/input.cpp:19:22: error: code should be clang-formatted [-Wclang-format-violations]
+  const auto reader =
+                     ^
+/src/cpp/input.cpp:23:81: error: code should be clang-formatted [-Wclang-format-violations]
+  if (!reader->parse(body.data(), body.data() + body.size(), &value, &errors) ||
+                                                                                ^
+/src/cpp/server.cpp:35:52: error: code should be clang-formatted [-Wclang-format-violations]
+  if (it == sessions.end() || it->second.revoked ||
+                                                   ^
+/src/cpp/server.cpp:41:47: error: code should be clang-formatted [-Wclang-format-violations]
+  return a.size() == b.size() && !a.empty() &&
+                                              ^
+/src/cpp/server.cpp:44:62: error: code should be clang-formatted [-Wclang-format-violations]
+drogon::HttpResponsePtr response(drogon::HttpStatusCode code,
+                                                             ^
+/src/cpp/server.cpp:62:65: error: code should be clang-formatted [-Wclang-format-violations]
+         equal_secret(req->getHeader("x-csrf-token"), s.csrf) &&
+                                                                ^
+/src/cpp/server.cpp:87:51: error: code should be clang-formatted [-Wclang-format-violations]
+  void doFilter(const drogon::HttpRequestPtr &req,
+                                                  ^
+/src/cpp/server.cpp:102:74: error: code should be clang-formatted [-Wclang-format-violations]
+  void handleNewMessage(const drogon::WebSocketConnectionPtr &connection,
+                                                                         ^
+/src/cpp/server.cpp:109:28: error: code should be clang-formatted [-Wclang-format-violations]
+  void handleNewConnection(
+                           ^
+/src/cpp/server.cpp:110:41: error: code should be clang-formatted [-Wclang-format-violations]
+      const drogon::HttpRequestPtr &req,
+                                        ^
+/src/cpp/server.cpp:112:28: error: code should be clang-formatted [-Wclang-format-violations]
+    connection->setContext(
+                           ^
+/src/cpp/server.cpp:117:81: error: code should be clang-formatted [-Wclang-format-violations]
+  void handleConnectionClosed(const drogon::WebSocketConnectionPtr &) override {
+                                                                                ^
+/src/cpp/server.cpp:140:24: error: code should be clang-formatted [-Wclang-format-violations]
+      sessions.emplace(item["token"].asString(),
+                       ^
+/src/cpp/server.cpp:140:49: error: code should be clang-formatted [-Wclang-format-violations]
+      sessions.emplace(item["token"].asString(),
+                                                ^
+/src/cpp/server.cpp:141:57: error: code should be clang-formatted [-Wclang-format-violations]
+                       Session{item["actor"].asString(),
+                                                        ^
+/src/cpp/server.cpp:142:81: error: code should be clang-formatted [-Wclang-format-violations]
+                               item["csrf"].asString(), item["role"].asString(),
+                                                                                ^
+/src/cpp/server.cpp:143:68: error: code should be clang-formatted [-Wclang-format-violations]
+                               Clock::now() + std::chrono::seconds(
+                                                                   ^
+/src/cpp/server.cpp:144:81: error: code should be clang-formatted [-Wclang-format-violations]
+                                                  item.get("ttl", 900).asInt()),
+                                                                                ^
+/src/cpp/server.cpp:151:48: error: code should be clang-formatted [-Wclang-format-violations]
+    if (!std::dynamic_pointer_cast<SocketAuth>(
+                                               ^
+/src/cpp/server.cpp:163:34: error: code should be clang-formatted [-Wclang-format-violations]
+    app.registerPreSendingAdvice([](const drogon::HttpRequestPtr &req,
+                                 ^
+/src/cpp/server.cpp:163:71: error: code should be clang-formatted [-Wclang-format-violations]
+    app.registerPreSendingAdvice([](const drogon::HttpRequestPtr &req,
+                                                                      ^
+/src/cpp/server.cpp:164:74: error: code should be clang-formatted [-Wclang-format-violations]
+                                    const drogon::HttpResponsePtr &res) {
+                                                                         ^
+/src/cpp/server.cpp:165:38: error: code should be clang-formatted [-Wclang-format-violations]
+      if (req->path() == "/api/ws" &&
+                                     ^
+/src/cpp/server.cpp:166:63: error: code should be clang-formatted [-Wclang-format-violations]
+          res->statusCode() == drogon::k101SwitchingProtocols)
+                                                              ^
+/src/cpp/server.cpp:167:62: error: code should be clang-formatted [-Wclang-format-violations]
+        res->addHeader("Sec-WebSocket-Protocol", "kidea.v1");
+                                                             ^
+/src/cpp/server.cpp:204:41: error: code should be clang-formatted [-Wclang-format-violations]
+            out->addHeader("Set-Cookie",
+                                        ^
+/src/cpp/server.cpp:205:61: error: code should be clang-formatted [-Wclang-format-violations]
+                           "__Host-kidea_session=" + token +
+                                                            ^
+/src/cpp/server.cpp:216:41: error: code should be clang-formatted [-Wclang-format-violations]
+            out->addHeader("Set-Cookie",
+                                        ^
+/src/cpp/server.cpp:217:79: error: code should be clang-formatted [-Wclang-format-violations]
+                           "__Host-kidea_session=; Path=/; Secure; HttpOnly; "
+                                                                              ^
+/src/cpp/server.cpp:242:52: error: code should be clang-formatted [-Wclang-format-violations]
+                  callback(response(drogon::k200OK,
+                                                   ^
+/src/cpp/server.cpp:269:54: error: code should be clang-formatted [-Wclang-format-violations]
+            if (!body || !(*body)["id"].isString() ||
+                                                     ^
+/src/cpp/server.cpp:278:54: error: code should be clang-formatted [-Wclang-format-violations]
+            const auto id = (*body)["id"].asString(),
+                                                     ^
+/src/cpp/server.cpp:283:49: error: code should be clang-formatted [-Wclang-format-violations]
+                    std::this_thread::sleep_for(
+                                                ^
+/src/cpp/server.cpp:287:73: error: code should be clang-formatted [-Wclang-format-violations]
+                  callback(response(result == "SUCCESS" ? drogon::k200OK
+                                                                        ^
+/src/cpp/tests.cpp:22:58: error: code should be clang-formatted [-Wclang-format-violations]
+  return "/tmp/kidea-" + std::to_string(getpid()) + "-" +
+                                                         ^
+/src/cpp/tests.cpp:27:70: error: code should be clang-formatted [-Wclang-format-violations]
+       {"Lớp học thủ công", "C++ & C#", "2 * 3 < 10", "a_b_c",
+/src/cpp/tests.cpp:28:47: error: code should be clang-formatted [-Wclang-format-violations]
+        "https://example.test", "😀", "é", "first\nsecond", "one\n\ntwo",
+/src/cpp/tests.cpp:28:78: error: code should be clang-formatted [-Wclang-format-violations]
+        "https://example.test", "😀", "é", "first\nsecond", "one\n\ntwo",
+/src/cpp/tests.cpp:30:50: error: code should be clang-formatted [-Wclang-format-violations]
+    require(kidea::plain_text(text, 5000, false),
+                                                 ^
+/src/cpp/tests.cpp:33:73: error: code should be clang-formatted [-Wclang-format-violations]
+       {"<b>abc</b>", "**abc**", "_abc_", "[abc](https://example.test)",
+                                                                        ^
+/src/cpp/tests.cpp:34:36: error: code should be clang-formatted [-Wclang-format-violations]
+        "# Tiêu đề", "- mục", "```\ncode\n```", "<!-- x -->",
+/src/cpp/tests.cpp:34:68: error: code should be clang-formatted [-Wclang-format-violations]
+        "# Tiêu đề", "- mục", "```\ncode\n```", "<!-- x -->",
+/src/cpp/tests.cpp:36:74: error: code should be clang-formatted [-Wclang-format-violations]
+        "[x]:\n  https://example.test", "[x]: /one\n[x]: /two", "a  \nb",
+                                                                         ^
+/src/cpp/tests.cpp:38:51: error: code should be clang-formatted [-Wclang-format-violations]
+    require(!kidea::plain_text(text, 5000, false),
+                                                  ^
+/src/cpp/tests.cpp:44:66: error: code should be clang-formatted [-Wclang-format-violations]
+  require(kidea::plain_text(std::string(5000, 'a'), 5000, false),
+                                                                 ^
+/src/cpp/tests.cpp:46:67: error: code should be clang-formatted [-Wclang-format-violations]
+  require(!kidea::plain_text(std::string(5001, 'a'), 5000, false),
+                                                                  ^
+/src/cpp/tests.cpp:53:32: error: code should be clang-formatted [-Wclang-format-violations]
+  for (const std::string text : {"{\"value\":1,\"value\":2}", "{\"x\":1,}",
+                               ^
+/src/cpp/tests.cpp:53:76: error: code should be clang-formatted [-Wclang-format-violations]
+  for (const std::string text : {"{\"value\":1,\"value\":2}", "{\"x\":1,}",
+                                                                           ^
+/src/cpp/tests.cpp:60:72: error: code should be clang-formatted [-Wclang-format-violations]
+        std::string("\xf4\x90\x80\x80", 4), std::string("\xf0\x9f", 2),
+                                                                       ^
+/src/cpp/tests.cpp:66:62: error: code should be clang-formatted [-Wclang-format-violations]
+       {"", "01", "-1", "1.0", "1e2", "18446744073709551616",
+                                                             ^
+/src/cpp/tests.cpp:74:24: error: code should be clang-formatted [-Wclang-format-violations]
+    const auto result =
+                       ^
+/src/cpp/tests.cpp:75:69: error: code should be clang-formatted [-Wclang-format-violations]
+        store.apply("A", "id", "payload", [&](std::string_view at) {
+                                                                    ^
+/src/cpp/tests.cpp:76:27: error: code should be clang-formatted [-Wclang-format-violations]
+          if (at == stage)
+                          ^
+/src/cpp/tests.cpp:77:52: error: code should be clang-formatted [-Wclang-format-violations]
+            throw kidea::DatabaseError("injected");
+                                                   ^
+/src/cpp/tests.cpp:87:61: error: code should be clang-formatted [-Wclang-format-violations]
+  require(store.apply("A", "id", "different") == "CONFLICT",
+                                                            ^
+/src/cpp/tests.cpp:94:22: error: code should be clang-formatted [-Wclang-format-violations]
+  const auto result =
+                     ^
+/src/cpp/tests.cpp:95:66: error: code should be clang-formatted [-Wclang-format-violations]
+      store.apply("A", "id", "payload", [](std::string_view at) {
+                                                                 ^
+/src/cpp/tests.cpp:96:48: error: code should be clang-formatted [-Wclang-format-violations]
+        if (at == "commit" || at == "rollback")
+                                               ^
+/src/cpp/tests.cpp:97:50: error: code should be clang-formatted [-Wclang-format-violations]
+          throw kidea::DatabaseError("injected");
+                                                 ^
+/src/cpp/tests.cpp:100:60: error: code should be clang-formatted [-Wclang-format-violations]
+  require(store.apply("A", "next", "payload") == "UNKNOWN",
+                                                           ^
+/src/cpp/tests.cpp:106:74: error: code should be clang-formatted [-Wclang-format-violations]
+  require(store.apply("A'", "x'); DROP TABLE results;--", "quote';--") ==
+                                                                         ^
+/src/cpp/tests.cpp:107:25: error: code should be clang-formatted [-Wclang-format-violations]
+              "SUCCESS",
+                        ^
+/src/cpp/tests.cpp:110:81: error: code should be clang-formatted [-Wclang-format-violations]
+  require(store.pragma("foreign_keys") == 1 && store.pragma("synchronous") == 2,
+                                                                                ^
+/src/cpp/tests.cpp:137:75: error: code should be clang-formatted [-Wclang-format-violations]
+  const auto blocker = std::unique_ptr<sqlite3, decltype(&sqlite3_close)>(
+                                                                          ^
+/src/cpp/tests.cpp:139:77: error: code should be clang-formatted [-Wclang-format-violations]
+  require(sqlite3_exec(raw, "BEGIN IMMEDIATE", nullptr, nullptr, nullptr) ==
+                                                                            ^
+/src/cpp/tests.cpp:170:60: error: code should be clang-formatted [-Wclang-format-violations]
+    require(WIFEXITED(status) && WEXITSTATUS(status) == 23,
+                                                           ^
+/src/cpp/tests.cpp:174:33: error: code should be clang-formatted [-Wclang-format-violations]
+    require(reopened.counts() ==
+                                ^
+/src/cpp/tests.cpp:196:63: error: code should be clang-formatted [-Wclang-format-violations]
+  require(std::async(std::launch::async, delayed).get() == 42,
+                                                              ^
+/src/cpp/tests.cpp:229:32: error: code should be clang-formatted [-Wclang-format-violations]
+    require(worker.submit([&] { entered.set_value(); gate.wait(); ++completed; }),
+                               ^
+/src/cpp/tests.cpp:229:53: error: code should be clang-formatted [-Wclang-format-violations]
+    require(worker.submit([&] { entered.set_value(); gate.wait(); ++completed; }),
+                                                    ^
+/src/cpp/tests.cpp:229:66: error: code should be clang-formatted [-Wclang-format-violations]
+    require(worker.submit([&] { entered.set_value(); gate.wait(); ++completed; }),
+                                                                 ^
+/src/cpp/tests.cpp:229:79: error: code should be clang-formatted [-Wclang-format-violations]
+    require(worker.submit([&] { entered.set_value(); gate.wait(); ++completed; }),
+                                                                              ^
+/src/cpp/tests.cpp:232:54: error: code should be clang-formatted [-Wclang-format-violations]
+    accepted = worker.submit([&] { ++completed; }) &&
+                                                     ^
+/src/cpp/domain.hpp:33:69: error: code should be clang-formatted [-Wclang-format-violations]
+  std::string apply(const std::string &actor, const std::string &id,
+                                                                    ^
+/src/cpp/worker.hpp:10:45: error: code should be clang-formatted [-Wclang-format-violations]
+  explicit Worker(std::size_t capacity = 64)
+                                            ^

@@ -1,0 +1,32 @@
+{
+  "stage": "cpp-final-presets",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r4-final-presets",
+    "--label",
+    "kidea.run=E2-BW-r4",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1,dst=/src,readonly",
+    "--mount",
+    "type=volume,src=kidea-r05-e2-r1-build,dst=/build",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "-c",
+    "failed=0; for preset in dev asan-ubsan tsan release; do sh /src/scripts/cpp-preset.sh \"$preset\" || failed=1; done; exit \"$failed\""
+  ],
+  "at": "2026-09-16T14:49:49.831Z",
+  "durationMs": 22923,
+  "code": 1,
+  "signal": null,
+  "timedOut": false
+}

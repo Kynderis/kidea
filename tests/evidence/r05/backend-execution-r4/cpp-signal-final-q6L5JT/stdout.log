@@ -1,0 +1,198 @@
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/dev
+[1/2] Building CXX object CMakeFiles/backend.dir/cpp/server.cpp.o
+[2/2] Linking CXX executable backend
+Test project /build/dev
+      Start  1: grammar
+ 1/12 Test  #1: grammar ..........................   Passed    0.01 sec
+      Start  2: unicode
+ 2/12 Test  #2: unicode ..........................   Passed    0.00 sec
+      Start  3: atomicity
+ 3/12 Test  #3: atomicity ........................   Passed    0.18 sec
+      Start  4: rollback
+ 4/12 Test  #4: rollback .........................   Passed    0.03 sec
+      Start  5: sql
+ 5/12 Test  #5: sql ..............................   Passed    0.04 sec
+      Start  6: concurrency
+ 6/12 Test  #6: concurrency ......................   Passed    0.02 sec
+      Start  7: crash
+ 7/12 Test  #7: crash ............................   Passed    0.07 sec
+      Start  8: lifetime
+ 8/12 Test  #8: lifetime .........................   Passed    0.00 sec
+      Start  9: bounded_queue
+ 9/12 Test  #9: bounded_queue ....................   Passed    0.00 sec
+      Start 10: queue_concurrency
+10/12 Test #10: queue_concurrency ................   Passed    0.01 sec
+      Start 11: acknowledged_durable
+11/12 Test #11: acknowledged_durable .............   Passed    0.01 sec
+      Start 12: busy_timeout
+12/12 Test #12: busy_timeout .....................   Passed    0.12 sec
+
+100% tests passed, 0 tests failed out of 12
+
+Total Test time (real) =   0.50 sec
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+  SANITIZER="address,undefined"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/asan-ubsan
+[1/2] Building CXX object CMakeFiles/backend.dir/cpp/server.cpp.o
+[2/2] Linking CXX executable backend
+Test project /build/asan-ubsan
+      Start  1: grammar
+ 1/12 Test  #1: grammar ..........................   Passed    0.03 sec
+      Start  2: unicode
+ 2/12 Test  #2: unicode ..........................   Passed    0.03 sec
+      Start  3: atomicity
+ 3/12 Test  #3: atomicity ........................   Passed    0.15 sec
+      Start  4: rollback
+ 4/12 Test  #4: rollback .........................   Passed    0.05 sec
+      Start  5: sql
+ 5/12 Test  #5: sql ..............................   Passed    0.04 sec
+      Start  6: concurrency
+ 6/12 Test  #6: concurrency ......................   Passed    0.05 sec
+      Start  7: crash
+ 7/12 Test  #7: crash ............................   Passed    0.17 sec
+      Start  8: lifetime
+ 8/12 Test  #8: lifetime .........................   Passed    0.03 sec
+      Start  9: bounded_queue
+ 9/12 Test  #9: bounded_queue ....................   Passed    0.03 sec
+      Start 10: queue_concurrency
+10/12 Test #10: queue_concurrency ................   Passed    0.04 sec
+      Start 11: acknowledged_durable
+11/12 Test #11: acknowledged_durable .............   Passed    0.05 sec
+      Start 12: busy_timeout
+12/12 Test #12: busy_timeout .....................   Passed    0.15 sec
+
+100% tests passed, 0 tests failed out of 12
+
+Total Test time (real) =   0.82 sec
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+  SANITIZER="thread"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/tsan
+[1/2] Building CXX object CMakeFiles/backend.dir/cpp/server.cpp.o
+[2/2] Linking CXX executable backend
+Test project /build/tsan
+      Start  1: grammar
+ 1/12 Test  #1: grammar ..........................   Passed    0.02 sec
+      Start  2: unicode
+ 2/12 Test  #2: unicode ..........................   Passed    0.01 sec
+      Start  3: atomicity
+ 3/12 Test  #3: atomicity ........................   Passed    0.18 sec
+      Start  4: rollback
+ 4/12 Test  #4: rollback .........................   Passed    0.04 sec
+      Start  5: sql
+ 5/12 Test  #5: sql ..............................   Passed    0.04 sec
+      Start  6: concurrency
+ 6/12 Test  #6: concurrency ......................   Passed    0.05 sec
+      Start  7: crash
+ 7/12 Test  #7: crash ............................   Passed    0.22 sec
+      Start  8: lifetime
+ 8/12 Test  #8: lifetime .........................   Passed    0.01 sec
+      Start  9: bounded_queue
+ 9/12 Test  #9: bounded_queue ....................   Passed    0.01 sec
+      Start 10: queue_concurrency
+10/12 Test #10: queue_concurrency ................   Passed    0.04 sec
+      Start 11: acknowledged_durable
+11/12 Test #11: acknowledged_durable .............   Passed    0.04 sec
+      Start 12: busy_timeout
+12/12 Test #12: busy_timeout .....................   Passed    0.14 sec
+
+100% tests passed, 0 tests failed out of 12
+
+Total Test time (real) =   0.79 sec
+Preset CMake variables:
+
+  CMAKE_BUILD_TYPE="Release"
+  CMAKE_CXX_COMPILER="g++-13"
+  CMAKE_C_COMPILER="gcc-13"
+
+-- compiler: GNU
+-- Trantor using SSL library: OpenSSL
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found std::filesystem
+-- use c++20
+-- jsoncpp version:1.9.5
+-- yaml-cpp not used
+-- Found UUID: /usr/lib/x86_64-linux-gnu/libuuid.so
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /build/release
+[1/2] Building CXX object CMakeFiles/backend.dir/cpp/server.cpp.o
+[2/2] Linking CXX executable backend
+Test project /build/release
+      Start  1: grammar
+ 1/12 Test  #1: grammar ..........................   Passed    0.00 sec
+      Start  2: unicode
+ 2/12 Test  #2: unicode ..........................   Passed    0.00 sec
+      Start  3: atomicity
+ 3/12 Test  #3: atomicity ........................   Passed    0.08 sec
+      Start  4: rollback
+ 4/12 Test  #4: rollback .........................   Passed    0.01 sec
+      Start  5: sql
+ 5/12 Test  #5: sql ..............................   Passed    0.01 sec
+      Start  6: concurrency
+ 6/12 Test  #6: concurrency ......................   Passed    0.02 sec
+      Start  7: crash
+ 7/12 Test  #7: crash ............................   Passed    0.07 sec
+      Start  8: lifetime
+ 8/12 Test  #8: lifetime .........................   Passed    0.00 sec
+      Start  9: bounded_queue
+ 9/12 Test  #9: bounded_queue ....................   Passed    0.00 sec
+      Start 10: queue_concurrency
+10/12 Test #10: queue_concurrency ................   Passed    0.01 sec
+      Start 11: acknowledged_durable
+11/12 Test #11: acknowledged_durable .............   Passed    0.01 sec
+      Start 12: busy_timeout
+12/12 Test #12: busy_timeout .....................   Passed    0.12 sec
+
+100% tests passed, 0 tests failed out of 12
+
+Total Test time (real) =   0.36 sec

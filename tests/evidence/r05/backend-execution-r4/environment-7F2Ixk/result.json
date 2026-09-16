@@ -1,0 +1,13 @@
+{
+  "stage": "environment",
+  "executable": "/bin/zsh",
+  "args": [
+    "-c",
+    "sw_vers; uname -m; sysctl -n machdep.cpu.brand_string; id -u; command -v node; node --version; npm --version; git --version; git remote -v; git branch --show-current; git rev-parse HEAD; df -k .; /Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node --version"
+  ],
+  "at": "2026-09-16T15:13:00.847Z",
+  "durationMs": 663,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

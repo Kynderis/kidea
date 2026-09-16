@@ -1,0 +1,16 @@
+file:///src/scripts/mutations-r4.mjs:21
+ if(r.error||r.status!==0)throw Error('Compilation failed: '+(r.error||r.stderr));return r;
+                                ^
+
+Error: Compilation failed: /work/mutants-r4/missing-token/server.cpp: In function 'bool {anonymous}::csrf(const drogon::HttpRequestPtr&, const Session&)':
+/work/mutants-r4/missing-token/server.cpp:58:61: error: unused parameter 's' [-Werror=unused-parameter]
+   58 | bool csrf(const drogon::HttpRequestPtr &req, const Session &s) {
+      |                                              ~~~~~~~~~~~~~~~^
+cc1plus: all warnings being treated as errors
+
+    at run (file:///src/scripts/mutations-r4.mjs:21:33)
+    at compile (file:///src/scripts/mutations-r4.mjs:29:2)
+    at file:///src/scripts/mutations-r4.mjs:64:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.19.0

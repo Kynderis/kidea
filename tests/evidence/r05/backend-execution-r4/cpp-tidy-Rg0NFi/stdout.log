@@ -1,0 +1,10 @@
+/src/cpp/domain.cpp:102:27: error: integer to pointer cast pessimizes optimization opportunities [performance-no-int-to-ptr,-warnings-as-errors]
+  102 |                           SQLITE_TRANSIENT) != SQLITE_OK)
+      |                           ^
+/src/vendor/sqlite/sqlite3.h:6430:29: note: expanded from macro 'SQLITE_TRANSIENT'
+ 6430 | #define SQLITE_TRANSIENT   ((sqlite3_destructor_type)-1)
+      |                             ^
+/src/cpp/server.cpp:61:30: error: the parameter 'value' is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param,-warnings-as-errors]
+   61 | std::string trim(std::string value) {
+      |                              ^
+      |                  const      &
