@@ -1,0 +1,132 @@
+{
+  "kind": "PLANNED_COMMANDS_NOT_EXECUTED",
+  "status": "NOT_RUN",
+  "cwd": "<pilot>/samples/r05/web",
+  "runtime": "existing Node24.19.0 for preparation; record and verify chosen runtime for actual sample",
+  "stages": [
+    {
+      "id": "install",
+      "executable": "npm",
+      "argv": [
+        "ci",
+        "--ignore-scripts",
+        "--audit=false",
+        "--fund=false"
+      ],
+      "requiredInputs": [
+        "package.json",
+        "package-lock.json"
+      ],
+      "timeoutSeconds": 1800,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "sync",
+      "executable": "node_modules/.bin/svelte-kit",
+      "argv": [
+        "sync"
+      ],
+      "requiredInputs": [
+        "svelte.config.js",
+        "src/app.html"
+      ],
+      "timeoutSeconds": 120,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "check",
+      "executable": "node_modules/.bin/svelte-check",
+      "argv": [
+        "--tsconfig",
+        "./tsconfig.json",
+        "--fail-on-warnings"
+      ],
+      "requiredInputs": [
+        "tsconfig.json",
+        ".svelte-kit/tsconfig.json"
+      ],
+      "timeoutSeconds": 300,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "lint",
+      "executable": "node_modules/.bin/eslint",
+      "argv": [
+        ".",
+        "--max-warnings",
+        "0"
+      ],
+      "requiredInputs": [
+        "eslint.config.js"
+      ],
+      "timeoutSeconds": 300,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "unit",
+      "executable": "node",
+      "argv": [
+        "--test",
+        "tests/unit/*.test.mjs"
+      ],
+      "requiredInputs": [
+        "tests/unit/*.test.mjs"
+      ],
+      "timeoutSeconds": 300,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "build",
+      "executable": "node_modules/.bin/vite",
+      "argv": [
+        "build"
+      ],
+      "requiredInputs": [
+        "vite.config.ts",
+        "svelte.config.js",
+        "src/app.html"
+      ],
+      "timeoutSeconds": 600,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "browser",
+      "executable": "node_modules/.bin/playwright",
+      "argv": [
+        "test",
+        "--project=chromium",
+        "--workers=1",
+        "--retries=0",
+        "--forbid-only"
+      ],
+      "requiredInputs": [
+        "playwright.config.ts",
+        "build/index.js",
+        "tests/browser/*.spec.ts"
+      ],
+      "timeoutSeconds": 600,
+      "status": "NOT_RUN"
+    }
+  ],
+  "serverPlan": {
+    "host": "127.0.0.1",
+    "port": 4173,
+    "origin": "http://127.0.0.1:4173",
+    "command": [
+      "node",
+      "build/index.js"
+    ],
+    "reuseExistingServer": false,
+    "lifetime": "Only owned child processes; teardown on success/error/timeout",
+    "scope": "Fake-transport SSR/render samples, not Secure-cookie/CSRF/backend integration"
+  },
+  "rules": [
+    "Use absolute trusted executable paths in implementation",
+    "Do not run a later stage after failure",
+    "Node --test glob argument is passed to Node24, not expanded by shell",
+    "Keep install scripts disabled",
+    "No npx auto-download",
+    "No skipped/todo/only tests; keep negative mutation results separately",
+    "Browser prerequisite not yet downloaded or size/checksum verified"
+  ]
+}

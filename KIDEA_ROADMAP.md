@@ -10,6 +10,9 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
+**Web: đã hoàn thành phần dependency và thiết kế lệnh kiểm không cần Docker.** [Toolchain r1](proposals/r05-web-toolchain-r1.md) có lock237package, engines phù hợp Node24.19 theo metadata, command manifest7bước. Audit baseline exit1 (3mục low cùng chuỗi cookie); candidate scoped override cookie0.7.2 audit exit0, chưa xác minh tương thích runtime, chưa áp pilot. Không node_modules/browser/app/server, không thay root package/lock hoặc nguồn profile. Docker vẫn hoãn; R05-T03-S03 và9ca mẫu vẫn NOT_RUN. Các đoạn dưới là lịch sử.
+
+
 **Tiếp tục phần không cần Docker:** Human cho tạm gác Docker và làm phần độc lập. Đã chuẩn bị [mẫu Web r1](proposals/r05-web-samples-r1.md) với chín vector cụ thể (actor/generation/version/SSR/UNKNOWN/render), tất cả runtime NOT_RUN. Không cài dependency/build/server, không đổi profile hoặc nguồn pilot. Web native có thể đi riêng sau gói dependency/quyền thực thi; integration C++/Caddy vẫn chờ Docker. Không cần Human thao tác lúc đang xa máy. Các đoạn dưới là lịch sử.
 
 

@@ -31,3 +31,5 @@ Mẫu browser cần server loopback do lượt chạy sở hữu, cổng đượ
 3. Sau quyền thực thi, chạy unit/SSR/browser mẫu theo ma trận, giữ cả FAIL và PASS; integration backend/Caddy vẫn chờ Docker. Không gọi kết quả fake transport là nghiệm thu sản phẩm.
 
 Phần này vẫn là R05-T03/T06 chuẩn bị; T03-S03 chưa chạy. Không sửa test inventory R03 cũ hoặc làm biến mất lỗi19/20 lịch sử.
+
+Dependency và lệnh kiểm đã được cụ thể hóa trong [toolchain r1](r05-web-toolchain-r1.md):237package, baseline audit có cảnh báo cookie, candidate override chỉ là ứng viên chờ kiểm runtime. Các bước thực thi ở trên vẫn NOT_RUN.

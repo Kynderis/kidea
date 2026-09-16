@@ -1,7 +1,7 @@
-Được, **không cần chờ Docker để làm tiếp**. Docker giữ ở trạng thái chờ bạn báo khi ngồi máy.
+Đã hoàn thiện [dependency và bộ lệnh kiểm mẫu Web](proposals/r05-web-toolchain-r1.md), không cần Docker:
 
-Tôi đã chuyển sang chuẩn bị phần Web độc lập và tạo [chín tình huống kiểm cụ thể](proposals/r05-web-samples-r1.md): phản hồi cũ sau đăng xuất, version lớn, tách dữ liệu hai người dùng khi SSR, tránh gửi lại POST admin và render văn bản an toàn.
+- Tạo lockfile237package và kế hoạch7bước: cài theo lock, sync, kiểm kiểu, lint, unit, build, browser.
+- Metadata dependency phù hợp Node24.19 có sẵn; chưa cần cài Node mới.
+- Audit phát hiện cảnh báo low ở cookie. Đã giữ lock/log ban đầu và tạo candidate override cookie0.7.2; candidate audit0cảnh báo, nhưng vẫn phải kiểm tương thích cookie/session thực trước khi sử dụng.
 
-Bước tiếp theo của nhánh này là hoàn thiện dependency và lệnh kiểm mẫu Web. Việc chạy Web thật vẫn cần chốt gói tải/chạy; kiểm tích hợp backend mới cần Docker. Hiện chưa cài/build gì, chín ca ứng dụng vẫn NOT_RUN và R05 chưa hoàn tất.
-
-**Bạn chưa cần thao tác hay xác nhận thêm cho phần chuẩn bị này.**
+Chưa cài dependency/browser hoặc chạy app/build. Phần tiếp theo là hiện thực và chạy mẫu Web trong gói quyền thực thi; Docker vẫn chờ bạn báo. R05 chưa hoàn tất.
