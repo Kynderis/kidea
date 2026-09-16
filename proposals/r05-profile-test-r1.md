@@ -46,7 +46,7 @@ Trong sibling local `/Users/kendrick/Desktop/kidea-workshop-pilot/`: khôi phụ
 | R05-T02-S01 / T03-S01 / T04-S01 / T05-S01 | Soạn từng profile và ví dụ, giữ task riêng; xác định toolchain/cách kiểm/môi trường còn thiếu | DONE [A] từng bản r1, chưa build |
 | R05-T06-S01 | Test specs truy từ R03/R04, gồm C1–C5, tải/lỗi/bảo mật/restore và release cũ–mới/thành công một phần | DONE [A], 20 nhóm nối 137 ca nguồn, runtime NOT_RUN |
 | R05-T07-S01 | Kiểm hồ sơ/link/bảo toàn; báo riêng lỗi cũ, ca chưa chạy; trình chung nội dung và nhu cầu môi trường đã rõ | DONE [A] phạm vi báo cáo: R05 11/11; R03 cũ 8/9 do inventory engineering; không nhận mọi suite xanh |
-| R05-T01-S04; T02–T06-S02 | Human duyệt nội dung đúng bản; gói môi trường/build phải đủ dữ kiện và được duyệt riêng | IN_REVIEW cho R5-1–R5-4; chưa xin cài hoặc cấp quyền build |
+| R05-T01-S04; T02–T06-S02 | Human duyệt nội dung đúng bản; gói môi trường/build phải đủ dữ kiện và được duyệt riêng | DONE [H] nội dung tại a39f79f; gói môi trường/build mới chưa được duyệt |
 | R05-T02–T05-S03 | Build/mẫu đúng–sai trên nền tảng đích trong quyền được cấp; ghi thiếu máy/quyền là blocker của phần tương ứng | BLOCKED_ENV_PENDING, chưa có quyền chạy |
 | R05-T07-S02 | Tích hợp phương pháp đã duyệt, kiểm mang sang môi trường sạch và hồi quy; Human nghiệm thu R05 đúng bằng chứng | TODO, không dùng docs-only thay build |
 
@@ -57,3 +57,5 @@ Một subtask triển khai hiện hành; các ID rút gọn T02–T06 là các s
 Kiểm tập file đúng allowlist; byte cũ chỉ đổi backlink được phép; tất cả link/anchor; rule có nguồn/revision/đúng–sai/cách kiểm; case có assertion và môi trường; tham chiếu một nguồn lệnh/config; thiếu môi trường không PASS; tùy chỉnh không miễn gate; câu chữ không nhận test hồ sơ là runtime. Giữ các ca quyền/epoch/version, transaction/result/audit/outbox, lifecycle và admission từ R04. Cố định input hash, lưu stdout/stderr/kết quả từng lần, không ghi đè lỗi.
 
 Đã thực hiện lượt soạn/kiểm theo approval sau cfffe0c. [Kết quả và snapshot đúng bản](../tests/evidence/r05/profile-r1.md), [phương pháp đề xuất](r05-profile-method-r1.md). Chỉ hồ sơ và kiểm nhẹ; chưa tích hợp skill, tạo app/config, build hoặc cài công cụ. T07-S01 DONE là đã hoàn tất lượt kiểm và báo đúng cả FAIL/NOT_RUN, không là nghiệm thu phase hoặc mọi test đều PASS.
+
+Human đã duyệt nội dung R05 r1 sau a39f79f và giao chuẩn bị [gói môi trường/build](r05-environment-build-r1.md). Sự kiện mới này không đổi kết quả test r1, không cấp quyền E1/E2 hoặc tích hợp skill.

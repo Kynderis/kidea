@@ -1,7 +1,7 @@
-Đã hoàn thành lượt **soạn và kiểm hồ sơ R05** được bạn duyệt:
+Đã ghi nhận duyệt nội dung R05 r1 và chuẩn bị [gói môi trường/build](proposals/r05-environment-build-r1.md). Chưa cài hoặc build.
 
-- Khôi phục đúng 15 file pilot; thêm sáu hồ sơ gồm 40 rule, 20 nhóm kiểm và liên kết đủ 137 ca nguồn. Bảo toàn nội dung cũ.
-- Kiểm R05 **11/11 PASS**. Chạy kèm R03 đạt **19/20 tổng cộng**: một lỗi inventory R03 chưa nhận thư mục engineering mới. Giữ nguyên test và log FAIL.
-- Đã lưu snapshot, bằng chứng và cập nhật roadmap; commit/push lên `master`. Chưa cài công cụ hoặc build ứng dụng.
+Đề nghị bước đầu chỉ cài **Docker Intel4.91.0 + Node24.20/npm11.19 riêng cho project**, kiểm khởi động rồi dừng. Ngân sách đĩa51GiB, tải tối đa1GiB, tối đa90phút; không đổi Node hệ thống, không sudo hoặc nâng macOS. Android/iOS và build ứng dụng chưa nằm trong quyền này.
 
-Đọc [báo cáo và sáu hồ sơ](tests/evidence/r05/profile-r1.md). **Bước tiếp theo là review nội dung mới R5-1–R5-4** trong [đề xuất phương pháp](proposals/r05-profile-method-r1.md), rồi chuẩn bị gói môi trường/build cụ thể. R05 chưa hoàn tất; Apple Silicon vẫn chưa kiểm.
+Bạn cần chốt: **“Duyệt E1; Docker dùng cá nhân”** nếu đúng mục đích của bạn; nếu dùng cho tổ chức thì cho biết để kiểm điều kiện license. Gói đã ghi nguồn tải, checksum, đích cài và điều kiện dừng.
+
+Cần xác nhận riêng vì bạn đã yêu cầu không tự cài công cụ/thay cấu hình; lần duyệt vừa rồi chỉ bao gồm nội dung R05 và chuẩn bị gói. R05 chưa hoàn tất; Apple Silicon vẫn chưa kiểm.

@@ -1,6 +1,6 @@
 # R05 — Phương pháp rule/test, bản r1
 
-Ngày 2026-09-16. **PROPOSED — chờ duyệt nội dung**, quyền soạn/kiểm D1–D6/P1–P4 đã được duyệt sau answer cfffe0c. Không tích hợp skill/runtime trong lượt này. [Gói quyền và đích](r05-profile-test-r1.md), [bản đọc kết quả](../tests/evidence/r05/profile-r1.md).
+Ngày 2026-09-16. **APPROVED — nội dung R5-1–R5-4 tại a39f79f đã được Human duyệt** bằng câu “Duyệt nội dung R05 r1, tiếp tục chuẩn bị gói môi trường/build.” Quyền soạn/kiểm D1–D6/P1–P4 đã được duyệt sau answer cfffe0c. Không tích hợp skill/runtime trong lượt này. [Gói quyền và đích](r05-profile-test-r1.md), [bản đọc kết quả](../tests/evidence/r05/profile-r1.md).
 
 ## Hợp đồng dùng lại cho project
 
@@ -19,11 +19,11 @@ Rule chung quản lý hiệu lực và bằng chứng; bốn profile cụ thể 
 ## Kiểm và gate
 
 - Lượt này: kiểm exact inventory/preservation, link/anchor, đủ trường rule/spec, coverage từ case nguồn và các fixture âm thiếu/thừa/đổi nghĩa/đổi hash/giả PASS. Tự rà nội dung theo nguồn R03/R04; không mở AI độc lập.
-- Nội dung r1 còn IN_REVIEW ở T01-S04/T02–T06-S02. Chưa tạo lệnh/config ứng dụng; các command trong hồ sơ là đề xuất cần hiện thực bằng script project sau quyền build.
+- Nội dung r1 đã APPROVED; T01-S04/T02–T06-S02 DONE đúng phạm vi duyệt nội dung. Chưa tạo lệnh/config ứng dụng; các command trong hồ sơ là đề xuất cần hiện thực bằng script project sau quyền build.
 - Mẫu build đúng–sai trên Ubuntu Docker, web, Android, iOS vẫn thuộc R05-T02–T05-S03. Thiếu công cụ/máy thì BLOCKED_ENV_PENDING, không dời hết sang R09 để khép R05.
 - R09 thực thi hành vi và đo lab theo Q; R08 quản lý thực thi/release; R10 nghiệm thu đúng ma trận. Không lấy kiểm hồ sơ hoặc Mac Intel core PASS thay các gate đó.
 
-## Quyết định nội dung cần review chung
+## Quyết định nội dung đã duyệt
 
 | Mã | Bản cụ thể cần duyệt | Giới hạn |
 |---|---|---|
@@ -33,3 +33,5 @@ Rule chung quản lý hiệu lực và bằng chứng; bốn profile cụ thể 
 | R5-4 | Các tổ hợp phiên bản ứng viên và các khoảng trống môi trường được ghi trong evidence | Không duyệt cài/nâng macOS, toolchain, cloud hoặc chi phí qua việc duyệt nội dung |
 
 Gói môi trường chưa đủ exact artifact/download/cache/quyền/thiết bị để xin phép cài. Bản kết quả nêu dữ kiện đã biết và lựa chọn cần hoàn thiện; không cấp quyền từ một con số dung lượng ước lượng.
+
+[Gói môi trường/build r1](r05-environment-build-r1.md) mới chỉ PROPOSED; duyệt nội dung không cấp quyền cài/build. Approval gắn snapshot r1 tại a39f79f, không sửa lại bằng chứng lịch sử hoặc byte pilot để đổi nhãn cũ.
