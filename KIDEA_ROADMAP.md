@@ -10,6 +10,9 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
+**Điểm tiếp tục mới nhất:** Human hoãn Docker để tự cài khi về máy; không thực thi E1 hoặc đổi cấu hình. [Kiểm Node](tests/evidence/r05/node-check-2026-09-16.json) xác nhận mặc định22.22.2 và bản24.19.0 có sẵn trong runtime Codex. Kidea hiện yêu cầu≥24 trong package/runtime/test; probe CLI trên22 bị từ chối đúng gate, trên24 thành công. Dùng24 có sẵn cho Kidea, chưa cần cài thêm; chưa đổi floor xuống22 hoặc tuyên bố kiểm đủ trên22. Nội dung R05 r1 vẫn APPROVED; build/Docker/iOS và Apple Silicon vẫn chưa kiểm. Các đoạn dưới là lịch sử.
+
+
 **R05 r1 đã APPROVED nội dung R5-1–R5-4 tại a39f79f.** Human duyệt và giao chuẩn bị môi trường/build. T01-S04/T02–T06-S02 DONE đúng phạm vi duyệt nội dung; R05 vẫn IN_PROGRESS. [Gói môi trường/build r1](proposals/r05-environment-build-r1.md) đã soạn: E1 Docker Intel4.91.0 và Node24.20/npm11.19 user-local đang chờ quyền cài/kiểm khởi động; E2 chưa đủ dependency/image/thiết bị để duyệt build. Android/iOS vẫn BLOCKED_ENV_PENDING, chưa nâng OS/cài/build; LP-01 còn Apple Silicon NOT_RUN. Giữ nguyên snapshot và lỗi inventory R03 của lượt r1. Các đoạn dưới là lịch sử.
 
 

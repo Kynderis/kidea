@@ -1,0 +1,49 @@
+[
+  {
+    "command": [
+      "/usr/local/bin/node",
+      "-p",
+      "JSON.stringify({version:process.version,execPath:process.execPath,arch:process.arch})"
+    ],
+    "exit": 0,
+    "stdout": "{\"version\":\"v22.22.2\",\"execPath\":\"/usr/local/Cellar/node@22/22.22.2_1/bin/node\",\"arch\":\"x64\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/usr/local/bin/node",
+      ".agents/skills/kidea/scripts/kidea.mjs",
+      "--help"
+    ],
+    "exit": 2,
+    "stdout": "",
+    "stderr": "{\"code\":\"UNSUPPORTED_RUNTIME\",\"message\":\"Use Node.js 24 or later; a maintained LTS release is recommended.\"}\n"
+  },
+  {
+    "command": [
+      "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "-p",
+      "JSON.stringify({version:process.version,execPath:process.execPath,arch:process.arch})"
+    ],
+    "exit": 0,
+    "stdout": "{\"version\":\"v24.19.0\",\"execPath\":\"/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node\",\"arch\":\"x64\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      ".agents/skills/kidea/scripts/kidea.mjs",
+      "--help"
+    ],
+    "exit": 0,
+    "stdout": "{\"stage\":\"R02-T09 resume candidate\",\"actions\":[\"init\",\"resume\",\"status\",\"approve\",\"change\",\"visualize\"],\"implemented\":[\"status\",\"init\",\"approve\",\"resume\"],\"help\":\"status is read-only; init creates initial records; approve manages scoped reviews; resume reads continuation context or saves a scoped note. Trusted stdin requests supply permission, never project files. No helper executes product commands or replays pending effects. change/visualize remain unavailable.\"}\n",
+    "stderr": ""
+  },
+  {
+    "scope": "Read-only runtime/help probes, no full regression, installation or PATH edits",
+    "initialShellProbeError": "command -v -a is invalid in zsh; corrected with whence -a",
+    "npm": {
+      "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+    }
+  }
+]

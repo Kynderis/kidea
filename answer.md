@@ -1,7 +1,12 @@
-Đã ghi nhận duyệt nội dung R05 r1 và chuẩn bị [gói môi trường/build](proposals/r05-environment-build-r1.md). Chưa cài hoặc build.
+Đã ghi lại: **Docker hoãn, bạn sẽ tự cài khi về máy**. Tôi chưa cài hoặc đổi cấu hình gì.
 
-Đề nghị bước đầu chỉ cài **Docker Intel4.91.0 + Node24.20/npm11.19 riêng cho project**, kiểm khởi động rồi dừng. Ngân sách đĩa51GiB, tải tối đa1GiB, tối đa90phút; không đổi Node hệ thống, không sudo hoặc nâng macOS. Android/iOS và build ứng dụng chưa nằm trong quyền này.
+Máy đang có:
 
-Bạn cần chốt: **“Duyệt E1; Docker dùng cá nhân”** nếu đúng mục đích của bạn; nếu dùng cho tổ chức thì cho biết để kiểm điều kiện license. Gói đã ghi nguồn tải, checksum, đích cài và điều kiện dừng.
+- **Node22.22.2** mặc định tại `/usr/local/bin/node`; npm12.0.2.
+- **Node24.19.0** x64 có sẵn trong runtime Codex, đã dùng cho lượt kiểm lõi Mac trước.
 
-Cần xác nhận riêng vì bạn đã yêu cầu không tự cài công cụ/thay cấu hình; lần duyệt vừa rồi chỉ bao gồm nội dung R05 và chuẩn bị gói. R05 chưa hoàn tất; Apple Silicon vẫn chưa kiểm.
+Về mức “22 trở lên”: **Kidea hiện yêu cầu≥24**, nhất quán trong package.json, runtime.mjs và test. Thử trực tiếp bằng22.22.2 trả `UNSUPPORTED_RUNTIME`; bằng24.19.0 chạy được. Đây là phạm vi hỗ trợ hiện hành, không chứng minh mọi API đều cần24. Muốn hỗ trợ22 cần một thay đổi có kiểm chứng, không chỉ hạ số trong package.
+
+**Hiện không cần cài thêm Node:** tôi dùng24.19 có sẵn để tiếp tục Kidea. Đề xuất Node24.20 trước đó dành cho toolchain Web của pilot, không phải yêu cầu cài lại Node để làm Kidea. Node22.22.2 đáp ứng engine range của các package Web đã lưu metadata, nhưng chưa chứng minh toàn bộ lock/build; cũng không thể nói mọi bản22 đều phù hợp (Vite/plugin yêu cầu nhánh22 từ22.12).
+
+Đã cập nhật roadmap và gói môi trường. Bạn chưa cần xác nhận hoặc thao tác gì thêm lúc này.

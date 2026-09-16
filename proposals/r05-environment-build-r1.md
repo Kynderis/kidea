@@ -2,6 +2,8 @@
 
 Ngày 2026-09-16. **PROPOSED — chưa có quyền cài hoặc build.** Nội dung R5-1–R5-4 tại commit `a39f79f97ad0dc193052c95a5dd7bbef7e89fa64` đã được Human duyệt bằng câu “Duyệt nội dung R05 r1, tiếp tục chuẩn bị gói môi trường/build.” Bản này thực hiện quyền chuẩn bị đó. [Phương pháp đã duyệt](r05-profile-method-r1.md); [metadata chỉ đọc](../tests/evidence/r05/environment-r1/metadata.json).
 
+**Cập nhật sau 88ae03b:** Human đang không ngồi trực tiếp tại máy, sẽ tự cài Docker khi về; E1 hoãn, chưa có quyền cài/chạy Docker. Node mặc định đã có22.22.2, npm12.0.2; Node24.19.0 x64 cũng đã có trong runtime Codex. Dùng bản24 có sẵn qua đường tuyệt đối để tiếp tục Kidea; không cần cài Node24.20 hoặc đổi PATH cho việc này. Node24.20/npm11.19 ở bảng dưới chỉ là ứng viên toolchain sản phẩm Web, chưa là điều kiện để làm Kidea, chưa được duyệt cài. [Kiểm thực Node](../tests/evidence/r05/node-check-2026-09-16.json).
+
 ## Đề nghị thực tế
 
 Giữ Sonoma hiện tại; chuẩn bị Docker và Node riêng cho backend/Web trước. Android và iOS vẫn thuộc R05 nhưng chưa chạy trong gói tối thiểu E1. Không cần cloud để kiểm mẫu nhỏ. E1 là gói **cài công cụ và kiểm khởi động**, có artifact cụ thể; E2 là kế hoạch build với các điều kiện chưa đủ được nêu rõ, chưa xin duyệt trước dependency chưa biết. Việc tách này không đổi điều kiện nghiệm thu R05.
@@ -12,7 +14,7 @@ Giữ Sonoma hiện tại; chuẩn bị Docker và Node riêng cho backend/Web t
 
 Pilot vẫn đúng 21 file snapshot r1. Approval gắn vào SHA trong manifest r1; không sửa chữ PROPOSED trong snapshot hoặc sửa bằng chứng cũ để phản ánh một sự kiện xảy ra sau đó. Sổ trạng thái này và roadmap ghi sự kiện duyệt mới.
 
-## E1 — Có thể duyệt cài công cụ tối thiểu
+## E1 — Đề xuất cũ, hiện hoãn theo Human
 
 | Thành phần | Artifact đã xác minh qua metadata chính thức | Download / đĩa / quyền |
 |---|---|---|
@@ -60,6 +62,6 @@ Kết quả E2 chỉ chứng minh mẫu profile theo đúng ma trận, không ch
 
 ## Xác nhận cần thiết
 
-Đề nghị duyệt **E1: Docker4.91.0 + Node24.20/npm11.19 user-local, giới hạn và kiểm khởi động như trên**, đồng thời xác nhận mục đích dùng Docker để kiểm điều kiện license. Giữ Android/iOS chưa cài; E2 chưa được duyệt thực thi. Không xin duyệt lại nội dung R05 r1.
+Đề nghị trước khi Human hoãn (không còn là yêu cầu xác nhận hiện tại): **E1: Docker4.91.0 + Node24.20/npm11.19 user-local, giới hạn và kiểm khởi động như trên**, đồng thời xác nhận mục đích dùng Docker để kiểm điều kiện license. Giữ Android/iOS chưa cài; E2 chưa được duyệt thực thi. Không xin duyệt lại nội dung R05 r1.
 
 Cần xác nhận vì yêu cầu Human ban đầu cấm tự cài công cụ/thay cấu hình, và approval mới chỉ cho chuẩn bị gói môi trường/build. Không phải một yêu cầu do skill thêm vào.
