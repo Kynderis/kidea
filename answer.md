@@ -1,10 +1,13 @@
-Đã hoàn tất phần backend/Web được duyệt:
+Đã review backend/Web và chuẩn bị [gói Android A1](proposals/r05-native-build-r1.md). Kiểm hồ sơ đạt; chưa tải binary/cài SDK/build native.
 
-- Áp ngoại lệ SQLite đúng phạm vi; clang-tidy PASS.
-- Core 283/283; bốn cấu hình C++ mỗi cấu hình 12/12; sáu lỗi cố tình đưa vào đều bị bắt.
-- HTTPS, browser và kiểm dừng dịch vụ đều PASS. Guard quota đã kiểm thật; container đã dừng.
-- Lưu đầy đủ bằng chứng, lỗi trung gian và điểm tiếp tục tại [báo cáo r5](tests/evidence/r05/backend-execution-r5.md).
+Bạn chỉ cần duyệt một gói:
 
-Tiếp theo: review kết quả backend/Web, rồi chuẩn bị môi trường/mẫu Android và iOS. R05 chưa hoàn tất; Apple Silicon chưa kiểm. Chưa cần cài thêm gì trên Mac trong lượt này.
+- Tải công cụ và kiểm mẫu Android **trong Docker**, giữ nguyên môi trường macOS.
+- Tối đa **4 GiB tải, 15 GiB đĩa thêm**; trần tích lũy **35 GiB**; giữ **2 CPU/4 GiB RAM, 3 giờ**.
+- Sử dụng SDK theo [điều khoản Google](https://developer.android.com/studio/terms). Chưa chạy trên điện thoại hoặc phát hành ứng dụng.
 
-Đã commit/push master; báo cáo và answer.md được lưu trong repo.
+iOS giữ nguyên trạng thái chờ môi trường; chưa nâng macOS/cài Xcode. R05 chưa hoàn tất, Apple Silicon chưa kiểm.
+
+Bạn duyệt gói A1 này nhé?
+
+Cần xác nhận vì quyền backend/Web trước đó chưa bao gồm SDK Android và hạn mức đĩa mới; đây là giới hạn bạn đã yêu cầu từ đầu, không phải yêu cầu từ skill.

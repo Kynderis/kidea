@@ -1,0 +1,14 @@
+# R05 — Review backend/Web và chuẩn bị native r1
+
+2026-09-16, nguồn `7ce22e0f06d6b85fa1f7c703c09a659cddc5d2a0`, master sạch trước lượt. Human “ok làm đi” cho review và chuẩn bị; không suy thành quyền cài SDK. [Gói cần duyệt](../../../proposals/r05-native-build-r1.md).
+
+- **Review kỹ thuật backend/Web PASS đúng phạm vi:** 78 nguồn mẫu khớp manifest r5, 21 hồ sơ pilot nguyên hash, 22 nhóm vector có provenance; kiểm receipt/count/hash của C++/mutation/HTTPS/browser/drain và nguồn Web/Caddy giữ từ r4. [Kết quả máy đọc](native-plan-r1/backend-review.json). Không chạy lại benchmark/AI/workload; không sửa evidence lịch sử hoặc tự nghiệm thu R05.
+- **Android metadata PASS, chưa runtime:** exact Linux JDK17.0.20.1+1, Gradle9.4.1, platform36.1r1/build-tools36.0.0; tổng bốn archive461.139.604byte. POM của các tọa độ trực tiếp đều truy cập được. [Manifest](native-plan-r1/manifest.json), [request receipts](native-plan-r1/requests.json), [request bổ sung](native-plan-r1/additional-requests.json). Chỉ tải metadata, không archive/SDK/Gradle/JDK binary; HEAD Gradle dùng lấy size, không tải zip.
+- **Khoảng cách metadata được ghi rõ:** AGP9.2.1 POM/module yêu cầu KGP2.2.10, profile ghi2.3.10; A1 dự kiến classpath KGP2.3.10 tường minh cùng Compose compiler. Chưa chạy Gradle nên chưa nhận graph/compatibility PASS. SDK XML chỉ cung cấpSHA1; không giả có publisher SHA256.
+- **iOS BLOCKED_ENV_PENDING:** macOS14.7, modelMacBookPro16,1; không Xcode ở Applications. Baseline26.6 cần Tahoe26.2–26.x theo Apple. Chưa chọn máy/destination/installer/signing; không xin cài/nâng trước khi rõ. [Môi trường đọc thực](native-plan-r1/environment.json).
+
+Phương án A1: công cụ trong volume Docker, không Android Studio/SDK/JDK trên host; đề nghị thêm4 GiB tải/15 GiB đĩa, trần E2+A1 tích lũy35 GiB, CPU/RAM giữ2/4,3giờ. Đây là **đề nghị mới chưa được duyệt**, trần E2 cũ không bị thay bởi tài liệu này. Android device/UX/TLS/Keystore và toàn iOS vẫn NOT_RUN; không chứng minh Mac Apple Silicon.
+
+Kiểm chuẩn bị: metadata byte/hash/JSON/XML, checksum JDK hai nguồn chính thức khớp, số gói/tổng size, tọa độ dependency, nguồn pilot/backend nguyên hash và link nội bộ của gói. Không viết test khẳng định Android build PASS khi chưa có toolchain/graph. Không chạy lại core283 vì không đổi runtime/core/test hay dependency của Kidea trong lượt chuẩn bị tài liệu này.
+
+Nguồn chính thức: [AGP compatibility](https://developer.android.com/build/releases/agp-9-2-0-release-notes), [KGP explicit classpath](https://developer.android.com/build/releases/agp-9-0-0-release-notes), [built-in Kotlin](https://developer.android.com/build/migrate-to-built-in-kotlin), [SDK terms](https://developer.android.com/studio/terms), [Xcode requirements](https://developer.apple.com/xcode/system-requirements), [Tahoe compatibility](https://support.apple.com/en-us/122867). Các URL artifact/checksum nằm trong manifest, không chuyển sang latest động.

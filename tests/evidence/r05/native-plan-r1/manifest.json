@@ -1,0 +1,77 @@
+{
+  "at": "2026-09-16T16:09:13.524777+00:00",
+  "status": "PROPOSED_BOUNDED_BOOTSTRAP_AND_CONDITIONAL_BUILD; NOT_INSTALLED_NOT_BUILT",
+  "sourceHead": "7ce22e0f06d6b85fa1f7c703c09a659cddc5d2a0",
+  "imageId": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+  "imageReuse": "existing Ubuntu24.04 Linux/amd64 toolchain, user1000:1000; no pull/new image",
+  "artifacts": [
+    {
+      "name": "Temurin JDK",
+      "version": "17.0.20.1+1",
+      "platform": "linux/x64",
+      "url": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.20.1%2B1/OpenJDK17U-jdk_x64_linux_hotspot_17.0.20.1_1.tar.gz",
+      "bytes": 193252603,
+      "sha256": "3808d1d15e3ec6bd5b84057fb5d84c33d8a1536a258146bcea2e603fc726e08e"
+    },
+    {
+      "name": "Gradle",
+      "version": "9.4.1",
+      "url": "https://services.gradle.org/distributions/gradle-9.4.1-bin.zip",
+      "bytes": 137878901,
+      "sha256": "2ab2958f2a1e51120c326cad6f385153bb11ee93b3c216c5fccebfdfbb7ec6cb"
+    },
+    {
+      "name": "platforms;android-36.1",
+      "revision": "1",
+      "url": "https://dl.google.com/android/repository/platform-36.1_r01.zip",
+      "bytes": 66270841,
+      "publisherChecksum": {
+        "algorithm": "sha1",
+        "value": "f87dc23b7ddba6934908da6cfb58fd5b258077ce"
+      },
+      "sha256": "NOT_PUBLISHED_IN_XML; compute from archive after approved download and retain; not an independent upstream SHA256"
+    },
+    {
+      "name": "build-tools;36.0.0",
+      "revision": "36.0.0",
+      "url": "https://dl.google.com/android/repository/build-tools_r36_linux.zip",
+      "bytes": 63737259,
+      "publisherChecksum": {
+        "algorithm": "sha1",
+        "value": "b0b6376977657e8ad9b969bacf4093601da2c6fb"
+      },
+      "sha256": "NOT_PUBLISHED_IN_XML; compute from archive after approved download and retain; not an independent upstream SHA256"
+    }
+  ],
+  "knownArchiveBytes": 461139604,
+  "directDependencies": {
+    "AGP": "9.2.1",
+    "KGP_explicit": "2.3.10",
+    "composeCompilerPlugin": "2.3.10",
+    "composeBOM": "2026.06.01",
+    "activityCompose": "1.13.0",
+    "lifecycleViewModelCompose": "2.10.0",
+    "coroutinesTest": "1.10.2",
+    "junit": "4.13.2"
+  },
+  "discrepancy": "AGP9.2.1 POM and Gradle module request KGP2.2.10, whereas profile/release-note baseline is2.3.10. Explicit KGP2.3.10 via supported buildscript classpath; verify resolved graph matches before building. Do not apply kotlin-android plugin.",
+  "unresolved": [
+    "full Maven/Gradle graph, artifact verification and advisory/license review",
+    "binary execution/toolchain smoke",
+    "all native builds/tests",
+    "Android device/UX/lifecycle",
+    "iOS compatible host/Xcode/device/signing"
+  ],
+  "proposedLimits": {
+    "downloadAdditionalGiB": 4,
+    "diskAdditionalGiB": 15,
+    "diskCumulativeFromE2GiB": 35,
+    "minFreeGiB": 100,
+    "cpuAggregate": 2,
+    "memoryAggregateGiB": 4,
+    "hours": 3,
+    "jvmHeapGiB": 2,
+    "workers": 2,
+    "hostPorts": []
+  }
+}
