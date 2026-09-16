@@ -61,3 +61,5 @@ Kiểm tập file đúng allowlist; byte cũ chỉ đổi backlink được phé
 Human đã duyệt nội dung R05 r1 sau a39f79f và giao chuẩn bị [gói môi trường/build](r05-environment-build-r1.md). Sự kiện mới này không đổi kết quả test r1, không cấp quyền E1/E2 hoặc tích hợp skill.
 
 R05-T03-S03 hiện IN_PROGRESS: [mẫu Web Mac Intel đã chạy](../tests/evidence/r05/web-execution-r1.md) theo approval sau ced8b31; không suy quyền Web thành cài Docker/SDK hoặc nghiệm thu toàn bốn profile. T02/T04/T05-S03 vẫn chờ môi trường/quyền tương ứng.
+
+Tiếp nối sau5611c77: [Web r2](../tests/evidence/r05/web-execution-r2.md) đã hoàn tất ba phần độc lập Docker do Human giao;32unit/18browser/4serverPASS. T03-S03 vẫn IN_PROGRESS đúng giới hạn, chưa kiểm HTTPS/CSRF/backend.

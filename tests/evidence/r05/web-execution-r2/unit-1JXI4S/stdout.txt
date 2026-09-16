@@ -1,0 +1,40 @@
+✔ cookie override serializes and parses valid session (1.982181ms)
+✔ cookie rejects adversarial name/path/domain (0.6374ms)
+✔ cookie expiration and actor replacement (0.2852ms)
+✔ decoder rejects null (1.553232ms)
+✔ decoder rejects array (0.17446ms)
+✔ decoder rejects bool (0.132053ms)
+✔ decoder rejects number (0.133983ms)
+✔ decoder rejects string (0.161245ms)
+✔ decoder rejects missing (0.125655ms)
+✔ decoder rejects generation (0.18503ms)
+✔ decoder rejects unsafeGeneration (0.149176ms)
+✔ decoder rejects audience (0.156375ms)
+✔ decoder rejects actor (1.190301ms)
+✔ decoder rejects workshop (0.123959ms)
+✔ decoder rejects value (0.246288ms)
+✔ malformed JSON never mutates accepted state (0.432504ms)
+✔ version is canonical unsigned64 decimal, not JS number (0.182511ms)
+✔ additive unknown fields are ignored, never copied to state (0.898118ms)
+✔ late decoded messages from other actor,epoch,generation do not mutate (0.216178ms)
+✔ only matching final reply can show success, rejection stays rejected (0.183581ms)
+✔ malformed,unknown,transport-like or mismatched reply stays UNKNOWN (0.216243ms)
+✔ S01 actor switch rejects old response and clears prior values (1.553236ms)
+✔ S01 same actor logout/login still rejects prior generation (0.185508ms)
+✔ epoch reset rejects high-version old response (0.182809ms)
+✔ S02 large versions retain exact ordering and string (0.264291ms)
+✔ reject invalid/duplicate versions without changing state (0.262629ms)
+✔ S03 workshop versions are independent (0.194843ms)
+✔ S04 audience versions are independent (0.195827ms)
+✔ S05 stale history cannot revive A or remove B (0.210582ms)
+✔ new history replaces the whole group (0.282673ms)
+✔ S07 unknown admin intent reconciles GET without new POST (1.035578ms)
+✔ S09 unmounted callback cannot update state (0.194472ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183.369821

@@ -1,0 +1,65 @@
+✔ cookie override serializes and parses valid session (2.218857ms)
+✔ cookie rejects adversarial name/path/domain (0.61664ms)
+✔ cookie expiration and actor replacement (0.263837ms)
+✔ decoder rejects null (1.571793ms)
+✔ decoder rejects array (0.163931ms)
+✔ decoder rejects bool (0.135093ms)
+✔ decoder rejects number (0.134577ms)
+✔ decoder rejects string (0.170561ms)
+✔ decoder rejects missing (0.124342ms)
+✔ decoder rejects generation (1.194148ms)
+✔ decoder rejects unsafeGeneration (0.162254ms)
+✔ decoder rejects audience (0.151235ms)
+✔ decoder rejects actor (0.21318ms)
+✔ decoder rejects workshop (0.122104ms)
+✔ decoder rejects value (0.217884ms)
+✔ malformed JSON never mutates accepted state (0.395757ms)
+✔ version is canonical unsigned64 decimal, not JS number (0.168676ms)
+✔ additive unknown fields are ignored, never copied to state (0.893837ms)
+✔ late decoded messages from other actor,epoch,generation do not mutate (0.226256ms)
+✔ only matching final reply can show success, rejection stays rejected (0.166289ms)
+✖ malformed,unknown,transport-like or mismatched reply stays UNKNOWN (1.21684ms)
+✔ S01 actor switch rejects old response and clears prior values (1.577956ms)
+✔ S01 same actor logout/login still rejects prior generation (0.197175ms)
+✔ epoch reset rejects high-version old response (0.18211ms)
+✔ S02 large versions retain exact ordering and string (0.266701ms)
+✔ reject invalid/duplicate versions without changing state (0.259131ms)
+✔ S03 workshop versions are independent (0.203277ms)
+✔ S04 audience versions are independent (0.208757ms)
+✔ S05 stale history cannot revive A or remove B (0.210151ms)
+✔ new history replaces the whole group (0.244728ms)
+✔ S07 unknown admin intent reconciles GET without new POST (1.088391ms)
+✔ S09 unmounted callback cannot update state (1.202181ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 31
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183.436549
+
+✖ failing tests:
+
+test at tests/unit/input.test.mjs:12:1
+✖ malformed,unknown,transport-like or mismatched reply stays UNKNOWN (1.21684ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'SUCCESS'
+  - 'UNKNOWN'
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/unit/input.test.mjs:12:312)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'SUCCESS',
+    expected: 'UNKNOWN',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

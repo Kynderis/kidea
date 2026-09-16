@@ -1,0 +1,63 @@
+✔ cookie override serializes and parses valid session (1.910907ms)
+✔ cookie rejects adversarial name/path/domain (0.945265ms)
+✔ cookie expiration and actor replacement (0.297541ms)
+✔ decoder rejects null (1.664477ms)
+✔ decoder rejects array (0.152486ms)
+✔ decoder rejects bool (0.1235ms)
+✔ decoder rejects number (0.12571ms)
+✔ decoder rejects string (0.155419ms)
+✔ decoder rejects missing (0.117972ms)
+✔ decoder rejects generation (1.156381ms)
+✔ decoder rejects unsafeGeneration (0.140757ms)
+✔ decoder rejects audience (0.147217ms)
+✔ decoder rejects actor (0.204941ms)
+✔ decoder rejects workshop (0.118844ms)
+✔ decoder rejects value (0.196867ms)
+✔ malformed JSON never mutates accepted state (0.39325ms)
+✖ version is canonical unsigned64 decimal, not JS number (1.063415ms)
+✔ additive unknown fields are ignored, never copied to state (0.837513ms)
+✔ late decoded messages from other actor,epoch,generation do not mutate (0.220241ms)
+✔ only matching final reply can show success, rejection stays rejected (0.191546ms)
+✔ malformed,unknown,transport-like or mismatched reply stays UNKNOWN (0.250903ms)
+✔ S01 actor switch rejects old response and clears prior values (1.449021ms)
+✔ S01 same actor logout/login still rejects prior generation (0.178164ms)
+✔ epoch reset rejects high-version old response (0.174464ms)
+✔ S02 large versions retain exact ordering and string (0.254831ms)
+✔ reject invalid/duplicate versions without changing state (0.239703ms)
+✔ S03 workshop versions are independent (0.190107ms)
+✔ S04 audience versions are independent (0.185588ms)
+✔ S05 stale history cannot revive A or remove B (0.200444ms)
+✔ new history replaces the whole group (0.227933ms)
+✔ S07 unknown admin intent reconciles GET without new POST (1.0425ms)
+✔ S09 unmounted callback cannot update state (0.217057ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 31
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 178.705743
+
+✖ failing tests:
+
+test at tests/unit/input.test.mjs:7:1
+✖ version is canonical unsigned64 decimal, not JS number (1.063415ms)
+  AssertionError [ERR_ASSERTION]: 18446744073709551616
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/tests/unit/input.test.mjs:7:276)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

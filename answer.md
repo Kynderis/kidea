@@ -1,9 +1,9 @@
-Có. Tôi đề xuất tiếp tục **hoàn thiện kiểm mẫu Web**, dùng Node và Chromium đã có:
+Đã hoàn tất cả **1,2,3** trên mẫu Web, không dùng Docker hoặc cài thêm dependency:
 
-1. **Dữ liệu API và phiên:** JSON sai cấu trúc, version không hợp lệ, đổi actor/epoch, phản hồi lỗi hoặc đến muộn; bảo đảm UI không nhận thành công giả.
-2. **Khả năng sử dụng và HTML:** thao tác bàn phím/focus, màn hình360/1280px, chữ200%, HTML khi tắt JavaScript và noindex cho mẫu lab.
-3. **Giới hạn và dừng server Node:** request quá lớn, header giả, request đang xử lý khi shutdown; kiểm riêng phía Web, chưa thay kiểm Caddy/C++ thật.
+- Dữ liệu/phiên: JSON sai, version vượt64bit, reply khác actor/epoch/intent và dữ liệu phiên hỏng được xử lý đúng.
+- Giao diện/HTML: bàn phím, focus/dialog,360/1280px với chữ200%, HTML không JavaScript và noindex đạt.
+- Node: chặn body vượt128KiB/header giả; shutdown hoàn tất request đang chạy và ngắt request kẹt sau khoảng30giây.
 
-Đây là các phần còn thiếu có thể làm độc lập Docker; không cần cài thêm công cụ hệ thống. Tôi ưu tiên **1 → 2 → 3**, vì trực tiếp bổ sung bằng chứng R05-Web.
+**32/32unit +18/18SSR/browser +4/4serverPASS**; type/lint/build đạt. Hai biến thể cố ý sai đều bị phát hiện. Giữ log lỗi, ảnh và snapshot trong [báo cáo Web r2](tests/evidence/r05/web-execution-r2.md).
 
-Backend C++/Caddy, kiểm tải/restore và các nền tảng khác vẫn giữ điều kiện môi trường riêng. Chưa cần chuyển sang R06 hoặc coi R05 đã hoàn tất.
+Server đã dừng; nguồn lõi và bằng chứng cũ được bảo toàn. HTTPS/CSRF/Caddy/C++ còn chưa kiểm, nên **R05 chưa hoàn tất**. Docker vẫn chờ bạn báo.

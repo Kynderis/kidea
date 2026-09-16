@@ -10,6 +10,9 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
+**Đã hoàn tất ba phần Web không cần Docker được duyệt sau5611c77.** [Web r2](tests/evidence/r05/web-execution-r2.md):32/32unit,18/18SSR/browser,4/4Node server; type/lint/buildPASS;2mutation mới bị bắt. Có kiểm dữ liệu/phiên, keyboard/dialog,360/1280px font200%, HTML no-JS/noindex, body128KiB, header giả và drain30s (đo29,999ms). Cùng dependency/browser có sẵn, không cài mới; server đã dừng. T03-S03 vẫn IN_PROGRESS trước HTTPS/CSRF/Caddy/C++ integration và review đầy đủ; R05 chưa đóng. Docker vẫn chờ Human. Các đoạn dưới là lịch sử.
+
+
 **Đã chạy lát cắt mẫu Web trên Mac Intel theo approval sau ced8b31.** [Kết quả Web](tests/evidence/r05/web-execution-r1.md):14/14unit,11/11SSR/browser,1kiểm SSR process mới; type/lint/buildPASS;8mutation sai đều bị bắt. Cài dependency/browser chỉ trong mẫu sibling, không Docker hoặc công cụ hệ thống; lock/root metadata/hồ sơ pilot/evidence cũ bảo toàn. T03-S03 **IN_PROGRESS** đúng giới hạn mẫu; HTTPS/CSRF/backend và phần còn lại profile chưa chứng minh, R05 chưa nghiệm thu. Docker vẫn chờ Human. Các đoạn dưới là lịch sử.
 
 
