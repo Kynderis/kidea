@@ -1,0 +1,11 @@
+# Approval, scope and resource stop
+
+Human approved the two-position Caddy/CEL source patch with “ok làm đi”, annotating the request after source `308c0e8d5cb4048a9b91bbe4c242cb77845943d1`. Root Git checkout was clean at entry. start.json retains the runner's generic old approval wording; this document records the actual r3 authority. The runner change in initialGitStatus was authored in this turn.
+
+Caddy was patched at exactly the approved two slice types, with a separate regression test for each factory branch. Routine integration fixes remained in the synthetic sample: Caddyfile routing/units/response headers, explicit backend filter registration and temporary upload directory, SSR fixed-target HTTP call preserving the required Host header. No dependency version changed from the resolved r2 lock. No tool, CA, SDK or machine configuration was installed on macOS.
+
+Limits remain 4 GiB download, 16 GiB additional disk since E2 r1, at least 100 GiB free, 2 CPU/4 GiB and 3 hours per run. Builds ran sequentially at 2 CPU/4 GiB. Runtime backend/Web/Caddy were each 0.5 CPU/1 GiB; the test client added 0.5 CPU/1 GiB, total 2 CPU/4 GiB. Only 127.0.0.1:8443 was published; internal Docker network and read-only runtime root filesystems were used. CA private key stayed in the Caddy volume; clients received only its public root certificate in a separate bind mount.
+
+At approximately 15.48 GiB reduction in whole-filesystem free space versus E2 r1, the full TSan build was deliberately stopped using Docker stop with a 5-second grace period. It then exited 137; inspect records OOMKilled false. This is an intentional resource hold, not a TSan result. Last collection observed approximately 15.53 GiB delta and over 363 GiB free. The delta includes unrelated host activity and Docker allocation overhead; it is a conservative budget observation, not exact task attribution. No filesystem/volume/cache prune was used to erase or conceal usage.
+
+The small mutex-protected TSan capability probe compiled and exited 0. It does not substitute for the full preset or race mutant. TSan full preset, release, mutation, browser and remaining matrix work stay pending. No browser pull was resumed in r3. HTTPS services were stopped and port 8443 was confirmed closed. Existing images, named volumes, partial builds and synthetic fixtures were retained for review/resume.

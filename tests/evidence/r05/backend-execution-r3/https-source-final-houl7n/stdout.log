@@ -1,0 +1,34 @@
+trusted TLS and ready backend PASS
+missing CA rejected PASS
+wrong hostname rejected PASS
+reject forged Forwarded PASS
+reject forged X-Forwarded-Host PASS
+reject forged X-Forwarded-Proto PASS
+reject forged X-Forwarded-For PASS
+unauthenticated denied PASS
+expired denied PASS
+actor determined by session PASS
+viewer cannot mutate PASS
+missing origin mutation denied PASS
+null origin mutation denied PASS
+foreign origin mutation denied PASS
+missing token mutation denied PASS
+wrong token mutation denied PASS
+other session token mutation denied PASS
+query token denied PASS
+denials preserve all four tables PASS
+valid write commits all four tables PASS
+session cookie scope PASS
+body 131071 length PASS
+body 131071 chunked PASS
+body 131072 length PASS
+body 131072 chunked PASS
+body 131073 length PASS
+body 131073 chunked PASS
+parallel SSR isolation PASS
+public HTML contains no private sentinel PASS
+socket denies alien origin PASS
+socket denies missing session PASS
+socket denies wrong proof PASS
+socket authorization and revoke before next event PASS
+{"passed":33,"failed":0,"scope":"Node HTTPS subset; no browser or complete matrix claim"}

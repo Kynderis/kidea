@@ -1,0 +1,30 @@
+{
+  "stage": "tsan-capability",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r3-tsanprobe",
+    "--label",
+    "kidea.run=E2-BW-r3",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/cpp/tsan_probe.cpp,dst=/probe.cpp,readonly",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "-c",
+    "g++-13 -std=c++20 -fsanitize=thread -fno-omit-frame-pointer -g -pthread /probe.cpp -o /tmp/tsan-probe && TSAN_OPTIONS=halt_on_error=1 /tmp/tsan-probe"
+  ],
+  "at": "2026-09-16T13:48:54.513Z",
+  "durationMs": 1644,
+  "code": 0,
+  "signal": null,
+  "timedOut": false
+}

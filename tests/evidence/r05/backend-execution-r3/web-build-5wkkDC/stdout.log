@@ -1,0 +1,108 @@
+
+added 187 packages in 7s
+Loading svelte-check in workspace: /work
+Getting Svelte diagnostics...
+
+svelte-check found 0 errors and 0 warnings
+✔ cookie override serializes and parses valid session (2.02536ms)
+✔ cookie rejects adversarial name/path/domain (0.637195ms)
+✔ cookie expiration and actor replacement (0.306477ms)
+✔ decoder rejects null (1.779212ms)
+✔ decoder rejects array (0.233796ms)
+✔ decoder rejects bool (0.20556ms)
+✔ decoder rejects number (0.139113ms)
+✔ decoder rejects string (0.216352ms)
+✔ decoder rejects missing (0.130722ms)
+✔ decoder rejects generation (0.288402ms)
+✔ decoder rejects unsafeGeneration (0.197687ms)
+✔ decoder rejects audience (0.23098ms)
+✔ decoder rejects actor (0.434241ms)
+✔ decoder rejects workshop (0.19771ms)
+✔ decoder rejects value (0.412495ms)
+✔ malformed JSON never mutates accepted state (0.43283ms)
+✔ version is canonical unsigned64 decimal, not JS number (0.223995ms)
+✔ additive unknown fields are ignored, never copied to state (1.07343ms)
+✔ late decoded messages from other actor,epoch,generation do not mutate (0.294772ms)
+✔ only matching final reply can show success, rejection stays rejected (0.210456ms)
+✔ malformed,unknown,transport-like or mismatched reply stays UNKNOWN (0.49848ms)
+✔ S01 actor switch rejects old response and clears prior values (1.66452ms)
+✔ S01 same actor logout/login still rejects prior generation (0.191639ms)
+✔ epoch reset rejects high-version old response (0.19796ms)
+✔ S02 large versions retain exact ordering and string (0.339073ms)
+✔ reject invalid/duplicate versions without changing state (0.382173ms)
+✔ S03 workshop versions are independent (0.21027ms)
+✔ S04 audience versions are independent (0.231551ms)
+✔ S05 stale history cannot revive A or remove B (0.248084ms)
+✔ new history replaces the whole group (0.553023ms)
+✔ S07 unknown admin intent reconciles GET without new POST (1.33364ms)
+✔ S09 unmounted callback cannot update state (0.25143ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 381.07589
+vite v8.2.2 building ssr environment for production...
+transforming...
+✓ 163 modules transformed.
+rendering chunks...
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 166 modules transformed.
+rendering chunks...
+computing gzip size...
+.svelte-kit/output/client/_app/version.json                        0.02 kB │ gzip:  0.04 kB
+.svelte-kit/output/client/.vite/manifest.json                      3.03 kB │ gzip:  0.56 kB
+.svelte-kit/output/client/_app/immutable/assets/2.D69JGYFF.css     0.53 kB │ gzip:  0.32 kB
+.svelte-kit/output/client/_app/immutable/chunks/xihTtKlq.js        0.06 kB │ gzip:  0.08 kB
+.svelte-kit/output/client/_app/immutable/entry/start.CfH3JgK0.js   0.07 kB │ gzip:  0.08 kB
+.svelte-kit/output/client/_app/immutable/nodes/0.DU2p1faU.js       0.17 kB │ gzip:  0.15 kB
+.svelte-kit/output/client/_app/immutable/nodes/1.DvZnBvA6.js       0.57 kB │ gzip:  0.32 kB
+.svelte-kit/output/client/_app/immutable/nodes/4.D2M7grUN.js       0.72 kB │ gzip:  0.46 kB
+.svelte-kit/output/client/_app/immutable/nodes/3.Dq1XZAWa.js       0.98 kB │ gzip:  0.69 kB
+.svelte-kit/output/client/_app/immutable/chunks/Bjy-W4x2.js        1.36 kB │ gzip:  0.65 kB
+.svelte-kit/output/client/_app/immutable/entry/app.BAwuA2Ho.js     4.21 kB │ gzip:  1.90 kB
+.svelte-kit/output/client/_app/immutable/nodes/2.SGg7XeeL.js       6.35 kB │ gzip:  2.77 kB
+.svelte-kit/output/client/_app/immutable/chunks/ETn4jwoC.js       34.48 kB │ gzip: 12.96 kB
+.svelte-kit/output/client/_app/immutable/chunks/Dk2MXhJT.js       43.39 kB │ gzip: 16.63 kB
+
+✓ built in 309ms
+computing gzip size...
+.svelte-kit/output/server/.vite/manifest.json                         5.52 kB │ gzip:  0.81 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.D69JGYFF.css    0.53 kB │ gzip:  0.32 kB
+.svelte-kit/output/server/env.js                                      0.22 kB │ gzip:  0.14 kB
+.svelte-kit/output/server/entries/fallbacks/layout.svelte.js          0.28 kB │ gzip:  0.21 kB
+.svelte-kit/output/server/chunks/env.js                               0.28 kB │ gzip:  0.17 kB
+.svelte-kit/output/server/entries/endpoints/control/_server.ts.js     0.42 kB │ gzip:  0.27 kB
+.svelte-kit/output/server/internal.js                                 0.45 kB │ gzip:  0.20 kB
+.svelte-kit/output/server/entries/endpoints/api/echo/_server.ts.js    0.49 kB │ gzip:  0.35 kB
+.svelte-kit/output/server/entries/endpoints/drain/_server.ts.js       0.58 kB │ gzip:  0.35 kB
+.svelte-kit/output/server/chunks/barriers.js                          0.58 kB │ gzip:  0.33 kB
+.svelte-kit/output/server/chunks/shared-server.js                     0.60 kB │ gzip:  0.26 kB
+.svelte-kit/output/server/entries/endpoints/cookie/_server.ts.js      0.72 kB │ gzip:  0.40 kB
+.svelte-kit/output/server/chunks/internal.js                          0.74 kB │ gzip:  0.34 kB
+.svelte-kit/output/server/entries/pages/secure/_page.svelte.js        0.75 kB │ gzip:  0.43 kB
+.svelte-kit/output/server/entries/hooks.server.js                     0.78 kB │ gzip:  0.44 kB
+.svelte-kit/output/server/entries/pages/secure/_page.server.ts.js     0.82 kB │ gzip:  0.45 kB
+.svelte-kit/output/server/entries/pages/ssr/_page.server.ts.js        0.96 kB │ gzip:  0.51 kB
+.svelte-kit/output/server/entries/pages/ssr/_page.svelte.js           1.01 kB │ gzip:  0.50 kB
+.svelte-kit/output/server/chunks/model.js                             2.28 kB │ gzip:  0.95 kB
+.svelte-kit/output/server/entries/pages/_page.svelte.js               3.14 kB │ gzip:  1.21 kB
+.svelte-kit/output/server/entries/fallbacks/error.svelte.js           4.21 kB │ gzip:  1.67 kB
+.svelte-kit/output/server/chunks/index-server.js                      4.83 kB │ gzip:  1.76 kB
+.svelte-kit/output/server/chunks/exports.js                           9.01 kB │ gzip:  2.96 kB
+.svelte-kit/output/server/chunks/shared.js                           10.57 kB │ gzip:  3.38 kB
+.svelte-kit/output/server/chunks/utils.js                            31.76 kB │ gzip:  9.35 kB
+.svelte-kit/output/server/chunks/internal2.js                        34.91 kB │ gzip:  9.98 kB
+.svelte-kit/output/server/remote-entry.js                            54.49 kB │ gzip: 12.02 kB
+.svelte-kit/output/server/chunks/server.js                          118.81 kB │ gzip: 31.12 kB
+.svelte-kit/output/server/index.js                                  126.09 kB │ gzip: 31.93 kB
+
+✓ built in 3.13s
+
+Run npm run preview to preview your production build locally.
+
+> Using @sveltejs/adapter-node
+  ✔ done

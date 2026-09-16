@@ -5,7 +5,7 @@ import {spawn, spawnSync} from 'node:child_process';
 
 const root=path.resolve(import.meta.dirname,'../..');
 const runId=process.env.KIDEA_E2_RUN || 'backend-execution-r1';
-if(!/^backend-execution-r[12]$/.test(runId))throw Error('Unknown evidence run');
+if(!/^backend-execution-r[123]$/.test(runId))throw Error('Unknown evidence run');
 const evidence=path.join(root,'tests/evidence/r05',runId);
 const sample=path.resolve(root,'../kidea-workshop-pilot/samples/r05/backend-integration-r1');
 const docker='/Applications/Docker.app/Contents/Resources/bin/docker';

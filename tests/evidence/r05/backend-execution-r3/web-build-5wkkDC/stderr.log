@@ -1,0 +1,16 @@
+npm notice
+npm notice New major version of npm available! 11.17.0 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+Generated an empty chunk: "chunks/env.js".
+[33m[PLUGIN_TIMINGS] [0mPlugin hooks ran for 4.7s. The build took 3.1s. Hooks such as `closeBundle` run after the build ends, so hook time can be more than build time.
+The slowest hooks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - vite-plugin-sveltekit-compile writeBundle (86%, 2.7s, 1 call)
+  - vite-plugin-sveltekit-compile closeBundle (53%, 1.7s, 1 call)
+Additional hook time came from the hooks below and from hooks under 1s.
+2 hooks are listed without a time. Their calls overlapped, so the time inside one call includes work from other calls. To find their cost, profile the build with `node --cpu-prof`:
+  - vite-plugin-sveltekit-guard resolveId (645 calls)
+  - vite-plugin-svelte:preprocess transform (8 calls)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+

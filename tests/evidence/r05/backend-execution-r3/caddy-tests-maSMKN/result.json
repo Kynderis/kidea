@@ -1,0 +1,32 @@
+{
+  "stage": "caddy-tests",
+  "executable": "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "args": [
+    "run",
+    "--name",
+    "kidea-r05-e2-r3-tests",
+    "--label",
+    "kidea.run=E2-BW-r3",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "--memory-swap",
+    "4g",
+    "--network",
+    "none",
+    "--mount",
+    "type=volume,src=kidea-r05-e2-r2-go,dst=/work",
+    "--mount",
+    "type=bind,src=/Users/kendrick/Desktop/kidea/tests/evidence/r05/backend-execution-r3,dst=/out",
+    "kidea-r05-e2:toolchain",
+    "sh",
+    "-c",
+    "cd /work/source && export GOTOOLCHAIN=local GOCACHE=/work/cache GOMODCACHE=/work/modcache GOPROXY=off GOMAXPROCS=2 && /work/sdk/go/bin/gofmt -w modules/caddyhttp/kidea_cel_compat_test.go && /work/sdk/go/bin/go test -p 2 -count=1 -json -run \"Test(MatchExpression|KideaCELFactory)\" ./modules/caddyhttp > /out/caddy-tests.jsonl"
+  ],
+  "at": "2026-09-16T13:36:39.294Z",
+  "durationMs": 432,
+  "code": 2,
+  "signal": null,
+  "timedOut": false
+}

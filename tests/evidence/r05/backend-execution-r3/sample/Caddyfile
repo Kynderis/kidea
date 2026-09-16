@@ -1,0 +1,51 @@
+# Review fixture, not deployed. Upstreams are isolated Docker services.
+{
+	admin off
+	auto_https disable_redirects
+	skip_install_trust
+	servers {
+		protocols h1 h2
+		max_header_size 16KiB
+	}
+}
+
+https://localhost:8443 {
+	tls internal
+	route {
+	request_body {
+		max_size 128KiB
+	}
+	header {
+		X-Robots-Tag "noindex, nofollow"
+		Cache-Control "no-store"
+		defer
+	}
+
+	# Reject proxy assertions arriving from the client; create our own below.
+	@forged expression `{http.request.header.Forwarded} != "" || {http.request.header.X-Forwarded-Host} != "" || {http.request.header.X-Forwarded-Proto} != "" || {http.request.header.X-Forwarded-For} != ""`
+	respond @forged "Untrusted proxy headers" 400
+
+	handle /api/* {
+		reverse_proxy backend:8080 {
+			header_up Host localhost:8443
+			header_up -Forwarded
+			header_up -X-Actor
+			header_up -X-Role
+			header_up X-Forwarded-Host localhost:8443
+			header_up X-Forwarded-Proto https
+			header_up X-Forwarded-For {remote_host}
+		}
+	}
+	handle {
+		reverse_proxy web:4173 {
+			header_up Host localhost:8443
+			header_up -Forwarded
+			header_up -X-Actor
+			header_up -X-Role
+			header_up X-Forwarded-Host localhost:8443
+			header_up X-Forwarded-Proto https
+			header_up X-Forwarded-For {remote_host}
+		}
+	}
+}
+}

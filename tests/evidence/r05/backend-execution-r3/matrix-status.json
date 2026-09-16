@@ -1,0 +1,28 @@
+{
+  "status": "INCOMPLETE_NOT_ACCEPTED",
+  "meaning": "Statuses apply to the specified E2 groups, not the count of individual assertions. Passing subsets do not complete a group with outstanding controls.",
+  "groups": {
+    "B01": "PARTIAL: lifetime unit; final server sanitizer and dangling mutant pending",
+    "B02": "PARTIAL: atomicity/crash units and HTTPS four-table write; early ACK mutant pending",
+    "B03": "PARTIAL: writer/queue units; full event-loop and busy scenarios pending",
+    "B04": "PARTIAL: unit injection and bound SQL; complete fault matrix pending",
+    "B05": "PARTIAL: unit grammar/UTF8/JSON/version subset",
+    "B06": "PARTIAL: unit grammar subset; complete vectors/conformance/mutant pending",
+    "B07": "NOT_RUN: active/stuck operation drain matrix",
+    "B08": "PARTIAL: TSan capability PASS; full TSan build interrupted; final ASan/mutants pending",
+    "H01": "PARTIAL: valid/missing CA/wrong host checked; expired leaf pending",
+    "H02": "PARTIAL: HTTPS cookie scope checked; browser JS visibility pending",
+    "H03": "PARTIAL: positive/negative Origin/token and counts checked; mutants pending",
+    "H04": "PARTIAL: session expiry/revocation/role headers checked; browser storage vectors pending",
+    "H05": "PASS: 8 concurrent SSR requests across two actors with isolation and no-store",
+    "H06": "PARTIAL: forged forwarded headers checked and unpublished upstream ports inspected; remaining direct/internal vectors pending",
+    "H07": "FAIL: 16385-byte header accepted; body boundaries pass through edge; independent layer matrix incomplete",
+    "H08": "NOT_RUN: real browser attacker harness",
+    "H09": "PASS: authorized socket, invalid Origin/session/proof rejected, revocation closes before next private event",
+    "H10": "PARTIAL: cookie unit and HTTPS set/read/delete scope; full browser compatibility pending",
+    "H11": "NOT_RUN: active and stuck stack drain tests",
+    "H12": "PARTIAL: public HTML/noindex/no-store and evidence token scan; full browser/log matrix pending",
+    "R01": "PARTIAL: 32 unit/type/lint/build pass; 18 browser and 4 server regressions not run in Docker",
+    "R02": "NOT_RUN: six mutation controls and final full positive matrix"
+  }
+}
