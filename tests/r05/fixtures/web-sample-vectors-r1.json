@@ -1,0 +1,226 @@
+{
+  "kind": "ABSTRACT_TEST_VECTORS_NOT_API_SCHEMA",
+  "revision": "r1",
+  "approvedProfileCommit": "a39f79f97ad0dc193052c95a5dd7bbef7e89fa64",
+  "scope": "Preparation only. Fake transport does not prove backend authority, authentication or transaction behavior.",
+  "cases": [
+    {
+      "id": "WEB-S01",
+      "rule": "WEB-06",
+      "technicalCase": "TC-07",
+      "source": "tests/evidence/r05/profile-r1/pilot/docs/design/architecture.md#updates",
+      "title": "Phản hồi A sau đăng xuất",
+      "initial": {
+        "actor": "U",
+        "epoch": "E1",
+        "generation": 1
+      },
+      "steps": [
+        "Giữ response private cho U ở barrier",
+        "Logout, xóa private state, login V; generation=2",
+        "Thả response U generation=1"
+      ],
+      "expected": [
+        "Không dữ liệu hoặc lịch sử U trong state/DOM của V",
+        "Response cũ không đổi loading/error của phiên V"
+      ],
+      "negativeMutation": "Bỏ guard generation/actor",
+      "target": "unit+browser",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "WEB-S02",
+      "rule": "WEB-06",
+      "technicalCase": "TC-07",
+      "source": "tests/evidence/r05/profile-r1/pilot/docs/design/architecture.md#updates",
+      "title": "Version vượt giới hạn số JS",
+      "initial": {
+        "workshop": "W1",
+        "version": "9007199254740993"
+      },
+      "steps": [
+        "Nhận snapshot version 9007199254740992",
+        "Nhận snapshot version 9007199254740994"
+      ],
+      "expected": [
+        "Snapshot đầu bị bỏ",
+        "Snapshot sau được nhận; version vẫn chuỗi thập phân"
+      ],
+      "negativeMutation": "Ép version sang Number trước so sánh",
+      "target": "unit",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "WEB-S03",
+      "rule": "WEB-06",
+      "technicalCase": "TC-07",
+      "source": "tests/evidence/r05/profile-r1/pilot/docs/design/architecture.md#updates",
+      "title": "Không dùng chung version giữa workshop",
+      "initial": {
+        "versions": {
+          "W1": "100",
+          "W2": "3"
+        }
+      },
+      "steps": [
+        "Nhận W2 version 4 cùng epoch/actor/audience"
+      ],
+      "expected": [
+        "W2 cập nhật lên4",
+        "W1 giữ nguyên100"
+      ],
+      "negativeMutation": "Dùng một latestVersion global",
+      "target": "unit",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "WEB-S04",
+      "rule": "WEB-06",
+      "technicalCase": "TC-07",
+      "source": "tests/evidence/r05/profile-r1/pilot/docs/design/architecture.md#updates",
+      "title": "Tách public và private audience",
+      "initial": {
+        "publicVersion": "100",
+        "privateVersion": "3"
+      },
+      "steps": [
+        "Nhận private snapshot version4 đúng actor/epoch/workshop"
+      ],
+      "expected": [
+        "Private được cập nhật",
+        "Không đẩy dữ liệu private sang public cache"
+      ],
+      "negativeMutation": "So private version với public version",
+      "target": "unit+SSR",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "WEB-S05",
+      "rule": "WEB-06",
+      "technicalCase": "TC-03",
+      "source": "tests/evidence/r05/profile-r1/pilot/docs/design/architecture.md#updates",
+      "title": "Lịch sử cũ không hồi sinh đăng ký",
+      "initial": {
+        "historyVersion": "20",
+        "history": [
+          {
+            "id": "A",
+            "state": "CANCELLED"
+          },
+          {
+            "id": "B",
+            "state": "ACTIVE"
+          }
+        ]
+      },
+      "steps": [
+        "Nhận HTTP snapshot history version19 chỉ có A ACTIVE"
+      ],
+      "expected": [
+        "Giữ nguyên toàn nhóm history version20",
+        "Không hồi sinh A hoặc làm mất B"
+      ],
+      "negativeMutation": "Merge item cũ theo registration ID không kiểm version nhóm",
+      "target": "unit+browser",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "WEB-S06",
+      "rule": "WEB-01",
+      "technicalCase": "TC-09",
+      "source": "tests/evidence/r05/profile-r1/pilot/docs/design/architecture.md#api",
+      "title": "SSR hai actor đồng thời",
+      "initial": {
+        "actors": [
+          "U",
+          "V"
+        ],
+        "privateSentinels": [
+          "PRIVATE_U_ONLY",
+          "PRIVATE_V_ONLY"
+        ]
+      },
+      "steps": [
+        "Chặn request U sau khi đọc private data",
+        "Render request V rồi thả U",
+        "Lặp thứ tự ngược trên process mới"
+      ],
+      "expected": [
+        "HTML U không chứa PRIVATE_V_ONLY; HTML V không chứa PRIVATE_U_ONLY",
+        "Private response có Cache-Control no-store",
+        "Không dữ liệu private trong module singleton dùng chung"
+      ],
+      "negativeMutation": "Store mutable ở module scope",
+      "target": "SSR production",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "WEB-S07",
+      "rule": "WEB-05",
+      "technicalCase": "TC-05",
+      "source": "tests/evidence/r05/profile-r1/pilot/docs/design/architecture.md#admin-intent",
+      "title": "Admin UNKNOWN không tự POST lại",
+      "initial": {
+        "actor": "ADMIN_FAKE",
+        "intent": "X",
+        "transportResult": "UNKNOWN"
+      },
+      "steps": [
+        "POST ý định X; giữ hoặc làm mất response trong fake transport",
+        "Reload hoặc bấm lại nút; ghi mọi request",
+        "Cho GET đối chiếu trả kết quả giả FINAL cho X"
+      ],
+      "expected": [
+        "Chỉ một POST tự động, các lần đối chiếu dùng GET",
+        "Không báo thành công trước khi có kết quả FINAL phù hợp",
+        "Không sinh ý định Y để che UNKNOWN"
+      ],
+      "negativeMutation": "Retry POST tự động khi timeout",
+      "target": "unit+browser",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "WEB-S08",
+      "rule": "WEB-03",
+      "technicalCase": "TC-19",
+      "source": "tests/evidence/r05/profile-r1/pilot/docs/design/architecture.md#api",
+      "title": "Không render HTML đầu vào",
+      "initial": {
+        "title": "<img src=x onerror=alert(1)> & Workshop"
+      },
+      "steps": [
+        "Render title bằng text binding trong SSR rồi hydrate"
+      ],
+      "expected": [
+        "DOM có text đúng literal",
+        "Không phần tử img sinh từ title; không handler thực thi"
+      ],
+      "negativeMutation": "Render title qua raw HTML",
+      "target": "SSR+browser",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "WEB-S09",
+      "rule": "WEB-07",
+      "technicalCase": "TC-20",
+      "source": "tests/evidence/r05/profile-r1/pilot/docs/design/architecture.md#updates",
+      "title": "Callback sau unmount",
+      "initial": {
+        "generation": 7,
+        "mounted": true
+      },
+      "steps": [
+        "Bắt đầu fetch có barrier",
+        "Unmount và abort; tăng generation",
+        "Giả transport không hợp tác abort, vẫn thả callback cũ"
+      ],
+      "expected": [
+        "Không cập nhật state của component đã unmount",
+        "Không tác động component mới"
+      ],
+      "negativeMutation": "Chỉ abort nhưng không guard callback",
+      "target": "unit+browser",
+      "status": "NOT_RUN"
+    }
+  ]
+}

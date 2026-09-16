@@ -10,6 +10,9 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
+**Tiếp tục phần không cần Docker:** Human cho tạm gác Docker và làm phần độc lập. Đã chuẩn bị [mẫu Web r1](proposals/r05-web-samples-r1.md) với chín vector cụ thể (actor/generation/version/SSR/UNKNOWN/render), tất cả runtime NOT_RUN. Không cài dependency/build/server, không đổi profile hoặc nguồn pilot. Web native có thể đi riêng sau gói dependency/quyền thực thi; integration C++/Caddy vẫn chờ Docker. Không cần Human thao tác lúc đang xa máy. Các đoạn dưới là lịch sử.
+
+
 **Điểm tiếp tục mới nhất:** Human hoãn Docker để tự cài khi về máy; không thực thi E1 hoặc đổi cấu hình. [Kiểm Node](tests/evidence/r05/node-check-2026-09-16.json) xác nhận mặc định22.22.2 và bản24.19.0 có sẵn trong runtime Codex. Kidea hiện yêu cầu≥24 trong package/runtime/test; probe CLI trên22 bị từ chối đúng gate, trên24 thành công. Dùng24 có sẵn cho Kidea, chưa cần cài thêm; chưa đổi floor xuống22 hoặc tuyên bố kiểm đủ trên22. Nội dung R05 r1 vẫn APPROVED; build/Docker/iOS và Apple Silicon vẫn chưa kiểm. Các đoạn dưới là lịch sử.
 
 

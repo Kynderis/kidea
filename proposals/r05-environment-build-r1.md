@@ -65,3 +65,7 @@ Kết quả E2 chỉ chứng minh mẫu profile theo đúng ma trận, không ch
 Đề nghị trước khi Human hoãn (không còn là yêu cầu xác nhận hiện tại): **E1: Docker4.91.0 + Node24.20/npm11.19 user-local, giới hạn và kiểm khởi động như trên**, đồng thời xác nhận mục đích dùng Docker để kiểm điều kiện license. Giữ Android/iOS chưa cài; E2 chưa được duyệt thực thi. Không xin duyệt lại nội dung R05 r1.
 
 Cần xác nhận vì yêu cầu Human ban đầu cấm tự cài công cụ/thay cấu hình, và approval mới chỉ cho chuẩn bị gói môi trường/build. Không phải một yêu cầu do skill thêm vào.
+
+## Nhánh tiếp tục không cần Docker
+
+Human cho tiếp tục phần độc lập khi đang xa máy. [Chuẩn bị mẫu Web](r05-web-samples-r1.md) có vector đầu vào/assertion cụ thể, không cài/build trong lượt này. Chuẩn bị E2 Web không phụ thuộc việc hoàn tất E1 Docker; runtime integration backend vẫn chờ Docker.
