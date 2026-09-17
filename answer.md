@@ -1,5 +1,5 @@
-Đã ghi nhận **R07 DONE — đã nghiệm thu**, cập nhật [biên bản](/Users/kendrick/Desktop/kidea/docs/R07_ACCEPTANCE.md), roadmap và bàn giao; commit/push lên `master`.
+Đã chuẩn bị [gói R08 r1](/Users/kendrick/Desktop/kidea/proposals/r08-delivery-r1.md), cập nhật roadmap/bàn giao và commit/push hồ sơ.
 
-Lượt kiểm giao diện trên pilot thật vẫn **NOT_RUN**, bắt buộc hoàn thành tại **R09-T14**.
+Bạn chỉ cần duyệt **D1–D3**: hoàn thiện hướng dẫn kế hoạch–code–release–vận hành, kiểm14tình huống và hồi quy local bằng công cụ có sẵn. Lượt này không cần Docker hoặc cài thêm.
 
-Bước tiếp theo: chuẩn bị gói **R08 — kế hoạch, code, phát hành và vận hành**.
+Phần diễn tập phát hành/phục hồi trên lab thật sẽ có gói R2 riêng với nguồn, lệnh và quyền cụ thể. **Chưa khép R08 trước khi đủ kiểm lab và nghiệm thu.**
