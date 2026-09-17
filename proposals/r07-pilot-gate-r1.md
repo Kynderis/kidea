@@ -1,6 +1,6 @@
 # R07 — chốt giới hạn nghiệm thu và lượt kiểm pilot
 
-Ngày2026-09-17. **IN_REVIEW — đề xuất, chưa áp dụng.** Gói triển khai [R07 r1](r07-offline-view-r1.md) đã duyệt D1–D5; [Chrome-only](../docs/R07_CHROME_SCOPE.md) đã có quyết định riêng.
+Ngày2026-09-17. **APPROVED — đã áp dụng ngày2026-09-17.** Human “duyệt nhé” xác nhận gói tại `94dc339`; [biên bản nghiệm thu R07](../docs/R07_ACCEPTANCE.md) ghi phạm vi và nghĩa vụ R09-T14. Nội dung đề xuất dưới đây giữ để truy quyết định. Gói triển khai [R07 r1](r07-offline-view-r1.md) đã duyệt D1–D5; [Chrome-only](../docs/R07_CHROME_SCOPE.md) đã có quyết định riêng.
 
 ## Căn cứ thực tế
 
@@ -8,7 +8,7 @@ Pilot hiện có 21 tài liệu đã duyệt, nhưng không có `.kidea/INDEX.md
 
 V12/R07-T04 yêu cầu đo S/M và pilot. S/M kiểm được bằng đối chứng có nhãn giả; lượt render/đo trên pilot thật vẫn NOT_RUN. Không thể tạo đầu vào nghiệp vụ hoặc tự ghi task/approval cho pilot để lấp khoảng trống. Gói hiện hành cũng không cấp quyền đó.
 
-## Đề xuất một quyết định
+## Quyết định đã được duyệt
 
 Nghiệm thu R07 r1 trong phạm vi helper, Chrome, ma trận đối chứng và các giới hạn tại [báo cáo](../tests/evidence/r07/implementation-r1.md); chuyển **riêng lượt dựng/đo view trên hồ sơ pilot thật** sang gate tích hợp R09-T14, khi pilot đã có hồ sơ điều phối hợp lệ từ luồng thực hiện được duyệt. Đây là đổi vị trí kiểm, không miễn hoặc đổi NOT_RUN thành PASS.
 
