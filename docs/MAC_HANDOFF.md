@@ -1,5 +1,7 @@
 # Bàn giao Kidea sang phiên Codex trên Mac
 
+**Hiện hành — T02 r4 đã duyệt/chạy,46/46 CTest và backend tidy PASS; tổng lượt FAIL tests tidy:** [Bằng chứng](../tests/evidence/r09/t02-build-r4.md).12warning test đã sửa không đổi oracle/log/flags, [r5](R09_T02_BUILD_R5_REVIEW.md) chờ duyệt; source539e2b3/HEAD4d30799,51source/824vendor kiểm tĩnh qua. Bản sửa chưa compile/runtime; HTTP/sanitizer/release chưa chạy. R09 vẫn mở, chưa nghiệm thu T02/137nghĩa vụ, R10 chưa mở. Các đoạn cũ giữ lịch sử.
+
 **Hiện hành — T02 r3 đã duyệt/chạy,46/46 CTest PASS; tổng lượt FAIL tidy:** [Bằng chứng](../tests/evidence/r09/t02-build-r3.md). Collector/model-store-executor tidy qua; main lỗi copy Response không cần thiết, lượt dừng/thu hồi container. Đã sửa const reference, [r4](R09_T02_BUILD_R4_REVIEW.md) chờ duyệt; source1be7797/HEAD506b426,51source/824vendor kiểm tĩnh qua. Bản sửa chưa compile/runtime; tidy tests/HTTP/sanitizer/release chưa chạy. R09 còn mở, không tự nghiệm thu T02/137nghĩa vụ, R10 chưa mở. Các đoạn cũ bên dưới giữ lịch sử.
 
 **Hiện hành — T02 r2 đã duyệt/chạy,45/46 nhóm dev PASS:** [Bằng chứng](../tests/evidence/r09/t02-build-r2.md), compile qua; JSON comment FAIL nên lượt dừng/thu hồi container, giữ log. Đã sửa và thêm regression, [r3](R09_T02_BUILD_R3_REVIEW.md) chờ duyệt lượt mới. Source4764393/HEADde55437,51source/824vendor kiểm tĩnh qua, bản sửa chưa compile/runtime; tidy/HTTP/sanitizer/release chưa chạy. Không tự ghi137nghĩa vụ PASS hoặc nghiệm thu T02/R09; R10 chưa mở. Các mục r1/r2 trước đây bên dưới giữ lịch sử.

@@ -1,0 +1,105 @@
+diff --git a/backend/tests/tests.cpp b/backend/tests/tests.cpp
+index 432cc39..f40a78a 100644
+--- a/backend/tests/tests.cpp
++++ b/backend/tests/tests.cpp
+@@ -21,7 +21,7 @@ void check(bool value, const std::string &variant) {
+   j["sequence"] = assertions;
+   j["variant"] = variant;
+   j["status"] = value ? "PASS" : "FAIL";
+-  std::cout << workshop::dump(j) << std::endl;
++  std::cout << workshop::dump(j) << '\n' << std::flush;
+   if (!value)
+     throw std::runtime_error(variant);
+   ++assertions;
+@@ -69,7 +69,7 @@ struct Fixture {
+     store = std::make_unique<workshop::Store>(file);
+   }
+   workshop::Response call(const std::string &who, const std::string &route,
+-                          JsonValue j = JsonValue{},
++                          const JsonValue &j = JsonValue{},
+                           const std::string &method = "POST") {
+     const auto beforeActive = active(), beforeEvents = events();
+     auto result = store->handle(method, route, who == "G" ? "" : "FAKE-" + who,
+@@ -101,7 +101,8 @@ struct Fixture {
+     return j;
+   }
+   workshop::Response admin(const std::string &action, const std::string &wid,
+-                           JsonValue value, const std::string &request = "") {
++                           const JsonValue &value,
++                           const std::string &request = "") {
+     auto j = base();
+     j["intentId"] =
+         request.empty() ? "admin-" + std::to_string(++sequence) : request;
+@@ -201,7 +202,7 @@ void permission() {
+         check(result.status == ((who == "A" || who == "M") ? 200
+                                 : who == "G"               ? 401
+                                                            : 404),
+-              "admin-role-" + who + action);
++              std::string("admin-role-").append(who).append(action));
+       }
+   if (selected == "P01" || selected == "P04") {
+     for (const std::string state : {"DRAFT", "OPEN", "PAUSED"})
+@@ -209,7 +210,8 @@ void permission() {
+         Fixture f;
+         auto w = f.create(10, state);
+         auto r = f.call(who, "/workshops/" + w, {}, "GET");
+-        check(r.status == (state == "DRAFT" ? 404 : 200), state + "-" + who);
++        check(r.status == (state == "DRAFT" ? 404 : 200),
++              std::string(state).append("-").append(who));
+         if (state == "DRAFT")
+           check(r.body == f.call(who, "/workshops/missing", {}, "GET").body,
+                 "hidden-equals-missing-" + who);
+@@ -217,7 +219,7 @@ void permission() {
+                   (who == "A"   ? 200
+                    : who == "G" ? 401
+                                 : 404),
+-              "admin-scope-" + state + who);
++              std::string("admin-scope-").append(state).append(who));
+       }
+   } else if (selected == "P02" || selected == "P03") {
+     for (const std::string who : {"G", "U", "V", "A", "M"}) {
+@@ -297,8 +299,9 @@ void permission() {
+                before == target ? "UNCHANGED"
+                : allowed        ? "UPDATED"
+                                 : "STATE_REJECTED",
+-               before + "-" + target);
+-        check(f.events() == n + (allowed ? 1 : 0), "event-" + before + target);
++               std::string(before).append("-").append(target));
++        check(f.events() == n + (allowed ? 1 : 0),
++              std::string("event-").append(before).append(target));
+       }
+   } else if (selected == "P08") {
+     for (const std::string state : {"DRAFT", "OPEN", "PAUSED"}) {
+@@ -695,12 +698,12 @@ void data() {
+         auto v = valid();
+         v[field] = text;
+         f.code(f.admin("CREATE", "", v), "INVALID_FIELDS",
+-               "create-" + field + text);
++               std::string("create-").append(field).append(text));
+         JsonValue patch;
+         patch[field] = text;
+         auto n = f.events();
+         f.code(f.admin("EDIT", w, patch), "INVALID_FIELDS",
+-               "edit-" + field + text);
++               std::string("edit-").append(field).append(text));
+         check(n == f.events(), "no-event-" + text);
+       }
+     for (const std::string text : {"Lớp học thủ công", "C++ & C#", "2 * 3 < 10",
+@@ -750,7 +753,7 @@ void data() {
+         f.code(f.admin("EDIT", w, patch), "UPDATED", state + field);
+         auto n = f.events();
+         f.code(f.admin("EDIT", w, patch), "UNCHANGED",
+-               "repeat-" + state + field);
++               std::string("repeat-").append(state).append(field));
+         check(f.events() == n, "repeat-no-event");
+       }
+   } else if (selected == "D08") {
+@@ -1045,7 +1048,7 @@ int main(int argc, char **argv) {
+     j["caseId"] = selected;
+     j["status"] = "FAIL";
+     j["detail"] = e.what();
+-    std::cout << workshop::dump(j) << std::endl;
++    std::cout << workshop::dump(j) << '\n' << std::flush;
+     return 1;
+   }
+ }

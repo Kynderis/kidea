@@ -1,0 +1,40 @@
+/src/backend/tests/tests.cpp:24:37: error: do not use 'std::endl' with streams; use '\n' instead [performance-avoid-endl,-warnings-as-errors]
+   24 |   std::cout << workshop::dump(j) << std::endl;
+      |                                     ^~~~~~~~~
+      |                                     '\n'
+/src/backend/tests/tests.cpp:72:37: error: the parameter 'j' is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param,-warnings-as-errors]
+   72 |                           JsonValue j = JsonValue{},
+      |                                     ^
+      |                           const    &
+/src/backend/tests/tests.cpp:104:38: error: the parameter 'value' is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param,-warnings-as-errors]
+  104 |                            JsonValue value, const std::string &request = "") {
+      |                                      ^
+      |                            const    &
+/src/backend/tests/tests.cpp:204:35: error: string concatenation results in allocation of unnecessary temporary strings; consider using 'operator+=' or 'string::append()' instead [performance-inefficient-string-concatenation,-warnings-as-errors]
+  204 |               "admin-role-" + who + action);
+      |                                   ^
+/src/backend/tests/tests.cpp:212:71: error: string concatenation results in allocation of unnecessary temporary strings; consider using 'operator+=' or 'string::append()' instead [performance-inefficient-string-concatenation,-warnings-as-errors]
+  212 |         check(r.status == (state == "DRAFT" ? 404 : 200), state + "-" + who);
+      |                                                                       ^
+/src/backend/tests/tests.cpp:220:38: error: string concatenation results in allocation of unnecessary temporary strings; consider using 'operator+=' or 'string::append()' instead [performance-inefficient-string-concatenation,-warnings-as-errors]
+  220 |               "admin-scope-" + state + who);
+      |                                      ^
+/src/backend/tests/tests.cpp:300:29: error: string concatenation results in allocation of unnecessary temporary strings; consider using 'operator+=' or 'string::append()' instead [performance-inefficient-string-concatenation,-warnings-as-errors]
+  300 |                before + "-" + target);
+      |                             ^
+/src/backend/tests/tests.cpp:301:70: error: string concatenation results in allocation of unnecessary temporary strings; consider using 'operator+=' or 'string::append()' instead [performance-inefficient-string-concatenation,-warnings-as-errors]
+  301 |         check(f.events() == n + (allowed ? 1 : 0), "event-" + before + target);
+      |                                                                      ^
+/src/backend/tests/tests.cpp:698:34: error: string concatenation results in allocation of unnecessary temporary strings; consider using 'operator+=' or 'string::append()' instead [performance-inefficient-string-concatenation,-warnings-as-errors]
+  698 |                "create-" + field + text);
+      |                                  ^
+/src/backend/tests/tests.cpp:703:32: error: string concatenation results in allocation of unnecessary temporary strings; consider using 'operator+=' or 'string::append()' instead [performance-inefficient-string-concatenation,-warnings-as-errors]
+  703 |                "edit-" + field + text);
+      |                                ^
+/src/backend/tests/tests.cpp:753:34: error: string concatenation results in allocation of unnecessary temporary strings; consider using 'operator+=' or 'string::append()' instead [performance-inefficient-string-concatenation,-warnings-as-errors]
+  753 |                "repeat-" + state + field);
+      |                                  ^
+/src/backend/tests/tests.cpp:1048:39: error: do not use 'std::endl' with streams; use '\n' instead [performance-avoid-endl,-warnings-as-errors]
+ 1048 |     std::cout << workshop::dump(j) << std::endl;
+      |                                       ^~~~~~~~~
+      |                                       '\n'
