@@ -1,0 +1,74 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human Tôi duyệt approves EX-T02-WAL-01 r1 at 7cdb089: scoped harness authoring/offline checks and continuation only; no new container execution or T02 acceptance."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t02/tsan-exception-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/tsan-policy.mjs",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/tsan-gate.mjs",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/build.sh",
+      "anchor": null
+    },
+    {
+      "path": "tests/t02/tsan/policy.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "843e356c5e95b141e55470a324624464d7297d5ce0ad0b07e6c2fcbfbd7234e5",
+  "expectedGit": {
+    "head": "763ab55cb238ab3ccdab4a984525a883b39b44f7",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "Diagnostic r2 completed with 100 updates/quick_check and two WAL header reports; original six r5 FAIL retained. EX-T02-WAL-01 approved for conditional offline harness. Implemented raw exit/log capture, strict two-pair classifier, 796-observation closure and 18 HTTP assertions, live-control wiring, fail-closed unknown reports. 76 offline tests and 22 static checks passed. Final detector control rejects truncated/missing-access/fatal reports. Source 763ab55cb238ab3ccdab4a984525a883b39b44f7 frozen; manifest 5685e9990b63c69fe943c2351e2badb25f6737a3e944d48f0420ecdda9c211c9 prepared.",
+    "remaining": "Runtime/CMake/C++/TSan controls and full build r6 NOT_RUN; no TSan-clean claim, no T02 or R09 acceptance. R10 not opened. Review new raw reports and exact exception limits after one permitted run.",
+    "nextAction": "Present Kidea docs/R09_T02_BUILD_R6_REVIEW.md and manifest5685e9990b63c69fe943c2351e2badb25f6737a3e944d48f0420ecdda9c211c9 for one bounded build grant. Do not reuse consumed r5/diagnostic manifests; keep all raw failure evidence and product gates.",
+    "sourceRefs": [
+      {
+        "path": "docs/t02/tsan-exception-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/tsan-policy.mjs",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/tsan-gate.mjs",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/build.sh",
+        "anchor": null
+      },
+      {
+        "path": "tests/t02/tsan/policy.json",
+        "anchor": null
+      }
+    ]
+  }
+}

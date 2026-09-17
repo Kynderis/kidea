@@ -1,7 +1,5 @@
-Đã chuẩn bị [phương án xử lý SQLite–TSan](docs/R09_T02_TSAN_GATE_PROPOSAL.md).
+Đã triển khai EX-T02-WAL-01 r1: **76 kiểm offline và 22 kiểm tĩnh PASS**. Giữ log FAIL ban đầu, raw TSan/CTest và assertion gốc; chưa chạy Docker bản mới.
 
-Đề xuất một ngoại lệ hẹp: giữ TSan và mọi log lỗi, nhưng cho phép review riêng **đúng hai cặp truy cập header SQLite đã tái hiện**. Vẫn chạy đủ test; cảnh báo khác, thiếu kết quả hoặc sai dữ liệu đều chặn. Kết quả có ngoại lệ sẽ ghi rõ giới hạn, không gọi TSan sạch và không đổi sáu FAIL cũ thành PASS.
+Đã chuẩn bị [build r6](docs/R09_T02_BUILD_R6_REVIEW.md) trên nguồn cuối: **1 lượt, tối đa 2 giờ, 4 container tuần tự, mỗi container 2 CPU/4 GiB RAM; thêm ≤8 GiB đĩa, không tải/cài thêm**.
 
-Bạn duyệt **EX-T02-WAL-01 r1**, gồm ngoại lệ có điều kiện và quyền triển khai/kiểm bộ phân loại báo cáo nhé? Sau đó tôi sẽ chuẩn bị manifest build trên nguồn hoàn chỉnh. Chưa chạy thêm container hoặc sửa backend.
-
-Cần bạn quyết định vì đây là thay đổi tiêu chí chấp nhận warning, có rủi ro còn lại; quy trình ngoại lệ đã chốt tại docs/engineering/rules.md#exceptions trong pilot yêu cầu duyệt trước khi áp dụng. R09 vẫn chưa hoàn tất.
+Bạn duyệt **build r6** nhé? Quyền vừa duyệt chỉ mở triển khai/kiểm offline; gói chạy nay đã có nguồn và manifest cụ thể. Không cần duyệt lại ngoại lệ TSan. R09 chưa hoàn tất.

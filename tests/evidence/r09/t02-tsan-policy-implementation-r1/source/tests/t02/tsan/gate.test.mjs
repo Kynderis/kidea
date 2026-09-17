@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {judgeCase,checkJUnit,judgeHTTP,judgeControls} from '../../../scripts/t02/tsan-gate.mjs';
+import {policy} from '../../../scripts/t02/tsan-policy.mjs';
+const read=n=>readFileSync(new URL(n,import.meta.url),'utf8');const expected=JSON.parse(read('expected.json')),wal=read('wal.txt'),control=read('control.txt');let count=0;
+function test(name,fn){fn();count++;console.log('PASS '+name);}
+const raw=(stderr='',code=0,stdout='')=>({stderr,code,stdout,signal:null,timedOut:false,error:null});
+const oracle=expected.observations.filter(x=>x.caseId==='C01'),stdout=oracle.map(x=>JSON.stringify(x)).join('\n')+'\n';
+test('known reports plus complete real oracle',()=>assert.equal(judgeCase(raw(wal,66,stdout),oracle,policy).state,'KNOWN_WAL_REPORT_REVIEW_REQUIRED'));
+for(const [name,record]of [['unknown control',raw(control,66,stdout)],['mixed control',raw(wal+control,66,stdout)],['missing output',raw(wal,66,'')],['missing variant',raw(wal,66,oracle.slice(1).map(x=>JSON.stringify(x)).join('\n'))],['exit failure',raw(wal,1,stdout)],['spawn error',{...raw(wal,66,stdout),error:'failed'}],['signal',{...raw(wal,66,stdout),signal:'SIGTERM'}]])test(name,()=>assert.throws(()=>judgeCase(record,oracle,policy)));
+const results=Object.fromEntries(expected.cases.map(id=>[id,{code:id==='C01'?66:0}]));
+const xml='<testsuite tests="46" failures="1" disabled="0" skipped="0">'+expected.cases.map(id=>`<testcase name="${id}" status="${id==='C01'?'fail':'run'}">${id==='C01'?'<failure message="Failed"/>':''}<system-out/></testcase>`).join('')+'</testsuite>';
+test('raw JUnit failure retained',()=>checkJUnit(xml,results,8));
+for(const [name,x,r,c]of [['missing case',xml.replace(/<testcase name="P01".*?<\/testcase>/,''),results,8],['duplicate case',xml.replace('name="P01"','name="P02"'),results,8],['skipped',xml.replace('status="run"','status="notrun"'),results,8],['masked CTest exit',xml,results,0],['raw failure lost',xml.replace('<failure message="Failed"/>',''),results,8],['wrong totals',xml.replace('failures="1"','failures="0"'),results,8],['unknown result',xml,{},8]])test(name,()=>assert.throws(()=>checkJUnit(x,r,c)));
+const init=raw(),server=raw(wal,66),report={entries:expected.http,serverExit:66};
+test('HTTP assertions and server raw66',()=>assert.equal(judgeHTTP(report,server,init,policy).state,'KNOWN_WAL_REPORT_REVIEW_REQUIRED'));
+for(const [name,r,s,i]of [['HTTP missing assertion',{...report,entries:expected.http.slice(1)},server,init],['HTTP functional failure',{...report,entries:[...expected.http,{caseId:'HTTP',variant:'harness',status:'FAIL'}]},server,init],['HTTP wrong exit',{...report,serverExit:0},server,init],['HTTP unknown report',report,raw(control,66),init],['HTTP forced shutdown',report,{...server,timedOut:true},init],['init report',report,server,raw(wal,66)],['init signal',report,server,{...init,signal:'SIGTERM'}]])test(name,()=>assert.throws(()=>judgeHTTP(r,s,i,policy)));
+const positive=raw(control,66,'CONTROL_BODY_COMPLETED value=10000\n'),clean=raw('',0,'DIAGNOSTIC_INVARIANTS_OK count=100 quick_check=ok\n'),parallel=raw(wal,66,clean.stdout);
+test('live controls contract',()=>assert.equal(judgeControls(positive,clean,parallel,policy).state,'CONTROLS_VERIFIED'));
+for(const [name,a,b,c]of [['detector missed',raw('',0,positive.stdout),clean,parallel],['bad control data',positive,{...clean,stdout:'count=99'},parallel],['control error',{...positive,error:'spawn'},clean,parallel],['WAL failed oracle',positive,clean,{...parallel,stdout:''}],['WAL unknown report',positive,clean,{...parallel,stderr:control}],['missing control log',{...positive,stderr:''},clean,parallel]])test(name,()=>assert.throws(()=>judgeControls(a,b,c,policy)));
+test('truncated control despite surviving trailer blocked',()=>assert.throws(()=>judgeControls({...positive,stderr:positive.stderr.slice(100)},clean,parallel,policy)));
+test('control missing access stack blocked',()=>assert.throws(()=>judgeControls({...positive,stderr:positive.stderr.replace('#0 operator()', '#0 unknown')},clean,parallel,policy)));
+test('control fatal mixed into report blocked',()=>assert.throws(()=>judgeControls({...positive,stderr:positive.stderr.replace('SUMMARY:', 'FATAL: broken\nSUMMARY:')},clean,parallel,policy)));
+console.log(JSON.stringify({state:'OFFLINE_GATE_TESTS_PASS' ,count,runtimeContainers:0}));

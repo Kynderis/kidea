@@ -1,5 +1,7 @@
 # R09-T02 — đề xuất xử lý gate SQLite–TSan EX-T02-WAL-01 r1
 
+**APPROVED về ngoại lệ có điều kiện và authoring/kiểm offline:** Human “Tôi duyệt” cho gói tại7cdb089. [Triển khai](../tests/evidence/r09/t02-tsan-policy-implementation-r1.md) hoàn tất offline; [build r6](R09_T02_BUILD_R6_REVIEW.md) chưa chạy, cần quyền thực thi riêng như phạm vi đã trình. Nội dung PROPOSED bên dưới giữ lịch sử, không mở lại quyết định ngoại lệ.
+
 **PROPOSED — chờ quyết định Human; chưa áp dụng, chưa mở build.** Yêu cầu “làm đi” mở chuẩn bị phương án sau diagnostic r2, không tự cấp ngoại lệ. [Bằng chứng r2](../tests/evidence/r09/t02-sqlite-diagnostic-r2.md), [đối chiếu sáu report r5 và hai report r2](../tests/evidence/r09/t02-tsan-policy-r1/review.json). Mục tiêu là tiếp tục kiểm đầy đủ mà vẫn trình bày trung thực giới hạn của TSan với SQLite WAL.
 
 ## Quyết định đề xuất

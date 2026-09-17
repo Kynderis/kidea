@@ -1,0 +1,15 @@
+# EX-T02-WAL-01 r1 — implementation and pending build r6
+
+Human “Tôi duyệt” approved the narrow, conditional exception and offline harness work proposed in Kidea commit 7cdb089. The next container build still requires its own exact manifest approval. No product acceptance or retrospective change to r5 FAIL is implied.
+
+TSan retains full instrumentation and `halt_on_error=0:exitcode=66:report_bugs=1`. The source/image/compiler/package inventory must match tests/t02/tsan/policy.json. Classifier accepts only the two observed 8-byte memcpy write/read pairs in SQLite shared WAL headers; unknown/truncated/mixed reports, incomplete assertions, signals, timeouts and malformed evidence block. A known report is labelled KNOWN_WAL_REPORT_REVIEW_REQUIRED, never CLEAN.
+
+CTest uses a recording launcher only in the thread preset; the child exit is propagated and raw JUnit failures retained. Functional observations must cover the same multiset of 796 case/variant/PASS entries as r5 dev. Three dynamic assertion prefixes append response JSON; only that diagnostic suffix is excluded from label identity, after validating JSON/state. Assertion bodies, final reconciliation and last-seat assertions are unchanged. Both historical dev and ASan observations satisfy this closure; the initial overly literal comparison failed and is retained in Kidea evidence.
+
+HTTP keeps all 18 original checks and saves initializer/server process results. The TSan gate separately checks raw server exit/log and the full assertion closure. Control executable is separate from release backend; intentional race, clean serial WAL and concurrent WAL run in the same TSan container. A mixed known+unknown report must be rejected. Control failures are INCONCLUSIVE/blocking, not application success.
+
+Offline checks: 42 classifier/oracle tests and 34 gate tests; 22 syntax/static/unchanged-source checks. No C++ build, Docker runtime, performance or app acceptance has been performed for this revision. Runtime evidence remains required. Dev/ASan/release retain ordinary failure gates; final runner status is EVIDENCE_READY_WITH_TSAN_LIMITATION_REVIEW_REQUIRED even when all execution stages finish. Human review is still required for PASS_WITH_APPROVED_LIMITATION and T02 acceptance.
+
+Implementation allowlist: harness scripts, tests/t02 control fixtures/tests, CMake test wiring/preset, HTTP process observation only, documentation. Backend src/include/schema/contracts and C++ assertions unchanged. Test fixtures retain copied raw logs; do not normalize their bytes to silence whitespace checks.
+
+Run only the new r6 immutable manifest prepared under Kidea tests/evidence/r09/t02-build-r6/. One proposed run, 4 sequential containers/dev-ASan-TSan-release, max2h total/30min each,2CPU/4GiB/256PID,8GiB new disk/2GiB data,100GiB host reserve,0download/network/hostport. Existing output is retained. Exact source/command/hash are published in Kidea docs/R09_T02_BUILD_R6_REVIEW.md after source freeze. Do not run historical manifests or reuse consumed grants.

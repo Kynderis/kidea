@@ -1,0 +1,11 @@
+{
+  "allFiles": {
+    "exit": 2,
+    "stdout": "tests/evidence/r09/t02-tsan-policy-implementation-r1/source-change.patch:1401: trailing whitespace.\n+ \ntests/evidence/r09/t02-tsan-policy-implementation-r1/source-change.patch:1405: trailing whitespace.\n+ \ntests/evidence/r09/t02-tsan-policy-implementation-r1/source-change.patch:1413: trailing whitespace.\n+ \ntests/evidence/r09/t02-tsan-policy-implementation-r1/source-change.patch:1417: trailing whitespace.\n+ \n"
+  },
+  "authoredFilesExcludingExactPatchArtifact": {
+    "exit": 0,
+    "stdout": ""
+  },
+  "explanation": "Four blank context lines in the byte-preserved git diff artifact contain the required leading context space. Preserve exact patch bytes; authored files pass."
+}
