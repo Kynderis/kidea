@@ -32,7 +32,7 @@ function input(root,request) {
 }
 function identity() {
   const tool=initToolIdentity();tool.version='kidea-schema2-resume-local-r2';
-  for(const name of ['resume.mjs','diagnose-pending.mjs','review-validity.mjs','impact.mjs','maps.mjs','work-transition.mjs'])tool.components.push({name,integrity:byteIntegrity(readFileSync(new URL(name,import.meta.url)))});
+  for(const name of ['resume.mjs','diagnose-pending.mjs','review-validity.mjs','impact.mjs','maps.mjs','work-transition.mjs','work-cycle.mjs','delivery.mjs','recovery.mjs'])tool.components.push({name,integrity:byteIntegrity(readFileSync(new URL(name,import.meta.url)))});
   return tool;
 }
 function inspect(root,request,{beforeRecheck}={}) {
@@ -148,6 +148,15 @@ export function prepareContinuation(root,request) {
   return {prepared,itemId:work.currentItemId};
 }
 export async function resume(root,request) {
+  if(['READ_RECOVERY','RECOVER'].includes(request?.operation)) {
+    const {readRecovery,completeRecovery}=await import('./recovery.mjs');return request.operation==='READ_RECOVERY'?readRecovery(root,request):completeRecovery(root,request);
+  }
+  if(['RECORD_RELEASE','START_OPERATION','OBSERVE_OPERATION'].includes(request?.operation)) {
+    const {recordDelivery}=await import('./delivery.mjs');return recordDelivery(root,request);
+  }
+  if(['REPLAN_WORK','CREATE_ROUND','SWITCH_ROUND','RETURN_ROUND'].includes(request?.operation)) {
+    const {cycleWork}=await import('./work-cycle.mjs');return cycleWork(root,request);
+  }
   if(['DECOMPOSE','SELECT','START','COMPLETE','RESOLVE_BLOCKERS'].includes(request?.operation)) {
     const {transitionWork}=await import('./work-transition.mjs');
     return transitionWork(root,request);

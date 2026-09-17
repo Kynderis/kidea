@@ -121,14 +121,17 @@ export function prepareInternalReviewWrite(args, {reviewPath, relatedPaths=[], d
 }
 
 export function prepareInternalBootstrap(args) {
-  const request=prepareBootstrapRequest(args),line=JSON.stringify(request);
+  const request=prepareBootstrapRequest(args);
+  request.recoveryCheckout=args.authorization.allowReadLocalGit===true&&localEntry(args.root,'.git',true)?readGitContext(args.root):null;
+  const line=JSON.stringify(request);
   const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId:request.operationId});
   preparedPlans.add(prepared);return prepared;
 }
 
 // Work transitions have one target only; existing checkpoint machinery binds
 // all read inputs and retains before/planned bytes. No product/review writes.
-export function prepareInternalWorkTransition(args,{evidence,checkout,inputs,workPath}={}) {
+export function prepareInternalWorkTransition(args,{evidence,checkout,inputs,workPath,mode='WORK'}={}) {
+  if(!['WORK','CYCLE'].includes(mode))fail('WORK_TRANSITION_SCOPE');
   const prefix=`.kidea/checkpoints/operations/${args.operationId}/`;
   if(!Array.isArray(args.targets)||args.targets.length!==1||args.targets[0].path!==workPath||args.targets[0].action!=='UPDATE'||!validPath(workPath)||!workPath.startsWith('.kidea/'))fail('WORK_TRANSITION_SCOPE');
   if(!Array.isArray(evidence)||!evidence.length||!(inputs instanceof Map))fail('WORK_TRANSITION_INPUTS');
@@ -136,10 +139,18 @@ export function prepareInternalWorkTransition(args,{evidence,checkout,inputs,wor
   for(const e of evidence){if(!validPath(e.path)||!e.path.startsWith(prefix)||!/^context-[0-9]+\.bin$/.test(e.path.slice(prefix.length))||seen.has(e.path)||!Buffer.isBuffer(e.bytes))fail('WORK_TRANSITION_EVIDENCE');seen.add(e.path);}
   if(checkout!==null&&args.authorization.allowReadLocalGit!==true)fail('GIT_READ_NOT_AUTHORIZED');
   if(checkout===null?localEntry(args.root,'.git',true)!==null:!same(readGitContext(args.root),checkout))fail('CHECKOUT_CHANGED');
-  return preparePlan(args,null,null,null,null,null,{evidence,checkout,inputs,workPath});
+  return preparePlan(args,null,null,null,null,null,{evidence,checkout,inputs,workPath,mode});
 }
 
-function preparePlan({root,authorization,context,targets,operationId=randomUUID()},cleanup=null,priorGraph=null,review=null,continuation=null,impact=null,workflow=null) {
+export function prepareInternalDeliveryRecord(args,{evidence,checkout,inputs,workPath,indexPath,recordPath}={}) {
+  if(!validPath(recordPath)||recordPath.startsWith('.kidea/')||!recordPath.endsWith('.md')||args.targets.length!==3||args.targets[0].path!==workPath||args.targets[1].path!==indexPath||args.targets[2].path!==recordPath||args.targets.slice(0,2).some(t=>t.action!=='UPDATE'))fail('DELIVERY_SCOPE');
+  const prefix=`.kidea/checkpoints/operations/${args.operationId}/`;
+  if(!(inputs instanceof Map)||!Array.isArray(evidence)||!evidence.length||new Set(evidence.map(e=>e.path)).size!==evidence.length||evidence.some(e=>!e.path.startsWith(prefix)||!/^context-[0-9]+\.bin$/.test(e.path.slice(prefix.length))||!Buffer.isBuffer(e.bytes)))fail('DELIVERY_EVIDENCE');
+  if(checkout===null?localEntry(args.root,'.git',true)!==null:args.authorization.allowReadLocalGit!==true||!same(readGitContext(args.root),checkout))fail('CHECKOUT_CHANGED');
+  return preparePlan(args,null,null,null,null,null,null,{evidence,checkout,inputs,workPath,indexPath,recordPath});
+}
+
+function preparePlan({root,authorization,context,targets,operationId=randomUUID()},cleanup=null,priorGraph=null,review=null,continuation=null,impact=null,workflow=null,delivery=null) {
   assertRuntime();
   root=safeRoot(root);
   if(!authorization||path.resolve(authorization.root)!==root||authorization.metadataRoot!=='.kidea/checkpoints')fail('AUTHORIZATION_REQUIRED');
@@ -155,7 +166,7 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   // Discover interrupted writes before interpreting already-created/partial
   // targets as a fresh request. This still does not authorize recovery/replay.
   const allowGit=authorization.allowReadLocalGit===true;
-  const binding=continuation??impact??workflow;
+  const binding=continuation??impact??workflow??delivery;
   const current=cleanup?cleanupGraph(root,new Map(),cleanup.checkpointPath,allowGit):inspectStatusGraph(root,new Map(),[],{allowGit});checkGraph(current,!!review);
   for(const d of review?.directories??[])if(localEntry(root,d,true))fail('DIRECTORY_ALREADY_EXISTS');
   for(const d of impact?.directories??[])if(localEntry(root,d,true))fail('DIRECTORY_ALREADY_EXISTS');
@@ -188,10 +199,20 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
     if(current.records.get(target.path)?.kind!=='work')fail('CONTINUATION_SCOPE');
   }
   const projected=cleanup?cleanupGraph(root,overlay,cleanup.checkpointPath,allowGit):inspectStatusGraph(root,overlay,[],{allowGit});checkGraph(projected);
+  if(delivery) {
+    const before=structuredClone(current.records.get(delivery.workPath)),after=structuredClone(projected.records.get(delivery.workPath));
+    if(before?.kind!=='work'||after?.kind!=='work'||!same(after.checkpointRef,{path:`.kidea/checkpoints/operations/${operationId}/checkpoint.md`,anchor:null}))fail('DELIVERY_SCOPE');
+    for(const r of [before,after]){delete r.checkpointRef;delete r.nextAction;}
+    if(!same(before,after))fail('DELIVERY_WORK_SCOPE');
+    const oldIndex=current.records.get(delivery.indexPath),newIndex=projected.records.get(delivery.indexPath),expected=structuredClone(oldIndex);
+    if(expected?.kind!=='index')fail('DELIVERY_SCOPE');
+    if(!expected.sources.some(s=>s.role==='operations'&&s.ref.path===delivery.recordPath))expected.sources.push({role:'operations',ref:{path:delivery.recordPath,anchor:null}});
+    if(!same(expected,newIndex)||!['release','operation'].includes(projected.records.get(delivery.recordPath)?.kind))fail('DELIVERY_RECORD_SCOPE');
+  }
   if(workflow) {
     const before=structuredClone(current.records.get(workflow.workPath)),after=structuredClone(projected.records.get(workflow.workPath));
     if(before?.kind!=='work'||after?.kind!=='work'||!same(after.checkpointRef,{path:`.kidea/checkpoints/operations/${operationId}/checkpoint.md`,anchor:null}))fail('WORK_TRANSITION_SCOPE');
-    for(const row of [before,after])for(const key of ['items','currentItemId','blockers','nextAction','checkpointRef'])delete row[key];
+    for(const row of [before,after])for(const key of ['items','currentItemId','blockers','nextAction','checkpointRef',...(workflow.mode==='CYCLE'?['rounds','currentRoundId','returnStack','reviewRefs']:[])])delete row[key];
     if(!same(before,after))fail('WORK_TRANSITION_SCOPE');
   }
   if(impact) {
@@ -261,6 +282,7 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   // a plan after graph validation. Execution rechecks these bytes before writing.
   const request={protocolVersion:2,operationId,root,authorization:structuredClone(authorization),context:structuredClone(context),
     inputs:[...inputs].sort(([a],[b])=>a.localeCompare(b)).map(([p,b])=>({path:p,expectedBase64:b.toString('base64')})),gitInputs:[...gitInputs.values()],targets:planned};
+  request.recoveryCheckout=allowGit&&localEntry(root,'.git',true)?readGitContext(root):null;
   if(cleanup)request.cleanup=structuredClone(cleanup);
   if(review)request.review=structuredClone(review);
   if(binding)request.continuation={checkout:structuredClone(binding.checkout),evidence:binding.evidence.map(e=>({path:e.path,bytesBase64:e.bytes.toString('base64')}))};
@@ -436,6 +458,10 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
       remember(prefix+`planned-${i}.bin`,t.planned);
     }
     remember(prefix+'prepared.md',record(checkpoint));
+    // Recovery can bind the original complete request in a fresh process.
+    // Its digest is already in the exclusive pending marker. Legacy pending
+    // operations without this evidence remain blocked, never reconstructed.
+    remember(prefix+'prepared-request.json',Buffer.from(prepared.line));
     remember(checkpointPath,record(checkpoint));
     await barrier('PREPARED');checkPending();checkInputs();
     for(const d of request.bootstrap?.directories??[])directory(d,true);

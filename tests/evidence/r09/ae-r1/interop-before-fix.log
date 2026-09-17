@@ -1,0 +1,40 @@
+Interop evidence: /Users/kendrick/Desktop/kidea/.test-output/r09/interop-WQPF42
+✖ impact CLOSE in CHANGE keeps the paused MVP blocker without treating it as a current impact blocker (37363.852032ms)
+✖ existing schema2 Git-pinned release and execution-plan evidence can receive a new observation (11959.899209ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 49497.375208
+
+✖ failing tests:
+
+test at tests/r09/interop.test.mjs:13:1
+✖ impact CLOSE in CHANGE keeps the paused MVP blocker without treating it as a current impact blocker (37363.852032ms)
+  Error: IMPACT_NOT_RESOLVED
+      at fail (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/change.mjs:14:39)
+      at prepareChange (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/change.mjs:124:160)
+      at change (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/change.mjs:154:20)
+      at impact (file:///Users/kendrick/Desktop/kidea/tests/r09/interop.test.mjs:20:107)
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/interop.test.mjs:24:93)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'IMPACT_NOT_RESOLVED'
+  }
+
+test at tests/r09/interop.test.mjs:26:1
+✖ existing schema2 Git-pinned release and execution-plan evidence can receive a new observation (11959.899209ms)
+  Error: DELIVERY_PIN_UNAVAILABLE
+      at fail (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/delivery.mjs:10:39)
+      at prepareDelivery (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/delivery.mjs:60:92)
+      at recordDelivery (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/delivery.mjs:88:54)
+      at resume (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:155:66)
+      at async delivery (file:///Users/kendrick/Desktop/kidea/tests/r09/interop.test.mjs:28:433)
+      at async TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/interop.test.mjs:35:581)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'DELIVERY_PIN_UNAVAILABLE'
+  }

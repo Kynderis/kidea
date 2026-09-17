@@ -2,7 +2,7 @@
 
 Ngày 2026-09-17. Nguồn trạng thái: [roadmap](../KIDEA_ROADMAP.md#review-current). Tài liệu này là danh sách quyết định, không thay sổ tiến độ hoặc cấp quyền từ văn bản.
 
-**Cập nhật theo Human:** phần tồn đọng ở đoạn cuối trả lời trước (view pilot kế thừa R07, Windows/Apple Silicon, native) để sau. Chưa chạy các phần đó hoặc ghi PASS; chưa tự bỏ gate view khi khép R09. Các phần còn lại đã có [đề xuất A–E r1](../proposals/r09-next-decisions-r1.md), IN_REVIEW: nghiệm thu D1, ba thao tác runtime hữu hạn, bootstrap pilot local, hai thay đổi nghiệp vụ theo thời điểm và phạm vi release lab/SEO. Chưa mục nào trong A–E được duyệt bởi yêu cầu “nêu đề xuất”.
+**Cập nhật theo Human:** “Tôi duyệt tất cả mục trên nhé” duyệt [A–E tại77f5caf](../proposals/r09-next-decisions-r1.md). A nghiệm thu D1; B mở ba helper hữu hạn; C mở chuẩn bị/Git local/public init; D chốt max2ACTIVE tạiT04 và hủy PAUSED tạiT09; E chốt lab giả/AI DEV/Human chạy script vai PROD và N/A index công khai. Không xin lại các quyết định này. Đầu ra B/C, code/build/deploy và nghiệm thu R09 vẫn có gate riêng. Tồn đọng cũ (view pilot R07, Windows/Apple Silicon, native) để sau, chưa PASS hoặc bỏ gate.
 
 ## Đã duyệt, không hỏi lại
 
@@ -14,10 +14,10 @@ Ngày 2026-09-17. Nguồn trạng thái: [roadmap](../KIDEA_ROADMAP.md#review-cu
 
 | Điểm | Human cần làm gì | AI phải chuẩn bị trước |
 |---|---|---|
-| Khép D1/mở pilot | Review kết quả D1 và duyệt một gói thực thi pilot cụ thể; có thể gộp cùng lượt | Nguồn/test cuối; exact root, danh sách ghi, Git local/remote, init `.kidea`, kế hoạch lát cắt, lệnh/target/quota/cleanup; đối chiếu approval kế thừa |
+| Mở code/build pilot sau C | D1 đã nghiệm thu; chỉ duyệt quyền thực thi mới theo gói cụ thể khi sẵn | Nguồn/test cuối; exact root, danh sách ghi, Git local/remote, init `.kidea`, kế hoạch lát cắt, lệnh/target/quota/cleanup; đối chiếu approval kế thừa |
 | Gate sản phẩm | Duyệt đầu ra mới hoặc phần thực sự thay đổi; không duyệt lại nguyên hồ sơ đã chốt | Gói đúng phiên bản/owner/input/đầu ra; giữ mười bước, gộp quyết định có căn cứ, không lấy D1 làm approval nghiệp vụ |
-| Feature T04/T09 | Chốt phần giới hạn 2 ACTIVE và cho hủy khi PAUSED tại thời điểm thử tương ứng | Impact, điều kiện chấp nhận, test và thay đổi kế hoạch; đây là kịch bản đã chọn để thử, chưa là nghiệp vụ MVP ban đầu |
-| Phát hành lab T08 | Human trực tiếp chạy bộ script vai PROD đã xác minh trên lab; xác nhận N/A index khi gói sẵn | Exact script/artifact/config/revision, dry-run/checks, hướng dẫn ngắn và readback; không xin production thật hoặc secret trong chat |
+| Feature T04/T09 | Ý nghĩa đã duyệt ở D; review đầu ra/impact thực tại thời điểm thử, không hỏi lại rule | Impact, điều kiện chấp nhận, test và thay đổi kế hoạch; đây là kịch bản đã chọn để thử, chưa là nghiệp vụ MVP ban đầu |
+| Phát hành lab T08 | Human trực tiếp chạy bộ script vai PROD đã xác minh trên lab; N/A index đã duyệt ở E, exact release readiness vẫn review khi có nguồn | Exact script/artifact/config/revision, dry-run/checks, hướng dẫn ngắn và readback; không xin production thật hoặc secret trong chat |
 | Thử reject/approval/ngắt phiên | Phản hồi gate và quyết định quyền theo kịch bản hữu hạn khi cần người thật | Kịch bản, tiêu chí, cách giữ bằng chứng; không tự đóng vai Human thật hoặc chạy thêm quota AI lịch sử |
 | Khép R09 | Nghiệm thu kết quả/giới hạn tích hợp cuối | Toàn bộ nghĩa vụ backend/Web, release/restore, lỗi/change/handoff, G2 nguồn cuối và view T14 thật; không lấy test thành phần thay nghiệm thu |
 
@@ -25,7 +25,7 @@ Không yêu cầu Human trả lời bảng này trước khi các gói cụ th�
 
 ## Tồn đọng từ trước
 
-- **Khả năng công khai còn thiếu trước các lát pilot sau:** D1 chỉ thêm phân rã ban đầu và chuyển việc trong round đang có. `change REPLAN` sửa plan impact, không sửa cây việc gốc; chưa có thao tác công khai tạo/chuyển round hoặc ghi release/operation, và pending recovery chưa được triển khai qua public API. Các ca T04/T08/T10/T12/T13 cần rà và lập gói sửa hữu hạn tương ứng trước khi phụ thuộc vào chúng. Căn cứ: dispatcher `kidea.mjs`, hợp đồng `work-transition.md`, `change.md`, `resume.md`, `delivery.md`. Không giải quyết bằng shell viết `.kidea`, không coi sample R08 là năng lực đầu-cuối đã có. Chưa đề nghị Human duyệt triển khai các API này bằng một dòng chung; phải có hợp đồng/phạm vi/test cụ thể theo R09-T14.
+- **Ba helper phục vụ pilot:** B1 sửa kế hoạch/round, B2 release/operation và B3 phục hồi metadata đã được mở bởi A–E và đã kiểm nguồn cuối PASS cả9bộ; [kết quả/giới hạn B/C](R09_AE_REVIEW.md). D1 riêng không có chúng; không dùng shell/internal writer để diễn pilot. Kết quả cần review, không tự suy nghiệm thu từ grant triển khai.
 
 - **R07 → R09-T14:** render/đối chiếu/đo Chrome trên hồ sơ pilot thật vẫn bắt buộc; AI thực hiện khi hồ sơ hợp lệ, không cần duyệt lại nghĩa vụ đã chuyển.
 - **Windows/Apple Silicon:** chưa có hồi quy mới cho các sửa sau bằng chứng Windows cũ; Mac Intel không chứng nhận Silicon. Phải có bằng chứng tương ứng hoặc chốt mức hỗ trợ đã chứng minh tại R10. Chưa cần mua/cấp máy trong D1.

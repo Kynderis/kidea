@@ -28,7 +28,7 @@ export function prepareWorkTransition(root,request) {
   if(request.expectedOwnerId!==work.currentItemId)fail('WORK_OWNER_CHANGED');
   // Impact owns its return stack. Generic transitions cannot skip, clear or
   // finish it; CLOSE must first restore the original continuation point.
-  if(work.returnStack.length||result.context.impact.some(i=>!i.current||i.verdict==='UNKNOWN'||i.recordedStatus!=='DONE'))fail('WORK_IMPACT_ACTIVE');
+  if(work.returnStack.some(r=>!r.reason.startsWith('ROUND_RETURN:')&&!r.reason.startsWith('WORK_RETURN:'))||result.context.impact.some(i=>!i.current||i.verdict==='UNKNOWN'||i.recordedStatus!=='DONE'))fail('WORK_IMPACT_ACTIVE');
   const current=work.items.find(i=>i.id===work.currentItemId);
   if(!current)fail('WORK_OWNER_OUTSIDE_WORK');
   const t=request.transition;
@@ -89,6 +89,7 @@ export function prepareWorkTransition(root,request) {
     if(target.shape==='LEAF'){gates(target);blockers(target);}
     if(isRecordedComplete(target.id,items,approved))fail('WORK_TARGET_ALREADY_COMPLETE');
     next.currentItemId=target.id;
+    if(next.returnStack.at(-1)?.itemId===target.id&&next.returnStack.at(-1)?.reason===`WORK_RETURN:${work.currentRoundId}`)next.returnStack.pop();
   } else {
     noExtras(request.operation==='COMPLETE'?['resultRefs']:[]);
     if(item.shape!=='LEAF')fail('WORK_LEAF_REQUIRED');
@@ -117,7 +118,7 @@ export function prepareWorkTransition(root,request) {
   next.nextAction=t.nextAction;next.checkpointRef=ref(prefix+'checkpoint.md');
   const targets=[{path:workPath,action:'UPDATE',plannedBytes:rewrite(reads.get(workPath),next)}];
   const authorization={root,metadataRoot:'.kidea/checkpoints',targets:targets.map(({path,action})=>({path,action})),allowRestoreUpdate:false,allowRetireOwnPending:true,allowReadLocalGit:grant.allowReadLocalGit,assumptions:grant.assumptions};
-  const prepared=prepareInternalWorkTransition({root,authorization,context:{projectId:graph.status.projectId,ownerId:current.id,tool,permissionRefs:[permission],inputRefs:inputs},targets,operationId},{evidence,checkout,inputs:reads,workPath});
+  const prepared=prepareInternalWorkTransition({root,authorization,context:{projectId:graph.status.projectId,ownerId:current.id,tool,permissionRefs:[permission],inputRefs:inputs},targets,operationId},{evidence,checkout,inputs:reads,workPath,mode:same(next.returnStack,work.returnStack)?'WORK':'CYCLE'});
   return {prepared,itemId:current.id,nextItemId:next.currentItemId};
 }
 

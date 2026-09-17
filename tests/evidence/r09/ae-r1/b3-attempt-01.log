@@ -1,0 +1,56 @@
+Recovery evidence: /Users/kendrick/Desktop/kidea/.test-output/r09/recovery-vQovzN
+✖ before, partial and planned recover in a fresh process; original evidence survives (1275.602828ms)
+✖ source drift, stale/new authority, foreign bytes and unknown pending entries remain blocked (1097.175583ms)
+✖ interruption during recovery retains guard and requires fresh explicit replacement grant (1063.776794ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3690.96314
+
+✖ failing tests:
+
+test at tests/r09/recovery.test.mjs:16:1
+✖ before, partial and planned recover in a fresh process; original evidence survives (1275.602828ms)
+  Error: RESUME_INPUT_INVALID
+      at fail (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:19:56)
+      at input (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:28:77)
+      at prepareContinuation (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:98:8)
+      at pending (file:///Users/kendrick/Desktop/kidea/tests/r09/recovery.test.mjs:13:96)
+      at async TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/recovery.test.mjs:17:93)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'RESUME_INPUT_INVALID',
+    diagnostics: []
+  }
+
+test at tests/r09/recovery.test.mjs:19:1
+✖ source drift, stale/new authority, foreign bytes and unknown pending entries remain blocked (1097.175583ms)
+  Error: RESUME_INPUT_INVALID
+      at fail (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:19:56)
+      at input (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:28:77)
+      at prepareContinuation (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:98:8)
+      at pending (file:///Users/kendrick/Desktop/kidea/tests/r09/recovery.test.mjs:13:96)
+      at async TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/recovery.test.mjs:20:13)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'RESUME_INPUT_INVALID',
+    diagnostics: []
+  }
+
+test at tests/r09/recovery.test.mjs:24:1
+✖ interruption during recovery retains guard and requires fresh explicit replacement grant (1063.776794ms)
+  Error: RESUME_INPUT_INVALID
+      at fail (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:19:56)
+      at input (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:28:77)
+      at prepareContinuation (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:98:8)
+      at pending (file:///Users/kendrick/Desktop/kidea/tests/r09/recovery.test.mjs:13:96)
+      at async TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/recovery.test.mjs:25:13)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'RESUME_INPUT_INVALID',
+    diagnostics: []
+  }

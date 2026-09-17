@@ -1,0 +1,53 @@
+{
+  "projectName": "Workshop pilot Kidea — backend/Web",
+  "humanRequest": "Tôi duyệt tất cả mục trên nhé",
+  "featureSource": {
+    "mode": "EXISTING",
+    "path": "docs/features.md",
+    "anchor": "goal",
+    "confirmed": true
+  },
+  "profiles": [
+    {
+      "path": "docs/engineering/rules.md",
+      "anchor": "contract"
+    },
+    {
+      "path": "docs/engineering/cpp.md",
+      "anchor": "rules"
+    },
+    {
+      "path": "docs/engineering/web.md",
+      "anchor": "rules"
+    },
+    {
+      "path": "docs/engineering/tests.md",
+      "anchor": "protocol"
+    }
+  ],
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "metadataRoot": ".kidea/checkpoints",
+    "targets": [
+      {
+        "path": ".kidea/INDEX.md",
+        "action": "CREATE"
+      },
+      {
+        "path": ".kidea/work.md",
+        "action": "CREATE"
+      }
+    ],
+    "createDirectories": [],
+    "bootstrap": true,
+    "allowRestoreUpdate": false,
+    "allowRetireOwnPending": true,
+    "allowReadLocalGit": true,
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved all A–E in proposals/r09-next-decisions-r1.md at Kidea77f5caf. C authorizes this exact local sibling and existing Feature Map, local Git master without remote/push, CREATE-only public init and retained checkpoint evidence. This does not approve product outputs or authorize workshop code/build/deploy or new AI trials. Historical R03–R05 approvals are inherited as documented, not converted into runtime PASS."
+  }
+}

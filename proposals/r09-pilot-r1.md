@@ -1,6 +1,6 @@
 # R09 r1 — Gói chuẩn bị pilot backend/Web
 
-Ngày 2026-09-17. **D1 APPROVED — triển khai/kiểm PASS_SCOPED, đầu ra S02 IN_REVIEW; chưa mở thực thi pilot.** [Kết quả](../tests/evidence/r09/d1-r1.md). Human: “Duyệt D1. Sau đó xem còn cần tôi confirm gì để hoàn thành R09 hoặc phần nào còn tồn đọng trước đây thì nêu ra nhé”, cho gói tại `cd05598`. [Các quyết định còn lại](../docs/R09_DECISIONS.md); không xin lại D1.
+Ngày 2026-09-17. **D1 và đầu ra S02 đã APPROVED qua mục A của gói A–E tại77f5caf. C mở chuẩn bị/public init pilot local; chưa mở code/build/deploy workshop.** [Kết quả](../tests/evidence/r09/d1-r1.md). Human: “Duyệt D1. Sau đó xem còn cần tôi confirm gì để hoàn thành R09 hoặc phần nào còn tồn đọng trước đây thì nêu ra nhé”, cho gói tại `cd05598`. [Các quyết định còn lại](../docs/R09_DECISIONS.md); không xin lại D1.
 
 Human đã nghiệm thu R08 và yêu cầu “Ok làm đi” đối với bước chuẩn bị R09. Gói này không thay gate sản phẩm, không duyệt trước cả ứng dụng. Nguồn chuẩn: [roadmap R09](../KIDEA_ROADMAP.md#r09), [thiết kế](../KIDEA_DESIGN.md), [R05 đã nghiệm thu](../docs/R05_ACCEPTANCE.md), [R08 đã nghiệm thu](../docs/R08_ACCEPTANCE.md).
 

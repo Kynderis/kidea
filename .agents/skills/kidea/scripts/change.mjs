@@ -118,7 +118,10 @@ export function prepareChange(root,request) {
     // Future, independent STEP blockers must not prevent returning to an
     // unfinished MVP. Preserve them; inspect all impact/return ancestors and
     // dependencies, plus global blockers, before closing this scoped plan.
-    const allItems=state.graphState.status.data.items,related=new Set(),queue=[...plan.items.map(i=>i.id),...next.returnStack.map(r=>r.itemId)];
+    // A paused work/round frame is not the return owner of this impact.
+    // Its blockers remain intact and still block that original work later.
+    const impactReturns=next.returnStack.filter(r=>!r.reason.startsWith('ROUND_RETURN:')&&!r.reason.startsWith('WORK_RETURN:'));
+    const allItems=state.graphState.status.data.items,related=new Set(),queue=[...plan.items.map(i=>i.id),...impactReturns.map(r=>r.itemId)];
     while(queue.length){const id=queue.pop();if(related.has(id))continue;related.add(id);const i=allItems.find(i=>i.id===id);if(i)queue.push(...i.dependencyIds,...(i.parentId?[i.parentId]:[]));}
     const blocking=next.blockers.some(b=>b.itemId===null||related.has(b.itemId));
     if(graph.diagnostics.length||plan.items.some(i=>i.executionStatus!=='DONE')||state.states.some(s=>!s.current||s.assessment?.verdict==='UNKNOWN')||blocking)fail('IMPACT_NOT_RESOLVED');

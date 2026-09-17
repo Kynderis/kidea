@@ -1,0 +1,50 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "statement": "Human approved all A–E in the package at 77f5caf. C authorizes public pilot metadata preparation and continuation only; no workshop code/build/deploy or AI trial. Save this continuation while preserving every item, blocker and status.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/kidea-handoff.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "347eee35173856920342e900c31b7432e8eb205f574cf46fa905bfc5d2fe3876",
+  "expectedGit": {
+    "head": "e5dad70a166cfa635ce4d12bc4ce950c1911e233",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "Đã đọc 21 tài liệu/137 source IDs, đối chiếu provenance R03–R05, sửa đúng 23 Windows links trong 8 tài liệu, thêm handoff/implementation-plan/.gitignore, tạo Git local không remote và public init. Giữ nguyên samples. Approval nghiệp vụ R03–R05 và A–E được kế thừa theo handoff; init không chứng minh ứng dụng đã hoàn tất.",
+    "remaining": "137 source IDs ứng dụng vẫn NOT_RUN; 10 STEP chưa triển khai. B/C cần review đầu ra. Chưa có quyền viết/build/deploy workshop hoặc AI trial; execution manifest T02 còn NOT_READY. R09 chưa hoàn tất, R10 chưa mở; các nghĩa vụ hoãn không phải PASS.",
+    "nextAction": "Đọc docs/kidea-handoff.md và docs/implementation-plan.md, cùng báo cáo B/C tests/evidence/r09/ae-r1.md trong repo Kidea. Review đầu ra B/C rồi chuẩn bị gói T02 cụ thể có source/image/commands/quota và quyền thực thi. Kế thừa approval R03–R05/A–E, không bắt Human duyệt lại nội dung đã chốt; không đánh dấu STEP DONE khi chưa có bằng chứng/gate tương ứng.",
+    "sourceRefs": [
+      {
+        "path": "docs/kidea-handoff.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/implementation-plan.md",
+        "anchor": null
+      }
+    ]
+  }
+}

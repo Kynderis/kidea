@@ -1,6 +1,6 @@
 # R09 — đề xuất các quyết định tiếp theo r1
 
-Ngày 2026-09-17. **IN_REVIEW — chưa được phê duyệt.** Nguồn hiện hành `26dffeb62d2fd31cb3e5c8da6e6eff6a9632c38d`; [kết quả D1](../tests/evidence/r09/d1-r1.md), [gói R09](r09-pilot-r1.md), [roadmap](../KIDEA_ROADMAP.md#r09).
+Ngày 2026-09-17. **APPROVED A–E.** Human: “Tôi duyệt tất cả mục trên nhé”, cho gói tại `77f5caf`. A nghiệm thu D1 tại `26dffeb`; B/C được mở theo đúng giới hạn, D/E áp dụng đúng thời điểm. Không nghiệm thu trước đầu ra B/C hoặc R09. [Kết quả D1](../tests/evidence/r09/d1-r1.md), [gói R09](r09-pilot-r1.md), [roadmap](../KIDEA_ROADMAP.md#r09).
 
 Human yêu cầu: “Phần tồn đọng cũ mà bạn nêu thì để sau, các phần còn lại cần phê duyệt thì nêu đề xuất của bạn ra”. Áp dụng phần tồn đọng được nêu ở đoạn cuối câu trả lời trước: view pilot kế thừa R07, Windows/Apple Silicon và native. Chưa thực hiện chúng trong gói này. Việc hoãn không là PASS hoặc tự chuyển gate bắt buộc sang phase khác; khi khép R09 vẫn phải giải quyết phạm vi gate view còn ghi trong roadmap. Các thiếu hụt thao tác phục vụ R09 được nêu riêng ở phần công việc kỹ thuật vẫn thuộc đề xuất dưới đây.
 
@@ -56,4 +56,4 @@ Impact và bảng thứ tự từ chối/test phải được đồng bộ trư�
 
 Gate đầu ra từng bước, các phản hồi reject/approval thật khi thử, exact release readiness và nghiệm thu R09 cuối vẫn dựa trên kết quả thực. Các gói build/performance/cloud/AI trial mới phải có manifest, quyền và giới hạn trước thực thi; hiện chưa xin một hạn mức tưởng tượng hoặc quyền chạy cả phase trong một lượt. Khi đủ đầu vào, gộp các quyết định còn thiếu vào một lần review.
 
-Có thể trả lời “Duyệt A–E” hoặc sửa từng mục. Đây sẽ là phê duyệt **đúng phạm vi nêu trên**, không nghiệm thu trước R09 hoặc bỏ gate đang hoãn. Hiện tại chưa ghi bất kỳ mục A–E là APPROVED.
+Human đã duyệt A–E đúng phạm vi nêu trên; không xin lại từng mục, không nghiệm thu trước R09 hoặc bỏ gate đang hoãn.

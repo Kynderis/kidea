@@ -1,0 +1,29 @@
+Cycle evidence: /Users/kendrick/Desktop/kidea/.test-output/r09/cycle-FOkt4Z
+✖ reviewed retirement preserves unfinished work, old approval bytes and the continuation (13762.692017ms)
+✔ no silent preserve, missing disposition, forged approval or stale basis (13898.75588ms)
+✔ changed producer requires reassessing no-diff consumer and parent (13612.561252ms)
+✔ new round creation and switch preserve MVP, prohibit implicit round completion (25800.950403ms)
+✔ BUGFIX requires pinned release baseline and exact ten-step dependency chain (13203.386755ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 80510.20801
+
+✖ failing tests:
+
+test at tests/r09/work-cycle.test.mjs:18:1
+✖ reviewed retirement preserves unfinished work, old approval bytes and the continuation (13762.692017ms)
+  Error: CYCLE_CONSUMER_REASSESS_REQUIRED
+      at fail (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/work-cycle.mjs:10:39)
+      at prepareWorkCycle (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/work-cycle.mjs:61:72)
+      at cycleWork (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/work-cycle.mjs:104:49)
+      at resume (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/resume.mjs:152:63)
+      at async TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/work-cycle.test.mjs:19:167)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'CYCLE_CONSUMER_REASSESS_REQUIRED'
+  }

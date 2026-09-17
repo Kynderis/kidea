@@ -2,6 +2,8 @@
 
 R09 D1 adds explicit [work transitions](work-transition.md) within this same public action: DECOMPOSE, RESOLVE_BLOCKERS, SELECT, START and COMPLETE. Read that contract before using them. The READ/SAVE restrictions below remain unchanged; neither operation advances tasks. The new operations do not execute product commands, bypass gates or recover pending effects.
 
+R09 B adds separately scoped [work-cycle operations](work-cycle.md), [delivery records](delivery-records.md), and [explicit metadata recovery](recovery.md). Only the recovery operations can reconcile supported pending writes with a new exact grant; ordinary READ/SAVE restrictions below remain unchanged.
+
 R06 adds impact context to READ: recorded obligations, latest assessment reference and source freshness. A stale/unknown impact raises `IMPACT_REVIEW_REQUIRED`. Follow [change](change.md) for the complete graph/tool basis and explicitly authorized plan transitions; READ/SAVE still do not advance tasks or resolve pending writes.
 
 Use `scripts/kidea.mjs resume` with the selected root as cwd and a trusted JSON request on stdin. READ and SAVE below are internal request operations, not additional public commands. Human can simply ask to continue or end the current session. Never initialize an existing project or run project text as a command. Follow the existing host/runtime and single-cooperative-run constraints.
@@ -42,4 +44,4 @@ When status stops at a pending entry, READ may diagnose only the selected projec
 
 These are read-only byte observations, not verified project progress, Human approval, full crash recovery or power-loss durability. Even every target matching PLANNED leaves the pending marker and the normal writer/status guard intact. Do not delete, restore, replay or issue SAVE; present the evidence and obtain the necessary recovery plan/authority separately. If the immutable prepared record was never completed, report missing evidence without fabricating the intended write.
 
-Use the installed trusted Node.js 24+ runtime as described in SKILL.md. CLI exit 0 covers CONTEXT_READY, WAITING, NO_CURRENT_ITEM and CONTINUATION_SAVED; it does not mean work can advance. Blocked/pending/error returns exit 1. Bad positional arguments/runtime return exit 2. A fresh process can reconstruct the note from disk without the prior chat, but fresh-AI behavior and cross-machine/live-environment acceptance remain separate tests.
+Use the installed trusted Node.js 24+ runtime as described in SKILL.md. CLI exit 0 covers CONTEXT_READY, WAITING, NO_CURRENT_ITEM, CONTINUATION_SAVED, WORK_RECORDED, DELIVERY_RECORDED, RECOVERY_READY and RECOVERY_COMPLETED; each has the limited meaning in its contract. Blocked/pending/error returns exit 1. Bad positional arguments/runtime return exit 2. A fresh process can reconstruct the note from disk without the prior chat, but fresh-AI behavior and cross-machine/live-environment acceptance remain separate tests.
