@@ -1,6 +1,6 @@
 # R08 R2 — đầu vào lab, DRAFT / NOT_EXECUTION_READY
 
-2026-09-17. Chuẩn bị trong D1–D3 r1 đã duyệt, chỉ đọc repo. **Chưa xin quyền chạy gói này:** thiếu script/target/artifact hiện hành và giới hạn đo được. Không có Docker inventory hoặc workload nào được chạy trong r1. Không chuyển gate KA-28 sang R09.
+2026-09-17. **Bản lịch sử đầu vào: đã được tiếp nối bởi [gói execution R2-A](r08-lab-r2-execution-r1.md).** Human “Ok làm đi” sau `34aa641` đã giao inventory chỉ đọc và xây script/manifest; phần dưới giữ trạng thái trước lượt chuẩn bị mới. Chuẩn bị ban đầu trong D1–D3 r1 đã duyệt, chỉ đọc repo. **Chưa xin quyền chạy gói này:** thiếu script/target/artifact hiện hành và giới hạn đo được. Không có Docker inventory hoặc workload nào được chạy trong r1. Không chuyển gate KA-28 sang R09.
 
 ## Nguồn có thật và điều kiện tái sử dụng
 

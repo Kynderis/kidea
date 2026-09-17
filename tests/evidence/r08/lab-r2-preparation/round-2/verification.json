@@ -1,0 +1,158 @@
+{
+  "reason": "Recovery entry now verifies whole package and local non-root output before Docker calls; preserve previous round",
+  "commands": [
+    {
+      "name": "syntax-entry",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2/entry.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.09403568699781317
+    },
+    {
+      "name": "syntax-run",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2/run.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.09412879600131419
+    },
+    {
+      "name": "syntax-web",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2/web.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.09342311500222422
+    },
+    {
+      "name": "syntax-backend",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2/backend.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.13352411800588015
+    },
+    {
+      "name": "syntax-client",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2/client.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.09965288999956101
+    },
+    {
+      "name": "syntax-migration",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2/migration.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.1760805500089191
+    },
+    {
+      "name": "syntax-recover",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2/recover.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.13619599101366475
+    },
+    {
+      "name": "syntax-deploy",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2/deploy.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.0962627910048468
+    },
+    {
+      "name": "syntax-guard",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2/guard.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.09139966500515584
+    },
+    {
+      "name": "syntax-lab-r2.test",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/lab-r2.test.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.09096169000258669
+    },
+    {
+      "name": "unit",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "tests/r08/lab-r2.test.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.2676489949953975
+    },
+    {
+      "name": "missing-approval",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/r08/lab-r2/run.mjs"
+      ],
+      "exitCode": 1,
+      "expectedExit": 1,
+      "seconds": 0.14917979500023648
+    },
+    {
+      "name": "recovery-missing-approval",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/r08/lab-r2/recover.mjs"
+      ],
+      "exitCode": 1,
+      "expectedExit": 1,
+      "seconds": 0.14865166699746624
+    },
+    {
+      "name": "core",
+      "command": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/r02-t07/run-tests.mjs"
+      ],
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 109.80170908498985
+    }
+  ],
+  "pass": true,
+  "sourceUnchanged": true
+}

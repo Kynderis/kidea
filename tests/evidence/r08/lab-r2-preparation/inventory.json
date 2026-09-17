@@ -1,0 +1,89 @@
+{
+  "at": "2026-09-17T06:45:01.893546+00:00",
+  "commands": {
+    "version": {
+      "command": [
+        "docker",
+        "version",
+        "--format",
+        "{{json .}}"
+      ],
+      "code": 0,
+      "stdout": "{\"Client\":{\"Version\":\"29.8.0\",\"ApiVersion\":\"1.56\",\"DefaultAPIVersion\":\"1.56\",\"GitCommit\":\"88096ef\",\"GoVersion\":\"go1.26.8\",\"Os\":\"darwin\",\"Arch\":\"amd64\",\"BuildTime\":\"Thu Sep  3 21:49:43 2026\",\"Context\":\"desktop-linux\"},\"Server\":{\"Platform\":{\"Name\":\"Docker Desktop 4.91.0 (239619)\"},\"Version\":\"29.8.0\",\"ApiVersion\":\"1.56\",\"MinAPIVersion\":\"1.40\",\"Os\":\"linux\",\"Arch\":\"amd64\",\"Components\":[{\"Name\":\"Engine\",\"Version\":\"29.8.0\",\"Details\":{\"ApiVersion\":\"1.56\",\"Arch\":\"amd64\",\"BuildTime\":\"Thu Sep  3 21:51:20 2026\",\"Experimental\":\"false\",\"GitCommit\":\"3ce5872\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.12-linuxkit\",\"MinAPIVersion\":\"1.40\",\"Module\":\"github.com/moby/moby/v2\",\"ModuleVersion\":\"v2.0.0+unknown\",\"Os\":\"linux\"}},{\"Name\":\"containerd\",\"Version\":\"v2.3.4\",\"Details\":{\"GitCommit\":\"db8809540e1a7a9da5d518876894933ff55692ab\"}},{\"Name\":\"runc\",\"Version\":\"1.4.3\",\"Details\":{\"GitCommit\":\"v1.4.3-0-gbb14dabe\"}},{\"Name\":\"docker-init\",\"Version\":\"0.19.0\",\"Details\":{\"GitCommit\":\"de40ad0\"}}],\"GitCommit\":\"3ce5872\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.12-linuxkit\",\"BuildTime\":\"2026-09-03T21:51:20.000000000+00:00\"}}\n",
+      "stderr": ""
+    },
+    "images": {
+      "command": [
+        "docker",
+        "image",
+        "ls",
+        "--digests",
+        "--no-trunc",
+        "--format",
+        "{{json .}}"
+      ],
+      "code": 0,
+      "stdout": "{\"Containers\":\"102\",\"CreatedAt\":\"2026-09-16 19:53:33 +0700 +07\",\"CreatedSince\":\"18 hours ago\",\"Digest\":\"sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92\",\"ID\":\"sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92\",\"Repository\":\"kidea-r05-e2\",\"SharedSize\":\"N/A\",\"Size\":\"1.78GB\",\"Tag\":\"toolchain\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"3\",\"CreatedAt\":\"2026-09-11 18:44:06 +0700 +07\",\"CreatedSince\":\"5 days ago\",\"Digest\":\"sha256:496754492fb28b4d3049432f2ca787449331e23fb14f0dd3fffea86bf5a93eb4\",\"ID\":\"sha256:496754492fb28b4d3049432f2ca787449331e23fb14f0dd3fffea86bf5a93eb4\",\"Repository\":\"ubuntu\",\"SharedSize\":\"N/A\",\"Size\":\"117MB\",\"Tag\":\"\\u003cnone\\u003e\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"3\",\"CreatedAt\":\"2026-09-05 06:42:21 +0700 +07\",\"CreatedSince\":\"12 days ago\",\"Digest\":\"sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7\",\"ID\":\"sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7\",\"Repository\":\"mcr.microsoft.com/playwright\",\"SharedSize\":\"N/A\",\"Size\":\"3.55GB\",\"Tag\":\"\\u003cnone\\u003e\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-08-04 20:49:32 +0700 +07\",\"CreatedSince\":\"6 weeks ago\",\"Digest\":\"sha256:040d34121c27906c4ff9ac152a30d52bf2c5d328d3bb748916bb3d2743c02528\",\"ID\":\"sha256:040d34121c27906c4ff9ac152a30d52bf2c5d328d3bb748916bb3d2743c02528\",\"Repository\":\"moby/buildkit\",\"SharedSize\":\"N/A\",\"Size\":\"353MB\",\"Tag\":\"\\u003cnone\\u003e\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"0\",\"CreatedAt\":\"2026-06-23 03:09:05 +0700 +07\",\"CreatedSince\":\"2 months ago\",\"Digest\":\"sha256:98eb57d882ccd5213d1688764db10c1ca2c58a1ca3a6717a3411ad798f7a423a\",\"ID\":\"sha256:98eb57d882ccd5213d1688764db10c1ca2c58a1ca3a6717a3411ad798f7a423a\",\"Repository\":\"caddy\",\"SharedSize\":\"N/A\",\"Size\":\"88.3MB\",\"Tag\":\"\\u003cnone\\u003e\",\"UniqueSize\":\"N/A\"}\n",
+      "stderr": ""
+    },
+    "running": {
+      "command": [
+        "docker",
+        "ps",
+        "--format",
+        "{{.ID}} {{.Names}} {{.Status}}"
+      ],
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "volumes": {
+      "command": [
+        "docker",
+        "volume",
+        "ls",
+        "--format",
+        "{{.Name}}"
+      ],
+      "code": 0,
+      "stdout": "buildx_buildkit_kidea-r05-e2-r10_state\nkidea-r05-a1-work\nkidea-r05-e2-r1-build\nkidea-r05-e2-r2-go\nkidea-r05-e2-r3-ca\nkidea-r05-e2-r3-db\nkidea-r05-e2-r3-web\nkidea-r05-e2-r4-mutants\n",
+      "stderr": ""
+    },
+    "disk": {
+      "command": [
+        "docker",
+        "system",
+        "df",
+        "--format",
+        "{{json .}}"
+      ],
+      "code": 0,
+      "stdout": "{\"Active\":\"4\",\"Reclaimable\":\"75.43MB (1%)\",\"Size\":\"5.758GB\",\"TotalCount\":\"5\",\"Type\":\"Images\"}\n{\"Active\":\"0\",\"Reclaimable\":\"1.553GB (100%)\",\"Size\":\"1.553GB\",\"TotalCount\":\"109\",\"Type\":\"Containers\"}\n{\"Active\":\"8\",\"Reclaimable\":\"0B (0%)\",\"Size\":\"10.2GB\",\"TotalCount\":\"8\",\"Type\":\"Local Volumes\"}\n{\"Active\":\"0\",\"Reclaimable\":\"0B\",\"Size\":\"0B\",\"TotalCount\":\"0\",\"Type\":\"Build Cache\"}\n",
+      "stderr": ""
+    },
+    "limits": {
+      "command": [
+        "docker",
+        "info",
+        "--format",
+        "{\"cpus\":{{.NCPU}},\"memory\":{{.MemTotal}},\"os\":{{json .OSType}},\"arch\":{{json .Architecture}}}"
+      ],
+      "code": 0,
+      "stdout": "{\"cpus\":12,\"memory\":8321871872,\"os\":\"linux\",\"arch\":\"x86_64\"}\n",
+      "stderr": ""
+    },
+    "image": {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+        "--format",
+        "{\"id\":{{json .Id}},\"size\":{{.Size}},\"os\":{{json .Os}},\"arch\":{{json .Architecture}},\"user\":{{json .Config.User}}}"
+      ],
+      "code": 0,
+      "stdout": "{\"id\":\"sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92\",\"size\":1784463073,\"os\":\"linux\",\"arch\":\"amd64\",\"user\":\"1000:1000\"}\n",
+      "stderr": ""
+    }
+  }
+}

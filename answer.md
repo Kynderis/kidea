@@ -1,9 +1,5 @@
-Đã hoàn thành phần R08 r1 được duyệt:
+Đã chuẩn bị xong gói lab R2-A: kiểm Docker chỉ đọc, viết script và cố định manifest. Kiểm local8/8 và core283/283PASS; chưa chạy container/service lab, pilot và bằng chứng cũ giữ nguyên.
 
-- Tích hợp hướng dẫn kế hoạch → code → phát hành/vận hành; review đủ14tình huống.
-- Core283/283PASS trên Mac Intel, không đổi runtime hoặc dữ liệu pilot. Giữ log lỗi validator thiếu PyYAML; kiểm YAML thay thế đạt.
-- Đã chuẩn bị đầu vào lab R2; chưa chạy Docker/deploy.
+Bạn duyệt một lượt chạy lab này nhé: tối đa15phút,1CPU/512MiB,không tải/cài thêm,không mở cổng ra Mac; chỉ dữ liệu giả riêng, có tạo lỗi và kiểm phục hồi. Gói không chạy PROD thật hoặc sửa ứng dụng pilot.
 
-R08 chưa hoàn tất: còn bộ script/manifest lab, diễn tập lỗi–đọc lại–phục hồi thật và nghiệm thu. Bước tiếp cần duyệt lát cắt chuẩn bị R2 gồm kiểm Docker chỉ đọc và xây bộ script lab; gói chạy cụ thể sẽ trình sau, chưa mở workload.
-
-Chi tiết: [báo cáo r1](tests/evidence/r08/implementation-r1.md), [R2 draft](proposals/r08-lab-r2-draft.md).
+Cần duyệt lần này vì lượt vừa giao chỉ chuẩn bị; [gói execution](proposals/r08-lab-r2-execution-r1.md) nay đã cố định nguồn/lệnh/tài nguyên để review. R08 chưa hoàn tất; [báo cáo chuẩn bị](tests/evidence/r08/lab-r2-preparation.md).
