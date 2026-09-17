@@ -1,8 +1,7 @@
-Đã chỉnh ma trận R05: Android Emulator/iOS Simulator được dùng để kiểm mẫu Kidea; điện thoại thật không còn chặn các ca mô phỏng được. Giữ8nhóm oracle riêng từng nền tảng, mẫu sai phải bị bắt và kết quả phải ghi đúng môi trường. Nghĩa vụ kiểm ứng dụng thật giữ theo từng project; R05 chưa hoàn tất.
+Đã cài và khởi động thử Android Emulator trên Mac Intel: PASS đúng phạm vi bootstrap. API36/x86_64,2CPU,RAMguest≤2GiB, ảnh launcher đã xem;10/10guard đạt. Emulator và ADB lab đã tắt, cổng đã đóng. Chưa cài APK mẫu Kidea hoặc kiểm N01…N08.
 
-Đã chuẩn bị gói tại proposals/r05-simulator-lab-r1.md:
+Tải~1.38GiB, đĩa thêm~8.25GiB, tổng~22.7phút; trong hạn mức đã duyệt. Có lỗi chuẩn bị/chạm ngưỡng RAM và ảnh đen ở các lượt trước, đã giữ FAIL/PASS và sửa harness; lượt cuối RSS~2.83GiB, không tăng trần. Báo cáo: tests/evidence/r05/android-sim-bootstrap-r1.md.
 
-- Android:4archive chính thức cho Intel tổng~1.38GiB. Đề nghị duyệt cài/boot một AVD API36 trên macOS, trần2GiB tải/12GiB đĩa thêm/90phút; build app vẫn dùng Docker và SDK37. Chưa tải binary/cài/chạy.
-- iOS: đề xuất Xcode16.2 + iOS18.2 Simulator để dùng Sonoma hiện tại, là tổ hợp lab bổ sung. Chưa đủ manifest để duyệt cài: archive Xcode yêu cầu đăng nhập Apple, metadata runtime universal còn thiếu. Không cần nâng macOS ngay.
+iOS16.2/Simulator18.2 đã được duyệt hướng lab; chưa cài vì còn thiếu bộ cài/manifest Apple. Không cần duyệt lại hướng này.
 
-Cần Human duyệt gói Android và chốt hướng lab iOS16.2. Quyền cài cần riêng vì chỉ đạo ban đầu cấm tự cài công cụ, còn “ok làm đi” gần nhất giao chỉnh ma trận/chuẩn bị gói. Không xin duyệt lại R05 r1/A1/SDK37; không yêu cầu secret vào chat.
+Tiếp theo chuẩn bị gói kiểm mẫu Kidea trên emulator theo N01…N08 và hoàn thiện bộ cài iOS khi có đăng nhập Apple trên máy. R05 vẫn mở; Apple Silicon chưa kiểm.

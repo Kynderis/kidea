@@ -1,0 +1,163 @@
+{
+  "at": "2026-09-17T01:27:34.041550+00:00",
+  "status": "PASS_BOOTSTRAP_ONLY",
+  "bootResult": {
+    "status": "PASS",
+    "api": "36",
+    "abi": "x86_64",
+    "serial": "emulator-5554",
+    "guestMemoryBytes": 2067746816,
+    "guestCpus": 2,
+    "lowramFlag": true,
+    "screenshotSha256": "2a5df6816793815669d72be08b3ada68c9805d21e9bf9e4d41d487ec61006aa7",
+    "at": "2026-09-17T01:27:15.601943+00:00"
+  },
+  "bootAttempts": [
+    {
+      "folder": "boot-037",
+      "samples": 1,
+      "peakRssBytes": 6262784,
+      "monitorErrors": []
+    },
+    {
+      "folder": "boot-038",
+      "samples": 132,
+      "peakRssBytes": 4306325504,
+      "monitorErrors": [
+        "AssertionError('lab process RSS exceeds4GiB')"
+      ]
+    },
+    {
+      "folder": "boot-075",
+      "samples": 96,
+      "peakRssBytes": 2853019648,
+      "monitorErrors": []
+    },
+    {
+      "folder": "boot-104",
+      "samples": 106,
+      "peakRssBytes": 3083124736,
+      "monitorErrors": []
+    },
+    {
+      "folder": "boot-142",
+      "samples": 113,
+      "peakRssBytes": 2976841728,
+      "monitorErrors": []
+    }
+  ],
+  "historicalFailures": [
+    {
+      "at": "2026-09-17T01:10:09.286514+00:00",
+      "stage": "probe",
+      "error": "AssertionError('notarization-emulator: exit 1, see /Users/kendrick/Desktop/kidea/tests/evidence/r05/android-sim-bootstrap-r1/010-notarization-emulator')"
+    },
+    {
+      "at": "2026-09-17T01:12:24.451949+00:00",
+      "stage": "avd",
+      "error": "AssertionError('create-avd: exit 1, see /Users/kendrick/Desktop/kidea/tests/evidence/r05/android-sim-bootstrap-r1/031-create-avd')"
+    },
+    {
+      "at": "2026-09-17T01:12:58.855465+00:00",
+      "stage": "avd",
+      "error": "AssertionError('signature-after-package-registration: exit 1, see /Users/kendrick/Desktop/kidea/tests/evidence/r05/android-sim-bootstrap-r1/032-signature-after-package-registration')"
+    },
+    {
+      "at": "2026-09-17T01:15:20.737272+00:00",
+      "stage": "boot",
+      "error": "AssertionError()"
+    },
+    {
+      "at": "2026-09-17T01:17:35.322755+00:00",
+      "stage": "boot",
+      "error": "AssertionError([\"AssertionError('lab process RSS exceeds4GiB')\"])"
+    },
+    {
+      "at": "2026-09-17T01:19:25.200978+00:00",
+      "stage": "boot",
+      "error": "AssertionError('guest-abi: exit 255, see /Users/kendrick/Desktop/kidea/tests/evidence/r05/android-sim-bootstrap-r1/102-guest-abi')"
+    },
+    {
+      "at": "2026-09-17T01:25:29.605836+00:00",
+      "stage": "boot",
+      "error": "OSError(48, 'Address already in use')"
+    }
+  ],
+  "archives": [
+    {
+      "file": "commandlinetools-mac_x86_64-16111833_latest.zip",
+      "bytes": 155582504,
+      "sha256": "7e601c04e7173754b3d051a87bb4c3a8243c65a9d7bfa9356ed6499fb8953fa3",
+      "publisherSha1Matched": true
+    },
+    {
+      "file": "platform-tools_r37.0.1-darwin.zip",
+      "bytes": 16110554,
+      "sha256": "ee39ad5967e95c2a07f04dbcbde96b1a0c916ba376096db5d2f498b7727a5d1d",
+      "publisherSha1Matched": true
+    },
+    {
+      "file": "emulator-darwin_x64-15917651.zip",
+      "bytes": 465773989,
+      "sha256": "c1a3890f95b8868198918fad05ffca16fa20404d93547ba545ff5a5867ee7005",
+      "publisherSha1Matched": true
+    },
+    {
+      "file": "x86_64-36_r02.zip",
+      "bytes": 844217077,
+      "sha256": "e1b9d9fb665001ef27b16e57d8762a2d54aec6bff617e17506edb8676667b9da",
+      "publisherSha1Matched": true
+    }
+  ],
+  "archivePayloadBytes": 1481684124,
+  "unmeteredMetadataHeadroomBytes": 67108864,
+  "networkMeasurementLimit": "Archive stream bytes metered; OS trust-service/background network not packet-captured. 64MiB headroom reserved, not a measurement.",
+  "additionalDiskBytes": 8826699776,
+  "cumulativeE2DiskBytes": 32582893568,
+  "freeBytes": 374396502016,
+  "elapsedSeconds": 1189.399868965149,
+  "guardTests": {
+    "exitCode": 0,
+    "tests": 10
+  },
+  "noOwnedProcessesOrListeners": true,
+  "a1SampleFilesPreserved": 23,
+  "pilotFilesPreserved": 21,
+  "publicKeyRedactions": [
+    {
+      "file": "boot-038/emulator.stdout.log",
+      "originalSha256": "b6dd63c9ecfe1f21e9d473cb06155c448af3a0377f31d57d57feb344758e2581",
+      "redactedSha256": "e75f698f6215aaa2e9ec06578d24ea4189998bcafe35370cc58a25908fd08461",
+      "originalLocalPath": "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/evidence/raw-logs/boot-038/emulator.stdout.log"
+    },
+    {
+      "file": "boot-142/emulator.stdout.log",
+      "originalSha256": "1f83e477bbc58fbd96068cc2b38384bbd511f72f891402a739668b8d618bb80b",
+      "redactedSha256": "aafeb85de94582a3d5b62373e8f93e31359751dca77bce1f1d04df2439f8433f",
+      "originalLocalPath": "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/evidence/raw-logs/boot-142/emulator.stdout.log"
+    },
+    {
+      "file": "boot-104/emulator.stdout.log",
+      "originalSha256": "5cfe3531093313d19cb1d03400aa41dc62ffb67c9189e19189799cb641ce2f1c",
+      "redactedSha256": "756b73b4ce502fa9ae1f5fe35e64e72b4ab0f968023816eb73752f27cb658f9b",
+      "originalLocalPath": "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/evidence/raw-logs/boot-104/emulator.stdout.log"
+    },
+    {
+      "file": "boot-075/emulator.stdout.log",
+      "originalSha256": "52ca099cacbf4da28b294919e18c089714d3499faf0e08c8ddffbf8582776950",
+      "redactedSha256": "9d7cc8d13fb3fd96470d4c643514db707953fdcaf9ec4d538d0e63dd645552cc",
+      "originalLocalPath": "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/evidence/raw-logs/boot-075/emulator.stdout.log"
+    }
+  ],
+  "helperHashes": {
+    "android-sim-bootstrap.py": "4698b2fd2f93a903a1915fc7e20f32b7e074d4b5229572138a202eca0ddaf2fa",
+    "android-sim-bootstrap.test.py": "f5f1907583a9d666271e6e5fa1b3524f915217a468007fa4b27557ecb499c615",
+    "collect-android-sim-bootstrap.py": "de5fd4b7901a055ccb7cb4f2b6a60a123a6cf1ef338e45e9822523f1415adbcb"
+  },
+  "limitations": [
+    "No application APK installed",
+    "N01-N08 application runtime groups not run",
+    "iOS direction approved but no installer available",
+    "Apple Silicon not run"
+  ]
+}

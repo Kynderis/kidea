@@ -2,6 +2,10 @@
 
 Ngày 2026-09-17. **APPROVED hướng và phạm vi chuẩn bị**: Human “ok làm đi” sau đề nghị chỉnh ma trận R05 và chuẩn bị môi trường mô phỏng. **Cài/chạy môi trường: PROPOSED, chưa thực thi.** Gói này thay yêu cầu điện thoại thật làm điều kiện vào lượt lab trong [gói thiết bị r1](r05-native-device-r1.md). Không duyệt trước kết quả R05, không đổi expected nghiệp vụ của pilot.
 
+**Sự kiện mới nhất:** Human “tôi hiểu rồi, làm đi nhé” qua annotation vào câu hỏi duyệt gói Android và hướng lab iOS đã **APPROVED A-SIM-BOOT r1** (bốn archive/hạn mức/cài và boot smoke bên dưới) và **chọn hướng lab iOS16.2**. Các chữ “đề nghị/chưa duyệt” bên dưới giữ lịch sử bản trình. Approval iOS mới chỉ chốt hướng, không cấp quyền tải/cài khi manifest còn thiếu. Không cần xin duyệt lại A-SIM-BOOT; runtime N01…N08 vẫn là gói sau bootstrap, chưa nghiệm thu R05.
+
+**Kết quả:** [bootstrap Android](../tests/evidence/r05/android-sim-bootstrap-r1.md) đã PASS sau sửa harness trong cùng hạn mức; launcher/API/ABI/RAM thực được kiểm, công cụ và AVD giữ trong local lab, tiến trình/cổng đã dừng. Không phải PASS N01…N08. iOS vẫn chờ artifact trước gói cài.
+
 ## Phạm vi và quyền quyết định của project
 
 R05 kiểm chứng hướng dẫn, profile và phương pháp kiểm của Kidea bằng mẫu nhỏ có thể chạy và mẫu sai phải bị bắt. Android Emulator/iOS Simulator được dùng làm môi trường runtime của các ca bên dưới. Thiếu điện thoại thật không chặn những ca đó. Kết quả luôn ghi rõ môi trường; chưa chạy vẫn NOT_RUN.

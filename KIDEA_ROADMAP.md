@@ -10,6 +10,10 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
+**A-SIM-BOOT r1 đã APPROVED và hoàn tất PASS_BOOTSTRAP_ONLY trên Mac Intel.** [Báo cáo](tests/evidence/r05/android-sim-bootstrap-r1.md):4archive Google đúng checksum; Emulator37.1.11/ADB37.0.1/CLI23/API36x86_64 đã cài riêng trong local lab; boot cuối đúng API/ABI/2CPU/RAMguest≤2GiB, màn hình Awake/launcher đã xem ảnh. Cờlowram giữ RAMguest2048MiB; GLES host, RSS cuối~2.83GiB. Giữ lỗi metadata chữ ký, package registration, ADB socket, RSS vượt trần, guest tự tăng RAM và ảnh đen; không bỏ gate hoặc tăng quota. Guard10/10PASS. Emulator/ADB đã dừng và port đóng; không có APK ứng dụng được cài.
+
+Tải payload~1.38GiB, đĩa thêm~8.25GiB/tích lũyE2~30.38GiB, tổng~22.7phút trong hạn mức; không reset counter/deadline. iOS16.2 đã APPROVED hướng lab, chưa cài vì artifact/manifest Apple chưa đủ; không cần duyệt lại hướng. Tiếp theo chuẩn bị gói runtime N01…N08 trên emulator và hoàn thiện gói cài iOS khi có đăng nhập/bộ cài Apple. R05/T07-S02 vẫn mở, Apple Silicon NOT_RUN. Các đoạn dưới giữ lịch sử trước bootstrap.
+
 **Đã chỉnh ma trận R05 theo hướng mô phỏng được Human giao ngày2026-09-17.** [Ma trận và gói A-SIM-BOOT](proposals/r05-simulator-lab-r1.md) xác định8nhóm kiểm riêng Android/iOS: mẫu đúng/sai, runtime/lifecycle/UI/transport và tính đúng của evidence; không yêu cầu điện thoại thật cho ca mô phỏng được. Thiếu Android thật không chặn lượt lab này. Nghiệm thu phần cứng/hiệu năng của ứng dụng giữ ở project tương ứng; không đổi FAIL/NOT_RUN thành PASS. A1 giữ bằng chứng cũ, các ca mới chưa chạy; R05/T07-S02 vẫn mở.
 
 Đã xác minh metadata4archive Android macOS Intel, tổng1481684124byte (~1.38GiB). Gói bootstrap đề nghị2GiB tải/12GiB đĩa thêm, một AVD API36x86_64 trên host, không hạ compile/target37; chưa cài/boot. iOS đề xuất tổ hợp lab bổ sung Xcode16.2/SDK18.2 trên Sonoma hiện tại; chưa áp thay tổ hợp26.6. Archive Xcode yêu cầu đăng nhập và runtime universal chưa đủ metadata, nên iOS chưa INSTALL_READY. Tiếp theo duyệt gói Android cụ thể và hướng lab iOS; Apple Silicon để sau/NOT_RUN. Các đoạn sau là lịch sử trước điều chỉnh ma trận này.

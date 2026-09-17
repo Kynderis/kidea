@@ -1,0 +1,3965 @@
+{
+  "startedAt": "2026-09-17T01:07:44.642298+00:00",
+  "startEpoch": 1789607264.642313,
+  "deadlineEpoch": 1789612664.642313,
+  "sourceHead": "bbe490ec71d2d0bfdaba74bd8869f35724a310e2",
+  "approval": "Human: t\u00f4i hi\u1ec3u r\u1ed3i, l\u00e0m \u0111i nh\u00e9; annotation approves Android package and iOS lab direction after bbe490e.",
+  "planSha256": "0ba31e96af3769bfbf1cfa46bde9427f9142b5c702d206bd71f59c7d0bf624c7",
+  "startFreeBytes": 383223201792,
+  "e2FreeBytes": 406979395584,
+  "downloadBytes": 1481684124,
+  "artifacts": [
+    {
+      "package": "cmdline-tools;23.0",
+      "version": "23.0",
+      "url": "https://dl.google.com/android/repository/commandlinetools-mac_x86_64-16111833_latest.zip",
+      "bytes": 155582504,
+      "publisherSha1": "112cf9618794a997ff273537d55bee02c22abffe",
+      "metadata": "google-repository.xml",
+      "binaryDownloaded": true,
+      "startedAt": "2026-09-17T01:07:48.018678+00:00",
+      "receivedBytes": 155582504,
+      "finalUrl": "https://dl.google.com/android/repository/commandlinetools-mac_x86_64-16111833_latest.zip",
+      "sha1": "112cf9618794a997ff273537d55bee02c22abffe",
+      "sha256": "7e601c04e7173754b3d051a87bb4c3a8243c65a9d7bfa9356ed6499fb8953fa3",
+      "uncompressedBytes": 181519616,
+      "extractedAt": "2026-09-17T01:08:01.652115+00:00"
+    },
+    {
+      "package": "platform-tools",
+      "version": "37.0.1",
+      "url": "https://dl.google.com/android/repository/platform-tools_r37.0.1-darwin.zip",
+      "bytes": 16110554,
+      "publisherSha1": "6ae73f4de6452dc57e62ec02b68eed92a4c21661",
+      "metadata": "google-repository.xml",
+      "binaryDownloaded": true,
+      "startedAt": "2026-09-17T01:08:01.652699+00:00",
+      "receivedBytes": 16110554,
+      "finalUrl": "https://dl.google.com/android/repository/platform-tools_r37.0.1-darwin.zip",
+      "sha1": "6ae73f4de6452dc57e62ec02b68eed92a4c21661",
+      "sha256": "ee39ad5967e95c2a07f04dbcbde96b1a0c916ba376096db5d2f498b7727a5d1d",
+      "uncompressedBytes": 38814256,
+      "extractedAt": "2026-09-17T01:08:02.440221+00:00"
+    },
+    {
+      "package": "emulator",
+      "version": "37.1.11",
+      "url": "https://dl.google.com/android/repository/emulator-darwin_x64-15917651.zip",
+      "bytes": 465773989,
+      "publisherSha1": "7df8b0acbe915217dcbb576222bddfcc23e81230",
+      "metadata": "google-repository.xml",
+      "binaryDownloaded": true,
+      "startedAt": "2026-09-17T01:08:02.440815+00:00",
+      "receivedBytes": 465773989,
+      "finalUrl": "https://dl.google.com/android/repository/emulator-darwin_x64-15917651.zip",
+      "sha1": "7df8b0acbe915217dcbb576222bddfcc23e81230",
+      "sha256": "c1a3890f95b8868198918fad05ffca16fa20404d93547ba545ff5a5867ee7005",
+      "uncompressedBytes": 1419116814,
+      "extractedAt": "2026-09-17T01:08:29.891530+00:00"
+    },
+    {
+      "package": "system-images;android-36;default;x86_64",
+      "version": "2",
+      "url": "https://dl.google.com/android/repository/sys-img/android/x86_64-36_r02.zip",
+      "bytes": 844217077,
+      "publisherSha1": "829c076e8ff448a336097ae25a355b495ba36e2c",
+      "metadata": "google-system-images.xml",
+      "binaryDownloaded": true,
+      "startedAt": "2026-09-17T01:08:29.892208+00:00",
+      "receivedBytes": 844217077,
+      "finalUrl": "https://dl.google.com/android/repository/sys-img/android/x86_64-36_r02.zip",
+      "sha1": "829c076e8ff448a336097ae25a355b495ba36e2c",
+      "sha256": "e1b9d9fb665001ef27b16e57d8762a2d54aec6bff617e17506edb8676667b9da",
+      "uncompressedBytes": 2049707357,
+      "extractedAt": "2026-09-17T01:08:53.167971+00:00"
+    }
+  ],
+  "commands": [
+    {
+      "at": "2026-09-17T01:07:44.701764+00:00",
+      "args": [
+        "/usr/bin/sw_vers"
+      ],
+      "label": "environment",
+      "pid": 39565,
+      "maxRssBytes": 1142784,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5611898240022128
+    },
+    {
+      "at": "2026-09-17T01:07:45.269625+00:00",
+      "args": [
+        "/usr/sbin/diskutil",
+        "info",
+        "/System/Volumes/Data"
+      ],
+      "label": "disk",
+      "pid": 39576,
+      "maxRssBytes": 151552,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5575992680023774
+    },
+    {
+      "at": "2026-09-17T01:07:45.835007+00:00",
+      "args": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "hw.model",
+        "hw.memsize",
+        "kern.hv_support"
+      ],
+      "label": "host",
+      "pid": 39589,
+      "maxRssBytes": 0,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5983664209998096
+    },
+    {
+      "at": "2026-09-17T01:07:46.440650+00:00",
+      "args": [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-iTCP",
+        "-sTCP:LISTEN"
+      ],
+      "label": "listeners-before",
+      "pid": 39594,
+      "maxRssBytes": 528384,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5666625469966675
+    },
+    {
+      "at": "2026-09-17T01:07:47.012567+00:00",
+      "args": [
+        "/bin/ps",
+        "-axo",
+        "pid,ppid,rss,comm"
+      ],
+      "label": "processes-before",
+      "pid": 39604,
+      "maxRssBytes": 1196032,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5635237979950034
+    },
+    {
+      "at": "2026-09-17T01:10:05.930307+00:00",
+      "args": [
+        "/usr/bin/file",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb"
+      ],
+      "label": "file-adb",
+      "pid": 40221,
+      "maxRssBytes": 1986560,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5606459850023384
+    },
+    {
+      "at": "2026-09-17T01:10:06.497501+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "-dv",
+        "--verbose=4",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb"
+      ],
+      "label": "signature-adb",
+      "pid": 40224,
+      "maxRssBytes": 901120,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5537344149997807
+    },
+    {
+      "at": "2026-09-17T01:10:07.057964+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb"
+      ],
+      "label": "notarization-adb",
+      "pid": 40234,
+      "maxRssBytes": 1277952,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5518452159958542
+    },
+    {
+      "at": "2026-09-17T01:10:07.614960+00:00",
+      "args": [
+        "/usr/bin/file",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "file-emulator",
+      "pid": 40240,
+      "maxRssBytes": 4362240,
+      "exitCode": 0,
+      "elapsedSeconds": 0.550737642995955
+    },
+    {
+      "at": "2026-09-17T01:10:08.171501+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "-dv",
+        "--verbose=4",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-emulator",
+      "pid": 40245,
+      "maxRssBytes": 1331200,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5540686239983188
+    },
+    {
+      "at": "2026-09-17T01:10:08.732010+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "notarization-emulator",
+      "pid": 40248,
+      "maxRssBytes": 1441792,
+      "exitCode": 1,
+      "elapsedSeconds": 0.548973015997035
+    },
+    {
+      "at": "2026-09-17T01:11:16.783388+00:00",
+      "args": [
+        "/usr/bin/ditto",
+        "-x",
+        "-k",
+        "--rsrc",
+        "--extattr",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/downloads/emulator-darwin_x64-15917651.zip",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk"
+      ],
+      "label": "extract-appledouble",
+      "pid": 40297,
+      "maxRssBytes": 2293760,
+      "exitCode": 0,
+      "elapsedSeconds": 4.425656961000641
+    },
+    {
+      "at": "2026-09-17T01:11:21.217144+00:00",
+      "args": [
+        "/usr/bin/xattr",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/NOTICE.csv"
+      ],
+      "label": "appledouble-restored",
+      "pid": 40349,
+      "maxRssBytes": 0,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5621957990006194
+    },
+    {
+      "at": "2026-09-17T01:11:27.146270+00:00",
+      "args": [
+        "/usr/bin/file",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb"
+      ],
+      "label": "file-adb",
+      "pid": 40367,
+      "maxRssBytes": 2981888,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5576196819965844
+    },
+    {
+      "at": "2026-09-17T01:11:27.709879+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "-dv",
+        "--verbose=4",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb"
+      ],
+      "label": "signature-adb",
+      "pid": 40370,
+      "maxRssBytes": 1150976,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5525138849989162
+    },
+    {
+      "at": "2026-09-17T01:11:28.268980+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb"
+      ],
+      "label": "notarization-adb",
+      "pid": 40375,
+      "maxRssBytes": 1409024,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5525460689968895
+    },
+    {
+      "at": "2026-09-17T01:11:28.827926+00:00",
+      "args": [
+        "/usr/bin/file",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "file-emulator",
+      "pid": 40378,
+      "maxRssBytes": 4685824,
+      "exitCode": 0,
+      "elapsedSeconds": 0.552714614001161
+    },
+    {
+      "at": "2026-09-17T01:11:29.387434+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "-dv",
+        "--verbose=4",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-emulator",
+      "pid": 40383,
+      "maxRssBytes": 1343488,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5538338400001521
+    },
+    {
+      "at": "2026-09-17T01:11:29.948066+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "notarization-emulator",
+      "pid": 40386,
+      "maxRssBytes": 8126464,
+      "exitCode": 0,
+      "elapsedSeconds": 2.2383922850058298
+    },
+    {
+      "at": "2026-09-17T01:11:32.192832+00:00",
+      "args": [
+        "/usr/bin/file",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/qemu/darwin-x86_64/qemu-system-x86_64"
+      ],
+      "label": "file-qemu",
+      "pid": 40398,
+      "maxRssBytes": 4509696,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5549782790039899
+    },
+    {
+      "at": "2026-09-17T01:11:32.755776+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "-dv",
+        "--verbose=4",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/qemu/darwin-x86_64/qemu-system-x86_64"
+      ],
+      "label": "signature-qemu",
+      "pid": 40401,
+      "maxRssBytes": 1294336,
+      "exitCode": 0,
+      "elapsedSeconds": 0.551604756998131
+    },
+    {
+      "at": "2026-09-17T01:11:33.314528+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/qemu/darwin-x86_64/qemu-system-x86_64"
+      ],
+      "label": "notarization-qemu",
+      "pid": 40406,
+      "maxRssBytes": 1314816,
+      "exitCode": 0,
+      "elapsedSeconds": 0.550383141002385
+    },
+    {
+      "at": "2026-09-17T01:11:33.871077+00:00",
+      "args": [
+        "/usr/bin/file",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/qemu/darwin-x86_64/qemu-system-x86_64-headless"
+      ],
+      "label": "file-qemu-headless",
+      "pid": 40409,
+      "maxRssBytes": 4685824,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5534760739974445
+    },
+    {
+      "at": "2026-09-17T01:11:34.430976+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "-dv",
+        "--verbose=4",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/qemu/darwin-x86_64/qemu-system-x86_64-headless"
+      ],
+      "label": "signature-qemu-headless",
+      "pid": 40414,
+      "maxRssBytes": 1277952,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5534565179987112
+    },
+    {
+      "at": "2026-09-17T01:11:34.990664+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/qemu/darwin-x86_64/qemu-system-x86_64-headless"
+      ],
+      "label": "notarization-qemu-headless",
+      "pid": 40417,
+      "maxRssBytes": 5251072,
+      "exitCode": 0,
+      "elapsedSeconds": 1.1093773870015866
+    },
+    {
+      "at": "2026-09-17T01:11:36.106199+00:00",
+      "args": [
+        "/usr/sbin/spctl",
+        "--status"
+      ],
+      "label": "gatekeeper-status",
+      "pid": 40424,
+      "maxRssBytes": 462848,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5553582619977533
+    },
+    {
+      "at": "2026-09-17T01:11:36.669520+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "version"
+      ],
+      "label": "adb-version",
+      "pid": 40427,
+      "maxRssBytes": 12288,
+      "exitCode": 0,
+      "elapsedSeconds": 1.110115338997275
+    },
+    {
+      "at": "2026-09-17T01:11:37.811207+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator",
+        "-version"
+      ],
+      "label": "emulator-version",
+      "pid": 40434,
+      "maxRssBytes": 39067648,
+      "exitCode": 0,
+      "elapsedSeconds": 22.759397836998687
+    },
+    {
+      "at": "2026-09-17T01:12:00.589503+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator",
+        "-accel-check"
+      ],
+      "label": "acceleration",
+      "pid": 40532,
+      "maxRssBytes": 7569408,
+      "exitCode": 0,
+      "elapsedSeconds": 1.1041125139963697
+    },
+    {
+      "at": "2026-09-17T01:12:01.699951+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator",
+        "-help-all"
+      ],
+      "label": "emulator-options",
+      "pid": 40540,
+      "maxRssBytes": 135168,
+      "exitCode": 0,
+      "elapsedSeconds": 0.550001327006612
+    },
+    {
+      "at": "2026-09-17T01:12:20.540809+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/cmdline-tools/23.0/bin/avdmanager",
+        "list",
+        "device"
+      ],
+      "label": "list-devices",
+      "pid": 40560,
+      "maxRssBytes": 100102144,
+      "exitCode": 0,
+      "elapsedSeconds": 2.780179285997292
+    },
+    {
+      "at": "2026-09-17T01:12:23.330145+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/cmdline-tools/23.0/bin/avdmanager",
+        "create",
+        "avd",
+        "--name",
+        "kidea-r05-api36-x64-r1",
+        "--package",
+        "system-images;android-36;default;x86_64",
+        "--path",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/avd/kidea-r05-api36-x64-r1.avd"
+      ],
+      "label": "create-avd",
+      "pid": 40589,
+      "maxRssBytes": 65953792,
+      "exitCode": 1,
+      "elapsedSeconds": 1.1155803309957264
+    },
+    {
+      "at": "2026-09-17T01:12:56.589012+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-after-package-registration",
+      "pid": 40654,
+      "maxRssBytes": 7987200,
+      "exitCode": 1,
+      "elapsedSeconds": 2.259486268994806
+    },
+    {
+      "at": "2026-09-17T01:13:58.620812+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/cmdline-tools/23.0/bin/avdmanager",
+        "list",
+        "device"
+      ],
+      "label": "list-devices",
+      "pid": 40691,
+      "maxRssBytes": 88121344,
+      "exitCode": 0,
+      "elapsedSeconds": 1.6726676429971121
+    },
+    {
+      "at": "2026-09-17T01:14:00.301894+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/cmdline-tools/23.0/bin/avdmanager",
+        "create",
+        "avd",
+        "--name",
+        "kidea-r05-api36-x64-r1",
+        "--package",
+        "system-images;android-36;default;x86_64",
+        "--path",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/avd/kidea-r05-api36-x64-r1.avd"
+      ],
+      "label": "create-avd",
+      "pid": 40724,
+      "maxRssBytes": 68698112,
+      "exitCode": 0,
+      "elapsedSeconds": 1.1128613280015998
+    },
+    {
+      "at": "2026-09-17T01:14:01.422307+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-restored-after-registration",
+      "pid": 40758,
+      "maxRssBytes": 7921664,
+      "exitCode": 0,
+      "elapsedSeconds": 2.2156198429947835
+    },
+    {
+      "at": "2026-09-17T01:15:17.449347+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-before-boot",
+      "pid": 40804,
+      "maxRssBytes": 8335360,
+      "exitCode": 0,
+      "elapsedSeconds": 2.268487777997507
+    },
+    {
+      "at": "2026-09-17T01:15:59.661010+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-before-boot",
+      "pid": 40862,
+      "maxRssBytes": 8302592,
+      "exitCode": 0,
+      "elapsedSeconds": 2.2640922160062473
+    },
+    {
+      "at": "2026-09-17T01:16:02.947454+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-000",
+      "pid": 40887,
+      "maxRssBytes": 1593344,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5536232689992175
+    },
+    {
+      "at": "2026-09-17T01:16:05.509904+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-001",
+      "pid": 40918,
+      "maxRssBytes": 1744896,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5569664909999119
+    },
+    {
+      "at": "2026-09-17T01:16:08.074327+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-002",
+      "pid": 40948,
+      "maxRssBytes": 1777664,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5567668780058739
+    },
+    {
+      "at": "2026-09-17T01:16:10.640932+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-003",
+      "pid": 40971,
+      "maxRssBytes": 1806336,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5560782579996157
+    },
+    {
+      "at": "2026-09-17T01:16:13.207245+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-004",
+      "pid": 40997,
+      "maxRssBytes": 1736704,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5563048340045498
+    },
+    {
+      "at": "2026-09-17T01:16:15.777059+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-005",
+      "pid": 41023,
+      "maxRssBytes": 1658880,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5555188689977513
+    },
+    {
+      "at": "2026-09-17T01:16:18.339720+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-006",
+      "pid": 41046,
+      "maxRssBytes": 1703936,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5530903910039342
+    },
+    {
+      "at": "2026-09-17T01:16:20.904218+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-007",
+      "pid": 41071,
+      "maxRssBytes": 1654784,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5573005559999729
+    },
+    {
+      "at": "2026-09-17T01:16:23.469398+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-008",
+      "pid": 41096,
+      "maxRssBytes": 1716224,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5563824450000538
+    },
+    {
+      "at": "2026-09-17T01:16:26.036629+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-009",
+      "pid": 41117,
+      "maxRssBytes": 2211840,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5596419979992788
+    },
+    {
+      "at": "2026-09-17T01:16:28.603798+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-010",
+      "pid": 41142,
+      "maxRssBytes": 1757184,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5573636569970404
+    },
+    {
+      "at": "2026-09-17T01:16:31.169034+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-011",
+      "pid": 41167,
+      "maxRssBytes": 1740800,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5586656910018064
+    },
+    {
+      "at": "2026-09-17T01:16:33.738319+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-012",
+      "pid": 41193,
+      "maxRssBytes": 1785856,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5553220119982143
+    },
+    {
+      "at": "2026-09-17T01:16:36.300166+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-013",
+      "pid": 41218,
+      "maxRssBytes": 1822720,
+      "exitCode": 1,
+      "elapsedSeconds": 0.555203456999152
+    },
+    {
+      "at": "2026-09-17T01:16:38.862592+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-014",
+      "pid": 41243,
+      "maxRssBytes": 1982464,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5557359180020285
+    },
+    {
+      "at": "2026-09-17T01:16:41.429561+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-015",
+      "pid": 41267,
+      "maxRssBytes": 1708032,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5571500820005895
+    },
+    {
+      "at": "2026-09-17T01:16:43.993304+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-016",
+      "pid": 41288,
+      "maxRssBytes": 1732608,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5553736599977128
+    },
+    {
+      "at": "2026-09-17T01:16:46.554991+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-017",
+      "pid": 41314,
+      "maxRssBytes": 1753088,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5542089299997315
+    },
+    {
+      "at": "2026-09-17T01:16:49.119936+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-018",
+      "pid": 41344,
+      "maxRssBytes": 1744896,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5529062469940982
+    },
+    {
+      "at": "2026-09-17T01:16:51.683832+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-019",
+      "pid": 41364,
+      "maxRssBytes": 1724416,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5551202460046625
+    },
+    {
+      "at": "2026-09-17T01:16:54.249076+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-020",
+      "pid": 41389,
+      "maxRssBytes": 1769472,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5517665660008788
+    },
+    {
+      "at": "2026-09-17T01:16:56.811509+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-021",
+      "pid": 41415,
+      "maxRssBytes": 1712128,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5526136589978705
+    },
+    {
+      "at": "2026-09-17T01:16:59.375427+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-022",
+      "pid": 41435,
+      "maxRssBytes": 1888256,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5599175789975561
+    },
+    {
+      "at": "2026-09-17T01:17:01.948531+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-023",
+      "pid": 41462,
+      "maxRssBytes": 1851392,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5561590580036864
+    },
+    {
+      "at": "2026-09-17T01:17:04.515542+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-024",
+      "pid": 41487,
+      "maxRssBytes": 1613824,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5613974289954058
+    },
+    {
+      "at": "2026-09-17T01:17:07.088634+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-025",
+      "pid": 41510,
+      "maxRssBytes": 1323008,
+      "exitCode": 0,
+      "elapsedSeconds": 0.558158416999504
+    },
+    {
+      "at": "2026-09-17T01:17:09.655512+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-026",
+      "pid": 41533,
+      "maxRssBytes": 1675264,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5632083330056048
+    },
+    {
+      "at": "2026-09-17T01:17:12.228968+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-027",
+      "pid": 41561,
+      "maxRssBytes": 1687552,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5555427049985155
+    },
+    {
+      "at": "2026-09-17T01:17:14.794986+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-028",
+      "pid": 41583,
+      "maxRssBytes": 1699840,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5567313870051294
+    },
+    {
+      "at": "2026-09-17T01:17:17.360625+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-029",
+      "pid": 41611,
+      "maxRssBytes": 1765376,
+      "exitCode": 0,
+      "elapsedSeconds": 0.554031831001339
+    },
+    {
+      "at": "2026-09-17T01:17:19.924282+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-030",
+      "pid": 41636,
+      "maxRssBytes": 1642496,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5552428750015679
+    },
+    {
+      "at": "2026-09-17T01:17:22.488720+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-031",
+      "pid": 41662,
+      "maxRssBytes": 1576960,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5574006539973198
+    },
+    {
+      "at": "2026-09-17T01:17:25.056193+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-032",
+      "pid": 41684,
+      "maxRssBytes": 1708032,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5552670100005344
+    },
+    {
+      "at": "2026-09-17T01:17:27.621238+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-033",
+      "pid": 41714,
+      "maxRssBytes": 1581056,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5562500689993612
+    },
+    {
+      "at": "2026-09-17T01:17:30.187264+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-034",
+      "pid": 41743,
+      "maxRssBytes": 1806336,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5571204660009244
+    },
+    {
+      "at": "2026-09-17T01:17:32.755839+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-035",
+      "pid": 41764,
+      "maxRssBytes": 2236416,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5549709090046235
+    },
+    {
+      "at": "2026-09-17T01:18:12.237182+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-before-boot",
+      "pid": 41807,
+      "maxRssBytes": 8318976,
+      "exitCode": 0,
+      "elapsedSeconds": 2.7769045690001803
+    },
+    {
+      "at": "2026-09-17T01:18:16.039135+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-000",
+      "pid": 41834,
+      "maxRssBytes": 1757184,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5567067649972159
+    },
+    {
+      "at": "2026-09-17T01:18:18.603304+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-001",
+      "pid": 41865,
+      "maxRssBytes": 1765376,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5546010769976419
+    },
+    {
+      "at": "2026-09-17T01:18:21.168771+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-002",
+      "pid": 41884,
+      "maxRssBytes": 1728512,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5559140650002519
+    },
+    {
+      "at": "2026-09-17T01:18:23.733363+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-003",
+      "pid": 41905,
+      "maxRssBytes": 1708032,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5551674669986824
+    },
+    {
+      "at": "2026-09-17T01:18:26.298715+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-004",
+      "pid": 41926,
+      "maxRssBytes": 1667072,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5507655440014787
+    },
+    {
+      "at": "2026-09-17T01:18:28.856353+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-005",
+      "pid": 41947,
+      "maxRssBytes": 1740800,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5531454770025448
+    },
+    {
+      "at": "2026-09-17T01:18:31.419636+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-006",
+      "pid": 41968,
+      "maxRssBytes": 1712128,
+      "exitCode": 1,
+      "elapsedSeconds": 0.555806632997701
+    },
+    {
+      "at": "2026-09-17T01:18:33.985346+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-007",
+      "pid": 41986,
+      "maxRssBytes": 1744896,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5582583360010176
+    },
+    {
+      "at": "2026-09-17T01:18:36.554648+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-008",
+      "pid": 42006,
+      "maxRssBytes": 1646592,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5539567540035932
+    },
+    {
+      "at": "2026-09-17T01:18:39.116215+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-009",
+      "pid": 42028,
+      "maxRssBytes": 1736704,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5548442280050949
+    },
+    {
+      "at": "2026-09-17T01:18:41.679773+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-010",
+      "pid": 42046,
+      "maxRssBytes": 1679360,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5580752200039569
+    },
+    {
+      "at": "2026-09-17T01:18:44.246500+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-011",
+      "pid": 42066,
+      "maxRssBytes": 2015232,
+      "exitCode": 1,
+      "elapsedSeconds": 0.553165766003076
+    },
+    {
+      "at": "2026-09-17T01:18:46.811730+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-012",
+      "pid": 42087,
+      "maxRssBytes": 1863680,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5549937869946007
+    },
+    {
+      "at": "2026-09-17T01:18:49.378458+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-013",
+      "pid": 42105,
+      "maxRssBytes": 1642496,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5560736439947505
+    },
+    {
+      "at": "2026-09-17T01:18:51.943975+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-014",
+      "pid": 42126,
+      "maxRssBytes": 1748992,
+      "exitCode": 0,
+      "elapsedSeconds": 0.6246829059964512
+    },
+    {
+      "at": "2026-09-17T01:18:54.588377+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-015",
+      "pid": 42149,
+      "maxRssBytes": 1888256,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5610614410034032
+    },
+    {
+      "at": "2026-09-17T01:18:57.158809+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-016",
+      "pid": 42175,
+      "maxRssBytes": 1830912,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5622905019990867
+    },
+    {
+      "at": "2026-09-17T01:18:59.732259+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-017",
+      "pid": 42193,
+      "maxRssBytes": 2076672,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5654570070037153
+    },
+    {
+      "at": "2026-09-17T01:19:02.305300+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-018",
+      "pid": 42216,
+      "maxRssBytes": 1789952,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5563506780017633
+    },
+    {
+      "at": "2026-09-17T01:19:04.869269+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-019",
+      "pid": 42233,
+      "maxRssBytes": 2027520,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5760789400010253
+    },
+    {
+      "at": "2026-09-17T01:19:07.453399+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-020",
+      "pid": 42257,
+      "maxRssBytes": 1904640,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5536277950013755
+    },
+    {
+      "at": "2026-09-17T01:19:10.019281+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-021",
+      "pid": 42278,
+      "maxRssBytes": 1781760,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5773031920034555
+    },
+    {
+      "at": "2026-09-17T01:19:12.606442+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-022",
+      "pid": 42301,
+      "maxRssBytes": 1703936,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5565263680036878
+    },
+    {
+      "at": "2026-09-17T01:19:15.174371+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-023",
+      "pid": 42325,
+      "maxRssBytes": 1777664,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5577480339998147
+    },
+    {
+      "at": "2026-09-17T01:19:17.741770+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-024",
+      "pid": 42344,
+      "maxRssBytes": 1863680,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5539563019992784
+    },
+    {
+      "at": "2026-09-17T01:19:20.305516+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-025",
+      "pid": 42369,
+      "maxRssBytes": 1789952,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5588928790020873
+    },
+    {
+      "at": "2026-09-17T01:19:20.874084+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "label": "guest-api",
+      "pid": 42376,
+      "maxRssBytes": 1720320,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5644649140012916
+    },
+    {
+      "at": "2026-09-17T01:19:21.445115+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.product.cpu.abi"
+      ],
+      "label": "guest-abi",
+      "pid": 42385,
+      "maxRssBytes": 4734976,
+      "exitCode": 255,
+      "elapsedSeconds": 2.2231782880044193
+    },
+    {
+      "at": "2026-09-17T01:23:46.320877+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-before-boot",
+      "pid": 42598,
+      "maxRssBytes": 8511488,
+      "exitCode": 0,
+      "elapsedSeconds": 3.344304728998395
+    },
+    {
+      "at": "2026-09-17T01:23:50.688552+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-000",
+      "pid": 42628,
+      "maxRssBytes": 1826816,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5550154989978182
+    },
+    {
+      "at": "2026-09-17T01:23:53.272392+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-001",
+      "pid": 42659,
+      "maxRssBytes": 1437696,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5533987250018981
+    },
+    {
+      "at": "2026-09-17T01:23:55.845741+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-002",
+      "pid": 42680,
+      "maxRssBytes": 2224128,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5719855520001147
+    },
+    {
+      "at": "2026-09-17T01:23:58.438345+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-003",
+      "pid": 42702,
+      "maxRssBytes": 2375680,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5720192690059775
+    },
+    {
+      "at": "2026-09-17T01:24:01.022335+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-004",
+      "pid": 42720,
+      "maxRssBytes": 1679360,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5565935159975197
+    },
+    {
+      "at": "2026-09-17T01:24:03.590698+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-005",
+      "pid": 42741,
+      "maxRssBytes": 1699840,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5565809859981528
+    },
+    {
+      "at": "2026-09-17T01:24:06.158115+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-006",
+      "pid": 42763,
+      "maxRssBytes": 1814528,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5556169330011471
+    },
+    {
+      "at": "2026-09-17T01:24:08.725451+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-007",
+      "pid": 42783,
+      "maxRssBytes": 1761280,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5539033280001604
+    },
+    {
+      "at": "2026-09-17T01:24:11.290566+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-008",
+      "pid": 42805,
+      "maxRssBytes": 1703936,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5537326569974539
+    },
+    {
+      "at": "2026-09-17T01:24:13.855421+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-009",
+      "pid": 42822,
+      "maxRssBytes": 1753088,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5557056960024056
+    },
+    {
+      "at": "2026-09-17T01:24:16.421798+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-010",
+      "pid": 42845,
+      "maxRssBytes": 2170880,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5617505479967804
+    },
+    {
+      "at": "2026-09-17T01:24:18.994926+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-011",
+      "pid": 42863,
+      "maxRssBytes": 1654784,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5580006959935417
+    },
+    {
+      "at": "2026-09-17T01:24:21.564030+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-012",
+      "pid": 42884,
+      "maxRssBytes": 1830912,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5570950209948933
+    },
+    {
+      "at": "2026-09-17T01:24:24.130251+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-013",
+      "pid": 42904,
+      "maxRssBytes": 1871872,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5635296159962309
+    },
+    {
+      "at": "2026-09-17T01:24:26.705200+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-014",
+      "pid": 42922,
+      "maxRssBytes": 1794048,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5570546430026297
+    },
+    {
+      "at": "2026-09-17T01:24:29.271734+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-015",
+      "pid": 42945,
+      "maxRssBytes": 1855488,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5554483779997099
+    },
+    {
+      "at": "2026-09-17T01:24:31.839117+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-016",
+      "pid": 42963,
+      "maxRssBytes": 1900544,
+      "exitCode": 0,
+      "elapsedSeconds": 0.559566112999164
+    },
+    {
+      "at": "2026-09-17T01:24:34.411930+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-017",
+      "pid": 42984,
+      "maxRssBytes": 1564672,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5626445059970138
+    },
+    {
+      "at": "2026-09-17T01:24:36.983755+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-018",
+      "pid": 43002,
+      "maxRssBytes": 1986560,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5594191620039055
+    },
+    {
+      "at": "2026-09-17T01:24:39.556367+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-019",
+      "pid": 43022,
+      "maxRssBytes": 1613824,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5608396789975814
+    },
+    {
+      "at": "2026-09-17T01:24:42.129690+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-020",
+      "pid": 43043,
+      "maxRssBytes": 1880064,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5569305399985751
+    },
+    {
+      "at": "2026-09-17T01:24:44.694247+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-021",
+      "pid": 43063,
+      "maxRssBytes": 1748992,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5550776969976141
+    },
+    {
+      "at": "2026-09-17T01:24:47.259787+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-022",
+      "pid": 43083,
+      "maxRssBytes": 1536000,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5590605040051742
+    },
+    {
+      "at": "2026-09-17T01:24:49.831777+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-023",
+      "pid": 43101,
+      "maxRssBytes": 2220032,
+      "exitCode": 0,
+      "elapsedSeconds": 0.556907570004114
+    },
+    {
+      "at": "2026-09-17T01:24:52.401220+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-024",
+      "pid": 43124,
+      "maxRssBytes": 1716224,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5536522620022879
+    },
+    {
+      "at": "2026-09-17T01:24:52.961890+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "label": "guest-api",
+      "pid": 43133,
+      "maxRssBytes": 1613824,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5562247310008388
+    },
+    {
+      "at": "2026-09-17T01:24:53.525198+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.product.cpu.abi"
+      ],
+      "label": "guest-abi",
+      "pid": 43139,
+      "maxRssBytes": 1748992,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5623398390016519
+    },
+    {
+      "at": "2026-09-17T01:24:54.096348+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.build.fingerprint"
+      ],
+      "label": "guest-build",
+      "pid": 43148,
+      "maxRssBytes": 1810432,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5575800920050824
+    },
+    {
+      "at": "2026-09-17T01:24:54.660721+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "cat",
+        "/proc/meminfo"
+      ],
+      "label": "guest-memory",
+      "pid": 43157,
+      "maxRssBytes": 1708032,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5583853200005251
+    },
+    {
+      "at": "2026-09-17T01:24:55.228456+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getconf",
+        "_NPROCESSORS_ONLN"
+      ],
+      "label": "guest-cpus",
+      "pid": 43165,
+      "maxRssBytes": 2138112,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5580329869990237
+    },
+    {
+      "at": "2026-09-17T01:24:55.793383+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.config.low_ram"
+      ],
+      "label": "guest-lowram",
+      "pid": 43173,
+      "maxRssBytes": 1843200,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5596684429983725
+    },
+    {
+      "at": "2026-09-17T01:24:56.359648+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "pm",
+        "list",
+        "packages"
+      ],
+      "label": "guest-packages",
+      "pid": 43177,
+      "maxRssBytes": 4759552,
+      "exitCode": 0,
+      "elapsedSeconds": 1.1149241049934062
+    },
+    {
+      "at": "2026-09-17T01:24:57.481769+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "input",
+        "keyevent",
+        "3"
+      ],
+      "label": "guest-home",
+      "pid": 43192,
+      "maxRssBytes": 1761280,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5556707680007094
+    },
+    {
+      "at": "2026-09-17T01:25:01.049722+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "label": "guest-screenshot",
+      "pid": 43217,
+      "maxRssBytes": 4804608,
+      "exitCode": 0,
+      "elapsedSeconds": 3.928540922002867
+    },
+    {
+      "at": "2026-09-17T01:25:05.012050+00:00",
+      "args": [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-iTCP",
+        "-sTCP:LISTEN"
+      ],
+      "label": "listeners-booted",
+      "pid": 43261,
+      "maxRssBytes": 520192,
+      "exitCode": 0,
+      "elapsedSeconds": 0.561807484999008
+    },
+    {
+      "at": "2026-09-17T01:25:05.585688+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "emu",
+        "kill"
+      ],
+      "label": "emulator-shutdown",
+      "pid": 43268,
+      "maxRssBytes": 1748992,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5608693199974368
+    },
+    {
+      "at": "2026-09-17T01:25:07.530037+00:00",
+      "args": [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-iTCP",
+        "-sTCP:LISTEN"
+      ],
+      "label": "listeners-after",
+      "pid": 43288,
+      "maxRssBytes": 520192,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5548728600042523
+    },
+    {
+      "at": "2026-09-17T01:25:49.011846+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-before-boot",
+      "pid": 43337,
+      "maxRssBytes": 8695808,
+      "exitCode": 0,
+      "elapsedSeconds": 2.8703906320006354
+    },
+    {
+      "at": "2026-09-17T01:25:52.908460+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-000",
+      "pid": 43359,
+      "maxRssBytes": 2125824,
+      "exitCode": 1,
+      "elapsedSeconds": 0.562809446004394
+    },
+    {
+      "at": "2026-09-17T01:25:55.484151+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-001",
+      "pid": 43391,
+      "maxRssBytes": 2256896,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5736813699986669
+    },
+    {
+      "at": "2026-09-17T01:25:58.071491+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-002",
+      "pid": 43409,
+      "maxRssBytes": 2121728,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5657447280027554
+    },
+    {
+      "at": "2026-09-17T01:26:00.649793+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-003",
+      "pid": 43430,
+      "maxRssBytes": 2125824,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5626314809996984
+    },
+    {
+      "at": "2026-09-17T01:26:03.225047+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-004",
+      "pid": 43448,
+      "maxRssBytes": 1949696,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5624909850012045
+    },
+    {
+      "at": "2026-09-17T01:26:05.799413+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-005",
+      "pid": 43469,
+      "maxRssBytes": 1847296,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5679617610003334
+    },
+    {
+      "at": "2026-09-17T01:26:08.378557+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-006",
+      "pid": 43487,
+      "maxRssBytes": 1896448,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5795011570007773
+    },
+    {
+      "at": "2026-09-17T01:26:10.968560+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-007",
+      "pid": 43509,
+      "maxRssBytes": 2002944,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5598168409997015
+    },
+    {
+      "at": "2026-09-17T01:26:13.540665+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-008",
+      "pid": 43530,
+      "maxRssBytes": 1949696,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5701541569942492
+    },
+    {
+      "at": "2026-09-17T01:26:16.127669+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-009",
+      "pid": 43551,
+      "maxRssBytes": 1929216,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5612510829960229
+    },
+    {
+      "at": "2026-09-17T01:26:18.702333+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-010",
+      "pid": 43568,
+      "maxRssBytes": 2072576,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5647640620009042
+    },
+    {
+      "at": "2026-09-17T01:26:21.279682+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-011",
+      "pid": 43589,
+      "maxRssBytes": 2068480,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5643561749966466
+    },
+    {
+      "at": "2026-09-17T01:26:23.858781+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-012",
+      "pid": 43607,
+      "maxRssBytes": 2326528,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5663809999969089
+    },
+    {
+      "at": "2026-09-17T01:26:26.435555+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-013",
+      "pid": 43628,
+      "maxRssBytes": 4800512,
+      "exitCode": 0,
+      "elapsedSeconds": 1.1383675270044478
+    },
+    {
+      "at": "2026-09-17T01:26:29.587683+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-014",
+      "pid": 43653,
+      "maxRssBytes": 1478656,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5646989199958625
+    },
+    {
+      "at": "2026-09-17T01:26:32.167081+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-015",
+      "pid": 43671,
+      "maxRssBytes": 1753088,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5722472189954715
+    },
+    {
+      "at": "2026-09-17T01:26:34.750177+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-016",
+      "pid": 43692,
+      "maxRssBytes": 1974272,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5627858550069504
+    },
+    {
+      "at": "2026-09-17T01:26:37.330325+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-017",
+      "pid": 43710,
+      "maxRssBytes": 2035712,
+      "exitCode": 0,
+      "elapsedSeconds": 0.572733392000373
+    },
+    {
+      "at": "2026-09-17T01:26:39.916553+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-018",
+      "pid": 43730,
+      "maxRssBytes": 2424832,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5710078250049264
+    },
+    {
+      "at": "2026-09-17T01:26:42.502046+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-019",
+      "pid": 43748,
+      "maxRssBytes": 1675264,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5677982270062785
+    },
+    {
+      "at": "2026-09-17T01:26:45.083164+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-020",
+      "pid": 43772,
+      "maxRssBytes": 2379776,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5900797689973842
+    },
+    {
+      "at": "2026-09-17T01:26:47.694284+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-021",
+      "pid": 43785,
+      "maxRssBytes": 2134016,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5691724729986163
+    },
+    {
+      "at": "2026-09-17T01:26:50.278655+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-022",
+      "pid": 43807,
+      "maxRssBytes": 2424832,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5765991799999028
+    },
+    {
+      "at": "2026-09-17T01:26:52.871550+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-023",
+      "pid": 43824,
+      "maxRssBytes": 2007040,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5755907430066145
+    },
+    {
+      "at": "2026-09-17T01:26:55.460733+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-024",
+      "pid": 43847,
+      "maxRssBytes": 1945600,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5658865700024762
+    },
+    {
+      "at": "2026-09-17T01:26:58.040157+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-025",
+      "pid": 43864,
+      "maxRssBytes": 1830912,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5804695199985872
+    },
+    {
+      "at": "2026-09-17T01:27:00.633890+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-026",
+      "pid": 43884,
+      "maxRssBytes": 1867776,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5660786739972536
+    },
+    {
+      "at": "2026-09-17T01:27:03.213024+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-027",
+      "pid": 43902,
+      "maxRssBytes": 4767744,
+      "exitCode": 0,
+      "elapsedSeconds": 1.1340559859963832
+    },
+    {
+      "at": "2026-09-17T01:27:04.359161+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "label": "guest-api",
+      "pid": 43916,
+      "maxRssBytes": 2342912,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5783867529971758
+    },
+    {
+      "at": "2026-09-17T01:27:04.948300+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.product.cpu.abi"
+      ],
+      "label": "guest-abi",
+      "pid": 43922,
+      "maxRssBytes": 2379776,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5739987220003968
+    },
+    {
+      "at": "2026-09-17T01:27:05.533695+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.build.fingerprint"
+      ],
+      "label": "guest-build",
+      "pid": 43932,
+      "maxRssBytes": 1945600,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5699217299988959
+    },
+    {
+      "at": "2026-09-17T01:27:06.113227+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "cat",
+        "/proc/meminfo"
+      ],
+      "label": "guest-memory",
+      "pid": 43941,
+      "maxRssBytes": 1855488,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5703988739987835
+    },
+    {
+      "at": "2026-09-17T01:27:06.693224+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getconf",
+        "_NPROCESSORS_ONLN"
+      ],
+      "label": "guest-cpus",
+      "pid": 43950,
+      "maxRssBytes": 2031616,
+      "exitCode": 0,
+      "elapsedSeconds": 0.565311792997818
+    },
+    {
+      "at": "2026-09-17T01:27:07.268263+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.config.low_ram"
+      ],
+      "label": "guest-lowram",
+      "pid": 43955,
+      "maxRssBytes": 2052096,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5814141919981921
+    },
+    {
+      "at": "2026-09-17T01:27:07.858020+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "pm",
+        "list",
+        "packages"
+      ],
+      "label": "guest-packages",
+      "pid": 43963,
+      "maxRssBytes": 2052096,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5715081580055994
+    },
+    {
+      "at": "2026-09-17T01:27:08.439614+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "input",
+        "keyevent",
+        "3"
+      ],
+      "label": "guest-home",
+      "pid": 43970,
+      "maxRssBytes": 2396160,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5672951270025806
+    },
+    {
+      "at": "2026-09-17T01:27:12.040895+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "label": "guest-screenshot",
+      "pid": 43995,
+      "maxRssBytes": 4853760,
+      "exitCode": 0,
+      "elapsedSeconds": 2.956659076997312
+    },
+    {
+      "at": "2026-09-17T01:27:15.019292+00:00",
+      "args": [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-iTCP",
+        "-sTCP:LISTEN"
+      ],
+      "label": "listeners-booted",
+      "pid": 44024,
+      "maxRssBytes": 561152,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5714585140012787
+    },
+    {
+      "at": "2026-09-17T01:27:15.604939+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "emu",
+        "kill"
+      ],
+      "label": "emulator-shutdown",
+      "pid": 44032,
+      "maxRssBytes": 1826816,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5676996569964103
+    },
+    {
+      "at": "2026-09-17T01:27:18.801789+00:00",
+      "args": [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-iTCP",
+        "-sTCP:LISTEN"
+      ],
+      "label": "listeners-after",
+      "pid": 44056,
+      "maxRssBytes": 532480,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5641054730003816
+    },
+    {
+      "at": "2026-09-17T01:28:17.937439+00:00",
+      "args": [
+        "/usr/bin/codesign",
+        "--verify",
+        "--deep",
+        "--strict",
+        "--verbose=4",
+        "-R=notarized",
+        "--check-notarization",
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator"
+      ],
+      "label": "signature-before-boot",
+      "pid": 44150,
+      "maxRssBytes": 8744960,
+      "exitCode": 0,
+      "elapsedSeconds": 3.5993762939906446
+    },
+    {
+      "at": "2026-09-17T01:28:22.720319+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-000",
+      "pid": 44183,
+      "maxRssBytes": 2048000,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5701848530006828
+    },
+    {
+      "at": "2026-09-17T01:28:25.318869+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-001",
+      "pid": 44208,
+      "maxRssBytes": 2015232,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5720614059973741
+    },
+    {
+      "at": "2026-09-17T01:28:27.904485+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-002",
+      "pid": 44230,
+      "maxRssBytes": 1802240,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5616041989997029
+    },
+    {
+      "at": "2026-09-17T01:28:30.477621+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-003",
+      "pid": 44249,
+      "maxRssBytes": 1814528,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5930964430008316
+    },
+    {
+      "at": "2026-09-17T01:28:33.088571+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-004",
+      "pid": 44268,
+      "maxRssBytes": 1859584,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5620720129954861
+    },
+    {
+      "at": "2026-09-17T01:28:35.664343+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-005",
+      "pid": 44289,
+      "maxRssBytes": 2355200,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5695796810032334
+    },
+    {
+      "at": "2026-09-17T01:28:38.247200+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-006",
+      "pid": 44307,
+      "maxRssBytes": 1785856,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5687384670018218
+    },
+    {
+      "at": "2026-09-17T01:28:40.830864+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-007",
+      "pid": 44329,
+      "maxRssBytes": 1986560,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5900569920049747
+    },
+    {
+      "at": "2026-09-17T01:28:43.437077+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-008",
+      "pid": 44349,
+      "maxRssBytes": 2031616,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5653480170003604
+    },
+    {
+      "at": "2026-09-17T01:28:46.013731+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-009",
+      "pid": 44368,
+      "maxRssBytes": 2318336,
+      "exitCode": 1,
+      "elapsedSeconds": 0.7140672560053645
+    },
+    {
+      "at": "2026-09-17T01:28:48.747679+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-010",
+      "pid": 44387,
+      "maxRssBytes": 2138112,
+      "exitCode": 1,
+      "elapsedSeconds": 0.582306931988569
+    },
+    {
+      "at": "2026-09-17T01:28:51.345727+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-011",
+      "pid": 44409,
+      "maxRssBytes": 2068480,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5910565380036132
+    },
+    {
+      "at": "2026-09-17T01:28:53.954313+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-012",
+      "pid": 44426,
+      "maxRssBytes": 2424832,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5830092410033103
+    },
+    {
+      "at": "2026-09-17T01:28:56.553065+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-013",
+      "pid": 44448,
+      "maxRssBytes": 2035712,
+      "exitCode": 1,
+      "elapsedSeconds": 0.5786735039873747
+    },
+    {
+      "at": "2026-09-17T01:28:59.148932+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-014",
+      "pid": 44465,
+      "maxRssBytes": 1961984,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5634310360037489
+    },
+    {
+      "at": "2026-09-17T01:29:01.726235+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-015",
+      "pid": 44483,
+      "maxRssBytes": 1929216,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5896967190055875
+    },
+    {
+      "at": "2026-09-17T01:29:04.331008+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-016",
+      "pid": 44503,
+      "maxRssBytes": 1286144,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5746924439881695
+    },
+    {
+      "at": "2026-09-17T01:29:06.919271+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-017",
+      "pid": 44521,
+      "maxRssBytes": 1859584,
+      "exitCode": 0,
+      "elapsedSeconds": 0.567755128009594
+    },
+    {
+      "at": "2026-09-17T01:29:09.497932+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-018",
+      "pid": 44542,
+      "maxRssBytes": 1863680,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5939104819990462
+    },
+    {
+      "at": "2026-09-17T01:29:12.114600+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-019",
+      "pid": 44559,
+      "maxRssBytes": 2207744,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5750121640012367
+    },
+    {
+      "at": "2026-09-17T01:29:14.706878+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-020",
+      "pid": 44580,
+      "maxRssBytes": 1875968,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5623591569892596
+    },
+    {
+      "at": "2026-09-17T01:29:17.279975+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-021",
+      "pid": 44600,
+      "maxRssBytes": 2166784,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5686729650042253
+    },
+    {
+      "at": "2026-09-17T01:29:19.865149+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-022",
+      "pid": 44626,
+      "maxRssBytes": 2211840,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5793584989878582
+    },
+    {
+      "at": "2026-09-17T01:29:22.457255+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-023",
+      "pid": 44643,
+      "maxRssBytes": 1863680,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5655403080018004
+    },
+    {
+      "at": "2026-09-17T01:29:25.040754+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-024",
+      "pid": 44660,
+      "maxRssBytes": 1933312,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5682616060075816
+    },
+    {
+      "at": "2026-09-17T01:29:27.623264+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-025",
+      "pid": 44682,
+      "maxRssBytes": 2084864,
+      "exitCode": 0,
+      "elapsedSeconds": 0.568263310007751
+    },
+    {
+      "at": "2026-09-17T01:29:30.207420+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-026",
+      "pid": 44700,
+      "maxRssBytes": 1921024,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5736117420019582
+    },
+    {
+      "at": "2026-09-17T01:29:32.797398+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "label": "boot-property-027",
+      "pid": 44719,
+      "maxRssBytes": 1822720,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5766972480050754
+    },
+    {
+      "at": "2026-09-17T01:29:33.384426+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "label": "guest-api",
+      "pid": 44725,
+      "maxRssBytes": 2109440,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5737846470001386
+    },
+    {
+      "at": "2026-09-17T01:29:33.968315+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.product.cpu.abi"
+      ],
+      "label": "guest-abi",
+      "pid": 44736,
+      "maxRssBytes": 1961984,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5756536859989865
+    },
+    {
+      "at": "2026-09-17T01:29:34.554296+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.build.fingerprint"
+      ],
+      "label": "guest-build",
+      "pid": 44744,
+      "maxRssBytes": 2056192,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5722950939962175
+    },
+    {
+      "at": "2026-09-17T01:29:35.135585+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "cat",
+        "/proc/meminfo"
+      ],
+      "label": "guest-memory",
+      "pid": 44752,
+      "maxRssBytes": 1892352,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5846263690036722
+    },
+    {
+      "at": "2026-09-17T01:29:35.733322+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getconf",
+        "_NPROCESSORS_ONLN"
+      ],
+      "label": "guest-cpus",
+      "pid": 44758,
+      "maxRssBytes": 1986560,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5674898279976333
+    },
+    {
+      "at": "2026-09-17T01:29:36.310951+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.config.low_ram"
+      ],
+      "label": "guest-lowram",
+      "pid": 44767,
+      "maxRssBytes": 1925120,
+      "exitCode": 0,
+      "elapsedSeconds": 0.575433243997395
+    },
+    {
+      "at": "2026-09-17T01:29:36.896189+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "pm",
+        "list",
+        "packages"
+      ],
+      "label": "guest-packages",
+      "pid": 44777,
+      "maxRssBytes": 4853760,
+      "exitCode": 0,
+      "elapsedSeconds": 1.1536179990071105
+    },
+    {
+      "at": "2026-09-17T01:29:38.061246+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "input",
+        "keyevent",
+        "224"
+      ],
+      "label": "guest-wake",
+      "pid": 44789,
+      "maxRssBytes": 1945600,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5760678320075385
+    },
+    {
+      "at": "2026-09-17T01:29:38.646995+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "wm",
+        "dismiss-keyguard"
+      ],
+      "label": "guest-dismiss-keyguard",
+      "pid": 44795,
+      "maxRssBytes": 2166784,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5741470500070136
+    },
+    {
+      "at": "2026-09-17T01:29:39.230234+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "input",
+        "keyevent",
+        "3"
+      ],
+      "label": "guest-home",
+      "pid": 44805,
+      "maxRssBytes": 2125824,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5667178869916825
+    },
+    {
+      "at": "2026-09-17T01:29:44.808654+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "dumpsys",
+        "power"
+      ],
+      "label": "guest-power",
+      "pid": 44839,
+      "maxRssBytes": 2068480,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5783949539909372
+    },
+    {
+      "at": "2026-09-17T01:29:45.398290+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "dumpsys",
+        "activity",
+        "activities"
+      ],
+      "label": "guest-activity",
+      "pid": 44845,
+      "maxRssBytes": 2379776,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5898029529926134
+    },
+    {
+      "at": "2026-09-17T01:29:46.001670+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "label": "guest-screenshot",
+      "pid": 44854,
+      "maxRssBytes": 4792320,
+      "exitCode": 0,
+      "elapsedSeconds": 4.032343283994123
+    },
+    {
+      "at": "2026-09-17T01:29:50.069680+00:00",
+      "args": [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-iTCP",
+        "-sTCP:LISTEN"
+      ],
+      "label": "listeners-booted",
+      "pid": 44892,
+      "maxRssBytes": 532480,
+      "exitCode": 0,
+      "elapsedSeconds": 0.571699454987538
+    },
+    {
+      "at": "2026-09-17T01:29:50.656524+00:00",
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "emu",
+        "kill"
+      ],
+      "label": "emulator-shutdown",
+      "pid": 44900,
+      "maxRssBytes": 1867776,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5720973950083135
+    },
+    {
+      "at": "2026-09-17T01:29:53.567510+00:00",
+      "args": [
+        "/usr/sbin/lsof",
+        "-nP",
+        "-iTCP",
+        "-sTCP:LISTEN"
+      ],
+      "label": "listeners-after",
+      "pid": 44921,
+      "maxRssBytes": 532480,
+      "exitCode": 0,
+      "elapsedSeconds": 0.5628549099928932
+    }
+  ],
+  "javaHome": "/usr/local/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home",
+  "lastStage": "boot",
+  "lastStageStatus": "PASS",
+  "failures": [
+    {
+      "at": "2026-09-17T01:10:09.286514+00:00",
+      "stage": "probe",
+      "error": "AssertionError('notarization-emulator: exit 1, see /Users/kendrick/Desktop/kidea/tests/evidence/r05/android-sim-bootstrap-r1/010-notarization-emulator')"
+    },
+    {
+      "at": "2026-09-17T01:12:24.451949+00:00",
+      "stage": "avd",
+      "error": "AssertionError('create-avd: exit 1, see /Users/kendrick/Desktop/kidea/tests/evidence/r05/android-sim-bootstrap-r1/031-create-avd')"
+    },
+    {
+      "at": "2026-09-17T01:12:58.855465+00:00",
+      "stage": "avd",
+      "error": "AssertionError('signature-after-package-registration: exit 1, see /Users/kendrick/Desktop/kidea/tests/evidence/r05/android-sim-bootstrap-r1/032-signature-after-package-registration')"
+    },
+    {
+      "at": "2026-09-17T01:15:20.737272+00:00",
+      "stage": "boot",
+      "error": "AssertionError()"
+    },
+    {
+      "at": "2026-09-17T01:17:35.322755+00:00",
+      "stage": "boot",
+      "error": "AssertionError([\"AssertionError('lab process RSS exceeds4GiB')\"])"
+    },
+    {
+      "at": "2026-09-17T01:19:25.200978+00:00",
+      "stage": "boot",
+      "error": "AssertionError('guest-abi: exit 255, see /Users/kendrick/Desktop/kidea/tests/evidence/r05/android-sim-bootstrap-r1/102-guest-abi')"
+    },
+    {
+      "at": "2026-09-17T01:25:29.605836+00:00",
+      "stage": "boot",
+      "error": "OSError(48, 'Address already in use')"
+    }
+  ],
+  "bootProcesses": [
+    {
+      "name": "adb-server",
+      "pid": 40815,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-L",
+        "tcp:127.0.0.1:5037",
+        "server",
+        "nodaemon"
+      ],
+      "at": "2026-09-17T01:15:19.729728+00:00"
+    },
+    {
+      "name": "adb-server",
+      "pid": 40879,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-L",
+        "tcp:5037",
+        "--one-device",
+        "emulator-5554",
+        "server",
+        "nodaemon"
+      ],
+      "at": "2026-09-17T01:16:01.935815+00:00"
+    },
+    {
+      "name": "emulator",
+      "pid": 40885,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator",
+        "-avd",
+        "kidea-r05-api36-x64-r1",
+        "-ports",
+        "5554,5555",
+        "-no-window",
+        "-no-audio",
+        "-no-boot-anim",
+        "-no-snapshot",
+        "-no-metrics",
+        "-gpu",
+        "software",
+        "-memory",
+        "2048",
+        "-cores",
+        "2"
+      ],
+      "at": "2026-09-17T01:16:02.946047+00:00"
+    },
+    {
+      "name": "adb-server",
+      "pid": 41825,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-L",
+        "tcp:5037",
+        "--one-device",
+        "emulator-5554",
+        "server",
+        "nodaemon"
+      ],
+      "at": "2026-09-17T01:18:15.026170+00:00"
+    },
+    {
+      "name": "emulator",
+      "pid": 41830,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator",
+        "-avd",
+        "kidea-r05-api36-x64-r1",
+        "-ports",
+        "5554,5555",
+        "-no-window",
+        "-no-audio",
+        "-no-boot-anim",
+        "-no-snapshot",
+        "-no-metrics",
+        "-gpu",
+        "host",
+        "-memory",
+        "2048",
+        "-cores",
+        "2"
+      ],
+      "at": "2026-09-17T01:18:16.037444+00:00"
+    },
+    {
+      "name": "adb-server",
+      "pid": 42620,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-L",
+        "tcp:5037",
+        "--one-device",
+        "emulator-5554",
+        "server",
+        "nodaemon"
+      ],
+      "at": "2026-09-17T01:23:49.677808+00:00"
+    },
+    {
+      "name": "emulator",
+      "pid": 42626,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator",
+        "-avd",
+        "kidea-r05-api36-x64-r1",
+        "-ports",
+        "5554,5555",
+        "-no-window",
+        "-no-audio",
+        "-no-boot-anim",
+        "-no-snapshot",
+        "-no-metrics",
+        "-gpu",
+        "host",
+        "-memory",
+        "2048",
+        "-cores",
+        "2",
+        "-lowram"
+      ],
+      "at": "2026-09-17T01:23:50.686516+00:00"
+    },
+    {
+      "name": "adb-server",
+      "pid": 43351,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-L",
+        "tcp:5037",
+        "--one-device",
+        "emulator-5554",
+        "server",
+        "nodaemon"
+      ],
+      "at": "2026-09-17T01:25:51.895846+00:00"
+    },
+    {
+      "name": "emulator",
+      "pid": 43357,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator",
+        "-avd",
+        "kidea-r05-api36-x64-r1",
+        "-ports",
+        "5554,5555",
+        "-no-window",
+        "-no-audio",
+        "-no-boot-anim",
+        "-no-snapshot",
+        "-no-metrics",
+        "-gpu",
+        "host",
+        "-memory",
+        "2048",
+        "-cores",
+        "2",
+        "-lowram"
+      ],
+      "at": "2026-09-17T01:25:52.906315+00:00"
+    },
+    {
+      "name": "adb-server",
+      "pid": 44174,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/platform-tools/adb",
+        "-L",
+        "tcp:5037",
+        "--one-device",
+        "emulator-5554",
+        "server",
+        "nodaemon"
+      ],
+      "at": "2026-09-17T01:28:21.580402+00:00"
+    },
+    {
+      "name": "emulator",
+      "pid": 44182,
+      "args": [
+        "/Users/kendrick/Desktop/kidea-native-lab/android-sim-r1/sdk/emulator/emulator",
+        "-avd",
+        "kidea-r05-api36-x64-r1",
+        "-ports",
+        "5554,5555",
+        "-no-window",
+        "-no-audio",
+        "-no-boot-anim",
+        "-no-snapshot",
+        "-no-metrics",
+        "-gpu",
+        "host",
+        "-memory",
+        "2048",
+        "-cores",
+        "2",
+        "-lowram"
+      ],
+      "at": "2026-09-17T01:28:22.717424+00:00"
+    }
+  ],
+  "bootCleanup": [
+    {
+      "name": "adb-server",
+      "pid": 40815,
+      "exitCode": -6
+    },
+    {
+      "name": "emulator",
+      "pid": 40885,
+      "exitCode": 0
+    },
+    {
+      "name": "adb-server",
+      "pid": 40879,
+      "exitCode": -15
+    },
+    {
+      "name": "emulator",
+      "pid": 41830,
+      "exitCode": 0
+    },
+    {
+      "name": "adb-server",
+      "pid": 41825,
+      "exitCode": -15
+    },
+    {
+      "name": "emulator",
+      "pid": 42626,
+      "exitCode": 0
+    },
+    {
+      "name": "adb-server",
+      "pid": 42620,
+      "exitCode": -15
+    },
+    {
+      "name": "emulator",
+      "pid": 43357,
+      "exitCode": 0
+    },
+    {
+      "name": "adb-server",
+      "pid": 43351,
+      "exitCode": -15
+    },
+    {
+      "name": "emulator",
+      "pid": 44182,
+      "exitCode": 0
+    },
+    {
+      "name": "adb-server",
+      "pid": 44174,
+      "exitCode": -15
+    }
+  ],
+  "maxBootRssBytes": 3037343744,
+  "finalFreeBytes": 374367637504,
+  "elapsedSeconds": 1328.9226911067963,
+  "remainingLabProcesses": [],
+  "bootResult": {
+    "status": "PASS",
+    "api": "36",
+    "abi": "x86_64",
+    "serial": "emulator-5554",
+    "guestMemoryBytes": 2067746816,
+    "guestCpus": 2,
+    "lowramFlag": true,
+    "screenshotSha256": "11e8b09e63ba473b7448496062effc28183e564e4493ee6790dca0e5ae3401f9",
+    "at": "2026-09-17T01:29:50.654049+00:00"
+  }
+}
