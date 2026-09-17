@@ -1,0 +1,240 @@
+{
+  "at": "2026-09-17T00:07:14.798352+00:00",
+  "head": "2509e4fd47c038ed6ae4952f9ebe67acb7e1de07",
+  "status": "PASS_EVIDENCE_REVIEW_ONLY",
+  "reviewer": "current agent; not independent review or Human acceptance",
+  "sources": [
+    {
+      "path": "README.md",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "bootstrap.mjs",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "collect.mjs",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "gradle-stage.mjs",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "maven-audit.mjs",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "maven-proxy.mjs",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "mutations.mjs",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/app/build.gradle",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/app/proguard-rules.pro",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/app/src/main/AndroidManifest.xml",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/app/src/main/java/org/kidea/lab/LabController.kt",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/app/src/main/java/org/kidea/lab/MainActivity.kt",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/app/src/main/res/drawable/ic_lab.xml",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/app/src/main/res/values/strings.xml",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/app/src/main/res/xml/data_extraction_rules.xml",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/app/src/test/java/org/kidea/lab/LabControllerTest.kt",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/build.gradle",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/gradle.properties",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "project/settings.gradle",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "sdk-metadata/build-tools-package.xml",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "sdk-metadata/platform-package.xml",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "sdk-metadata/platform37-package.xml",
+      "snapshot": true,
+      "live": true
+    },
+    {
+      "path": "sdk37.mjs",
+      "snapshot": true,
+      "live": true
+    }
+  ],
+  "pilotFilesMatching": 21,
+  "unitReports": [
+    {
+      "path": "tests/evidence/r05/android-execution-r1/final-artifacts/app/build/test-results/testDebugUnitTest/TEST-org.kidea.lab.LabControllerTest.xml",
+      "sha256": "c86f769b0f5002146200d60bbe89d89779f27359e605444a926d851409e757d7",
+      "results": {
+        "name": "org.kidea.lab.LabControllerTest",
+        "tests": "11",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-09-16T17:23:23.416Z",
+        "hostname": "ef311318418a",
+        "time": "0.482"
+      }
+    },
+    {
+      "path": "tests/evidence/r05/android-execution-r1/final-artifacts/app/build/test-results/testReleaseUnitTest/TEST-org.kidea.lab.LabControllerTest.xml",
+      "sha256": "2186a3f78d37a6d409fc620377feff7f676f194a43559b88ee138f11af0ce414",
+      "results": {
+        "name": "org.kidea.lab.LabControllerTest",
+        "tests": "11",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-09-16T17:23:26.222Z",
+        "hostname": "ef311318418a",
+        "time": "0.266"
+      }
+    }
+  ],
+  "lintReports": [
+    {
+      "path": "tests/evidence/r05/android-execution-r1/final-artifacts/app/build/reports/lint-results-release.xml",
+      "sha256": "224d8ee1273d5e13d2c5a6ad745b7a4acacdf9458356b0cf1e7762d7b6309b90",
+      "issues": 0
+    },
+    {
+      "path": "tests/evidence/r05/android-execution-r1/final-artifacts/app/build/reports/lint-results-debug.xml",
+      "sha256": "224d8ee1273d5e13d2c5a6ad745b7a4acacdf9458356b0cf1e7762d7b6309b90",
+      "issues": 0
+    }
+  ],
+  "mutants": [
+    {
+      "name": "generation",
+      "oracle": "staleGenerationCannotReplaceNewerData",
+      "code": 1,
+      "signal": null,
+      "tests": 11,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "detected": true
+    },
+    {
+      "name": "owner-cancel",
+      "oracle": "closingOwnerCancelsSuspendedWork",
+      "code": 1,
+      "signal": null,
+      "tests": 11,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "detected": true
+    },
+    {
+      "name": "render-command",
+      "oracle": "readingStateNeverSubmitsAndIntentIsSingle",
+      "code": 1,
+      "signal": null,
+      "tests": 11,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "detected": true
+    },
+    {
+      "name": "actor-cache",
+      "oracle": "cacheSeparatesActorEpochAndWorkshop",
+      "code": 1,
+      "signal": null,
+      "tests": 11,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "detected": true
+    },
+    {
+      "name": "intent-identity",
+      "oracle": "unknownReconciliationKeepsIntentAndDoesNotResubmit",
+      "code": 1,
+      "signal": null,
+      "tests": 11,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "detected": true
+    },
+    {
+      "name": "swallowed-cancellation",
+      "oracle": "cancellationDoesNotPublishFallbackState",
+      "code": 1,
+      "signal": null,
+      "tests": 11,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "detected": true
+    }
+  ],
+  "limitations": [
+    "No new build or device run",
+    "APK and Docker volume not reopened; artifact identities refer to A1 receipts",
+    "48 tooling advisories require renewed reachability review before device/network/signing"
+  ],
+  "historicalManifestSha256": "3b0092a5b56259b6227cc670c6a631cb726943fabb232491d251c0517b4fa408"
+}
