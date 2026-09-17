@@ -10,6 +10,8 @@ Ngày 2026-09-17. Nguồn trạng thái: [roadmap](../KIDEA_ROADMAP.md#review-cu
 - R05, R06, R07, R08 đã nghiệm thu đúng phạm vi; các nhãn IN_REVIEW trong raw evidence cũ không phải yêu cầu duyệt lại.
 - Client Web; Android/iOS Future chưa lịch. Docker do Human đã cài; GCP `kidea-508908` đã được cấp quyền lab tạo/test/thu hồi. Không xin lại từng lệnh trong gói hợp lệ. Giữ kiến trúc và nghiệp vụ pilot đã chốt, không thiết kế lại từ đầu.
 
+[Gói cụ thể hiện tại](../proposals/r09-t02-authoring-r1.md): gộp chấp nhận đầu ra B/C và quyền viết source/test/harness T02, kiểm tĩnh/Git local. [Review kỹ thuật](R09_BC_TECHNICAL_REVIEW.md) hoàn tất; không hỏi placeholder build.
+
 ## Còn cần quyết định ở đúng thời điểm
 
 | Điểm | Human cần làm gì | AI phải chuẩn bị trước |

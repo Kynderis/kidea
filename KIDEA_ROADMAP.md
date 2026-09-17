@@ -12,6 +12,8 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
+**Cập nhật review B/C:** [Review kỹ thuật](docs/R09_BC_TECHNICAL_REVIEW.md) đã đối chiếu lại168file nguồn/18log/23docs/7906sample entries, không sai lệch; đề nghị chấp nhận đầu ra, chưa ghi Human nghiệm thu. [Gói T02 viết nguồn/test/harness](proposals/r09-t02-authoring-r1.md) đã chuẩn bị để duyệt, chưa code/build ứng dụng. Không cần duyệt lại A–E hoặc nghiệp vụ cũ.
+
 **Hiện hành — R09 A–E APPROVED:** Human “Tôi duyệt tất cả mục trên nhé” cho [gói tại 77f5caf](proposals/r09-next-decisions-r1.md). [A nghiệm thu D1](docs/R09_D1_ACCEPTANCE.md) tại26dffeb; S02 DONE. B1–B3 đã triển khai và [kiểm nguồn cuối](tests/evidence/r09/ae-r1.md): 9/9 bộ PASS, core 293/293, 17 ca mới, R06/R07/R08 local; 168 file nguồn không đổi. B/C IN_REVIEW, chưa nghiệm thu đầu ra. C đã chuẩn bị hồ sơ, Git local/public init/SAVE ở sibling, WAITING tại W-001, không remote; chưa code/build/deploy workshop hoặc AI trial. D/E đã chốt chính sách theo thời điểm; không hỏi lại ý nghĩa nghiệp vụ/lab.
 
 **Điểm tiếp tục:** review [đầu ra B/C](docs/R09_AE_REVIEW.md), sau đó chuẩn bị gói T02 cụ thể trước mở code/build; kế thừa approval R03–R05 và A–E. Manifest ứng dụng mới còn NOT_READY, 137 source IDs NOT_RUN; không xin nghiệm thu trước ứng dụng. [Quyết định hiện hành](docs/R09_DECISIONS.md). View pilot kế thừa R07, Windows/Apple Silicon và native hoãn theo Human; không ghi PASS hoặc tự bỏ gate view R09-T14 khi khép R09. R10 chưa mở. Các đoạn trạng thái R07/R08/D1 bên dưới là lịch sử trước A–E.

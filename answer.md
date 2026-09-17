@@ -1,8 +1,10 @@
-Đã triển khai gói A–E bạn duyệt:
+Đã review B/C: 168 file nguồn, 18 log, 23 tài liệu pilot và 7.906 entry mẫu đều khớp bằng chứng; không chạy lại test hoặc sửa pilot.
 
-- Ghi nghiệm thu D1; bổ sung sửa kế hoạch/vòng làm việc, hồ sơ phát hành và phục hồi metadata sau gián đoạn.
-- Kiểm cuối **9/9 bộ PASS**: core **293/293**, **17 ca mới**, hồi quy R06/R07/R08 local; 168 file nguồn không đổi. Giữ log cả FAIL và PASS.
-- Chuẩn bị và khởi tạo pilot bằng API công khai, lưu điểm tiếp tục; Git local sạch, không remote. Giữ nguyên samples; 137 ca ứng dụng vẫn NOT_RUN.
-- Ghi nhận D/E để áp dụng đúng giai đoạn đã duyệt.
+Đề xuất bạn duyệt gộp:
 
-[Báo cáo và giới hạn](tests/evidence/r09/ae-r1.md). B/C đang chờ review đầu ra. Bước tiếp theo là chuẩn bị gói T02 cụ thể trước khi mở code/build ứng dụng; không cần duyệt lại quyết định A–E. **R09 chưa hoàn tất.**
+1. Nghiệm thu B/C đúng phạm vi helper và chuẩn bị pilot.
+2. Cho viết backend, test và harness T02; kiểm tĩnh và commit local. Chưa chạy build/Docker/cloud/deploy, không tải/cài thêm.
+
+Gói cụ thể: [R09-T02 authoring r1](proposals/r09-t02-authoring-r1.md). Sau khi có source/lệnh thật, tôi sẽ chuẩn bị gói build có giới hạn cụ thể. R09 chưa hoàn tất.
+
+Cần quyền mới vì mục C trong gói A–E đã duyệt chỉ cho chuẩn bị/khởi tạo pilot và ghi rõ chưa mở code/build/deploy workshop; không cần duyệt lại nghiệp vụ đã chốt.
