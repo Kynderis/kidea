@@ -1,0 +1,66 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved one T02 r5 run at e8231b0. Dev and ASan/UBSan succeeded; run stopped after TSan six WAL races. Existing authoring grant covers diagnostic source preparation only. Save actual continuation; no waiver, diagnostic execution, or step completion."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t02/build-proposal.md",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/sqlite-diagnostic.mjs",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/sqlite-diagnostic.sh",
+      "anchor": null
+    },
+    {
+      "path": "tests/t02/sqlite-diagnostic.cpp",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "d7e653c0774a4d0a001cb2f81b155de192f69ae1dc614f7868c6ba5d6c1394dc",
+  "expectedGit": {
+    "head": "01d8d7ffd317b43e3c3650568595163078428f10",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "R5 dev/ASan+UBSan46/46CTest và18/18HTTP PASS; dev tidy toàn bộ qua. TSan40/46,6FAIL I09/C01–C05 tại SQLite WAL. Giữ run t02-ba920f4d-1f9d-4ce5-b76d-13a81d51edde/3container thu hồi. SourceSQLite tag-20200519-1 chỉ hỗ trợ giả thuyết possible false-positive. Chuẩn bị diagnostic4mode source01d8d7f, manifest85316832 trong repo Kidea, chưa chạy.",
+    "remaining": "TSanHTTP/release chưa chạy; không PASS toàn lượt r5/T02/R09. Chưa kết luận false-positive hoặc sửa/miễn trừ vendor. Diagnostic mới chỉ kiểm tĩnh.",
+    "nextAction": "Review repo Kidea docs/R09_T02_SQLITE_DIAGNOSTIC_REVIEW.md: một container15phút,2CPU4GiB/1GiB disk/128MiB data/0download. Chỉ chạy khi Human duyệt manifest exact. Giữ TSan/full suite, không suppression/đổi WAL/nghiệp vụ hay dùng probe thay nghiệm thu.",
+    "sourceRefs": [
+      {
+        "path": "docs/t02/build-proposal.md",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/sqlite-diagnostic.mjs",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/sqlite-diagnostic.sh",
+        "anchor": null
+      },
+      {
+        "path": "tests/t02/sqlite-diagnostic.cpp",
+        "anchor": null
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
-R4 **PASS46/46 nhóm CTest và clang-tidy toàn bộ backend**, nhưng dừng ở12cảnh báo trong bộ test. Tôi đã sửa, giữ nguyên assertion/expected/log; HTTP/sanitizer/release chưa chạy, R09 chưa hoàn tất.
+R5: **dev và ASan/UBSan đều PASS46/46 nhóm CTest cùng18/18 kiểm HTTP**. TSan có6lỗi tại SQLite WAL; release chưa chạy. Đã giữ log và thu hồi3container, chưa coi R09 hoàn tất.
 
-Bạn duyệt [một lượt build r5](docs/R09_T02_BUILD_R5_REVIEW.md) nhé: tối đa2giờ,4container tuần tự,2CPU/4GiB, thêm tối đa8GiB đĩa; không tải/cài thêm lên macOS.
+Mã SQLite có ghi chú đây có thể là cảnh báo giả, nhưng tôi chưa bỏ qua. Bạn duyệt [gói chẩn đoán SQLite/TSan](docs/R09_T02_SQLITE_DIAGNOSTIC_REVIEW.md) nhé:1container,tối đa15phút,2CPU/4GiB,thêm tối đa1GiB đĩa; không tải/cài thêm, không tắt sanitizer hoặc sửa backend.
 
-Cần duyệt vì gói r4 quy định một lượt và dừng khi lỗi, không đổi nguồn rồi chạy lại bằng quyền đó. Không xin lại nghiệp vụ/B/C.
+Cần duyệt vì lượt r5 đã dừng theo quy định khi FAIL; phép chẩn đoán dùng nguồn/lệnh/manifest mới. Không xin miễn trừ kiểm an toàn.

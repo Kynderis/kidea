@@ -1,6 +1,6 @@
 # R09-T02 build r5 — sửa cảnh báo trong bộ test
 
-**PROPOSED — chưa duyệt/chưa chạy.** [R4](../tests/evidence/r09/t02-build-r4.md) build/CTest46/46/collector/backend clang-tidy qua, dừng tại12warning performance trong test. Giữ FAIL/log, không dùng lại grant một lượt r4.
+**APPROVED và đã thực thi — dev/ASan+UBSan PASS, TSan FAIL6ca SQLite WAL.** Human “duyệt nhé” cho gói tại e8231b0. [Kết quả r5](../tests/evidence/r09/t02-build-r5.md); quyền một lượt đã dùng. [Diagnostic chờ duyệt](R09_T02_SQLITE_DIAGNOSTIC_REVIEW.md). Nội dung dưới giữ nguyên gói đã trình. [R4](../tests/evidence/r09/t02-build-r4.md) build/CTest46/46/collector/backend clang-tidy qua, dừng tại12warning performance trong test. Giữ FAIL/log, không dùng lại grant một lượt r4.
 
 ## Nguồn cụ thể
 

@@ -1,0 +1,18 @@
+{
+  "reports": 6,
+  "failedGroups": [
+    "I09",
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05"
+  ],
+  "commonWrite": "walIndexWriteHdr /vendor/sqlite/sqlite3.c:68469",
+  "commonRead": "walIndexTryHdr /vendor/sqlite/sqlite3.c:70135",
+  "location": "SQLite WAL shared-memory header",
+  "upstreamComment": "tag-20200519-1: possible TSAN false-positive due to double-read and memory barrier",
+  "compiler": "GCC13; vendored SQLITE_NO_TSAN macro active for clang only",
+  "conclusion": "Possible instrumentation limitation, not yet established as harmless; no suppression or waiver applied",
+  "next": "Isolated fully instrumented diagnostic, pending approval"
+}

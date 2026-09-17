@@ -1,5 +1,7 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
+**Hiện hành — T02 r5 dev/ASan+UBSan PASS, TSan FAIL:** [Bằng chứng](tests/evidence/r09/t02-build-r5.md). Dev/ASan mỗi46CTest+18HTTP, dev toàn bộ tidy qua; TSan40/46,6FAIL cùng SQLite WAL header, release/TSanHTTP chưa chạy. Giữ FAIL/3container thu hồi. Chưa kết luận false-positive hoặc miễn trừ; [diagnostic15phút](docs/R09_T02_SQLITE_DIAGNOSTIC_REVIEW.md) đã chuẩn bị chờ duyệt, source01d8d7f/HEAD14cb14e,54source/824vendor kiểm tĩnh qua. Không sửa backend/vendor hoặc giảm test. R09 còn mở/T02 chưa nghiệm thu/R10 chưa mở. Các đoạn cũ giữ lịch sử.
+
 **Hiện hành — T02 r4 đã duyệt/chạy,46/46 CTest và backend tidy PASS; tổng lượt FAIL tests tidy:** [Bằng chứng](tests/evidence/r09/t02-build-r4.md).12warning test đã sửa không đổi oracle/log/flags, [r5](docs/R09_T02_BUILD_R5_REVIEW.md) chờ duyệt; source539e2b3/HEAD4d30799,51source/824vendor kiểm tĩnh qua. Bản sửa chưa compile/runtime; HTTP/sanitizer/release chưa chạy. R09 vẫn mở, chưa nghiệm thu T02/137nghĩa vụ, R10 chưa mở. Các đoạn cũ giữ lịch sử.
 
 **Hiện hành — T02 r3 đã duyệt/chạy,46/46 CTest PASS; tổng lượt FAIL tidy:** [Bằng chứng](tests/evidence/r09/t02-build-r3.md). Collector/model-store-executor tidy qua; main lỗi copy Response không cần thiết, lượt dừng/thu hồi container. Đã sửa const reference, [r4](docs/R09_T02_BUILD_R4_REVIEW.md) chờ duyệt; source1be7797/HEAD506b426,51source/824vendor kiểm tĩnh qua. Bản sửa chưa compile/runtime; tidy tests/HTTP/sanitizer/release chưa chạy. R09 còn mở, không tự nghiệm thu T02/137nghĩa vụ, R10 chưa mở. Các đoạn cũ bên dưới giữ lịch sử.
@@ -8,7 +10,7 @@
 
 **Hiện hành — T02 build r1 đã duyệt/chạy, FAIL compile:** [Bằng chứng](tests/evidence/r09/t02-build-r1.md), formatter18/configure qua; compile test lỗi alias Json/range-loop, lượt dừng và container đã thu hồi. Đã sửa nguồn test, không đổi oracle; [build r2 cụ thể](docs/R09_T02_BUILD_R2_REVIEW.md) chờ duyệt lượt mới. Pilot source762fb48/HEADc431bbd,51source/824vendor kiểm tĩnh qua; bản sửa chưa compile, CTest/HTTP/sanitizer/release NOT_RUN. R09 vẫn mở, không hỏi lại B/C/nghiệp vụ, không mở R10. Các đoạn trước r1 bên dưới giữ lịch sử.
 
-Ngày cập nhật: 2026-09-17.
+Ngày cập nhật: 2026-09-18.
 
 Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–R04 đã được Human duyệt trong phạm vi từng gói; R05 đã được Human nghiệm thu backend/Web; R06 r1 đã được nghiệm thu trong phạm vi helper/metadata và adapter hữu hạn, chưa là toàn Kidea hoặc ứng dụng pilot hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 

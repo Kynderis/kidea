@@ -1,0 +1,84 @@
+Source: /Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/backend-integration-r1/vendor/sqlite/sqlite3.c
+SHA256: b1dd5d74ec7f29055a6684fa06fb3c2f6821c87dd38f9a458dfd2e8a1db28189
+
+68440: }
+68441: 
+68442: /*
+68443: ** Add the SQLITE_NO_TSAN as part of the return-type of a function
+68444: ** definition as a hint that the function contains constructs that
+68445: ** might give false-positive TSAN warnings.
+68446: **
+68447: ** See tag-20200519-1.
+68448: */
+68449: #if defined(__clang__) && !defined(SQLITE_NO_TSAN)
+68450: # define SQLITE_NO_TSAN __attribute__((no_sanitize_thread))
+68451: #else
+68452: # define SQLITE_NO_TSAN
+68453: #endif
+68454: 
+68455: /*
+68456: ** Write the header information in pWal->hdr into the wal-index.
+68457: **
+68458: ** The checksum on pWal->hdr is updated before it is written.
+68459: */
+68460: static SQLITE_NO_TSAN void walIndexWriteHdr(Wal *pWal){
+68461:   volatile WalIndexHdr *aHdr = walIndexHdr(pWal);
+68462:   const int nCksum = offsetof(WalIndexHdr, aCksum);
+68463: 
+68464:   assert( pWal->writeLock );
+68465:   pWal->hdr.isInit = 1;
+68466:   pWal->hdr.iVersion = WALINDEX_MAX_VERSION;
+68467:   walChecksumBytes(1, (u8*)&pWal->hdr, nCksum, 0, pWal->hdr.aCksum);
+68468:   /* Possible TSAN false-positive.  See tag-20200519-1 */
+68469:   memcpy((void*)&aHdr[1], (const void*)&pWal->hdr, sizeof(WalIndexHdr));
+68470:   walShmBarrier(pWal);
+68471:   memcpy((void*)&aHdr[0], (const void*)&pWal->hdr, sizeof(WalIndexHdr));
+70108: static SQLITE_NO_TSAN int walIndexTryHdr(Wal *pWal, int *pChanged){
+70109:   u32 aCksum[2];                  /* Checksum on the header content */
+70110:   WalIndexHdr h1, h2;             /* Two copies of the header content */
+70111:   WalIndexHdr volatile *aHdr;     /* Header in shared memory */
+70112: 
+70113:   /* The first page of the wal-index must be mapped at this point. */
+70114:   assert( pWal->nWiData>0 && pWal->apWiData[0] );
+70115: 
+70116:   /* Read the header. This might happen concurrently with a write to the
+70117:   ** same area of shared memory on a different CPU in a SMP,
+70118:   ** meaning it is possible that an inconsistent snapshot is read
+70119:   ** from the file. If this happens, return non-zero.
+70120:   **
+70121:   ** tag-20200519-1:
+70122:   ** There are two copies of the header at the beginning of the wal-index.
+70123:   ** When reading, read [0] first then [1].  Writes are in the reverse order.
+70124:   ** Memory barriers are used to prevent the compiler or the hardware from
+70125:   ** reordering the reads and writes.  TSAN and similar tools can sometimes
+70126:   ** give false-positive warnings about these accesses because the tools do not
+70127:   ** account for the double-read and the memory barrier. The use of mutexes
+70128:   ** here would be problematic as the memory being accessed is potentially
+70129:   ** shared among multiple processes and not all mutex implementations work
+70130:   ** reliably in that environment.
+70131:   */
+70132:   aHdr = walIndexHdr(pWal);
+70133:   memcpy(&h1, (void *)&aHdr[0], sizeof(h1)); /* Possible TSAN false-positive */
+70134:   walShmBarrier(pWal);
+70135:   memcpy(&h2, (void *)&aHdr[1], sizeof(h2));
+70136: 
+70137:   if( memcmp(&h1, &h2, sizeof(h1))!=0 ){
+70138:     return 1;   /* Dirty read */
+70139:   }
+70140:   if( h1.isInit==0 ){
+70141:     return 1;   /* Malformed header - probably all zeros */
+70142:   }
+70143:   walChecksumBytes(1, (u8*)&h1, sizeof(h1)-sizeof(h1.aCksum), 0, aCksum);
+70144:   if( aCksum[0]!=h1.aCksum[0] || aCksum[1]!=h1.aCksum[1] ){
+70145:     return 1;   /* Checksum does not match */
+70146:   }
+70147: 
+70148:   if( memcmp(&pWal->hdr, &h1, sizeof(WalIndexHdr)) ){
+70149:     *pChanged = 1;
+70150:     memcpy(&pWal->hdr, &h1, sizeof(WalIndexHdr));
+70151:     pWal->szPage = (pWal->hdr.szPage&0xfe00) + ((pWal->hdr.szPage&0x0001)<<16);
+70152:     testcase( pWal->szPage<=32768 );
+70153:     testcase( pWal->szPage>=65536 );
+70154:   }
+70155: 
+70156:   /* The header was successfully read. Return zero. */
