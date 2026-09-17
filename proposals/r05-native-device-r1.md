@@ -2,6 +2,8 @@
 
 Ngày 2026-09-17. **PREPARED / IOS_INTEL_SELECTED — chưa INSTALL_READY hoặc duyệt thực thi thiết bị.** Human “ok làm tiếp đi” giao tiếp tục sau Android A1; A1/SDK37 đã được duyệt và hoàn tất, không xin duyệt lại. Gói này giữ R05 IN_PROGRESS.
 
+**Được thay về điểm tiếp tục bởi [ma trận mô phỏng r1](r05-simulator-lab-r1.md)** theo chỉ đạo Human tiếp theo. A2/A3 bên dưới đã trộn yêu cầu ứng dụng và mẫu Kidea: không còn dùng điện thoại thật làm điều kiện vào toàn bộ R05, không mặc định nâng macOS. Nội dung dưới giữ lịch sử đề xuất; rule/ngưỡng ứng dụng chưa bị xóa hoặc ghi PASS. Review A1 vẫn giữ hiệu lực đúng source/phạm vi.
+
 ## Review A1 đã làm
 
 [Receipt kiểm lại](../tests/evidence/r05/native-device-plan-r1/a1-review.json) đối chiếu nguồn HEAD2509e4f: 23 file snapshot và nguồn sibling khớp manifest; 21 hồ sơ pilot khớp amendment SDK37; đọc XML hai suite mỗi suite11ca, fail/error/skip0, hai lint XML không issue và kết quả sáu mutant đều bắt đúng oracle. Không chạy lại workload. Đây là review bằng chứng của agent hiện tại, không reviewer độc lập hoặc Human nghiệm thu. Không đọc lại APK trong volume; hash/signing/build/resource vẫn viện dẫn [lượt A1](../tests/evidence/r05/android-execution-r1.md), không giả thành phép đo mới.

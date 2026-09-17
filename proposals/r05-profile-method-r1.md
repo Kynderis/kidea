@@ -18,6 +18,8 @@ Rule chung quản lý hiệu lực và bằng chứng; bốn profile cụ thể 
 
 ## Kiểm và gate
 
+Điều chỉnh phạm vi lab được Human giao ngày2026-09-17: [ma trận native mô phỏng r1](r05-simulator-lab-r1.md) là căn cứ R05-T04/T05-S03. Mẫu thực thi và mutant vẫn bắt buộc, Emulator/Simulator được dùng cho ca nó đo được; không lấy thiếu điện thoại làm blocker chung. Nghĩa vụ thực thi ứng dụng đầy đủ trong pilot vẫn giữ, không coi8nhóm mẫu là137ca ứng dụng hoặc chứng nhận phần cứng. Phiên bản công cụ/OS tối thiểu thuộc cấu hình project, không là yêu cầu chung Kidea áp lên mọi sản phẩm.
+
 - Lượt này: kiểm exact inventory/preservation, link/anchor, đủ trường rule/spec, coverage từ case nguồn và các fixture âm thiếu/thừa/đổi nghĩa/đổi hash/giả PASS. Tự rà nội dung theo nguồn R03/R04; không mở AI độc lập.
 - Nội dung r1 đã APPROVED; T01-S04/T02–T06-S02 DONE đúng phạm vi duyệt nội dung. Chưa tạo lệnh/config ứng dụng; các command trong hồ sơ là đề xuất cần hiện thực bằng script project sau quyền build.
 - Mẫu build đúng–sai trên Ubuntu Docker, web, Android, iOS vẫn thuộc R05-T02–T05-S03. Thiếu công cụ/máy thì BLOCKED_ENV_PENDING, không dời hết sang R09 để khép R05.

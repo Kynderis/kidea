@@ -1,0 +1,160 @@
+{
+  "at": "2026-09-17T00:30:18.426271+00:00",
+  "source": {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exitCode": 0,
+    "stdout": "ae1e2c231a827050ba8f4328eeb436408af98684\n",
+    "stderr": ""
+  },
+  "metadata": [
+    {
+      "url": "https://dl.google.com/android/repository/repository2-3.xml",
+      "finalUrl": "https://dl.google.com/android/repository/repository2-3.xml",
+      "bytes": 415926,
+      "sha256": "db6745ecc8d5734c198c4aa341b493ecdc0e3af993f079cda5422d151775f7c2",
+      "file": "google-repository.xml"
+    },
+    {
+      "url": "https://dl.google.com/android/repository/sys-img/android/sys-img2-3.xml",
+      "finalUrl": "https://dl.google.com/android/repository/sys-img/android/sys-img2-3.xml",
+      "bytes": 186852,
+      "sha256": "ab70efed53b5c289035fb6b3b552b22ad6e04eeab2d58e0e6edcc9ce3640bfad",
+      "file": "google-system-images.xml"
+    },
+    {
+      "url": "https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex",
+      "finalUrl": "https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex",
+      "bytes": 604113,
+      "sha256": "2cc3c1f4d263e1b7717cf21358cd3ef60eea1dd9560f34dc136023e2a5760300",
+      "file": "apple-simulator-index.plist"
+    }
+  ],
+  "androidArtifacts": [
+    {
+      "package": "cmdline-tools;23.0",
+      "version": "23.0",
+      "url": "https://dl.google.com/android/repository/commandlinetools-mac_x86_64-16111833_latest.zip",
+      "bytes": 155582504,
+      "publisherSha1": "112cf9618794a997ff273537d55bee02c22abffe",
+      "metadata": "google-repository.xml",
+      "binaryDownloaded": false
+    },
+    {
+      "package": "platform-tools",
+      "version": "37.0.1",
+      "url": "https://dl.google.com/android/repository/platform-tools_r37.0.1-darwin.zip",
+      "bytes": 16110554,
+      "publisherSha1": "6ae73f4de6452dc57e62ec02b68eed92a4c21661",
+      "metadata": "google-repository.xml",
+      "binaryDownloaded": false
+    },
+    {
+      "package": "emulator",
+      "version": "37.1.11",
+      "url": "https://dl.google.com/android/repository/emulator-darwin_x64-15917651.zip",
+      "bytes": 465773989,
+      "publisherSha1": "7df8b0acbe915217dcbb576222bddfcc23e81230",
+      "metadata": "google-repository.xml",
+      "binaryDownloaded": false
+    },
+    {
+      "package": "system-images;android-36;default;x86_64",
+      "version": "2",
+      "url": "https://dl.google.com/android/repository/sys-img/android/x86_64-36_r02.zip",
+      "bytes": 844217077,
+      "publisherSha1": "829c076e8ff448a336097ae25a355b495ba36e2c",
+      "metadata": "google-system-images.xml",
+      "binaryDownloaded": false
+    }
+  ],
+  "androidArchiveBytes": 1481684124,
+  "iosRuntimeIndexEntry": {
+    "category": "simulator",
+    "contentType": "cryptexDiskImage",
+    "dictionaryVersion": 2,
+    "downloadMethod": "mobileAsset",
+    "fileSize": 8724217632,
+    "identifier": "com.apple.dmg.iPhoneSimulatorSDK18_2",
+    "name": "iOS 18.2 Simulator Runtime",
+    "platform": "com.apple.platform.iphoneos",
+    "simulatorVersion": {
+      "buildUpdate": "22C150",
+      "version": "18.2"
+    },
+    "version": "18.2.0.0"
+  },
+  "iosRuntimeLimitation": "Index size only; universal Intel variant, asset URL/hash and install size not yet verified.",
+  "xcodeArchiveProbe": {
+    "url": "https://download.developer.apple.com/Developer_Tools/Xcode_16.2/Xcode_16.2.xip",
+    "httpStatus": 302,
+    "location": "https://developer.apple.com/unauthorized/",
+    "binaryDownloaded": false,
+    "verifiedArchiveBytes": null,
+    "verifiedArchiveHash": null,
+    "status": "NOT_INSTALL_READY"
+  },
+  "environment": [
+    {
+      "command": [
+        "sw_vers"
+      ],
+      "exitCode": 0,
+      "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t14.7\nBuildVersion:\t\t23H124\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uname",
+        "-m"
+      ],
+      "exitCode": 0,
+      "stdout": "x86_64\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "sysctl",
+        "-n",
+        "hw.model",
+        "hw.memsize",
+        "kern.hv_support"
+      ],
+      "exitCode": 0,
+      "stdout": "MacBookPro16,1\n17179869184\n1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "xcode-select",
+        "-p"
+      ],
+      "exitCode": 0,
+      "stdout": "/Library/Developer/CommandLineTools\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/libexec/java_home",
+        "-V"
+      ],
+      "exitCode": 0,
+      "stdout": "/usr/local/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home\n",
+      "stderr": "Matching Java Virtual Machines (1):\n    21.0.11 (x86_64) \"Homebrew\" - \"OpenJDK 21.0.11\" /usr/local/Cellar/openjdk@21/21.0.11/libexec/openjdk.jdk/Contents/Home\n"
+    },
+    {
+      "command": [
+        "df",
+        "-k",
+        "."
+      ],
+      "exitCode": 0,
+      "stdout": "Filesystem   1024-blocks      Used Available Capacity iused      ifree %iused  Mounted on\n/dev/disk1s1   488245288  92612132 375327000    20% 1052654 3753270000    0%   /System/Volumes/Data\n",
+      "stderr": ""
+    }
+  ],
+  "execution": "METADATA_ONLY; no install, license acceptance, build or simulator run"
+}

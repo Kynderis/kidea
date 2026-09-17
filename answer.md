@@ -1,5 +1,8 @@
-Đã review lại A1: 23 file nguồn và21 hồ sơ pilot khớp; hai suite11/11, lint và6 mutant đạt theo bằng chứng. Đã lưu gói tiếp tục tại proposals/r05-native-device-r1.md và cập nhật roadmap/bàn giao.
+Đã chỉnh ma trận R05: Android Emulator/iOS Simulator được dùng để kiểm mẫu Kidea; điện thoại thật không còn chặn các ca mô phỏng được. Giữ8nhóm oracle riêng từng nền tảng, mẫu sai phải bị bắt và kết quả phải ghi đúng môi trường. Nghĩa vụ kiểm ứng dụng thật giữ theo từng project; R05 chưa hoàn tất.
 
-Đã ghi lựa chọn: không có Android nên kiểm thiết bị thật còn chặn; tiếp tục chuẩn bị iOS trên Mac Intel này; Apple Silicon để sau, vẫn NOT_RUN.
+Đã chuẩn bị gói tại proposals/r05-simulator-lab-r1.md:
 
-Máy đang macOS14.7; baseline Xcode26.6 cần Tahoe26.2–26.x. Apple có hỗ trợ Tahoe cho model16-inch2019 này. Bước tiếp theo là hoàn thiện gói nâng OS/Xcode kèm backup, dung lượng và quyền cụ thể trước khi cài. Chưa thay cấu hình máy; R05 còn mở.
+- Android:4archive chính thức cho Intel tổng~1.38GiB. Đề nghị duyệt cài/boot một AVD API36 trên macOS, trần2GiB tải/12GiB đĩa thêm/90phút; build app vẫn dùng Docker và SDK37. Chưa tải binary/cài/chạy.
+- iOS: đề xuất Xcode16.2 + iOS18.2 Simulator để dùng Sonoma hiện tại, là tổ hợp lab bổ sung. Chưa đủ manifest để duyệt cài: archive Xcode yêu cầu đăng nhập Apple, metadata runtime universal còn thiếu. Không cần nâng macOS ngay.
+
+Cần Human duyệt gói Android và chốt hướng lab iOS16.2. Quyền cài cần riêng vì chỉ đạo ban đầu cấm tự cài công cụ, còn “ok làm đi” gần nhất giao chỉnh ma trận/chuẩn bị gói. Không xin duyệt lại R05 r1/A1/SDK37; không yêu cầu secret vào chat.
