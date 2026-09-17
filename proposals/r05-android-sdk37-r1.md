@@ -1,5 +1,7 @@
 # R05 — Đề nghị đổi baseline Android A1 sang SDK 37.0
 
+**TẠM DỪNG — FUTURE CHƯA ROADMAP, theo quyết định Human ngày2026-09-17.** [Phạm vi client Web hiện hành](../KIDEA_DESIGN.md#client-web-scope-approved) thay điểm tiếp tục của gói này. Nội dung/approval dưới đây giữ lịch sử; không tiếp tục chuẩn bị, cài, build hoặc chạy native, không cần Apple login. Không chuyển FAIL/NOT_RUN thành PASS và không xóa tài nguyên/evidence.
+
 Ngày 2026-09-16. **APPROVED — Human “Duyệt đổi SDK 37.0 và kiểm lại” qua câu hỏi async trong lượt A1.** Quyền đổi baseline và kiểm lại trong các trần dưới đã có; chưa nghiệm thu trước kết quả. Các câu “chưa duyệt/chưa áp” bên dưới giữ bối cảnh bản trình, được sự kiện này thay thế trong đúng phạm vi. Gói A1 gốc đã được Human duyệt; đây chỉ là thay đổi phát sinh từ kết quả lint thực, không xin duyệt lại toàn R05.
 
 ## Vấn đề đã xác minh

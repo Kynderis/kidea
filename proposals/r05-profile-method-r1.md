@@ -1,5 +1,7 @@
 # R05 — Phương pháp rule/test, bản r1
 
+**PHẠM VI HIỆN HÀNH ĐÃ ĐỔI ngày2026-09-17:** [client chỉ Web, Android/iOS Future chưa roadmap](../KIDEA_DESIGN.md#client-web-scope-approved). Phần native/bốn profile và blocker native bên dưới là căn cứ lịch sử, không còn chặn R05 backend/Web. Hợp đồng/rule/test chung vẫn giữ; [báo cáo ảnh hưởng](../docs/WEB_CLIENT_SCOPE_REVIEW.md) liệt kê amendment còn phải thực hiện, chưa coi gói r1 đã chuyển đổi toàn bộ.
+
 Ngày 2026-09-16. **APPROVED — nội dung R5-1–R5-4 tại a39f79f đã được Human duyệt** bằng câu “Duyệt nội dung R05 r1, tiếp tục chuẩn bị gói môi trường/build.” Quyền soạn/kiểm D1–D6/P1–P4 đã được duyệt sau answer cfffe0c. Không tích hợp skill/runtime trong lượt này. [Gói quyền và đích](r05-profile-test-r1.md), [bản đọc kết quả](../tests/evidence/r05/profile-r1.md).
 
 ## Hợp đồng dùng lại cho project

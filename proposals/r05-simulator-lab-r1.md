@@ -1,5 +1,7 @@
 # R05 — Ma trận kiểm chứng Kidea bằng thiết bị mô phỏng, r1
 
+**TẠM DỪNG — FUTURE CHƯA ROADMAP, theo quyết định Human ngày2026-09-17.** [Phạm vi client Web hiện hành](../KIDEA_DESIGN.md#client-web-scope-approved) thay điểm tiếp tục của gói này. Nội dung/approval dưới đây giữ lịch sử; không tiếp tục chuẩn bị, cài, build hoặc chạy native, không cần Apple login. Không chuyển FAIL/NOT_RUN thành PASS và không xóa tài nguyên/evidence.
+
 Ngày 2026-09-17. **APPROVED hướng và phạm vi chuẩn bị**: Human “ok làm đi” sau đề nghị chỉnh ma trận R05 và chuẩn bị môi trường mô phỏng. **Cài/chạy môi trường: PROPOSED, chưa thực thi.** Gói này thay yêu cầu điện thoại thật làm điều kiện vào lượt lab trong [gói thiết bị r1](r05-native-device-r1.md). Không duyệt trước kết quả R05, không đổi expected nghiệp vụ của pilot.
 
 **Sự kiện mới nhất:** Human “tôi hiểu rồi, làm đi nhé” qua annotation vào câu hỏi duyệt gói Android và hướng lab iOS đã **APPROVED A-SIM-BOOT r1** (bốn archive/hạn mức/cài và boot smoke bên dưới) và **chọn hướng lab iOS16.2**. Các chữ “đề nghị/chưa duyệt” bên dưới giữ lịch sử bản trình. Approval iOS mới chỉ chốt hướng, không cấp quyền tải/cài khi manifest còn thiếu. Không cần xin duyệt lại A-SIM-BOOT; runtime N01…N08 vẫn là gói sau bootstrap, chưa nghiệm thu R05.

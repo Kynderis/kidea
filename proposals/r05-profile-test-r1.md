@@ -1,5 +1,7 @@
 # R05 — Gói quy tắc viết code và cách kiểm thử
 
+**PHẠM VI HIỆN HÀNH ĐÃ ĐỔI ngày2026-09-17:** [client chỉ Web, Android/iOS Future chưa roadmap](../KIDEA_DESIGN.md#client-web-scope-approved). Phần native/bốn profile và blocker native bên dưới là căn cứ lịch sử, không còn chặn R05 backend/Web. Hợp đồng/rule/test chung vẫn giữ; [báo cáo ảnh hưởng](../docs/WEB_CLIENT_SCOPE_REVIEW.md) liệt kê amendment còn phải thực hiện, chưa coi gói r1 đã chuyển đổi toàn bộ.
+
 Ngày 2026-09-16. **D1–D6/P1–P4 APPROVED cho lượt soạn và kiểm hồ sơ.** Human “Tôi duyệt nhé” sau [answer cfffe0c](https://github.com/Kynderis/kidea/blob/cfffe0c/answer.md) duyệt bước tiếp tục trên Mac: chuyển đích sang checkout local hiện hành, khôi phục đúng pilot nếu thiếu, soạn/kiểm trọn gói dưới đây. Approval này không duyệt trước nội dung chưa soạn, cài/build/code/deploy hoặc phiên AI mới. R04 đã được nghiệm thu tại `a72e3a10775a9ca5b47bc5f1a6d2ccdc975d36ee`.
 
 **Điều chỉnh nền đã được duyệt riêng sau answer f8b47b9:** [LP-01](local-portability-r1.md) cho sửa Kidea chạy local cùng workflow trên Windows/macOS Intel/Apple Silicon, Node ≥24 không khóa binary, Git theo host; backend Docker local, test nặng/performance trên cloud chỉ khi Human cấp máy/quyền. Thư mục mạng/iCloud/OneDrive/nhiều máy cùng ghi ngoài phạm vi, không làm sau. Đây là gói sửa nền hiện hành, **không phải approval toàn D1–D6/P1–P4 hoặc quyền soạn sáu hồ sơ pilot dưới đây**. Các giới hạn runtime/skill của P3 chỉ áp dụng gói R05 này, không phủ định quyền sửa đã cấp ở LP-01.

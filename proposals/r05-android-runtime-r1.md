@@ -1,5 +1,7 @@
 # R05 — Gói kiểm Android Emulator, r1
 
+**TẠM DỪNG — FUTURE CHƯA ROADMAP, theo quyết định Human ngày2026-09-17.** [Phạm vi client Web hiện hành](../KIDEA_DESIGN.md#client-web-scope-approved) thay điểm tiếp tục của gói này. Nội dung/approval dưới đây giữ lịch sử; không tiếp tục chuẩn bị, cài, build hoặc chạy native, không cần Apple login. Không chuyển FAIL/NOT_RUN thành PASS và không xóa tài nguyên/evidence.
+
 Ngày 2026-09-17. **PREPARED_SPEC / EXECUTION_DRAFT**. Human giao “ok làm những cái này đi” vào đề nghị chuẩn bị gói kiểm Android và hoàn thiện thông tin iOS. Lượt này được soạn/kiểm nhẹ; chưa mở ngân sách build/runtime mới. Không kế thừa deadline bootstrap đã kết thúc. [Ma trận đã chốt](r05-simulator-lab-r1.md), [bootstrap PASS](../tests/evidence/r05/android-sim-bootstrap-r1.md), [receipt chuẩn bị](../tests/evidence/r05/native-runtime-plan-r1/receipt.json).
 
 ## Phạm vi và nguồn

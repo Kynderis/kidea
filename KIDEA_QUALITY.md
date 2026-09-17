@@ -1,5 +1,7 @@
 # Kidea — Tiêu chí chất lượng và bằng chứng nghiệm thu
 
+**Phạm vi hiệu lực từ 2026-09-17:** [Human đã chuyển Android/iOS sang Future chưa roadmap](KIDEA_DESIGN.md#client-web-scope-approved); client hiện hành là Web. “Ca bắt buộc/năng lực bản đầu” bên dưới áp dụng phạm vi mới, không còn bắt native để nghiệm thu backend/Web. Đây là quyết định đổi scope, không phải đổi FAIL/NOT_RUN thành PASS, thiếu máy thành N/A hoặc hạ chuẩn chất lượng. Giữ toàn bộ gate bằng chứng, G2, host portability và kiểm Web responsive theo project. [Kế hoạch đối chiếu hồ sơ/test theo phạm vi mới](docs/WEB_CLIENT_SCOPE_REVIEW.md) còn phải hoàn thiện trước nghiệm thu R05.
+
 Căn cứ `P01-T05-QUALITY-r2` ngày 2026-09-07: **CHỈ MỘT PHẦN ĐÃ DUYỆT**. Không còn một gate chờ duyệt cả file: [R01-T08/T09](KIDEA_ROADMAP.md#r01) chia theo nhóm nhỏ. [Roadmap](KIDEA_ROADMAP.md#work-state) giữ tiến trình; tài liệu này không thay thiết kế hoặc test pilot. Ngày 2026-09-15, 2/5 giây và 11 mẫu mỗi bộ được duyệt riêng cho status local R02 theo gói bên dưới; 3/10 giây sinh view, 3 lần AI và giới hạn cycle chưa tự có hiệu lực.
 
 <a id="control-acceptance-approved"></a>

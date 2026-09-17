@@ -1,5 +1,7 @@
 # R05 — Chuẩn bị kiểm thiết bị Android và chọn môi trường iOS, r1
 
+**TẠM DỪNG — FUTURE CHƯA ROADMAP, theo quyết định Human ngày2026-09-17.** [Phạm vi client Web hiện hành](../KIDEA_DESIGN.md#client-web-scope-approved) thay điểm tiếp tục của gói này. Nội dung/approval dưới đây giữ lịch sử; không tiếp tục chuẩn bị, cài, build hoặc chạy native, không cần Apple login. Không chuyển FAIL/NOT_RUN thành PASS và không xóa tài nguyên/evidence.
+
 Ngày 2026-09-17. **PREPARED / IOS_INTEL_SELECTED — chưa INSTALL_READY hoặc duyệt thực thi thiết bị.** Human “ok làm tiếp đi” giao tiếp tục sau Android A1; A1/SDK37 đã được duyệt và hoàn tất, không xin duyệt lại. Gói này giữ R05 IN_PROGRESS.
 
 **Được thay về điểm tiếp tục bởi [ma trận mô phỏng r1](r05-simulator-lab-r1.md)** theo chỉ đạo Human tiếp theo. A2/A3 bên dưới đã trộn yêu cầu ứng dụng và mẫu Kidea: không còn dùng điện thoại thật làm điều kiện vào toàn bộ R05, không mặc định nâng macOS. Nội dung dưới giữ lịch sử đề xuất; rule/ngưỡng ứng dụng chưa bị xóa hoặc ghi PASS. Review A1 vẫn giữ hiệu lực đúng source/phạm vi.

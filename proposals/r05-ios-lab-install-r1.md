@@ -1,5 +1,7 @@
 # R05 — Hồ sơ cài iOS lab trên Mac Intel, r1
 
+**TẠM DỪNG — FUTURE CHƯA ROADMAP, theo quyết định Human ngày2026-09-17.** [Phạm vi client Web hiện hành](../KIDEA_DESIGN.md#client-web-scope-approved) thay điểm tiếp tục của gói này. Nội dung/approval dưới đây giữ lịch sử; không tiếp tục chuẩn bị, cài, build hoặc chạy native, không cần Apple login. Không chuyển FAIL/NOT_RUN thành PASS và không xóa tài nguyên/evidence.
+
 Ngày 2026-09-17. **Hướng APPROVED; BLOCKED_APPLE_AUTH_AND_ARTIFACT_METADATA**. Human đã chọn Xcode16.2/Swift6.0/SDK18.2/Simulator18.2 trên Mac Intel hiện tại; không hỏi lại hướng và không mặc định nâng macOS. Lượt này chỉ hoàn thiện thông tin. [Receipt mới](../tests/evidence/r05/native-runtime-plan-r1/receipt.json), [ma trận kiểm](r05-simulator-lab-r1.md).
 
 ## Dữ kiện đã xác minh và phần chưa biết

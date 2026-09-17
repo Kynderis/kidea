@@ -1,6 +1,8 @@
 # Bàn giao Kidea sang phiên Codex trên Mac
 
-**Điểm tiếp tục mới nhất:** [gói Android runtime](../proposals/r05-android-runtime-r1.md) đã có thiết kế N01…N08/source gap/đường chạy/hạn mức dự kiến; còn source/harness và manifest execution, không restart bootstrap bằng deadline cũ. [Gate N08 host](../tests/evidence/r05/native-runtime-plan-r1.md)12/12 synthetic PASS, không phải Android runtime PASS. [iOS installer](../proposals/r05-ios-lab-install-r1.md) chờ Human đăng nhập Apple tại máy; đã kiểm browser thực và HEAD archive, không hỏi lại hướng Xcode16.2/Simulator18.2. Triển khai source/kiểm nhẹ Android có thể tiếp tục độc lập; trước workload phải có gói execution cụ thể theo quyền hiện hành. Giữ21hồ sơ pilot và A1 nguyên byte.
+**Điểm tiếp tục hiện hành: client Web; Android/iOS đã chuyển Future chưa roadmap theo Human ngày2026-09-17.** Đọc [quyết định hiệu lực](../KIDEA_DESIGN.md#client-web-scope-approved) và [rà soát toàn diện](WEB_CLIENT_SCOPE_REVIEW.md). Dừng Android harness/runtime và iOS installer, không cần đăng nhập Apple/cài Xcode. Tiếp theo đồng bộ thiết kế/skill và amendment hồ sơ pilot cho backend/Web, kiểm coverage rồi khép R05 đúng bằng chứng/Human gate. LP-01 host Mac/Windows giữ nguyên. SDK/AVD/cache/volume/evidence giữ nguyên, không restart theo quota cũ hoặc tự dọn.
+
+**Phần bàn giao native bên dưới là lịch sử.** Pilot21file hiện chưa được amendmentWeb; chuỗi khôi phục cũ tái dựng bản lịch sử, không phải scope hiện hành mới. Phải áp amendmentWeb có nguồn/hash khi nó được tạo, không tự nhận bản restore cũ là đã đồng bộ quyết định này.
 
 Ngày 2026-09-17. Đây là hướng dẫn tiếp tục, không là nguồn trạng thái mới hoặc approval bổ sung cho R05. Đọc trạng thái hiện hành trong [roadmap](../KIDEA_ROADMAP.md#review-current).
 
