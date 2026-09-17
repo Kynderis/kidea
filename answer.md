@@ -1,5 +1,5 @@
-Đã chạy build r1 trong Docker. Formatter/CMake qua; **biên dịch bộ test FAIL**, nên lượt đã dừng và giữ đầy đủ log. Tôi đã sửa hai lỗi nguồn test, chuẩn bị manifest r2; chưa chạy lại nên chưa có PASS.
+R2 đã build thành công; **45/46 nhóm test PASS**, một nhóm FAIL vì JSON vẫn chấp nhận comment. Tôi đã sửa và thêm ca hồi quy, giữ toàn bộ log; bản sửa chưa chạy lại. Container đã thu hồi, R09 vẫn chưa hoàn tất.
 
-Bạn chỉ cần duyệt **[một lượt build r2](docs/R09_T02_BUILD_R2_REVIEW.md)**: tối đa2giờ,4container tuần tự,2CPU/4GiB, thêm tối đa8GiB đĩa; không tải/cài gì lên macOS. Log r1 vẫn giữ. R09 chưa hoàn tất.
+Bạn duyệt [một lượt build r3](docs/R09_T02_BUILD_R3_REVIEW.md) nhé: tối đa2giờ,4container tuần tự,2CPU/4GiB, thêm tối đa8GiB đĩa; không tải/cài thêm lên macOS.
 
-Cần duyệt vì gói r1 đã chốt đúng một lượt và dừng khi lỗi; nguồn sửa dùng manifest mới. Đây không phải xin lại nghiệp vụ/B/C.
+Cần duyệt vì gói r2 quy định dừng khi lỗi và không đổi nguồn rồi chạy lại bằng grant đó. Đây không phải xin lại nghiệp vụ/B/C.

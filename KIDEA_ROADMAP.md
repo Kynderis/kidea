@@ -1,5 +1,7 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
+**Hiện hành — T02 r2 đã duyệt/chạy,45/46 nhóm dev PASS:** [Bằng chứng](tests/evidence/r09/t02-build-r2.md), compile qua; JSON comment FAIL nên lượt dừng/thu hồi container, giữ log. Đã sửa và thêm regression, [r3](docs/R09_T02_BUILD_R3_REVIEW.md) chờ duyệt lượt mới. Source4764393/HEADde55437,51source/824vendor kiểm tĩnh qua, bản sửa chưa compile/runtime; tidy/HTTP/sanitizer/release chưa chạy. Không tự ghi137nghĩa vụ PASS hoặc nghiệm thu T02/R09; R10 chưa mở. Các mục r1/r2 trước đây bên dưới giữ lịch sử.
+
 **Hiện hành — T02 build r1 đã duyệt/chạy, FAIL compile:** [Bằng chứng](tests/evidence/r09/t02-build-r1.md), formatter18/configure qua; compile test lỗi alias Json/range-loop, lượt dừng và container đã thu hồi. Đã sửa nguồn test, không đổi oracle; [build r2 cụ thể](docs/R09_T02_BUILD_R2_REVIEW.md) chờ duyệt lượt mới. Pilot source762fb48/HEADc431bbd,51source/824vendor kiểm tĩnh qua; bản sửa chưa compile, CTest/HTTP/sanitizer/release NOT_RUN. R09 vẫn mở, không hỏi lại B/C/nghiệp vụ, không mở R10. Các đoạn trước r1 bên dưới giữ lịch sử.
 
 Ngày cập nhật: 2026-09-17.

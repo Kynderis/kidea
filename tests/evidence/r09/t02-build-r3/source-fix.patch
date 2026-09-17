@@ -1,0 +1,74 @@
+diff --git a/backend/src/model.cpp b/backend/src/model.cpp
+index f5832ae..ebcf411 100644
+--- a/backend/src/model.cpp
++++ b/backend/src/model.cpp
+@@ -94,6 +94,23 @@ Json decode(std::string_view s) {
+   if (s.size() > 131072)
+     throw Invalid("BODY_LIMIT");
+   static_cast<void>(codepoints(s));
++  // JsonCpp can accept comments despite allowComments=false. Reject the
++  // non-JSON slash token outside strings; preserve slashes and escapes inside.
++  bool quoted = false;
++  bool escaped = false;
++  for (const char c : s) {
++    if (quoted) {
++      if (escaped)
++        escaped = false;
++      else if (c == '\\')
++        escaped = true;
++      else if (c == '"')
++        quoted = false;
++    } else if (c == '"')
++      quoted = true;
++    else if (c == '/')
++      throw Invalid("JSON");
++  }
+   ::Json::CharReaderBuilder b;
+   b["allowComments"] = false;
+   b["collectComments"] = false;
+diff --git a/backend/tests/http.mjs b/backend/tests/http.mjs
+index 96c741a..0c344d2 100644
+--- a/backend/tests/http.mjs
++++ b/backend/tests/http.mjs
+@@ -25,6 +25,8 @@ try{
+  check('csrf',(await request('POST','/registrations',body,'U',{'x-csrf-token':'wrong'})).status===401);
+  check('origin',(await request('POST','/registrations',body,'U',{origin:'https://evil.test'})).status===401);
+  check('duplicate-json',(await request('POST','/registrations','{"epoch":"x","epoch":"y"}')).status===400);
++ check('comment-json',(await request('POST','/registrations','{/*comment*/'+JSON.stringify(body).slice(1))).status===400);
++ check('trailing-comment-json',(await request('POST','/registrations',JSON.stringify(body)+'/*comment*/')).status===400);
+  check('unknown-field',(await request('POST','/registrations',{...body,actor:'V'})).status===400);
+  check('cancel',(await request('POST','/registrations/'+a.data.registrationId+'/cancel',{...body,requestId:'cancel'})).data?.code==='CANCELLED');
+  const history=await request('GET','/me/registrations');check('private-history',history.data?.[0]?.registrations?.[0]?.state==='CANCELLED');
+diff --git a/backend/tests/tests.cpp b/backend/tests/tests.cpp
+index 77643df..432cc39 100644
+--- a/backend/tests/tests.cpp
++++ b/backend/tests/tests.cpp
+@@ -904,6 +904,28 @@ void technical() {
+       }
+       check(rejected, "invalid-json-" + std::to_string(assertions));
+     }
++    for (const std::string input :
++         {"/*before*/{}", "{}/*after*/", "//before\n{}", "{}//after",
++          "{\"a\":/*value*/1}", "{\"a\":1,//member\n\"b\":2}",
++          "{\"a\":[1,/*array*/2]}", "{\"a\":{/**/\"b\":1}}",
++          "{\"a\":\"\\\"\"/*after-escaped-quote*/}",
++          "{\"a\":\"\\\\\"/*after-escaped-backslash*/}"}) {
++      bool rejected = false;
++      try {
++        workshop::decode(input);
++      } catch (const workshop::Invalid &) {
++        rejected = true;
++      }
++      check(rejected, "comment-rejected-" + std::to_string(assertions));
++    }
++    for (const std::string value :
++         {"https://workshop.test/path", "/*text*/", "//text", "quote\"/*text*/",
++          "slash\\//text", "\\\"/*text*/", "Tiếng Việt / 😀"}) {
++      JsonValue object;
++      object["text"] = value;
++      check(workshop::decode(workshop::dump(object)) == object,
++            "string-slashes-preserved-" + std::to_string(assertions));
++    }
+     check(workshop::next_version("9007199254740992") == "9007199254740993",
+           "uint64-not-double");
+     bool overflow = false;

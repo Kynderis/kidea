@@ -1,6 +1,6 @@
 # R09-T02 build r2 — bản sửa lỗi biên dịch test
 
-**PROPOSED — chưa duyệt/chưa chạy.** [Lượt r1](../tests/evidence/r09/t02-build-r1.md) đã dùng đúng quyền một lượt, dừng khi compile FAIL. Đã sửa alias `Json` trùng namespace JsonCpp thành `JsonValue` và vòng lặp đọc chuỗi dùng const reference. Không đổi assertion/expected, ca kiểm, flags, dependency, runner hoặc nghiệp vụ. [Diff nguồn](../tests/evidence/r09/t02-build-r2/source-fix.patch); kiểm cơ học xác nhận chỉ hai phép sửa và định dạng.
+**APPROVED và đã thực thi — FAIL CTest JSON.** Human “duyệt nhé” cho gói tại e19cbd4. [Kết quả r2](../tests/evidence/r09/t02-build-r2.md); quyền một lượt đã dùng. [R3 chờ duyệt](R09_T02_BUILD_R3_REVIEW.md). Nội dung dưới giữ nguyên gói đã trình. [Lượt r1](../tests/evidence/r09/t02-build-r1.md) đã dùng đúng quyền một lượt, dừng khi compile FAIL. Đã sửa alias `Json` trùng namespace JsonCpp thành `JsonValue` và vòng lặp đọc chuỗi dùng const reference. Không đổi assertion/expected, ca kiểm, flags, dependency, runner hoặc nghiệp vụ. [Diff nguồn](../tests/evidence/r09/t02-build-r2/source-fix.patch); kiểm cơ học xác nhận chỉ hai phép sửa và định dạng.
 
 ## Bản nguồn cụ thể
 
