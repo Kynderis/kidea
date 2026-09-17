@@ -1,0 +1,26 @@
+diff --git a/backend/src/main.cpp b/backend/src/main.cpp
+index 05c8a4f..f4c2be0 100644
+--- a/backend/src/main.cpp
++++ b/backend/src/main.cpp
+@@ -15,7 +15,7 @@ std::string load(const char *file) {
+ }
+ void respond(
+     const std::function<void(const drogon::HttpResponsePtr &)> &callback,
+-    workshop::Response result) {
++    const workshop::Response &result) {
+   const auto response = drogon::HttpResponse::newHttpJsonResponse(result.body);
+   response->setStatusCode(static_cast<drogon::HttpStatusCode>(result.status));
+   response->addHeader("Cache-Control", "no-store");
+@@ -61,10 +61,10 @@ int main(int argc, char **argv) {
+           }
+           const auto once = std::make_shared<std::atomic<bool>>(false);
+           auto finish = [active, once, callback = std::move(callback)](
+-                            workshop::Response result) {
++                            const workshop::Response &result) {
+             if (!once->exchange(true)) {
+               active->fetch_sub(1);
+-              respond(callback, std::move(result));
++              respond(callback, result);
+             }
+           };
+           // Never trust X-Forwarded-For or a role/actor header. Actor rate

@@ -1,0 +1,50 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved one T02 r3 run at 88b5157. Run stopped on clang-tidy failure after all 46 CTest groups passed. Existing authoring grant covers source correction and r4 preparation; save continuation only, no r4 execution or step completion."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t02/build-manifest.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t02/build-proposal.md",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "fadf9c55871b3d8cb85832020976f49a86e07994d5f043939a3a361b825336b3",
+  "expectedGit": {
+    "head": "91744b2ef30233f36fed4d4dd5aad343b4cc5a62",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "R3 build/CTest46/46/collector qua, tidy model/store/executor qua; main FAIL unnecessary-value-param. Giữ run t02-ce8659a0-404b-44d4-ae92-f8b4687978d1, container đã thu hồi. Source1be7797 đổi respond/finish sang const reference, bỏ move thừa; manifest r4 4d5f9151 kiểm tĩnh qua.",
+    "remaining": "Chưa tidy tests/HTTP/ASan+UBSan/TSan/release; bản sửa r4 chưa compile/runtime. Không suy46nhóm PASS thành đủ137nghĩa vụ hoặc nghiệm thu T02/R09.",
+    "nextAction": "Review docs/R09_T02_BUILD_R4_REVIEW.md ở repo Kidea, duyệt một lượt r4 exact manifest trước chạy. Giữ log r1/r2/r3 và mọi gate/W-001; không bỏ warning hoặc dùng waiver R08.",
+    "sourceRefs": [
+      {
+        "path": "docs/t02/build-manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t02/build-proposal.md",
+        "anchor": null
+      }
+    ]
+  }
+}

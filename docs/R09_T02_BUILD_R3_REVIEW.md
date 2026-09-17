@@ -1,6 +1,6 @@
 # R09-T02 build r3 — sửa từ chối JSON comment
 
-**PROPOSED — chưa duyệt/chưa chạy.** [R2](../tests/evidence/r09/t02-build-r2.md) compile dev qua, CTest45/46PASS, một FAIL tại comment JSON. R2 đã dừng; không retry, không dùng tiếp grant một lượt.
+**APPROVED và đã thực thi — FAIL clang-tidy main sau CTest46/46 PASS.** Human “duyệt nhé” cho gói tại88b5157. [Kết quả r3](../tests/evidence/r09/t02-build-r3.md); quyền một lượt đã dùng. [R4 chờ duyệt](R09_T02_BUILD_R4_REVIEW.md). Nội dung dưới giữ nguyên gói đã trình. [R2](../tests/evidence/r09/t02-build-r2.md) compile dev qua, CTest45/46PASS, một FAIL tại comment JSON. R2 đã dừng; không retry, không dùng tiếp grant một lượt.
 
 ## Thay đổi cụ thể
 

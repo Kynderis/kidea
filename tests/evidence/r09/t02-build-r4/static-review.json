@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "name": "preflight",
+      "exit": 0,
+      "stdout": "{\n  \"state\": \"STATIC_PREFLIGHT_ONLY\",\n  \"manifestHash\": \"4d5f915116af6d35bc824017fadb77ea5357678f510fd4e0fe1c5c324c61e6e0\",\n  \"sourceFiles\": 51,\n  \"vendorFiles\": 824,\n  \"buildRun\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "mapping",
+      "exit": 0,
+      "stdout": "{\n  \"state\": \"STATIC_ONLY\",\n  \"sourceCases\": 137,\n  \"counts\": {\n    \"T02\": 40,\n    \"T05\u2013T14\": 52,\n    \"T03\": 15,\n    \"T05\": 30\n  },\n  \"files\": 24,\n  \"runtimeTestsRun\": 0,\n  \"missing\": [],\n  \"note\": \"Path/schema/source consistency only; does not prove compilation, behavior or complete variant coverage.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "format",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "diff",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "runtimeTestsRun": 0,
+  "pilotHead": "506b426bd7c14687ba146ab15d1f281f415951e1"
+}

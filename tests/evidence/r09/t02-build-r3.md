@@ -1,0 +1,9 @@
+# R09-T02 build r3 — CTest46/46 PASS, tổng lượt FAIL clang-tidy
+
+Human “duyệt nhé” cho gói tại88b5157. [Approval receipt](t02-build-r3/authorization.json). Manifest895f70fb, source4764393/HEADde55437; Mac Intel/Docker linux amd64, Node24 sẵn có. Source51hash giữ nguyên tới sau lượt.
+
+- Formatter18/configure/build qua. [CTest](t02-build-r3/run/dev/out/dev/ctest.stdout.txt)/[JUnit](t02-build-r3/run/dev/out/dev/ctest.xml):46/46nhóm PASS,0skip,13.49giây. [Collector](t02-build-r3/run/dev/out/dev/assertions.json):796 assertion observations, không missing/failed/invalidJUnit. Ca JSON và17regression C++ mới qua;2HTTP mới chưa chạy. Đây là nhóm test authored, chưa review đủ variant của137nghĩa vụ.
+- Clang-tidy model/store/executor qua. [Main FAIL](t02-build-r3/run/dev/out/dev/tidy-main.stdout.txt) tại dòng18, `performance-unnecessary-value-param`: Response bị copy chỉ để đọc. [stderr](t02-build-r3/run/dev/out/dev/tidy-main.stderr.txt) ghi85warning non-user-code được lọc theo cấu hình sẵn có,1project warning thành error; không thêm suppression/waiver. Tidy tests/HTTP/sanitizer/release chưa chạy.
+- [Runner](t02-build-r3/run/results.json) FAIL dev exit1; [container](t02-build-r3/run/dev/container-state.json) đã thoát và được thu hồi. [Receipt](t02-build-r3/receipt.json): remaining label rỗng, output458096KiB (~447.36MiB) giữ nguyên. Output gốc `/Users/kendrick/Desktop/kidea-t02-build-lab/t02-ce8659a0-404b-44d4-ae92-f8b4687978d1/`; bản sao log/tool/CTest/DBfake/hash binary giữ trong repo. Không download/cài host/port/cloud.
+
+Đã sửa respond/finish const reference và bỏ move thừa, không đổi test/flags/nghiệp vụ; [r4](../../../docs/R09_T02_BUILD_R4_REVIEW.md) chuẩn bị, chưa compile/runtime. Public SAVE CONTINUATION_SAVED, giữ W-001/gates; pilot local HEAD506b426/source1be7797, không remote/push. R09 IN_PROGRESS; T02 chưa nghiệm thu, R10 chưa mở. Log FAIL r1/r2 giữ nguyên.

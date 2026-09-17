@@ -1,0 +1,4 @@
+/src/backend/src/main.cpp:18:24: error: the parameter 'result' is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param,-warnings-as-errors]
+   18 |     workshop::Response result) {
+      |                        ^
+      |     const             &
