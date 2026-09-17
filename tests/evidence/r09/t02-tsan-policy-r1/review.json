@@ -1,0 +1,145 @@
+{
+  "status": "READ_ONLY_REVIEW_NOT_GATE_APPROVAL",
+  "reports": [
+    {
+      "path": "tests/evidence/r09/t02-build-r5/run/tsan/Testing/Temporary/LastTest.log",
+      "sha256": "3e5c5d8383e21a42016a08de0a0c10503d56507755d1468eaaefc5d5a5bf97e9",
+      "reports": [
+        {
+          "type": "data race (pid=875)",
+          "writeFrames": [
+            [
+              "walIndexWriteHdr",
+              "68469"
+            ]
+          ],
+          "readFrames": [
+            [
+              "walIndexTryHdr",
+              "70135"
+            ]
+          ]
+        },
+        {
+          "type": "data race (pid=880)",
+          "writeFrames": [
+            [
+              "walIndexWriteHdr",
+              "68469"
+            ]
+          ],
+          "readFrames": [
+            [
+              "walIndexTryHdr",
+              "70135"
+            ]
+          ]
+        },
+        {
+          "type": "data race (pid=884)",
+          "writeFrames": [
+            [
+              "walIndexWriteHdr",
+              "68469"
+            ]
+          ],
+          "readFrames": [
+            [
+              "walIndexTryHdr",
+              "70135"
+            ]
+          ]
+        },
+        {
+          "type": "data race (pid=888)",
+          "writeFrames": [
+            [
+              "walIndexWriteHdr",
+              "68469"
+            ]
+          ],
+          "readFrames": [
+            [
+              "walIndexTryHdr",
+              "70135"
+            ]
+          ]
+        },
+        {
+          "type": "data race (pid=892)",
+          "writeFrames": [
+            [
+              "walIndexWriteHdr",
+              "68469"
+            ]
+          ],
+          "readFrames": [
+            [
+              "walIndexTryHdr",
+              "70135"
+            ]
+          ]
+        },
+        {
+          "type": "data race (pid=896)",
+          "writeFrames": [
+            [
+              "walIndexWriteHdr",
+              "68469"
+            ]
+          ],
+          "readFrames": [
+            [
+              "walIndexTryHdr",
+              "70135"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "path": "tests/evidence/r09/t02-sqlite-diagnostic-r2/run/sqlite-diagnostic/out/wal-parallel/stderr.txt",
+      "sha256": "d7fae7af1d56d443156058a49d491efde4af4e851db2cbbc6899ef9818ddd231",
+      "reports": [
+        {
+          "type": "data race (pid=30)",
+          "writeFrames": [
+            [
+              "walIndexWriteHdr",
+              "68469"
+            ]
+          ],
+          "readFrames": [
+            [
+              "walIndexTryHdr",
+              "70135"
+            ]
+          ]
+        },
+        {
+          "type": "data race (pid=30)",
+          "writeFrames": [
+            [
+              "walIndexWriteHdr",
+              "68471"
+            ]
+          ],
+          "readFrames": [
+            [
+              "walIndexTryHdr",
+              "70133"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "sqliteSha256": "b1dd5d74ec7f29055a6684fa06fb3c2f6821c87dd38f9a458dfd2e8a1db28189",
+  "pilotHead": "d3cb60255a0353033395156250608d12f87ee553",
+  "sources": [
+    "https://github.com/google/sanitizers/wiki/ThreadSanitizerFlags",
+    "https://sqlite.org/walformat.html"
+  ],
+  "newContainers": 0,
+  "pilotChanges": false
+}

@@ -1,5 +1,7 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
+**Hiện hành — đã chuẩn bị phương án gate TSan:** [EX-T02-WAL-01 r1](docs/R09_T02_TSAN_GATE_PROPOSAL.md) PROPOSED: ngoại lệ hẹp có điều kiện cho đúng hai cặp header SQLite; giữ raw report/exit66, cảnh báo khác và thiếu oracle vẫn chặn. Chưa áp dụng, chưa viết harness mới hoặc chạy container. Human cần quyết định tiêu chí ngoại lệ trước triển khai; sau đó mới có manifest build nguồn cuối. Sáu FAIL r5 nguyên trạng, T02/R09 chưa nghiệm thu.
+
 **Hiện hành — diagnostic r2 đã duyệt/chạy xong:** [Kết quả](tests/evidence/r09/t02-sqlite-diagnostic-r2.md). WAL song song đạt 100 cập nhật/quick_check nhưng vẫn exit66 với hai cảnh báo header; control bắt lỗi, hai đối chiếu đạt. Container đã thu hồi, nguồn không đổi. Không miễn trừ hoặc đổi sáu FAIL r5 thành PASS. Tiếp theo chuẩn bị quyết định xử lý gate SQLite–TSan; chưa có quyền chạy lại/full build. R09/T02 chưa nghiệm thu, R10 chưa mở. Các đoạn sau giữ lịch sử.
 
 **Hiện hành — review SQLite–TSan đã xong, diagnostic r2 chờ duyệt:** [Phương án](docs/R09_T02_TSAN_COMPAT_REVIEW.md), [bằng chứng review](tests/evidence/r09/t02-tsan-compat-review-r1.md). Đề xuất giữ GCC/toàn bộ instrumentation/reporting/exit66, chỉ cho diagnostic chạy tới oracle sau warning; không suppression/đổi WAL/expected hoặc miễn trừ. Sourceae8a327/HEADd3cb602, manifest33100182,54source/824vendor kiểm tĩnh qua; chưa chạy. R5 còn6FAIL TSan/releaseNOT_RUN, R09/T02 chưa nghiệm thu, R10 chưa mở. Các đoạn cũ giữ lịch sử.
