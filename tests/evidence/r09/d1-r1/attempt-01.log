@@ -1,0 +1,32 @@
+Work transition evidence: /Users/kendrick/Desktop/kidea/.test-output/r09/work-ueVQdA
+✔ public init to decomposition, explicit approval, two tasks and next step, retaining preimage (16220.926059ms)
+✔ missing, unapproved and unrelated gate cannot resolve blocker or enter tasks (16748.661173ms)
+✔ unmet dependency, incomplete current item, no START and no result cannot become DONE (10933.820054ms)
+✔ stale source/basis, wrong project, owner, root and permission preserve bytes (8308.312108ms)
+✔ decomposition cannot replace existing work, add DONE or pre-approved children, cycle or missing anchor (6283.824628ms)
+✔ pending write and source race block transitions and retain actual pending state (8077.968803ms)
+✔ public CLI dispatches transition and rejects extra operation fields (8350.12407ms)
+✖ active impact blocks generic task changes; original unfinished work survives CLOSE (21486.134469ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96597.238287
+
+✖ failing tests:
+
+test at tests/r09/work-transition.test.mjs:92:1
+✖ active impact blocks generic task changes; original unfinished work survives CLOSE (21486.134469ms)
+  Error: IMPACT_NOT_RESOLVED
+      at fail (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/change.mjs:14:39)
+      at prepareChange (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/change.mjs:118:172)
+      at change (file:///Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/change.mjs:148:20)
+      at mutate (file:///Users/kendrick/Desktop/kidea/tests/r09/work-transition.test.mjs:96:115)
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/work-transition.test.mjs:103:8)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'IMPACT_NOT_RESOLVED'
+  }

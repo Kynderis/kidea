@@ -1352,6 +1352,8 @@ Không cần thêm command riêng cho mỗi thao tác Git; thực thi thường 
 
 <a id="helper-runtime"></a>
 
+**R09 D1 (2026-09-17):** Human duyệt bổ sung quản lý kế hoạch ban đầu trong `resume`, giữ schema2 và sáu hành động. [Hợp đồng thao tác](.agents/skills/kidea/references/work-transition.md): phân rã, chọn việc, bắt đầu/hoàn tất và ghi nhận giải quyết blocker đúng phạm vi; bind nguồn/quyền/gate/checkpoint, không chạy sản phẩm hoặc tự duyệt. STEP cuối phải có review bao phủ đầu ra thật, không dùng approval kế hoạch thay nghiệm thu đầu ra. Impact CLOSE chỉ xét blocker liên quan/global, giữ blocker bước tương lai và tiến độ MVP dở. Chưa bao gồm sửa cây đã phân rã hoặc tạo round/release mới; giữ ranh giới gói [R09 r1](proposals/r09-pilot-r1.md).
+
 ### Runtime/helper — lựa chọn đã duyệt
 
 Chương trình phụ trợ Kidea dùng JavaScript chạy trên **Node.js ≥24**, khuyến nghị LTS còn được bảo trì, theo [điều chỉnh đã duyệt 2026-09-16](#local-portability-approved). Một bộ helper dùng chung Windows/macOS Intel/Apple Silicon; không hash-lock binary khi chạy, không Git path cố định. Phiên bản đã test được ghi chính xác trong evidence, khác với mức tối thiểu được chấp nhận. Giữ JavaScript trực tiếp và công cụ/test tích hợp; dependency runtime jsonc-parser 3.3.1 đã có lockfile. Khi thật sự cần dependency mới, trình lý do/phạm vi tại task sở hữu; không thêm framework hoặc tự viết bộ xử lý phức tạp để giữ số dependency bằng không.

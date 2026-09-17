@@ -115,7 +115,13 @@ export function prepareChange(root,request) {
   if(request.operation==='CLOSE') {
     if(!plan.items.some(i=>i.id===work.currentItemId))fail('IMPACT_NOT_ACTIVE');
     const closure=request.closure;
-    if(graph.diagnostics.length||plan.items.some(i=>i.executionStatus!=='DONE')||state.states.some(s=>!s.current||s.assessment?.verdict==='UNKNOWN')||next.blockers.length)fail('IMPACT_NOT_RESOLVED');
+    // Future, independent STEP blockers must not prevent returning to an
+    // unfinished MVP. Preserve them; inspect all impact/return ancestors and
+    // dependencies, plus global blockers, before closing this scoped plan.
+    const allItems=state.graphState.status.data.items,related=new Set(),queue=[...plan.items.map(i=>i.id),...next.returnStack.map(r=>r.itemId)];
+    while(queue.length){const id=queue.pop();if(related.has(id))continue;related.add(id);const i=allItems.find(i=>i.id===id);if(i)queue.push(...i.dependencyIds,...(i.parentId?[i.parentId]:[]));}
+    const blocking=next.blockers.some(b=>b.itemId===null||related.has(b.itemId));
+    if(graph.diagnostics.length||plan.items.some(i=>i.executionStatus!=='DONE')||state.states.some(s=>!s.current||s.assessment?.verdict==='UNKNOWN')||blocking)fail('IMPACT_NOT_RESOLVED');
     if(!closure||closure.conditionsMet!==true||!text(closure.semanticStatement)||!Array.isArray(closure.evidenceRefs)||!closure.evidenceRefs.length)fail('CLOSURE_EVIDENCE_REQUIRED');
     for(const r of closure.evidenceRefs)if(!reads.has(r.path))fail('CLOSURE_EVIDENCE_NOT_BOUND');
     const approved=new Set(state.context.context.reviews.filter(r=>r.recordedStatus==='APPROVED').map(r=>r.id));

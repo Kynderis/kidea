@@ -20,7 +20,7 @@ if (!runtimeInfo().compatibleVersion) {
   console.error(JSON.stringify({ code: 'UNSUPPORTED_RUNTIME', message: 'Use Node.js 24 or later; a maintained LTS release is recommended.' }));
   process.exitCode = 2;
 } else if (action === '--help' && args.length === 1) {
-  console.log(JSON.stringify({ stage: 'R07 offline view candidate', actions, implemented: ['status','init','approve','resume','change','visualize'], help: 'status is read-only; init creates initial records; approve manages scoped reviews; resume reads continuation context or saves a scoped note; change manages a scoped impact plan; visualize exports a managed read-only HTML snapshot. Trusted stdin requests supply permission, never project files. No helper executes product commands or replays pending effects.' }));
+  console.log(JSON.stringify({ stage: 'R09 D1 work metadata candidate', actions, implemented: ['status','init','approve','resume','change','visualize'], help: 'status is read-only; init creates initial records; approve manages scoped reviews; resume reads context, saves notes, or records scoped DECOMPOSE/RESOLVE_BLOCKERS/SELECT/START/COMPLETE transitions; change manages a scoped impact plan; visualize exports a managed read-only HTML snapshot. Trusted stdin requests supply permission, never project files. No helper executes product commands or replays pending effects.' }));
 } else if (!actions.includes(action) || args.some((arg) => arg.startsWith('-')) ||
   (actions.includes(action) && args.length !== 1)) {
   console.error(JSON.stringify({ code: 'INVALID_ARGUMENTS', message: 'Use --help alone or a known action. This scaffold has no product functionality.' }));
@@ -54,7 +54,7 @@ if (!runtimeInfo().compatibleVersion) {
     const {resume}=await import('./resume.mjs');
     const {writer,...result}=await resume(process.cwd(),request);
     if(writer)result.detail={state:writer.state,bytesVerified:writer.bytesVerified,code:writer.wrapperError};
-    const ok=['CONTEXT_READY','WAITING','NO_CURRENT_ITEM','CONTINUATION_SAVED'].includes(result.state);
+    const ok=['CONTEXT_READY','WAITING','NO_CURRENT_ITEM','CONTINUATION_SAVED','WORK_RECORDED'].includes(result.state);
     (ok?console.log:console.error)(JSON.stringify(result));process.exitCode=ok?0:1;
   }catch(error){console.error(JSON.stringify({code:error.code??'RESUME_REJECTED',diagnostics:error.diagnostics??[],message:'Chưa thể tiếp tục. Giữ dữ liệu hiện có; đối chiếu căn cứ, quyền và tác dụng phụ. Không tự phục hồi hoặc chạy lại.'}));process.exitCode=1;}
 } else if (action === 'change') {

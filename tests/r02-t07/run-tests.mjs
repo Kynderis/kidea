@@ -11,7 +11,7 @@ assertRuntime();
 const root=fileURLToPath(new URL('../../',import.meta.url));
 // Native lock/oplock/mapping suites belong to the retired writer. Their existing
 // evidence is historical, not evidence for this cooperative implementation.
-const suites=['tests/helper.test.mjs','tests/status.test.mjs','tests/r02-t06/cooperative-write.test.mjs','tests/r02-t07/init.test.mjs','tests/r02-t08/approve.test.mjs','tests/r02-t09/resume.test.mjs','tests/r02-t10/probe.test.mjs','tests/r02-t10/profile.test.mjs','tests/r02-t10/root-request.test.mjs','tests/local-portability/runtime.test.mjs'];
+const suites=['tests/helper.test.mjs','tests/status.test.mjs','tests/r02-t06/cooperative-write.test.mjs','tests/r02-t07/init.test.mjs','tests/r02-t08/approve.test.mjs','tests/r02-t09/resume.test.mjs','tests/r02-t10/probe.test.mjs','tests/r02-t10/profile.test.mjs','tests/r02-t10/root-request.test.mjs','tests/local-portability/runtime.test.mjs','tests/r09/work-transition.test.mjs'];
 const sources=[...readdirSync(path.join(root,'.agents/skills/kidea/scripts')).map(n=>'.agents/skills/kidea/scripts/'+n),'.agents/skills/kidea/SKILL.md','.agents/skills/kidea/references/init.md','.agents/skills/kidea/references/approve.md','.agents/skills/kidea/references/resume.md',...suites,'tests/r02-t07/run-tests.mjs','tests/fixtures/r02-t04/catalog.mjs','tests/support/host.mjs','tests/r02-t10/fixtures.mjs','tests/r02-t10/probe.mjs','tests/r02-t10/profile.mjs','package.json','package-lock.json'];
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const gitExecutable=resolveGitExecutable(root);

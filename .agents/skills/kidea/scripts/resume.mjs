@@ -32,7 +32,7 @@ function input(root,request) {
 }
 function identity() {
   const tool=initToolIdentity();tool.version='kidea-schema2-resume-local-r2';
-  for(const name of ['resume.mjs','diagnose-pending.mjs','review-validity.mjs','impact.mjs','maps.mjs'])tool.components.push({name,integrity:byteIntegrity(readFileSync(new URL(name,import.meta.url)))});
+  for(const name of ['resume.mjs','diagnose-pending.mjs','review-validity.mjs','impact.mjs','maps.mjs','work-transition.mjs'])tool.components.push({name,integrity:byteIntegrity(readFileSync(new URL(name,import.meta.url)))});
   return tool;
 }
 function inspect(root,request,{beforeRecheck}={}) {
@@ -91,6 +91,8 @@ function inspect(root,request,{beforeRecheck}={}) {
     attention,verification:'BOUND_CONTEXT_NOT_EXECUTION_AUTHORITY',executionAuthorized:false}};
 }
 export function readResume(root,request,hooks={}) {return inspect(root,request,hooks).result;}
+// Trusted workflow adapter reuses the complete, race-checked READ basis.
+export function inspectResumeContext(root,request) {return inspect(root,request);}
 
 export function prepareContinuation(root,request) {
   root=input(root,request);if(request.operation!=='SAVE')fail('SAVE_REQUEST_REQUIRED');
@@ -146,6 +148,10 @@ export function prepareContinuation(root,request) {
   return {prepared,itemId:work.currentItemId};
 }
 export async function resume(root,request) {
+  if(['DECOMPOSE','SELECT','START','COMPLETE','RESOLVE_BLOCKERS'].includes(request?.operation)) {
+    const {transitionWork}=await import('./work-transition.mjs');
+    return transitionWork(root,request);
+  }
   if(request?.operation!=='SAVE')return readResume(root,request);
   const plan=prepareContinuation(root,request),writer=await executeInternalWrite(plan.prepared);
   return {state:writer.state==='COMPLETED_BYTES'?'CONTINUATION_SAVED':'CONTINUATION_NOT_COMPLETE',itemId:plan.itemId,writer,verification:'SAVED_NOTE_NOT_TASK_COMPLETION'};

@@ -32,6 +32,8 @@ ASSESS only evaluates the current obligation. Include `assessment: {nodeId,input
 
 CLOSE requires all current obligations resolved, no graph diagnostic/blocker, current source versions and approved gates for every impact item. Review packages must cover each item's current inputs, scope/completion and latest assessment; an unrelated approval does not suffice. Include `closure: {conditionsMet:true,semanticStatement,evidenceRefs}` from the actual gate review. CLOSE restores the original continuation point; it does not mark the product round DONE, approve R06 or authorize release.
 
+R09 D1 clarifies blocker scope for CLOSE: global blockers and blockers on impact/return owners, their ancestors and dependencies prevent closure. Independent future-step blockers remain recorded; they do not force completion of unfinished MVP work before returning from a resolved impact.
+
 ## Resume and interruption
 
 Resume READ includes recorded impact obligations and source-version freshness. Read change context to check the complete tool/graph basis before evaluating or closing. Missing rule/Git object, conflict, wrong root, stale review or pending marker blocks dependent writes. Never remove a marker or replay its recorded commands. READ/SAVE retain their old authority: neither automatically advances impact work.
