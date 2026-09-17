@@ -1,0 +1,43 @@
+{
+  "detector-control": {
+    "exit": 66,
+    "stdout": "CONTROL_BODY_COMPLETED value=11472\n",
+    "warnings": 2,
+    "walFrames": []
+  },
+  "wal-parallel": {
+    "exit": 66,
+    "stdout": "mode=wal-parallel sqlite=3.53.4 journal=wal threadsafe=1\nDIAGNOSTIC_INVARIANTS_OK count=100 quick_check=ok\n",
+    "warnings": 2,
+    "walFrames": [
+      [
+        "walIndexWriteHdr",
+        "68469"
+      ],
+      [
+        "walIndexTryHdr",
+        "70135"
+      ],
+      [
+        "walIndexWriteHdr",
+        "68471"
+      ],
+      [
+        "walIndexTryHdr",
+        "70133"
+      ]
+    ]
+  },
+  "delete-parallel": {
+    "exit": 0,
+    "stdout": "mode=delete-parallel sqlite=3.53.4 journal=delete threadsafe=1\nDIAGNOSTIC_INVARIANTS_OK count=100 quick_check=ok\n",
+    "warnings": 0,
+    "walFrames": []
+  },
+  "wal-serial": {
+    "exit": 0,
+    "stdout": "mode=wal-serial sqlite=3.53.4 journal=wal threadsafe=1\nDIAGNOSTIC_INVARIANTS_OK count=100 quick_check=ok\n",
+    "warnings": 0,
+    "walFrames": []
+  }
+}

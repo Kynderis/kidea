@@ -1,5 +1,7 @@
 # R09-T02 — review tương thích SQLite–TSan và diagnostic r2
 
+**Cập nhật: APPROVED và đã chạy một lượt theo “Duyệt diagnostic r2”.** [Kết quả thực](../tests/evidence/r09/t02-sqlite-diagnostic-r2.md); quyền lượt này đã tiêu thụ. Nội dung đề xuất bên dưới giữ lịch sử.
+
 **Review đã hoàn tất; gói chạy r2 PROPOSED, chưa duyệt/chưa chạy.** Human “duyệt nhé” sau `3fe4764` duyệt bước review được nêu trong answer, chưa là quyền tắt cảnh báo hoặc chạy lại build. Đề xuất dưới đây giữ nguyên phạm vi instrumentation và tiêu chí nghiệm thu hiện hành.
 
 ## Kết luận và lựa chọn
