@@ -1,5 +1,6 @@
 # R08-B1 — gói build sạch backend/Web và ngoại lệ hẹp
 
+**Cập nhật môi trường:** Human đã cung cấp Google Cloud project `kidea-508908` và quyền tự tạo/thu hồi VM phục vụ kiểm Kidea theo [ghi nhận quyền](../docs/R08_GCP_AUTHORITY.md). Các đoạn chưa có server/chỉ local dưới đây giữ bối cảnh lúc soạn; gói build local hiện có không tự biến thành gói chạy cloud hoặc bỏ ngoại lệ đang chờ duyệt.
 2026-09-17. **PREPARED — chờ duyệt một lượt build và R08-TIDY-01.** Human “Làm đi” sau `14597c9` giao chuẩn bị phần còn thiếu; sau đó chọn dùng Docker trên Mac, chưa có server riêng. Không yêu cầu host/cloud lúc này. Chuẩn bị chỉ đọc nguồn/pilot/cache; chưa chạy build mới.
 
 ## Đầu vào đã xác định

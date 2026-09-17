@@ -1,10 +1,7 @@
-Đã chuẩn bị gói build C++/Web trên Docker local và kế hoạch deploy/kiểm job-cảnh báo-phục hồi. Không cần server lúc này. Chưa chạy build mới.
+Đã kiểm tra Google Cloud project kidea-508908: project ACTIVE, billing đã bật, Compute API đã bật; tài khoản có quyền tạo/dừng/xóa VM và tài nguyên liên quan. Hiện project không có VM.
 
-Bạn duyệt gộp hai mục nhé:
+Có thể tự quản lý VM phục vụ kiểm Kidea theo quyền bạn vừa giao, rồi thu log và xóa tài nguyên lab khi hết cần. Chưa tạo máy vì đang xác minh và chuẩn bị workload; không cần bạn duyệt lại từng lệnh cloud thông thường.
 
-- Một lượt build tối đa60phút,2CPU/4GiB,đĩa thêm8GiB; không tải/cài thêm, không mở cổng ra Mac.
-- R08-TIDY-01: cho phép đúng một ngoại lệ lint SQLite đã giải thích, chỉ cho lượt này; giữ nguyên kiểm an toàn.
+300USD là ngân sách khá rộng cho các lượt CPU VM nhỏ, chạy hữu hạn; chưa xác minh số dư credit/hạn dùng thực. Tôi sẽ bắt đầu với mục tiêu kiểm soát≤10USD/đợt, tính cả disk/IP/egress và đặt thời hạn. Stop VM không xóa mọi khoản phí; sẽ thu hồi tài nguyên lab và kiểm lại.
 
-Cần duyệt vì ngoại lệ R05 cũ đã hết hiệu lực và lượt build này có ngân sách riêng. Nguồn/cache/script đã cố định trong gói, kiểm local2/2 và core283/283PASS. Build có artifact thật rồi mới chốt gói deploy. R08 chưa hoàn tất.
-
-[Gói duyệt](proposals/r08-product-build-r1.md) · [Báo cáo](tests/evidence/r08/product-preparation-r1.md).
+[Ghi nhận quyền và kết quả](docs/R08_GCP_AUTHORITY.md).

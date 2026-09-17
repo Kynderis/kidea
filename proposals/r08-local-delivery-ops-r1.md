@@ -1,5 +1,6 @@
 # R08 — ma trận deploy/tích hợp/ops còn lại, Docker local
 
+**Cập nhật môi trường:** Human đã cung cấp Google Cloud project `kidea-508908` và quyền tự tạo/thu hồi VM phục vụ kiểm Kidea theo [ghi nhận quyền](../docs/R08_GCP_AUTHORITY.md). Các đoạn chưa có server/chỉ local dưới đây giữ bối cảnh lúc soạn; gói build local hiện có không tự biến thành gói chạy cloud hoặc bỏ ngoại lệ đang chờ duyệt.
 2026-09-17. Human xác nhận: “Tôi chưa có, bạn dùng docker trên máy đi”. **Quyết định môi trường: Docker trên Mac hiện tại; không server/cloud mới.** Nguồn nhiệm vụ: R08-T03–T06/KA-28, R05 đã nghiệm thu phạm vi hữu hạn, R2-A15vector đã đạt. Bảng này chuẩn bị phần tiếp theo, không tự cấp quyền chạy hoặc nhận nghiệm thu.
 
 ## Chuỗi đầu vào
