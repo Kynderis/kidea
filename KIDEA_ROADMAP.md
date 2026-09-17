@@ -10,7 +10,7 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
-**Hiện hành — R05 DONE trong phạm vi backend/Web, đã được Human nghiệm thu.** Human xác nhận “Tôi duyệt nghiệm thu nhé” cho [gói kết quả tại 98fb341](tests/evidence/r05/web-scope-r1.md); [biên bản nghiệm thu](docs/R05_ACCEPTANCE.md) cố định nguồn, phạm vi và giới hạn. R05-T01/T02/T03/T06/T07 và T07-S02 hoàn tất trong phạm vi hiện hành; T04/T05 giữ Future chưa roadmap. Bước tiếp là chuẩn bị gói R06 maps/impact/change, chưa triển khai R06 trong lượt ghi nhận này. Ngoại lệ R05-TIDY-01 đã hết hiệu lực do khép gate R05; chỉ giữ provenance thực thi lịch sử, không dùng cho lượt build mới.
+**Hiện hành — R05 đã nghiệm thu; gói R06 r1 đã chuẩn bị, IN_REVIEW chờ duyệt triển khai.** [Gói R06 đầy đủ](proposals/r06-maps-change-r1.md) trình D1–D7: hợp đồng ba bản đồ, bộ đọc C++/Web, queue impact dùng schema2 hiện có, change/resume, phân loại yêu cầu, canh thử chu kỳ và2phiên mới hữu hạn;9task hiện hành/24nhóm kiểm đều chưa triển khai/chưa chạy. [Kết quả chuẩn bị](tests/evidence/r06/preparation-r1.md) ghi căn cứ thực và giới hạn. Chưa sửa helper/pilot, khởi động Docker hoặc chạy phiên AI. Bước tiếp: Human duyệt gói nội dung và quyền local; sau đó hiện thực T01/fixture, kiểm công cụ C++ và chuẩn bị execution manifest nếu cần Docker. R05 DONE backend/Web theo [biên bản](docs/R05_ACCEPTANCE.md); ngoại lệ R05-TIDY-01 đã hết hiệu lực, không áp cho build mới.
 
 Client chỉ Web theo [quyết định hiệu lực](KIDEA_DESIGN.md#client-web-scope-approved); Android/iOS Future chưa roadmap. Sáu task native R05-T04/T05, R06-T04/T05, R09-T06/T07 giữ ID lịch sử, không DONE hoặc có thời hạn mới. Dừng Android runtime/iOS installer; giữ tài nguyên/cache/evidence, không cần Apple login/Xcode. LP-01 Apple Silicon NOT_RUN. Các đoạn dưới là lịch sử, không dùng điểm tiếp tục cũ để mở workload hoặc xin lại scope.
 
@@ -1018,6 +1018,8 @@ Subtask: **chưa phân rã**. Khi phase tới lượt, rà mục tiêu/phụ thu
 <a id="r06"></a>
 
 ## R06 — Ba bản đồ, change và resume nâng cao
+
+**Gói chuẩn bị hiện hành:** [R06 r1](proposals/r06-maps-change-r1.md), PROPOSED/IN_REVIEW. T01-S01 đã soạn gói để review; phân rã S01/S02/S03 cho9task và24nhóm kiểm tại proposal, chưa có approval triển khai hoặc kết quả runtime. Dòng “chưa phân rã” dưới đây giữ quy tắc trước lượt chuẩn bị; dùng phân rã r1 sau khi được duyệt. T04/T05 vẫn Future chưa roadmap.
 
 Chứng minh cả quan hệ cơ học lẫn đối chiếu ngữ nghĩa; không coi graph hợp lệ là tìm hết mọi ảnh hưởng.
 

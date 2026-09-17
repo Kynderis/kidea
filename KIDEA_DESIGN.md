@@ -1423,4 +1423,4 @@ Tài liệu về nghiệp vụ được giữ nguyên trong [references/business
 
 Lộ trình duy nhất theo dõi phase/task/subtask: [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md). Mọi thay đổi thiết kế phải cập nhật mục nguồn, đánh giá đủ phần phụ thuộc kể cả không có diff và chốt đúng gate; không tạo thiết kế thứ hai trong roadmap. Human chỉ cần đọc gói nhỏ được trỏ chính xác ở lượt hiện hành, không phải tự dò toàn file.
 
-Trạng thái R05 tiếp nối: Human đã duyệt nội dung r1 tại a39f79f; [gói môi trường/build](proposals/r05-environment-build-r1.md) đang PROPOSED. Chưa cài/build hoặc tích hợp skill, không nghiệm thu phase từ approval nội dung.
+Trạng thái tiếp nối: [R05 đã được Human nghiệm thu backend/Web](docs/R05_ACCEPTANCE.md). [Gói R06 r1](proposals/r06-maps-change-r1.md) là PROPOSED, chờ duyệt nội dung và quyền triển khai; chưa thay schema/helper hoặc tự duyệt các nhánh tiếp nhận yêu cầu, giới hạn vòng thử hay phiên AI.

@@ -1,6 +1,6 @@
 # Bàn giao Kidea sang phiên Codex trên Mac
 
-**Điểm tiếp tục hiện hành: R05 backend/Web đã được Human nghiệm thu, DONE đúng phạm vi.** [Biên bản nghiệm thu](R05_ACCEPTANCE.md) gắn gói kết quả tại `98fb341` và câu xác nhận “Tôi duyệt nghiệm thu nhé”. Tiếp theo chuẩn bị gói R06 bản đồ/impact/change; chưa triển khai R06 trong lượt ghi nhận. Android/iOS Future chưa roadmap; LP-01 Apple Silicon NOT_RUN. Ngoại lệ R05-TIDY-01 đã hết hiệu lực khi khép R05, không áp cho build mới. SDK/AVD/cache/volume và quota/deadline giữ nguyên; bằng chứng bên dưới là lịch sử đúng nguồn.
+**Điểm tiếp tục hiện hành: [gói R06 r1](../proposals/r06-maps-change-r1.md) IN_REVIEW chờ Human duyệt nội dung và triển khai local.** Đã chuẩn bị9task hiện hành/24nhóm kiểm; chưa code/helper/pilot hoặc chạy Docker/AI trong lượt chuẩn bị. Sau duyệt làm T01/fixture trước, rà công cụ C++ và trình manifest chạy Docker nếu cần; không dùng quota R05 cũ. [R05 đã nghiệm thu backend/Web](R05_ACCEPTANCE.md), ngoại lệ R05-TIDY-01 đã hết hiệu lực. Android/iOS Future chưa roadmap, Apple Silicon NOT_RUN, tài nguyên/cache/volume giữ nguyên.
 
 **Khôi phục hiện hành:**21file trong `tests/evidence/r05/web-scope-r1/after/`, đối chiếu [manifest](../tests/evidence/r05/web-scope-r1/manifest.json). Hàm `restoreCreateOnly(target)` ở `tests/r05/web-scope.mjs` chỉ tạo đích chưa tồn tại, kiểm hash trước/sau; không ghi đè sibling đang có. `before/` khớp chuỗi r1→SDK37 lịch sử. Sample code/build/cache là gói riêng, không tự có từ21docs. Các đoạn bàn giao native và chuỗi restore cũ bên dưới chỉ là lịch sử.
 
