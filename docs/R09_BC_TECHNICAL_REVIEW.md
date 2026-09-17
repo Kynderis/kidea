@@ -1,6 +1,6 @@
 # R09 B/C — review kỹ thuật sau triển khai
 
-Ngày 2026-09-17. Theo Human “Ok làm đi” sau kết quả tại `60d0a33`: review đầu ra B/C và chuẩn bị T02. **Kết luận: đề nghị chấp nhận B/C đúng phạm vi; chưa ghi Human nghiệm thu.** Không có thay đổi runtime trong lượt review này.
+Ngày 2026-09-17. Theo Human “Ok làm đi” sau kết quả tại `60d0a33`: review đầu ra B/C và chuẩn bị T02. **Human đã nghiệm thu B/C đúng phạm vi** qua “Tôi duyệt” cho gói gộp tại `cdd6ee5`. R09 và ứng dụng chưa nghiệm thu. Không có thay đổi runtime trong lượt review này.
 
 ## Bằng chứng được đối chiếu lại
 

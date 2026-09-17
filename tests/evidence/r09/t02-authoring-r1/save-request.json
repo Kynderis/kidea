@@ -1,0 +1,74 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human Tôi duyệt accepted BC and authorized T02 authoring in the package at cdd6ee5. Save the actual authoring continuation only, preserving all work/gates/blockers. No build/container/deploy or fabricated step completion."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t02/authority.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t02/README.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t02/build-proposal.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t02/build-manifest.json",
+      "anchor": null
+    },
+    {
+      "path": "tests/t02/coverage.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "bc1d2b81a6be0d4a5e9b9c50f68544dfe4904f97694ffc0e184624ed4481d49b",
+  "expectedGit": {
+    "head": "db7b7efe9b48d265ca7b09ac9334779db2446f1e",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "Human đã nghiệm thu B/C và duyệt gói authoring T02 tại cdd6ee5. Đã viết backend C++/SQLite/Drogon, contract API, 46 nhóm test C++ và test HTTP, mapping 137 ID, scripts và manifest build ghim commit nguồn thực. Kiểm tĩnh JSON/mapping/cú pháp/format đã qua; giữ21docs nguồn và samples. Nguồn local commit db7b7efe9b48d265ca7b09ac9334779db2446f1e.",
+    "remaining": "Chưa chạy CMake/compiler/CTest/server/container hoặc build. 137case ứng dụng vẫn NOT_RUN; mọi STEP/gate hiện hữu được giữ, không nhập approval hay DONE từ prose. Cần review nguồn và duyệt gói build r1 exact manifest; các nghĩa vụ Web/ops/independent-host/G2/R09 còn mở.",
+    "nextAction": "Review docs/t02/build-proposal.md và build-manifest.json; chỉ chạy scripts/t02/run.mjs khi Human cấp quyền cho exact manifest. Giữ quota2h/4container tuần tự/2CPU4GiB/8GiB disk/2GiB data-log/0download/networknone/nohostports. Nếu FAIL giữ log, không nới oracle; không dùng waiver R08. Không hỏi lại B/C hoặc nghiệp vụ R03–R05/D/E.",
+    "sourceRefs": [
+      {
+        "path": "docs/t02/authority.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t02/README.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t02/build-proposal.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t02/build-manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t02/coverage.json",
+        "anchor": null
+      }
+    ]
+  }
+}

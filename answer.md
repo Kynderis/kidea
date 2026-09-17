@@ -1,10 +1,9 @@
-Đã review B/C: 168 file nguồn, 18 log, 23 tài liệu pilot và 7.906 entry mẫu đều khớp bằng chứng; không chạy lại test hoặc sửa pilot.
+Đã hoàn thành phần viết nguồn T02 trong phạm vi bạn duyệt:
 
-Đề xuất bạn duyệt gộp:
+- Backend C++/SQLite/Drogon, hợp đồng API, test và harness build đã có; giữ đủ 137 ID nguồn.
+- 9 kiểm tĩnh qua. Chưa compile, chạy test ứng dụng hoặc Docker; mọi kết quả ứng dụng vẫn NOT_RUN.
+- Pilot đã commit local, sạch và không remote. B/C được ghi nhận nghiệm thu; điểm tiếp tục đã lưu qua Kidea.
 
-1. Nghiệm thu B/C đúng phạm vi helper và chuẩn bị pilot.
-2. Cho viết backend, test và harness T02; kiểm tĩnh và commit local. Chưa chạy build/Docker/cloud/deploy, không tải/cài thêm.
+Đề nghị duyệt [T02 build r1](docs/R09_T02_BUILD_REVIEW.md): tối đa 2 giờ, 4 container tuần tự, 2 CPU/4 GiB, tối đa 8 GiB đĩa mới, không mạng/port host/tải thêm. Nguồn, image và lệnh đã ghim trong manifest thật. R09 vẫn chưa hoàn tất.
 
-Gói cụ thể: [R09-T02 authoring r1](proposals/r09-t02-authoring-r1.md). Sau khi có source/lệnh thật, tôi sẽ chuẩn bị gói build có giới hạn cụ thể. R09 chưa hoàn tất.
-
-Cần quyền mới vì mục C trong gói A–E đã duyệt chỉ cho chuẩn bị/khởi tạo pilot và ghi rõ chưa mở code/build/deploy workshop; không cần duyệt lại nghiệp vụ đã chốt.
+Cần quyền mới vì gói authoring bạn duyệt ghi rõ chưa cấp chạy build/container. Không cần cài gì lên macOS.

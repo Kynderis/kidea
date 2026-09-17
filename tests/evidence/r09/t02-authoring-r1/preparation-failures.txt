@@ -1,0 +1,2 @@
+Coverage generator attempt 1: AssertionError for QT01 because the generator assumed every source ID was a Markdown table row. QT source uses prose sections. Fixed the generator to retain the full exact source anchor section for prose cases; no source/oracle edited, no runtime test was run.
+OpenAPI response-schema generator attempt 1: Python SyntaxError (unclosed dict). No contract file was mutated by that failed invocation; corrected the generator and revalidated JSON later. No application test run.

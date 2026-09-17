@@ -1,5 +1,7 @@
 # R09 — quyết định đã có và các điểm Human còn tham gia
 
+**Quyết định mới nhất:** Human “Tôi duyệt” gói tại cdd6ee5: B/C đã nghiệm thu, T02 authoring có quyền và đã có [đầu ra kiểm tĩnh](../tests/evidence/r09/t02-authoring-r1.md). Còn [build r1](R09_T02_BUILD_REVIEW.md) cụ thể cần quyền chạy, không hỏi lại B/C hoặc quyền viết nguồn. Các hàng/mốc trước bên dưới là lịch sử.
+
 Ngày 2026-09-17. Nguồn trạng thái: [roadmap](../KIDEA_ROADMAP.md#review-current). Tài liệu này là danh sách quyết định, không thay sổ tiến độ hoặc cấp quyền từ văn bản.
 
 **Cập nhật theo Human:** “Tôi duyệt tất cả mục trên nhé” duyệt [A–E tại77f5caf](../proposals/r09-next-decisions-r1.md). A nghiệm thu D1; B mở ba helper hữu hạn; C mở chuẩn bị/Git local/public init; D chốt max2ACTIVE tạiT04 và hủy PAUSED tạiT09; E chốt lab giả/AI DEV/Human chạy script vai PROD và N/A index công khai. Không xin lại các quyết định này. Đầu ra B/C, code/build/deploy và nghiệm thu R09 vẫn có gate riêng. Tồn đọng cũ (view pilot R07, Windows/Apple Silicon, native) để sau, chưa PASS hoặc bỏ gate.

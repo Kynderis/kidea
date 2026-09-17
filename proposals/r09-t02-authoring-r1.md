@@ -1,6 +1,6 @@
 # R09-T02 — gói viết backend và bộ kiểm r1
 
-**PROPOSED — chờ duyệt.** Chuẩn bị sau Human “Ok làm đi” tiếp nối kết quả A–E tại `60d0a33`. Lượt này được giao review B/C và chuẩn bị gói T02; chưa được hiểu thành nghiệm thu B/C hoặc quyền build ứng dụng.
+**APPROVED** — Human “Tôi duyệt” cho gói tại `cdd6ee5`. Chuẩn bị sau Human “Ok làm đi” tiếp nối kết quả A–E tại `60d0a33`. Lượt này được giao review B/C và chuẩn bị gói T02; chưa được hiểu thành nghiệm thu B/C hoặc quyền build ứng dụng.
 
 ## Quyết định đề nghị, gộp một lần
 

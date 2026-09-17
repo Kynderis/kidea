@@ -12,7 +12,9 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
-**Cập nhật review B/C:** [Review kỹ thuật](docs/R09_BC_TECHNICAL_REVIEW.md) đã đối chiếu lại168file nguồn/18log/23docs/7906sample entries, không sai lệch; đề nghị chấp nhận đầu ra, chưa ghi Human nghiệm thu. [Gói T02 viết nguồn/test/harness](proposals/r09-t02-authoring-r1.md) đã chuẩn bị để duyệt, chưa code/build ứng dụng. Không cần duyệt lại A–E hoặc nghiệp vụ cũ.
+**Hiện hành — B/C đã nghiệm thu, T02 authoring đã viết/kiểm tĩnh:** Human “Tôi duyệt” cho [gói tại cdd6ee5](proposals/r09-t02-authoring-r1.md), chấp nhận B/C tại60d0a33 và mở viết source/test/harness. [Kết quả T02](tests/evidence/r09/t02-authoring-r1.md): backend/contracts/46nhóm C++ + HTTP test,137ID vẫn NOT_RUN;9kiểm tĩnh qua, chưa compile/container. Pilot source db7b7ef, local HEAD301d349 sạch/không remote;21docs/7906sample entries và168nguồn Kidea bảo toàn. [Build r1 cụ thể](docs/R09_T02_BUILD_REVIEW.md) có51sourcehash/824vendorfile, chưa duyệt chạy.
+
+**Điểm tiếp tục hiện hành:** duyệt đúng gói build r1 (2giờ/4container tuần tự/2CPU4GiB/8GiB disk/2GiB data-log/0download/networknone/nohostport), rồi mới chạy. Không xin lại B/C/D/E hoặc nghiệp vụR03–R05. T02/R09 chưa DONE, R10 chưa mở; các đoạn B/C IN_REVIEW bên dưới là lịch sử trước approval tại cdd6ee5.
 
 **Hiện hành — R09 A–E APPROVED:** Human “Tôi duyệt tất cả mục trên nhé” cho [gói tại 77f5caf](proposals/r09-next-decisions-r1.md). [A nghiệm thu D1](docs/R09_D1_ACCEPTANCE.md) tại26dffeb; S02 DONE. B1–B3 đã triển khai và [kiểm nguồn cuối](tests/evidence/r09/ae-r1.md): 9/9 bộ PASS, core 293/293, 17 ca mới, R06/R07/R08 local; 168 file nguồn không đổi. B/C IN_REVIEW, chưa nghiệm thu đầu ra. C đã chuẩn bị hồ sơ, Git local/public init/SAVE ở sibling, WAITING tại W-001, không remote; chưa code/build/deploy workshop hoặc AI trial. D/E đã chốt chính sách theo thời điểm; không hỏi lại ý nghĩa nghiệp vụ/lab.
 
@@ -346,10 +348,11 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 |---|---|---|---|
 | R09-T01-S01 | DONE | [A] — chuẩn bị theo “Ok làm đi” | [Gói r1](proposals/r09-pilot-r1.md), [inventory](tests/evidence/r09/preparation-r1/inventory.json): 21/21 hash khớp; GAP-01 cần D1 trước S02; không runtime PASS hoặc nghiệm thu R09 |
 | R09-T01-S02 | DONE | D1 và đầu ra APPROVED qua mục A | Human: “Tôi duyệt tất cả mục trên nhé” cho [A–E tại 77f5caf](proposals/r09-next-decisions-r1.md); chấp nhận [kết quả D1](tests/evidence/r09/d1-r1.md) tại 26dffeb, core293/293 + R06/R07 PASS |
-| R09-T01-B1 | IN_REVIEW | A–E/B1 APPROVED, đầu ra chưa nghiệm thu | Đã triển khai sửa kế hoạch/round; cuối 7/7 và hồi quy toàn nguồn PASS; giữ FAIL |
-| R09-T01-B2 | IN_REVIEW | A–E/B2 APPROVED, đầu ra chưa nghiệm thu | Release/attempt/observation qua resume, metadata chỉ; cuối 4/4 + interop và hồi quy toàn nguồn PASS |
-| R09-T01-B3 | IN_REVIEW | A–E/B3 APPROVED, đầu ra chưa nghiệm thu | Recovery hoàn tất planned bytes với quyền mới, unknown vẫn chặn; 4/4 và hồi quy toàn nguồn PASS |
-| R09-T01-C | IN_REVIEW | A–E/C APPROVED, đầu ra chưa nghiệm thu | Đọc21docs/137case, kiểm link/provenance, giữ7906sample entries; Git local/public init/SAVE tại8ce0af4, sạch/không remote. Manifest ứng dụng NOT_READY; chưa quyền code/build/deploy |
+| R09-T01-B1 | DONE | A–E/B1 APPROVED, Human nghiệm thu qua gói cdd6ee5 | Đã triển khai sửa kế hoạch/round; cuối 7/7 và hồi quy toàn nguồn PASS; giữ FAIL |
+| R09-T01-B2 | DONE | A–E/B2 APPROVED, Human nghiệm thu qua gói cdd6ee5 | Release/attempt/observation qua resume, metadata chỉ; cuối 4/4 + interop và hồi quy toàn nguồn PASS |
+| R09-T01-B3 | DONE | A–E/B3 APPROVED, Human nghiệm thu qua gói cdd6ee5 | Recovery hoàn tất planned bytes với quyền mới, unknown vẫn chặn; 4/4 và hồi quy toàn nguồn PASS |
+| R09-T01-C | DONE | A–E/C APPROVED, Human nghiệm thu qua gói cdd6ee5 | Đọc21docs/137case, kiểm link/provenance, giữ7906sample entries; Git local/public init/SAVE tại8ce0af4, sạch/không remote. C chỉ prep, không chứng nhận ứng dụng; T02 theo dòng riêng |
+| R09-T02-S01 | IN_REVIEW | Authoring APPROVED tại cdd6ee5; output chưa nghiệm thu | Đã viết backend/test/harness và pin manifest;9kiểm tĩnh qua,0build/runtime. [Báo cáo](tests/evidence/r09/t02-authoring-r1.md), [build chờ duyệt](docs/R09_T02_BUILD_REVIEW.md) |
 | R01-T01-S01 | DONE | R01-T01-S01-r1 — APPROVED | Human: “Mình duyệt nhé”; chỉ D1–D2 ở commit 5aa4e5b; [bằng chứng](#r01-t01-result) |
 | R01-T01-S02 | DONE | [A] — không có quyết định mới | Đối chiếu DESIGN, danh mục KA và bảng bao phủ; không đổi scope hoặc ngưỡng; [kết quả](#r01-t01-result) |
 | R01-T01-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ approval, kiểm tra tài liệu và dọn tạm; [kết quả](#r01-t01-result) |

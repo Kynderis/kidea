@@ -1,5 +1,7 @@
 # R09 A–E — phạm vi đầu ra và review
 
+**B/C đã được Human nghiệm thu** qua “Tôi duyệt” cho gói gộp tại cdd6ee5. [Review kỹ thuật](R09_BC_TECHNICAL_REVIEW.md). Các giới hạn dưới đây giữ nguyên; T02 có gói authoring/build riêng, R09 chưa hoàn tất.
+
 Human “Tôi duyệt tất cả mục trên nhé” duyệt gói tại77f5caf. A đã ghi [nghiệm thu D1](R09_D1_ACCEPTANCE.md); B/C là quyền triển khai/chuẩn bị, chưa nghiệm thu trước đầu ra. D/E đã chốt và không cần hỏi lại nội dung.
 
 ## Hợp đồng B đã triển khai
