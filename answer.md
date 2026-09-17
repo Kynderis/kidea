@@ -1,7 +1,7 @@
-Đã cài và khởi động thử Android Emulator trên Mac Intel: PASS đúng phạm vi bootstrap. API36/x86_64,2CPU,RAMguest≤2GiB, ảnh launcher đã xem;10/10guard đạt. Emulator và ADB lab đã tắt, cổng đã đóng. Chưa cài APK mẫu Kidea hoặc kiểm N01…N08.
+Đã chuẩn bị bản thiết kế gói kiểm Android N01–N08: ca đúng/sai, source còn thiếu, đường HTTPS/ADB, ký release lab, dependency và hạn mức dự kiến. Gói chạy vẫn DRAFT cho tới khi source/harness và manifest hoàn chỉnh; chưa chạy ứng dụng.
 
-Tải~1.38GiB, đĩa thêm~8.25GiB, tổng~22.7phút; trong hạn mức đã duyệt. Có lỗi chuẩn bị/chạm ngưỡng RAM và ảnh đen ở các lượt trước, đã giữ FAIL/PASS và sửa harness; lượt cuối RSS~2.83GiB, không tăng trần. Báo cáo: tests/evidence/r05/android-sim-bootstrap-r1.md.
+Bộ kiểm bằng chứng N08 trên host đạt12/12 test synthetic;23file A1 và21hồ sơ pilot khớp. Không suy thành PASS runtime Android/iOS. Báo cáo: tests/evidence/r05/native-runtime-plan-r1.md.
 
-Xcode 16.2 / iOS Simulator 18.2 đã được duyệt hướng lab; chưa cài vì còn thiếu bộ cài/manifest Apple. Không cần duyệt lại hướng này.
+iOS đã kiểm lại: trang Apple Downloads yêu cầu đăng nhập, chưa đủ metadata bộ cài Intel. Khi ngồi máy, bạn mở https://developer.apple.com/download/all/?q=Xcode%2016.2 và đăng nhập; chưa cần tải/cài, không gửi mật khẩu/OTP/cookie vào chat. Hướng Xcode16.2/Simulator18.2 đã duyệt, không cần duyệt lại.
 
-Tiếp theo chuẩn bị gói kiểm mẫu Kidea trên emulator theo N01…N08 và hoàn thiện bộ cài iOS khi có đăng nhập Apple trên máy. R05 vẫn mở; Apple Silicon chưa kiểm.
+Tiếp theo hoàn thiện source/harness Android rồi trình gói chạy cụ thể; iOS hoàn thiện manifest khi có phiên Apple. R05 vẫn mở, Apple Silicon chưa kiểm.
