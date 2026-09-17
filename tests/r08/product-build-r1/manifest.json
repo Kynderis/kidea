@@ -1,0 +1,40 @@
+{
+  "revision": "r08-product-build-r1",
+  "sourceBase": "14597c92cafe60ab8d1dd0023f335d095764d29f",
+  "scope": "clean sample backend/Web build gates; no deploy/product acceptance",
+  "toolchain": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+  "browser": "sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+  "scripts": {
+    "build.sh": "0c0c3b786f5d9ad5885aa1cb4cb1a1b29e2e3f9f89005462fb21e1decf485e56",
+    "inputs.json": "842651ad638a939691c04cc34bc7fda6aa5f66cc45e9b76d34b66a5e91c38e41",
+    "run.mjs": "a507bddffa6f959d41c9de1dfe6503b2773ace84db1d117b3854523cdcf77b14",
+    "verify.mjs": "c1ccbd5fa40ff239563cd5d782f905fd829e2b81c9ff2a7e48c33e754203237e"
+  },
+  "requiredException": "R08-TIDY-01",
+  "limits": {
+    "runs": 1,
+    "runSeconds": 3600,
+    "commandSeconds": 1800,
+    "containerTTLSeconds": 1700,
+    "cpu": 2,
+    "memoryBytes": 4294967296,
+    "diskDeltaBytes": 8589934592,
+    "diskReserveBytes": 107374182400,
+    "downloads": 0,
+    "hostPorts": 0,
+    "containers": 3,
+    "concurrentContainers": 1
+  },
+  "commands": [
+    "cpp: formatter + four clean presets + ctest + clang-tidy + artifact hashes",
+    "web: npm ci offline + sync + check + lint + unit + build + server",
+    "browser: Chromium workers1/retries0/forbid-only"
+  ],
+  "deferred": [
+    "deployment exact new artifact manifest",
+    "HTTPS and backend/Web integration",
+    "mutation/whole-project final G2",
+    "local jobs/alerts/restore",
+    "independent host failure"
+  ]
+}

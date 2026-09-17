@@ -1,0 +1,48 @@
+{
+  "commands": [
+    {
+      "name": "unit",
+      "args": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "tests/r08/product-build.test.mjs"
+      ],
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 0.3036780480033485
+    },
+    {
+      "name": "shell-syntax",
+      "args": [
+        "/bin/sh",
+        "-n",
+        "tests/r08/product-build-r1/build.sh"
+      ],
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 0.014774618000956252
+    },
+    {
+      "name": "missing-approval",
+      "args": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/r08/product-build-r1/run.mjs"
+      ],
+      "exitCode": 1,
+      "expected": 1,
+      "seconds": 0.13914738400490023
+    },
+    {
+      "name": "core",
+      "args": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/r02-t07/run-tests.mjs"
+      ],
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 109.28430239700538
+    }
+  ],
+  "pass": true,
+  "sourceUnchanged": true
+}

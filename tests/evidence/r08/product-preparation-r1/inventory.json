@@ -1,0 +1,49 @@
+{
+  "toolchain": {
+    "args": [
+      "docker",
+      "image",
+      "inspect",
+      "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "--format",
+      "{\"id\":{{json .Id}},\"size\":{{.Size}},\"arch\":{{json .Architecture}}}"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"id\":\"sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92\",\"size\":1784463073,\"arch\":\"amd64\"}\n",
+    "stderr": ""
+  },
+  "browser": {
+    "args": [
+      "docker",
+      "image",
+      "inspect",
+      "sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+      "--format",
+      "{\"id\":{{json .Id}},\"size\":{{.Size}},\"arch\":{{json .Architecture}}}"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"id\":\"sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7\",\"size\":3545224786,\"arch\":\"amd64\"}\n",
+    "stderr": ""
+  },
+  "running": {
+    "args": [
+      "docker",
+      "ps",
+      "--format",
+      "{{.Names}}"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "disk": {
+    "args": [
+      "df",
+      "-k",
+      "."
+    ],
+    "exitCode": 0,
+    "stdout": "Filesystem   1024-blocks      Used Available Capacity iused      ifree %iused  Mounted on\n/dev/disk1s1   488245288 101308516 366630616    22% 1203166 3666306160    0%   /System/Volumes/Data\n",
+    "stderr": ""
+  }
+}

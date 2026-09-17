@@ -1,0 +1,12 @@
+file:///Users/kendrick/Desktop/kidea/tests/r08/product-build-r1/verify.mjs:9
+export function authorize(args,manifestHash){if(args.length!==4||args[0]!=='--approved-manifest'||args[1]!==manifestHash||args[2]!=='--approved-exception'||args[3]!=='R08-TIDY-01')throw Error('EXACT_EXECUTION_AND_EXCEPTION_APPROVAL_REQUIRED');}
+                                                                                                                                                                                          ^
+
+Error: EXACT_EXECUTION_AND_EXCEPTION_APPROVAL_REQUIRED
+    at authorize (file:///Users/kendrick/Desktop/kidea/tests/r08/product-build-r1/verify.mjs:9:187)
+    at file:///Users/kendrick/Desktop/kidea/tests/r08/product-build-r1/run.mjs:9:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

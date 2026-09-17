@@ -1,0 +1,60 @@
+{
+  "reason": "Added disk threshold check before each command in addition to live monitoring",
+  "commands": [
+    {
+      "name": "unit",
+      "args": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "tests/r08/product-build.test.mjs"
+      ],
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 0.22725654499663506
+    },
+    {
+      "name": "syntax",
+      "args": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "tests/r08/product-build-r1/run.mjs"
+      ],
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 0.08170105201133993
+    },
+    {
+      "name": "shell",
+      "args": [
+        "sh",
+        "-n",
+        "tests/r08/product-build-r1/build.sh"
+      ],
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 0.01156044501112774
+    },
+    {
+      "name": "gate",
+      "args": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/r08/product-build-r1/run.mjs"
+      ],
+      "exitCode": 1,
+      "expected": 1,
+      "seconds": 0.13304400100605562
+    },
+    {
+      "name": "core",
+      "args": [
+        "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tests/r02-t07/run-tests.mjs"
+      ],
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 106.40864023299946
+    }
+  ],
+  "pass": true,
+  "sourceUnchanged": true
+}
