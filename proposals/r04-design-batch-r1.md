@@ -1,5 +1,7 @@
 # R04-DESIGN-BATCH-r1 — Gói phương pháp, quyền và kiểm chứng
 
+**Phạm vi hiện hành Web r2:** [amendment và kết quả kiểm](../tests/evidence/r05/web-scope-r1.md) thay phần native/bốn profile của gói lịch sử này bằng backend/Web hiện hành; Android/iOS Future chưa roadmap. Giữ quyết định nghiệp vụ/ngưỡng và provenance cũ. Khôi phục pilot theo snapshot after của amendment, không coi r1 là hồ sơ hiệu lực mới. R05-T07-S02 đã tích hợp/kiểm, chờ Human nghiệm thu kết quả; không cấp quyền build/cài/deploy mới.
+
 Ngày 2026-09-15. **APPROVED D1–D6/P1–P3 và protocol:** Human “Duyệt gói R04” sau answer tại `7ef7f1b5a91deed4cd100c275b9fde45e66d320d`. D3 N/A kết quả tìm kiếm thật có hiệu lực cho lab; các gate đầu ra vẫn giữ. Đã mở soạn chất lượng, chưa dùng phiên AI. Những chữ đề xuất/chưa thực thi bên dưới giữ nội dung bản đã được duyệt, không tự xác nhận đầu ra mới. [Kế hoạch vào phase](r04-method-entry-r1.md); [nguồn quy trình](../KIDEA_DESIGN.md#workflow); [phạm vi R04](../KIDEA_ROADMAP.md#r04).
 
 ## 1. Chốt gì trong một lượt?

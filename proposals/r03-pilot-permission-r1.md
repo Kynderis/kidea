@@ -1,5 +1,7 @@
 # R03 — gói tạo hồ sơ và thử phương pháp đầu tiên
 
+**Phạm vi hiện hành Web r2:** [amendment và kết quả kiểm](../tests/evidence/r05/web-scope-r1.md) thay phần native/bốn profile của gói lịch sử này bằng backend/Web hiện hành; Android/iOS Future chưa roadmap. Giữ quyết định nghiệp vụ/ngưỡng và provenance cũ. Khôi phục pilot theo snapshot after của amendment, không coi r1 là hồ sơ hiệu lực mới. R05-T07-S02 đã tích hợp/kiểm, chờ Human nghiệm thu kết quả; không cấp quyền build/cài/deploy mới.
+
 Ngày 2026-09-15. `R03-T01-S02/T05-S01-r1`: **IN_REVIEW**, chưa thực thi. [Phương pháp](r03-feature-method-r1.md) và [mẫu nghiệp vụ/test](r03-business-template-r1.md) đã được Human duyệt; không coi đó là quyền ghi pilot hoặc mở phiên AI.
 
 Cập nhật: Human “Duyệt tạo hồ sơ và hai phiên thử” sau answer ab75b09 đã duyệt đúng gói này. Đã tạo hai file và hoàn tất hai phiên; [kết quả/giới hạn](../tests/evidence/r03/document-trial-r1.md). Quota 2/2 đã dùng hết, không tự mở phiên khác. Nội dung dưới giữ bản đã trình, không là quota mới.

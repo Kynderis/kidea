@@ -1,0 +1,45 @@
+{"errors":[],"files":21,"rules":40,"activeRules":24,"futureRules":16,"sourceCases":137,"technicalGroups":20,"localLinks":998}
+✔ Web amendment keeps 21 documents, 40 rules, 137 cases, 20 groups and valid links (115.902347ms)
+✔ before snapshot matches all 21 SDK37 handoff hashes (3.864988ms)
+✔ original r1 validator still validates its original snapshot (41.148203ms)
+✔ missing Future file or same-count substitution cannot erase history (16.26715ms)
+✔ business mutation is rejected even when scope and counts are unchanged (15.143491ms)
+✔ missing source case and false application PASS are rejected (42.645229ms)
+✔ wrong native/active rule classification and false gate closure are rejected (28.708029ms)
+✔ dropping backend/Web variant while retaining TC count is rejected (29.176713ms)
+✔ relaxing active oracle or rule negative example is rejected independently of snapshot hash (24.634298ms)
+✔ broken links and duplicate anchors are rejected (24.062408ms)
+✔ fresh local restore is exact and cannot overwrite existing folder or symlink (83.937979ms)
+✖ all 11 original historical tests run unchanged in a clean isolated checkout layout (114.272064ms)
+✔ step 8 reference ships with skill and has no local installation or pilot path dependency (0.685714ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 693.570785
+
+✖ failing tests:
+
+test at tests/r05/web-scope.test.mjs:58:1
+✖ all 11 original historical tests run unchanged in a clean isolated checkout layout (114.272064ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /# pass 11/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r05/web-scope.test.mjs:66:60)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /# pass 11/,
+    operator: 'match',
+    diff: 'simple'
+  }

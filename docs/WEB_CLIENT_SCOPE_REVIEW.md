@@ -1,5 +1,7 @@
 # Rà soát phạm vi Kidea: Web trước, native để tương lai
 
+**Cập nhật sau assessment:** [gói đồng bộ đã thực hiện](../tests/evidence/r05/web-scope-r1.md) gồm thiết kế/skill, amendment21docs (13file đổi), kiểm phạm vi/môi trường sạch/hồi quy và review backend/Web. R05 IN_REVIEW chờ Human nghiệm thu. Các câu “chưa sửa/chưa amendment/bước tiếp theo” trong báo cáo bên dưới mô tả thời điểm assessment, không còn là việc đang thiếu.
+
 Ngày 2026-09-17. Đọc repo `Kynderis/kidea`, `master`, nguồn đầu lượt `4ded6e9fb1765d0f943be7c1ee421561cd659a59`, working tree sạch. Đã rà thiết kế/roadmap/KA/KQ, skill/helper/test và21hồ sơ pilot local. Không build/test ứng dụng, cài công cụ hoặc mở workload. Quyết định phạm vi có hiệu lực tại [DESIGN](../KIDEA_DESIGN.md#client-web-scope-approved); tài liệu này là **báo cáo ảnh hưởng**, không là roadmap native mới.
 
 ## Kết luận và ranh giới

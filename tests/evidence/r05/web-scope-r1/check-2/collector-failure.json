@@ -1,0 +1,10 @@
+{
+  "status": "FAIL_COLLECTOR",
+  "observedFrom": "exec session 81739, exit1, Node24.19.0",
+  "code": "EEXIST",
+  "path": "check-2/evidence-review.json",
+  "cause": "Review artifact and stage receipt collided at a CREATE-only filename; no file overwritten",
+  "scopeTests": "14 PASS",
+  "core": "NOT_RUN",
+  "fix": "Write stage receipt to <stage>.receipt.json; keep review artifact separate"
+}

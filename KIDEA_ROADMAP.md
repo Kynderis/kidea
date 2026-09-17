@@ -2,7 +2,7 @@
 
 Ngày cập nhật: 2026-09-17.
 
-Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–R04 đã được Human duyệt trong phạm vi từng gói; R05 mở chuẩn bị, chưa có code pilot hoặc toàn Kidea hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
+Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–R04 đã được Human duyệt trong phạm vi từng gói; R05 đã có mẫu lab backend/Web và đang chờ nghiệm thu, chưa là toàn Kidea hoặc ứng dụng pilot hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
 <a id="current"></a>
 
@@ -10,7 +10,9 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
-**Quyết định hiện hành: client chỉ Web; Android/iOS chuyển Future chưa roadmap.** Human đã chốt ngày2026-09-17, xem [phạm vi hiệu lực](KIDEA_DESIGN.md#client-web-scope-approved) và [rà soát toàn diện](docs/WEB_CLIENT_SCOPE_REVIEW.md). Dừng nhánh Android runtime/iOS installer; không cần đăng nhập Apple hoặc cài thêm native. Sáu task native R05-T04/T05, R06-T04/T05, R09-T06/T07 ra khỏi kế hoạch hiện hành, giữ ID lịch sử và không đặt phase/thời hạn mới. R05 vẫn IN_PROGRESS: tiếp theo amendment hồ sơ/rule/test cho backend+Web, review lab đã có, tích hợp phương pháp, kiểm môi trường sạch/hồi quy và Human nghiệm thu. Các đoạn dưới là lịch sử trước quyết định đổi scope; không lấy các “điểm tiếp tục” native cũ làm việc đang được giao.
+**Hiện hành — R05 backend/Web đã tích hợp và kiểm, IN_REVIEW chờ Human nghiệm thu.** [Gói kết quả](tests/evidence/r05/web-scope-r1.md): đồng bộ thiết kế/KA/skill và13/21hồ sơ pilot;24rule hiện hành/16Future, giữ137case và20nhóm TC. Amendment14/14PASS;11test r1 nguyên byte PASS trong folder sạch; core Mac Intel283/283PASS. Review78nguồn backend/27Web và22nhóm lab theo provenance cũ, không chạy workload mới. Hai lỗi harness/collector mới đã sửa, log FAIL giữ riêng. Phần kỹ thuật R05-T07-S02 hoàn tất; phase chưa DONE và chưa mở R06. Bước tiếp: Human nghiệm thu đúng giới hạn báo cáo, rồi mới chuẩn bị R06 maps/impact/change. Ngoại lệ R05-TIDY-01 không được kế thừa sang profile r2/lượt build mới hoặc sau gate.
+
+Client chỉ Web theo [quyết định hiệu lực](KIDEA_DESIGN.md#client-web-scope-approved); Android/iOS Future chưa roadmap. Sáu task native R05-T04/T05, R06-T04/T05, R09-T06/T07 giữ ID lịch sử, không DONE hoặc có thời hạn mới. Dừng Android runtime/iOS installer; giữ tài nguyên/cache/evidence, không cần Apple login/Xcode. LP-01 Apple Silicon NOT_RUN. Các đoạn dưới là lịch sử, không dùng điểm tiếp tục cũ để mở workload hoặc xin lại scope.
 
 **Đã chuẩn bị [thiết kế gói Android runtime](proposals/r05-android-runtime-r1.md) và [hồ sơ iOS installer](proposals/r05-ios-lab-install-r1.md)** theo Human giao tiếp sau bootstrap. [Kết quả chuẩn bị](tests/evidence/r05/native-runtime-plan-r1.md):23file A1/21hồ sơ pilot bảo toàn; N08 gate host synthetic12/12PASS, chưa kiểm device. Android PREPARED_SPEC/EXECUTION_DRAFT: còn triển khai source/harness, cố định graph/lệnh và xử lý phép kiểm accessibility khi image thiếu TalkBack trước trình execution. Không mở workload/ngân sách mới. iOS hướng Xcode16.2/Simulator18.2 đã duyệt, Apple Downloads thực trả trang đăng nhập và archive HEAD302unauthorized; cần Human đăng nhập Apple tại máy để lấy metadata/variant chính xác. Không cần duyệt lại hướng hoặc gửi secret. R05/T07-S02 vẫn mở; các đoạn dưới là lịch sử.
 
@@ -996,6 +998,8 @@ R04 được Human nghiệm thu sau `a72e3a1`. [Phân rã subtask, đầu ra/tes
 ## R05 — Quy tắc code theo nền tảng và đặc tả test
 
 Profile hiện hành là C++/Web; Android/iOS đã chuyển Future chưa roadmap. Mẫu build nhỏ chỉ kiểm tra khả thi, không thay pilot. R05 không còn chờ môi trường/thiết bị native, nhưng vẫn cần đủ kiểm chứng và Human review cho phạm vi mới. Chi tiết hồ sơ r1 bên dưới là căn cứ trước amendment; [rà soát chuyển phạm vi](docs/WEB_CLIENT_SCOPE_REVIEW.md).
+
+**Kết quả hiện hành:** [Web r2 và gói nghiệm thu](tests/evidence/r05/web-scope-r1.md) đã tích hợp bước8, amendment hồ sơ, kiểm folder sạch/hồi quy và review mẫu backend/Web có sẵn. R05-T02-S03/T03-S03 có bằng chứng lab đã review đúng nguồn; R05-T07-S02 phần kỹ thuật hoàn tất, **IN_REVIEW chờ Human nghiệm thu**. R05 chưa DONE. Các trạng thái “chưa build/chưa phân rã” phía dưới là lịch sử trước các gói thực thi, không thay điểm tiếp tục này.
 
 Đã mở theo approval sau `a72e3a1`; D1–D6/P1–P4 được duyệt sau cfffe0c. [Phân rã hiện hành](proposals/r05-profile-test-r1.md) và [kết quả r1](tests/evidence/r05/profile-r1.md): hồ sơ đã soạn/kiểm, nội dung R5-1–R5-4 tại a39f79f đã APPROVED; mẫu build chưa chạy. [LP-01](proposals/local-portability-r1.md) đã được duyệt riêng sau f8b47b9: host Kidea local Windows/macOS Intel/Apple Silicon, Node ≥24, backend Docker local và cloud khi có host/quyền. Approval LP-01 không thay gate nội dung của bốn profile R05 vừa soạn. Phần mô tả “chưa phân rã” dưới đây là quy tắc trước khi mở phase, nay được cụ thể hóa tại đề xuất; không cấp trước quyền build hoặc duyệt trước kết quả.
 

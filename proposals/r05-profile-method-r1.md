@@ -1,5 +1,7 @@
 # R05 — Phương pháp rule/test, bản r1
 
+**Amendment Web r2 — đã được Human giao đồng bộ ngày 2026-09-17:** phương pháp hiện hành tại [skill step 8](../.agents/skills/kidea/references/coding-testing.md). Pilot revision 2 giữ 40 ID (24 COMMON/CPP/WEB hiện hành, 16 AND/IOS Future), 137 source ID và 20 nhóm TC; hoãn riêng biến thể native, không đổi oracle/ngưỡng backend/Web. Nội dung r1/bốn profile và trạng thái môi trường phía dưới là lịch sử. Kiểm snapshot r1 riêng; kiểm amendment và hồi quy trên nguồn cuối riêng. Tích hợp skill đã được giao, nghiệm thu R05 vẫn cần Human.
+
 **PHẠM VI HIỆN HÀNH ĐÃ ĐỔI ngày2026-09-17:** [client chỉ Web, Android/iOS Future chưa roadmap](../KIDEA_DESIGN.md#client-web-scope-approved). Phần native/bốn profile và blocker native bên dưới là căn cứ lịch sử, không còn chặn R05 backend/Web. Hợp đồng/rule/test chung vẫn giữ; [báo cáo ảnh hưởng](../docs/WEB_CLIENT_SCOPE_REVIEW.md) liệt kê amendment còn phải thực hiện, chưa coi gói r1 đã chuyển đổi toàn bộ.
 
 Ngày 2026-09-16. **APPROVED — nội dung R5-1–R5-4 tại a39f79f đã được Human duyệt** bằng câu “Duyệt nội dung R05 r1, tiếp tục chuẩn bị gói môi trường/build.” Quyền soạn/kiểm D1–D6/P1–P4 đã được duyệt sau answer cfffe0c. Không tích hợp skill/runtime trong lượt này. [Gói quyền và đích](r05-profile-test-r1.md), [bản đọc kết quả](../tests/evidence/r05/profile-r1.md).

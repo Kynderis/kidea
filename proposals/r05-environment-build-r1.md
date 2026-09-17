@@ -1,5 +1,7 @@
 # R05 — Gói môi trường và build trên Mac Intel r1
 
+**Phạm vi hiện hành Web r2:** [amendment và kết quả kiểm](../tests/evidence/r05/web-scope-r1.md) thay phần native/bốn profile của gói lịch sử này bằng backend/Web hiện hành; Android/iOS Future chưa roadmap. Giữ quyết định nghiệp vụ/ngưỡng và provenance cũ. Khôi phục pilot theo snapshot after của amendment, không coi r1 là hồ sơ hiệu lực mới. R05-T07-S02 đã tích hợp/kiểm, chờ Human nghiệm thu kết quả; không cấp quyền build/cài/deploy mới.
+
 **PHẠM VI HIỆN HÀNH ĐÃ ĐỔI ngày2026-09-17:** [client chỉ Web, Android/iOS Future chưa roadmap](../KIDEA_DESIGN.md#client-web-scope-approved). Phần native/bốn profile và blocker native bên dưới là căn cứ lịch sử, không còn chặn R05 backend/Web. Hợp đồng/rule/test chung vẫn giữ; [báo cáo ảnh hưởng](../docs/WEB_CLIENT_SCOPE_REVIEW.md) liệt kê amendment còn phải thực hiện, chưa coi gói r1 đã chuyển đổi toàn bộ.
 
 Ngày 2026-09-16. **PROPOSED — chưa có quyền cài hoặc build.** Nội dung R5-1–R5-4 tại commit `a39f79f97ad0dc193052c95a5dd7bbef7e89fa64` đã được Human duyệt bằng câu “Duyệt nội dung R05 r1, tiếp tục chuẩn bị gói môi trường/build.” Bản này thực hiện quyền chuẩn bị đó. [Phương pháp đã duyệt](r05-profile-method-r1.md); [metadata chỉ đọc](../tests/evidence/r05/environment-r1/metadata.json).

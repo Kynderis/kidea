@@ -1,0 +1,96 @@
+TAP version 13
+# {"errors":[],"files":21,"rules":40,"activeRules":24,"futureRules":16,"sourceCases":137,"technicalGroups":20,"localLinks":998}
+# Historical clean-folder suite: 11 PASS, 0 skipped
+# Subtest: Web amendment keeps 21 documents, 40 rules, 137 cases, 20 groups and valid links
+ok 1 - Web amendment keeps 21 documents, 40 rules, 137 cases, 20 groups and valid links
+  ---
+  duration_ms: 25.358136
+  type: 'test'
+  ...
+# Subtest: before snapshot matches all 21 SDK37 handoff hashes
+ok 2 - before snapshot matches all 21 SDK37 handoff hashes
+  ---
+  duration_ms: 3.691723
+  type: 'test'
+  ...
+# Subtest: original r1 validator still validates its original snapshot
+ok 3 - original r1 validator still validates its original snapshot
+  ---
+  duration_ms: 36.377481
+  type: 'test'
+  ...
+# Subtest: missing Future file or same-count substitution cannot erase history
+ok 4 - missing Future file or same-count substitution cannot erase history
+  ---
+  duration_ms: 14.628337
+  type: 'test'
+  ...
+# Subtest: business mutation is rejected even when scope and counts are unchanged
+ok 5 - business mutation is rejected even when scope and counts are unchanged
+  ---
+  duration_ms: 13.994534
+  type: 'test'
+  ...
+# Subtest: missing source case and false application PASS are rejected
+ok 6 - missing source case and false application PASS are rejected
+  ---
+  duration_ms: 41.213415
+  type: 'test'
+  ...
+# Subtest: wrong native/active rule classification and false gate closure are rejected
+ok 7 - wrong native/active rule classification and false gate closure are rejected
+  ---
+  duration_ms: 28.468647
+  type: 'test'
+  ...
+# Subtest: dropping backend/Web variant while retaining TC count is rejected
+ok 8 - dropping backend/Web variant while retaining TC count is rejected
+  ---
+  duration_ms: 27.170999
+  type: 'test'
+  ...
+# Subtest: relaxing active oracle or rule negative example is rejected independently of snapshot hash
+ok 9 - relaxing active oracle or rule negative example is rejected independently of snapshot hash
+  ---
+  duration_ms: 27.15603
+  type: 'test'
+  ...
+# Subtest: broken links and duplicate anchors are rejected
+ok 10 - broken links and duplicate anchors are rejected
+  ---
+  duration_ms: 25.045999
+  type: 'test'
+  ...
+# Subtest: fresh local restore is exact and cannot overwrite existing folder or symlink
+ok 11 - fresh local restore is exact and cannot overwrite existing folder or symlink
+  ---
+  duration_ms: 85.732001
+  type: 'test'
+  ...
+# Subtest: all 11 original historical tests run unchanged in a clean isolated checkout layout
+ok 12 - all 11 original historical tests run unchanged in a clean isolated checkout layout
+  ---
+  duration_ms: 1082.303387
+  type: 'test'
+  ...
+# Subtest: step 8 reference ships with skill and has no local installation or pilot path dependency
+ok 13 - step 8 reference ships with skill and has no local installation or pilot path dependency
+  ---
+  duration_ms: 0.692979
+  type: 'test'
+  ...
+# Subtest: complete skill copied to a fresh folder reads a valid fixture without modifying it
+ok 14 - complete skill copied to a fresh folder reads a valid fixture without modifying it
+  ---
+  duration_ms: 218.066949
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1771.908948

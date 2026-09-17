@@ -1,5 +1,7 @@
 # Pilot workshop — phạm vi và ranh giới cụm đầu
 
+**Phạm vi hiện hành Web r2:** [amendment và kết quả kiểm](../tests/evidence/r05/web-scope-r1.md) thay phần native/bốn profile của gói lịch sử này bằng backend/Web hiện hành; Android/iOS Future chưa roadmap. Giữ quyết định nghiệp vụ/ngưỡng và provenance cũ. Khôi phục pilot theo snapshot after của amendment, không coi r1 là hồ sơ hiệu lực mới. R05-T07-S02 đã tích hợp/kiểm, chờ Human nghiệm thu kết quả; không cấp quyền build/cài/deploy mới.
+
 Ngày 2026-09-15. `R03-PILOT-BOUNDARY-r1`, **IN_REVIEW**. Nguồn sản phẩm: [Feature Map](D:/Code/kynderis/kidea-workshop-pilot/docs/features.md), [ứng viên nghiệp vụ](D:/Code/kynderis/kidea-workshop-pilot/docs/business/INDEX.md). Bản chụp phục vụ kiểm chứng sẽ giữ ở [bằng chứng lượt đầu](../tests/evidence/r03/document-trial-r1.md), không là nguồn sản phẩm thứ hai.
 
 Cập nhật: **D1 APPROVED** ngày 2026-09-15. Human “Duyệt ba nhóm và cụm đăng ký/hủy” sau answer `d539cc980d2b63513b69ae600550301132384ff9` duyệt ranh giới C-REG/C-LIFE/C-VIEW và cụm đầu; chưa duyệt các rule OPEN, tạo file mới, AI hoặc thực thi. Bản trình phía dưới được giữ nguyên để đối chiếu phạm vi.

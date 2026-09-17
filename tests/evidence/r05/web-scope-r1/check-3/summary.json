@@ -1,0 +1,42 @@
+{
+  "at": "2026-09-17T02:41:07.390Z",
+  "stages": [
+    {
+      "name": "scope-tests",
+      "args": [
+        "--test",
+        "--test-reporter=tap",
+        "tests/r05/web-scope.test.mjs"
+      ],
+      "exit": 0,
+      "error": null,
+      "stdout": "696ca954e2fc70cd653771226ef0d31d2573a10fe92cc1886fe1274d9049385c",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "evidence-review",
+      "args": [
+        "tests/r05/review-web-scope-evidence.mjs",
+        "/Users/kendrick/Desktop/kidea/tests/evidence/r05/web-scope-r1/check-3/evidence-review.json"
+      ],
+      "exit": 0,
+      "error": null,
+      "stdout": "381ac200bd92a281bdda84918e867167b31efa1cc7355aa1f966db8607f103e9",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "core",
+      "args": [
+        "tests/r02-t07/run-tests.mjs"
+      ],
+      "exit": 0,
+      "error": null,
+      "stdout": "ba73f6fdbdd55ad42f302b14ed765f75bea961acf9d8621d28bcf50a95e5e379",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "inputsUnchanged": true,
+  "livePilotErrors": [],
+  "status": "PASS_SCOPED",
+  "limits": "Method/docs/core Mac Intel checks and review of historical application evidence, not fresh app build or Human acceptance"
+}

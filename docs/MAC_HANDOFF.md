@@ -1,8 +1,8 @@
 # Bàn giao Kidea sang phiên Codex trên Mac
 
-**Điểm tiếp tục hiện hành: client Web; Android/iOS đã chuyển Future chưa roadmap theo Human ngày2026-09-17.** Đọc [quyết định hiệu lực](../KIDEA_DESIGN.md#client-web-scope-approved) và [rà soát toàn diện](WEB_CLIENT_SCOPE_REVIEW.md). Dừng Android harness/runtime và iOS installer, không cần đăng nhập Apple/cài Xcode. Tiếp theo đồng bộ thiết kế/skill và amendment hồ sơ pilot cho backend/Web, kiểm coverage rồi khép R05 đúng bằng chứng/Human gate. LP-01 host Mac/Windows giữ nguyên. SDK/AVD/cache/volume/evidence giữ nguyên, không restart theo quota cũ hoặc tự dọn.
+**Điểm tiếp tục hiện hành: R05 backend/Web IN_REVIEW chờ Human nghiệm thu.** [Gói kết quả Web r2](../tests/evidence/r05/web-scope-r1.md) đã đồng bộ thiết kế/skill/13hồ sơ pilot, kiểm14ca amendment,11ca r1 trong folder sạch và283ca core Mac Intel. Review backend/Web lịch sử có nguồn/hash rõ, không chạy build mới. Human đã quyết định client chỉ Web; Android/iOS Future chưa roadmap. Không xin lại scope, Apple login hoặc cài Xcode; sau nghiệm thu mới chuẩn bị R06. LP-01 Apple Silicon NOT_RUN, SDK/AVD/cache/volume giữ nguyên; không reset quota/deadline.
 
-**Phần bàn giao native bên dưới là lịch sử.** Pilot21file hiện chưa được amendmentWeb; chuỗi khôi phục cũ tái dựng bản lịch sử, không phải scope hiện hành mới. Phải áp amendmentWeb có nguồn/hash khi nó được tạo, không tự nhận bản restore cũ là đã đồng bộ quyết định này.
+**Khôi phục hiện hành:**21file trong `tests/evidence/r05/web-scope-r1/after/`, đối chiếu [manifest](../tests/evidence/r05/web-scope-r1/manifest.json). Hàm `restoreCreateOnly(target)` ở `tests/r05/web-scope.mjs` chỉ tạo đích chưa tồn tại, kiểm hash trước/sau; không ghi đè sibling đang có. `before/` khớp chuỗi r1→SDK37 lịch sử. Sample code/build/cache là gói riêng, không tự có từ21docs. Các đoạn bàn giao native và chuỗi restore cũ bên dưới chỉ là lịch sử.
 
 Ngày 2026-09-17. Đây là hướng dẫn tiếp tục, không là nguồn trạng thái mới hoặc approval bổ sung cho R05. Đọc trạng thái hiện hành trong [roadmap](../KIDEA_ROADMAP.md#review-current).
 

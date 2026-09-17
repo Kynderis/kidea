@@ -1,5 +1,7 @@
 # R05 — Gói quy tắc viết code và cách kiểm thử
 
+**Phạm vi hiện hành Web r2:** [amendment và kết quả kiểm](../tests/evidence/r05/web-scope-r1.md) thay phần native/bốn profile của gói lịch sử này bằng backend/Web hiện hành; Android/iOS Future chưa roadmap. Giữ quyết định nghiệp vụ/ngưỡng và provenance cũ. Khôi phục pilot theo snapshot after của amendment, không coi r1 là hồ sơ hiệu lực mới. R05-T07-S02 đã tích hợp/kiểm, chờ Human nghiệm thu kết quả; không cấp quyền build/cài/deploy mới.
+
 **PHẠM VI HIỆN HÀNH ĐÃ ĐỔI ngày2026-09-17:** [client chỉ Web, Android/iOS Future chưa roadmap](../KIDEA_DESIGN.md#client-web-scope-approved). Phần native/bốn profile và blocker native bên dưới là căn cứ lịch sử, không còn chặn R05 backend/Web. Hợp đồng/rule/test chung vẫn giữ; [báo cáo ảnh hưởng](../docs/WEB_CLIENT_SCOPE_REVIEW.md) liệt kê amendment còn phải thực hiện, chưa coi gói r1 đã chuyển đổi toàn bộ.
 
 Ngày 2026-09-16. **D1–D6/P1–P4 APPROVED cho lượt soạn và kiểm hồ sơ.** Human “Tôi duyệt nhé” sau [answer cfffe0c](https://github.com/Kynderis/kidea/blob/cfffe0c/answer.md) duyệt bước tiếp tục trên Mac: chuyển đích sang checkout local hiện hành, khôi phục đúng pilot nếu thiếu, soạn/kiểm trọn gói dưới đây. Approval này không duyệt trước nội dung chưa soạn, cài/build/code/deploy hoặc phiên AI mới. R04 đã được nghiệm thu tại `a72e3a10775a9ca5b47bc5f1a6d2ccdc975d36ee`.
@@ -49,8 +51,8 @@ Trong sibling local `/Users/kendrick/Desktop/kidea-workshop-pilot/`: khôi phụ
 | R05-T06-S01 | Test specs truy từ R03/R04, gồm C1–C5, tải/lỗi/bảo mật/restore và release cũ–mới/thành công một phần | DONE [A], 20 nhóm nối 137 ca nguồn, runtime NOT_RUN |
 | R05-T07-S01 | Kiểm hồ sơ/link/bảo toàn; báo riêng lỗi cũ, ca chưa chạy; trình chung nội dung và nhu cầu môi trường đã rõ | DONE [A] phạm vi báo cáo: R05 11/11; R03 cũ 8/9 do inventory engineering; không nhận mọi suite xanh |
 | R05-T01-S04; T02–T06-S02 | Human duyệt nội dung đúng bản; gói môi trường/build phải đủ dữ kiện và được duyệt riêng | DONE [H] nội dung tại a39f79f; gói môi trường/build mới chưa được duyệt |
-| R05-T02–T05-S03 | Build/mẫu đúng–sai trên nền tảng đích trong quyền được cấp; ghi thiếu máy/quyền là blocker của phần tương ứng | BLOCKED_ENV_PENDING, chưa có quyền chạy |
-| R05-T07-S02 | Tích hợp phương pháp đã duyệt, kiểm mang sang môi trường sạch và hồi quy; Human nghiệm thu R05 đúng bằng chứng | TODO, không dùng docs-only thay build |
+| R05-T02–T05-S03 | Build/mẫu đúng–sai trên nền tảng đích trong quyền được cấp; ghi thiếu môi trường đúng phạm vi | T02/T03 lab đã chạy và review, chờ nghiệm thu; T04/T05 Future chưa roadmap. Lịch sử trước gói build là BLOCKED_ENV_PENDING |
+| R05-T07-S02 | Tích hợp phương pháp đã duyệt, kiểm mang sang môi trường sạch và hồi quy; Human nghiệm thu R05 đúng bằng chứng | IN_REVIEW: phần kỹ thuật hoàn tất tại [gói Web r2](../tests/evidence/r05/web-scope-r1.md); Human nghiệm thu còn chờ, không dùng docs-only thay build |
 
 Một subtask triển khai hiện hành; các ID rút gọn T02–T06 là các subtask riêng thuộc từng task R05 tương ứng, không gom mất quyền nghiệm thu. Không xin thêm lượt để chỉ “chuẩn bị đề xuất”.
 
