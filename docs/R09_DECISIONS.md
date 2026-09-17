@@ -2,6 +2,8 @@
 
 Ngày 2026-09-17. Nguồn trạng thái: [roadmap](../KIDEA_ROADMAP.md#review-current). Tài liệu này là danh sách quyết định, không thay sổ tiến độ hoặc cấp quyền từ văn bản.
 
+**Cập nhật theo Human:** phần tồn đọng ở đoạn cuối trả lời trước (view pilot kế thừa R07, Windows/Apple Silicon, native) để sau. Chưa chạy các phần đó hoặc ghi PASS; chưa tự bỏ gate view khi khép R09. Các phần còn lại đã có [đề xuất A–E r1](../proposals/r09-next-decisions-r1.md), IN_REVIEW: nghiệm thu D1, ba thao tác runtime hữu hạn, bootstrap pilot local, hai thay đổi nghiệp vụ theo thời điểm và phạm vi release lab/SEO. Chưa mục nào trong A–E được duyệt bởi yêu cầu “nêu đề xuất”.
+
 ## Đã duyệt, không hỏi lại
 
 - Human: **“Duyệt D1. Sau đó xem còn cần tôi confirm gì để hoàn thành R09 hoặc phần nào còn tồn đọng trước đây thì nêu ra nhé”**. D1 của [R09 r1 tại cd05598](../proposals/r09-pilot-r1.md): sửa hữu hạn đường phân rã/chuyển công việc công khai, giữ schema/sáu hành động/quyền/gate. Được triển khai và kiểm local có sẵn, commit/push Kidea; không sửa/init sibling hoặc chạy workload trong D1.

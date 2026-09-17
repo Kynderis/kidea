@@ -1,13 +1,15 @@
-**D1 đã triển khai và kiểm xong:** lõi 293/293 PASS, hồi quy R06/R07 PASS. Đã lưu FAIL/PASS, cập nhật hồ sơ và commit/push; pilot giữ nguyên. [Kết quả D1](/Users/kendrick/Desktop/kidea/tests/evidence/r09/d1-r1.md).
+Đã ghi nhận phần tồn đọng cũ để sau. Tôi đề xuất **gói A–E**:
 
-Các điểm bạn còn cần xác nhận để khép R09:
+| Mục | Đề xuất của tôi |
+|---|---|
+| **A — Nghiệm thu D1** | Chấp nhận kết quả 293/293 và hồi quy R06/R07 đã PASS; khép phần quản lý kế hoạch ban đầu. |
+| **B — Hoàn thiện thao tác còn thiếu** | Bổ sung đổi kế hoạch/vòng làm việc, ghi hồ sơ phát hành và đối chiếu/phục hồi sau ngắt. Làm từng phần, kiểm đầy đủ bằng fixture local; giữ gate/quyền, không tự chạy lại lệnh chưa rõ kết quả. |
+| **C — Chuẩn bị pilot** | Dùng thư mục workshop hiện có; sửa link, giữ hồ sơ/mẫu cũ, tạo Git local và `.kidea` bằng helper công khai, lập kế hoạch chạy. Chưa tạo remote GitHub hoặc mở build/deploy. |
+| **D — Hai thay đổi nghiệp vụ** | T04: tối đa 2 đăng ký ACTIVE/người trên toàn bộ workshop; hủy giải phóng hạn mức, không tự hủy dữ liệu cũ vượt mức. T09: PAUSED vẫn cho chủ đăng ký hủy, tiếp tục chặn đăng ký mới. Áp dụng đúng thời điểm thử, không thêm ngay vào MVP. |
+| **E — Phát hành lab** | Chỉ dữ liệu giả, noindex; N/A phần index công khai, vẫn kiểm SSR/SEO/UX liên quan. Tôi chuẩn bị và kiểm script; bạn chạy script vai PROD trên lab khi tới bước đó. |
 
-1. **Nghiệm thu đầu ra D1** — có thể xem ngay; đây là gate S02 đã ghi trong gói được duyệt.
-2. **Gói chạy pilot cụ thể**, gồm quyền ghi/Git/init, kế hoạch và giới hạn tài nguyên. Trước các lát sau còn phải chuẩn bị gói bổ sung thao tác đổi kế hoạch/vòng làm việc, ghi phát hành và xử lý thao tác dở sau ngắt.
-3. **Đầu ra sản phẩm mới và hai thay đổi thử nghiệm:** giới hạn 2 đăng ký ACTIVE, rồi cho hủy khi PAUSED. Giữ các quyết định đã duyệt.
-4. **Phát hành lab:** duyệt phần SEO không áp dụng và trực tiếp chạy script vai PROD đã được kiểm, khi tôi chuẩn bị đủ.
-5. **Nghiệm thu R09 cuối cùng** sau toàn bộ kiểm tích hợp, lỗi/phục hồi và view pilot thật.
+Tôi đề xuất **duyệt cả A–E** theo [gói chi tiết r1](/Users/kendrick/Desktop/kidea/proposals/r09-next-decisions-r1.md). Bạn chưa cần cài gì hoặc ngồi máy ngay.
 
-Tồn đọng cũ: view pilot chuyển từ R07 vẫn bắt buộc; Windows cần hồi quy mới, Apple Silicon chưa kiểm. Android/iOS tiếp tục Future. R05–R08 không cần nghiệm thu lại; R10 vẫn là phase riêng sau R09.
+Gate nghiệm thu đầu ra và R09 cuối sẽ dựa trên kết quả thực. Gói build/cloud cụ thể được trình khi đủ nguồn, lệnh và giới hạn; chưa xin duyệt trước trong gói này. View pilot đang hoãn vẫn là gate trong roadmap, nên việc hoãn chưa đồng nghĩa R09 hoàn tất.
 
-[Danh sách đầy đủ và thời điểm cần bạn tham gia](/Users/kendrick/Desktop/kidea/docs/R09_DECISIONS.md). Chưa cần cài thêm gì hoặc gửi secret; các gói chưa đủ căn cứ chưa được đưa ra xin duyệt trước.
+Bạn có thể trả lời **“Duyệt A–E”** hoặc sửa từng mục.
