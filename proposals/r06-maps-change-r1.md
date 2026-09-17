@@ -1,6 +1,8 @@
 # R06 r1 — Ba bản đồ, thay đổi và tiếp tục công việc
 
-**APPROVED — đang triển khai, chưa nghiệm thu R06.** Ngày 2026-09-17, Human “tôi duyệt nhé. Bạn cần tôi confirm chỗ nào để hoàn thành phần R06 này không, nếu không thì làm liền mạch cho xong nhé. Trong quá trình làm phát sinh vấn đề gì cần tôi confirm thì bảo nhé” duyệt D1–D7 và phần local mục9 của gói tại commit `a3ddf16`. Không kế thừa quyền Docker/cài đặt hoặc tự nghiệm thu. Căn cứ chuẩn bị ban đầu: repo `Kynderis/kidea`, `master`, nguồn `a2f171be8196969f50e36cc51bf6e89232d01dd7`, working tree sạch; [R05 backend/Web đã nghiệm thu](../docs/R05_ACCEPTANCE.md).
+**APPROVED — R06 r1 đã được Human nghiệm thu ngày 2026-09-17.** Xác nhận “ok tôi duyệt phần R06 nhé” áp dụng kết quả tại `4b365d433ce05f1434c1735b9187788064983810`; xem [biên bản nghiệm thu và giới hạn](../docs/R06_ACCEPTANCE.md).
+
+Approval triển khai ban đầu: Ngày 2026-09-17, Human “tôi duyệt nhé. Bạn cần tôi confirm chỗ nào để hoàn thành phần R06 này không, nếu không thì làm liền mạch cho xong nhé. Trong quá trình làm phát sinh vấn đề gì cần tôi confirm thì bảo nhé” duyệt D1–D7 và phần local mục9 của gói tại commit `a3ddf16`. Không kế thừa quyền Docker/cài đặt hoặc tự nghiệm thu. Căn cứ chuẩn bị ban đầu: repo `Kynderis/kidea`, `master`, nguồn `a2f171be8196969f50e36cc51bf6e89232d01dd7`, working tree sạch; [R05 backend/Web đã nghiệm thu](../docs/R05_ACCEPTANCE.md).
 
 ## 1. Kết quả cần có
 

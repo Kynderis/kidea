@@ -2,7 +2,7 @@
 
 Ngày cập nhật: 2026-09-17.
 
-Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–R04 đã được Human duyệt trong phạm vi từng gói; R05 đã được Human nghiệm thu backend/Web, chưa là toàn Kidea hoặc ứng dụng pilot hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
+Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–R04 đã được Human duyệt trong phạm vi từng gói; R05 đã được Human nghiệm thu backend/Web; R06 r1 đã được nghiệm thu trong phạm vi helper/metadata và adapter hữu hạn, chưa là toàn Kidea hoặc ứng dụng pilot hoàn chỉnh.** Các phần phụ thuộc chỉ làm sau đúng gate/quyền. Đây là lộ trình xây chính Kidea, không thay mười bước Kidea hướng dẫn trong sản phẩm.
 
 <a id="current"></a>
 
@@ -10,7 +10,7 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
-**Hiện hành — R06 IN_REVIEW, triển khai/kiểm r1 đã xong, chờ Human nghiệm thu kết quả.** [Báo cáo đầy đủ](tests/evidence/r06/implementation-r1.md): core283/283PASS;19nhóm R06 +5nhóm lỗi âm PASS;2phiên D7×4biến thể đạt review, đầu vào/nguồn không đổi. Có bộ đọc/mapping C++/Web, plan impact schema2, change/resume, no-diff/cycle/requeue và gate đóng. Giữ toàn bộ FAIL sơ bộ;2.245evidence R05/21docs pilot/78nguồn backend/27nguồn Web đúng hash cũ. Clang/header/parser có sẵn;0download, không Docker/cài đặt hoặc sửa pilot. Không cần quyền môi trường bổ sung để nghiệm thu phạm vi này. Bước tiếp: Human nghiệm thu R06 r1 đúng giới hạn; chưa mở R07/R08. R05 vẫn DONE backend/Web; Android/iOS Future, Apple Silicon NOT_RUN.
+**Hiện hành — R06 DONE, Human đã nghiệm thu r1 ngày 2026-09-17.** [Biên bản nghiệm thu](docs/R06_ACCEPTANCE.md). [Báo cáo đầy đủ](tests/evidence/r06/implementation-r1.md): core283/283PASS;19nhóm R06 +5nhóm lỗi âm PASS;2phiên D7×4biến thể đạt review, đầu vào/nguồn không đổi. Có bộ đọc/mapping C++/Web, plan impact schema2, change/resume, no-diff/cycle/requeue và gate đóng. Giữ toàn bộ FAIL sơ bộ;2.245evidence R05/21docs pilot/78nguồn backend/27nguồn Web đúng hash cũ. Clang/header/parser có sẵn;0download, không Docker/cài đặt hoặc sửa pilot. Đã đối chiếu lại 47 file nguồn và 3.653 payload bằng chứng, toàn bộ khớp. Bước tiếp: chuẩn bị gói R07 về giao diện offline chỉ đọc; chưa duyệt triển khai R07/R08. R05 vẫn DONE backend/Web; Android/iOS Future, Apple Silicon NOT_RUN.
 
 Client chỉ Web theo [quyết định hiệu lực](KIDEA_DESIGN.md#client-web-scope-approved); Android/iOS Future chưa roadmap. Sáu task native R05-T04/T05, R06-T04/T05, R09-T06/T07 giữ ID lịch sử, không DONE hoặc có thời hạn mới. Dừng Android runtime/iOS installer; giữ tài nguyên/cache/evidence, không cần Apple login/Xcode. LP-01 Apple Silicon NOT_RUN. Các đoạn dưới là lịch sử, không dùng điểm tiếp tục cũ để mở workload hoặc xin lại scope.
 
@@ -1019,7 +1019,7 @@ Subtask: **chưa phân rã**. Khi phase tới lượt, rà mục tiêu/phụ thu
 
 ## R06 — Ba bản đồ, change và resume nâng cao
 
-**Gói hiện hành:** [R06 r1](proposals/r06-maps-change-r1.md) APPROVED D1–D7; S01/S02 và kiểm S03 của9task hiện hành đã có đầu ra tại [báo cáo r1](tests/evidence/r06/implementation-r1.md). **T11-S03/phase IN_REVIEW chờ nghiệm thu Human**, không DONE trước approval. Dùng phân rã9task/24nhóm kiểm của r1; T04/T05 Future chưa roadmap. Các dòng “chưa phân rã” dưới đây là quy tắc trước gói này; không tự mở R07/R08.
+**Gói hiện hành:** [R06 r1](proposals/r06-maps-change-r1.md) APPROVED D1–D7; S01/S02 và kiểm S03 của9task hiện hành đã có đầu ra tại [báo cáo r1](tests/evidence/r06/implementation-r1.md). **T11-S03/phase DONE theo [nghiệm thu Human](docs/R06_ACCEPTANCE.md)** ngày 2026-09-17 cho nguồn `4b365d4`. Dùng phân rã9task/24nhóm kiểm của r1; T04/T05 Future chưa roadmap. Các dòng “chưa phân rã” dưới đây là quy tắc trước gói này; không tự mở R07/R08.
 
 Chứng minh cả quan hệ cơ học lẫn đối chiếu ngữ nghĩa; không coi graph hợp lệ là tìm hết mọi ảnh hưởng.
 
