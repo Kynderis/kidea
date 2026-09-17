@@ -1,0 +1,932 @@
+[
+  {
+    "Name": "/kidea-r08-1789630005643-59093-baseline",
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-17T07:26:50.688368978Z",
+      "FinishedAt": "2026-09-17T07:26:55.747845328Z"
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "2",
+          "max-size": "1m"
+        }
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,noexec,nosuid,size=16m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 536870912,
+      "NanoCpus": 1000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 536870912,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 64,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+          "Target": "/data"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+        "Destination": "/data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "user": "1000:1000",
+    "labels": {
+      "kidea.r08.run": "1789630005643-59093"
+    }
+  },
+  {
+    "Name": "/kidea-r08-1789630005643-59093-web-update",
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-17T07:26:56.024535024Z",
+      "FinishedAt": "2026-09-17T07:26:58.335019717Z"
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "2",
+          "max-size": "1m"
+        }
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,noexec,nosuid,size=16m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 536870912,
+      "NanoCpus": 1000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 536870912,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 64,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+          "Target": "/data"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+        "Destination": "/data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "user": "1000:1000",
+    "labels": {
+      "kidea.r08.run": "1789630005643-59093"
+    }
+  },
+  {
+    "Name": "/kidea-r08-1789630005643-59093-partial",
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-17T07:26:58.646383116Z",
+      "FinishedAt": "2026-09-17T07:27:00.597730843Z"
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "2",
+          "max-size": "1m"
+        }
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,noexec,nosuid,size=16m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 536870912,
+      "NanoCpus": 1000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 536870912,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 64,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+          "Target": "/data"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+        "Destination": "/data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "user": "1000:1000",
+    "labels": {
+      "kidea.r08.run": "1789630005643-59093"
+    }
+  },
+  {
+    "Name": "/kidea-r08-1789630005643-59093-retry-new-id",
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-17T07:27:00.889886957Z",
+      "FinishedAt": "2026-09-17T07:27:04.029242218Z"
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "2",
+          "max-size": "1m"
+        }
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,noexec,nosuid,size=16m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 536870912,
+      "NanoCpus": 1000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 536870912,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 64,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+          "Target": "/data"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+        "Destination": "/data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "user": "1000:1000",
+    "labels": {
+      "kidea.r08.run": "1789630005643-59093"
+    }
+  },
+  {
+    "Name": "/kidea-r08-1789630005643-59093-app-rollback",
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-17T07:27:04.406029442Z",
+      "FinishedAt": "2026-09-17T07:27:11.118428759Z"
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "2",
+          "max-size": "1m"
+        }
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,noexec,nosuid,size=16m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 536870912,
+      "NanoCpus": 1000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 536870912,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 64,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+          "Target": "/data"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-dev",
+        "Destination": "/data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "user": "1000:1000",
+    "labels": {
+      "kidea.r08.run": "1789630005643-59093"
+    }
+  },
+  {
+    "Name": "/kidea-r08-1789630005643-59093-lab-prod-baseline",
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-17T07:27:11.493564947Z",
+      "FinishedAt": "2026-09-17T07:27:13.172513532Z"
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "2",
+          "max-size": "1m"
+        }
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,noexec,nosuid,size=16m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 536870912,
+      "NanoCpus": 1000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 536870912,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 64,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-prod",
+          "Target": "/data"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/lab-prod",
+        "Destination": "/data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-lab-r2-1789630005643-59093/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "user": "1000:1000",
+    "labels": {
+      "kidea.r08.run": "1789630005643-59093"
+    }
+  }
+]

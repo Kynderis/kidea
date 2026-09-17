@@ -1,5 +1,7 @@
-Đã chuẩn bị xong gói lab R2-A: kiểm Docker chỉ đọc, viết script và cố định manifest. Kiểm local8/8 và core283/283PASS; chưa chạy container/service lab, pilot và bằng chứng cũ giữ nguyên.
+Đã chạy lab R2-A:15/15vector đạt trong khoảng28giây. Đã thử lỗi một phần, mất phản hồi sau migration, rollback và khôi phục dữ liệu có đọc lại.
 
-Bạn duyệt một lượt chạy lab này nhé: tối đa15phút,1CPU/512MiB,không tải/cài thêm,không mở cổng ra Mac; chỉ dữ liệu giả riêng, có tạo lỗi và kiểm phục hồi. Gói không chạy PROD thật hoặc sửa ứng dụng pilot.
+Cả6container đã dừng; không tải/cài thêm, không mở cổng ra Mac, không sửa pilot. Nguồn giữ nguyên, log lỗi/kết quả được lưu.
 
-Cần duyệt lần này vì lượt vừa giao chỉ chuẩn bị; [gói execution](proposals/r08-lab-r2-execution-r1.md) nay đã cố định nguồn/lệnh/tài nguyên để review. R08 chưa hoàn tất; [báo cáo chuẩn bị](tests/evidence/r08/lab-r2-preparation.md).
+R08 chưa hoàn tất: còn kiểm profile build/deploy sản phẩm, vận hành/quan sát độc lập host và nghiệm thu. Bước tiếp là chuẩn bị gói cụ thể cho các phần này.
+
+[Báo cáo](tests/evidence/r08/lab-r2-execution-r1.md).

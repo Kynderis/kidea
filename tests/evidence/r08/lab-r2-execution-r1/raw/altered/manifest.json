@@ -1,0 +1,52 @@
+{
+  "revision": "r08-lab-r2.1",
+  "profile": "release-protocol-fixture",
+  "sourceBase": "34aa6411ce2704c2a3936dccfaa2b931bc188c17",
+  "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+  "imageBytes": 1784463073,
+  "platform": "linux/amd64",
+  "targets": [
+    "lab-dev",
+    "lab-prod"
+  ],
+  "files": {
+    "backend.mjs": "1554f434313e0e024cdb11ad688d32672998c325f5c495ed6420e939b3cc4f25",
+    "client.mjs": "cfaf13d9d848d5780e576f1103ed6a33d5be46d3da26e9373c446e7a8468f795",
+    "deploy.mjs": "b88825cff61bb2c6d75d26938e343d8bb59a58046ce7acc7c29434284ddaad75",
+    "entry.mjs": "ff404936f906ed8a43f92ff3cabf8315b7790ffb1383581b3922f4630bd41a96",
+    "guard.mjs": "14157f5228d2d726756e81d53877f340f837ef102f302afa5827ca93927b26b5",
+    "lab-dev.json": "a5cf410d182765c12fe9aab5afff873a933c47fabc6defdf592858f1d1bfe89c",
+    "lab-prod.json": "78936548264d29314fd0a2af9d1adbbc8253bba7bab41169d5ee2ef909027c0c",
+    "migration.mjs": "883dd273cb7c62d7e52fbb4165903d1db1aac4e0bc6ec6e50cf45992c70b6ca7",
+    "recover.mjs": "334bebc9d528ed9ae5ce9b3aae9a3f92fe685a721ae2823fd8ce272169dddfaf",
+    "run.mjs": "043a0398a809b6a7d24e9ff88e6ed3e95e5c63a9312dd1c8c1d725f2b0b942b8",
+    "web-a.html": "7ca3f98c8cd0bc9a95254249e91ddbbb036cff68dd79f25bbb8e8296d1dfbc4e",
+    "web-b.html": "46c008d7fb07fcb046c0973258613a5678f0940d8eb12d9a2bf8e66381b3dddc",
+    "web.mjs": "3dc650c9fd5e0c92d7a3e557406e375ccc905684dc8cf8e50d2b108b64fbe901"
+  },
+  "limits": {
+    "runs": 1,
+    "downloadsBytes": 0,
+    "maxConcurrentContainers": 1,
+    "cpu": 1,
+    "memoryBytes": 536870912,
+    "pids": 64,
+    "tmpfsBytes": 16777216,
+    "outputBytes": 134217728,
+    "diskReserveBytes": 107374182400,
+    "commandSeconds": 60,
+    "runSeconds": 900,
+    "containerTTLSeconds": 600,
+    "containerLogBytes": 2097152,
+    "portsPublished": 0
+  },
+  "network": "none",
+  "data": "synthetic SQLite; isolated local bind mounts; no prior volumes",
+  "notProven": [
+    "R05 product quality profile",
+    "browser rendering",
+    "independent host recovery or observer",
+    "PROD real execution",
+    "Apple Silicon"
+  ]
+}

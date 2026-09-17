@@ -1,0 +1,55 @@
+{
+  "pass": true,
+  "cases": [
+    "baseline",
+    "wrongTarget",
+    "wrongGrant",
+    "wrongRevision",
+    "reusedID",
+    "overlap",
+    "changedSource",
+    "changedChild",
+    "reuse",
+    "partial",
+    "lostReceipt",
+    "rollbackNotRestore",
+    "restore",
+    "observer",
+    "labProd"
+  ],
+  "durationMs": 27624,
+  "teardown": true,
+  "managed": [
+    "kidea-r08-1789630005643-59093-baseline",
+    "kidea-r08-1789630005643-59093-web-update",
+    "kidea-r08-1789630005643-59093-partial",
+    "kidea-r08-1789630005643-59093-retry-new-id",
+    "kidea-r08-1789630005643-59093-app-rollback",
+    "kidea-r08-1789630005643-59093-lab-prod-baseline"
+  ],
+  "outputBytes": 133571,
+  "manifest": "243a7024769d4cc5daef78f7b0996f53690b680a72af7d0b36105d7eb9558d6d",
+  "limits": {
+    "runs": 1,
+    "downloadsBytes": 0,
+    "maxConcurrentContainers": 1,
+    "cpu": 1,
+    "memoryBytes": 536870912,
+    "pids": 64,
+    "tmpfsBytes": 16777216,
+    "outputBytes": 134217728,
+    "diskReserveBytes": 107374182400,
+    "commandSeconds": 60,
+    "runSeconds": 900,
+    "containerTTLSeconds": 600,
+    "containerLogBytes": 2097152,
+    "portsPublished": 0
+  },
+  "notProven": [
+    "real product profile",
+    "browser rendering",
+    "independent host/observer",
+    "production",
+    "Apple Silicon"
+  ]
+}

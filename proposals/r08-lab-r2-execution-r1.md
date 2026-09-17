@@ -1,6 +1,6 @@
 # R08 R2-A — gói chạy lab release local, r1
 
-2026-09-17. **PREPARED — chờ Human duyệt execution, chưa chạy service/container mới.** Human “Ok làm đi” sau `34aa641` giao inventory chỉ đọc và chuẩn bị script/manifest. Đây là bước tiếp của R2; không phải quyền chạy ngầm hoặc nghiệm thu R08.
+2026-09-17. **APPROVED / EXECUTED_SCOPED_PASS — Human “Duyệt nhé” trên `d245799`; một lượt đã chạy, xem [kết quả](../tests/evidence/r08/lab-r2-execution-r1.md). Không còn quyền tự chạy lại cùng manifest.** Human “Ok làm đi” sau `34aa641` giao inventory chỉ đọc và chuẩn bị script/manifest. Đây là bước tiếp của R2; không phải quyền chạy ngầm hoặc nghiệm thu R08.
 
 ## Mục tiêu và giới hạn chứng minh
 
