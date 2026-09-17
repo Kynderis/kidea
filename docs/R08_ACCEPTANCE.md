@@ -1,6 +1,8 @@
-# R08 — gói kết quả để Human nghiệm thu
+# Nghiệm thu R08 — kế hoạch, code, phát hành và vận hành
 
-2026-09-17. **REVIEW_READY_PENDING_HUMAN / R08 IN_PROGRESS; phần triển khai và kiểm trong phạm vi R08 đã hoàn tất.** Human đã cho tiếp tục B1/B2 và dùng/thu hồi VM GCP; quyền thực thi không tự là nghiệm thu kết quả. Baseline trước lượt này `f51af4f7b4a3549bddd9a0e77d5cd9062200664a`, master/Kynderis/kidea. [Review cuối](../tests/evidence/r08/final-r1/review.json) xác nhận nguồn/bằng chứng khớp; còn đúng gate Human nghiệm thu kết quả, không thiếu quyền kỹ thuật hoặc công cụ.
+2026-09-17. **APPROVED / R08 DONE trong phạm vi đã kiểm.** Human xác nhận nguyên văn: “Nghiệm thu R08”, chấp nhận gói kết quả tại commit `16b2223a75d96405cb2a9470f01f02e337c0d430`, master/Kynderis/kidea. Khép R08-T01–T06 cùng gate nghiệm thu phase; giữ đầy đủ giới hạn bên dưới. [Review cuối](../tests/evidence/r08/final-r1/review.json) và bằng chứng FAIL/PASS không sửa.
+
+Trước ghi nhận đã đối chiếu30file source/docs và1.212file bằng chứng trong receipt: toàn bộ khớp. Receipt SHA256 `cfb4b9bff6c55e1a0af7a799b5acb50a2a8185a31bb075083031863d90c51b77`. Receipt lưu gói trước nghiệm thu; các thay đổi trạng thái trong biên bản/roadmap/bàn giao sau xác nhận này không ghi đè receipt lịch sử.
 
 ## Nội dung nghiệm thu
 
@@ -23,4 +25,4 @@
 - Android/iOS Future chưa roadmap. Apple Silicon NOT_RUN. Windows không có lượt hồi quy mới từ bằng chứng Mac Intel/Linux này; Chrome-only của view Kidea không tự thu hẹp browser matrix ứng dụng.
 - Giữ bằng chứng Windows/R05/R06/R07,21docs pilot và source/artifact B1. Không sửa live pilot, khởi tạo `.kidea`, chạy lại AI/benchmark lịch sử, cài công cụ macOS hoặc mở public service.
 
-**Phần Human cần xác nhận:** chấp nhận kết quả R08-T01–T06 và các giới hạn ở đây để khép R08. Có thể trả lời “Nghiệm thu R08”. Đây là gate Human của roadmap, không xin lại quyền B1/B2/GCP hoặc yêu cầu chạy lệnh/cài thêm. Khi chưa có xác nhận đó, phase giữ IN_PROGRESS; không tự ghi DONE. Sau nghiệm thu mới chuẩn bị/mở gói R09 theo quyền riêng, rồi R10.
+**Điểm tiếp tục:** chuẩn bị gói R09 — pilot thật và đường lỗi, giữ gate bắt buộc R09-T14; sau đó R10 — đóng gói, nghiệm thu, bàn giao. Nghiệm thu R08 không tự cấp quyền thực thi pilot, mở workload/build/AI mới hoặc production. Các nhãn chờ Human trong báo cáo/proposal/receipt cũ là lịch sử; biên bản này và roadmap là trạng thái hiện hành.
