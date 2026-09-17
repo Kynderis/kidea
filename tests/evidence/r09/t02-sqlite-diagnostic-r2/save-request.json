@@ -1,0 +1,66 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved compatibility review after diagnostic results at 3fe4764. Review and existing scoped authoring allow preparing diagnostic r2, not executing it or accepting a TSan exception. Save continuation only."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t02/build-proposal.md",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/sqlite-diagnostic.mjs",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/sqlite-diagnostic.sh",
+      "anchor": null
+    },
+    {
+      "path": "tests/t02/sqlite-diagnostic.cpp",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "bd71042e7c6f9d5884793583c4519dadeac17ebc6df1923d7ae6408d769ad514",
+  "expectedGit": {
+    "head": "ae8a327f888004fcd4f7620333e69728c9a776e0",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "Reviewed local WAL evidence and primary TSan/Clang/GCC documentation. Rejected switching compiler/annotation or blanket suppression just for green output. Prepared diagnostic r2 sourceae8a327/manifest33100182: halt_on_error=0, report_bugs=1, exit66, unchanged instrumentation and four modes; control marker accurately means body completion, not absence of race. Static checks passed; no container run.",
+    "remaining": "R5 still TSan6FAIL/releaseNOT_RUN. Diagnostic r2 unexecuted; no false-positive waiver or acceptance.",
+    "nextAction": "Review and approve the exact15-minute diagnostic r2 package in repo Kidea docs/R09_T02_TSAN_COMPAT_REVIEW.md before execution. Preserve warnings and original data oracles; do not bypass product gates or rerun used manifests.",
+    "sourceRefs": [
+      {
+        "path": "docs/t02/build-proposal.md",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/sqlite-diagnostic.mjs",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/sqlite-diagnostic.sh",
+        "anchor": null
+      },
+      {
+        "path": "tests/t02/sqlite-diagnostic.cpp",
+        "anchor": null
+      }
+    ]
+  }
+}

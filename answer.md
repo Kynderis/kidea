@@ -1,5 +1,5 @@
-Đã chẩn đoán xong: **cảnh báo tái hiện ngay trong SQLite độc lập, không cần mã backend**. TSan bắt được lỗi cố ý; hai mẫu đối chiếu đạt. Log đã lưu và container đã thu hồi.
+Đã hoàn tất review và chuẩn bị [gói chẩn đoán r2](docs/R09_T02_TSAN_COMPAT_REVIEW.md): cho mẫu chạy hết để kiểm dữ liệu, vẫn ghi toàn bộ cảnh báo TSan và giữ mã lỗi. Sáu FAIL cũ vẫn giữ nguyên; R09 chưa hoàn tất.
 
-Kết quả khoanh vùng vấn đề vào SQLite WAL/TSan, nhưng chưa đủ để tự bỏ qua6lỗi cũ. R09 vẫn mở; TSan/release chưa hoàn tất.
+Bạn duyệt chạy r2 nhé: **1 container, tối đa 15 phút, 2 CPU/4 GiB RAM, thêm tối đa 1 GiB đĩa; không tải hoặc cài thêm**.
 
-Bước tiếp: review phương án tương thích SQLite–TSan trước gói kiểm mới, giữ nguyên backend và WAL. [Báo cáo đầy đủ](tests/evidence/r09/t02-sqlite-diagnostic-r1.md).
+Cần duyệt vì quyền chạy một lượt của r1 đã dùng hết; r2 thay cách chạy sau cảnh báo và có manifest mới, được mô tả trong gói trên.

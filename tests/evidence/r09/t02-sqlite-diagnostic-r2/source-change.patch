@@ -1,0 +1,42 @@
+diff --git a/scripts/t02/sqlite-diagnostic.mjs b/scripts/t02/sqlite-diagnostic.mjs
+index ce9f569..11a669d 100644
+--- a/scripts/t02/sqlite-diagnostic.mjs
++++ b/scripts/t02/sqlite-diagnostic.mjs
+@@ -9,7 +9,7 @@ import {root,hash,inventory} from './preflight.mjs';
+ import {createHash} from 'node:crypto';
+ function verify(file){
+  const m=JSON.parse(readFileSync(file));
+- if(m.revision!=='r09-t02-sqlite-diagnostic-r1'||m.status!=='PROPOSED_DIAGNOSTIC_NOT_RUN'||m.root!==root||m.network!=='none'||m.image!=='sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92')throw Error('MANIFEST_SCOPE');
++ if(m.revision!=='r09-t02-sqlite-diagnostic-r2'||m.status!=='PROPOSED_DIAGNOSTIC_NOT_RUN'||m.root!==root||m.network!=='none'||m.image!=='sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92')throw Error('MANIFEST_SCOPE');
+  if(JSON.stringify(m.sourceRoots)!==JSON.stringify(['backend','contracts','tests/t02','scripts/t02','containers/t02','docs']))throw Error('SOURCE_ROOTS');
+  const files=inventory(root,m.sourceRoots);delete files['docs/t02/build-manifest.json'];
+  if(JSON.stringify(files)!==JSON.stringify(m.sourceHashes))throw Error('SOURCE_CHANGED');
+diff --git a/scripts/t02/sqlite-diagnostic.sh b/scripts/t02/sqlite-diagnostic.sh
+index 33ed866..d0ab39f 100644
+--- a/scripts/t02/sqlite-diagnostic.sh
++++ b/scripts/t02/sqlite-diagnostic.sh
+@@ -13,7 +13,8 @@ cp /opt/package-inventory.tsv /out/package-inventory.tsv
+ # Exactly the existing GCC/SQLite sanitizer instrumentation; no suppression.
+ gcc-13 -g -O0 -fsanitize=thread -fno-omit-frame-pointer -fPIC -DSQLITE_THREADSAFE=1 -DSQLITE_DQS=0 -DSQLITE_DEFAULT_FOREIGN_KEYS=1 -c /vendor/sqlite/sqlite3.c -o /build/sqlite.o > /out/compile-sqlite.stdout.txt 2> /out/compile-sqlite.stderr.txt
+ g++-13 -std=c++20 -g -O0 -fsanitize=thread -fno-omit-frame-pointer -Wall -Wextra -Wpedantic -Werror -I/vendor/sqlite /src/tests/t02/sqlite-diagnostic.cpp /build/sqlite.o -pthread -ldl -o /build/sqlite-diagnostic > /out/compile-probe.stdout.txt 2> /out/compile-probe.stderr.txt
+-export TSAN_OPTIONS=halt_on_error=1:exitcode=66
++export TSAN_OPTIONS=halt_on_error=0:exitcode=66:report_bugs=1
++printf '%s\n' "TSAN_OPTIONS=$TSAN_OPTIONS" >> /out/toolchain.txt
+ # All four observations are collected, including the deliberately failing control.
+ # These are diagnostic observations, not substitutes for the 46 application tests.
+ for mode in detector-control wal-parallel delete-parallel wal-serial; do
+diff --git a/tests/t02/sqlite-diagnostic.cpp b/tests/t02/sqlite-diagnostic.cpp
+index ed23db3..18e5d9d 100644
+--- a/tests/t02/sqlite-diagnostic.cpp
++++ b/tests/t02/sqlite-diagnostic.cpp
+@@ -71,8 +71,8 @@ int main(int argc, char **argv) {
+       gate.arrive_and_wait();
+       a.join();
+       b.join();
+-      std::cout << "CONTROL_NO_DETECTION value=" << deliberatelyRacy << '\n';
+-      return 2;
++      std::cout << "CONTROL_BODY_COMPLETED value=" << deliberatelyRacy << '\n';
++      return 0;
+     }
+     if (mode != "wal-parallel" && mode != "delete-parallel" &&
+         mode != "wal-serial")

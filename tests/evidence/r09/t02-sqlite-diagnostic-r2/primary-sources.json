@@ -1,0 +1,18 @@
+{
+  "checkedOn": "2026-09-18",
+  "sources": [
+    {
+      "url": "https://github.com/google/sanitizers/wiki/ThreadSanitizerFlags",
+      "use": "halt_on_error controls exit after first report; exitcode preserves nonzero failure and reporting remains enabled."
+    },
+    {
+      "url": "https://releases.llvm.org/18.1.8/tools/clang/docs/ThreadSanitizer.html",
+      "use": "no_sanitize(thread) removes plain load/store instrumentation in the affected function; not equivalent to retaining full instrumentation."
+    },
+    {
+      "url": "https://gcc.gnu.org/onlinedocs/gcc-13.3.0/gcc/Common-Function-Attributes.html",
+      "use": "GCC no_sanitize_thread prevents memory-access instrumentation in the selected function."
+    }
+  ],
+  "note": "Documentation review only; exact runtime behavior of proposed r2 is NOT_RUN."
+}
