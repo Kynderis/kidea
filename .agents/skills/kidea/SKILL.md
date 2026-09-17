@@ -26,6 +26,8 @@ For business-scope clarification, reading or review within the selected permitte
 
 For coding rules and test specification (step 8), read [coding-testing.md](references/coding-testing.md). Current application clients are Web; Android/iOS app support is Future with no roadmap. Host Windows/macOS Intel/Apple Silicon support is a separate obligation. Do not install native tools or infer native gates from historical pilot evidence.
 
+For planning, coding, release and operations (steps 9–10), read [delivery.md](references/delivery.md) after the approved step 8 inputs. This is guidance; product execution still needs separate authority and is not a helper capability.
+
 For quality, experience/SEO, operations, admin or architecture design within that scope, read [the product-design method](references/product-design.md) in full before working on the selected design step. It covers steps 3–7 and their separate Human gates, not a new helper action. Use the project's approved requirements and choices; the workshop pilot's technologies, thresholds and permissions are not defaults for other projects.
 
 Before constructing a trusted request, resolve the **already selected** root once with Node `fs.realpathSync(selectedRoot)` (or PowerShell `Resolve-Path -LiteralPath` on Windows). Use that returned absolute string for cwd and `permission.root`; do not copy slash spelling from a Markdown link. This selects no new project or permission. Serialize JSON rather than escaping paths by hand. Record paths remain relative with forward slashes. Preserve disk spelling/Unicode and source bytes; avoid names that differ only by case or Unicode normalization and names invalid on Windows.

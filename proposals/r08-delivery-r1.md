@@ -1,6 +1,6 @@
 # R08 r1 — hướng dẫn kế hoạch, code, release và vận hành
 
-Ngày2026-09-17. **IN_REVIEW — chờ duyệt D1–D3 cho lát cắt r1; chưa duyệt toàn bộ thực thi R08.** Human “ok” giao chuẩn bị gói sau [nghiệm thu R07](../docs/R07_ACCEPTANCE.md). Căn cứ: `Kynderis/kidea`, `master`, `62889648ac7a3a2bd979a12bbb539f769763e729`, checkout sạch trước chuẩn bị.
+Ngày2026-09-17. **APPROVED D1–D3 — Human “ok làm đi” ngày 2026-09-17 trên nguồn `8f04649c3ab1860def732311e480334e08f59843`; chưa duyệt R2 hoặc toàn bộ thực thi R08.** Human “ok” giao chuẩn bị gói sau [nghiệm thu R07](../docs/R07_ACCEPTANCE.md). Căn cứ: `Kynderis/kidea`, `master`, `62889648ac7a3a2bd979a12bbb539f769763e729`, checkout sạch trước chuẩn bị.
 
 Nguồn quyết định: [R08](../KIDEA_ROADMAP.md#r08), [G2](../KIDEA_DESIGN.md#feature-final-check), [version](../KIDEA_DESIGN.md#product-version), [G6](../KIDEA_DESIGN.md#release-records), [KA-23/27/28](../KIDEA_ACCEPTANCE.md), [hướng dẫn bước8](../.agents/skills/kidea/references/coding-testing.md). Những nguyên tắc này đã được duyệt; r1 không xin duyệt lại hoặc thay quyền DEV/PROD.
 
@@ -49,7 +49,7 @@ S01: chốt đầu vào/phương pháp; S02: viết/tích hợp; S03: kiểm và
 | R08-T05 | S01/S02 nhận diện lần thực thi/đọc lại/unknown | Bằng chứng đọc lại trên target lab của R2; pilot riêng ở R09 |
 | R08-T06 | S01 tổ chức ma trận, S02 kiểm hồ sơ r1 | Kết quả r1+lab R2 đủ, hồi quy cần thiết và Human nghiệm thu R08 |
 
-Hiện chỉ đã chuẩn bị gói để review; chưa soạn/tích hợp delivery.md hoặc chạy kiểm R08. Không đánh dấu DONE chỉ vì có bảng này.
+D1–D3 đã được duyệt. Kết quả triển khai/kiểm r1 được ghi riêng tại [báo cáo](../tests/evidence/r08/implementation-r1.md); bảng phân rã này không tự là bằng chứng DONE.
 
 ## 5. Ma trận r1 và oracle
 

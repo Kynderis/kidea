@@ -25,3 +25,7 @@ Use explicit reproducible project commands and a lockfile. Verify the local root
 Verify the method in a fresh local folder: restore into a nonexistent destination, validate source hashes and links, and exercise positive and negative fixtures without relying on a sibling pilot, caches or a prior session's state. Keep old validators on their historical snapshots. New scope/revision validation must preserve active oracles and reject missing cases, unauthorized changes and false PASS. Source-preservation checks supplement semantic review; they do not replace runtime tests.
 
 Integrate references with the skill, run affected tests and the final full Kidea regression on fixed inputs, and record actual coverage and limitations. G2 still requires whole-project verification after a Feature; R08 execution/release, R09 application workloads and R10 acceptance remain separate. A finite lab sample, a synthetic gate fixture or a clean-folder documentation check is not all application cases. Present a concrete evidence package for Human acceptance; never mark a phase DONE solely because the agent's checks passed.
+
+## Continue to steps 9–10
+
+Once the project inputs have passed their applicable review gates, read [delivery.md](delivery.md) for plan decomposition, code and whole-project final verification, release identity, execution authority and operational readback. Step 8 approval does not itself grant code/build/deploy permission.

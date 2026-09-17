@@ -1,5 +1,9 @@
-Đã chuẩn bị [gói R08 r1](/Users/kendrick/Desktop/kidea/proposals/r08-delivery-r1.md), cập nhật roadmap/bàn giao và commit/push hồ sơ.
+Đã hoàn thành phần R08 r1 được duyệt:
 
-Bạn chỉ cần duyệt **D1–D3**: hoàn thiện hướng dẫn kế hoạch–code–release–vận hành, kiểm14tình huống và hồi quy local bằng công cụ có sẵn. Lượt này không cần Docker hoặc cài thêm.
+- Tích hợp hướng dẫn kế hoạch → code → phát hành/vận hành; review đủ14tình huống.
+- Core283/283PASS trên Mac Intel, không đổi runtime hoặc dữ liệu pilot. Giữ log lỗi validator thiếu PyYAML; kiểm YAML thay thế đạt.
+- Đã chuẩn bị đầu vào lab R2; chưa chạy Docker/deploy.
 
-Phần diễn tập phát hành/phục hồi trên lab thật sẽ có gói R2 riêng với nguồn, lệnh và quyền cụ thể. **Chưa khép R08 trước khi đủ kiểm lab và nghiệm thu.**
+R08 chưa hoàn tất: còn bộ script/manifest lab, diễn tập lỗi–đọc lại–phục hồi thật và nghiệm thu. Bước tiếp cần duyệt lát cắt chuẩn bị R2 gồm kiểm Docker chỉ đọc và xây bộ script lab; gói chạy cụ thể sẽ trình sau, chưa mở workload.
+
+Chi tiết: [báo cáo r1](tests/evidence/r08/implementation-r1.md), [R2 draft](proposals/r08-lab-r2-draft.md).
