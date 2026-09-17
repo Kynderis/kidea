@@ -12,7 +12,7 @@
 
 ## Cách áp dụng cho Kidea
 
-Backend build/test local tiếp tục khi phù hợp. Cloud dùng cho phần cần máy đích/host độc lập: workload VM và observer/backup tách khỏi máy Mac, có thể tách VM/zone theo ca lỗi. Linux cloud không thay bằng chứng Mac Apple Silicon. Cloud grant không tự miễn ngoại lệ code/profile đang chờ duyệt (R08-TIDY-01).
+Backend build/test local tiếp tục khi phù hợp. Cloud dùng cho phần cần máy đích/host độc lập: workload VM và observer/backup tách khỏi máy Mac, có thể tách VM/zone theo ca lỗi. Linux cloud không thay bằng chứng Mac Apple Silicon. R08-TIDY-01 sau đó đã được Human duyệt riêng và [B1 đã PASS](../tests/evidence/r08/product-build-execution-r1.md); ngoại lệ đã dùng xong, cloud grant không mở lượt build khác bằng ngoại lệ đó.
 
 Chọn CPU VM nhỏ, không GPU/commitment/dịch vụ đắt nếu không cần; cố định region/image/workload/duration và ước tính gồm CPU/RAM/disk/IP/egress trước provisioning. Mục tiêu kiểm soát nội bộ đợt đầu≤10USD, chỉ chọn cấu hình/thời gian có dự toán nằm trong đó; đây chưa là cloud budget đã cấu hình hoặc hard cap hóa đơn. Khi có nguy cơ vượt, dừng/mở lại phạm vi với Human. Không lấy300USD làm lý do chạy test vô hạn.
 

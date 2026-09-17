@@ -1,7 +1,9 @@
-Đã kiểm tra Google Cloud project kidea-508908: project ACTIVE, billing đã bật, Compute API đã bật; tài khoản có quyền tạo/dừng/xóa VM và tài nguyên liên quan. Hiện project không có VM.
+Đã hoàn thành **B1 — PASS**:
 
-Có thể tự quản lý VM phục vụ kiểm Kidea theo quyền bạn vừa giao, rồi thu log và xóa tài nguyên lab khi hết cần. Chưa tạo máy vì đang xác minh và chuẩn bị workload; không cần bạn duyệt lại từng lệnh cloud thông thường.
+- C++:4 cấu hình ×12 ca; Web:32 unit +4 server; Chromium:18 ca. Lõi Kidea:283/283.
+- Đã sửa lỗi tiền kiểm, giữ log FAIL/PASS, khóa artifact cho B2 và dừng cả3 container.
+- Đã cập nhật roadmap/bàn giao, lưu bằng chứng và commit/push.
 
-300USD là ngân sách khá rộng cho các lượt CPU VM nhỏ, chạy hữu hạn; chưa xác minh số dư credit/hạn dùng thực. Tôi sẽ bắt đầu với mục tiêu kiểm soát≤10USD/đợt, tính cả disk/IP/egress và đặt thời hạn. Stop VM không xóa mọi khoản phí; sẽ thu hồi tài nguyên lab và kiểm lại.
+**R08 vẫn đang làm:** còn B2 deploy/tích hợp, backup/restore, vận hành độc lập trên cloud và nghiệm thu cuối.
 
-[Ghi nhận quyền và kết quả](docs/R08_GCP_AUTHORITY.md).
+[Báo cáo và bằng chứng](/Users/kendrick/Desktop/kidea/tests/evidence/r08/product-build-execution-r1.md).

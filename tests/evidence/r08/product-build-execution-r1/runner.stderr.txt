@@ -1,0 +1,12 @@
+file:///Users/kendrick/Desktop/kidea/tests/r08/product-build-r1/verify.mjs:7
+ if(JSON.stringify(found.sort())!==JSON.stringify(Object.keys(files).sort()))throw Error('FILE_SET');
+                                                                                   ^
+
+Error: FILE_SET
+    at verify (file:///Users/kendrick/Desktop/kidea/tests/r08/product-build-r1/verify.mjs:7:84)
+    at file:///Users/kendrick/Desktop/kidea/tests/r08/product-build-r1/run.mjs:12:125
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

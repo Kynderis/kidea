@@ -1,0 +1,111 @@
+{
+  "at": "2026-09-17T09:33:39.920Z",
+  "pass": true,
+  "presets": {
+    "dev": {
+      "tests": 12,
+      "failures": 0,
+      "skipped": 0,
+      "sha256": "f42ed197f49da6c106e3d89f22e02efdcb85c40a1741c4977c20944d0413357e"
+    },
+    "asan-ubsan": {
+      "tests": 12,
+      "failures": 0,
+      "skipped": 0,
+      "sha256": "f76a1fd8260167b79cf92e978247fa6e125f40e89eb5da67836b79df20226dec"
+    },
+    "tsan": {
+      "tests": 12,
+      "failures": 0,
+      "skipped": 0,
+      "sha256": "eb917355cb651bda226140a456e687e9ce4f3030580c76e5142095b543d2bb00"
+    },
+    "release": {
+      "tests": 12,
+      "failures": 0,
+      "skipped": 0,
+      "sha256": "03ee7e0ffc32d2d8e04cfda3f0be9d2492ffae7466eed93d7fa4318ddb8f7514"
+    }
+  },
+  "states": [
+    {
+      "name": "kidea-r08-product-build-r1-cpp",
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-17T09:12:10.904819959Z",
+        "FinishedAt": "2026-09-17T09:31:06.145220101Z"
+      },
+      "network": "none",
+      "nanoCpus": 2000000000,
+      "memory": 4294967296,
+      "ports": {},
+      "labels": {
+        "kidea.r08.product": "3cbf4f8f9ddea26b14e8a34b1724fd484f89e734a7578ca54ddda63ea93986b7",
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    {
+      "name": "kidea-r08-product-build-r1-web",
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-17T09:31:06.682569164Z",
+        "FinishedAt": "2026-09-17T09:32:15.590932882Z"
+      },
+      "network": "none",
+      "nanoCpus": 2000000000,
+      "memory": 4294967296,
+      "ports": {},
+      "labels": {
+        "kidea.r08.product": "3cbf4f8f9ddea26b14e8a34b1724fd484f89e734a7578ca54ddda63ea93986b7",
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    {
+      "name": "kidea-r08-product-build-r1-browser",
+      "image": "sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-17T09:32:16.128039175Z",
+        "FinishedAt": "2026-09-17T09:32:28.625928563Z"
+      },
+      "network": "none",
+      "nanoCpus": 2000000000,
+      "memory": 4294967296,
+      "ports": {},
+      "labels": {
+        "kidea.r08.product": "3cbf4f8f9ddea26b14e8a34b1724fd484f89e734a7578ca54ddda63ea93986b7",
+        "org.opencontainers.image.version": "24.04"
+      }
+    }
+  ],
+  "sourceUnchanged": true,
+  "packageUnchanged": true,
+  "lockRemoved": true,
+  "freeBytes": 370950270976
+}

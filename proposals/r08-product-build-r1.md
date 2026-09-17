@@ -1,5 +1,7 @@
 # R08-B1 — gói build sạch backend/Web và ngoại lệ hẹp
 
+**Hiện hành:** Human đã duyệt B1 và R08-TIDY-01 ngày 2026-09-17: “Duyệt B1 và R08-TIDY-01, làm tiếp R08.” [B1 PASS_SCOPED](../tests/evidence/r08/product-build-execution-r1.md),3container đã dừng; ngoại lệ đã dùng xong, không cấp lượt build khác. Preflight đầu tiên FAIL trước khi chạy Docker do lỗi phân biệt manifest nguồn/gói; [bản sửa và log](../tests/evidence/r08/product-build-execution-r1/preflight-amendment.md). Manifest sau sửa harness là `3cbf4f8f9ddea26b14e8a34b1724fd484f89e734a7578ca54ddda63ea93986b7`; nguồn ứng dụng, ngoại lệ và lệnh build không đổi. Các trạng thái “chờ duyệt” và digest bên dưới là bản đề nghị ban đầu, không phải yêu cầu duyệt lại hoặc lệnh chạy lại.
+
 **Cập nhật môi trường:** Human đã cung cấp Google Cloud project `kidea-508908` và quyền tự tạo/thu hồi VM phục vụ kiểm Kidea theo [ghi nhận quyền](../docs/R08_GCP_AUTHORITY.md). Các đoạn chưa có server/chỉ local dưới đây giữ bối cảnh lúc soạn; gói build local hiện có không tự biến thành gói chạy cloud hoặc bỏ ngoại lệ đang chờ duyệt.
 2026-09-17. **PREPARED — chờ duyệt một lượt build và R08-TIDY-01.** Human “Làm đi” sau `14597c9` giao chuẩn bị phần còn thiếu; sau đó chọn dùng Docker trên Mac, chưa có server riêng. Không yêu cầu host/cloud lúc này. Chuẩn bị chỉ đọc nguồn/pilot/cache; chưa chạy build mới.
 

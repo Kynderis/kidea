@@ -7,7 +7,7 @@ import {hash,verify,authorize} from './verify.mjs';
 const dir=path.dirname(fileURLToPath(import.meta.url)),repo=path.resolve(dir,'../../..');
 const manifestPath=path.join(dir,'manifest.json'),manifest=JSON.parse(fs.readFileSync(manifestPath)),mh=hash(manifestPath);
 authorize(process.argv.slice(2),mh);
-verify(dir,manifest.scripts);
+verify(dir,manifest.scripts,{packageManifest:true});
 const inputs=JSON.parse(fs.readFileSync(path.join(dir,'inputs.json'))),base=path.join(repo,'.test-output/r08-product-inputs-r1'),source=path.join(base,'source');
 assert.notEqual(process.getuid?.(),0);assert.equal(fs.realpathSync(base),base);assert.equal(fs.realpathSync(source),source);verify(source,inputs.files);assert.equal(hash(path.join(base,'npm-cache.tar')),inputs.npmCache.sha256);
 // The export is pinned; only ordinary files/directories rooted under .npm-cache were accepted during preparation.
@@ -17,7 +17,7 @@ for(const name of ['build','work','logs']){fs.mkdirSync(path.join(output,name));
 const names=[],start=Date.now();let seq=0,active=null,pass=false;
 const disk=()=>{const st=fs.statfsSync(output);return st.bavail*st.bsize;};const freeStart=disk();
 async function command(args,cleanup=false){
- if(!cleanup){if(Date.now()-start>3600000)throw Error('DEADLINE');const free=disk();if(free<100*1024**3||freeStart-free>8*1024**3)throw Error('DISK_LIMIT');verify(dir,manifest.scripts);verify(source,inputs.files);}
+ if(!cleanup){if(Date.now()-start>3600000)throw Error('DEADLINE');const free=disk();if(free<100*1024**3||freeStart-free>8*1024**3)throw Error('DISK_LIMIT');verify(dir,manifest.scripts,{packageManifest:true});verify(source,inputs.files);}
  const p=await new Promise(resolve=>{const child=spawn('docker',args,{stdio:['ignore','pipe','pipe']});let stdout='',stderr='',error=null;const kill=reason=>{error=reason;child.kill('SIGKILL');};
  child.stdout.on('data',b=>{stdout+=b.toString();if(Buffer.byteLength(stdout)+Buffer.byteLength(stderr)>16*1024**2)kill('LOG_LIMIT');});child.stderr.on('data',b=>{stderr+=b.toString();if(Buffer.byteLength(stdout)+Buffer.byteLength(stderr)>16*1024**2)kill('LOG_LIMIT');});
  const timer=setTimeout(()=>kill('COMMAND_TIMEOUT'),cleanup?60000:1800000);
@@ -36,7 +36,7 @@ try {
   args.push('--entrypoint=/usr/bin/timeout',stage==='browser'?manifest.browser:manifest.toolchain,'--signal=TERM','--kill-after=10','1700','sh','/plan/build.sh',stage);
   await command(args);active=null;
  }
- verify(source,inputs.files);verify(dir,manifest.scripts);pass=true;
+ verify(source,inputs.files);verify(dir,manifest.scripts,{packageManifest:true});pass=true;
 } catch(e){fs.writeFileSync(path.join(output,'failure.json'),JSON.stringify({error:e.stack}));process.exitCode=1;}
 finally {let stopped=true;if(active)try{await owned(active);await command(['stop','--time=10',active],true);}catch(e){stopped=false;fs.writeFileSync(path.join(output,'stop-failure.json'),JSON.stringify({error:e.stack}));process.exitCode=1;}
  fs.writeFileSync(path.join(output,'summary.json'),JSON.stringify({pass:pass&&stopped,manifest:mh,exception:'R08-TIDY-01',names,stopped,durationMs:Date.now()-start,scope:'build checks only; not complete G2, deploy, HTTPS integration, mutation, operations or product acceptance'},null,2)+'\n');if(stopped)fs.unlinkSync(lock);console.log(output);}

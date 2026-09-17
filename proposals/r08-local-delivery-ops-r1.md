@@ -1,11 +1,12 @@
-# R08 — ma trận deploy/tích hợp/ops còn lại, Docker local
+# R08 — ma trận deploy/tích hợp/ops còn lại
 
-**Cập nhật môi trường:** Human đã cung cấp Google Cloud project `kidea-508908` và quyền tự tạo/thu hồi VM phục vụ kiểm Kidea theo [ghi nhận quyền](../docs/R08_GCP_AUTHORITY.md). Các đoạn chưa có server/chỉ local dưới đây giữ bối cảnh lúc soạn; gói build local hiện có không tự biến thành gói chạy cloud hoặc bỏ ngoại lệ đang chờ duyệt.
-2026-09-17. Human xác nhận: “Tôi chưa có, bạn dùng docker trên máy đi”. **Quyết định môi trường: Docker trên Mac hiện tại; không server/cloud mới.** Nguồn nhiệm vụ: R08-T03–T06/KA-28, R05 đã nghiệm thu phạm vi hữu hạn, R2-A15vector đã đạt. Bảng này chuẩn bị phần tiếp theo, không tự cấp quyền chạy hoặc nhận nghiệm thu.
+2026-09-17. **Môi trường hiện hành:** Docker local để build/tích hợp; Human đã cấp Google Cloud project `kidea-508908` và quyền tự tạo/thu hồi VM phục vụ kiểm Kidea theo [ghi nhận quyền](../docs/R08_GCP_AUTHORITY.md). Quyết định này thay hạn chế chưa có server trước đó. Human đã duyệt B1 và R08-TIDY-01, yêu cầu tiếp tục R08. Nguồn nhiệm vụ: R08-T03–T06/KA-28, R05 đã nghiệm thu phạm vi hữu hạn, R2-A15vector đã đạt. Bảng này xác định phần còn thiếu; không tự nhận nghiệm thu hoặc cho phép production thật.
 
 ## Chuỗi đầu vào
 
 [B1](r08-product-build-r1.md) build sạch từ sample C++/Web đã có → artifact/backend/Web manifest mới → B2 exact package/source/config/main-child script → thực thi local và readback → review phạm vi/giới hạn → Human nghiệm thu. B1 build không tự duyệt deploy, B2 chưa EXECUTION_READY trước hash artifact thực. Không tạo hoặc sửa `.kidea` pilot để giả đã đi workflow.
+
+[Rà đầu vào B2](../tests/evidence/r08/delivery-preparation-r1.md): đã đối chiếu binary Caddy đúng hash, source/config và yêu cầu SQLite backup/restore thực. Bộ thu artifact CREATE-only đã có; chỉ chạy khi B1 PASS. Chưa có kết quả deploy/ops/cloud mới.
 
 ## Ma trận B2 phải giữ
 
@@ -21,8 +22,8 @@
 
 Các script B2 phải được soạn với artifact cụ thể sau B1; image/network/port/volume/quota/lệnh sẽ khóa trước trình execution. Không chạy lại runner R05 có đường output cũ hoặc expiry/quota cũ; không build generic deployment framework cho mọi nền tảng.
 
-## Quyết định local và giới hạn host
+## Phân biệt bằng chứng local và độc lập host
 
-Docker có thể chứng minh process chạy khi client/phiên AI kết thúc, lỗi service, cảnh báo và backup/restore dữ liệu trong lab. Docker trên cùng Mac không tạo failure domain độc lập: mất Mac sẽ mất cả workload/observer nếu chúng cùng host. Không có server được cấp nên **không mở yêu cầu server lúc này**, không thuê hoặc cài thêm. Giữ cột bằng chứng độc lập host là NOT_PROVEN, không đổi thành PASS/N/A tự động.
+Docker có thể chứng minh process chạy khi client/phiên AI kết thúc, lỗi service, cảnh báo và backup/restore dữ liệu trong lab. Docker trên cùng Mac không tạo failure domain độc lập: mất Mac sẽ mất cả workload/observer nếu chúng cùng host. GCP đã có quyền, nhưng cần workload/observer/backup tách host, thời hạn và cleanup được đóng gói trước provisioning. Giữ cột bằng chứng độc lập host là NOT_PROVEN đến khi có phép kiểm thực, không đổi thành PASS/N/A chỉ vì đã có tài khoản cloud.
 
-Trước khép R08, trình rõ phần đã đạt local và nghĩa vụ chưa có để Human quyết định phạm vi nghiệm thu; quyết định dùng Docker local hiện tại không tự được diễn giải thành đã miễn mọi tiêu chí độc lập host. R09-T14 và kiểm sản phẩm thật vẫn có gate riêng. Native Future chưa roadmap, Safari ngoài UI Kidea, Apple Silicon NOT_RUN.
+Trước khép R08, trình rõ phần đã đạt và nghĩa vụ chưa có để Human nghiệm thu. Không xin lại quyền VM thông thường đã cấp; không bỏ tiêu chí độc lập host. R09-T14 và kiểm sản phẩm thật vẫn có gate riêng. Native Future chưa roadmap, Safari ngoài UI Kidea, Apple Silicon NOT_RUN.
