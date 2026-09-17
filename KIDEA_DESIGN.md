@@ -1,6 +1,6 @@
 # Kidea — Thiết kế cách hoạt động
 
-Trạng thái: `R01–R04 ĐÃ DUYỆT ĐÚNG PHẠM VI; NỘI DUNG R05 r1 ĐÃ DUYỆT, R05 CHƯA NGHIỆM THU; CLIENT HIỆN HÀNH CHỈ WEB`
+Trạng thái: `R01–R04 ĐÃ DUYỆT ĐÚNG PHẠM VI; R05 ĐÃ NGHIỆM THU BACKEND/WEB; CLIENT HIỆN HÀNH CHỈ WEB`
 
 Ngày cập nhật: 2026-09-17
 
@@ -10,7 +10,7 @@ Ngày cập nhật: 2026-09-17
 
 Web cần thích ứng màn hình điện thoại theo yêu cầu từng ứng dụng. Project quyết định hành trình, bố cục/breakpoint, browser/viewport, thao tác cảm ứng và tiêu chí kiểm; Kidea hướng dẫn xác định yêu cầu và đối chiếu bằng chứng, không áp một thiết kế responsive hoặc sàn OS chung. Phạm vi hiện hành vẫn có backend C++/Ubuntu/Docker và Web SvelteKit/TypeScript, cùng các gate chất lượng/nghiệp vụ/phát hành. Host chạy Kidea Windows/macOS Intel/Apple Silicon, local-only và Node≥24 giữ nguyên. Web trên trình duyệt điện thoại không phải app native.
 
-Đây là thay đổi phạm vi **Kidea** do Human quyết định, không phải miễn kiểm vì thiếu thiết bị cho một pilot. [Rà soát ảnh hưởng và các hồ sơ cần amendment](docs/WEB_CLIENT_SCOPE_REVIEW.md) phân biệt việc đã cập nhật với phần chưa chuyển đổi; R05 chưa tự khép. Không cần Human duyệt lại quyết định hoãn native hoặc tiếp tục đăng nhập Apple để phục vụ nó.
+Đây là thay đổi phạm vi **Kidea** do Human quyết định, không phải miễn kiểm vì thiếu thiết bị cho một pilot. [Rà soát ảnh hưởng và các hồ sơ cần amendment](docs/WEB_CLIENT_SCOPE_REVIEW.md) phân biệt việc đã cập nhật với phần chưa chuyển đổi; [R05 đã được Human nghiệm thu](docs/R05_ACCEPTANCE.md) đúng phạm vi backend/Web. Không cần Human duyệt lại quyết định hoãn native hoặc tiếp tục đăng nhập Apple để phục vụ nó.
 
 Phạm vi: thiết kế hoạt động Kidea từ ý tưởng đến vận hành và thay đổi. [Roadmap](KIDEA_ROADMAP.md) giữ trạng thái xây Kidea: Human “Duyệt R02, mở R03” sau answer 158f24e đã chấp nhận [kết quả lõi R02 trong giới hạn đã thử](tests/evidence/r02-t10-agent-trial-r2.md) và mở phần phương pháp R03. Change/visualize và pilot chưa hoàn tất; không coi kết quả lõi là toàn Kidea đã xong hoặc quyền tạo/ghi pilot, thêm AI, cài/code/deploy.
 
