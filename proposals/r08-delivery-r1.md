@@ -1,5 +1,7 @@
 # R08 r1 — hướng dẫn kế hoạch, code, release và vận hành
 
+**Kết quả hiện hành2026-09-17:** R1, R2-A, B1, B2, G2 cuối và cloud độc lập đã có kết quả trong [gói nghiệm thu R08](../docs/R08_ACCEPTANCE.md). Phần triển khai/kiểm hoàn tất đúng phạm vi; R08 REVIEW_READY_PENDING_HUMAN, chưa DONE. Quyền Docker/GCP được cấp ở các lượt sau, nên các giới hạn “chưa duyệt R2” dưới đây là lịch sử của riêng r1.
+
 Ngày2026-09-17. **APPROVED D1–D3 — Human “ok làm đi” ngày 2026-09-17 trên nguồn `8f04649c3ab1860def732311e480334e08f59843`; chưa duyệt R2 hoặc toàn bộ thực thi R08.** Human “ok” giao chuẩn bị gói sau [nghiệm thu R07](../docs/R07_ACCEPTANCE.md). Căn cứ: `Kynderis/kidea`, `master`, `62889648ac7a3a2bd979a12bbb539f769763e729`, checkout sạch trước chuẩn bị.
 
 Nguồn quyết định: [R08](../KIDEA_ROADMAP.md#r08), [G2](../KIDEA_DESIGN.md#feature-final-check), [version](../KIDEA_DESIGN.md#product-version), [G6](../KIDEA_DESIGN.md#release-records), [KA-23/27/28](../KIDEA_ACCEPTANCE.md), [hướng dẫn bước8](../.agents/skills/kidea/references/coding-testing.md). Những nguyên tắc này đã được duyệt; r1 không xin duyệt lại hoặc thay quyền DEV/PROD.

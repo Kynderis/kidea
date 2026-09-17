@@ -1,5 +1,7 @@
 # R08 — project Google Cloud được Human cung cấp
 
+**Cập nhật kết quả2026-09-17:** [Cloud R08 PASS_SCOPED](../tests/evidence/r08/cloud-execution-r1.md),8VM được tạo thành công qua4attempt trong~50phút47giây, tối đa2VM đồng thời và cùng deadline gốc. Giữ ba FAIL capacity/image-ID/noexec và bản sửa có kiểm chứng. Job/backup độc lập SSH, mất VM/disk thật, observer ALERT và restore VM mới đã đạt. [Readback cuối](../tests/evidence/r08/final-r1/cloud-cleanup-all.json):7loại tài nguyên mang prefix R08 đều rỗng. IAP API đã bật theo quyền, không tắt dịch vụ dùng chung; không đổi công cụ macOS hoặc tài nguyên ngoài lab. Không có quyền/ngân sách mới cần Human duyệt cho lượt đã hoàn tất; R08 còn [nghiệm thu kết quả](R08_ACCEPTANCE.md). Các đoạn “chưa tạo VM” bên dưới ghi lại lần xác minh quyền ban đầu.
+
 2026-09-17. Human cung cấp project `kidea-508908`, nói tài khoản đã đăng nhập gcloud và có300USD credit; cho phép tự tạo VM theo nhu cầu kiểm Kidea, test rồi tắt/xóa khi hết cần. Quyền này thay lựa chọn trước đó “chỉ Docker local vì chưa có server”. Không xin lại quyền cloud cho từng lệnh thông thường trong phạm vi đó. Không coi300USD là lệnh tiêu hết, ngân sách vô hạn hoặc quyền sửa/xóa tài nguyên không thuộc lab.
 
 ## Kiểm thực tại lượt này

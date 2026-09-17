@@ -1,0 +1,17 @@
+{
+  "command": "/usr/local/bin/gcloud",
+  "args": [
+    "compute",
+    "networks",
+    "subnets",
+    "delete",
+    "kidea-r08-c1-subnet",
+    "--region=us-central1",
+    "--project=kidea-508908",
+    "--quiet"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "",
+  "stderr": "Deleted [https://www.googleapis.com/compute/v1/projects/kidea-508908/regions/us-central1/subnetworks/kidea-r08-c1-subnet].\n"
+}

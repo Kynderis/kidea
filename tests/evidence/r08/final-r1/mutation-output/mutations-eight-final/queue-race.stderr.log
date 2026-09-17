@@ -1,0 +1,64 @@
+==================
+WARNING: ThreadSanitizer: data race (pid=45)
+  Write of size 8 at 0x725000000000 by thread T3:
+    #0 std::function<void ()>::function(std::function<void ()>&&) <null> (mutant+0x2ab33) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #1 decltype (::new ((void*)(0)) std::function<void ()>((declval<std::function<void ()> >)())) std::construct_at<std::function<void ()>, std::function<void ()> >(std::function<void ()>*, std::function<void ()>&&) <null> (mutant+0x30d2e) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #2 std::function<void ()>& std::deque<std::function<void ()>, std::allocator<std::function<void ()> > >::emplace_back<std::function<void ()> >(std::function<void ()>&&) <null> (mutant+0x2a856) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #3 std::deque<std::function<void ()>, std::allocator<std::function<void ()> > >::push_back(std::function<void ()>&&) <null> (mutant+0x267fc) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #4 kidea::Worker::submit(std::function<void ()>) <null> (mutant+0x23058) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #5 operator() /work/mutants-r4-eight-final/queue-race/tests.cpp:239 (mutant+0x170f5) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #6 __invoke_impl<void, (anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (mutant+0x21156) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #7 __invoke<(anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (mutant+0x20e65) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #8 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (mutant+0x20bc6) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #9 operator() /usr/include/c++/13/bits/std_thread.h:299 (mutant+0x20a0c) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #10 _M_run /usr/include/c++/13/bits/std_thread.h:244 (mutant+0x2069a) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Previous write of size 8 at 0x725000000000 by thread T2:
+    #0 std::function<void ()>::function(std::function<void ()>&&) <null> (mutant+0x2ab33) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #1 decltype (::new ((void*)(0)) std::function<void ()>((declval<std::function<void ()> >)())) std::construct_at<std::function<void ()>, std::function<void ()> >(std::function<void ()>*, std::function<void ()>&&) <null> (mutant+0x30d2e) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #2 std::function<void ()>& std::deque<std::function<void ()>, std::allocator<std::function<void ()> > >::emplace_back<std::function<void ()> >(std::function<void ()>&&) <null> (mutant+0x2a856) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #3 std::deque<std::function<void ()>, std::allocator<std::function<void ()> > >::push_back(std::function<void ()>&&) <null> (mutant+0x267fc) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #4 kidea::Worker::submit(std::function<void ()>) <null> (mutant+0x23058) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #5 operator() /work/mutants-r4-eight-final/queue-race/tests.cpp:239 (mutant+0x170f5) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #6 __invoke_impl<void, (anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:61 (mutant+0x21156) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #7 __invoke<(anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/invoke.h:96 (mutant+0x20e65) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #8 _M_invoke<0> /usr/include/c++/13/bits/std_thread.h:292 (mutant+0x20bc6) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #9 operator() /usr/include/c++/13/bits/std_thread.h:299 (mutant+0x20a0c) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #10 _M_run /usr/include/c++/13/bits/std_thread.h:244 (mutant+0x2069a) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #11 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Location is heap block of size 512 at 0x725000000000 allocated by main thread:
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.2+0xa6fae) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::__new_allocator<std::function<void ()> >::allocate(unsigned long, void const*) <null> (mutant+0x3570e) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #2 std::_Deque_base<std::function<void ()>, std::allocator<std::function<void ()> > >::_M_allocate_node() <null> (mutant+0x30b52) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #3 std::_Deque_base<std::function<void ()>, std::allocator<std::function<void ()> > >::_M_create_nodes(std::function<void ()>**, std::function<void ()>**) <null> (mutant+0x2dc08) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #4 std::_Deque_base<std::function<void ()>, std::allocator<std::function<void ()> > >::_M_initialize_map(unsigned long) <null> (mutant+0x2a03b) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #5 std::_Deque_base<std::function<void ()>, std::allocator<std::function<void ()> > >::_Deque_base() <null> (mutant+0x2648f) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #6 std::deque<std::function<void ()>, std::allocator<std::function<void ()> > >::deque() <null> (mutant+0x22dc2) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #7 kidea::Worker::Worker(unsigned long) <null> (mutant+0x22e5e) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #8 queue_concurrency /work/mutants-r4-eight-final/queue-race/tests.cpp:232 (mutant+0x171ff) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #9 main /work/mutants-r4-eight-final/queue-race/tests.cpp:275 (mutant+0x176a9) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+
+  Thread T3 (tid=49, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 construct_at<std::thread, (anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/stl_construct.h:97 (mutant+0x1b9b2) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #3 construct<std::thread, (anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/alloc_traits.h:540 (mutant+0x19d6b) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #4 _M_realloc_insert<(anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/vector.tcc:468 (mutant+0x19d6b)
+    #5 emplace_back<(anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/vector.tcc:123 (mutant+0x1884f) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #6 queue_concurrency /work/mutants-r4-eight-final/queue-race/tests.cpp:235 (mutant+0x172cc) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #7 main /work/mutants-r4-eight-final/queue-race/tests.cpp:275 (mutant+0x176a9) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+
+  Thread T2 (tid=48, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 construct_at<std::thread, (anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/stl_construct.h:97 (mutant+0x1b9b2) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #3 construct<std::thread, (anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/alloc_traits.h:540 (mutant+0x19d6b) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #4 _M_realloc_insert<(anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/vector.tcc:468 (mutant+0x19d6b)
+    #5 emplace_back<(anonymous namespace)::queue_concurrency()::<lambda()> > /usr/include/c++/13/bits/vector.tcc:123 (mutant+0x1884f) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #6 queue_concurrency /work/mutants-r4-eight-final/queue-race/tests.cpp:235 (mutant+0x172cc) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+    #7 main /work/mutants-r4-eight-final/queue-race/tests.cpp:275 (mutant+0x176a9) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea)
+
+SUMMARY: ThreadSanitizer: data race (/work/mutants-r4-eight-final/queue-race/mutant+0x2ab33) (BuildId: 63bd1f4f354aeb9e0e192a643d7acff9ccf9e1ea) in std::function<void ()>::function(std::function<void ()>&&)
+==================

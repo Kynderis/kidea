@@ -1,0 +1,19 @@
+{
+  "command": "/usr/local/bin/gcloud",
+  "args": [
+    "compute",
+    "firewall-rules",
+    "create",
+    "kidea-r08-c4-observe",
+    "--network=kidea-r08-c4-net",
+    "--source-tags=kidea-r08-c4-observer",
+    "--target-tags=kidea-r08-c4-workload",
+    "--allow=tcp:8443,tcp:9444",
+    "--project=kidea-508908",
+    "--quiet"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "NAME                  NETWORK           DIRECTION  PRIORITY  ALLOW              DENY  DISABLED\nkidea-r08-c4-observe  kidea-r08-c4-net  INGRESS    1000      tcp:8443,tcp:9444        False\n",
+  "stderr": "Creating firewall...\n..Created [https://www.googleapis.com/compute/v1/projects/kidea-508908/global/firewalls/kidea-r08-c4-observe].\ndone.\n"
+}

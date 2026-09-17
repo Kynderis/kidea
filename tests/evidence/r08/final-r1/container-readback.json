@@ -1,0 +1,1332 @@
+[
+  {
+    "Id": "3263be1f3ddbb5517d6801fbae6740d7f95ed35cee2a22a4d215729e48fa2f10",
+    "Name": "/kidea-r08-g2-prebuilt",
+    "Created": "2026-09-17T10:10:03.174708454Z",
+    "Path": "/usr/bin/timeout",
+    "Args": [
+      "180",
+      "node",
+      "/check.mjs"
+    ],
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 1,
+      "Error": "",
+      "StartedAt": "2026-09-17T10:10:03.315070573Z",
+      "FinishedAt": "2026-09-17T10:10:08.964461952Z"
+    },
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "Config": {
+      "Hostname": "3263be1f3ddb",
+      "Domainname": "",
+      "User": "1000:1000",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "PATH=/opt/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "Cmd": [
+        "180",
+        "node",
+        "/check.mjs"
+      ],
+      "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "Volumes": null,
+      "WorkingDir": "/work",
+      "Entrypoint": [
+        "/usr/bin/timeout"
+      ],
+      "Labels": {
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {}
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": [],
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,size=256m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 4294967296,
+      "NanoCpus": 2000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 4294967296,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 512,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-inputs-r1/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/build",
+          "Target": "/build",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/work",
+          "Target": "/work",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/tests/r08/final-prebuilt.mjs",
+          "Target": "/check.mjs",
+          "ReadOnly": true
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/build",
+        "Destination": "/build",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/tests/r08/final-prebuilt.mjs",
+        "Destination": "/check.mjs",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-inputs-r1/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/work",
+        "Destination": "/work",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ]
+  },
+  {
+    "Id": "aed270253b3ab176ddc0b978e087afa527b2e10d983f159b743c0116307e7325",
+    "Name": "/kidea-r08-g2-prebuilt-2",
+    "Created": "2026-09-17T10:11:16.384294871Z",
+    "Path": "/usr/bin/timeout",
+    "Args": [
+      "180",
+      "node",
+      "/check.mjs"
+    ],
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-17T10:11:16.693898395Z",
+      "FinishedAt": "2026-09-17T10:11:51.697013839Z"
+    },
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "Config": {
+      "Hostname": "aed270253b3a",
+      "Domainname": "",
+      "User": "1000:1000",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "PATH=/opt/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "Cmd": [
+        "180",
+        "node",
+        "/check.mjs"
+      ],
+      "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "Volumes": null,
+      "WorkingDir": "/work",
+      "Entrypoint": [
+        "/usr/bin/timeout"
+      ],
+      "Labels": {
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {}
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": [],
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,size=256m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 4294967296,
+      "NanoCpus": 2000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 4294967296,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 512,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-inputs-r1/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/build",
+          "Target": "/build",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/work",
+          "Target": "/work",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-results",
+          "Target": "/work/test-results"
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/tests/r08/final-prebuilt.mjs",
+          "Target": "/check.mjs",
+          "ReadOnly": true
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/build",
+        "Destination": "/build",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/tests/r08/final-prebuilt.mjs",
+        "Destination": "/check.mjs",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-inputs-r1/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/work",
+        "Destination": "/work",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-results",
+        "Destination": "/work/test-results",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      }
+    ]
+  },
+  {
+    "Id": "e8c6acba6c2387c6d2a67618dd928b3910f974a915e6cd85740ff0dd95a7d361",
+    "Name": "/kidea-r08-g2-browser",
+    "Created": "2026-09-17T10:12:17.268196976Z",
+    "Path": "/usr/bin/timeout",
+    "Args": [
+      "180",
+      "node",
+      "/work/node_modules/@playwright/test/cli.js",
+      "test",
+      "--project=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--forbid-only",
+      "--output=/tmp/browser-results"
+    ],
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 1,
+      "Error": "",
+      "StartedAt": "2026-09-17T10:12:17.373579361Z",
+      "FinishedAt": "2026-09-17T10:12:33.235475654Z"
+    },
+    "Image": "sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+    "Config": {
+      "Hostname": "e8c6acba6c23",
+      "Domainname": "",
+      "User": "1000:1000",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "PATH=/opt/kidea-node/bin:/usr/local/bin:/usr/bin:/bin",
+        "LANG=C.UTF-8",
+        "LC_ALL=C.UTF-8",
+        "PLAYWRIGHT_BROWSERS_PATH=/ms-playwright"
+      ],
+      "Cmd": [
+        "180",
+        "node",
+        "/work/node_modules/@playwright/test/cli.js",
+        "test",
+        "--project=chromium",
+        "--workers=1",
+        "--retries=0",
+        "--forbid-only",
+        "--output=/tmp/browser-results"
+      ],
+      "Image": "sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+      "Volumes": null,
+      "WorkingDir": "/work",
+      "Entrypoint": [
+        "/usr/bin/timeout"
+      ],
+      "Labels": {
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {}
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": [],
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,size=256m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 268435456,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 4294967296,
+      "NanoCpus": 2000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 4294967296,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 512,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/work",
+          "Target": "/work",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-delivery-inputs-r1/node",
+          "Target": "/opt/kidea-node/bin/node",
+          "ReadOnly": true
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/work",
+        "Destination": "/work",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-delivery-inputs-r1/node",
+        "Destination": "/opt/kidea-node/bin/node",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ]
+  },
+  {
+    "Id": "7429cee9327ad0f098c2f57689619525937f6cf1819a3f845c55292307a309fc",
+    "Name": "/kidea-r08-g2-browser-2",
+    "Created": "2026-09-17T10:13:31.700059702Z",
+    "Path": "/usr/bin/timeout",
+    "Args": [
+      "180",
+      "node",
+      "/work/node_modules/@playwright/test/cli.js",
+      "test",
+      "--project=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--forbid-only",
+      "--output=/tmp/browser-results"
+    ],
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-17T10:13:31.84187475Z",
+      "FinishedAt": "2026-09-17T10:13:44.184824123Z"
+    },
+    "Image": "sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+    "Config": {
+      "Hostname": "7429cee9327a",
+      "Domainname": "",
+      "User": "1000:1000",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "PATH=/opt/kidea-node/bin:/usr/local/bin:/usr/bin:/bin",
+        "LANG=C.UTF-8",
+        "LC_ALL=C.UTF-8",
+        "PLAYWRIGHT_BROWSERS_PATH=/ms-playwright"
+      ],
+      "Cmd": [
+        "180",
+        "node",
+        "/work/node_modules/@playwright/test/cli.js",
+        "test",
+        "--project=chromium",
+        "--workers=1",
+        "--retries=0",
+        "--forbid-only",
+        "--output=/tmp/browser-results"
+      ],
+      "Image": "sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+      "Volumes": null,
+      "WorkingDir": "/work",
+      "Entrypoint": [
+        "/usr/bin/timeout"
+      ],
+      "Labels": {
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {}
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": [],
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,size=256m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 268435456,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 4294967296,
+      "NanoCpus": 2000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 4294967296,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 512,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/work",
+          "Target": "/work",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-results",
+          "Target": "/work/test-results"
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-delivery-inputs-r1/node",
+          "Target": "/opt/kidea-node/bin/node",
+          "ReadOnly": true
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/work",
+        "Destination": "/work",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-results",
+        "Destination": "/work/test-results",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-delivery-inputs-r1/node",
+        "Destination": "/opt/kidea-node/bin/node",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ]
+  },
+  {
+    "Id": "ad15dc3778fe05f8b74a39a3f87decb26a8e1342225f0cae7ac3acf99dd11ba0",
+    "Name": "/kidea-r08-g2-mutants",
+    "Created": "2026-09-17T10:14:26.02392265Z",
+    "Path": "/usr/bin/timeout",
+    "Args": [
+      "900",
+      "node",
+      "/src/scripts/mutations-r4.mjs"
+    ],
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 1,
+      "Error": "",
+      "StartedAt": "2026-09-17T10:14:26.138183096Z",
+      "FinishedAt": "2026-09-17T10:14:26.457850522Z"
+    },
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "Config": {
+      "Hostname": "ad15dc3778fe",
+      "Domainname": "",
+      "User": "1000:1000",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "KIDEA_MUTATION_RUN=r08-final",
+        "PATH=/opt/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "Cmd": [
+        "900",
+        "node",
+        "/src/scripts/mutations-r4.mjs"
+      ],
+      "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "Volumes": null,
+      "WorkingDir": "/work",
+      "Entrypoint": [
+        "/usr/bin/timeout"
+      ],
+      "Labels": {
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {}
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": [],
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,size=256m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 4294967296,
+      "NanoCpus": 2000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 4294967296,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 512,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-inputs-r1/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/build",
+          "Target": "/build",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-mutants/work",
+          "Target": "/work"
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-mutants/data",
+          "Target": "/data"
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/payload/config",
+          "Target": "/secrets",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/tests/evidence/r08/final-r1/mutation-output",
+          "Target": "/out"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/build",
+        "Destination": "/build",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-mutants/data",
+        "Destination": "/data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/tests/evidence/r08/final-r1/mutation-output",
+        "Destination": "/out",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/payload/config",
+        "Destination": "/secrets",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-inputs-r1/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-mutants/work",
+        "Destination": "/work",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      }
+    ]
+  },
+  {
+    "Id": "4b75127f87ca674ff19a6c953ff2b9fc7b1e99b3b954958fa8dc9d3bf0b4697f",
+    "Name": "/kidea-r08-g2-mutants-2",
+    "Created": "2026-09-17T10:15:00.137681488Z",
+    "Path": "/usr/bin/timeout",
+    "Args": [
+      "900",
+      "node",
+      "/src/scripts/mutations-r4.mjs"
+    ],
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-17T10:15:00.259047599Z",
+      "FinishedAt": "2026-09-17T10:15:55.671034235Z"
+    },
+    "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "Config": {
+      "Hostname": "4b75127f87ca",
+      "Domainname": "",
+      "User": "1000:1000",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "KIDEA_MUTATION_RUN=eight-final",
+        "PATH=/opt/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "Cmd": [
+        "900",
+        "node",
+        "/src/scripts/mutations-r4.mjs"
+      ],
+      "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "Volumes": null,
+      "WorkingDir": "/work",
+      "Entrypoint": [
+        "/usr/bin/timeout"
+      ],
+      "Labels": {
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {}
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": [],
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,size=256m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 4294967296,
+      "NanoCpus": 2000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 4294967296,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 512,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-inputs-r1/source",
+          "Target": "/src",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/build",
+          "Target": "/build",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-mutants/work",
+          "Target": "/work"
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-mutants/data",
+          "Target": "/data"
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/payload/config",
+          "Target": "/secrets",
+          "ReadOnly": true
+        },
+        {
+          "Type": "bind",
+          "Source": "/Users/kendrick/Desktop/kidea/tests/evidence/r08/final-r1/mutation-output",
+          "Target": "/out"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-build-r1/build",
+        "Destination": "/build",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-mutants/data",
+        "Destination": "/data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/tests/evidence/r08/final-r1/mutation-output",
+        "Destination": "/out",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/payload/config",
+        "Destination": "/secrets",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-product-inputs-r1/source",
+        "Destination": "/src",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/Users/kendrick/Desktop/kidea/.test-output/r08-g2-mutants/work",
+        "Destination": "/work",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      }
+    ]
+  }
+]

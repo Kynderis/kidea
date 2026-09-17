@@ -1,0 +1,23 @@
+
+Running 18 tests using 1 worker
+
+  ✓   1 [chromium] › tests/browser/extended.spec.ts:3:1 › API malformed data never shows success; actor and epoch reset old replies (852ms)
+  ✓   2 [chromium] › tests/browser/extended.spec.ts:4:1 › UI distinguishes UNKNOWN, REJECTED, and matched SUCCESS (596ms)
+  ✓   3 [chromium] › tests/browser/extended.spec.ts:5:1 › corrupt saved intent reconciles rather than replaying POST (378ms)
+  ✓   4 [chromium] › tests/browser/extended.spec.ts:6:1 › keyboard opens dialog, traps focus, Escape restores trigger (406ms)
+  ✓   5 [chromium] › tests/browser/extended.spec.ts:7:31 › layout 360px at 200 percent font (901ms)
+  ✓   6 [chromium] › tests/browser/extended.spec.ts:7:31 › layout 1280px at 200 percent font (923ms)
+  ✓   7 [chromium] › tests/browser/extended.spec.ts:8:1 › no-JS HTML has title, landmarks, label and lab noindex; no Event markup (713ms)
+  ✓   8 [chromium] › tests/browser/sample.spec.ts:2:1 › S01 real UI rejects delayed response after switching actor (539ms)
+  ✓   9 [chromium] › tests/browser/sample.spec.ts:3:1 › S09 delayed callback after model unmount (501ms)
+  ✓  10 [chromium] › tests/browser/sample.spec.ts:4:1 › S07 reload keeps unknown intent and only reconciles (740ms)
+  ✓  11 [chromium] › tests/browser/sample.spec.ts:5:1 › S08 literal is escaped in SSR and after hydration (292ms)
+  ✓  12 [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR U then V (120ms)
+  ✓  13 [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR V then U (33ms)
+  ✓  14 [chromium] › tests/browser/sample.spec.ts:7:1 › private SSR also works with JS disabled (162ms)
+  ✓  15 [chromium] › tests/browser/sample.spec.ts:8:1 › cookie override through SvelteKit HTTP create/read/replace/delete (48ms)
+  ✓  16 [chromium] › tests/browser/sample.spec.ts:10:1 › S09 actual Svelte component destruction rejects pending callback (485ms)
+  ✓  17 [chromium] › tests/browser/sample.spec.ts:12:1 › S04 SSR keeps independent public/private versions (273ms)
+  ✓  18 [chromium] › tests/browser/sample.spec.ts:13:1 › S05 rendered history retains cancellation and rebooking (351ms)
+
+  18 passed (10.7s)

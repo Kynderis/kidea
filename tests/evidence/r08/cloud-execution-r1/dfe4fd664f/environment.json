@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-17T10:46:27.969060+00:00",
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c4-workload",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c4-workload 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-a --verbosity=warning",
+    "kidealab@kidea-r08-c4-workload",
+    "uname -a; cat /etc/os-release; sudo docker version --format '{{json .}}'; sudo docker info --format '{{json .Architecture}} {{json .OperatingSystem}}'"
+  ],
+  "code": 0,
+  "stdout": "Linux kidea-r08-c4-workload 6.6.153+ #1 SMP Sat Sep  5 10:13:08 UTC 2026 x86_64 Intel(R) Xeon(R) CPU @ 2.20GHz GenuineIntel GNU/Linux\nNAME=\"Container-Optimized OS\"\nID=cos\nPRETTY_NAME=\"Container-Optimized OS from Google\"\nHOME_URL=\"https://cloud.google.com/container-optimized-os/docs\"\nBUG_REPORT_URL=\"https://cloud.google.com/container-optimized-os/docs/resources/support-policy#contact_us\"\nGOOGLE_CRASH_ID=Lakitu\nGOOGLE_METRICS_PRODUCT_ID=26\nKERNEL_COMMIT_ID=bce7645596996d31068d8b3c7ad0f24fc8848df3\nVERSION=121\nVERSION_ID=121\nBUILD_ID=18867.584.7\n{\"Client\":{\"Version\":\"27.5.1\",\"ApiVersion\":\"1.47\",\"DefaultAPIVersion\":\"1.47\",\"GitCommit\":\"b9d17eaebb55b7652ce37ae5c7c52fcb34194956\",\"GoVersion\":\"go1.25.12\",\"Os\":\"linux\",\"Arch\":\"amd64\",\"BuildTime\":\"Sat Sep  5 09:56:16 2026\",\"Context\":\"default\"},\"Server\":{\"Platform\":{\"Name\":\"\"},\"Components\":[{\"Name\":\"Engine\",\"Version\":\"27.4.1\",\"Details\":{\"ApiVersion\":\"1.47\",\"Arch\":\"amd64\",\"BuildTime\":\"Sat Sep  5 11:18:38 2026\",\"Experimental\":\"false\",\"GitCommit\":\"c710b88579fcb5e0d53f96dcae976d79323b9166\",\"GoVersion\":\"go1.25.12\",\"KernelVersion\":\"6.6.153+\",\"MinAPIVersion\":\"1.24\",\"Os\":\"linux\"}},{\"Name\":\"containerd\",\"Version\":\"2.0.10\",\"Details\":{\"GitCommit\":\"d2f61adbcb7f213e4fa4cc2468bb3b4cf14f8964\"}},{\"Name\":\"runc\",\"Version\":\"1.2.9\",\"Details\":{\"GitCommit\":\"6c52b3fc541fb26fe8c374d5f58112a0a5dbda66\"}},{\"Name\":\"docker-init\",\"Version\":\"0.19.0\",\"Details\":{\"GitCommit\":\"fec3683b971d9c3ef73f284f176672c44b448662\"}}],\"Version\":\"27.4.1\",\"ApiVersion\":\"1.47\",\"MinAPIVersion\":\"1.24\",\"GitCommit\":\"c710b88579fcb5e0d53f96dcae976d79323b9166\",\"GoVersion\":\"go1.25.12\",\"Os\":\"linux\",\"Arch\":\"amd64\",\"KernelVersion\":\"6.6.153+\",\"BuildTime\":\"2026-09-05T11:18:38.000000000+00:00\"}}\n\"x86_64\" \"Container-Optimized OS from Google\"\n",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\n"
+}

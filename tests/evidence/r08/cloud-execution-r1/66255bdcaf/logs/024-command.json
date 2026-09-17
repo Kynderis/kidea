@@ -1,0 +1,27 @@
+{
+  "command": "ssh",
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c3-workload",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c3-workload 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-a --verbosity=warning",
+    "kidealab@kidea-r08-c3-workload",
+    "sh /home/kidealab/remote.sh workload"
+  ],
+  "code": 126,
+  "error": null,
+  "stdout": "sha256:3cb8645544bb2ac9d0d5e76262ed142341ebfb798a593cc0b7c358eb6e0dc54b\neeead1148314ba9606c52695b5728fbf31fea45591a0825f2ebcf70a96f234a8\n4f130edff7ba44970b1e1c9961a000952e4dac9acb381a871971488921f563cc\n",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\ndocker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: \"/payload/backend\": permission denied: unknown.\n"
+}

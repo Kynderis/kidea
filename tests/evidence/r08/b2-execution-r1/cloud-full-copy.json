@@ -1,0 +1,29 @@
+{
+  "args": [
+    "docker",
+    "run",
+    "--name=kidea-r08-cloud-full-copy",
+    "--pull=never",
+    "--network=none",
+    "--read-only",
+    "--user=0:0",
+    "--cap-drop=ALL",
+    "--security-opt=no-new-privileges",
+    "--cpus=1",
+    "--memory=512m",
+    "--pids-limit=128",
+    "-v",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/payload:/input:ro",
+    "-v",
+    "kidea-r08-cloud-full-copy:/payload",
+    "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "timeout",
+    "120",
+    "sh",
+    "-c",
+    "cp -R /input/. /payload/; chmod -R a+rX /payload; diff -qr /input /payload"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,19 @@
+{
+  "command": "/usr/local/bin/gcloud",
+  "args": [
+    "compute",
+    "networks",
+    "subnets",
+    "create",
+    "kidea-r08-c4-subnet",
+    "--network=kidea-r08-c4-net",
+    "--region=us-central1",
+    "--range=10.88.0.0/24",
+    "--project=kidea-508908",
+    "--quiet"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "NAME                 REGION       NETWORK           RANGE         STACK_TYPE  IPV6_ACCESS_TYPE  INTERNAL_IPV6_PREFIX  EXTERNAL_IPV6_PREFIX\nkidea-r08-c4-subnet  us-central1  kidea-r08-c4-net  10.88.0.0/24  IPV4_ONLY\n",
+  "stderr": "Created [https://www.googleapis.com/compute/v1/projects/kidea-508908/regions/us-central1/subnetworks/kidea-r08-c4-subnet].\n"
+}

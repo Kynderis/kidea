@@ -1,0 +1,120 @@
+{
+  "at": "2026-09-17T10:58:27.013682+00:00",
+  "pass": true,
+  "scope": "all R08-owned name prefixes across attempts; no unrelated resources changed",
+  "results": [
+    {
+      "resource": "instances",
+      "args": [
+        "/usr/local/bin/gcloud",
+        "compute",
+        "instances",
+        "list",
+        "--project=kidea-508908",
+        "--filter=name~^kidea-r08-",
+        "--format=json",
+        "--quiet"
+      ],
+      "code": 0,
+      "stdout": "[]\n",
+      "stderr": "WARNING: The following filter keys were not present in any resource : name\n"
+    },
+    {
+      "resource": "disks",
+      "args": [
+        "/usr/local/bin/gcloud",
+        "compute",
+        "disks",
+        "list",
+        "--project=kidea-508908",
+        "--filter=name~^kidea-r08-",
+        "--format=json",
+        "--quiet"
+      ],
+      "code": 0,
+      "stdout": "[]\n",
+      "stderr": "WARNING: The following filter keys were not present in any resource : name\n"
+    },
+    {
+      "resource": "addresses",
+      "args": [
+        "/usr/local/bin/gcloud",
+        "compute",
+        "addresses",
+        "list",
+        "--project=kidea-508908",
+        "--filter=name~^kidea-r08-",
+        "--format=json",
+        "--quiet"
+      ],
+      "code": 0,
+      "stdout": "[]\n",
+      "stderr": "WARNING: The following filter keys were not present in any resource : name\n"
+    },
+    {
+      "resource": "firewall-rules",
+      "args": [
+        "/usr/local/bin/gcloud",
+        "compute",
+        "firewall-rules",
+        "list",
+        "--project=kidea-508908",
+        "--filter=name~^kidea-r08-",
+        "--format=json",
+        "--quiet"
+      ],
+      "code": 0,
+      "stdout": "[]\n",
+      "stderr": ""
+    },
+    {
+      "resource": "networks",
+      "args": [
+        "/usr/local/bin/gcloud",
+        "compute",
+        "networks",
+        "list",
+        "--project=kidea-508908",
+        "--filter=name~^kidea-r08-",
+        "--format=json",
+        "--quiet"
+      ],
+      "code": 0,
+      "stdout": "[]\n",
+      "stderr": ""
+    },
+    {
+      "resource": "networks subnets",
+      "args": [
+        "/usr/local/bin/gcloud",
+        "compute",
+        "networks",
+        "subnets",
+        "list",
+        "--project=kidea-508908",
+        "--filter=name~^kidea-r08-",
+        "--format=json",
+        "--quiet"
+      ],
+      "code": 0,
+      "stdout": "[]\n",
+      "stderr": ""
+    },
+    {
+      "resource": "snapshots",
+      "args": [
+        "/usr/local/bin/gcloud",
+        "compute",
+        "snapshots",
+        "list",
+        "--project=kidea-508908",
+        "--filter=name~^kidea-r08-",
+        "--format=json",
+        "--quiet"
+      ],
+      "code": 0,
+      "stdout": "[]\n",
+      "stderr": ""
+    }
+  ]
+}

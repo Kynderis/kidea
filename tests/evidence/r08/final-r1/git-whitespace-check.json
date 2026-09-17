@@ -1,0 +1,31 @@
+{
+  "at": "2026-09-17T11:03:26.936131+00:00",
+  "results": [
+    {
+      "args": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "code": 2,
+      "stdout": "tests/evidence/r08/final-r1/mutation-output/mutations-eight-final/dangling-capture.stderr.log:77: trailing whitespace.\n+  Partially addressable: 01 02 03 04 05 06 07 \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "diff",
+        "--cached",
+        "--check",
+        "--",
+        ".",
+        ":!tests/evidence/r08/**"
+      ],
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "decision": "Preserve raw AddressSanitizer stderr byte-for-byte; source/docs check passes. No Git whitespace policy or test expectation changed."
+}

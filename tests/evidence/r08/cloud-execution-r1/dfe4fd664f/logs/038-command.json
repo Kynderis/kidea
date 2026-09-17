@@ -1,0 +1,27 @@
+{
+  "command": "ssh",
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c4-observer",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c4-observer 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-c --verbosity=warning",
+    "kidealab@kidea-r08-c4-observer",
+    "sudo cat /var/lib/kidea-r08/state/events.jsonl"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "{\"at\":\"2026-09-17T10:46:38.334Z\",\"sequence\":1,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"4fce8eef0a12118ac5a366b88d5d51636fe72ec70730a76cd7061e862e8e4c52\",\"counts\":{\"audit\":1,\"domain\":1,\"outbox\":1,\"result\":1}}\n",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\n"
+}

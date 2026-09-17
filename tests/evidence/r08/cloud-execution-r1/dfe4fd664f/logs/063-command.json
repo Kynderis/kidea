@@ -1,0 +1,27 @@
+{
+  "command": "ssh",
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c4-recovery",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c4-recovery 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-a --verbosity=warning",
+    "kidealab@kidea-r08-c4-recovery",
+    "sh /home/kidealab/remote.sh workload"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "sha256:3cb8645544bb2ac9d0d5e76262ed142341ebfb798a593cc0b7c358eb6e0dc54b\n20af7f50d0f434e86aa20a2d27365e3729d4374d944dfe421f9edafae8af7d8d\nde3f88e2c0c91898673ab14483d59ff599bbde53e51a66d60ce727bbe5b60ea0\ne02c1340d6075e84b0c3b6a6e4cc14ecc8068517ea78507ab680fed5f8b53146\ncc711bc897d9835b0c37d1fe872add587dbec7426db423941b1338d912c79b39\n517ba8aae88dfbfb05194ef26a6aecb8b63472308e97b2a2c9d9c6c2ceb88c5f\n",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\n"
+}

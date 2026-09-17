@@ -1,0 +1,27 @@
+{
+  "command": "ssh",
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c3-workload",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c3-workload 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-a --verbosity=warning",
+    "kidealab@kidea-r08-c3-workload",
+    "true"
+  ],
+  "code": 255,
+  "error": null,
+  "stdout": "",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\nERROR: [0] Error during local connection to [stdin]: Error while connecting [4047: 'Failed to lookup instance'].\nTraceback (most recent call last):\n  File \"/usr/local/Caskroom/gcloud-cli/578.0.0/google-cloud-sdk/lib/googlecloudsdk/command_lib/compute/iap_tunnel.py\", line 805, in RunReceiveLocalData\n    websocket_conn = self._InitiateConnection(\n        conn,\n    ...<4 lines>...\n        conn_id=conn_id,\n    )\n  File \"/usr/local/Caskroom/gcloud-cli/578.0.0/google-cloud-sdk/lib/googlecloudsdk/command_lib/compute/iap_tunnel.py\", line 771, in _InitiateConnection\n    new_websocket.InitiateConnection()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/usr/local/Caskroom/gcloud-cli/578.0.0/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/iap_tunnel_websocket.py\", line 149, in InitiateConnection\n    self._WaitForOpenOrRaiseError()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/usr/local/Caskroom/gcloud-cli/578.0.0/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/iap_tunnel_websocket.py\", line 441, in _WaitForOpenOrRaiseError\n    raise ConnectionCreationError(error_msg)\ngooglecloudsdk.api_lib.compute.iap_tunnel_websocket.ConnectionCreationError: Error while connecting [4047: 'Failed to lookup instance'].\nConnection closed by UNKNOWN port 65535\r\n"
+}

@@ -1,0 +1,16 @@
+{
+  "command": "/usr/local/bin/gcloud",
+  "args": [
+    "compute",
+    "instances",
+    "list",
+    "--filter=name~^kidea-r08-c2",
+    "--format=json",
+    "--project=kidea-508908",
+    "--quiet"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "[]\n",
+  "stderr": "WARNING: The following filter keys were not present in any resource : name\n"
+}

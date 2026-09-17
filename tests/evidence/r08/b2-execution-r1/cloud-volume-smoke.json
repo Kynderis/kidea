@@ -1,0 +1,31 @@
+{
+  "args": [
+    "docker",
+    "run",
+    "--name=kidea-r08-cloud-volume-smoke",
+    "--pull=never",
+    "--network=none",
+    "--read-only",
+    "--cap-drop=ALL",
+    "--security-opt=no-new-privileges",
+    "--cpus=1",
+    "--memory=512m",
+    "--pids-limit=128",
+    "--tmpfs=/tmp:rw,size=16m",
+    "--tmpfs=/blocked:rw,noexec,size=128m",
+    "-v",
+    "kidea-r08-cloud-volume-smoke:/payload",
+    "-v",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-delivery-inputs-r1:/source:ro",
+    "-v",
+    "/Users/kendrick/Desktop/kidea/tests/r08/cloud-volume-smoke.sh:/check.sh:ro",
+    "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+    "timeout",
+    "120",
+    "sh",
+    "/check.sh"
+  ],
+  "code": 1,
+  "stdout": "/check.sh: 7: /blocked/caddy: Permission denied\n",
+  "stderr": "cp: cannot create regular file '/payload/./caddy': Permission denied\n"
+}

@@ -1,0 +1,27 @@
+{
+  "at": "2026-09-17T10:43:35.128205+00:00",
+  "sourceSHA256": "7ce8b98decce93cea2c22d9a1f4474c91b20af7cc04bcd0f0f493034058dc911",
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c4-workload",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c4-workload 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-a --verbosity=warning",
+    "kidealab@kidea-r08-c4-workload",
+    "sudo docker exec kidea-r08-backend node --input-type=module -e '// Runs inside the already-deployed backend container; read-only HTTPS smoke.\nimport https from '\"'\"'node:https'\"'\"';import fs from '\"'\"'node:fs'\"'\"';import assert from '\"'\"'node:assert/strict'\"'\"';import {createHash} from '\"'\"'node:crypto'\"'\"';\nconst ca=fs.readFileSync('\"'\"'/payload/config/root.crt'\"'\"');\nfor(const path of ['\"'\"'/'\"'\"','\"'\"'/api/health'\"'\"']){\n const result=await new Promise((resolve,reject)=>{\n  const req=https.get({host:'\"'\"'caddy'\"'\"',port:8443,servername:'\"'\"'localhost'\"'\"',ca,path,headers:{host:'\"'\"'localhost:8443'\"'\"'}},res=>{const chunks=[];res.on('\"'\"'data'\"'\"',d=>chunks.push(d));res.on('\"'\"'end'\"'\"',()=>resolve({status:res.statusCode,body:Buffer.concat(chunks),headers:res.headers}));});\n  const timer=setTimeout(()=>req.destroy(Error('\"'\"'TOTAL_TIMEOUT'\"'\"')),5000);req.on('\"'\"'close'\"'\"',()=>clearTimeout(timer));req.on('\"'\"'error'\"'\"',reject);\n });\n assert.equal(result.status,200,path);assert.match(result.headers['\"'\"'x-robots-tag'\"'\"'],/noindex/);\n if(path==='\"'\"'/'\"'\"')assert.match(result.body.toString(),/<html/i);\n console.log(JSON.stringify({path,status:result.status,noindex:result.headers['\"'\"'x-robots-tag'\"'\"'],bytes:result.body.length,sha256:createHash('\"'\"'sha256'\"'\"').update(result.body).digest('\"'\"'hex'\"'\"')}));\n}\n' && sudo docker exec kidea-r08-web sha256sum /proc/1/exe && sudo docker exec kidea-r08-web cat /proc/1/cmdline"
+  ],
+  "code": 0,
+  "stdout": "{\"path\":\"/\",\"status\":200,\"noindex\":\"noindex, nofollow\",\"bytes\":2409,\"sha256\":\"d6effba0df90e6096b3b59185a7f9b3f6470d8ce63eba942246ea7f6bafc4e15\"}\n{\"path\":\"/api/health\",\"status\":200,\"noindex\":\"noindex, nofollow\",\"bytes\":18,\"sha256\":\"11bec2db0e99977c840a5df4b17be528421aadd5f4aa79d3622c126c481397fb\"}\nbc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12  /proc/1/exe\nnode\u0000/payload/web/build/index.js\u0000",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\n"
+}

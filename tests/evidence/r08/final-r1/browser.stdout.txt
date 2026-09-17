@@ -1,0 +1,72 @@
+
+Running 18 tests using 1 worker
+
+  ✓   1 [chromium] › tests/browser/extended.spec.ts:3:1 › API malformed data never shows success; actor and epoch reset old replies (1.1s)
+  ✓   2 [chromium] › tests/browser/extended.spec.ts:4:1 › UI distinguishes UNKNOWN, REJECTED, and matched SUCCESS (609ms)
+  ✓   3 [chromium] › tests/browser/extended.spec.ts:5:1 › corrupt saved intent reconciles rather than replaying POST (399ms)
+  ✓   4 [chromium] › tests/browser/extended.spec.ts:6:1 › keyboard opens dialog, traps focus, Escape restores trigger (423ms)
+  ✘   5 [chromium] › tests/browser/extended.spec.ts:7:31 › layout 360px at 200 percent font (965ms)
+  ✘   6 [chromium] › tests/browser/extended.spec.ts:7:31 › layout 1280px at 200 percent font (1.2s)
+  ✓   7 [chromium] › tests/browser/extended.spec.ts:8:1 › no-JS HTML has title, landmarks, label and lab noindex; no Event markup (434ms)
+  ✓   8 [chromium] › tests/browser/sample.spec.ts:2:1 › S01 real UI rejects delayed response after switching actor (459ms)
+  ✓   9 [chromium] › tests/browser/sample.spec.ts:3:1 › S09 delayed callback after model unmount (443ms)
+  ✓  10 [chromium] › tests/browser/sample.spec.ts:4:1 › S07 reload keeps unknown intent and only reconciles (567ms)
+  ✓  11 [chromium] › tests/browser/sample.spec.ts:5:1 › S08 literal is escaped in SSR and after hydration (297ms)
+  ✓  12 [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR U then V (62ms)
+  ✓  13 [chromium] › tests/browser/sample.spec.ts:6:51 › S06 concurrent SSR V then U (33ms)
+  ✓  14 [chromium] › tests/browser/sample.spec.ts:7:1 › private SSR also works with JS disabled (191ms)
+  ✓  15 [chromium] › tests/browser/sample.spec.ts:8:1 › cookie override through SvelteKit HTTP create/read/replace/delete (52ms)
+  ✓  16 [chromium] › tests/browser/sample.spec.ts:10:1 › S09 actual Svelte component destruction rejects pending callback (443ms)
+  ✓  17 [chromium] › tests/browser/sample.spec.ts:12:1 › S04 SSR keeps independent public/private versions (263ms)
+  ✓  18 [chromium] › tests/browser/sample.spec.ts:13:1 › S05 rendered history retains cancellation and rebooking (350ms)
+
+
+  1) [chromium] › tests/browser/extended.spec.ts:7:31 › layout 360px at 200 percent font ───────────
+
+    Error: EROFS: read-only file system, open 'test-results/layout-360-200.png'
+
+      5 | test('corrupt saved intent reconciles rather than replaying POST',async({page})=>{await page.goto('/');await page.evaluate(()=>sessionStorage.setItem('lab-intent','{'));await page.getByRole('button',{name:'Send or reconcile admin X'}).click();await expect(page.getByTestId('result')).toContainText('"calls":["GET"]');await expect(page.getByTestId('result')).toContainText('UNKNOWN');});
+      6 | test('keyboard opens dialog, traps focus, Escape restores trigger',async({page})=>{await page.goto('/');const trigger=page.getByRole('button',{name:'Review fake action'});await trigger.focus();await page.keyboard.press('Enter');await expect(page.getByRole('dialog')).toBeVisible();await expect(page.getByRole('button',{name:'Close review'})).toBeFocused();await page.keyboard.press('Tab');await page.keyboard.press('Tab');expect(await page.evaluate(()=>document.querySelector('dialog')?.contains(document.activeElement))).toBe(true);await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).not.toBeVisible();await expect(trigger).toBeFocused();});
+    > 7 | for(const width of [360,1280])test(`layout ${width}px at 200 percent font`,async({page})=>{await page.setViewportSize({width,height:900});await page.goto('/');await page.evaluate(()=>document.documentElement.style.fontSize='200%');await expect(page.getByRole('heading',{level:1})).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);const buttons=await page.locator('button').all();for(const button of buttons){if(await button.isVisible()){const box=await button.boundingBox();expect(box?.width).toBeGreaterThan(0);expect(box!.x+box!.width).toBeLessThanOrEqual(width+1);}}await page.screenshot({path:`test-results/layout-${width}-200.png`,fullPage:true});});
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^
+      8 | test('no-JS HTML has title, landmarks, label and lab noindex; no Event markup',async({browser,request})=>{const r=await request.get('/');expect(r.headers()['x-robots-tag']).toContain('noindex');const html=await r.text();expect(html).not.toContain('application/ld+json');const context=await browser.newContext({javaScriptEnabled:false});try{const page=await context.newPage();await page.goto('http://127.0.0.1:4173');await expect(page).toHaveTitle('R05 Web sample');await expect(page.getByRole('main')).toHaveCount(1);await expect(page.getByLabel('Fake API JSON')).toBeVisible();await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex,nofollow');await expect(page.getByTestId('literal')).toHaveText('<img src=x onerror=alert(1)> & Workshop');}finally{await context.close();}});
+      9 |
+        at /work/tests/browser/extended.spec.ts:7:635
+
+    Error Context: ../tmp/browser-results/extended-layout-360px-at-200-percent-font-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../tmp/browser-results/extended-layout-360px-at-200-percent-font-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../tmp/browser-results/extended-layout-360px-at-200-percent-font-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/browser/extended.spec.ts:7:31 › layout 1280px at 200 percent font ──────────
+
+    Error: EROFS: read-only file system, open 'test-results/layout-1280-200.png'
+
+      5 | test('corrupt saved intent reconciles rather than replaying POST',async({page})=>{await page.goto('/');await page.evaluate(()=>sessionStorage.setItem('lab-intent','{'));await page.getByRole('button',{name:'Send or reconcile admin X'}).click();await expect(page.getByTestId('result')).toContainText('"calls":["GET"]');await expect(page.getByTestId('result')).toContainText('UNKNOWN');});
+      6 | test('keyboard opens dialog, traps focus, Escape restores trigger',async({page})=>{await page.goto('/');const trigger=page.getByRole('button',{name:'Review fake action'});await trigger.focus();await page.keyboard.press('Enter');await expect(page.getByRole('dialog')).toBeVisible();await expect(page.getByRole('button',{name:'Close review'})).toBeFocused();await page.keyboard.press('Tab');await page.keyboard.press('Tab');expect(await page.evaluate(()=>document.querySelector('dialog')?.contains(document.activeElement))).toBe(true);await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).not.toBeVisible();await expect(trigger).toBeFocused();});
+    > 7 | for(const width of [360,1280])test(`layout ${width}px at 200 percent font`,async({page})=>{await page.setViewportSize({width,height:900});await page.goto('/');await page.evaluate(()=>document.documentElement.style.fontSize='200%');await expect(page.getByRole('heading',{level:1})).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);const buttons=await page.locator('button').all();for(const button of buttons){if(await button.isVisible()){const box=await button.boundingBox();expect(box?.width).toBeGreaterThan(0);expect(box!.x+box!.width).toBeLessThanOrEqual(width+1);}}await page.screenshot({path:`test-results/layout-${width}-200.png`,fullPage:true});});
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^
+      8 | test('no-JS HTML has title, landmarks, label and lab noindex; no Event markup',async({browser,request})=>{const r=await request.get('/');expect(r.headers()['x-robots-tag']).toContain('noindex');const html=await r.text();expect(html).not.toContain('application/ld+json');const context=await browser.newContext({javaScriptEnabled:false});try{const page=await context.newPage();await page.goto('http://127.0.0.1:4173');await expect(page).toHaveTitle('R05 Web sample');await expect(page.getByRole('main')).toHaveCount(1);await expect(page.getByLabel('Fake API JSON')).toBeVisible();await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex,nofollow');await expect(page.getByTestId('literal')).toHaveText('<img src=x onerror=alert(1)> & Workshop');}finally{await context.close();}});
+      9 |
+        at /work/tests/browser/extended.spec.ts:7:635
+
+    Error Context: ../tmp/browser-results/extended-layout-1280px-at-200-percent-font-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../tmp/browser-results/extended-layout-1280px-at-200-percent-font-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../tmp/browser-results/extended-layout-1280px-at-200-percent-font-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/browser/extended.spec.ts:7:31 › layout 360px at 200 percent font ────────────
+    [chromium] › tests/browser/extended.spec.ts:7:31 › layout 1280px at 200 percent font ───────────
+  16 passed (13.8s)
+Error: EROFS: read-only file system, open '/work/test-results/results.json'

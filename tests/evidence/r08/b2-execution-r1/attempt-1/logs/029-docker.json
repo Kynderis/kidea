@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "kidea-r08-b2-456692-8-check"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "trusted TLS and ready backend PASS\nTLS SNI and forged Host mismatch rejected PASS\nwrong authority port rejected PASS\nmissing CA rejected PASS\nwrong hostname rejected PASS\nreject forged Forwarded PASS\nreject forged X-Forwarded-Host PASS\nreject forged X-Forwarded-Proto PASS\nreject forged X-Forwarded-For PASS\nunauthenticated denied PASS\nexpired denied PASS\nactor determined by session PASS\nviewer cannot mutate PASS\nmissing origin mutation denied PASS\nnull origin mutation denied PASS\nforeign origin mutation denied PASS\nmissing token mutation denied PASS\nwrong token mutation denied PASS\nother session token mutation denied PASS\nquery token denied PASS\ndenials preserve all four tables PASS\ninvalid input rejected before any queued write PASS\nvalid write commits all four tables PASS\nUnicode and uint64 string boundary accepted over HTTP PASS\nconcurrent duplicate intent has one authoritative four-table result PASS\nsession cookie scope PASS\nbody 131071 length PASS\nbody 131071 chunked PASS\nbody 131072 length PASS\nbody 131072 chunked PASS\nbody 131073 length PASS\nbody 131073 chunked PASS\nparallel SSR isolation PASS\npublic HTML contains no private sentinel PASS\nsocket denies alien origin PASS\nsocket denies missing session PASS\nsocket denies wrong proof PASS\nsocket authorization and revoke before next event PASS\n{\"passed\":38,\"failed\":0,\"scope\":\"Node HTTPS subset; no browser or complete matrix claim\"}\n",
+  "stderr": ""
+}

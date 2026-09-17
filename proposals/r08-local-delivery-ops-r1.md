@@ -1,5 +1,7 @@
 # R08 — ma trận deploy/tích hợp/ops còn lại
 
+**Kết quả hiện hành2026-09-17:** ma trận đã được thực thi qua [B2 local](../tests/evidence/r08/b2-execution-r1.md), [G2 cuối](../tests/evidence/r08/final-r1.md) và [cloud độc lập](../tests/evidence/r08/cloud-execution-r1.md), PASS_SCOPED/cleanup đã xác minh. [R08 chờ Human nghiệm thu](../docs/R08_ACCEPTANCE.md); các câu “chưa chạy/chưa đóng gói” bên dưới là trạng thái khi lập ma trận, không phải điểm tiếp tục hiện tại. Không mở production hoặc R09.
+
 2026-09-17. **Môi trường hiện hành:** Docker local để build/tích hợp; Human đã cấp Google Cloud project `kidea-508908` và quyền tự tạo/thu hồi VM phục vụ kiểm Kidea theo [ghi nhận quyền](../docs/R08_GCP_AUTHORITY.md). Quyết định này thay hạn chế chưa có server trước đó. Human đã duyệt B1 và R08-TIDY-01, yêu cầu tiếp tục R08. Nguồn nhiệm vụ: R08-T03–T06/KA-28, R05 đã nghiệm thu phạm vi hữu hạn, R2-A15vector đã đạt. Bảng này xác định phần còn thiếu; không tự nhận nghiệm thu hoặc cho phép production thật.
 
 ## Chuỗi đầu vào

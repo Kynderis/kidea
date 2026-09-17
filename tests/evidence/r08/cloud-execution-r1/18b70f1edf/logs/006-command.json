@@ -1,0 +1,19 @@
+{
+  "command": "/usr/local/bin/gcloud",
+  "args": [
+    "compute",
+    "firewall-rules",
+    "create",
+    "kidea-r08-c1-iap",
+    "--network=kidea-r08-c1-net",
+    "--source-ranges=35.235.240.0/20",
+    "--target-tags=kidea-r08-c1-workload,kidea-r08-c1-observer",
+    "--allow=tcp:22",
+    "--project=kidea-508908",
+    "--quiet"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "NAME              NETWORK           DIRECTION  PRIORITY  ALLOW   DENY  DISABLED\nkidea-r08-c1-iap  kidea-r08-c1-net  INGRESS    1000      tcp:22        False\n",
+  "stderr": "Creating firewall...\n..Created [https://www.googleapis.com/compute/v1/projects/kidea-508908/global/firewalls/kidea-r08-c1-iap].\ndone.\n"
+}

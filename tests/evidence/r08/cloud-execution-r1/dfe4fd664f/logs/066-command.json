@@ -1,0 +1,27 @@
+{
+  "command": "ssh",
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c4-recovery",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c4-recovery 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-a --verbosity=warning",
+    "kidealab@kidea-r08-c4-recovery",
+    "sudo docker exec kidea-r08-backend /payload/database inspect /data/sample.db"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "{\"sqlite\":\"3.53.4\",\"integrity\":\"ok\",\"schemaHex\":\"435245415445205441424C452061756469742869642054455854205052494D415259204B45592C6163746F722054455854204E4F54204E554C4C293B435245415445205441424C4520646F6D61696E2869642054455854205052494D415259204B45592C6163746F722054455854204E4F54204E554C4C2C76616C75652054455854204E4F54204E554C4C293B435245415445205441424C45206F7574626F782869642054455854205052494D415259204B45592C6163746F722054455854204E4F54204E554C4C293B435245415445205441424C4520726573756C74732869642054455854205052494D415259204B45592C6163746F722054455854204E4F54204E554C4C2C7061796C6F61642054455854204E4F54204E554C4C2C726573756C742054455854204E4F54204E554C4C29\",\"version\":0,\"domain\":56,\"result\":56,\"audit\":56,\"outbox\":56}\n",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\n"
+}

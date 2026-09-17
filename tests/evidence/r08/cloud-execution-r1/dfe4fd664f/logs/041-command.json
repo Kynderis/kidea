@@ -1,0 +1,27 @@
+{
+  "command": "ssh",
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c4-observer",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c4-observer 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-c --verbosity=warning",
+    "kidealab@kidea-r08-c4-observer",
+    "sudo cat /var/lib/kidea-r08/state/events.jsonl"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "{\"at\":\"2026-09-17T10:46:38.334Z\",\"sequence\":1,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"4fce8eef0a12118ac5a366b88d5d51636fe72ec70730a76cd7061e862e8e4c52\",\"counts\":{\"audit\":1,\"domain\":1,\"outbox\":1,\"result\":1}}\n{\"at\":\"2026-09-17T10:46:40.385Z\",\"sequence\":2,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"27c8d66e024714f721314101f2f00c1b3a38adb4cd3399fe2858f52f60b8f859\",\"counts\":{\"audit\":2,\"domain\":2,\"outbox\":2,\"result\":2}}\n{\"at\":\"2026-09-17T10:46:42.435Z\",\"sequence\":3,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"be026cf01193cf5fdfdf42aea52006d5cd69e7e0bc85b81ad6237a5a12202757\",\"counts\":{\"audit\":3,\"domain\":3,\"outbox\":3,\"result\":3}}\n{\"at\":\"2026-09-17T10:46:44.485Z\",\"sequence\":4,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"db555755e980a6cc821ba90cc48c9acca3aeebccfddd7fe7f4a4549a304b1f44\",\"counts\":{\"audit\":4,\"domain\":4,\"outbox\":4,\"result\":4}}\n{\"at\":\"2026-09-17T10:46:46.534Z\",\"sequence\":5,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"556f4fafa4ffb567b47b1a00db615ce5f180ae44444a5ea1338422cd86c203b6\",\"counts\":{\"audit\":5,\"domain\":5,\"outbox\":5,\"result\":5}}\n{\"at\":\"2026-09-17T10:46:48.582Z\",\"sequence\":6,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"ee6cb39a1a5a7ec3c0293a10b2d70e63ab7da5cd3d171584003ac565b4f7fa5f\",\"counts\":{\"audit\":6,\"domain\":6,\"outbox\":6,\"result\":6}}\n{\"at\":\"2026-09-17T10:46:50.630Z\",\"sequence\":7,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"e3b4520f97e5fc769da602e22433299220e080522d3973d31c823259007756c7\",\"counts\":{\"audit\":7,\"domain\":7,\"outbox\":7,\"result\":7}}\n{\"at\":\"2026-09-17T10:46:52.680Z\",\"sequence\":8,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"9538d42fc2c5ab236147684207b6ea2974f9b14402a9bd7cedb10c85b7be08ba\",\"counts\":{\"audit\":8,\"domain\":8,\"outbox\":8,\"result\":8}}\n{\"at\":\"2026-09-17T10:46:54.727Z\",\"sequence\":9,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"c1c0cc62a29414f81701116397b6f38f7824931b08bf511b6354895395c40e76\",\"counts\":{\"audit\":9,\"domain\":9,\"outbox\":9,\"result\":9}}\n{\"at\":\"2026-09-17T10:46:56.778Z\",\"sequence\":10,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"992bf7e76d6bf605939c850eb3e7b103303651d8b53f8483e082b9b82b6553d8\",\"counts\":{\"audit\":10,\"domain\":10,\"outbox\":10,\"result\":10}}\n{\"at\":\"2026-09-17T10:46:58.826Z\",\"sequence\":11,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"956c7fc2b6ccc4eb6459ac776411c66278474cf49ed0d58882601a81c457ffee\",\"counts\":{\"audit\":11,\"domain\":11,\"outbox\":11,\"result\":11}}\n{\"at\":\"2026-09-17T10:47:00.875Z\",\"sequence\":12,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"093ff48b5e6bbe66b1cde10394f10f81f57d89f4a3e151863d9902dca2f9ad37\",\"counts\":{\"audit\":12,\"domain\":12,\"outbox\":12,\"result\":12}}\n{\"at\":\"2026-09-17T10:47:02.921Z\",\"sequence\":13,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"4175eb8bdaf4f13cbb6d74a414586a11eef240af600eeadd2ab1f0b9fe947d6d\",\"counts\":{\"audit\":13,\"domain\":13,\"outbox\":13,\"result\":13}}\n{\"at\":\"2026-09-17T10:47:04.969Z\",\"sequence\":14,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"59650cc9b4d14a49102109f2729c690351bc555009a5747830f20bab7637f350\",\"counts\":{\"audit\":14,\"domain\":14,\"outbox\":14,\"result\":14}}\n{\"at\":\"2026-09-17T10:47:07.015Z\",\"sequence\":15,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"9268136cf6a5540d580cd3cdd66960889806379f1b661f692da410774e6e395c\",\"counts\":{\"audit\":15,\"domain\":15,\"outbox\":15,\"result\":15}}\n{\"at\":\"2026-09-17T10:47:09.059Z\",\"sequence\":16,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"fc967f954b30063cf69e46ff6cc8ff12e0223e51fbcba7e42f2976a015c07abe\",\"counts\":{\"audit\":16,\"domain\":16,\"outbox\":16,\"result\":16}}\n",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\n"
+}

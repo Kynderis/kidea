@@ -1,0 +1,25 @@
+{
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c3-observer",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c3-observer 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-c --verbosity=warning",
+    "kidealab@kidea-r08-c3-observer",
+    "findmnt -T /var/lib; findmnt -T /var/lib/docker; findmnt -T /mnt/stateful_partition; findmnt -T /mnt/stateful_partition/var; ls -ld /var/lib /var/lib/docker"
+  ],
+  "code": 0,
+  "stdout": "TARGET SOURCE          FSTYPE OPTIONS\n/var   /dev/sda1[/var] ext4   rw,nosuid,nodev,noexec,relatime,commit=30\nTARGET          SOURCE                     FSTYPE OPTIONS\n/var/lib/docker /dev/sda1[/var/lib/docker] ext4   rw,nosuid,nodev,relatime,commit=30\nTARGET                  SOURCE    FSTYPE OPTIONS\n/mnt/stateful_partition /dev/sda1 ext4   rw,nosuid,nodev,noexec,relatime,commit=30\nTARGET                  SOURCE    FSTYPE OPTIONS\n/mnt/stateful_partition /dev/sda1 ext4   rw,nosuid,nodev,noexec,relatime,commit=30\ndrwxr-xr-x 18 root root 4096 Sep 17 10:27 /var/lib\ndrwx--x--- 12 root root 4096 Sep 17 10:27 /var/lib/docker\n",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\n"
+}

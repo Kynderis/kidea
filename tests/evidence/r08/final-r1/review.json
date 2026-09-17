@@ -1,0 +1,104 @@
+{
+  "at": "2026-09-17T10:58:20.938Z",
+  "status": "REVIEW_READY_PENDING_HUMAN",
+  "cloudManifest": "dfe4fd664f81b142554b231d01700cef5b7408fa29876c5ad1b079d589b738af",
+  "cloudSummary": {
+    "pass": true,
+    "clean": true,
+    "manifest": "dfe4fd664f81b142554b231d01700cef5b7408fa29876c5ad1b079d589b738af",
+    "termination": "2026-09-17T12:07:13.704Z",
+    "durationMs": 3046552,
+    "scope": "finite actual-artifact independent-host job/backup/alert/restore lab; not production or performance certification"
+  },
+  "attempts": [
+    {
+      "id": "18b70f1edf",
+      "pass": false,
+      "clean": true,
+      "manifest": "18b70f1edfecd86ab606e923f15911dcbb670ddf846c539193cd1fa5b163780d",
+      "termination": "2026-09-17T12:07:13.704Z",
+      "durationMs": 338081,
+      "scope": "finite actual-artifact independent-host job/backup/alert/restore lab; not production or performance certification"
+    },
+    {
+      "id": "46e184075a",
+      "pass": false,
+      "clean": true,
+      "manifest": "46e184075a19b5e69bbf07e9d3750319cc1e0891ad000e6b93f5874b539cfb2d",
+      "termination": "2026-09-17T12:07:13.704Z",
+      "durationMs": 975242,
+      "scope": "finite actual-artifact independent-host job/backup/alert/restore lab; not production or performance certification"
+    },
+    {
+      "id": "66255bdcaf",
+      "pass": false,
+      "clean": true,
+      "manifest": "66255bdcaf444be9699c251c6e5336fdc3156ad7b05da0ab645f88c9acc354cb",
+      "termination": "2026-09-17T12:07:13.704Z",
+      "durationMs": 1699137,
+      "scope": "finite actual-artifact independent-host job/backup/alert/restore lab; not production or performance certification"
+    },
+    {
+      "id": "dfe4fd664f",
+      "pass": true,
+      "clean": true,
+      "manifest": "dfe4fd664f81b142554b231d01700cef5b7408fa29876c5ad1b079d589b738af",
+      "termination": "2026-09-17T12:07:13.704Z",
+      "durationMs": 3046552,
+      "scope": "finite actual-artifact independent-host job/backup/alert/restore lab; not production or performance certification"
+    }
+  ],
+  "loadedSameImage": 3,
+  "healthyBefore": 4,
+  "healthyIndependent": 16,
+  "alertsAfterHostLoss": 10,
+  "backupSHA256": "39d0db97da622b48ac625d1166b0ef90097364efd78d9255ce4acb206bd1bdc0",
+  "restoredCounts": {
+    "domain": 56,
+    "result": 56,
+    "audit": 56,
+    "outbox": 56
+  },
+  "recovered": {
+    "at": "2026-09-17T10:54:09.228Z",
+    "sequence": 65,
+    "state": "HEALTHY",
+    "jobCommitted": true,
+    "backupSHA256": "5208f5a94ba530052976e44f4ca8da24a15bae772fec9ed601c3228c884fdafa",
+    "counts": {
+      "audit": 65,
+      "domain": 65,
+      "outbox": 65,
+      "result": 65
+    }
+  },
+  "cleanup": [
+    {
+      "resource": "instances",
+      "remaining": []
+    },
+    {
+      "resource": "disks",
+      "remaining": []
+    },
+    {
+      "resource": "addresses",
+      "remaining": []
+    },
+    {
+      "resource": "firewall-rules",
+      "remaining": []
+    },
+    {
+      "resource": "networks",
+      "remaining": []
+    }
+  ],
+  "limits": [
+    "finite synthetic lab using real B1 binaries",
+    "no production/performance certification",
+    "Mac was not powered off",
+    "R09 real pilot and R09-T14 NOT_RUN",
+    "Apple Silicon NOT_RUN"
+  ]
+}

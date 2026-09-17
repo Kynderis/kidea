@@ -1,0 +1,27 @@
+{
+  "command": "ssh",
+  "args": [
+    "-i",
+    "/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/ssh-key",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "StrictHostKeyChecking=accept-new",
+    "-o",
+    "UserKnownHostsFile=/Users/kendrick/Desktop/kidea/.test-output/r08-cloud-r1/known-hosts",
+    "-o",
+    "HostKeyAlias=kidea-r08-c4-observer",
+    "-o",
+    "ProxyCommand=/usr/local/bin/gcloud compute start-iap-tunnel kidea-r08-c4-observer 22 --listen-on-stdin --project=kidea-508908 --zone=us-central1-c --verbosity=warning",
+    "kidealab@kidea-r08-c4-observer",
+    "sudo cat /var/lib/kidea-r08/state/events.jsonl"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "{\"at\":\"2026-09-17T10:46:38.334Z\",\"sequence\":1,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"4fce8eef0a12118ac5a366b88d5d51636fe72ec70730a76cd7061e862e8e4c52\",\"counts\":{\"audit\":1,\"domain\":1,\"outbox\":1,\"result\":1}}\n{\"at\":\"2026-09-17T10:46:40.385Z\",\"sequence\":2,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"27c8d66e024714f721314101f2f00c1b3a38adb4cd3399fe2858f52f60b8f859\",\"counts\":{\"audit\":2,\"domain\":2,\"outbox\":2,\"result\":2}}\n{\"at\":\"2026-09-17T10:46:42.435Z\",\"sequence\":3,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"be026cf01193cf5fdfdf42aea52006d5cd69e7e0bc85b81ad6237a5a12202757\",\"counts\":{\"audit\":3,\"domain\":3,\"outbox\":3,\"result\":3}}\n{\"at\":\"2026-09-17T10:46:44.485Z\",\"sequence\":4,\"state\":\"HEALTHY\",\"jobCommitted\":true,\"backupSHA256\":\"db555755e980a6cc821ba90cc48c9acca3aeebccfddd7fe7f4a4549a304b1f44\",\"counts\":{\"audit\":4,\"domain\":4,\"outbox\":4,\"result\":4}}\n",
+  "stderr": "WARNING: \n\nTo increase the performance of the tunnel, consider installing NumPy. For instructions,\nplease see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth\n\n"
+}

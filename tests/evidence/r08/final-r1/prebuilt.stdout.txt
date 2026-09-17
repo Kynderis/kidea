@@ -1,0 +1,88 @@
+dev grammar PASS grammar PASS
+dev unicode PASS unicode PASS
+dev atomicity PASS atomicity PASS
+dev rollback PASS rollback PASS
+dev sql PASS sql PASS
+dev concurrency PASS concurrency PASS
+dev crash PASS crash PASS
+dev lifetime PASS lifetime PASS
+dev bounded_queue PASS bounded_queue PASS
+dev queue_concurrency PASS queue_concurrency PASS
+dev acknowledged_durable PASS acknowledged_durable PASS
+dev busy_timeout PASS busy_timeout PASS
+asan-ubsan grammar PASS grammar PASS
+asan-ubsan unicode PASS unicode PASS
+asan-ubsan atomicity PASS atomicity PASS
+asan-ubsan rollback PASS rollback PASS
+asan-ubsan sql PASS sql PASS
+asan-ubsan concurrency PASS concurrency PASS
+asan-ubsan crash PASS crash PASS
+asan-ubsan lifetime PASS lifetime PASS
+asan-ubsan bounded_queue PASS bounded_queue PASS
+asan-ubsan queue_concurrency PASS queue_concurrency PASS
+asan-ubsan acknowledged_durable PASS acknowledged_durable PASS
+asan-ubsan busy_timeout PASS busy_timeout PASS
+tsan grammar PASS grammar PASS
+tsan unicode PASS unicode PASS
+tsan atomicity PASS atomicity PASS
+tsan rollback PASS rollback PASS
+tsan sql PASS sql PASS
+tsan concurrency PASS concurrency PASS
+tsan crash PASS crash PASS
+tsan lifetime PASS lifetime PASS
+tsan bounded_queue PASS bounded_queue PASS
+tsan queue_concurrency PASS queue_concurrency PASS
+tsan acknowledged_durable PASS acknowledged_durable PASS
+tsan busy_timeout PASS busy_timeout PASS
+release grammar PASS grammar PASS
+release unicode PASS unicode PASS
+release atomicity PASS atomicity PASS
+release rollback PASS rollback PASS
+release sql PASS sql PASS
+release concurrency PASS concurrency PASS
+release crash PASS crash PASS
+release lifetime PASS lifetime PASS
+release bounded_queue PASS bounded_queue PASS
+release queue_concurrency PASS queue_concurrency PASS
+release acknowledged_durable PASS acknowledged_durable PASS
+release busy_timeout PASS busy_timeout PASS
+✔ cookie override serializes and parses valid session (4.117437ms)
+✔ cookie rejects adversarial name/path/domain (1.235961ms)
+✔ cookie expiration and actor replacement (0.843165ms)
+✔ decoder rejects null (3.519289ms)
+✔ decoder rejects array (0.494263ms)
+✔ decoder rejects bool (0.316451ms)
+✔ decoder rejects number (0.298898ms)
+✔ decoder rejects string (0.400837ms)
+✔ decoder rejects missing (0.329723ms)
+✔ decoder rejects generation (0.465523ms)
+✔ decoder rejects unsafeGeneration (0.317423ms)
+✔ decoder rejects audience (1.085776ms)
+✔ decoder rejects actor (5.594994ms)
+✔ decoder rejects workshop (0.759381ms)
+✔ decoder rejects value (0.873119ms)
+✔ malformed JSON never mutates accepted state (1.351282ms)
+✔ version is canonical unsigned64 decimal, not JS number (0.833633ms)
+✔ additive unknown fields are ignored, never copied to state (3.317967ms)
+✔ late decoded messages from other actor,epoch,generation do not mutate (0.552861ms)
+✔ only matching final reply can show success, rejection stays rejected (0.358441ms)
+✔ malformed,unknown,transport-like or mismatched reply stays UNKNOWN (0.538087ms)
+✔ S01 actor switch rejects old response and clears prior values (2.242177ms)
+✔ S01 same actor logout/login still rejects prior generation (0.260963ms)
+✔ epoch reset rejects high-version old response (0.301637ms)
+✔ S02 large versions retain exact ordering and string (0.380797ms)
+✔ reject invalid/duplicate versions without changing state (0.35955ms)
+✔ S03 workshop versions are independent (0.236453ms)
+✔ S04 audience versions are independent (0.303951ms)
+✔ S05 stale history cannot revive A or remove B (0.266189ms)
+✔ new history replaces the whole group (1.068765ms)
+✔ S07 unknown admin intent reconciles GET without new POST (1.363911ms)
+✔ S09 unmounted callback cannot update state (1.568036ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 800.107017

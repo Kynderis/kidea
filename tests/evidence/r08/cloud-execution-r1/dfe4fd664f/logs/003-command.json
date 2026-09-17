@@ -1,0 +1,17 @@
+{
+  "command": "/usr/local/bin/gcloud",
+  "args": [
+    "compute",
+    "networks",
+    "create",
+    "kidea-r08-c4-net",
+    "--subnet-mode=custom",
+    "--description=Owned ephemeral Kidea R08 C1 lab",
+    "--project=kidea-508908",
+    "--quiet"
+  ],
+  "code": 0,
+  "error": null,
+  "stdout": "NAME              SUBNET_MODE  BGP_ROUTING_MODE  IPV4_RANGE  GATEWAY_IPV4  INTERNAL_IPV6_RANGE\nkidea-r08-c4-net  CUSTOM       REGIONAL\n",
+  "stderr": "Created [https://www.googleapis.com/compute/v1/projects/kidea-508908/global/networks/kidea-r08-c4-net].\n\nInstances on this network will not be reachable until firewall rules\nare created. As an example, you can allow all internal traffic between\ninstances as well as SSH, RDP, and ICMP by running:\n\n$ gcloud compute firewall-rules create <FIREWALL_NAME> --network kidea-r08-c4-net --allow tcp,udp,icmp --source-ranges <IP_RANGE>\n$ gcloud compute firewall-rules create <FIREWALL_NAME> --network kidea-r08-c4-net --allow tcp:22,tcp:3389,icmp\n\n"
+}
