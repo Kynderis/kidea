@@ -12,7 +12,7 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
-**Điểm tiếp tục ngày2026-09-17:** Human đã xác nhận “Nghiệm thu R08” cho gói tại `16b2223`; [R08 DONE trong phạm vi đã kiểm](docs/R08_ACCEPTANCE.md). Tiếp theo chuẩn bị gói R09 — pilot thật và đường lỗi, giữ R09-T14 bắt buộc; R09/R10 chưa mở thực thi. Các nhãn chờ nghiệm thu trong hồ sơ cũ là lịch sử.
+**Điểm tiếp tục ngày2026-09-17:** [R08 DONE](docs/R08_ACCEPTANCE.md). Đã chuẩn bị [gói R09 r1](proposals/r09-pilot-r1.md), IN_REVIEW D1: bổ sung đường phân rã/chuyển tiến độ công khai còn thiếu trước pilot; không sửa tay metadata. 21/21 docs pilot khớp, chưa có Git/`.kidea`; chưa thực thi pilot/R10. R09-T14 vẫn bắt buộc NOT_RUN. Các nhãn chờ nghiệm thu trong hồ sơ cũ là lịch sử.
 
 **Hiện hành — R07 DONE, Human đã nghiệm thu ngày2026-09-17.** [Biên bản R07](docs/R07_ACCEPTANCE.md). R06 đã nghiệm thu; [Biên bản nghiệm thu](docs/R06_ACCEPTANCE.md). [Báo cáo đầy đủ](tests/evidence/r06/implementation-r1.md): core283/283PASS;19nhóm R06 +5nhóm lỗi âm PASS;2phiên D7×4biến thể đạt review, đầu vào/nguồn không đổi. Có bộ đọc/mapping C++/Web, plan impact schema2, change/resume, no-diff/cycle/requeue và gate đóng. Giữ toàn bộ FAIL sơ bộ;2.245evidence R05/21docs pilot/78nguồn backend/27nguồn Web đúng hash cũ. Clang/header/parser có sẵn;0download, không Docker/cài đặt hoặc sửa pilot. Đã đối chiếu lại 47 file nguồn và 3.653 payload bằng chứng, toàn bộ khớp. [R07 r1 đã triển khai/kiểm Chrome](tests/evidence/r07/implementation-r1.md): core283/283, R06 và19nhóm R07 PASS;8tổ hợp Chrome và kiểm offline/escaping PASS. [Chỉ Chrome](docs/R07_CHROME_SCOPE.md), Safari ngoài phạm vi. Lượt dựng/đo pilot thật vẫn NOT_RUN, đã được Human chuyển sang gate bắt buộc R09-T14 theo [quyết định](docs/R07_ACCEPTANCE.md). [R08 r1](proposals/r08-delivery-r1.md) APPROVED D1–D3; hướng dẫn và14tình huống review, R2-A15vector, [B1 build sạch](tests/evidence/r08/product-build-execution-r1.md), [B2 hai target](tests/evidence/r08/b2-execution-r1.md), [G2 local cuối](tests/evidence/r08/final-r1.md) và [cloud độc lập](tests/evidence/r08/cloud-execution-r1.md) đã đạt đúng phạm vi. Core283, C++48, Web32+4, Chromium18,6mutation DETECTED; giữ mọi FAIL. Cloud đã xóa workload VM/disk thật, observer cảnh báo/giữ backup, VM mới restore đúng56record/bảng và job hồi phục;7loại tài nguyên lab đọc lại đều rỗng. Nguồn/pilot/bằng chứng cũ bảo toàn,137container R08 local dừng. Ngoại lệ B1 đã dùng xong; mọi manifest thực thi đã tiêu thụ, không chạy lại cùng output/deadline. **R08-T01–T06 và phase R08 DONE theo [nghiệm thu Human](docs/R08_ACCEPTANCE.md)** ngày2026-09-17 cho gói tại `16b2223`. Bước tiếp: chuẩn bị gói R09; chưa mở thực thi pilot hoặc R10. R09 pilot thật/R09-T14 vẫn NOT_RUN; sau R08 còn hai phase R09/R10. R05 DONE backend/Web; Android/iOS Future chưa roadmap, Apple Silicon NOT_RUN.
 
@@ -340,6 +340,7 @@ Vòng R2 bắt đầu lại; không chuyển 4 DONE và 1 IN_PROGRESS của vòn
 
 | Subtask | Trạng thái | Gói/gate | Kết quả, bằng chứng hoặc blocker |
 |---|---|---|---|
+| R09-T01-S01 | DONE | [A] — chuẩn bị theo “Ok làm đi” | [Gói r1](proposals/r09-pilot-r1.md), [inventory](tests/evidence/r09/preparation-r1/inventory.json): 21/21 hash khớp; GAP-01 cần D1 trước S02; không runtime PASS hoặc nghiệm thu R09 |
 | R01-T01-S01 | DONE | R01-T01-S01-r1 — APPROVED | Human: “Mình duyệt nhé”; chỉ D1–D2 ở commit 5aa4e5b; [bằng chứng](#r01-t01-result) |
 | R01-T01-S02 | DONE | [A] — không có quyết định mới | Đối chiếu DESIGN, danh mục KA và bảng bao phủ; không đổi scope hoặc ngưỡng; [kết quả](#r01-t01-result) |
 | R01-T01-S03 | DONE | [A] — không có quyết định mới | Đồng bộ căn cứ approval, kiểm tra tài liệu và dọn tạm; [kết quả](#r01-t01-result) |
@@ -1084,7 +1085,7 @@ Hoàn thiện hướng dẫn bước 9–10; chưa cấp quyền code/deploy pil
 
 Dùng Kidea trong phiên mới; gate của lộ trình này không thay gate từng bước/phase của sản phẩm pilot. Mỗi task code dưới đây phải tách theo kế hoạch pilot được duyệt, không phải một lượt xây cả ứng dụng.
 
-Subtask: **chưa phân rã**. Khi phase tới lượt, rà mục tiêu/phụ thuộc/lựa chọn/quyền/kiểm chứng và tổ chức gói theo [cách phối hợp đã duyệt](#risk-first-review-approved); ghi lát cắt/đầu ra/test/gate trước mở task. Không dùng một hàng hoặc danh mục dự kiến để duyệt trước đầu ra/quyền của cả cụm.
+R09-T01 đã phân rã S01–S05 tại [gói r1 mục 3](proposals/r09-pilot-r1.md); trạng thái trong [sổ công việc](#work-state). Các task còn lại **chưa phân rã subtask**, có chuỗi phụ thuộc/đầu ra tại gói r1 mục 4. Rà mục tiêu/phụ thuộc/lựa chọn/quyền/kiểm chứng theo [cách phối hợp đã duyệt](#risk-first-review-approved), ghi lát cắt/test/gate trước mở từng task. Không dùng danh mục này để duyệt trước cả cụm.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|

@@ -1,5 +1,7 @@
 # Bàn giao Kidea sang phiên Codex trên Mac
 
+**Điểm tiếp tục mới nhất — R09 chuẩn bị (2026-09-17):** [Gói R09 r1](../proposals/r09-pilot-r1.md) IN_REVIEW D1; S01 chuẩn bị DONE, chưa thực thi pilot. [Inventory](../tests/evidence/r09/preparation-r1/inventory.json) xác minh 21/21 docs sibling khớp, chưa Git/`.kidea`, 8 docs còn link Windows. GAP-01: public init tạo khung UNEXPANDED nhưng chưa có đường phân rã/chuyển tiến độ; resume/approve/change không thay được chức năng đó. Đề nghị sửa hữu hạn runtime R02/liên quan R06 trước chạy pilot, không viết tay metadata. Chờ D1, không init/sửa sibling hoặc chạy workload. Các điểm tiếp tục dưới đây giữ lịch sử. R08 vẫn DONE; R09-T14 NOT_RUN bắt buộc; R10 chưa mở.
+
 **R08 hiện hành (2026-09-17):** [B2](../tests/evidence/r08/b2-execution-r1.md), [G2 cuối](../tests/evidence/r08/final-r1.md) và [cloud độc lập](../tests/evidence/r08/cloud-execution-r1.md) PASS_SCOPED. [R08 DONE theo nghiệm thu Human](R08_ACCEPTANCE.md): “Nghiệm thu R08” cho gói tại `16b2223`. Chưa mở thực thi R09/R10. Giữ mọi FAIL và bằng chứng Windows/pilot. Không cần cài công cụ hoặc xin lại quyền kỹ thuật.
 
 **B1 hiện hành:** Human đã duyệt B1 và R08-TIDY-01; [build sạch PASS_SCOPED](../tests/evidence/r08/product-build-execution-r1.md),3container đều dừng. Giữ FAIL preflight/sửa harness, ngoại lệ đã dùng xong. Không chạy lại cùng output/manifest hoặc dùng ngoại lệ cho build khác.
