@@ -1,0 +1,120 @@
+{
+  "format": "kidea-map-r1",
+  "adapter": {
+    "name": "clang-json",
+    "version": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "tool": {
+      "version": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+      "components": [
+        {
+          "name": "clang",
+          "integrity": {
+            "method": "SHA256",
+            "value": "60468f3efd513d53f6ce581ec8d00595855ebf5a31a496d685b91c104aee1ca0",
+            "byteLength": 257149376
+          }
+        }
+      ]
+    }
+  },
+  "configuration": {
+    "translationUnit": "main.cpp",
+    "target": "x64",
+    "args": [
+      "-std=c++20",
+      "-fsyntax-only",
+      "-Xclang",
+      "-ast-dump=json",
+      "main.cpp"
+    ]
+  },
+  "sources": [
+    {
+      "path": "main.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "5610d64389af0610e1ca5ae79566938019c42492fc98e8956a8b9ea4cf608346",
+        "byteLength": 178
+      }
+    },
+    {
+      "path": "model.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "9387d69ada0f554b135bcdeeafae920282badf900de0f29566ba8403331f5449",
+        "byteLength": 56
+      }
+    }
+  ],
+  "inputBasis": "dd3bd4f468db61a91f91c38eeb9ab16dd3bfdfa32ad25d3f827302c51ced4fce",
+  "nodes": [
+    {
+      "id": "main.cpp",
+      "path": "main.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "model.hpp",
+      "path": "model.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "main.cpp#lab::twice int (int)",
+      "path": "main.cpp",
+      "name": "lab::twice",
+      "signature": "int (int)",
+      "kind": "symbol",
+      "offset": 41
+    },
+    {
+      "id": "main.cpp#lab::twice double (double)",
+      "path": "main.cpp",
+      "name": "lab::twice",
+      "signature": "double (double)",
+      "kind": "symbol",
+      "offset": 74
+    },
+    {
+      "id": "main.cpp#lab::entry int ()",
+      "path": "main.cpp",
+      "name": "lab::entry",
+      "signature": "int ()",
+      "kind": "symbol",
+      "offset": 107
+    },
+    {
+      "id": "main.cpp#lab::indirect int (int (*)(int))",
+      "path": "main.cpp",
+      "name": "lab::indirect",
+      "signature": "int (int (*)(int))",
+      "kind": "symbol",
+      "offset": 137
+    }
+  ],
+  "edges": [
+    {
+      "from": "main.cpp",
+      "to": "model.hpp",
+      "kind": "include-source-directive"
+    },
+    {
+      "from": "main.cpp#lab::entry int ()",
+      "to": "main.cpp#lab::twice int (int)",
+      "kind": "resolved-declaration-call",
+      "offset": 122
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "main.cpp#lab::indirect int (int (*)(int))"
+    }
+  ],
+  "limits": [
+    "One translation unit and compile target; include directives are not proof of active preprocessing.",
+    "Resolved declaration calls do not prove virtual/callback runtime dispatch; external headers remain outside this local graph."
+  ],
+  "completeness": "INCOMPLETE",
+  "verification": "STRUCTURE_ONLY_SEMANTIC_REVIEW_REQUIRED",
+  "digest": "0ab7a622dcbec1172d169b0f559b8b587e85023d924d0e6c52526bc6603adab1"
+}

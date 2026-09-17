@@ -1,0 +1,1 @@
+{"intent":"APPROVE","statement":"Synthetic approval only.","id":"R06-fixture","revision":1,"expectedDigest":"d5f780fa3249e7e1c7d1cc1334dc377cbc58dac9d8726582c0e63176eba59edf","ownerIds":["impact-955cca1ceba45052d85984d3","impact-798640599597df7a8daa32b1","impact-8f097023401b3d58704c1f3a"]}

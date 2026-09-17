@@ -1,0 +1,784 @@
+{
+  "started": "2026-09-17T05:46:31.542Z",
+  "ended": "2026-09-17T05:46:51.925Z",
+  "version": "153.0.8010.47",
+  "source": {
+    "S": {
+      "method": "SHA256",
+      "value": "030158e4a74897e45eba6e3184cd3138ef956596e0606cf09abdd9d90206bc0a",
+      "byteLength": 149146
+    },
+    "M": {
+      "method": "SHA256",
+      "value": "dd97001d19c3fcacb142bf954d6a697a8236ce652c2d570cb1327a87434c9767",
+      "byteLength": 1325456
+    }
+  },
+  "results": [
+    {
+      "id": "S-390-zoom1",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: search 317.90000000596046\n    at file:///Users/kendrick/Desktop/kidea/tests/r07/browser.mjs:39:125"
+    },
+    {
+      "id": "M-390-zoom1",
+      "status": "PASS"
+    },
+    {
+      "id": "S-1440-zoom1",
+      "status": "PASS"
+    },
+    {
+      "id": "M-1440-zoom1",
+      "status": "PASS"
+    },
+    {
+      "id": "V07-V08-V10-standalone-xss-offline",
+      "status": "PASS"
+    },
+    {
+      "id": "S-390-zoom2",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: {\"innerWidth\":195,\"innerHeight\":422,\"outerWidth\":1440,\"devicePixelRatio\":2,\"scale\":1,\"overflow\":true}\n\ntrue !== false\n\n    at file:///Users/kendrick/Desktop/kidea/tests/r07/browser.mjs:29:145"
+    },
+    {
+      "id": "M-390-zoom2",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: {\"innerWidth\":195,\"innerHeight\":422,\"outerWidth\":1440,\"devicePixelRatio\":2,\"scale\":1,\"overflow\":true}\n\ntrue !== false\n\n    at file:///Users/kendrick/Desktop/kidea/tests/r07/browser.mjs:29:145"
+    },
+    {
+      "id": "S-1440-zoom2",
+      "status": "PASS"
+    },
+    {
+      "id": "M-1440-zoom2",
+      "status": "PASS"
+    }
+  ],
+  "timings": [
+    {
+      "id": "S-390-zoom1",
+      "iteration": 0,
+      "cold": true,
+      "open": 276.41960300000005,
+      "interaction": {
+        "search": 8.600000008940697,
+        "filtering": 32.8999999910593,
+        "detail": 33.79999999701977,
+        "map": 32.70000000298023
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-390-zoom1",
+      "iteration": 1,
+      "cold": false,
+      "open": 117.39894099999992,
+      "interaction": {
+        "search": 9.200000002980232,
+        "filtering": 32.70000000298023,
+        "detail": 33.5,
+        "map": 34
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-390-zoom1",
+      "iteration": 2,
+      "cold": false,
+      "open": 84.55866900000001,
+      "interaction": {
+        "search": 29.700000002980232,
+        "filtering": 33.20000000298023,
+        "detail": 32.599999994039536,
+        "map": 34.1000000089407
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-390-zoom1",
+      "iteration": 3,
+      "cold": false,
+      "open": 79.96979999999985,
+      "interaction": {
+        "search": 31.69999998807907,
+        "filtering": 32.6000000089407,
+        "detail": 33.8999999910593,
+        "map": 32.80000001192093
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-390-zoom1",
+      "iteration": 4,
+      "cold": false,
+      "open": 82.52035599999999,
+      "interaction": {
+        "search": 31.400000005960464,
+        "filtering": 32.5,
+        "detail": 33.29999999701977,
+        "map": 33.29999999701977
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-390-zoom1",
+      "iteration": 5,
+      "cold": false,
+      "open": 86.45537999999988,
+      "interaction": {
+        "search": 317.90000000596046,
+        "filtering": 26.900000005960464,
+        "detail": 33.5,
+        "map": 33.69999998807907
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-390-zoom1",
+      "iteration": 0,
+      "cold": true,
+      "open": 462.29761199999984,
+      "interaction": {
+        "search": 26.200000002980232,
+        "filtering": 24.099999994039536,
+        "detail": 32.900000005960464,
+        "map": 33
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-390-zoom1",
+      "iteration": 1,
+      "cold": false,
+      "open": 457.62932599999976,
+      "interaction": {
+        "search": 30.700000002980232,
+        "filtering": 25.900000005960464,
+        "detail": 32.8999999910593,
+        "map": 33.6000000089407
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-390-zoom1",
+      "iteration": 2,
+      "cold": false,
+      "open": 531.4318990000002,
+      "interaction": {
+        "search": 32,
+        "filtering": 25.5,
+        "detail": 33.400000005960464,
+        "map": 34.29999999701977
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-390-zoom1",
+      "iteration": 3,
+      "cold": false,
+      "open": 401.8193659999997,
+      "interaction": {
+        "search": 35.1000000089407,
+        "filtering": 27.100000008940697,
+        "detail": 32.29999999701977,
+        "map": 33.5
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-390-zoom1",
+      "iteration": 4,
+      "cold": false,
+      "open": 397.9539850000001,
+      "interaction": {
+        "search": 25.600000008940697,
+        "filtering": 23.799999997019768,
+        "detail": 32.70000000298023,
+        "map": 33
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-390-zoom1",
+      "iteration": 5,
+      "cold": false,
+      "open": 508.8181860000004,
+      "interaction": {
+        "search": 43.599999994039536,
+        "filtering": 20.900000005960464,
+        "detail": 32.29999999701977,
+        "map": 34.29999999701977
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom1",
+      "iteration": 0,
+      "cold": true,
+      "open": 100.1097949999994,
+      "interaction": {
+        "search": 26.299999997019768,
+        "filtering": 33.29999999701977,
+        "detail": 33.29999999701977,
+        "map": 32.6000000089407
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom1",
+      "iteration": 1,
+      "cold": false,
+      "open": 70.89808600000015,
+      "interaction": {
+        "search": 29.099999994039536,
+        "filtering": 31.299999997019768,
+        "detail": 32.80000001192093,
+        "map": 33.5
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom1",
+      "iteration": 2,
+      "cold": false,
+      "open": 68.2141219999994,
+      "interaction": {
+        "search": 29.700000002980232,
+        "filtering": 32.400000005960464,
+        "detail": 33.20000000298023,
+        "map": 32.79999999701977
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom1",
+      "iteration": 3,
+      "cold": false,
+      "open": 65.20006199999989,
+      "interaction": {
+        "search": 30.200000002980232,
+        "filtering": 33.19999998807907,
+        "detail": 33.400000005960464,
+        "map": 34.099999994039536
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom1",
+      "iteration": 4,
+      "cold": false,
+      "open": 64.81800400000066,
+      "interaction": {
+        "search": 32.29999999701977,
+        "filtering": 29.900000005960464,
+        "detail": 33.400000005960464,
+        "map": 34.099999994039536
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom1",
+      "iteration": 5,
+      "cold": false,
+      "open": 70.29369000000042,
+      "interaction": {
+        "search": 26.600000008940697,
+        "filtering": 32.3999999910593,
+        "detail": 32.79999999701977,
+        "map": 34
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom1",
+      "iteration": 0,
+      "cold": true,
+      "open": 332.7509250000003,
+      "interaction": {
+        "search": 36.29999999701977,
+        "filtering": 26.5,
+        "detail": 33.70000000298023,
+        "map": 33
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom1",
+      "iteration": 1,
+      "cold": false,
+      "open": 383.3068739999999,
+      "interaction": {
+        "search": 24.600000008940697,
+        "filtering": 23.400000005960464,
+        "detail": 33,
+        "map": 33.8999999910593
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom1",
+      "iteration": 2,
+      "cold": false,
+      "open": 528.1612730000015,
+      "interaction": {
+        "search": 30,
+        "filtering": 30.799999997019768,
+        "detail": 32.5,
+        "map": 34
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom1",
+      "iteration": 3,
+      "cold": false,
+      "open": 386.1408100000008,
+      "interaction": {
+        "search": 33.1000000089407,
+        "filtering": 28,
+        "detail": 33.3999999910593,
+        "map": 33.80000001192093
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom1",
+      "iteration": 4,
+      "cold": false,
+      "open": 384.1325390000002,
+      "interaction": {
+        "search": 36.29999999701977,
+        "filtering": 26.100000008940697,
+        "detail": 34.29999999701977,
+        "map": 33
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom1",
+      "iteration": 5,
+      "cold": false,
+      "open": 427.1838829999997,
+      "interaction": {
+        "search": 26,
+        "filtering": 27.299999997019768,
+        "detail": 32.29999999701977,
+        "map": 33.400000005960464
+      },
+      "metrics": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "outerWidth": 1440,
+        "devicePixelRatio": 1,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom2",
+      "iteration": 0,
+      "cold": true,
+      "open": 146.5756679999995,
+      "interaction": {
+        "search": 19.5,
+        "filtering": 33.1000000089407,
+        "detail": 32.79999999701977,
+        "map": 33.8999999910593
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom2",
+      "iteration": 1,
+      "cold": false,
+      "open": 75.7938209999993,
+      "interaction": {
+        "search": 21.399999991059303,
+        "filtering": 33.400000005960464,
+        "detail": 33.099999994039536,
+        "map": 32.30000001192093
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom2",
+      "iteration": 2,
+      "cold": false,
+      "open": 80.9456680000003,
+      "interaction": {
+        "search": 18,
+        "filtering": 33.30000001192093,
+        "detail": 33.29999999701977,
+        "map": 32.29999999701977
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom2",
+      "iteration": 3,
+      "cold": false,
+      "open": 77.19694499999969,
+      "interaction": {
+        "search": 21.600000008940697,
+        "filtering": 33.599999994039536,
+        "detail": 33.099999994039536,
+        "map": 32.20000000298023
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom2",
+      "iteration": 4,
+      "cold": false,
+      "open": 77.88406399999985,
+      "interaction": {
+        "search": 21.200000002980232,
+        "filtering": 33.29999999701977,
+        "detail": 33.5,
+        "map": 32.20000000298023
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "S-1440-zoom2",
+      "iteration": 5,
+      "cold": false,
+      "open": 79.57868800000142,
+      "interaction": {
+        "search": 17.900000005960464,
+        "filtering": 33.400000005960464,
+        "detail": 33.19999998807907,
+        "map": 33.5
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom2",
+      "iteration": 0,
+      "cold": true,
+      "open": 413.5931849999979,
+      "interaction": {
+        "search": 29.299999997019768,
+        "filtering": 27.5,
+        "detail": 32.400000005960464,
+        "map": 33.8999999910593
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom2",
+      "iteration": 1,
+      "cold": false,
+      "open": 478.3912999999993,
+      "interaction": {
+        "search": 26.400000005960464,
+        "filtering": 25.799999997019768,
+        "detail": 33.6000000089407,
+        "map": 32.3999999910593
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom2",
+      "iteration": 2,
+      "cold": false,
+      "open": 532.8034789999983,
+      "interaction": {
+        "search": 30.299999997019768,
+        "filtering": 29.600000008940697,
+        "detail": 30,
+        "map": 33.5
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom2",
+      "iteration": 3,
+      "cold": false,
+      "open": 378.37920400000075,
+      "interaction": {
+        "search": 26,
+        "filtering": 25.700000002980232,
+        "detail": 33.79999999701977,
+        "map": 33.400000005960464
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom2",
+      "iteration": 4,
+      "cold": false,
+      "open": 377.2699560000001,
+      "interaction": {
+        "search": 24.700000002980232,
+        "filtering": 28.100000008940697,
+        "detail": 33.599999994039536,
+        "map": 33.29999999701977
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    },
+    {
+      "id": "M-1440-zoom2",
+      "iteration": 5,
+      "cold": false,
+      "open": 376.5867799999978,
+      "interaction": {
+        "search": 25.700000002980232,
+        "filtering": 28.5,
+        "detail": 33.29999999701977,
+        "map": 32.79999999701977
+      },
+      "metrics": {
+        "innerWidth": 720,
+        "innerHeight": 450,
+        "outerWidth": 1440,
+        "devicePixelRatio": 2,
+        "scale": 1,
+        "overflow": false
+      }
+    }
+  ],
+  "requests": [],
+  "errors": [],
+  "zoomMethod": "Isolated profile default browser zoom; observed DPR and CSS viewport asserted, no CSS/pinch substitute",
+  "safari": "NOT_RUN_UNTIL_AUTHORIZED_AUTOMATION_AVAILABLE"
+}

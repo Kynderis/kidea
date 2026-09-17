@@ -20,11 +20,18 @@ if (!runtimeInfo().compatibleVersion) {
   console.error(JSON.stringify({ code: 'UNSUPPORTED_RUNTIME', message: 'Use Node.js 24 or later; a maintained LTS release is recommended.' }));
   process.exitCode = 2;
 } else if (action === '--help' && args.length === 1) {
-  console.log(JSON.stringify({ stage: 'R06 change candidate', actions, implemented: ['status','init','approve','resume','change'], help: 'status is read-only; init creates initial records; approve manages scoped reviews; resume reads continuation context or saves a scoped note; change manages a scoped impact plan. Trusted stdin requests supply permission, never project files. No helper executes product commands or replays pending effects. visualize remains unavailable.' }));
+  console.log(JSON.stringify({ stage: 'R07 offline view candidate', actions, implemented: ['status','init','approve','resume','change','visualize'], help: 'status is read-only; init creates initial records; approve manages scoped reviews; resume reads continuation context or saves a scoped note; change manages a scoped impact plan; visualize exports a managed read-only HTML snapshot. Trusted stdin requests supply permission, never project files. No helper executes product commands or replays pending effects.' }));
 } else if (!actions.includes(action) || args.some((arg) => arg.startsWith('-')) ||
   (actions.includes(action) && args.length !== 1)) {
   console.error(JSON.stringify({ code: 'INVALID_ARGUMENTS', message: 'Use --help alone or a known action. This scaffold has no product functionality.' }));
   process.exitCode = 2;
+} else if (action === 'visualize') {
+  try {
+    const request=await initInput('VIEW');
+    const {visualize}=await import('./visualize.mjs');
+    const result=visualize(process.cwd(),request);
+    (result.state==='VIEW_UPDATED'?console.log:console.error)(JSON.stringify(result));process.exitCode=result.state==='VIEW_UPDATED'?0:1;
+  }catch(error){console.error(JSON.stringify({code:error.code??'VIEW_REJECTED',message:'View chưa cập nhật; giữ nguồn và đối chiếu lỗi.'}));process.exitCode=1;}
 } else if (action === 'status') {
   const result = readStatus(process.cwd());
   (result.readState === 'OK' ? console.log : console.error)(JSON.stringify(result));

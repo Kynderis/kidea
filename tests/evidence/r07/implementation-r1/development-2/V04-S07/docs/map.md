@@ -1,0 +1,1 @@
+<a id="rule"></a>Fixture map scope; no real application claim.

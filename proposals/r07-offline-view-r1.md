@@ -1,10 +1,12 @@
 # R07 r1 — giao diện tiến độ và ba bản đồ offline
 
-Ngày 2026-09-17. **IN_REVIEW — đề xuất, chờ duyệt D1–D5.** Human “ok làm đi” giao chuẩn bị gói sau [nghiệm thu R06](../docs/R06_ACCEPTANCE.md), không tự duyệt các lựa chọn/ngưỡng mới dưới đây. Căn cứ: `Kynderis/kidea`, `master`, `b072b2a3d14a50a3851b87c5d0350dd8dfa7b744`, checkout sạch trước chuẩn bị.
+Ngày 2026-09-17. **APPROVED D1–D5 — đang triển khai, chưa nghiệm thu R07.** Human “duyệt nhé” xác nhận gói trình tại commit `4605f99`. Human “ok làm đi” trước đó giao chuẩn bị gói sau [nghiệm thu R06](../docs/R06_ACCEPTANCE.md). Căn cứ chuẩn bị: `Kynderis/kidea`, `master`, `b072b2a3d14a50a3851b87c5d0350dd8dfa7b744`, checkout sạch trước chuẩn bị. Giữ phạm vi/ngưỡng r1, không tự cấp quyền đổi cấu hình Safari.
 
 Nguồn: [thiết kế view](../KIDEA_DESIGN.md#files-view), [R07](../KIDEA_ROADMAP.md#r07), [nghiệm thu KA-25/26/30](../KIDEA_ACCEPTANCE.md), schema2 và helper hiện hành tại `.agents/skills/kidea/scripts/`. Không thay thiết kế sản phẩm hoặc mở R08.
 
 ## 1. Gói cần duyệt một lần
+
+**Amendment đã duyệt trong triển khai:** Human chọn [chỉ Chrome](../docs/R07_CHROME_SCOPE.md). Safari trong bảng/ma trận r1 dưới đây là phạm vi lịch sử đã được thay thế; D1/D2/D4/D5 và toàn bộ ngưỡng giữ nguyên. Chưa nghiệm thu kết quả.
 
 | Quyết định | Đề xuất r1 |
 |---|---|

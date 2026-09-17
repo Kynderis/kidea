@@ -1,0 +1,201 @@
+{
+  "format": "kidea-map-r1",
+  "adapter": {
+    "name": "typescript-svelte",
+    "version": "6.0.3",
+    "versions": {
+      "typescript": "6.0.3",
+      "svelte": "5.57.0"
+    },
+    "tool": {
+      "components": [
+        {
+          "name": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/node_modules/typescript/lib/typescript.js",
+          "integrity": {
+            "method": "SHA256",
+            "value": "569177652966bd528c319171c7dd22860dbf72bde116cbc4f644f1d02bb12e39",
+            "byteLength": 9144216
+          }
+        },
+        {
+          "name": "/Users/kendrick/Desktop/kidea-workshop-pilot/samples/r05/web/node_modules/svelte/compiler/index.js",
+          "integrity": {
+            "method": "SHA256",
+            "value": "38f88d68baa287815cb6ea6523fac7beccced2403ca2daea6c385d60f42d78a5",
+            "byteLength": 854772
+          }
+        }
+      ]
+    }
+  },
+  "configuration": {
+    "tsconfig": "tsconfig.json",
+    "options": {
+      "baseUrl": ".",
+      "paths": {
+        "$lib": [
+          "src/lib/model.ts"
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "path": "src/lib/model.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "a25a9dd160371f2ccb38e1805e5651eb6c2df4a090a74783c17f7545d1b7a77e",
+        "byteLength": 21
+      }
+    },
+    {
+      "path": "src/Page.svelte",
+      "integrity": {
+        "method": "SHA256",
+        "value": "7f280eec9a1eb6a695bfcd9ba97da034b85840692d55f436556590a2eec6b992",
+        "byteLength": 89
+      }
+    },
+    {
+      "path": "src/route.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "da64904c87370ccf9fb33a061690fa9d6122eae848d316659844b3d3729b4604",
+        "byteLength": 112
+      }
+    },
+    {
+      "path": "svelte.config.js",
+      "integrity": {
+        "method": "SHA256",
+        "value": "2871e876b17f06940147271461d811e8cca9c6669abbdcdfa62bd2cc8005653f",
+        "byteLength": 45
+      }
+    },
+    {
+      "path": "tsconfig.json",
+      "integrity": {
+        "method": "SHA256",
+        "value": "f77478040ab7d59f8247606e759e2ea98fee3aedcb52a8291912c4d06b81e2bb",
+        "byteLength": 73
+      }
+    }
+  ],
+  "inputBasis": "3236949b4c61c64293b681c86145412fd385e830b75170fdc930c81061b7a2c6",
+  "nodes": [
+    {
+      "id": "tsconfig.json",
+      "path": "tsconfig.json",
+      "kind": "configuration"
+    },
+    {
+      "id": "src/lib/model.ts",
+      "path": "src/lib/model.ts",
+      "kind": "file"
+    },
+    {
+      "id": "src/lib/model.ts#value",
+      "path": "src/lib/model.ts",
+      "name": "value",
+      "kind": "symbol",
+      "offset": 12
+    },
+    {
+      "id": "src/route.ts",
+      "path": "src/route.ts",
+      "kind": "file"
+    },
+    {
+      "id": "src/route.ts#render",
+      "path": "src/route.ts",
+      "name": "render",
+      "kind": "symbol",
+      "offset": 27
+    },
+    {
+      "id": "src/Page.svelte",
+      "path": "src/Page.svelte",
+      "kind": "file"
+    },
+    {
+      "id": "src/Page.svelte#state",
+      "path": "src/Page.svelte",
+      "name": "state",
+      "kind": "symbol",
+      "offset": 3
+    },
+    {
+      "id": "src/Page.svelte#markup@57",
+      "path": "src/Page.svelte",
+      "kind": "markup",
+      "offset": 57
+    },
+    {
+      "id": "src/Page.svelte#markup@73",
+      "path": "src/Page.svelte",
+      "kind": "markup",
+      "offset": 73
+    },
+    {
+      "id": "svelte.config.js",
+      "path": "svelte.config.js",
+      "kind": "configuration"
+    }
+  ],
+  "edges": [
+    {
+      "from": "src/route.ts",
+      "to": "src/lib/model.ts",
+      "kind": "import",
+      "specifier": "$lib"
+    },
+    {
+      "from": "src/Page.svelte",
+      "to": "src/Page.svelte#markup@57",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "src/Page.svelte",
+      "to": "src/Page.svelte#markup@73",
+      "kind": "markup-expression"
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "DYNAMIC_IMPORT_REQUIRES_REVIEW",
+      "file": "src/route.ts",
+      "detail": "import('dynamic')"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "src/route.ts",
+      "detail": "fetch"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "src/route.ts",
+      "detail": "/api/register"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "src/Page.svelte",
+      "detail": "{() => state++}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "src/Page.svelte",
+      "detail": "{state}"
+    },
+    {
+      "code": "EXECUTABLE_CONFIG_NOT_EXECUTED",
+      "file": "svelte.config.js"
+    }
+  ],
+  "limits": [
+    "Static local module resolution only; package exports/generated files outside the read scope remain unresolved.",
+    "Lexical call candidates are not type-resolved dispatch. Markup/reactivity and indirect consumers require review."
+  ],
+  "completeness": "INCOMPLETE",
+  "verification": "STRUCTURE_ONLY_SEMANTIC_REVIEW_REQUIRED",
+  "digest": "6b02947a2a945ca9e070e5506173f04030995daf06d8765294f710ff421bf290"
+}

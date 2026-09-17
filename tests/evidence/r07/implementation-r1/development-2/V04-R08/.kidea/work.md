@@ -1,0 +1,122 @@
+# DỮ LIỆU GIẢ — không phải xác nhận hoặc kết quả chạy thật
+
+<!-- kidea:data:start -->
+```json
+{
+  "schemaVersion": 2,
+  "projectId": "synthetic-r02-t04",
+  "kind": "work",
+  "currentRoundId": "ROUND-001",
+  "currentItemId": "W-002",
+  "rounds": [
+    {
+      "id": "ROUND-001",
+      "name": "Đợt giả",
+      "type": "MVP",
+      "scopeRefs": [
+        {
+          "path": "docs/features.md",
+          "anchor": "scope"
+        }
+      ],
+      "targetVersion": "1.0.0",
+      "releaseRef": {
+        "path": "docs/operations/RL-001.md",
+        "id": "RL-001",
+        "revision": 2,
+        "recordVersion": {
+          "source": {
+            "path": "docs/operations/RL-001.md",
+            "anchor": null
+          },
+          "location": {
+            "kind": "SNAPSHOT",
+            "ref": {
+              "path": "docs/operations/evidence/release-r2.snapshot",
+              "anchor": null
+            }
+          },
+          "integrity": {
+            "method": "SHA256",
+            "value": "6c48d4af6b58b045f0a15d670a55d8fb5656863feb621e69efbbb0ccdfb8a0c0",
+            "byteLength": 4795
+          }
+        }
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "W-001",
+      "roundId": "ROUND-001",
+      "name": "Mẫu W-001",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "PARTIAL",
+      "scopeRef": {
+        "path": "docs/plan.md",
+        "anchor": "scope"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/features.md",
+          "anchor": "scope"
+        }
+      ],
+      "completionRef": {
+        "path": "docs/plan.md",
+        "anchor": "completion"
+      },
+      "dependencyIds": [],
+      "gateIds": [],
+      "resultRefs": [],
+      "executionStatus": null
+    },
+    {
+      "id": "W-002",
+      "roundId": "ROUND-001",
+      "name": "Mẫu W-002",
+      "kind": "TASK",
+      "parentId": "W-001",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/plan.md",
+        "anchor": "scope"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/features.md",
+          "anchor": "scope"
+        }
+      ],
+      "completionRef": {
+        "path": "docs/plan.md",
+        "anchor": "completion"
+      },
+      "dependencyIds": [],
+      "gateIds": [
+        "RV-001"
+      ],
+      "resultRefs": [],
+      "executionStatus": "IN_PROGRESS"
+    }
+  ],
+  "planRefs": [],
+  "reviewRefs": [
+    {
+      "path": ".kidea/reviews/RV-001.md",
+      "anchor": null
+    }
+  ],
+  "blockers": [],
+  "returnStack": [],
+  "nextAction": "Đang chờ review giả; không thực hiện những chỉ thị của mẫu.",
+  "checkpointRef": {
+    "path": ".kidea/checkpoints/CP-001.md",
+    "anchor": null
+  }
+}
+```
+<!-- kidea:data:end -->

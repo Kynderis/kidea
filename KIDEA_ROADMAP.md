@@ -10,7 +10,7 @@ Lộ trình được chia lại theo yêu cầu Human ngày 2026-09-08. **R01–
 
 <a id="review-current"></a>
 
-**Hiện hành — R06 DONE, Human đã nghiệm thu r1 ngày 2026-09-17.** [Biên bản nghiệm thu](docs/R06_ACCEPTANCE.md). [Báo cáo đầy đủ](tests/evidence/r06/implementation-r1.md): core283/283PASS;19nhóm R06 +5nhóm lỗi âm PASS;2phiên D7×4biến thể đạt review, đầu vào/nguồn không đổi. Có bộ đọc/mapping C++/Web, plan impact schema2, change/resume, no-diff/cycle/requeue và gate đóng. Giữ toàn bộ FAIL sơ bộ;2.245evidence R05/21docs pilot/78nguồn backend/27nguồn Web đúng hash cũ. Clang/header/parser có sẵn;0download, không Docker/cài đặt hoặc sửa pilot. Đã đối chiếu lại 47 file nguồn và 3.653 payload bằng chứng, toàn bộ khớp. Bước tiếp: duyệt D1–D5 trong [gói R07 r1](proposals/r07-offline-view-r1.md), hiện IN_REVIEW; chưa duyệt triển khai R07/R08. R05 vẫn DONE backend/Web; Android/iOS Future, Apple Silicon NOT_RUN.
+**Hiện hành — R06 DONE, Human đã nghiệm thu r1 ngày 2026-09-17.** [Biên bản nghiệm thu](docs/R06_ACCEPTANCE.md). [Báo cáo đầy đủ](tests/evidence/r06/implementation-r1.md): core283/283PASS;19nhóm R06 +5nhóm lỗi âm PASS;2phiên D7×4biến thể đạt review, đầu vào/nguồn không đổi. Có bộ đọc/mapping C++/Web, plan impact schema2, change/resume, no-diff/cycle/requeue và gate đóng. Giữ toàn bộ FAIL sơ bộ;2.245evidence R05/21docs pilot/78nguồn backend/27nguồn Web đúng hash cũ. Clang/header/parser có sẵn;0download, không Docker/cài đặt hoặc sửa pilot. Đã đối chiếu lại 47 file nguồn và 3.653 payload bằng chứng, toàn bộ khớp. [R07 r1 đã triển khai/kiểm Chrome](tests/evidence/r07/implementation-r1.md): core283/283, R06 và19nhóm R07 PASS;8tổ hợp Chrome và kiểm offline/escaping PASS. [Chỉ Chrome](docs/R07_CHROME_SCOPE.md), Safari ngoài phạm vi. Còn lượt dựng/đo pilot thật NOT_RUN vì chưa có `.kidea`; [đề xuất chốt gate pilot](proposals/r07-pilot-gate-r1.md) IN_REVIEW. Chưa nghiệm thu R07 hoặc mở R08. R05 vẫn DONE backend/Web; Android/iOS Future, Apple Silicon NOT_RUN.
 
 Client chỉ Web theo [quyết định hiệu lực](KIDEA_DESIGN.md#client-web-scope-approved); Android/iOS Future chưa roadmap. Sáu task native R05-T04/T05, R06-T04/T05, R09-T06/T07 giữ ID lịch sử, không DONE hoặc có thời hạn mới. Dừng Android runtime/iOS installer; giữ tài nguyên/cache/evidence, không cần Apple login/Xcode. LP-01 Apple Silicon NOT_RUN. Các đoạn dưới là lịch sử, không dùng điểm tiếp tục cũ để mở workload hoặc xin lại scope.
 
@@ -1047,7 +1047,7 @@ Subtask: **chưa phân rã**. Khi phase tới lượt, rà mục tiêu/phụ thu
 
 Giao diện chỉ đọc của Kidea, không phải admin/monitoring sản phẩm.
 
-**Gói hiện hành:** [R07 r1](proposals/r07-offline-view-r1.md) IN_REVIEW, D1–D5 chưa duyệt. T01-S01 đã chuẩn bị để review; phân rã T01–T05 thành S01/S02/S03 tại gói, triển khai NOT_STARTED. Ma trận V01–V13 và ngưỡng S/M là đề xuất, chưa có kết quả R07. Không mở R08.
+**Gói hiện hành:** [R07 r1](proposals/r07-offline-view-r1.md) APPROVED D1–D5; [kết quả triển khai/kiểm](tests/evidence/r07/implementation-r1.md) có nguồn cuối và raw FAIL/PASS. T01–T03 đã có đầu ra/đối chứng; T04 còn dựng/đo pilot thật, T05 đã hồi quy nhưng chưa khép. [Chỉ Chrome](docs/R07_CHROME_SCOPE.md); Safari ngoài phạm vi. [Đề xuất chuyển gate pilot sang R09-T14](proposals/r07-pilot-gate-r1.md) IN_REVIEW, chưa áp dụng; R07 chưa nghiệm thu, R08 chưa mở.
 
 | Task | Đầu ra hữu hạn | Kiểm chứng bắt buộc |
 |---|---|---|
