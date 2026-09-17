@@ -1,9 +1,5 @@
-Đã hoàn thành phần viết nguồn T02 trong phạm vi bạn duyệt:
+Đã chạy build r1 trong Docker. Formatter/CMake qua; **biên dịch bộ test FAIL**, nên lượt đã dừng và giữ đầy đủ log. Tôi đã sửa hai lỗi nguồn test, chuẩn bị manifest r2; chưa chạy lại nên chưa có PASS.
 
-- Backend C++/SQLite/Drogon, hợp đồng API, test và harness build đã có; giữ đủ 137 ID nguồn.
-- 9 kiểm tĩnh qua. Chưa compile, chạy test ứng dụng hoặc Docker; mọi kết quả ứng dụng vẫn NOT_RUN.
-- Pilot đã commit local, sạch và không remote. B/C được ghi nhận nghiệm thu; điểm tiếp tục đã lưu qua Kidea.
+Bạn chỉ cần duyệt **[một lượt build r2](docs/R09_T02_BUILD_R2_REVIEW.md)**: tối đa2giờ,4container tuần tự,2CPU/4GiB, thêm tối đa8GiB đĩa; không tải/cài gì lên macOS. Log r1 vẫn giữ. R09 chưa hoàn tất.
 
-Đề nghị duyệt [T02 build r1](docs/R09_T02_BUILD_REVIEW.md): tối đa 2 giờ, 4 container tuần tự, 2 CPU/4 GiB, tối đa 8 GiB đĩa mới, không mạng/port host/tải thêm. Nguồn, image và lệnh đã ghim trong manifest thật. R09 vẫn chưa hoàn tất.
-
-Cần quyền mới vì gói authoring bạn duyệt ghi rõ chưa cấp chạy build/container. Không cần cài gì lên macOS.
+Cần duyệt vì gói r1 đã chốt đúng một lượt và dừng khi lỗi; nguồn sửa dùng manifest mới. Đây không phải xin lại nghiệp vụ/B/C.

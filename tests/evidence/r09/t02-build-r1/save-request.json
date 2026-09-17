@@ -1,0 +1,50 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved T02 build r1 at b1d27b5; executed once and stopped on compile failure. Existing T02 authoring grant permits correcting test source and preparing r2. Save actual continuation only; no step completion, no approval for r2."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t02/build-manifest.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t02/build-proposal.md",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "3c358ed7725a50a732166eb235ac3418ac41bb75a4fd671891a44e8e85bcf81b",
+  "expectedGit": {
+    "head": "234d9e0d79a60dc86140ed81a8a0c849e2005da9",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "T02 build r1 thực thi trên manifest 6d9c125; formatter18/configure qua, compile FAIL do Json alias và range-loop copy. Giữ logs run t02-bdb393f4-887d-43f7-8bc4-27ab79998f73; container đã thu hồi. Sửa hai lỗi test tại 762fb48 và chuẩn bị manifest r2 f711b411; kiểm tĩnh qua.",
+    "remaining": "Chưa compile bản sửa, CTest46/HTTP/sanitizer/release NOT_RUN;137ID chưa có kết quả ứng dụng. R09 chưa nghiệm thu, giữ mọi gate/blocker.",
+    "nextAction": "Review gói T02 build r2 tại repo Kidea docs/R09_T02_BUILD_R2_REVIEW.md; cần duyệt lượt mới cho manifest r2 trước chạy. Không tái sử dụng quyền một lượt r1 hoặc xóa log FAIL.",
+    "sourceRefs": [
+      {
+        "path": "docs/t02/build-manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t02/build-proposal.md",
+        "anchor": null
+      }
+    ]
+  }
+}

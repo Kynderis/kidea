@@ -1,0 +1,347 @@
+[1/142] Building CXX object CMakeFiles/workshop_core.dir/src/model.cpp.o
+[2/142] Building C object CMakeFiles/workshop_sqlite.dir/vendor/sqlite/sqlite3.c.o
+[3/142] Linking C static library libworkshop_sqlite.a
+[4/142] Building CXX object CMakeFiles/workshop_core.dir/src/store.cpp.o
+[5/142] Building CXX object CMakeFiles/workshop_core.dir/src/executor.cpp.o
+[6/142] Building CXX object CMakeFiles/workshop_test_core.dir/src/store.cpp.o
+[7/142] Building CXX object CMakeFiles/workshop_test_core.dir/src/model.cpp.o
+[8/142] Building CXX object CMakeFiles/workshop_test_core.dir/src/executor.cpp.o
+[9/142] Building CXX object CMakeFiles/workshop_tests.dir/tests/tests.cpp.o
+FAILED: CMakeFiles/workshop_tests.dir/tests/tests.cpp.o 
+/usr/bin/g++-13 -DCMARK_STATIC_DEFINE -DWORKSHOP_SCHEMA=\"/src/backend/schema/001.sql\" -DWORKSHOP_TESTING -I/src/backend/include -isystem /vendor/cmark/src -isystem /build/dev/vendor/cmark/src -isystem /vendor/sqlite -isystem /usr/include/jsoncpp -g -std=c++20 -fPIE -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror -MD -MT CMakeFiles/workshop_tests.dir/tests/tests.cpp.o -MF CMakeFiles/workshop_tests.dir/tests/tests.cpp.o.d -o CMakeFiles/workshop_tests.dir/tests/tests.cpp.o -c /src/backend/tests/tests.cpp
+/src/backend/tests/tests.cpp:14:17: error: 'using workshop::Json = class Json::Value' conflicts with a previous declaration
+   14 | using workshop::Json;
+      |                 ^~~~
+In file included from /usr/include/jsoncpp/json/config.h:102,
+                 from /usr/include/jsoncpp/json/json.h:9,
+                 from /src/backend/include/workshop/model.hpp:4,
+                 from /src/backend/include/workshop/store.hpp:2,
+                 from /src/backend/include/workshop/executor.hpp:2,
+                 from /src/backend/tests/tests.cpp:2:
+/usr/include/jsoncpp/json/allocator.h:14:11: note: previous declaration 'namespace Json { }'
+   14 | namespace Json {
+      |           ^~~~
+/src/backend/tests/tests.cpp: In function 'void {anonymous}::check(bool, const std::string&)':
+/src/backend/tests/tests.cpp:19:8: error: expected primary-expression before 'j'
+   19 |   Json j;
+      |        ^
+/src/backend/tests/tests.cpp:20:3: error: 'j' was not declared in this scope
+   20 |   j["caseId"] = selected;
+      |   ^
+/src/backend/tests/tests.cpp: At global scope:
+/src/backend/tests/tests.cpp:35:1: error: 'Json' does not name a type
+   35 | Json valid() {
+      | ^~~~
+/src/backend/tests/tests.cpp:72:27: error: 'Json' is not a type
+   72 |                           Json j = Json{}, const std::string &method = "POST") {
+      |                           ^~~~
+/src/backend/tests/tests.cpp:97:3: error: 'Json' does not name a type
+   97 |   Json base() {
+      |   ^~~~
+/src/backend/tests/tests.cpp:103:28: error: 'Json' is not a type
+  103 |                            Json value, const std::string &request = "") {
+      |                            ^~~~
+/src/backend/tests/tests.cpp:72:40: error: expected primary-expression before '{' token
+   72 |                           Json j = Json{}, const std::string &method = "POST") {
+      |                                        ^
+/src/backend/tests/tests.cpp: In constructor '{anonymous}::Fixture::Fixture()':
+/src/backend/tests/tests.cpp:54:10: error: expected primary-expression before 'seed'
+   54 |     Json seed;
+      |          ^~~~
+/src/backend/tests/tests.cpp:55:5: error: 'seed' was not declared in this scope
+   55 |     seed["epoch"] = "epoch-test";
+      |     ^~~~
+/src/backend/tests/tests.cpp:57:28: error: expected primary-expression before '(' token
+   57 |     seed["sessions"] = Json(::Json::arrayValue);
+      |                            ^
+/src/backend/tests/tests.cpp:59:12: error: expected primary-expression before 's'
+   59 |       Json s;
+      |            ^
+/src/backend/tests/tests.cpp:60:7: error: 's' was not declared in this scope
+   60 |       s["actor"] = who;
+      |       ^
+/src/backend/tests/tests.cpp: In member function 'workshop::Response {anonymous}::Fixture::call(const std::string&, const std::string&, int, const std::string&)':
+/src/backend/tests/tests.cpp:77:10: error: expected primary-expression before 'observation'
+   77 |     Json observation;
+      |          ^~~~~~~~~~~
+/src/backend/tests/tests.cpp:78:5: error: 'observation' was not declared in this scope
+   78 |     observation["caseId"] = selected;
+      |     ^~~~~~~~~~~
+/src/backend/tests/tests.cpp: In member function 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)':
+/src/backend/tests/tests.cpp:104:14: error: 'base' was not declared in this scope
+  104 |     auto j = base();
+      |              ^~~~
+/src/backend/tests/tests.cpp: In member function 'std::string {anonymous}::Fixture::create(int, const std::string&)':
+/src/backend/tests/tests.cpp:117:14: error: 'valid' was not declared in this scope
+  117 |     auto f = valid();
+      |              ^~~~~
+/src/backend/tests/tests.cpp: In member function 'workshop::Response {anonymous}::Fixture::reg(const std::string&, const std::string&, const std::string&, const std::string&)':
+/src/backend/tests/tests.cpp:133:14: error: 'base' was not declared in this scope
+  133 |     auto j = base();
+      |              ^~~~
+/src/backend/tests/tests.cpp: In function 'void {anonymous}::permission()':
+/src/backend/tests/tests.cpp:183:29: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  183 |         f.admin("STATE", w, "PAUSED");
+      |                             ^~~~~~~~
+      |                             |
+      |                             const char*
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp:193:20: error: 'struct {anonymous}::Fixture' has no member named 'base'
+  193 |         auto j = f.base();
+      |                    ^~~~
+/src/backend/tests/tests.cpp:196:23: error: 'valid' was not declared in this scope
+  196 |         j["fields"] = valid();
+      |                       ^~~~~
+/src/backend/tests/tests.cpp:230:18: error: 'struct {anonymous}::Fixture' has no member named 'base'
+  230 |       auto j = f.base();
+      |                  ^~~~
+/src/backend/tests/tests.cpp:249:29: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  249 |         f.admin("STATE", w, "PAUSED");
+      |                             ^~~~~~~~
+      |                             |
+      |                             const char*
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp:264:10: error: expected primary-expression before 'patch'
+  264 |     Json patch;
+      |          ^~~~~
+/src/backend/tests/tests.cpp:265:5: error: 'patch' was not declared in this scope; did you mean 'rpmatch'?
+  265 |     patch["schedule"] = valid()["schedule"];
+      |     ^~~~~
+      |     rpmatch
+/src/backend/tests/tests.cpp:265:25: error: 'valid' was not declared in this scope
+  265 |     patch["schedule"] = valid()["schedule"];
+      |                         ^~~~~
+/src/backend/tests/tests.cpp:291:38: error: cannot convert 'const std::string' {aka 'const std::__cxx11::basic_string<char>'} to 'int'
+  291 |         auto r = f.admin("STATE", w, target);
+      |                                      ^~~~~~
+      |                                      |
+      |                                      const std::string {aka const std::__cxx11::basic_string<char>}
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp: In function 'void {anonymous}::registration()':
+/src/backend/tests/tests.cpp:387:29: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  387 |         f.admin("STATE", w, "PAUSED");
+      |                             ^~~~~~~~
+      |                             |
+      |                             const char*
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp:399:25: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  399 |     f.admin("STATE", w, "PAUSED");
+      |                         ^~~~~~~~
+      |                         |
+      |                         const char*
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp:406:16: error: 'struct {anonymous}::Fixture' has no member named 'base'
+  406 |     auto j = f.base();
+      |                ^~~~
+/src/backend/tests/tests.cpp: In function 'void {anonymous}::retry()':
+/src/backend/tests/tests.cpp:421:12: error: expected primary-expression before 'j'
+  421 |       Json j = f.base();
+      |            ^
+/src/backend/tests/tests.cpp:422:7: error: 'j' was not declared in this scope
+  422 |       j["requestId"] = "X";
+      |       ^
+/src/backend/tests/tests.cpp:457:27: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  457 |       f.admin("STATE", w, "PAUSED");
+      |                           ^~~~~~~~
+      |                           |
+      |                           const char*
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp:490:32: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  490 |           x.admin("STATE", id, "PAUSED");
+      |                                ^~~~~~~~
+      |                                |
+      |                                const char*
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp: In lambda function:
+/src/backend/tests/tests.cpp:558:14: error: expected primary-expression before 'patch'
+  558 |         Json patch;
+      |              ^~~~~
+/src/backend/tests/tests.cpp:559:9: error: 'patch' was not declared in this scope; did you mean 'rpmatch'?
+  559 |         patch["capacity"] = 9;
+      |         ^~~~~
+      |         rpmatch
+/src/backend/tests/tests.cpp:562:34: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  562 |       return f.admin("STATE", w, "PAUSED");
+      |                                  ^~~~~~~~
+      |                                  |
+      |                                  const char*
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp: In lambda function:
+/src/backend/tests/tests.cpp:602:10: error: expected primary-expression before 'j'
+  602 |     Json j = f.base();
+      |          ^
+/src/backend/tests/tests.cpp:603:5: error: 'j' was not declared in this scope
+  603 |     j["requestId"] = "race";
+      |     ^
+/src/backend/tests/tests.cpp: In function 'void {anonymous}::data()':
+/src/backend/tests/tests.cpp:632:20: error: 'valid' was not declared in this scope
+  632 |       auto value = valid();
+      |                    ^~~~~
+/src/backend/tests/tests.cpp:639:18: error: 'valid' was not declared in this scope
+  639 |     auto value = valid();
+      |                  ^~~~~
+/src/backend/tests/tests.cpp:649:12: error: expected primary-expression before 'patch'
+  649 |       Json patch;
+      |            ^~~~~
+/src/backend/tests/tests.cpp:650:7: error: 'patch' was not declared in this scope; did you mean 'rpmatch'?
+  650 |       patch["capacity"] = capacity;
+      |       ^~~~~
+      |       rpmatch
+/src/backend/tests/tests.cpp:664:16: error: 'valid' was not declared in this scope
+  664 |       auto v = valid();
+      |                ^~~~~
+/src/backend/tests/tests.cpp:672:16: error: 'valid' was not declared in this scope
+  672 |       auto v = valid();
+      |                ^~~~~
+/src/backend/tests/tests.cpp:681:14: error: 'valid' was not declared in this scope
+  681 |     auto v = valid();
+      |              ^~~~~
+/src/backend/tests/tests.cpp:684:18: error: expected primary-expression before '{' token
+  684 |     v[key] = Json{};
+      |                  ^
+/src/backend/tests/tests.cpp:694:18: error: 'valid' was not declared in this scope
+  694 |         auto v = valid();
+      |                  ^~~~~
+/src/backend/tests/tests.cpp:698:14: error: expected primary-expression before 'patch'
+  698 |         Json patch;
+      |              ^~~~~
+/src/backend/tests/tests.cpp:699:9: error: 'patch' was not declared in this scope; did you mean 'rpmatch'?
+  699 |         patch[field] = text;
+      |         ^~~~~
+      |         rpmatch
+/src/backend/tests/tests.cpp:708:16: error: 'valid' was not declared in this scope
+  708 |       auto v = valid();
+      |                ^~~~~
+/src/backend/tests/tests.cpp:718:16: error: 'valid' was not declared in this scope
+  718 |       auto v = valid();
+      |                ^~~~~
+/src/backend/tests/tests.cpp:727:18: error: 'valid' was not declared in this scope
+  727 |         auto v = valid();
+      |                  ^~~~~
+/src/backend/tests/tests.cpp:731:36: error: expected primary-expression before '{' token
+  731 |           v["schedule"][key] = Json{};
+      |                                    ^
+/src/backend/tests/tests.cpp:741:14: error: expected primary-expression before 'patch'
+  741 |         Json patch;
+      |              ^~~~~
+/src/backend/tests/tests.cpp:743:11: error: 'patch' was not declared in this scope; did you mean 'rpmatch'?
+  743 |           patch[field] = 11;
+      |           ^~~~~
+      |           rpmatch
+/src/backend/tests/tests.cpp:745:11: error: 'patch' was not declared in this scope; did you mean 'rpmatch'?
+  745 |           patch[field] = valid()[field];
+      |           ^~~~~
+      |           rpmatch
+/src/backend/tests/tests.cpp:745:26: error: 'valid' was not declared in this scope
+  745 |           patch[field] = valid()[field];
+      |                          ^~~~~
+/src/backend/tests/tests.cpp:748:11: error: 'patch' was not declared in this scope; did you mean 'rpmatch'?
+  748 |           patch[field] = "changed";
+      |           ^~~~~
+      |           rpmatch
+/src/backend/tests/tests.cpp:749:35: error: 'patch' was not declared in this scope; did you mean 'rpmatch'?
+  749 |         f.code(f.admin("EDIT", w, patch), "UPDATED", state + field);
+      |                                   ^~~~~
+      |                                   rpmatch
+/src/backend/tests/tests.cpp:759:10: error: expected primary-expression before 'patch'
+  759 |     Json patch;
+      |          ^~~~~
+/src/backend/tests/tests.cpp:760:5: error: 'patch' was not declared in this scope; did you mean 'rpmatch'?
+  760 |     patch["schedule"] = valid()["schedule"];
+      |     ^~~~~
+      |     rpmatch
+/src/backend/tests/tests.cpp:760:25: error: 'valid' was not declared in this scope
+  760 |     patch["schedule"] = valid()["schedule"];
+      |                         ^~~~~
+/src/backend/tests/tests.cpp:763:32: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  763 |     f.code(f.admin("STATE", w, "DRAFT"), "STATE_REJECTED", "no-return-draft");
+      |                                ^~~~~~~
+      |                                |
+      |                                const char*
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp:769:36: error: 'valid' was not declared in this scope
+  769 |     auto r = f.admin("CREATE", "", valid());
+      |                                    ^~~~~
+/src/backend/tests/tests.cpp: In function 'void {anonymous}::technical()':
+/src/backend/tests/tests.cpp:788:16: error: 'struct {anonymous}::Fixture' has no member named 'base'
+  788 |     auto j = f.base();
+      |                ^~~~
+/src/backend/tests/tests.cpp:805:55: error: invalid conversion from 'const char*' to 'int' [-fpermissive]
+  805 |                                 ? f.admin("STATE", w, "PAUSED")
+      |                                                       ^~~~~~~~
+      |                                                       |
+      |                                                       const char*
+/src/backend/tests/tests.cpp:103:33: note:   initializing argument 3 of 'workshop::Response {anonymous}::Fixture::admin(const std::string&, const std::string&, int, const std::string&)'
+  103 |                            Json value, const std::string &request = "") {
+      |                            ~~~~~^~~~~
+/src/backend/tests/tests.cpp:855:35: error: 'valid' was not declared in this scope
+  855 |       check(f.admin("CREATE", "", valid()).body["state"] == "UNKNOWN",
+      |                                   ^~~~~
+/src/backend/tests/tests.cpp:876:14: error: expected primary-expression before 'j'
+  876 |         Json j;
+      |              ^
+/src/backend/tests/tests.cpp:877:9: error: 'j' was not declared in this scope
+  877 |         j["epoch"] = "epoch-test";
+      |         ^
+/src/backend/tests/tests.cpp:894:28: error: loop variable 'input' creates a copy from type 'const std::string' {aka 'const std::__cxx11::basic_string<char>'} [-Werror=range-loop-construct]
+  894 |     for (const std::string input : std::vector<std::string>{
+      |                            ^~~~~
+/src/backend/tests/tests.cpp:894:28: note: use reference type to prevent copying
+  894 |     for (const std::string input : std::vector<std::string>{
+      |                            ^~~~~
+      |                            &
+/src/backend/tests/tests.cpp:917:16: error: 'struct {anonymous}::Fixture' has no member named 'base'
+  917 |     auto j = f.base();
+      |                ^~~~
+/src/backend/tests/tests.cpp:936:41: error: 'valid' was not declared in this scope
+  936 |     auto create = f.admin("CREATE", "", valid(), "intent");
+      |                                         ^~~~~
+/src/backend/tests/tests.cpp:940:10: error: expected primary-expression before 'title'
+  940 |     Json title;
+      |          ^~~~~
+/src/backend/tests/tests.cpp:941:5: error: 'title' was not declared in this scope
+  941 |     title["title"] = "one";
+      |     ^~~~~
+/src/backend/tests/tests.cpp:943:10: error: expected primary-expression before 'desc'
+  943 |     Json desc;
+      |          ^~~~
+/src/backend/tests/tests.cpp:944:5: error: 'desc' was not declared in this scope
+  944 |     desc["description"] = "description";
+      |     ^~~~
+/src/backend/tests/tests.cpp:951:10: error: expected primary-expression before 'partial'
+  951 |     Json partial;
+      |          ^~~~~~~
+/src/backend/tests/tests.cpp:952:5: error: 'partial' was not declared in this scope
+  952 |     partial["schedule"]["start"] = "2026-10-01T01:00:00Z";
+      |     ^~~~~~~
+/src/backend/tests/tests.cpp:955:21: error: 'struct {anonymous}::Fixture' has no member named 'base'
+  955 |     auto intent = f.base();
+      |                     ^~~~
+/src/backend/tests/tests.cpp: In function 'int main(int, char**)':
+/src/backend/tests/tests.cpp:1021:10: error: expected primary-expression before 'j'
+ 1021 |     Json j;
+      |          ^
+/src/backend/tests/tests.cpp:1022:5: error: 'j' was not declared in this scope
+ 1022 |     j["caseId"] = selected;
+      |     ^
+cc1plus: all warnings being treated as errors
+[10/142] Building CXX object CMakeFiles/workshop_backend.dir/src/main.cpp.o
+ninja: build stopped: subcommand failed.

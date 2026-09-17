@@ -1,5 +1,7 @@
 # Bàn giao Kidea sang phiên Codex trên Mac
 
+**Hiện hành — T02 build r1 đã duyệt/chạy, FAIL compile:** [Bằng chứng](../tests/evidence/r09/t02-build-r1.md), formatter18/configure qua; compile test lỗi alias Json/range-loop, lượt dừng và container đã thu hồi. Đã sửa nguồn test, không đổi oracle; [build r2 cụ thể](R09_T02_BUILD_R2_REVIEW.md) chờ duyệt lượt mới. Pilot source762fb48/HEADc431bbd,51source/824vendor kiểm tĩnh qua; bản sửa chưa compile, CTest/HTTP/sanitizer/release NOT_RUN. R09 vẫn mở, không hỏi lại B/C/nghiệp vụ, không mở R10. Các đoạn trước r1 bên dưới giữ lịch sử.
+
 **Mới nhất — T02 authoring:** Human đã duyệt gói tại cdd6ee5, B/C DONE đúng phạm vi. Backend/test/harness đã viết,9kiểm tĩnh qua; chưa compile/test runtime/container. [Báo cáo](../tests/evidence/r09/t02-authoring-r1.md), [build r1 chờ duyệt](R09_T02_BUILD_REVIEW.md). Pilot local HEAD301d349/source db7b7ef, không remote; public SAVE/READ WAITING W-001,137case NOT_RUN. Giữ21docs/7906samples. Không chạy manifest chỉ vì file tồn tại; cần quyền build mới. Các điểm tiếp tục cũ bên dưới giữ lịch sử.
 
 **Điểm tiếp tục sau review B/C:** [Review kỹ thuật](R09_BC_TECHNICAL_REVIEW.md) đã xong, không thay runtime/pilot. Trình một gói gồm nghiệm thu B/C đúng phạm vi và [quyền viết nguồn T02](../proposals/r09-t02-authoring-r1.md); build cần manifest nguồn/lệnh thực sau authoring. “Ok làm đi” mở review/chuẩn bị, chưa tự ghi nghiệm thu đầu ra hoặc quyền build.

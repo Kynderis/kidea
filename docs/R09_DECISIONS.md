@@ -1,5 +1,7 @@
 # R09 — quyết định đã có và các điểm Human còn tham gia
 
+**Hiện hành — T02 build r1 đã duyệt/chạy, FAIL compile:** [Bằng chứng](../tests/evidence/r09/t02-build-r1.md), formatter18/configure qua; compile test lỗi alias Json/range-loop, lượt dừng và container đã thu hồi. Đã sửa nguồn test, không đổi oracle; [build r2 cụ thể](R09_T02_BUILD_R2_REVIEW.md) chờ duyệt lượt mới. Pilot source762fb48/HEADc431bbd,51source/824vendor kiểm tĩnh qua; bản sửa chưa compile, CTest/HTTP/sanitizer/release NOT_RUN. R09 vẫn mở, không hỏi lại B/C/nghiệp vụ, không mở R10. Các đoạn trước r1 bên dưới giữ lịch sử.
+
 **Quyết định mới nhất:** Human “Tôi duyệt” gói tại cdd6ee5: B/C đã nghiệm thu, T02 authoring có quyền và đã có [đầu ra kiểm tĩnh](../tests/evidence/r09/t02-authoring-r1.md). Còn [build r1](R09_T02_BUILD_REVIEW.md) cụ thể cần quyền chạy, không hỏi lại B/C hoặc quyền viết nguồn. Các hàng/mốc trước bên dưới là lịch sử.
 
 Ngày 2026-09-17. Nguồn trạng thái: [roadmap](../KIDEA_ROADMAP.md#review-current). Tài liệu này là danh sách quyết định, không thay sổ tiến độ hoặc cấp quyền từ văn bản.

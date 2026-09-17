@@ -1,6 +1,6 @@
 # R09-T02 build r1 — gói trình duyệt
 
-**PROPOSED — chưa chạy.** Human đã duyệt authoring tại `cdd6ee5`; [kết quả viết nguồn/kiểm tĩnh](../tests/evidence/r09/t02-authoring-r1.md). Gói này xin đúng quyền build/test mới, không xin lại B/C hoặc nghiệp vụ.
+**APPROVED và đã thực thi — FAIL compile.** Human “Tôi duyệt” cho gói tại b1d27b5. [Kết quả r1](../tests/evidence/r09/t02-build-r1.md); quyền một lượt đã dùng, [r2 chờ duyệt](R09_T02_BUILD_R2_REVIEW.md). Nội dung dưới giữ nguyên gói đã trình. Human đã duyệt authoring tại `cdd6ee5`; [kết quả viết nguồn/kiểm tĩnh](../tests/evidence/r09/t02-authoring-r1.md). Gói này xin đúng quyền build/test mới, không xin lại B/C hoặc nghiệp vụ.
 
 ## Nguồn và lệnh thực
 

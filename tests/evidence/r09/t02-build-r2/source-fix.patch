@@ -1,0 +1,216 @@
+diff --git a/backend/tests/tests.cpp b/backend/tests/tests.cpp
+index fdb79a0..77643df 100644
+--- a/backend/tests/tests.cpp
++++ b/backend/tests/tests.cpp
+@@ -11,12 +11,12 @@
+ #include <sys/wait.h>
+ #include <thread>
+ #include <unistd.h>
+-using workshop::Json;
++using JsonValue = workshop::Json;
+ namespace {
+ std::string selected;
+ unsigned assertions{};
+ void check(bool value, const std::string &variant) {
+-  Json j;
++  JsonValue j;
+   j["caseId"] = selected;
+   j["sequence"] = assertions;
+   j["variant"] = variant;
+@@ -32,7 +32,7 @@ std::string load(const std::string &path) {
+     throw std::runtime_error("fixture input missing");
+   return {std::istreambuf_iterator<char>(f), {}};
+ }
+-Json valid() {
++JsonValue valid() {
+   return workshop::decode(
+       R"({"title":"Lớp học thủ công","description":"Buổi thực hành","capacity":10,"schedule":{"start":"2026-10-01T09:00:00+07:00","end":"2026-10-01T10:00:00+07:00"}})");
+ }
+@@ -51,12 +51,12 @@ struct Fixture {
+     if (!std::filesystem::create_directories(dir))
+       throw std::runtime_error("CREATE_ONLY");
+     file = (dir / "db.sqlite").string();
+-    Json seed;
++    JsonValue seed;
+     seed["epoch"] = "epoch-test";
+     seed["origin"] = "https://workshop.test";
+-    seed["sessions"] = Json(::Json::arrayValue);
++    seed["sessions"] = JsonValue(::Json::arrayValue);
+     for (const std::string who : {"U", "V", "A", "M"}) {
+-      Json s;
++      JsonValue s;
+       s["actor"] = who;
+       s["token"] = "FAKE-" + who;
+       s["csrf"] = "FAKE-CSRF-" + who;
+@@ -69,12 +69,13 @@ struct Fixture {
+     store = std::make_unique<workshop::Store>(file);
+   }
+   workshop::Response call(const std::string &who, const std::string &route,
+-                          Json j = Json{}, const std::string &method = "POST") {
++                          JsonValue j = JsonValue{},
++                          const std::string &method = "POST") {
+     const auto beforeActive = active(), beforeEvents = events();
+     auto result = store->handle(method, route, who == "G" ? "" : "FAKE-" + who,
+                                 "FAKE-CSRF-" + who, "https://workshop.test", j,
+                                 1800000000);
+-    Json observation;
++    JsonValue observation;
+     observation["caseId"] = selected;
+     observation["method"] = method;
+     observation["route"] = route;
+@@ -94,13 +95,13 @@ struct Fixture {
+       throw std::runtime_error("evidence write");
+     return result;
+   }
+-  Json base() {
+-    Json j;
++  JsonValue base() {
++    JsonValue j;
+     j["epoch"] = "epoch-test";
+     return j;
+   }
+   workshop::Response admin(const std::string &action, const std::string &wid,
+-                           Json value, const std::string &request = "") {
++                           JsonValue value, const std::string &request = "") {
+     auto j = base();
+     j["intentId"] =
+         request.empty() ? "admin-" + std::to_string(++sequence) : request;
+@@ -261,7 +262,7 @@ void permission() {
+     auto rows = f.call("G", "/workshops", {}, "GET").body;
+     check(rows.size() == 2 && rows[0]["id"].asString() == std::min(w1, w2),
+           "stable-id-tie");
+-    Json patch;
++    JsonValue patch;
+     patch["schedule"] = valid()["schedule"];
+     patch["schedule"]["start"] = "2020-01-01T00:00:00Z";
+     patch["schedule"]["end"] = "2020-01-01T01:00:00Z";
+@@ -418,7 +419,7 @@ void retry() {
+     if (selected == "I09") {
+       std::barrier gate(3);
+       workshop::Response a{}, b{};
+-      Json j = f.base();
++      JsonValue j = f.base();
+       j["requestId"] = "X";
+       j["workshopId"] = w;
+       auto run = [&](workshop::Response &r) {
+@@ -555,7 +556,7 @@ void concurrency() {
+       if (selected == "C05")
+         return f.reg("U", w, "Y");
+       if (selected == "C02") {
+-        Json patch;
++        JsonValue patch;
+         patch["capacity"] = 9;
+         return f.admin("EDIT", w, patch);
+       }
+@@ -599,7 +600,7 @@ void concurrency() {
+   workshop::Response a{}, b{};
+   auto run = [&](const std::string &who, workshop::Response &out) {
+     workshop::Store s(f.file);
+-    Json j = f.base();
++    JsonValue j = f.base();
+     j["requestId"] = "race";
+     j["workshopId"] = w;
+     barrier.arrive_and_wait();
+@@ -646,7 +647,7 @@ void data() {
+       for (int i = 0; i < 9; ++i)
+         f.sql("INSERT INTO registrations VALUES('s" + std::to_string(i) +
+               "','s" + std::to_string(i) + "','" + w + "','ACTIVE')");
+-      Json patch;
++      JsonValue patch;
+       patch["capacity"] = capacity;
+       f.code(f.admin("EDIT", w, patch),
+              capacity == 8   ? "BELOW_ACTIVE"
+@@ -681,7 +682,7 @@ void data() {
+     auto v = valid();
+     v.removeMember(key);
+     f.code(f.admin("CREATE", "", v), "INVALID_FIELDS", "missing");
+-    v[key] = Json{};
++    v[key] = JsonValue{};
+     f.code(f.admin("CREATE", "", v), "INVALID_FIELDS", "null");
+   } else if (selected == "D05") {
+     for (const std::string text :
+@@ -695,7 +696,7 @@ void data() {
+         v[field] = text;
+         f.code(f.admin("CREATE", "", v), "INVALID_FIELDS",
+                "create-" + field + text);
+-        Json patch;
++        JsonValue patch;
+         patch[field] = text;
+         auto n = f.events();
+         f.code(f.admin("EDIT", w, patch), "INVALID_FIELDS",
+@@ -728,7 +729,7 @@ void data() {
+         if (missing)
+           v["schedule"].removeMember(key);
+         else
+-          v["schedule"][key] = Json{};
++          v["schedule"][key] = JsonValue{};
+         f.code(f.admin("CREATE", "", v), "INVALID_FIELDS",
+                "missing-null-" + key + std::to_string(missing));
+       }
+@@ -738,7 +739,7 @@ void data() {
+            {"title", "description", "capacity", "schedule"}) {
+         Fixture f;
+         auto w = f.create(10, state);
+-        Json patch;
++        JsonValue patch;
+         if (field == "capacity")
+           patch[field] = 11;
+         else if (field == "schedule") {
+@@ -756,7 +757,7 @@ void data() {
+     Fixture f;
+     auto w = f.create();
+     f.reg("U", w);
+-    Json patch;
++    JsonValue patch;
+     patch["schedule"] = valid()["schedule"];
+     patch["schedule"]["end"] = "2026-10-01T11:00:00+07:00";
+     f.code(f.admin("EDIT", w, patch), "UPDATED", "schedule-with-active");
+@@ -873,7 +874,7 @@ void technical() {
+           if (point == (committed ? "after_commit" : "before_commit"))
+             _exit(77);
+         });
+-        Json j;
++        JsonValue j;
+         j["epoch"] = "epoch-test";
+         j["requestId"] = "X";
+         j["workshopId"] = w;
+@@ -891,7 +892,7 @@ void technical() {
+       f.code(f.reg("U", w, "X"), "REGISTERED", "crash-reconcile");
+     }
+   } else if (selected == "JSON") {
+-    for (const std::string input : std::vector<std::string>{
++    for (const std::string &input : std::vector<std::string>{
+              "{\"a\":1,\"a\":2}", "{\"a\":1,}", "{/*x*/\"a\":1}", "[]",
+              "{}true",
+              std::string("{\"x\":\"") + char(0xc0) + char(0xaf) + "\"}"}) {
+@@ -937,10 +938,10 @@ void technical() {
+     check(f.admin("CREATE", "", valid(), "intent").body == create.body,
+           "admin-dedup");
+     auto w = create.body["workshopId"].asString();
+-    Json title;
++    JsonValue title;
+     title["title"] = "one";
+     f.admin("EDIT", w, title);
+-    Json desc;
++    JsonValue desc;
+     desc["description"] = "description";
+     f.admin("EDIT", w, desc);
+     title["title"] = "two";
+@@ -948,7 +949,7 @@ void technical() {
+     auto current = f.call("A", "/admin/workshops/" + w, {}, "GET").body;
+     check(current["title"] == "two" && current["description"] == "description",
+           "dirty-field-last-writer");
+-    Json partial;
++    JsonValue partial;
+     partial["schedule"]["start"] = "2026-10-01T01:00:00Z";
+     f.code(f.admin("EDIT", w, partial), "INVALID_FIELDS",
+            "schedule-atomic-group");
+@@ -1018,7 +1019,7 @@ int main(int argc, char **argv) {
+       throw std::runtime_error("no assertions");
+     return 0;
+   } catch (const std::exception &e) {
+-    Json j;
++    JsonValue j;
+     j["caseId"] = selected;
+     j["status"] = "FAIL";
+     j["detail"] = e.what();
