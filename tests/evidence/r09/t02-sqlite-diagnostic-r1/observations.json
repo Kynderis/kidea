@@ -1,0 +1,36 @@
+{
+  "state": "WAL_WARNING_REPRODUCED_WITHOUT_BACKEND",
+  "notProductAcceptance": true,
+  "falsePositiveWaiver": false,
+  "modes": [
+    {
+      "mode": "detector-control",
+      "exit": 66,
+      "raceReported": true,
+      "walHeaderPair": false,
+      "dataInvariantReached": false
+    },
+    {
+      "mode": "wal-parallel",
+      "exit": 66,
+      "raceReported": true,
+      "walHeaderPair": true,
+      "dataInvariantReached": false
+    },
+    {
+      "mode": "delete-parallel",
+      "exit": 0,
+      "raceReported": false,
+      "walHeaderPair": false,
+      "dataInvariantReached": true
+    },
+    {
+      "mode": "wal-serial",
+      "exit": 0,
+      "raceReported": false,
+      "walHeaderPair": false,
+      "dataInvariantReached": true
+    }
+  ],
+  "limits": "WAL parallel halted at TSan report; final count/quick_check not reached in that mode; no inference of harmlessness or application acceptance"
+}

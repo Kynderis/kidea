@@ -1,0 +1,66 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved SQLite diagnostic r1 at 2a94de3. Executed four modes once, preserved evidence and cleaned exact container. Save actual continuation only; no waiver, new execution, or step completion."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t02/build-proposal.md",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/sqlite-diagnostic.mjs",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/sqlite-diagnostic.sh",
+      "anchor": null
+    },
+    {
+      "path": "tests/t02/sqlite-diagnostic.cpp",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "7a2f41332b7e8651bb53ec4c8069a05472515df42f518ceb0ed919ed5608d3b1",
+  "expectedGit": {
+    "head": "cd9612df78884bd7f148a235106f3866cae34c81",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "SQLite diagnostic r1 completed14.6s/8344KiB. Control race detected66; WAL parallel66 same vendor header stacks without backend; rollback parallel/WAL serial0/count100/quick_checkok. Container reclaimed,54sourcehash unchanged after run, full logs retained.",
+    "remaining": "No proof WAL parallel reaches final data oracle; no false-positive waiver. R5 TSan6FAIL/releaseNOT_RUN unchanged. Diagnostic is not app PASS or R09 acceptance.",
+    "nextAction": "Review a bounded SQLite/TSan compatibility approach before a new build package; keep existing WAL/backend/tests/vendor unchanged and preserve full instrumentation unless a separately reviewed policy decision explicitly changes scope. Do not rerun used diagnostic/r5 manifests or infer approval from this note.",
+    "sourceRefs": [
+      {
+        "path": "docs/t02/build-proposal.md",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/sqlite-diagnostic.mjs",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/sqlite-diagnostic.sh",
+        "anchor": null
+      },
+      {
+        "path": "tests/t02/sqlite-diagnostic.cpp",
+        "anchor": null
+      }
+    ]
+  }
+}

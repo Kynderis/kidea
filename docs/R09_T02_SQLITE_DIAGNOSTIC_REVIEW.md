@@ -1,6 +1,6 @@
 # R09-T02 — chẩn đoán SQLite WAL/TSan r1
 
-**PROPOSED — chưa duyệt/chưa chạy.** [R5](../tests/evidence/r09/t02-build-r5.md): dev và ASan/UBSan đều46/46CTest+18/18HTTP PASS; TSan40/46,6FAIL ở cùng WAL header. [Nguồn SQLite nguyên hash](../tests/evidence/r09/t02-build-r5/sqlite-wal-source-excerpt.txt) ghi possible false-positive với double-read/barrier, nhưng đây mới là giả thuyết; không miễn trừ, tắt sanitizer hoặc coi r5 PASS.
+**APPROVED và đã chạy — chẩn đoán hoàn tất, chưa là product PASS.** Human “duyệt nhé” cho gói tại2a94de3. [Kết quả](../tests/evidence/r09/t02-sqlite-diagnostic-r1.md): tái hiện WAL warning độc lập backend, control hoạt động, hai đối chiếu đạt. Quyền một lượt đã dùng; nội dung dưới giữ nguyên gói đã trình. [R5](../tests/evidence/r09/t02-build-r5.md): dev và ASan/UBSan đều46/46CTest+18/18HTTP PASS; TSan40/46,6FAIL ở cùng WAL header. [Nguồn SQLite nguyên hash](../tests/evidence/r09/t02-build-r5/sqlite-wal-source-excerpt.txt) ghi possible false-positive với double-read/barrier, nhưng đây mới là giả thuyết; không miễn trừ, tắt sanitizer hoặc coi r5 PASS.
 
 ## Phép kiểm đề nghị
 
