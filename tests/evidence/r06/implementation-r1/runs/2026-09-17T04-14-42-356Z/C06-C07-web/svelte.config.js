@@ -1,0 +1,1 @@
+throw new Error("CONFIG_MUST_NEVER_EXECUTE");

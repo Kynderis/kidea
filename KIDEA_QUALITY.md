@@ -107,7 +107,7 @@ Theo [kết quả T09](KIDEA_ROADMAP.md#r01-t09-result), trước chạy phải 
 
 Các hành vi AI trọng yếu về quyền, approval, resume và báo kết quả phải thử lặp độc lập ở phiên mới từ baseline cố định; không mang lời sửa sai của lần trước hoặc sửa hộ hồ sơ để đạt. Chốt nhóm/biến thể và số lần trước chạy tại task sở hữu, gồm R02-T10 và R10-T06; giữ mọi lỗi, sửa có căn cứ rồi hồi quy. Không chọn lần đẹp hoặc suy xác suất tin cậy từ số lần thử. Theo approval tinh gọn 2026-09-14, gom theo luồng đầu–cuối có ý nghĩa khi đủ khả năng, không mặc định mỗi task một loạt ba phiên. Chốt riêng phạm vi/manifest/quota/quyền cho bản mới; quota và source manifest cũ không tự chuyển. Giữ kiểm thử xác định theo thay đổi và nghiệm thu AI trọng yếu, không dùng một lớp thay lớp kia.
 
-R06-T09 phải chốt dấu hiệu không tiến triển và giới hạn bài thử chu kỳ trước chạy. Chạm giới hạn thì dừng thử, giữ trạng thái/bằng chứng và ghi chưa đạt để điều tra; không tự đóng impact hoặc lấy giới hạn mẫu cắt graph sản phẩm thật. Chưa duyệt fixture, số lần/giới hạn cụ thể hoặc quyền thực thi.
+R06-T09 phải chốt dấu hiệu không tiến triển và giới hạn bài thử chu kỳ trước chạy. Chạm giới hạn thì dừng thử, giữ trạng thái/bằng chứng và ghi chưa đạt để điều tra; không tự đóng impact hoặc lấy giới hạn mẫu cắt graph sản phẩm thật. Ngày2026-09-17, [R06 r1 D6/D7](proposals/r06-maps-change-r1.md) đã được duyệt: fixture canh3lượt không tiến triển hoặc20đánh giá; đúng2phiên mới, tối đa15phút/phiên, cùng4biến thể. Chỉ có hiệu lực trong gói R06 r1, không biến các số nháp rộng bên dưới thành ngưỡng đã duyệt hoặc cấp quyền Docker/cài đặt.
 
 ### Chi tiết KQ-08/KQ-09 còn đề xuất
 

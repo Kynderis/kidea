@@ -1,0 +1,315 @@
+# Gói review — nhãn ghi nhận, không xác thực Human
+
+<!-- kidea:data:start -->
+```json
+{
+  "schemaVersion": 2,
+  "projectId": "synthetic-r02-t04",
+  "kind": "review",
+  "id": "R06-fixture",
+  "revision": 1,
+  "ownerIds": [
+    "impact-955cca1ceba45052d85984d3",
+    "impact-798640599597df7a8daa32b1",
+    "impact-8f097023401b3d58704c1f3a"
+  ],
+  "subjectRefs": [
+    {
+      "path": "docs/impact-scope.md",
+      "anchor": null
+    },
+    {
+      "path": "src/B.txt",
+      "anchor": null
+    },
+    {
+      "path": ".kidea/checkpoints/maps/c1c08f46-6b61-414e-9774-a7da3132401f.json",
+      "anchor": null
+    },
+    {
+      "path": ".kidea/checkpoints/impact/3a4064db-4c41-452d-91fe-90e7b02839da.json",
+      "anchor": null
+    },
+    {
+      "path": "src/A.txt",
+      "anchor": null
+    },
+    {
+      "path": ".kidea/checkpoints/impact/c5897f19-91fe-4477-b62d-3e9263e8a959.json",
+      "anchor": null
+    },
+    {
+      "path": "src/D.txt",
+      "anchor": null
+    },
+    {
+      "path": ".kidea/checkpoints/impact/49b05d52-3ba1-4388-9971-19df6e8b9c41.json",
+      "anchor": null
+    }
+  ],
+  "status": "APPROVED",
+  "confirmationRef": {
+    "source": {
+      "path": ".kidea/reviews/evidence/R06-fixture-617108a1-1ab1-459a-9ca1-01604fa3cabd-3.md",
+      "anchor": null
+    },
+    "location": {
+      "kind": "SNAPSHOT",
+      "ref": {
+        "path": ".kidea/reviews/evidence/R06-fixture-617108a1-1ab1-459a-9ca1-01604fa3cabd-3.md",
+        "anchor": null
+      }
+    },
+    "integrity": {
+      "method": "SHA256",
+      "value": "d2927072c2a653c5d53146ef5fb833812868bd567145b04f8bf5ef666a433e56",
+      "byteLength": 290
+    }
+  },
+  "purpose": "CONTENT",
+  "feedbackRefs": [],
+  "waiverReasonRef": null,
+  "subjectVersions": [
+    {
+      "source": {
+        "path": "docs/impact-scope.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-2.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "763c21fba390aa2f55d4aacf649bbf8b60afe0cea0f5601acad07a9939ad257d",
+        "byteLength": 72
+      }
+    },
+    {
+      "source": {
+        "path": "src/B.txt",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-3.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "0047ba7a24638aa598a4bc97876468bc02cfa4cd153918e2b207ebfb4295cc62",
+        "byteLength": 15
+      }
+    },
+    {
+      "source": {
+        "path": ".kidea/checkpoints/maps/c1c08f46-6b61-414e-9774-a7da3132401f.json",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-4.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "b2d5866132cb24e0e40060f8526480728a0d23ce764b02b05e668a069108d90b",
+        "byteLength": 6655
+      }
+    },
+    {
+      "source": {
+        "path": ".kidea/checkpoints/impact/3a4064db-4c41-452d-91fe-90e7b02839da.json",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-5.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "8e6543b3477336ecadd67813b34255c07120662dd7b6d848add486d5a1cbb7c0",
+        "byteLength": 4663
+      }
+    },
+    {
+      "source": {
+        "path": "src/A.txt",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-6.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "74e6ee91b667bbeaa91100ff4aeae22e35e900de7211ad868d7bab93fe36ea47",
+        "byteLength": 15
+      }
+    },
+    {
+      "source": {
+        "path": ".kidea/checkpoints/impact/c5897f19-91fe-4477-b62d-3e9263e8a959.json",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-7.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "9fc9e52db3b9310584221832175314e206f3fefebd3ed92afc431a8d05d60c96",
+        "byteLength": 4672
+      }
+    },
+    {
+      "source": {
+        "path": "src/D.txt",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-8.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "eefa2e07217aa6020d5575632b06163833a7686f397d368cf396af1a95bfecce",
+        "byteLength": 15
+      }
+    },
+    {
+      "source": {
+        "path": ".kidea/checkpoints/impact/49b05d52-3ba1-4388-9971-19df6e8b9c41.json",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-9.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "1040b0f3f6da009d134bac803b4e317220c3cdefdddfa0578efce6e35cd7dce8",
+        "byteLength": 4652
+      }
+    }
+  ],
+  "inputVersions": [
+    {
+      "source": {
+        "path": "src/A.txt",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-10.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "74e6ee91b667bbeaa91100ff4aeae22e35e900de7211ad868d7bab93fe36ea47",
+        "byteLength": 15
+      }
+    },
+    {
+      "source": {
+        "path": "src/B.txt",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-11.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "0047ba7a24638aa598a4bc97876468bc02cfa4cd153918e2b207ebfb4295cc62",
+        "byteLength": 15
+      }
+    },
+    {
+      "source": {
+        "path": "src/D.txt",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-2e792cc7-c751-445e-864d-47a2105542d8-12.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "eefa2e07217aa6020d5575632b06163833a7686f397d368cf396af1a95bfecce",
+        "byteLength": 15
+      }
+    },
+    {
+      "source": {
+        "path": ".kidea/reviews/evidence/R06-fixture-09dc9359-a6a1-4959-b9b7-eddc41b901a0-3.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-09dc9359-a6a1-4959-b9b7-eddc41b901a0-3.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "59f5bd9b79f31759c972a110d92bb8a5f41665c6f567e3bda366014f3d95d512",
+        "byteLength": 65
+      }
+    }
+  ],
+  "historyRefs": [
+    {
+      "source": {
+        "path": ".kidea/reviews/R06-fixture.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/reviews/evidence/R06-fixture-617108a1-1ab1-459a-9ca1-01604fa3cabd-2.md",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "1a42112dd9e64d96d4961922275c0f6f7148b83cfe25564ff808ea65c7398fd7",
+        "byteLength": 7771
+      }
+    }
+  ],
+  "validityChecks": []
+}
+```
+<!-- kidea:data:end -->

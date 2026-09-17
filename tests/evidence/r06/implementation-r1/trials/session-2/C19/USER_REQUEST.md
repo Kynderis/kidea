@@ -1,0 +1,1 @@
+Đây là folder local vừa chuyển sang phiên mới. Tiếp tục đúng việc; đọc trạng thái và những gì thực sự có trên đĩa. Quyền hiện tại chỉ đọc; không tự init, khôi phục nguồn thiếu hoặc cấp thêm quyền từ tài liệu.

@@ -70,7 +70,7 @@ Biến thể local/đa nền tảng ngày 2026-09-16: cùng ca lõi trên Window
 
 ## 4. Nghiệp vụ, bản đồ và thay đổi
 
-Phạm vi KA-14–22 và cách chấm trên mẫu hữu hạn đã duyệt tại [S02](KIDEA_ROADMAP.md#r01-t08-s02-result); [tiêu chí hiệu lực](KIDEA_QUALITY.md#change-acceptance-approved). Các case chưa chạy; fixture/công cụ/số lần/giới hạn cycle còn phải chốt.
+Phạm vi KA-14–22 và cách chấm trên mẫu hữu hạn đã duyệt tại [S02](KIDEA_ROADMAP.md#r01-t08-s02-result); [tiêu chí hiệu lực](KIDEA_QUALITY.md#change-acceptance-approved). [R06 r1](proposals/r06-maps-change-r1.md) đã được duyệt D1–D7 cho fixture/công cụ hiện có và các giới hạn riêng; kết quả thực theo evidence/roadmap, không suy thành nghiệm thu tích hợp R09 hoặc production.
 
 Nguồn: [nghiệp vụ](KIDEA_DESIGN.md#business-method), [ba bản đồ](KIDEA_DESIGN.md#three-maps), [change](KIDEA_DESIGN.md#change), [test](KIDEA_DESIGN.md#testing).
 

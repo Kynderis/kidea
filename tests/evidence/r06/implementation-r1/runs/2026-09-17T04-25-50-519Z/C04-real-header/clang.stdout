@@ -1,0 +1,1926 @@
+{
+  "id": "0x7feed017dfa8",
+  "kind": "NamespaceDecl",
+  "loc": {
+    "offset": 201,
+    "file": "domain.hpp",
+    "line": 12,
+    "col": 11,
+    "tokLen": 5
+  },
+  "range": {
+    "begin": {
+      "offset": 191,
+      "col": 1,
+      "tokLen": 9
+    },
+    "end": {
+      "offset": 1390,
+      "line": 48,
+      "col": 1,
+      "tokLen": 1
+    }
+  },
+  "name": "kidea",
+  "inner": [
+    {
+      "id": "0x7feed017e198",
+      "kind": "FunctionDecl",
+      "loc": {
+        "offset": 214,
+        "line": 13,
+        "col": 6,
+        "tokLen": 13
+      },
+      "range": {
+        "begin": {
+          "offset": 209,
+          "col": 1,
+          "tokLen": 4
+        },
+        "end": {
+          "offset": 250,
+          "col": 42,
+          "tokLen": 1
+        }
+      },
+      "name": "valid_version",
+      "mangledName": "__ZN5kidea13valid_versionENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE",
+      "type": {
+        "qualType": "bool (std::string_view)"
+      },
+      "inner": [
+        {
+          "id": "0x7feed017e0a8",
+          "kind": "ParmVarDecl",
+          "loc": {
+            "offset": 245,
+            "col": 37,
+            "tokLen": 5
+          },
+          "range": {
+            "begin": {
+              "offset": 228,
+              "col": 20,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 245,
+              "col": 37,
+              "tokLen": 5
+            }
+          },
+          "name": "value",
+          "type": {
+            "desugaredQualType": "std::string_view",
+            "qualType": "std::string_view",
+            "typeAliasDeclId": "0x7feecd739f50"
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x7feed017e548",
+      "kind": "FunctionDecl",
+      "loc": {
+        "offset": 258,
+        "line": 14,
+        "col": 6,
+        "tokLen": 10
+      },
+      "range": {
+        "begin": {
+          "offset": 253,
+          "col": 1,
+          "tokLen": 4
+        },
+        "end": {
+          "offset": 324,
+          "col": 72,
+          "tokLen": 1
+        }
+      },
+      "name": "plain_text",
+      "mangledName": "__ZN5kidea10plain_textENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEEmb",
+      "type": {
+        "qualType": "bool (std::string_view, std::size_t, bool)"
+      },
+      "inner": [
+        {
+          "id": "0x7feed017e290",
+          "kind": "ParmVarDecl",
+          "loc": {
+            "offset": 286,
+            "col": 34,
+            "tokLen": 5
+          },
+          "range": {
+            "begin": {
+              "offset": 269,
+              "col": 17,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 286,
+              "col": 34,
+              "tokLen": 5
+            }
+          },
+          "name": "value",
+          "type": {
+            "desugaredQualType": "std::string_view",
+            "qualType": "std::string_view",
+            "typeAliasDeclId": "0x7feecd739f50"
+          }
+        },
+        {
+          "id": "0x7feed017e3b0",
+          "kind": "ParmVarDecl",
+          "loc": {
+            "offset": 305,
+            "col": 53,
+            "tokLen": 7
+          },
+          "range": {
+            "begin": {
+              "offset": 293,
+              "col": 41,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 305,
+              "col": 53,
+              "tokLen": 7
+            }
+          },
+          "name": "maximum",
+          "type": {
+            "desugaredQualType": "unsigned long",
+            "qualType": "std::size_t",
+            "typeAliasDeclId": "0x7feec7833048"
+          }
+        },
+        {
+          "id": "0x7feed017e428",
+          "kind": "ParmVarDecl",
+          "loc": {
+            "offset": 319,
+            "col": 67,
+            "tokLen": 5
+          },
+          "range": {
+            "begin": {
+              "offset": 314,
+              "col": 62,
+              "tokLen": 4
+            },
+            "end": {
+              "offset": 319,
+              "col": 67,
+              "tokLen": 5
+            }
+          },
+          "name": "title",
+          "type": {
+            "qualType": "bool"
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x7feed017e7e8",
+      "kind": "FunctionDecl",
+      "loc": {
+        "offset": 339,
+        "line": 15,
+        "col": 13,
+        "tokLen": 10
+      },
+      "range": {
+        "begin": {
+          "offset": 327,
+          "col": 1,
+          "tokLen": 3
+        },
+        "end": {
+          "offset": 372,
+          "col": 46,
+          "tokLen": 1
+        }
+      },
+      "name": "utf8_count",
+      "mangledName": "__ZN5kidea10utf8_countENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE",
+      "type": {
+        "qualType": "std::size_t (std::string_view)"
+      },
+      "inner": [
+        {
+          "id": "0x7feed017e6e8",
+          "kind": "ParmVarDecl",
+          "loc": {
+            "offset": 367,
+            "col": 41,
+            "tokLen": 5
+          },
+          "range": {
+            "begin": {
+              "offset": 350,
+              "col": 24,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 367,
+              "col": 41,
+              "tokLen": 5
+            }
+          },
+          "name": "value",
+          "type": {
+            "desugaredQualType": "std::string_view",
+            "qualType": "std::string_view",
+            "typeAliasDeclId": "0x7feecd739f50"
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x7feed017e898",
+      "kind": "CXXRecordDecl",
+      "loc": {
+        "offset": 382,
+        "line": 16,
+        "col": 8,
+        "tokLen": 6
+      },
+      "range": {
+        "begin": {
+          "offset": 375,
+          "col": 1,
+          "tokLen": 6
+        },
+        "end": {
+          "offset": 497,
+          "line": 22,
+          "col": 1,
+          "tokLen": 1
+        }
+      },
+      "isReferenced": true,
+      "name": "Counts",
+      "tagUsed": "struct",
+      "completeDefinition": true,
+      "definitionData": {
+        "canPassInRegisters": true,
+        "copyAssign": {
+          "hasConstParam": true,
+          "implicitHasConstParam": true,
+          "needsImplicit": true,
+          "simple": true,
+          "trivial": true
+        },
+        "copyCtor": {
+          "hasConstParam": true,
+          "implicitHasConstParam": true,
+          "needsImplicit": true,
+          "simple": true,
+          "trivial": true
+        },
+        "defaultCtor": {
+          "defaultedIsConstexpr": true,
+          "exists": true,
+          "isConstexpr": true,
+          "needsImplicit": true,
+          "trivial": true
+        },
+        "dtor": {
+          "irrelevant": true,
+          "needsImplicit": true,
+          "simple": true,
+          "trivial": true
+        },
+        "hasConstexprNonCopyMoveConstructor": true,
+        "isAggregate": true,
+        "isLiteral": true,
+        "isPOD": true,
+        "isStandardLayout": true,
+        "isTrivial": true,
+        "isTriviallyCopyable": true,
+        "moveAssign": {
+          "exists": true,
+          "needsImplicit": true,
+          "simple": true,
+          "trivial": true
+        },
+        "moveCtor": {
+          "exists": true,
+          "needsImplicit": true,
+          "simple": true,
+          "trivial": true
+        }
+      },
+      "inner": [
+        {
+          "id": "0x7feed017e9b8",
+          "kind": "CXXRecordDecl",
+          "loc": {
+            "offset": 382,
+            "line": 16,
+            "col": 8,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 375,
+              "col": 1,
+              "tokLen": 6
+            },
+            "end": {
+              "offset": 382,
+              "col": 8,
+              "tokLen": 6
+            }
+          },
+          "isImplicit": true,
+          "isReferenced": true,
+          "name": "Counts",
+          "tagUsed": "struct"
+        },
+        {
+          "id": "0x7feed017ea60",
+          "kind": "FieldDecl",
+          "loc": {
+            "offset": 397,
+            "line": 17,
+            "col": 7,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 393,
+              "col": 3,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 397,
+              "col": 7,
+              "tokLen": 6
+            }
+          },
+          "name": "domain",
+          "type": {
+            "qualType": "int"
+          }
+        },
+        {
+          "id": "0x7feed017eac8",
+          "kind": "FieldDecl",
+          "loc": {
+            "offset": 411,
+            "line": 18,
+            "col": 7,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 407,
+              "col": 3,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 411,
+              "col": 7,
+              "tokLen": 6
+            }
+          },
+          "name": "result",
+          "type": {
+            "qualType": "int"
+          }
+        },
+        {
+          "id": "0x7feed017eb30",
+          "kind": "FieldDecl",
+          "loc": {
+            "offset": 425,
+            "line": 19,
+            "col": 7,
+            "tokLen": 5
+          },
+          "range": {
+            "begin": {
+              "offset": 421,
+              "col": 3,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 425,
+              "col": 7,
+              "tokLen": 5
+            }
+          },
+          "name": "audit",
+          "type": {
+            "qualType": "int"
+          }
+        },
+        {
+          "id": "0x7feed017eb98",
+          "kind": "FieldDecl",
+          "loc": {
+            "offset": 438,
+            "line": 20,
+            "col": 7,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 434,
+              "col": 3,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 438,
+              "col": 7,
+              "tokLen": 6
+            }
+          },
+          "name": "outbox",
+          "type": {
+            "qualType": "int"
+          }
+        },
+        {
+          "id": "0x7feed017edb8",
+          "kind": "CXXMethodDecl",
+          "loc": {
+            "offset": 453,
+            "line": 21,
+            "col": 8,
+            "tokLen": 8
+          },
+          "range": {
+            "begin": {
+              "offset": 448,
+              "col": 3,
+              "tokLen": 4
+            },
+            "end": {
+              "offset": 494,
+              "col": 49,
+              "tokLen": 1
+            }
+          },
+          "name": "operator==",
+          "mangledName": "__ZNK5kidea6CountseqERKS0_",
+          "type": {
+            "qualType": "bool (const Counts &) const"
+          },
+          "constexpr": true,
+          "explicitlyDefaulted": "default",
+          "inner": [
+            {
+              "id": "0x7feed017ec90",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 478,
+                "col": 33,
+                "tokLen": 1
+              },
+              "range": {
+                "begin": {
+                  "offset": 464,
+                  "col": 19,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 477,
+                  "col": 32,
+                  "tokLen": 1
+                }
+              },
+              "type": {
+                "qualType": "const Counts &"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0x7feed017eec8",
+      "kind": "CXXRecordDecl",
+      "loc": {
+        "offset": 506,
+        "line": 23,
+        "col": 7,
+        "tokLen": 13
+      },
+      "range": {
+        "begin": {
+          "offset": 500,
+          "col": 1,
+          "tokLen": 5
+        },
+        "end": {
+          "offset": 601,
+          "line": 26,
+          "col": 1,
+          "tokLen": 1
+        }
+      },
+      "name": "DatabaseError",
+      "tagUsed": "class",
+      "completeDefinition": true,
+      "definitionData": {
+        "canConstDefaultInit": true,
+        "copyAssign": {
+          "hasConstParam": true,
+          "implicitHasConstParam": true,
+          "needsOverloadResolution": true,
+          "nonTrivial": true,
+          "simple": true
+        },
+        "copyCtor": {
+          "hasConstParam": true,
+          "implicitHasConstParam": true,
+          "needsOverloadResolution": true,
+          "nonTrivial": true,
+          "simple": true
+        },
+        "defaultCtor": {
+          "exists": true,
+          "nonTrivial": true
+        },
+        "dtor": {
+          "needsOverloadResolution": true,
+          "nonTrivial": true,
+          "simple": true
+        },
+        "isPolymorphic": true,
+        "moveAssign": {
+          "exists": true,
+          "needsOverloadResolution": true,
+          "nonTrivial": true,
+          "simple": true
+        },
+        "moveCtor": {
+          "exists": true,
+          "needsOverloadResolution": true,
+          "nonTrivial": true,
+          "simple": true
+        }
+      },
+      "bases": [
+        {
+          "access": "public",
+          "type": {
+            "desugaredQualType": "std::runtime_error",
+            "qualType": "std::runtime_error"
+          },
+          "writtenAccess": "public"
+        }
+      ],
+      "inner": [
+        {
+          "id": "0x7feed017f098",
+          "kind": "CXXRecordDecl",
+          "loc": {
+            "offset": 506,
+            "line": 23,
+            "col": 7,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 500,
+              "col": 1,
+              "tokLen": 5
+            },
+            "end": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "name": "DatabaseError",
+          "tagUsed": "class"
+        },
+        {
+          "id": "0x7feed017f128",
+          "kind": "AccessSpecDecl",
+          "loc": {
+            "offset": 550,
+            "line": 24,
+            "col": 1,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 550,
+              "col": 1,
+              "tokLen": 6
+            },
+            "end": {
+              "offset": 556,
+              "col": 7,
+              "tokLen": 1
+            }
+          },
+          "access": "public"
+        },
+        {
+          "id": "0x7feed017f1c8",
+          "kind": "UsingDecl",
+          "loc": {
+            "offset": 586,
+            "line": 25,
+            "col": 29,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 560,
+              "col": 3,
+              "tokLen": 5
+            },
+            "end": {
+              "offset": 586,
+              "col": 29,
+              "tokLen": 13
+            }
+          },
+          "name": "std::runtime_error::DatabaseError"
+        },
+        {
+          "id": "0x7feed017f220",
+          "kind": "ConstructorUsingShadowDecl",
+          "loc": {
+            "offset": 586,
+            "col": 29,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 586,
+              "col": 29,
+              "tokLen": 13
+            },
+            "end": {
+              "offset": 586,
+              "col": 29,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "target": {
+            "id": "0x7feecc753fa0",
+            "kind": "CXXConstructorDecl",
+            "name": "runtime_error",
+            "type": {
+              "qualType": "void (const string &)"
+            }
+          }
+        },
+        {
+          "id": "0x7feed017f298",
+          "kind": "ConstructorUsingShadowDecl",
+          "loc": {
+            "offset": 586,
+            "col": 29,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 586,
+              "col": 29,
+              "tokLen": 13
+            },
+            "end": {
+              "offset": 586,
+              "col": 29,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "target": {
+            "id": "0x7feecc754100",
+            "kind": "CXXConstructorDecl",
+            "name": "runtime_error",
+            "type": {
+              "qualType": "void (const char *)"
+            }
+          }
+        },
+        {
+          "id": "0x7feed017f310",
+          "kind": "ConstructorUsingShadowDecl",
+          "loc": {
+            "offset": 586,
+            "col": 29,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 586,
+              "col": 29,
+              "tokLen": 13
+            },
+            "end": {
+              "offset": 586,
+              "col": 29,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "target": {
+            "id": "0x7feecc754370",
+            "kind": "CXXConstructorDecl",
+            "name": "runtime_error",
+            "type": {
+              "qualType": "void (const runtime_error &) noexcept"
+            }
+          }
+        },
+        {
+          "id": "0x7feed017f388",
+          "kind": "CXXConstructorDecl",
+          "loc": {
+            "offset": 506,
+            "line": 23,
+            "col": 7,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            },
+            "end": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "name": "DatabaseError",
+          "mangledName": "__ZN5kidea13DatabaseErrorC1Ev",
+          "type": {
+            "qualType": "void ()"
+          },
+          "inline": true,
+          "explicitlyDefaulted": "deleted"
+        },
+        {
+          "id": "0x7feed017f508",
+          "kind": "CXXConstructorDecl",
+          "loc": {
+            "offset": 506,
+            "col": 7,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            },
+            "end": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "name": "DatabaseError",
+          "mangledName": "__ZN5kidea13DatabaseErrorC1ERKS0_",
+          "type": {
+            "qualType": "void (const DatabaseError &)"
+          },
+          "inline": true,
+          "explicitlyDefaulted": "default",
+          "inner": [
+            {
+              "id": "0x7feed017f628",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 506,
+                "col": 7,
+                "tokLen": 13
+              },
+              "range": {
+                "begin": {
+                  "offset": 506,
+                  "col": 7,
+                  "tokLen": 13
+                },
+                "end": {
+                  "offset": 506,
+                  "col": 7,
+                  "tokLen": 13
+                }
+              },
+              "type": {
+                "qualType": "const DatabaseError &"
+              }
+            }
+          ]
+        },
+        {
+          "id": "0x7feed017f708",
+          "kind": "CXXConstructorDecl",
+          "loc": {
+            "offset": 506,
+            "col": 7,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            },
+            "end": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "name": "DatabaseError",
+          "mangledName": "__ZN5kidea13DatabaseErrorC1EOS0_",
+          "type": {
+            "qualType": "void (DatabaseError &&)"
+          },
+          "inline": true,
+          "explicitlyDefaulted": "default",
+          "inner": [
+            {
+              "id": "0x7feed017f828",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 506,
+                "col": 7,
+                "tokLen": 13
+              },
+              "range": {
+                "begin": {
+                  "offset": 506,
+                  "col": 7,
+                  "tokLen": 13
+                },
+                "end": {
+                  "offset": 506,
+                  "col": 7,
+                  "tokLen": 13
+                }
+              },
+              "type": {
+                "qualType": "DatabaseError &&"
+              }
+            }
+          ]
+        },
+        {
+          "id": "0x7feed017f920",
+          "kind": "CXXMethodDecl",
+          "loc": {
+            "offset": 506,
+            "col": 7,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            },
+            "end": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "name": "operator=",
+          "mangledName": "__ZN5kidea13DatabaseErroraSERKS0_",
+          "type": {
+            "qualType": "DatabaseError &(const DatabaseError &)"
+          },
+          "inline": true,
+          "explicitlyDefaulted": "default",
+          "inner": [
+            {
+              "id": "0x7feed017fa38",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 506,
+                "col": 7,
+                "tokLen": 13
+              },
+              "range": {
+                "begin": {
+                  "offset": 506,
+                  "col": 7,
+                  "tokLen": 13
+                },
+                "end": {
+                  "offset": 506,
+                  "col": 7,
+                  "tokLen": 13
+                }
+              },
+              "type": {
+                "qualType": "const DatabaseError &"
+              }
+            }
+          ]
+        },
+        {
+          "id": "0x7feed017faa8",
+          "kind": "CXXMethodDecl",
+          "loc": {
+            "offset": 506,
+            "col": 7,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            },
+            "end": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "name": "operator=",
+          "mangledName": "__ZN5kidea13DatabaseErroraSEOS0_",
+          "type": {
+            "qualType": "DatabaseError &(DatabaseError &&)"
+          },
+          "inline": true,
+          "explicitlyDefaulted": "default",
+          "inner": [
+            {
+              "id": "0x7feed017fbb8",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 506,
+                "col": 7,
+                "tokLen": 13
+              },
+              "range": {
+                "begin": {
+                  "offset": 506,
+                  "col": 7,
+                  "tokLen": 13
+                },
+                "end": {
+                  "offset": 506,
+                  "col": 7,
+                  "tokLen": 13
+                }
+              },
+              "type": {
+                "qualType": "DatabaseError &&"
+              }
+            }
+          ]
+        },
+        {
+          "id": "0x7feed017fc38",
+          "kind": "CXXDestructorDecl",
+          "loc": {
+            "offset": 506,
+            "col": 7,
+            "tokLen": 13
+          },
+          "range": {
+            "begin": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            },
+            "end": {
+              "offset": 506,
+              "col": 7,
+              "tokLen": 13
+            }
+          },
+          "isImplicit": true,
+          "name": "~DatabaseError",
+          "mangledName": "__ZN5kidea13DatabaseErrorD1Ev",
+          "type": {
+            "qualType": "void () noexcept"
+          },
+          "inline": true,
+          "explicitlyDefaulted": "default"
+        }
+      ]
+    },
+    {
+      "id": "0x7feed017fde0",
+      "kind": "CXXRecordDecl",
+      "loc": {
+        "offset": 610,
+        "line": 27,
+        "col": 7,
+        "tokLen": 5
+      },
+      "range": {
+        "begin": {
+          "offset": 604,
+          "col": 1,
+          "tokLen": 5
+        },
+        "end": {
+          "offset": 1387,
+          "line": 47,
+          "col": 1,
+          "tokLen": 1
+        }
+      },
+      "name": "Store",
+      "tagUsed": "class",
+      "completeDefinition": true,
+      "definitionData": {
+        "canConstDefaultInit": true,
+        "copyAssign": {
+          "hasConstParam": true,
+          "implicitHasConstParam": true,
+          "trivial": true,
+          "userDeclared": true
+        },
+        "copyCtor": {
+          "hasConstParam": true,
+          "implicitHasConstParam": true,
+          "trivial": true,
+          "userDeclared": true
+        },
+        "defaultCtor": {
+          "defaultedIsConstexpr": true
+        },
+        "dtor": {
+          "nonTrivial": true,
+          "userDeclared": true
+        },
+        "hasUserDeclaredConstructor": true,
+        "isStandardLayout": true,
+        "moveAssign": {},
+        "moveCtor": {}
+      },
+      "inner": [
+        {
+          "id": "0x7feed017fef8",
+          "kind": "CXXRecordDecl",
+          "loc": {
+            "offset": 610,
+            "line": 27,
+            "col": 7,
+            "tokLen": 5
+          },
+          "range": {
+            "begin": {
+              "offset": 604,
+              "col": 1,
+              "tokLen": 5
+            },
+            "end": {
+              "offset": 610,
+              "col": 7,
+              "tokLen": 5
+            }
+          },
+          "isImplicit": true,
+          "isReferenced": true,
+          "name": "Store",
+          "tagUsed": "class"
+        },
+        {
+          "id": "0x7feed017ff88",
+          "kind": "AccessSpecDecl",
+          "loc": {
+            "offset": 618,
+            "line": 28,
+            "col": 1,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 618,
+              "col": 1,
+              "tokLen": 6
+            },
+            "end": {
+              "offset": 624,
+              "col": 7,
+              "tokLen": 1
+            }
+          },
+          "access": "public"
+        },
+        {
+          "id": "0x7feed0180178",
+          "kind": "CXXConstructorDecl",
+          "loc": {
+            "offset": 637,
+            "line": 29,
+            "col": 12,
+            "tokLen": 5
+          },
+          "range": {
+            "begin": {
+              "offset": 628,
+              "col": 3,
+              "tokLen": 8
+            },
+            "end": {
+              "offset": 666,
+              "col": 41,
+              "tokLen": 1
+            }
+          },
+          "name": "Store",
+          "mangledName": "__ZN5kidea5StoreC1ERKNSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE",
+          "type": {
+            "qualType": "void (const std::string &)"
+          },
+          "inner": [
+            {
+              "id": "0x7feed0180060",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 662,
+                "col": 37,
+                "tokLen": 4
+              },
+              "range": {
+                "begin": {
+                  "offset": 643,
+                  "col": 18,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 662,
+                  "col": 37,
+                  "tokLen": 4
+                }
+              },
+              "name": "file",
+              "type": {
+                "qualType": "const std::string &"
+              }
+            }
+          ]
+        },
+        {
+          "id": "0x7feed01802a8",
+          "kind": "CXXDestructorDecl",
+          "loc": {
+            "offset": 671,
+            "line": 30,
+            "col": 3,
+            "tokLen": 1
+          },
+          "range": {
+            "begin": {
+              "offset": 671,
+              "col": 3,
+              "tokLen": 1
+            },
+            "end": {
+              "offset": 678,
+              "col": 10,
+              "tokLen": 1
+            }
+          },
+          "name": "~Store",
+          "mangledName": "__ZN5kidea5StoreD1Ev",
+          "type": {
+            "qualType": "void ()"
+          }
+        },
+        {
+          "id": "0x7feed01804f8",
+          "kind": "CXXConstructorDecl",
+          "loc": {
+            "offset": 683,
+            "line": 31,
+            "col": 3,
+            "tokLen": 5
+          },
+          "range": {
+            "begin": {
+              "offset": 683,
+              "col": 3,
+              "tokLen": 5
+            },
+            "end": {
+              "offset": 711,
+              "col": 31,
+              "tokLen": 1
+            }
+          },
+          "name": "Store",
+          "mangledName": "__ZN5kidea5StoreC1ERKS0_",
+          "type": {
+            "qualType": "void (const Store &)"
+          },
+          "explicitlyDeleted": true,
+          "inner": [
+            {
+              "id": "0x7feed0180400",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 702,
+                "col": 22,
+                "tokLen": 1
+              },
+              "range": {
+                "begin": {
+                  "offset": 689,
+                  "col": 9,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 701,
+                  "col": 21,
+                  "tokLen": 1
+                }
+              },
+              "type": {
+                "qualType": "const Store &"
+              }
+            }
+          ]
+        },
+        {
+          "id": "0x7feed0180730",
+          "kind": "CXXMethodDecl",
+          "loc": {
+            "offset": 723,
+            "line": 32,
+            "col": 10,
+            "tokLen": 8
+          },
+          "range": {
+            "begin": {
+              "offset": 716,
+              "col": 3,
+              "tokLen": 5
+            },
+            "end": {
+              "offset": 755,
+              "col": 42,
+              "tokLen": 1
+            }
+          },
+          "name": "operator=",
+          "mangledName": "__ZN5kidea5StoreaSERKS0_",
+          "type": {
+            "qualType": "Store &(const Store &)"
+          },
+          "explicitlyDeleted": true,
+          "inner": [
+            {
+              "id": "0x7feed01805d8",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 746,
+                "col": 33,
+                "tokLen": 1
+              },
+              "range": {
+                "begin": {
+                  "offset": 733,
+                  "col": 20,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 745,
+                  "col": 32,
+                  "tokLen": 1
+                }
+              },
+              "type": {
+                "qualType": "const Store &"
+              }
+            }
+          ]
+        },
+        {
+          "id": "0x7feed0180f48",
+          "kind": "CXXMethodDecl",
+          "loc": {
+            "offset": 772,
+            "line": 33,
+            "col": 15,
+            "tokLen": 5
+          },
+          "range": {
+            "begin": {
+              "offset": 760,
+              "col": 3,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 930,
+              "line": 34,
+              "col": 76,
+              "tokLen": 1
+            }
+          },
+          "name": "apply",
+          "mangledName": "__ZN5kidea5Store5applyERKNSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES9_S9_RKNS1_8functionIFvNS1_17basic_string_viewIcS4_EEEEE",
+          "type": {
+            "qualType": "std::string (const std::string &, const std::string &, const std::string &, const std::function<void (std::string_view)> &)"
+          },
+          "inner": [
+            {
+              "id": "0x7feed0180868",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 797,
+                "line": 33,
+                "col": 40,
+                "tokLen": 5
+              },
+              "range": {
+                "begin": {
+                  "offset": 778,
+                  "col": 21,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 797,
+                  "col": 40,
+                  "tokLen": 5
+                }
+              },
+              "name": "actor",
+              "type": {
+                "qualType": "const std::string &"
+              }
+            },
+            {
+              "id": "0x7feed0180928",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 823,
+                "col": 66,
+                "tokLen": 2
+              },
+              "range": {
+                "begin": {
+                  "offset": 804,
+                  "col": 47,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 823,
+                  "col": 66,
+                  "tokLen": 2
+                }
+              },
+              "name": "id",
+              "type": {
+                "qualType": "const std::string &"
+              }
+            },
+            {
+              "id": "0x7feed01809e8",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 846,
+                "col": 89,
+                "tokLen": 7
+              },
+              "range": {
+                "begin": {
+                  "offset": 827,
+                  "col": 70,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 846,
+                  "col": 89,
+                  "tokLen": 7
+                }
+              },
+              "name": "payload",
+              "type": {
+                "qualType": "const std::string &"
+              }
+            },
+            {
+              "id": "0x7feed0180df0",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 920,
+                "line": 34,
+                "col": 66,
+                "tokLen": 5
+              },
+              "range": {
+                "begin": {
+                  "offset": 875,
+                  "col": 21,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 929,
+                  "col": 75,
+                  "tokLen": 1
+                }
+              },
+              "name": "fault",
+              "type": {
+                "qualType": "const std::function<void (std::string_view)> &"
+              },
+              "init": "c",
+              "inner": [
+                {
+                  "id": "0x7feed018e5f0",
+                  "kind": "ExprWithCleanups",
+                  "range": {
+                    "begin": {
+                      "offset": 926,
+                      "col": 72,
+                      "tokLen": 1
+                    },
+                    "end": {
+                      "offset": 929,
+                      "col": 75,
+                      "tokLen": 1
+                    }
+                  },
+                  "type": {
+                    "desugaredQualType": "const std::function<void (std::string_view)>",
+                    "qualType": "const std::function<void (std::string_view)>"
+                  },
+                  "valueCategory": "lvalue",
+                  "cleanupsHaveSideEffects": true,
+                  "inner": [
+                    {
+                      "id": "0x7feed018e5d8",
+                      "kind": "MaterializeTemporaryExpr",
+                      "range": {
+                        "begin": {
+                          "offset": 926,
+                          "col": 72,
+                          "tokLen": 1
+                        },
+                        "end": {
+                          "offset": 929,
+                          "col": 75,
+                          "tokLen": 1
+                        }
+                      },
+                      "type": {
+                        "desugaredQualType": "const std::function<void (std::string_view)>",
+                        "qualType": "const std::function<void (std::string_view)>"
+                      },
+                      "valueCategory": "lvalue",
+                      "storageDuration": "full expression",
+                      "boundToLValueRef": true,
+                      "inner": [
+                        {
+                          "id": "0x7feed018e5b8",
+                          "kind": "CXXBindTemporaryExpr",
+                          "range": {
+                            "begin": {
+                              "offset": 926,
+                              "col": 72,
+                              "tokLen": 1
+                            },
+                            "end": {
+                              "offset": 929,
+                              "col": 75,
+                              "tokLen": 1
+                            }
+                          },
+                          "type": {
+                            "desugaredQualType": "const std::function<void (std::string_view)>",
+                            "qualType": "const std::function<void (std::string_view)>"
+                          },
+                          "valueCategory": "prvalue",
+                          "temp": "0x7feed018e5b0",
+                          "dtor": {
+                            "id": "0x7feed018ca20",
+                            "kind": "CXXDestructorDecl",
+                            "name": "~function",
+                            "type": {
+                              "qualType": "void () noexcept"
+                            }
+                          },
+                          "inner": [
+                            {
+                              "id": "0x7feed018e1c8",
+                              "kind": "CXXConstructExpr",
+                              "range": {
+                                "begin": {
+                                  "offset": 926,
+                                  "col": 72,
+                                  "tokLen": 1
+                                },
+                                "end": {
+                                  "offset": 929,
+                                  "col": 75,
+                                  "tokLen": 1
+                                }
+                              },
+                              "type": {
+                                "desugaredQualType": "const std::function<void (std::string_view)>",
+                                "qualType": "const std::function<void (std::string_view)>"
+                              },
+                              "valueCategory": "prvalue",
+                              "ctorType": {
+                                "qualType": "void () noexcept"
+                              },
+                              "list": true,
+                              "hadMultipleCandidates": true,
+                              "constructionKind": "complete"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "0x7feed0181238",
+          "kind": "CXXMethodDecl",
+          "loc": {
+            "offset": 947,
+            "line": 35,
+            "col": 15,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 935,
+              "col": 3,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 1001,
+              "col": 69,
+              "tokLen": 1
+            }
+          },
+          "name": "lookup",
+          "mangledName": "__ZN5kidea5Store6lookupERKNSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES9_",
+          "type": {
+            "qualType": "std::string (const std::string &, const std::string &)"
+          },
+          "inner": [
+            {
+              "id": "0x7feed0181098",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 973,
+                "col": 41,
+                "tokLen": 5
+              },
+              "range": {
+                "begin": {
+                  "offset": 954,
+                  "col": 22,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 973,
+                  "col": 41,
+                  "tokLen": 5
+                }
+              },
+              "name": "actor",
+              "type": {
+                "qualType": "const std::string &"
+              }
+            },
+            {
+              "id": "0x7feed0181158",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 999,
+                "col": 67,
+                "tokLen": 2
+              },
+              "range": {
+                "begin": {
+                  "offset": 980,
+                  "col": 48,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 999,
+                  "col": 67,
+                  "tokLen": 2
+                }
+              },
+              "name": "id",
+              "type": {
+                "qualType": "const std::string &"
+              }
+            }
+          ]
+        },
+        {
+          "id": "0x7feed0181368",
+          "kind": "CXXMethodDecl",
+          "loc": {
+            "offset": 1013,
+            "line": 36,
+            "col": 10,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 1006,
+              "col": 3,
+              "tokLen": 6
+            },
+            "end": {
+              "offset": 1020,
+              "col": 17,
+              "tokLen": 1
+            }
+          },
+          "name": "counts",
+          "mangledName": "__ZN5kidea5Store6countsEv",
+          "type": {
+            "qualType": "Counts ()"
+          }
+        },
+        {
+          "id": "0x7feed01814c0",
+          "kind": "CXXMethodDecl",
+          "loc": {
+            "offset": 1029,
+            "line": 37,
+            "col": 7,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 1025,
+              "col": 3,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 1052,
+              "col": 30,
+              "tokLen": 1
+            }
+          },
+          "name": "pragma",
+          "mangledName": "__ZN5kidea5Store6pragmaEPKc",
+          "type": {
+            "qualType": "int (const char *)"
+          },
+          "inner": [
+            {
+              "id": "0x7feed0181428",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 1048,
+                "col": 26,
+                "tokLen": 4
+              },
+              "range": {
+                "begin": {
+                  "offset": 1036,
+                  "col": 14,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 1048,
+                  "col": 26,
+                  "tokLen": 4
+                }
+              },
+              "name": "name",
+              "type": {
+                "qualType": "const char *"
+              }
+            }
+          ]
+        },
+        {
+          "id": "0x7feed0181570",
+          "kind": "AccessSpecDecl",
+          "loc": {
+            "offset": 1056,
+            "line": 39,
+            "col": 1,
+            "tokLen": 7
+          },
+          "range": {
+            "begin": {
+              "offset": 1056,
+              "col": 1,
+              "tokLen": 7
+            },
+            "end": {
+              "offset": 1063,
+              "col": 8,
+              "tokLen": 1
+            }
+          },
+          "access": "private"
+        },
+        {
+          "id": "0x7feed01815b0",
+          "kind": "FieldDecl",
+          "loc": {
+            "offset": 1076,
+            "line": 40,
+            "col": 12,
+            "tokLen": 3
+          },
+          "range": {
+            "begin": {
+              "offset": 1067,
+              "col": 3,
+              "tokLen": 7
+            },
+            "end": {
+              "offset": 1080,
+              "col": 16,
+              "tokLen": 1
+            }
+          },
+          "name": "db_",
+          "type": {
+            "qualType": "sqlite3 *"
+          },
+          "hasInClassInitializer": true,
+          "inner": [
+            {
+              "id": "0x7feed018e648",
+              "kind": "InitListExpr",
+              "range": {
+                "begin": {
+                  "offset": 1079,
+                  "col": 15,
+                  "tokLen": 1
+                },
+                "end": {
+                  "offset": 1080,
+                  "col": 16,
+                  "tokLen": 1
+                }
+              },
+              "type": {
+                "qualType": "sqlite3 *"
+              },
+              "valueCategory": "prvalue"
+            }
+          ]
+        },
+        {
+          "id": "0x7feed0181680",
+          "kind": "VarDecl",
+          "loc": {
+            "offset": 1329,
+            "line": 44,
+            "col": 31,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 1301,
+              "col": 3,
+              "tokLen": 6
+            },
+            "end": {
+              "offset": 1329,
+              "col": 31,
+              "tokLen": 6
+            }
+          },
+          "name": "mutex_",
+          "mangledName": "__ZN5kidea5Store6mutex_E",
+          "type": {
+            "desugaredQualType": "std::recursive_mutex",
+            "qualType": "std::recursive_mutex"
+          },
+          "storageClass": "static"
+        },
+        {
+          "id": "0x7feed01816f8",
+          "kind": "FieldDecl",
+          "loc": {
+            "offset": 1344,
+            "line": 45,
+            "col": 8,
+            "tokLen": 9
+          },
+          "range": {
+            "begin": {
+              "offset": 1339,
+              "col": 3,
+              "tokLen": 4
+            },
+            "end": {
+              "offset": 1354,
+              "col": 18,
+              "tokLen": 1
+            }
+          },
+          "name": "poisoned_",
+          "type": {
+            "qualType": "bool"
+          },
+          "hasInClassInitializer": true,
+          "inner": [
+            {
+              "id": "0x7feed018e6c8",
+              "kind": "InitListExpr",
+              "range": {
+                "begin": {
+                  "offset": 1353,
+                  "col": 17,
+                  "tokLen": 1
+                },
+                "end": {
+                  "offset": 1354,
+                  "col": 18,
+                  "tokLen": 1
+                }
+              },
+              "type": {
+                "qualType": "bool"
+              },
+              "valueCategory": "prvalue"
+            }
+          ]
+        },
+        {
+          "id": "0x7feed01817f0",
+          "kind": "CXXMethodDecl",
+          "loc": {
+            "offset": 1364,
+            "line": 46,
+            "col": 8,
+            "tokLen": 4
+          },
+          "range": {
+            "begin": {
+              "offset": 1359,
+              "col": 3,
+              "tokLen": 4
+            },
+            "end": {
+              "offset": 1384,
+              "col": 28,
+              "tokLen": 1
+            }
+          },
+          "name": "exec",
+          "mangledName": "__ZN5kidea5Store4execEPKc",
+          "type": {
+            "qualType": "void (const char *)"
+          },
+          "inner": [
+            {
+              "id": "0x7feed0181760",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 1381,
+                "col": 25,
+                "tokLen": 3
+              },
+              "range": {
+                "begin": {
+                  "offset": 1369,
+                  "col": 13,
+                  "tokLen": 5
+                },
+                "end": {
+                  "offset": 1381,
+                  "col": 25,
+                  "tokLen": 3
+                }
+              },
+              "name": "sql",
+              "type": {
+                "qualType": "const char *"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

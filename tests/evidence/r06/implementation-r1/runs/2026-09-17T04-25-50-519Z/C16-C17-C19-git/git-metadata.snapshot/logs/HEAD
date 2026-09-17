@@ -1,0 +1,9 @@
+0000000000000000000000000000000000000000 56f5bf17624aa2dd9b41f5ec8baa106a1d23bab1 R06 Fixture <fixture@example.invalid> 1789619184 +0700	commit (initial): Synthetic running baseline
+56f5bf17624aa2dd9b41f5ec8baa106a1d23bab1 cb548465063b064f191ffca3a5a08c57b6014559 R06 Fixture <fixture@example.invalid> 1789619184 +0700	commit: Synthetic independent feature
+cb548465063b064f191ffca3a5a08c57b6014559 56f5bf17624aa2dd9b41f5ec8baa106a1d23bab1 R06 Fixture <fixture@example.invalid> 1789619184 +0700	checkout: moving from master to maintenance-fixture
+56f5bf17624aa2dd9b41f5ec8baa106a1d23bab1 89fdcbb84918fce75fd356a9802704ddc0de86f3 R06 Fixture <fixture@example.invalid> 1789619184 +0700	commit: Synthetic fix1
+89fdcbb84918fce75fd356a9802704ddc0de86f3 c6fd89d51c2c7dd4fc20fd9b3182e4e49bf19124 R06 Fixture <fixture@example.invalid> 1789619184 +0700	commit: Synthetic fix2 inherits fix1
+c6fd89d51c2c7dd4fc20fd9b3182e4e49bf19124 ce21ff3b44f225bf68c9aa4970b917baffc9b660 R06 Fixture <fixture@example.invalid> 1789619184 +0700	revert: Revert "Synthetic fix2 inherits fix1"
+ce21ff3b44f225bf68c9aa4970b917baffc9b660 cb548465063b064f191ffca3a5a08c57b6014559 R06 Fixture <fixture@example.invalid> 1789619184 +0700	checkout: moving from maintenance-fixture to master
+cb548465063b064f191ffca3a5a08c57b6014559 53024f8f1eb8430830e57b0ca1087ba9d2a6333a R06 Fixture <fixture@example.invalid> 1789619184 +0700	cherry-pick: Synthetic fix1
+53024f8f1eb8430830e57b0ca1087ba9d2a6333a 0931cd19978f32053dc3350c2d81b9f027b2016e R06 Fixture <fixture@example.invalid> 1789619184 +0700	cherry-pick: Synthetic fix2 inherits fix1

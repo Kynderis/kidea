@@ -1,0 +1,1 @@
+<script lang="ts">let state = 2;</script><button onclick={() => state++}>{state}</button>

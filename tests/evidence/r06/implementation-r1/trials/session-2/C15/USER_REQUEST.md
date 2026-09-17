@@ -1,0 +1,1 @@
+MVP còn đang thực hiện. Tôi chọn bổ sung giới hạn mỗi người chỉ có tối đa 2 đăng ký ACTIVE vào cùng MVP hiện tại. Hãy xác định phần cần cập nhật, phần giữ lại và cách tiếp tục. Bạn có quyền đọc hồ sơ và chuẩn bị đề xuất cụ thể; chưa có graph impact được review để ghi plan. Không mở đợt song song hoặc triển khai code trước đặc tả.

@@ -1,0 +1,1 @@
+Synthetic artifact revision 1

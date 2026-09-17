@@ -1,6 +1,6 @@
 # R06 r1 — Ba bản đồ, thay đổi và tiếp tục công việc
 
-**PROPOSED — chờ Human duyệt gói triển khai.** Ngày 2026-09-17, căn cứ repo `Kynderis/kidea`, `master`, nguồn `a2f171be8196969f50e36cc51bf6e89232d01dd7`, working tree sạch khi bắt đầu. Human giao chuẩn bị gói sau [nghiệm thu R05 backend/Web](../docs/R05_ACCEPTANCE.md); việc chuẩn bị không tự duyệt các lựa chọn mới bên dưới.
+**APPROVED — đang triển khai, chưa nghiệm thu R06.** Ngày 2026-09-17, Human “tôi duyệt nhé. Bạn cần tôi confirm chỗ nào để hoàn thành phần R06 này không, nếu không thì làm liền mạch cho xong nhé. Trong quá trình làm phát sinh vấn đề gì cần tôi confirm thì bảo nhé” duyệt D1–D7 và phần local mục9 của gói tại commit `a3ddf16`. Không kế thừa quyền Docker/cài đặt hoặc tự nghiệm thu. Căn cứ chuẩn bị ban đầu: repo `Kynderis/kidea`, `master`, nguồn `a2f171be8196969f50e36cc51bf6e89232d01dd7`, working tree sạch; [R05 backend/Web đã nghiệm thu](../docs/R05_ACCEPTANCE.md).
 
 ## 1. Kết quả cần có
 
@@ -100,7 +100,7 @@ Thứ tự thực hiện: T01 → T02/T03 làm lần lượt → T06 → T07/T08
 
 ## 8. Ma trận kiểm hữu hạn trước triển khai
 
-Tất cả ca dưới đây **NOT_RUN**. Mỗi ca cần file đầu vào, expected độc lập, phép biến đổi, lệnh/phiên bản và log riêng được cố định trước chạy. Giữ lỗi/skip; một ca bắt buộc thiếu môi trường không được đổi sang PASS.
+Tại lúc chuẩn bị, tất cả ca dưới đây **NOT_RUN**; giữ bảng làm oracle đã trình. Kết quả hiện hành sau approval xem [báo cáo r1](../tests/evidence/r06/implementation-r1.md), không dùng trạng thái chuẩn bị làm điểm tiếp tục. Mỗi ca cần file đầu vào, expected độc lập, phép biến đổi, lệnh/phiên bản và log riêng được cố định trước chạy. Giữ lỗi/skip; một ca bắt buộc thiếu môi trường không được đổi sang PASS.
 
 | ID | Setup / thao tác | Expected chính | Nơi / trace |
 |---|---|---|---|

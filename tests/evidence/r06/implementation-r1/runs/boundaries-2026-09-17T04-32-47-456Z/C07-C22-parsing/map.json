@@ -1,0 +1,103 @@
+{
+  "format": "kidea-map-r1",
+  "adapter": {
+    "name": "typescript-svelte",
+    "version": "6.0.3",
+    "versions": {
+      "typescript": "6.0.3",
+      "svelte": "5.57.0"
+    },
+    "tool": {
+      "components": [
+        {
+          "name": "trusted test parser"
+        }
+      ]
+    }
+  },
+  "configuration": {
+    "tsconfig": "tsconfig.json",
+    "options": {}
+  },
+  "sources": [
+    {
+      "path": "Page.svelte",
+      "integrity": {
+        "method": "SHA256",
+        "value": "a41c6a9d96be9538c8461c47f7cc915c55fef10e64ef8b042b1306fa662e15cc",
+        "byteLength": 35
+      }
+    },
+    {
+      "path": "page.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "d1dd3723ae5c144f823c8742375dfd0e6053bf30e25ed87c7138ad2c74dd2a3b",
+        "byteLength": 65
+      }
+    },
+    {
+      "path": "tsconfig.json",
+      "integrity": {
+        "method": "SHA256",
+        "value": "8dccf14c72bd49db4ac35b8f410deeebe5ec43863bc0cab914dc59a6ae3cef38",
+        "byteLength": 39
+      }
+    }
+  ],
+  "inputBasis": "b9fec59a0e28fa444e556b5609a5e018678068bcde155f02b61adb94f6428cc0",
+  "nodes": [
+    {
+      "id": "tsconfig.json",
+      "path": "tsconfig.json",
+      "kind": "configuration"
+    },
+    {
+      "id": "page.ts",
+      "path": "page.ts",
+      "kind": "file"
+    },
+    {
+      "id": "page.ts#broken",
+      "path": "page.ts",
+      "name": "broken",
+      "kind": "symbol",
+      "offset": 54
+    },
+    {
+      "id": "Page.svelte",
+      "path": "Page.svelte",
+      "kind": "file"
+    }
+  ],
+  "edges": [],
+  "diagnostics": [
+    {
+      "code": "TSCONFIG_EXTENDS_UNRESOLVED",
+      "file": "tsconfig.json",
+      "detail": "./generated/tsconfig.json"
+    },
+    {
+      "code": "TYPESCRIPT_PARSE_ERROR",
+      "file": "page.ts",
+      "detail": "Expression expected."
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "page.ts",
+      "detail": "./$types"
+    },
+    {
+      "code": "SVELTE_PARSE_ERROR",
+      "file": "Page.svelte",
+      "detail": "Unexpected token\nhttps://svelte.dev/e/js_parse_error"
+    }
+  ],
+  "limits": [
+    "Static local module resolution only; package exports/generated files outside the read scope remain unresolved.",
+    "Lexical call candidates are not type-resolved dispatch. Markup/reactivity and indirect consumers require review."
+  ],
+  "completeness": "INCOMPLETE",
+  "verification": "STRUCTURE_ONLY_SEMANTIC_REVIEW_REQUIRED",
+  "digest": "9029bdffe12728dc0fb129d1228a44ef2301bf435199b056ad49a81bad1ebfdf"
+}

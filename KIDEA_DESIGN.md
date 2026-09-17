@@ -1068,11 +1068,11 @@ Sửa bug đúng theo đặc tả đã duyệt có thể bắt đầu ở bướ
 
 <a id="new-request-intake-proposal"></a>
 
-#### Đề xuất tiếp nhận yêu cầu mới — đang trao đổi, chưa duyệt
+#### Tiếp nhận yêu cầu mới — đã duyệt tại R06 r1 D5
 
-Phản hồi Human phân biệt lúc xây MVP với lúc sản phẩm đã có production. Đề xuất bổ sung: trước khi đổi việc, xác định cả giai đoạn, bản/đợt muốn đưa yêu cầu vào và quan hệ ngữ nghĩa với yêu cầu đã có. Giai đoạn không tự quyết định mức ưu tiên; nhãn Future chỉ việc để sau, không tự tạo cam kết kiến trúc hoặc quyền triển khai.
+Phản hồi Human phân biệt lúc xây MVP với lúc sản phẩm đã có production. Trước khi đổi việc, xác định cả giai đoạn, bản/đợt muốn đưa yêu cầu vào và quan hệ ngữ nghĩa với yêu cầu đã có. Giai đoạn không tự quyết định mức ưu tiên; nhãn Future chỉ việc để sau, không tự tạo cam kết kiến trúc hoặc quyền triển khai. Anchor cũ giữ để không làm hỏng liên kết lịch sử.
 
-| Tình huống | Hướng xử lý đề xuất |
+| Tình huống | Hướng xử lý đã duyệt |
 |---|---|
 | Đang MVP, yêu cầu được chọn bổ sung/sửa/xóa trong MVP | Giữ thông tin tiến độ/bằng chứng hiện có; quay bước 1 chốt lại phạm vi rồi rà lần lượt nghiệp vụ/AC, chất lượng, UX, vận hành/admin, kiến trúc, test và kế hoạch. Cập nhật chính kế hoạch MVP, giữ phần còn đúng và tiếp tục ở task kế tiếp hợp lệ; không tạo luồng tạm dừng riêng hoặc buộc quay lại task cũ |
 | Đang MVP, yêu cầu để Future | Ghi mô tả đủ hiểu, mục đích, ràng buộc/điểm chưa rõ và quan hệ cần lưu ý trong Feature Map. Đánh giá sơ bộ có làm mất căn cứ quyết định hiện tại không; nếu không thì tiếp tục MVP, chưa đặc tả hoặc xây Future |
@@ -1086,7 +1086,7 @@ Phản hồi Human phân biệt lúc xây MVP với lúc sản phẩm đã có p
 
 “Liên quan” phải được đánh giá qua rule, dữ liệu, quyền, API/event, UX và cấu hình dùng chung; không chỉ theo tên Feature/file. “Trùng” phải là cùng hành vi/điều kiện, không phải chỉ cùng mục tiêu chung. Khi một Future được chọn triển khai, quay bước 1 chốt đợt hiện tại, không bắt đầu từ kiến trúc chỉ vì trước đó đã ghi Future.
 
-Hai nguyên tắc điều chỉnh cùng MVP và bugfix bên dưới đã được duyệt riêng cùng G2; KA-17/19 được đồng bộ đúng phần đó. Các hàng còn lại về Future, ưu tiên và phân loại yêu cầu vẫn là đề xuất cần chốt riêng trước triển khai tiếp nhận/change ở R03/R06; không ghi toàn bộ ma trận là đã duyệt. Mỗi gói trình tiếp vẫn giữ giới hạn quyết định nhỏ của roadmap.
+Hai nguyên tắc điều chỉnh cùng MVP và bugfix bên dưới đã được duyệt riêng cùng G2; KA-17/19 được đồng bộ đúng phần đó. Ngày2026-09-17, Human duyệt D5 của [R06 r1](proposals/r06-maps-change-r1.md), chốt các nhánh Future, ưu tiên và phân loại yêu cầu của ma trận này. Đây là duyệt phương pháp và triển khai local đúng gói, không tự duyệt nghiệp vụ của từng project, đổi ưu tiên hoặc cấp quyền phát hành.
 
 <a id="mvp-replanning-state"></a>
 
@@ -1414,7 +1414,7 @@ Tài liệu về nghiệp vụ được giữ nguyên trong [references/business
 |---|---|
 | Fixture, số lần AI, ngưỡng đo và giới hạn bài thử chu kỳ cụ thể | R02-T10/R07-T04/R06-T09/R10-T06 theo chính sách R01-T08/T09 đã duyệt; số nháp QUALITY chưa có hiệu lực |
 | Hoàn tất kiểm tra khung/runtime đã duyệt, schema, approval/checkpoint/quyền ghi/phiên bản và lõi tối thiểu | [R02](KIDEA_ROADMAP.md#r02), chốt hợp đồng nhỏ trước lát cắt phụ thuộc |
-| Phân rã nghiệp vụ, AC, chọn business test và các nhánh tiếp nhận Future/ưu tiên còn đề xuất | [R03](KIDEA_ROADMAP.md#r03), [R06-T07](KIDEA_ROADMAP.md#r06); không mở lại nguyên tắc MVP/bugfix đã duyệt |
+| Áp dụng nghiệp vụ/AC/business test và các nhánh Future/ưu tiên cho từng project | [R03](KIDEA_ROADMAP.md#r03), [R06-T07](KIDEA_ROADMAP.md#r06); D5 đã duyệt phương pháp, nghiệp vụ/ưu tiên từng project vẫn cần đúng authority |
 | Chất lượng/UX/SEO/ops/admin và kiến trúc sản phẩm | [R04](KIDEA_ROADMAP.md#r04) |
 | Coding rules từng nền tảng và technical test | [R05](KIDEA_ROADMAP.md#r05) |
 | Ba bản đồ, adapter/giới hạn và change/impact/resume sâu | [R06](KIDEA_ROADMAP.md#r06) |
@@ -1423,4 +1423,4 @@ Tài liệu về nghiệp vụ được giữ nguyên trong [references/business
 
 Lộ trình duy nhất theo dõi phase/task/subtask: [KIDEA_ROADMAP.md](KIDEA_ROADMAP.md). Mọi thay đổi thiết kế phải cập nhật mục nguồn, đánh giá đủ phần phụ thuộc kể cả không có diff và chốt đúng gate; không tạo thiết kế thứ hai trong roadmap. Human chỉ cần đọc gói nhỏ được trỏ chính xác ở lượt hiện hành, không phải tự dò toàn file.
 
-Trạng thái tiếp nối: [R05 đã được Human nghiệm thu backend/Web](docs/R05_ACCEPTANCE.md). [Gói R06 r1](proposals/r06-maps-change-r1.md) là PROPOSED, chờ duyệt nội dung và quyền triển khai; chưa thay schema/helper hoặc tự duyệt các nhánh tiếp nhận yêu cầu, giới hạn vòng thử hay phiên AI.
+Trạng thái tiếp nối: [R05 đã được Human nghiệm thu backend/Web](docs/R05_ACCEPTANCE.md). [Gói R06 r1](proposals/r06-maps-change-r1.md) đã APPROVED D1–D7 và phần local ngày2026-09-17; đang triển khai/kiểm, chưa nghiệm thu R06. Giữ schema2; map/assessment là bằng chứng, plan là hàng đợi duy nhất. Canh3lượt không tiến triển/20đánh giá chỉ thuộc fixture và2phiên mới×15phút chỉ thuộc gói này; không mở ngưỡng sản phẩm rộng hoặc quyền Docker/cài đặt.

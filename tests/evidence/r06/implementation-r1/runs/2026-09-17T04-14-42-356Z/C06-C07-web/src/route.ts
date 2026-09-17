@@ -1,0 +1,1 @@
+import {value} from '$lib'; export function render(){ return value; } import('dynamic'); fetch('/api/register');

@@ -1,0 +1,758 @@
+{
+  "id": "0x7fd8f2817408",
+  "kind": "TranslationUnitDecl",
+  "loc": {},
+  "range": {
+    "begin": {},
+    "end": {}
+  },
+  "inner": [
+    {
+      "id": "0x7fd8f2817c70",
+      "kind": "TypedefDecl",
+      "loc": {},
+      "range": {
+        "begin": {},
+        "end": {}
+      },
+      "isImplicit": true,
+      "name": "__int128_t",
+      "type": {
+        "qualType": "__int128"
+      },
+      "inner": [
+        {
+          "id": "0x7fd8f28179d0",
+          "kind": "BuiltinType",
+          "type": {
+            "qualType": "__int128"
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x7fd8f2817ce0",
+      "kind": "TypedefDecl",
+      "loc": {},
+      "range": {
+        "begin": {},
+        "end": {}
+      },
+      "isImplicit": true,
+      "name": "__uint128_t",
+      "type": {
+        "qualType": "unsigned __int128"
+      },
+      "inner": [
+        {
+          "id": "0x7fd8f28179f0",
+          "kind": "BuiltinType",
+          "type": {
+            "qualType": "unsigned __int128"
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x7fd8f2818060",
+      "kind": "TypedefDecl",
+      "loc": {},
+      "range": {
+        "begin": {},
+        "end": {}
+      },
+      "isImplicit": true,
+      "name": "__NSConstantString",
+      "type": {
+        "qualType": "__NSConstantString_tag"
+      },
+      "inner": [
+        {
+          "id": "0x7fd8f2817dd0",
+          "kind": "RecordType",
+          "type": {
+            "qualType": "__NSConstantString_tag"
+          },
+          "decl": {
+            "id": "0x7fd8f2817d38",
+            "kind": "CXXRecordDecl",
+            "name": "__NSConstantString_tag"
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x7fd8f2818108",
+      "kind": "TypedefDecl",
+      "loc": {},
+      "range": {
+        "begin": {},
+        "end": {}
+      },
+      "isImplicit": true,
+      "name": "__builtin_ms_va_list",
+      "type": {
+        "qualType": "char *"
+      },
+      "inner": [
+        {
+          "id": "0x7fd8f28180c0",
+          "kind": "PointerType",
+          "type": {
+            "qualType": "char *"
+          },
+          "inner": [
+            {
+              "id": "0x7fd8f28174b0",
+              "kind": "BuiltinType",
+              "type": {
+                "qualType": "char"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0x7fd8f30310a8",
+      "kind": "TypedefDecl",
+      "loc": {},
+      "range": {
+        "begin": {},
+        "end": {}
+      },
+      "isImplicit": true,
+      "name": "__builtin_va_list",
+      "type": {
+        "qualType": "__va_list_tag[1]"
+      },
+      "inner": [
+        {
+          "id": "0x7fd8f3031050",
+          "kind": "ConstantArrayType",
+          "type": {
+            "qualType": "__va_list_tag[1]"
+          },
+          "size": 1,
+          "inner": [
+            {
+              "id": "0x7fd8f28181f0",
+              "kind": "RecordType",
+              "type": {
+                "qualType": "__va_list_tag"
+              },
+              "decl": {
+                "id": "0x7fd8f2818160",
+                "kind": "CXXRecordDecl",
+                "name": "__va_list_tag"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0x7fd8f3031100",
+      "kind": "NamespaceDecl",
+      "loc": {
+        "offset": 10,
+        "file": "conditional.cpp",
+        "line": 1,
+        "col": 11,
+        "tokLen": 3
+      },
+      "range": {
+        "begin": {
+          "offset": 0,
+          "col": 1,
+          "tokLen": 9
+        },
+        "end": {
+          "offset": 187,
+          "line": 9,
+          "col": 1,
+          "tokLen": 1
+        }
+      },
+      "name": "lab",
+      "inner": [
+        {
+          "id": "0x7fd8f3031170",
+          "kind": "CXXRecordDecl",
+          "loc": {
+            "offset": 23,
+            "line": 2,
+            "col": 8,
+            "tokLen": 4
+          },
+          "range": {
+            "begin": {
+              "offset": 16,
+              "col": 1,
+              "tokLen": 6
+            },
+            "end": {
+              "offset": 63,
+              "col": 48,
+              "tokLen": 1
+            }
+          },
+          "isReferenced": true,
+          "name": "Base",
+          "tagUsed": "struct",
+          "completeDefinition": true,
+          "definitionData": {
+            "canConstDefaultInit": true,
+            "copyAssign": {
+              "hasConstParam": true,
+              "implicitHasConstParam": true,
+              "nonTrivial": true,
+              "simple": true
+            },
+            "copyCtor": {
+              "hasConstParam": true,
+              "implicitHasConstParam": true,
+              "needsImplicit": true,
+              "nonTrivial": true,
+              "simple": true
+            },
+            "defaultCtor": {
+              "defaultedIsConstexpr": true,
+              "exists": true,
+              "isConstexpr": true,
+              "needsImplicit": true,
+              "nonTrivial": true
+            },
+            "dtor": {
+              "irrelevant": true,
+              "simple": true,
+              "trivial": true
+            },
+            "hasConstexprNonCopyMoveConstructor": true,
+            "isLiteral": true,
+            "isPolymorphic": true,
+            "moveAssign": {
+              "exists": true,
+              "nonTrivial": true,
+              "simple": true
+            },
+            "moveCtor": {
+              "exists": true,
+              "needsImplicit": true,
+              "nonTrivial": true,
+              "simple": true
+            }
+          },
+          "inner": [
+            {
+              "id": "0x7fd8f3031288",
+              "kind": "CXXRecordDecl",
+              "loc": {
+                "offset": 23,
+                "col": 8,
+                "tokLen": 4
+              },
+              "range": {
+                "begin": {
+                  "offset": 16,
+                  "col": 1,
+                  "tokLen": 6
+                },
+                "end": {
+                  "offset": 23,
+                  "col": 8,
+                  "tokLen": 4
+                }
+              },
+              "isImplicit": true,
+              "name": "Base",
+              "tagUsed": "struct"
+            },
+            {
+              "id": "0x7fd8f30313a0",
+              "kind": "CXXMethodDecl",
+              "loc": {
+                "offset": 42,
+                "col": 27,
+                "tokLen": 4
+              },
+              "range": {
+                "begin": {
+                  "offset": 30,
+                  "col": 15,
+                  "tokLen": 7
+                },
+                "end": {
+                  "offset": 61,
+                  "col": 46,
+                  "tokLen": 1
+                }
+              },
+              "isUsed": true,
+              "name": "call",
+              "mangledName": "_ZN3lab4Base4callEv",
+              "type": {
+                "qualType": "int ()"
+              },
+              "virtual": true,
+              "inner": [
+                {
+                  "id": "0x7fd8f3031a10",
+                  "kind": "CompoundStmt",
+                  "range": {
+                    "begin": {
+                      "offset": 49,
+                      "col": 34,
+                      "tokLen": 1
+                    },
+                    "end": {
+                      "offset": 61,
+                      "col": 46,
+                      "tokLen": 1
+                    }
+                  },
+                  "inner": [
+                    {
+                      "id": "0x7fd8f3031a00",
+                      "kind": "ReturnStmt",
+                      "range": {
+                        "begin": {
+                          "offset": 51,
+                          "col": 36,
+                          "tokLen": 6
+                        },
+                        "end": {
+                          "offset": 58,
+                          "col": 43,
+                          "tokLen": 1
+                        }
+                      },
+                      "inner": [
+                        {
+                          "id": "0x7fd8f30319e0",
+                          "kind": "IntegerLiteral",
+                          "range": {
+                            "begin": {
+                              "offset": 58,
+                              "col": 43,
+                              "tokLen": 1
+                            },
+                            "end": {
+                              "offset": 58,
+                              "col": 43,
+                              "tokLen": 1
+                            }
+                          },
+                          "type": {
+                            "qualType": "int"
+                          },
+                          "valueCategory": "prvalue",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "0x7fd8f3031550",
+              "kind": "CXXMethodDecl",
+              "loc": {
+                "offset": 23,
+                "col": 8,
+                "tokLen": 4
+              },
+              "range": {
+                "begin": {
+                  "offset": 23,
+                  "col": 8,
+                  "tokLen": 4
+                },
+                "end": {
+                  "offset": 23,
+                  "col": 8,
+                  "tokLen": 4
+                }
+              },
+              "isImplicit": true,
+              "name": "operator=",
+              "mangledName": "_ZN3lab4BaseaSERKS0_",
+              "type": {
+                "qualType": "Base &(const Base &)"
+              },
+              "inline": true,
+              "constexpr": true,
+              "explicitlyDefaulted": "default",
+              "inner": [
+                {
+                  "id": "0x7fd8f3031668",
+                  "kind": "ParmVarDecl",
+                  "loc": {
+                    "offset": 23,
+                    "col": 8,
+                    "tokLen": 4
+                  },
+                  "range": {
+                    "begin": {
+                      "offset": 23,
+                      "col": 8,
+                      "tokLen": 4
+                    },
+                    "end": {
+                      "offset": 23,
+                      "col": 8,
+                      "tokLen": 4
+                    }
+                  },
+                  "type": {
+                    "qualType": "const Base &"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "0x7fd8f3031738",
+              "kind": "CXXMethodDecl",
+              "loc": {
+                "offset": 23,
+                "col": 8,
+                "tokLen": 4
+              },
+              "range": {
+                "begin": {
+                  "offset": 23,
+                  "col": 8,
+                  "tokLen": 4
+                },
+                "end": {
+                  "offset": 23,
+                  "col": 8,
+                  "tokLen": 4
+                }
+              },
+              "isImplicit": true,
+              "name": "operator=",
+              "mangledName": "_ZN3lab4BaseaSEOS0_",
+              "type": {
+                "qualType": "Base &(Base &&)"
+              },
+              "inline": true,
+              "constexpr": true,
+              "explicitlyDefaulted": "default",
+              "inner": [
+                {
+                  "id": "0x7fd8f3031848",
+                  "kind": "ParmVarDecl",
+                  "loc": {
+                    "offset": 23,
+                    "col": 8,
+                    "tokLen": 4
+                  },
+                  "range": {
+                    "begin": {
+                      "offset": 23,
+                      "col": 8,
+                      "tokLen": 4
+                    },
+                    "end": {
+                      "offset": 23,
+                      "col": 8,
+                      "tokLen": 4
+                    }
+                  },
+                  "type": {
+                    "qualType": "Base &&"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "0x7fd8f30318c8",
+              "kind": "CXXDestructorDecl",
+              "loc": {
+                "offset": 23,
+                "col": 8,
+                "tokLen": 4
+              },
+              "range": {
+                "begin": {
+                  "offset": 23,
+                  "col": 8,
+                  "tokLen": 4
+                },
+                "end": {
+                  "offset": 23,
+                  "col": 8,
+                  "tokLen": 4
+                }
+              },
+              "isImplicit": true,
+              "name": "~Base",
+              "mangledName": "_ZN3lab4BaseD1Ev",
+              "type": {
+                "qualType": "void ()"
+              },
+              "inline": true,
+              "constexpr": true,
+              "explicitlyDefaulted": "default"
+            }
+          ]
+        },
+        {
+          "id": "0x7fd8f3031a50",
+          "kind": "FunctionDecl",
+          "loc": {
+            "offset": 117,
+            "line": 6,
+            "col": 5,
+            "tokLen": 8
+          },
+          "range": {
+            "begin": {
+              "offset": 113,
+              "col": 1,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 138,
+              "col": 26,
+              "tokLen": 1
+            }
+          },
+          "name": "selected",
+          "mangledName": "_ZN3lab8selectedEv",
+          "type": {
+            "qualType": "int ()"
+          },
+          "inner": [
+            {
+              "id": "0x7fd8f3031b28",
+              "kind": "CompoundStmt",
+              "range": {
+                "begin": {
+                  "offset": 127,
+                  "col": 15,
+                  "tokLen": 1
+                },
+                "end": {
+                  "offset": 138,
+                  "col": 26,
+                  "tokLen": 1
+                }
+              },
+              "inner": [
+                {
+                  "id": "0x7fd8f3031b18",
+                  "kind": "ReturnStmt",
+                  "range": {
+                    "begin": {
+                      "offset": 128,
+                      "col": 16,
+                      "tokLen": 6
+                    },
+                    "end": {
+                      "offset": 135,
+                      "col": 23,
+                      "tokLen": 2
+                    }
+                  },
+                  "inner": [
+                    {
+                      "id": "0x7fd8f3031af8",
+                      "kind": "IntegerLiteral",
+                      "range": {
+                        "begin": {
+                          "offset": 135,
+                          "col": 23,
+                          "tokLen": 2
+                        },
+                        "end": {
+                          "offset": 135,
+                          "col": 23,
+                          "tokLen": 2
+                        }
+                      },
+                      "type": {
+                        "qualType": "int"
+                      },
+                      "valueCategory": "prvalue",
+                      "value": "22"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "0x7fd8f3031c50",
+          "kind": "FunctionDecl",
+          "loc": {
+            "offset": 151,
+            "line": 8,
+            "col": 5,
+            "tokLen": 6
+          },
+          "range": {
+            "begin": {
+              "offset": 147,
+              "col": 1,
+              "tokLen": 3
+            },
+            "end": {
+              "offset": 185,
+              "col": 39,
+              "tokLen": 1
+            }
+          },
+          "name": "invoke",
+          "mangledName": "_ZN3lab6invokeERNS_4BaseE",
+          "type": {
+            "qualType": "int (Base &)"
+          },
+          "inner": [
+            {
+              "id": "0x7fd8f3031b58",
+              "kind": "ParmVarDecl",
+              "loc": {
+                "offset": 164,
+                "col": 18,
+                "tokLen": 1
+              },
+              "range": {
+                "begin": {
+                  "offset": 158,
+                  "col": 12,
+                  "tokLen": 4
+                },
+                "end": {
+                  "offset": 164,
+                  "col": 18,
+                  "tokLen": 1
+                }
+              },
+              "isUsed": true,
+              "name": "b",
+              "type": {
+                "qualType": "Base &"
+              }
+            },
+            {
+              "id": "0x7fd8f3031e70",
+              "kind": "CompoundStmt",
+              "range": {
+                "begin": {
+                  "offset": 166,
+                  "col": 20,
+                  "tokLen": 1
+                },
+                "end": {
+                  "offset": 185,
+                  "col": 39,
+                  "tokLen": 1
+                }
+              },
+              "inner": [
+                {
+                  "id": "0x7fd8f3031e60",
+                  "kind": "ReturnStmt",
+                  "range": {
+                    "begin": {
+                      "offset": 168,
+                      "col": 22,
+                      "tokLen": 6
+                    },
+                    "end": {
+                      "offset": 182,
+                      "col": 36,
+                      "tokLen": 1
+                    }
+                  },
+                  "inner": [
+                    {
+                      "id": "0x7fd8f3031d50",
+                      "kind": "CXXMemberCallExpr",
+                      "range": {
+                        "begin": {
+                          "offset": 175,
+                          "col": 29,
+                          "tokLen": 1
+                        },
+                        "end": {
+                          "offset": 182,
+                          "col": 36,
+                          "tokLen": 1
+                        }
+                      },
+                      "type": {
+                        "qualType": "int"
+                      },
+                      "valueCategory": "prvalue",
+                      "inner": [
+                        {
+                          "id": "0x7fd8f3031d20",
+                          "kind": "MemberExpr",
+                          "range": {
+                            "begin": {
+                              "offset": 175,
+                              "col": 29,
+                              "tokLen": 1
+                            },
+                            "end": {
+                              "offset": 177,
+                              "col": 31,
+                              "tokLen": 4
+                            }
+                          },
+                          "type": {
+                            "qualType": "<bound member function type>"
+                          },
+                          "valueCategory": "prvalue",
+                          "name": "call",
+                          "isArrow": false,
+                          "referencedMemberDecl": "0x7fd8f30313a0",
+                          "inner": [
+                            {
+                              "id": "0x7fd8f3031d00",
+                              "kind": "DeclRefExpr",
+                              "range": {
+                                "begin": {
+                                  "offset": 175,
+                                  "col": 29,
+                                  "tokLen": 1
+                                },
+                                "end": {
+                                  "offset": 175,
+                                  "col": 29,
+                                  "tokLen": 1
+                                }
+                              },
+                              "type": {
+                                "desugaredQualType": "lab::Base",
+                                "qualType": "Base"
+                              },
+                              "valueCategory": "lvalue",
+                              "referencedDecl": {
+                                "id": "0x7fd8f3031b58",
+                                "kind": "ParmVarDecl",
+                                "name": "b",
+                                "type": {
+                                  "qualType": "Base &"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

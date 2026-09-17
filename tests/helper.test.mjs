@@ -16,7 +16,8 @@ const snapshot = (root) => Object.fromEntries(readdirSync(root, { recursive: tru
 
 const cases = [
   { args: ['--help'], status: 0 },
-  ...['change', 'visualize'].map((action) => ({ args: [action], status: 3, code: 'NOT_IMPLEMENTED' })),
+  { args: ['visualize'], status: 3, code: 'NOT_IMPLEMENTED' },
+  { args: ['change'], status: 1, code: 'CHANGE_INPUT_INVALID' },
   { args: ['resume'], status: 1, code: 'RESUME_INPUT_INVALID' },
   { args: ['approve'], status: 1, code: 'REVIEW_INPUT_INVALID' },
   { args: ['init'], status: 1, code: 'INIT_INPUT_INVALID' },
@@ -35,7 +36,7 @@ for (const entry of cases) {
     assert.equal(result.status, entry.status, result.stderr);
     const response = JSON.parse(entry.status === 0 ? result.stdout : result.stderr);
     if (entry.code) assert.equal(response.code, entry.code);
-    else assert.deepEqual(response.implemented, ['status','init','approve','resume']);
+    else assert.deepEqual(response.implemented, ['status','init','approve','resume','change']);
     assert.equal(entry.status === 0 ? result.stderr : result.stdout, '');
     assert.deepEqual(snapshot(fixture), before);
   });

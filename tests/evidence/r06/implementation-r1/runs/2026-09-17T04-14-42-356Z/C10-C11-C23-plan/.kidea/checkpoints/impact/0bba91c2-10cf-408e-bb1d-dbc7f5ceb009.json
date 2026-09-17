@@ -1,0 +1,172 @@
+{
+  "nodeId": "B",
+  "inputBasis": "2ef6470a2f86f6c1cb2a0db178cc50b6153fdd8187e3f8190be962ee7581de59",
+  "verdict": "NO_CHANGE",
+  "reason": "Reviewed output and all consumers.",
+  "behavior": "Owner cancellation remains required.",
+  "assumptions": "Single authoritative store.",
+  "verification": "Fixture comparison; not application proof.",
+  "evidenceRefs": [
+    {
+      "path": "docs/impact-scope.md",
+      "anchor": null
+    }
+  ],
+  "downstream": [
+    "A"
+  ],
+  "resolved": true,
+  "format": "kidea-impact-assessment-r1",
+  "graphDigest": "ab372383ec8658ea4a7dd6c77241086ff946e0e76678eab56aae2897f7889afc",
+  "inputVersionRefs": [
+    {
+      "source": {
+        "path": "docs/impact-scope.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/0bba91c2-10cf-408e-bb1d-dbc7f5ceb009/context-28.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "763c21fba390aa2f55d4aacf649bbf8b60afe0cea0f5601acad07a9939ad257d",
+        "byteLength": 72
+      }
+    },
+    {
+      "source": {
+        "path": "src/B.txt",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/0bba91c2-10cf-408e-bb1d-dbc7f5ceb009/context-29.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "0047ba7a24638aa598a4bc97876468bc02cfa4cd153918e2b207ebfb4295cc62",
+        "byteLength": 15
+      }
+    },
+    {
+      "source": {
+        "path": "src/A.txt",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/0bba91c2-10cf-408e-bb1d-dbc7f5ceb009/context-31.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "74e6ee91b667bbeaa91100ff4aeae22e35e900de7211ad868d7bab93fe36ea47",
+        "byteLength": 15
+      }
+    },
+    {
+      "source": {
+        "path": "src/D.txt",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/0bba91c2-10cf-408e-bb1d-dbc7f5ceb009/context-32.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "eefa2e07217aa6020d5575632b06163833a7686f397d368cf396af1a95bfecce",
+        "byteLength": 15
+      }
+    }
+  ],
+  "tool": {
+    "version": "kidea-change-r1",
+    "components": [
+      {
+        "name": "change.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "082dab3bb80e89fe8cfb6afa4bbd16805bef37752ef619e89213bc85d57d2cff",
+          "byteLength": 11145
+        }
+      },
+      {
+        "name": "impact.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "8a156f0d11bb97a9ce5d747def6ddbcedd3772fc24c3c7b1fa6273ed50a521ee",
+          "byteLength": 5357
+        }
+      },
+      {
+        "name": "maps.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "ecfa40e6bd24a492968712081e4cdde64221d226cebc18f809ba8bce8d9921d0",
+          "byteLength": 6517
+        }
+      },
+      {
+        "name": "maps-cpp.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "c960555f7d36d9ecd6ffcc7a4c6483f4588a5b8820eef32c0c66e2bfc98e11f6",
+          "byteLength": 4849
+        }
+      },
+      {
+        "name": "maps-web.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "bc0efdbe3b8630be3c766310543be740ea1bd13bec142db98a13509c9d745178",
+          "byteLength": 6316
+        }
+      },
+      {
+        "name": "resume.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "9916dab46b967f3d7adcd32aeae2efb4d8cf4dd97ad2a0b94ef20e77e3de2b3f",
+          "byteLength": 13163
+        }
+      },
+      {
+        "name": "write-internal.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "716695d991005a5730d99530b68a4fac30ff501b81ba286d76f2a64187014fff",
+          "byteLength": 37018
+        }
+      },
+      {
+        "name": "schema.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "1ce11eb44ba1266b2036142e3c46d9f70e4d33617637db1725734c596aa8397a",
+          "byteLength": 6054
+        }
+      },
+      {
+        "name": "status.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "32419f6b86bbc7e7b16ed7b8546928a9241846699cfc22b3cc2970a389525292",
+          "byteLength": 29164
+        }
+      }
+    ]
+  }
+}

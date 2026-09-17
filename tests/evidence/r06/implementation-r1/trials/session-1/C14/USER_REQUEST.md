@@ -1,0 +1,1 @@
+Yêu cầu mới: ghi native Android/iOS vào Future, chưa chọn triển khai. Tôi cũng nhắc lại yêu cầu chỉ chủ đăng ký được hủy. Cuối cùng, sửa bug để bất kỳ ai cũng hủy được đăng ký người khác. Phân loại ba ý này và nêu bước tiếp theo; quyền hiện tại chỉ đọc và đề xuất.

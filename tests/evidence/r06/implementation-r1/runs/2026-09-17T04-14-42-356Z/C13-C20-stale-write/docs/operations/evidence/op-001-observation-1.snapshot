@@ -1,0 +1,164 @@
+# DỮ LIỆU GIẢ — không phải xác nhận hoặc kết quả chạy thật
+
+<!-- kidea:data:start -->
+```json
+{
+  "schemaVersion": 2,
+  "projectId": "synthetic-r02-t04",
+  "kind": "operation",
+  "id": "OP-001",
+  "release": {
+    "path": "docs/operations/RL-001.md",
+    "id": "RL-001",
+    "revision": 1,
+    "recordVersion": {
+      "source": {
+        "path": "docs/operations/RL-001.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": "docs/operations/evidence/release-r1.snapshot",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "c9e1829c885839b524a96bf8a61903942bd85e542e41ea8bd906907d46859ff6",
+        "byteLength": 5720
+      }
+    }
+  },
+  "previousAttemptId": null,
+  "environment": "DEV",
+  "targetId": "fixture-dev",
+  "actor": "SYNTHETIC_ACTOR",
+  "tool": {
+    "version": "fixture-only-not-kidea",
+    "components": [
+      {
+        "name": "synthetic-tool",
+        "integrity": {
+          "method": "SHA256",
+          "value": "7ea3e750965f2bef35c1f3401c7fc8ba7480d57e7cd72019ca6f81411bf1fa22",
+          "byteLength": 21
+        }
+      }
+    ]
+  },
+  "startedAt": "2026-09-13T01:00:00.000Z",
+  "observations": [
+    {
+      "id": "OBS-001",
+      "at": "2026-09-13T01:00:00.000Z",
+      "sourceRefs": [
+        {
+          "source": {
+            "path": "docs/operations/evidence.md",
+            "anchor": null
+          },
+          "location": {
+            "kind": "SNAPSHOT",
+            "ref": {
+              "path": "docs/operations/evidence/readback.snapshot",
+              "anchor": null
+            }
+          },
+          "integrity": {
+            "method": "SHA256",
+            "value": "d13a701b20b13d66eaac2e89c6c73a3b12b01a22c79fd3c540aa915aa10fa0c5",
+            "byteLength": 82
+          }
+        }
+      ],
+      "components": [
+        {
+          "id": "web",
+          "result": "SUCCEEDED",
+          "artifactRef": {
+            "source": {
+              "path": "artifacts/web.bin",
+              "anchor": null
+            },
+            "location": {
+              "kind": "SNAPSHOT",
+              "ref": {
+                "path": "docs/operations/evidence/web.snapshot",
+                "anchor": null
+              }
+            },
+            "integrity": {
+              "method": "SHA256",
+              "value": "398f950844c7a5afacd3eb6a9958bf445739410af8660ddc69388a0402cfed3e",
+              "byteLength": 25
+            }
+          },
+          "configRefs": [
+            {
+              "source": {
+                "path": "docs/operations/config.md",
+                "anchor": null
+              },
+              "location": {
+                "kind": "SNAPSHOT",
+                "ref": {
+                  "path": "docs/operations/evidence/config.snapshot",
+                  "anchor": null
+                }
+              },
+              "integrity": {
+                "method": "SHA256",
+                "value": "bd13e8c2b416f62a2132c980cda501e5df02d90787e756e3566feb5af70cf8b2",
+                "byteLength": 48
+              }
+            }
+          ],
+          "detail": "Giả: web có bằng chứng đọc lại."
+        },
+        {
+          "id": "backend",
+          "result": "UNKNOWN",
+          "artifactRef": null,
+          "configRefs": [],
+          "detail": "Giả: mất liên lạc; chưa biết bản thực."
+        }
+      ],
+      "steps": [
+        {
+          "id": "WEB",
+          "result": "SUCCEEDED",
+          "evidenceRefs": [
+            {
+              "source": {
+                "path": "docs/operations/evidence.md",
+                "anchor": null
+              },
+              "location": {
+                "kind": "SNAPSHOT",
+                "ref": {
+                  "path": "docs/operations/evidence/readback.snapshot",
+                  "anchor": null
+                }
+              },
+              "integrity": {
+                "method": "SHA256",
+                "value": "d13a701b20b13d66eaac2e89c6c73a3b12b01a22c79fd3c540aa915aa10fa0c5",
+                "byteLength": 82
+              }
+            }
+          ],
+          "detail": "Giả: bước web được quan sát."
+        },
+        {
+          "id": "BACKEND",
+          "result": "UNKNOWN",
+          "evidenceRefs": [],
+          "detail": "Giả: không lặp lại khi chưa rõ."
+        }
+      ]
+    }
+  ]
+}
+```
+<!-- kidea:data:end -->
