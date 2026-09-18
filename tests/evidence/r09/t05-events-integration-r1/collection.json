@@ -1,0 +1,308 @@
+{
+  "source": "/Users/kendrick/Desktop/kidea/.test-output/r09-web-7e8443f1-f9ab-4740-af32-da58db6105fc",
+  "run": {
+    "id": "r09-web-7e8443f1-f9ab-4740-af32-da58db6105fc",
+    "manifestHash": "0393ef1625d8a3c81cf82dceb1d876c604edb9565a3cb2fd2f0ced2ea7d8c048",
+    "started": "2026-09-18T07:25:11.524Z",
+    "ended": "2026-09-18T07:29:44.632Z",
+    "status": "FAIL",
+    "error": "AssertionError [ERR_ASSERTION]: BROWSER_EXIT\n\n1 !== 0\n\n    at file:///Users/kendrick/Desktop/kidea/tests/r09/t03-integration/run.mjs:21:337"
+  },
+  "browser": {
+    "status": "FAIL",
+    "checks": [
+      {
+        "name": "public-SSR-JS-off-TLS",
+        "status": "PASS"
+      },
+      {
+        "name": "server-session-cookie-isolation",
+        "status": "PASS"
+      },
+      {
+        "name": "real-commit-lost-response-reload-GET-only",
+        "status": "PASS"
+      },
+      {
+        "name": "last-seat-FULL-other-user",
+        "status": "PASS"
+      },
+      {
+        "name": "Escape-no-write-exact-id-cancel",
+        "status": "PASS"
+      },
+      {
+        "name": "cancel-rebook-old-result-immutable",
+        "status": "PASS"
+      },
+      {
+        "name": "private-SSR-no-cross-user-data",
+        "status": "PASS"
+      },
+      {
+        "name": "proxy-forgery-and-CSRF-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "restored-page-server-revalidates-new-actor",
+        "status": "PASS"
+      },
+      {
+        "name": "invalid-session-clears-private-page",
+        "status": "PASS"
+      },
+      {
+        "name": "real-JS-off-intro-list-detail-navigation",
+        "status": "PASS"
+      },
+      {
+        "name": "PAUSED-public-SSR-and-participant-controls",
+        "status": "PASS"
+      },
+      {
+        "name": "PAUSED-preserves-old-result-and-denies-new-registration",
+        "status": "PASS"
+      },
+      {
+        "name": "baseline-PAUSED-cancel-rejected-before-T09",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-second-ACTIVE-real-browser",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-third-ACTIVE-rejected-without-consuming-seat",
+        "status": "PASS"
+      }
+    ],
+    "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: '\u0110\u0103ng k\u00fd', exact: true })\n    - locator resolved to <button class=\"svelte-p1vwze\">\u0110\u0103ng k\u00fd</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - performing click action\n    - <html lang=\"vi\">\u2026</html> intercepts pointer events\n  - retrying click action\n    - waiting for element to be visible, enabled and stable\n  - element was detached from the DOM, retrying\n\n    at /plan/browser.mjs:42:125"
+  },
+  "files": [
+    {
+      "path": "app/backend.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/backend.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/backend.stdout",
+      "sha256": "cdf44e15ea5ef713792b77916dc28fb7a4c1cff117b41b4f5f1d6124185fa6f7"
+    },
+    {
+      "path": "app/init.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/init.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/init.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/seed.json",
+      "sha256": "7b1be05076a76c86a07e0e0d2f6ee8afd3ddea129740c62c89cfff1cfe6dea13"
+    },
+    {
+      "path": "app/web.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/web.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/web.stdout",
+      "sha256": "1280bed20c1210eb20be935c8f0d5629cc2eb73cc66d115341830fd01e0dbbd3"
+    },
+    {
+      "path": "app/workshop.sqlite",
+      "sha256": "6940839d1064daed13172994094f3e6d342f94bc014eb069b48d3f821135b434"
+    },
+    {
+      "path": "browser/history.json",
+      "sha256": "4faacd8f5b711b3b2e5c8336f4f917e9e22e5f798eb3aa574cd2fd7c0ecd7405"
+    },
+    {
+      "path": "browser/private.png",
+      "sha256": "733509542bfe6242013129d65f1466c55feef435885eebfc9398f4f38d4f36b9"
+    },
+    {
+      "path": "browser/quota-rejected.png",
+      "sha256": "97f0d6383a4a3e9cb61b22d1cdca8e0f54f66c160e6ebc69d79fed8a13947ba7"
+    },
+    {
+      "path": "browser/requests.json",
+      "sha256": "0cf7d37b731eacd13c11df85bd2a0143269c0114ccda0ae1eb7305431ede82b4"
+    },
+    {
+      "path": "browser/result.json",
+      "sha256": "1dbec2d35d81fa65289bc2738481bf50e65805e129be924fb20c186254973b92"
+    },
+    {
+      "path": "fixtures/app-ready.json",
+      "sha256": "3ec09a195f4a3f88db465166131d8534a612822a5c2c4e4d0f3e13e11593a76f"
+    },
+    {
+      "path": "fixtures/root.crt",
+      "sha256": "ef4b428e0790daf728a400fa818e802f86f764808165d5da2ccb4f55b6135b9a"
+    },
+    {
+      "path": "fixtures/workshop.json",
+      "sha256": "90e36638a80442268ad3f338aef42482282cd603f22cc306bee57de850cd91c9"
+    },
+    {
+      "path": "logs/001.json",
+      "sha256": "e02b141cc942268f26045f66b7c0dbbba18e8889fd946e8705372868c9553096"
+    },
+    {
+      "path": "logs/002.json",
+      "sha256": "2a8d8552ce58bc22a1bdfa752ff022b581b88242957ebd81ac7d376928ec36a2"
+    },
+    {
+      "path": "logs/003.json",
+      "sha256": "0f0c9980dd31f7bcb6821f140196caf879b4fc2448a6788628b20d64c43393ae"
+    },
+    {
+      "path": "logs/004.json",
+      "sha256": "b1a2dd689bfd46723e5bc7f02f481c946254a0239b720b2ddb38cf3edb5e5163"
+    },
+    {
+      "path": "logs/005.json",
+      "sha256": "bd79b5e0a2afb06ef3c8cb58dc66fac79e39bf380d3b3477d83e998bc439194b"
+    },
+    {
+      "path": "logs/006.json",
+      "sha256": "69226679439888a44093293d01fdbe577a9ef03d0ad5477241d6530fed5609a5"
+    },
+    {
+      "path": "logs/007.json",
+      "sha256": "83ee18978317b90124c788e2cb6a9c22b71c016ac2b25dcb382854da7e243857"
+    },
+    {
+      "path": "logs/008.json",
+      "sha256": "9e21344eb3ce500bec80036dbcb3c104f51a810e66b5bd3522c4aafffb7e9497"
+    },
+    {
+      "path": "logs/009.json",
+      "sha256": "5cb226df4ee5b0b5229c57a1e0c708887731d36b687cb52ab6266eaf57437384"
+    },
+    {
+      "path": "logs/010.json",
+      "sha256": "db221e83d1d776eff5e8b20ffa0509e76499f4b1072c3edd2bc8cdef51055d67"
+    },
+    {
+      "path": "logs/011.json",
+      "sha256": "15eed6f9b01b5ac85a0d4e45febe40b0387a7118d52877dd5e27cd5e43bcea1c"
+    },
+    {
+      "path": "logs/012.json",
+      "sha256": "f501c77c04c3310b3da6d5a30b83938b929a1f1ea704e9e7d0fc312328ff48d7"
+    },
+    {
+      "path": "logs/013.json",
+      "sha256": "4e24f97fbff2eda3fd6e8b1fa6702ccf8682d3b687514840bd9a4903193db954"
+    },
+    {
+      "path": "logs/014.json",
+      "sha256": "60d383c0cb2c140dce70566fae5a292e31cb80f970363ada8d26ce441d4344d5"
+    },
+    {
+      "path": "logs/015.json",
+      "sha256": "b77d05c04142b904fae840ca5536a476211eda467414350ad3b9e585136a5b81"
+    },
+    {
+      "path": "logs/016.json",
+      "sha256": "1e7b47c469b613eef9d5ef6352c16b418cd7b97e3ccc452951f583dc644d706d"
+    },
+    {
+      "path": "logs/017.json",
+      "sha256": "b77d05c04142b904fae840ca5536a476211eda467414350ad3b9e585136a5b81"
+    },
+    {
+      "path": "logs/018.json",
+      "sha256": "e051a439068247348b51da72baa4fad0dbd675fdad8fd767660da3732d5c45c2"
+    },
+    {
+      "path": "logs/019.json",
+      "sha256": "5b0b300b6fb68f50a799ccee5e305e3bc6dcc7c860e29e6ce8f49c3b2c6a7143"
+    },
+    {
+      "path": "logs/020.json",
+      "sha256": "c994551a419097a53575869af90e8ddc7ddd72b2606fb49a842a141887d76899"
+    },
+    {
+      "path": "logs/021.json",
+      "sha256": "d428a250b62eb0039f68302995978afbfc4c5e41cb83c6dec70d5ed8f8357aa7"
+    },
+    {
+      "path": "logs/022.json",
+      "sha256": "9e09aab08cbe9c821c77dec29a45d4d9f3fb38c67d58eb603f4c4c742aa0d86d"
+    },
+    {
+      "path": "logs/023.json",
+      "sha256": "3491b287397da4a7a8b09ded6a03535ca37dcebf4c0dfe687cc063dacb6f8e0d"
+    },
+    {
+      "path": "logs/024.json",
+      "sha256": "5960cf8d2e3d24646e858d41e0e20153eec821c6be2ae69555499f63c564b875"
+    },
+    {
+      "path": "logs/025.json",
+      "sha256": "28abad90409512a8fbd82b27813fbf8f02ed2fe7fc3008ce10eaa9b9a6c9992e"
+    },
+    {
+      "path": "logs/026.json",
+      "sha256": "4193abc26d4c6dca629ec48f4db671122c058c625cb945474c929180a232ef11"
+    },
+    {
+      "path": "logs/027.json",
+      "sha256": "94402b0b639ae830c89499a6c0e91f579b97445709cc55b3d05d15737b074a27"
+    },
+    {
+      "path": "logs/028.json",
+      "sha256": "91c695794583f258a6bb9f0fd5d227427f3316fc430e86f219e274d595b6f4cb"
+    },
+    {
+      "path": "logs/029.json",
+      "sha256": "167bee14f3de8b96f5c732174ff679dcfc817e240eb8070f68696e81751f43be"
+    },
+    {
+      "path": "logs/app-state.json",
+      "sha256": "4f3f9a79fa138d05de5d0536f7f1ba5b34e4f349e58026db5ded51a6fc1ec09c"
+    },
+    {
+      "path": "logs/app.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/browser-state.json",
+      "sha256": "e8eb4ed25e3f55bb35c75d57e41ce16b1db2b01f8145754e5b3816c9729592ab"
+    },
+    {
+      "path": "logs/browser.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/caddy-state.json",
+      "sha256": "5666ebfded289f5b22f4128499e453741ae80976fc22b266bdaf91431173b32e"
+    },
+    {
+      "path": "logs/caddy.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result.json",
+      "sha256": "074f6d281e31543b84da011b9f840f228d0ac0bc8ec7f96a26abadc13da312c9"
+    }
+  ],
+  "excluded": [
+    "ephemeral CA private keys",
+    "browser profile"
+  ],
+  "notProductAcceptance": true
+}

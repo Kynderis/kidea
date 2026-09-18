@@ -1,0 +1,1477 @@
+{
+  "format": "kidea-impact-map-artifact-r1",
+  "graph": {
+    "format": "kidea-impact-graph-r1",
+    "nodes": [
+      {
+        "id": "T04-SCOPE",
+        "name": "Scope amendment",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/features.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-BUSINESS",
+        "name": "Registration ordering and old-data behavior",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-QUALITY",
+        "name": "Invariant, concurrency and performance obligations",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/quality.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-UX",
+        "name": "Quota result and immutable intent UI",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/experience.md",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/state.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-OPS",
+        "name": "Outbox, observations and recovery consumers",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/operations.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/availability.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-ADMIN",
+        "name": "Capacity/state authority and unchanged admin rights",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/admin.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-ARCH",
+        "name": "Transactional authority, idempotency and API compatibility",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "contracts/openapi.json",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/executor.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/availability.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-TESTS",
+        "name": "Complete oracle and negative/concurrent regression",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-IMPLEMENT",
+        "name": "Backend/API/Web implementation plus unchanged consumers",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/main.cpp",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/routes/me/+page.server.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/server/public.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-DELIVERY",
+        "name": "Compatibility, legacy rows and release boundaries",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/rules.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/workflow/r09-checkpoint-r1.md",
+            "anchor": null
+          }
+        ]
+      }
+    ],
+    "seeds": [
+      "T04-SCOPE"
+    ],
+    "edges": [
+      {
+        "from": "T04-SCOPE",
+        "to": "T04-BUSINESS",
+        "reason": "A global actor limit adds a new registration outcome and old-data rule.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/features.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-QUALITY",
+        "reason": "Concurrency and reject ordering must preserve invariants across workshops; latency remains an obligation.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/quality.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-UX",
+        "reason": "LIMIT_REACHED must decode only as historical REGISTER rejection; the client must not become quota authority.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/experience.md",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/state.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-OPS",
+        "reason": "Rejections must not increment version/outbox; restoring legacy rows must not delete registrations.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/operations.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-ADMIN",
+        "reason": "Admin capacity/state and participant quota are distinct; admin rights must not bypass participant checks.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/admin.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-ARCH",
+        "reason": "The count and seat decision must share the write transaction and remembered intent lookup.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "contracts/openapi.json",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/executor.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-ARCH",
+        "to": "T04-TESTS",
+        "reason": "Tests must distinguish stale count, retry re-evaluation, CANCELLED inclusion and changed priority.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "contracts/openapi.json",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/executor.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-UX",
+        "to": "T04-TESTS",
+        "reason": "Decoder and real browser assertions must retain unknown/cancel guards and history semantics.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/experience.md",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/state.ts",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-OPS",
+        "to": "T04-TESTS",
+        "reason": "No-op outbox and old-data preservation require explicit assertions, not code-call coverage.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/operations.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-ADMIN",
+        "to": "T04-TESTS",
+        "reason": "Capacity and PAUSED regression remains mandatory despite unchanged admin code.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/admin.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-QUALITY",
+        "to": "T04-TESTS",
+        "reason": "Existing 796 assertions stay; new quota schedules cannot replace original oracles.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/quality.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-TESTS",
+        "to": "T04-IMPLEMENT",
+        "reason": "Changed code must satisfy old and new expected outcomes on final source.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/main.cpp",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/routes/me/+page.server.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/server/public.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-ARCH",
+        "to": "T04-IMPLEMENT",
+        "reason": "API enum and transactional implementation must match the new rule and old auth/idempotency boundaries.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "contracts/openapi.json",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/executor.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/main.cpp",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/routes/me/+page.server.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/server/public.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-IMPLEMENT",
+        "to": "T04-DELIVERY",
+        "reason": "The additive rejection code and preserved legacy rows affect compatibility and release verification.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/main.cpp",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/routes/me/+page.server.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/server/public.ts",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/rules.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/workflow/r09-checkpoint-r1.md",
+            "anchor": null
+          }
+        ]
+      }
+    ],
+    "diagnostics": []
+  },
+  "inputVersions": [
+    {
+      "source": {
+        "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-1.bin",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-1.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "e9a5520c670e475f37ad10d11d601e7db5aa9653d45567afb6c30f4eb9a6a6e9",
+        "byteLength": 13135
+      }
+    },
+    {
+      "source": {
+        "path": "docs/t04/max2.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-2.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "a5d7e58efb5265f2ef8c2a2232375674bb60588d8a06d77d50486d4476fe1b12",
+        "byteLength": 5222
+      }
+    },
+    {
+      "source": {
+        "path": "docs/features.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-3.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "c1d19e6c1df13ab50096d3d3990bd5b0121034be1cf0409e0d88dd31f2a9f76c",
+        "byteLength": 5201
+      }
+    },
+    {
+      "source": {
+        "path": "docs/business/shared/registration.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-4.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "1c8eedff797e26b13524314375031d7b3de619d3759565e11e79ccccc62ed2a1",
+        "byteLength": 12848
+      }
+    },
+    {
+      "source": {
+        "path": "docs/business/features/register-cancel.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-5.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "bdbc758021196ba29e0ed6621b832f2e1df48508d2b7001c20ab488ff3796565",
+        "byteLength": 4220
+      }
+    },
+    {
+      "source": {
+        "path": "docs/business/tests.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-6.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822",
+        "byteLength": 18221
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/quality.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-7.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe",
+        "byteLength": 28447
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/experience.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-8.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e",
+        "byteLength": 27063
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/lib/reply.ts",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-9.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "40995d8f89f65b203ec03ee69889642bc310bf11c020da05568054d4b4f9bcb4",
+        "byteLength": 1570
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/lib/Registration.svelte",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-10.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "37da5b88df4da544711b861e27cac7e7fcb6fff0dce58c5d3b751ec14ab767ea",
+        "byteLength": 6734
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/lib/state.ts",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-11.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "4ad2ad4deb741661702460afdd6e9981d7aa0d885f85a06d708eed585f064695",
+        "byteLength": 5494
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/operations.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-12.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36",
+        "byteLength": 29188
+      }
+    },
+    {
+      "source": {
+        "path": "backend/src/store.cpp",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-13.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "3835023dcea35bc3db764c9e19ef87e547adab58a8f799d1c29befc6b148931b",
+        "byteLength": 24228
+      }
+    },
+    {
+      "source": {
+        "path": "backend/schema/001.sql",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-14.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "98a5dd2ee223b17e2ee4dab70f6f09f9fef2a4b32f86d0a3c719e9f94a3df01e",
+        "byteLength": 2489
+      }
+    },
+    {
+      "source": {
+        "path": "docs/business/shared/availability.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-15.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "bf4abab2fc39b31673cf62e5ffe25fbec6847202d1fcca09b032504e9b50e2f5",
+        "byteLength": 11543
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/admin.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-16.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346",
+        "byteLength": 23270
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/architecture.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-17.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6",
+        "byteLength": 41234
+      }
+    },
+    {
+      "source": {
+        "path": "contracts/openapi.json",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-18.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "c21b9aef248ef0ef77924144292d2ed91466b3f967f4929d9be48e111593ef4a",
+        "byteLength": 54018
+      }
+    },
+    {
+      "source": {
+        "path": "backend/src/executor.cpp",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-19.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "482a72aa3729396990e3dc6dc5eae4b6b9fe27a209aa52ecd28602d7d0534321",
+        "byteLength": 1898
+      }
+    },
+    {
+      "source": {
+        "path": "docs/engineering/tests.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-20.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "a96f51752de20d5cde4853f1bd361179f63bed202143dee162e667f93d3ec2ae",
+        "byteLength": 25688
+      }
+    },
+    {
+      "source": {
+        "path": "backend/tests/tests.cpp",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-21.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "29d976bfce488e957a8526d1cd412493269623c155190c2d9a4330bf8c3b4e7a",
+        "byteLength": 41775
+      }
+    },
+    {
+      "source": {
+        "path": "backend/tests/cases.cmake",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-22.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "503eb37569d703bd38155182a18f17bbf8d13d2482e53a37360073ca40b4cd24",
+        "byteLength": 501
+      }
+    },
+    {
+      "source": {
+        "path": "web/tests/unit/state.test.mjs",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-23.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "4a08fdf41587e3a64019d95b9466e43be0f2db5eba0ddf563faf5ab4f2ae67db",
+        "byteLength": 5786
+      }
+    },
+    {
+      "source": {
+        "path": "backend/src/main.cpp",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-24.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "a9709d321905ff19131792382a0fa5f1f6803089f7dedd334067500dc6d256a6",
+        "byteLength": 6026
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/routes/me/+page.server.ts",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-25.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "fe419e231a9361f3669348c18233c0f411efce89f37113001702089cf49a2407",
+        "byteLength": 2085
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/lib/server/public.ts",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-26.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "3bb5fa4a6c5b112581f91b1ff0e11dab071d74ac4eac950fb99a705c652198f5",
+        "byteLength": 1103
+      }
+    },
+    {
+      "source": {
+        "path": "docs/engineering/rules.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-27.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "8aaf5948b7a012b199522c73abee4e489fdf0b0cda1abaf2bf618d7692f0cb33",
+        "byteLength": 6181
+      }
+    },
+    {
+      "source": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-28.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "39c74f164f25f253f2fd63e1537291361a31a1a5dcc5b980b276c018d474365a",
+        "byteLength": 5378
+      }
+    },
+    {
+      "source": {
+        "path": "docs/t04/impact-graph.json",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/6c499310-3376-4a1e-882d-42b130ec8503/context-29.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "d6f22d7526c5c40d726a2f033db4dc6916a2fb3d1d247c7773798f61f36b4c03",
+        "byteLength": 20586
+      }
+    }
+  ],
+  "tool": {
+    "version": "kidea-change-r1",
+    "components": [
+      {
+        "name": "change.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "65927bcad2e3a9745c4ff25e1393f895b8f254861c24df783fb7ee7cabe67ba1",
+          "byteLength": 14728
+        }
+      },
+      {
+        "name": "impact.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "9b6594b04f175ecf2d82b9bbdbd867b5f3c29a2d0fd509b0837c08cae093c8ad",
+          "byteLength": 6505
+        }
+      },
+      {
+        "name": "maps.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "40ba496e0b214ae1073a1b8f4ccd72b6c235db0de9558db03450648c8a3988f4",
+          "byteLength": 6935
+        }
+      },
+      {
+        "name": "maps-cpp.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "520978d5ba2d29197d8d76be715c978f63211e782511bc129cba503cbc83c8b8",
+          "byteLength": 4958
+        }
+      },
+      {
+        "name": "maps-web.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "7eaf242ddbc0a510bca3666234f4b1291bfc21193e0dd144e3c2eecdff59e1b2",
+          "byteLength": 6377
+        }
+      },
+      {
+        "name": "resume.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "3c5c456c6beb79f9a6d2c6807741179b2cca4943b543365d56ab009e1d0db48b",
+          "byteLength": 14451
+        }
+      },
+      {
+        "name": "write-internal.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "78c8a5a0c82c1b40eedc3a71460ff1d5e68a2162af1ffb97f6e7d1bbc692ef79",
+          "byteLength": 41609
+        }
+      },
+      {
+        "name": "schema.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "1ce11eb44ba1266b2036142e3c46d9f70e4d33617637db1725734c596aa8397a",
+          "byteLength": 6054
+        }
+      },
+      {
+        "name": "status.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "32419f6b86bbc7e7b16ed7b8546928a9241846699cfc22b3cc2970a389525292",
+          "byteLength": 29164
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,5960 @@
+{
+  "run": "/Users/kendrick/Desktop/kidea-t02-build-lab/t02-6321b951-ef6c-45d5-a5c8-489921c014dd",
+  "result": {
+    "runId": "t02-6321b951-ef6c-45d5-a5c8-489921c014dd",
+    "manifestHash": "c93bac8d60e6ea73f477adcd797d9df515171fa4b31cf0ed29cae30373c109de",
+    "results": [
+      {
+        "preset": "dev",
+        "code": 1,
+        "reason": "BUILD_OR_TEST_FAILED"
+      }
+    ],
+    "state": "FAIL",
+    "notProductAcceptance": true
+  },
+  "manifestSha256": "c93bac8d60e6ea73f477adcd797d9df515171fa4b31cf0ed29cae30373c109de",
+  "profiles": {
+    "dev": {
+      "execution": {
+        "preset": "dev",
+        "code": 1,
+        "reason": "BUILD_OR_TEST_FAILED"
+      },
+      "containerState": {
+        "Id": "b0560d9377f736c2772f671b9ac7bbd242905811a17a0e5d2e75e72466c59597",
+        "State": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 1,
+          "Error": "",
+          "StartedAt": "2026-09-18T06:44:36.468247182Z",
+          "FinishedAt": "2026-09-18T06:50:01.021253888Z"
+        },
+        "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+        "labels": {
+          "kidea.t02.manifest": "c93bac8d60e6ea73f477adcd797d9df515171fa4b31cf0ed29cae30373c109de",
+          "kidea.t02.run": "t02-6321b951-ef6c-45d5-a5c8-489921c014dd",
+          "org.opencontainers.image.version": "24.04"
+        }
+      },
+      "http": {
+        "entries": [
+          {
+            "caseId": "HTTP",
+            "variant": "startup",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "create",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "draft-hidden",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "open",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "register",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "no-store",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "retry",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "cross-actor",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "full",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "csrf",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "origin",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "duplicate-json",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "comment-json",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "trailing-comment-json",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "unknown-field",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "cancel",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "private-history",
+            "status": "PASS"
+          },
+          {
+            "caseId": "HTTP",
+            "variant": "public-redaction",
+            "status": "PASS"
+          }
+        ],
+        "serverExit": 0
+      },
+      "shutdown": [
+        {
+          "signal": "SIGTERM",
+          "status": "PASS",
+          "exit": 0
+        },
+        {
+          "signal": "SIGINT",
+          "status": "PASS",
+          "exit": 0
+        }
+      ],
+      "session": {
+        "results": [
+          {
+            "case": "session-U",
+            "status": "PASS"
+          },
+          {
+            "case": "session-V",
+            "status": "PASS"
+          },
+          {
+            "case": "session-A",
+            "status": "PASS"
+          },
+          {
+            "case": "denied-missing",
+            "status": "PASS"
+          },
+          {
+            "case": "denied-UNKNOWN",
+            "status": "PASS"
+          },
+          {
+            "case": "denied-FAKE-LAB-EXPIRED",
+            "status": "PASS"
+          },
+          {
+            "case": "forged-role-ignored",
+            "status": "PASS"
+          },
+          {
+            "case": "parallel-session-isolation",
+            "status": "PASS"
+          }
+        ],
+        "server": {
+          "code": 0,
+          "signal": null,
+          "error": null,
+          "stderr": ""
+        }
+      },
+      "assertions": {
+        "preset": "dev",
+        "expected": [
+          "P01",
+          "P02",
+          "P03",
+          "P04",
+          "P05",
+          "P06",
+          "P07",
+          "P08",
+          "R01",
+          "R02",
+          "R03",
+          "R04",
+          "R05",
+          "R06",
+          "R07",
+          "R08",
+          "I01",
+          "I02",
+          "I03",
+          "I04",
+          "I05",
+          "I06",
+          "I07",
+          "I08",
+          "I09",
+          "I10",
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "D01",
+          "D02",
+          "D03",
+          "D04",
+          "D05",
+          "D06",
+          "D07",
+          "D08",
+          "D09",
+          "SQLFAIL",
+          "TX",
+          "CRASH",
+          "JSON",
+          "K3K4",
+          "ADMISSION",
+          "Q01",
+          "Q02",
+          "Q03",
+          "Q04"
+        ],
+        "observations": [
+          {
+            "caseId": "P01",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "DRAFT-G"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "hidden-equals-missing-G"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "admin-scope-DRAFTG"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "DRAFT-U"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "hidden-equals-missing-U"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "admin-scope-DRAFTU"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "DRAFT-A"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "hidden-equals-missing-A"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "admin-scope-DRAFTA"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "OPEN-G"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "admin-scope-OPENG"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "OPEN-U"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "admin-scope-OPENU"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "OPEN-A"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "admin-scope-OPENA"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "PAUSED-G"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "admin-scope-PAUSEDG"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "PAUSED-U"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "admin-scope-PAUSEDU"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "PAUSED-A"
+          },
+          {
+            "caseId": "P01",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "admin-scope-PAUSEDA"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "admin-role-GCREATE"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "admin-role-GEDIT"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "admin-role-UCREATE"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "admin-role-UEDIT"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "admin-role-VCREATE"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "admin-role-VEDIT"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "admin-role-ACREATE"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "admin-role-AEDIT"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "admin-role-MCREATE"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "admin-role-MEDIT"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "register-G"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "admin-G"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "forged-role-G"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "register-U"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "admin-U"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "forged-role-U"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "register-V"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "admin-V"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "forged-role-V"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "register-A"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "admin-A"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 21,
+            "status": "PASS",
+            "variant": "forged-role-A"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 22,
+            "status": "PASS",
+            "variant": "register-M"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 23,
+            "status": "PASS",
+            "variant": "admin-M"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 24,
+            "status": "PASS",
+            "variant": "forged-role-M"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 25,
+            "status": "PASS",
+            "variant": "ownership-OPEN"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 26,
+            "status": "PASS",
+            "variant": "admin-cannot-cancel-OPEN"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 27,
+            "status": "PASS",
+            "variant": "ownership-PAUSED"
+          },
+          {
+            "caseId": "P02",
+            "sequence": 28,
+            "status": "PASS",
+            "variant": "admin-cannot-cancel-PAUSED"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "register-G"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "admin-G"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "forged-role-G"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "register-U"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "admin-U"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "forged-role-U"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "register-V"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "admin-V"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "forged-role-V"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "register-A"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "admin-A"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "forged-role-A"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "register-M"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "admin-M"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "forged-role-M"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "ownership-OPEN"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "admin-cannot-cancel-OPEN"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "ownership-PAUSED"
+          },
+          {
+            "caseId": "P03",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "admin-cannot-cancel-PAUSED"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "cancel-hidden-equals-missing-OPEN"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "cancel-hidden-equals-missing-PAUSED"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "DRAFT-G"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "hidden-equals-missing-G"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "admin-scope-DRAFTG"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "DRAFT-U"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "hidden-equals-missing-U"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "admin-scope-DRAFTU"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "DRAFT-A"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "hidden-equals-missing-A"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "admin-scope-DRAFTA"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "OPEN-G"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "admin-scope-OPENG"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "OPEN-U"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "admin-scope-OPENU"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "OPEN-A"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "admin-scope-OPENA"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "PAUSED-G"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "admin-scope-PAUSEDG"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "PAUSED-U"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "admin-scope-PAUSEDU"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 21,
+            "status": "PASS",
+            "variant": "PAUSED-A"
+          },
+          {
+            "caseId": "P04",
+            "sequence": 22,
+            "status": "PASS",
+            "variant": "admin-scope-PAUSEDA"
+          },
+          {
+            "caseId": "P05",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "stable-id-tie"
+          },
+          {
+            "caseId": "P05",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "past-still-listed-first"
+          },
+          {
+            "caseId": "P06",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "history-keeps-two-identities"
+          },
+          {
+            "caseId": "P06",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "no-other-history"
+          },
+          {
+            "caseId": "P06",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "no-admin-history"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "DRAFT-DRAFT"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "event-DRAFTDRAFT"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "DRAFT-OPEN"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "event-DRAFTOPEN"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "DRAFT-PAUSED"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "event-DRAFTPAUSED"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "DRAFT-other"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "event-DRAFTother"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "OPEN-DRAFT"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "event-OPENDRAFT"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "OPEN-OPEN"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "event-OPENOPEN"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "OPEN-PAUSED"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "event-OPENPAUSED"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "OPEN-other"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "event-OPENother"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "PAUSED-DRAFT"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "event-PAUSEDDRAFT"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "PAUSED-OPEN"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "event-PAUSEDOPEN"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "PAUSED-PAUSED"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 21,
+            "status": "PASS",
+            "variant": "event-PAUSEDPAUSED"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 22,
+            "status": "PASS",
+            "variant": "PAUSED-other"
+          },
+          {
+            "caseId": "P07",
+            "sequence": 23,
+            "status": "PASS",
+            "variant": "event-PAUSEDother"
+          },
+          {
+            "caseId": "P08",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "no-clock-transition-DRAFT"
+          },
+          {
+            "caseId": "P08",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "no-clock-transition-OPEN"
+          },
+          {
+            "caseId": "P08",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "no-clock-transition-PAUSED"
+          },
+          {
+            "caseId": "R01",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "capacity-1"
+          },
+          {
+            "caseId": "R01",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "count-event-1"
+          },
+          {
+            "caseId": "R01",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "capacity-10"
+          },
+          {
+            "caseId": "R01",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "count-event-10"
+          },
+          {
+            "caseId": "R02",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "capacity-1"
+          },
+          {
+            "caseId": "R02",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "count-event-1"
+          },
+          {
+            "caseId": "R02",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "capacity-10"
+          },
+          {
+            "caseId": "R02",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "count-event-10"
+          },
+          {
+            "caseId": "R03",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "duplicate-before-full-1"
+          },
+          {
+            "caseId": "R03",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "no-duplicate-event"
+          },
+          {
+            "caseId": "R03",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "duplicate-before-full-10"
+          },
+          {
+            "caseId": "R03",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "no-duplicate-event"
+          },
+          {
+            "caseId": "R04",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "cancel-N1"
+          },
+          {
+            "caseId": "R04",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "one-slot-released-N1"
+          },
+          {
+            "caseId": "R04",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "cancel-N10"
+          },
+          {
+            "caseId": "R04",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "one-slot-released-N10"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "first-cancel"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "released"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "new-id"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "old-id-0"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "old-id-1"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "old-id-does-not-affect-B"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "first-cancel"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "released"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "new-id"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "old-id-0"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "old-id-1"
+          },
+          {
+            "caseId": "R05",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "old-id-does-not-affect-B"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "first-cancel"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "released"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "old-id-0"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "old-id-1"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "old-id-does-not-affect-B"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "first-cancel"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "released"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "old-id-0"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "old-id-1"
+          },
+          {
+            "caseId": "R06",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "old-id-does-not-affect-B"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "new-paused-00"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "paused-no-event"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "new-paused-01"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "paused-no-event"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "new-paused-10"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "cancel-paused"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "paused-no-event"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "new-paused-11"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "cancel-paused"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "paused-no-event"
+          },
+          {
+            "caseId": "R07",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "paused-before-already-cancelled"
+          },
+          {
+            "caseId": "R08",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "draft-not-accessible"
+          },
+          {
+            "caseId": "R08",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "missing-cancel-id"
+          },
+          {
+            "caseId": "R08",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "unchanged"
+          },
+          {
+            "caseId": "I01",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "response-lost"
+          },
+          {
+            "caseId": "I01",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "history-idempotent"
+          },
+          {
+            "caseId": "I01",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "single-result"
+          },
+          {
+            "caseId": "I02",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "historical-cancel"
+          },
+          {
+            "caseId": "I02",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "new-intent-current-state"
+          },
+          {
+            "caseId": "I03",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "action-conflict"
+          },
+          {
+            "caseId": "I03",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "workshop-conflict"
+          },
+          {
+            "caseId": "I03",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "registration-id-conflict"
+          },
+          {
+            "caseId": "I04",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "not-final"
+          },
+          {
+            "caseId": "I04",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "missing-not-proof-of-nonexecution"
+          },
+          {
+            "caseId": "I04",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "same-id-reconcile"
+          },
+          {
+            "caseId": "I05",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "history-00"
+          },
+          {
+            "caseId": "I05",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "history-01"
+          },
+          {
+            "caseId": "I05",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "history-10"
+          },
+          {
+            "caseId": "I05",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "history-11"
+          },
+          {
+            "caseId": "I06",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "no-cross-actor-result"
+          },
+          {
+            "caseId": "I06",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "same-literal-different-actor"
+          },
+          {
+            "caseId": "I06",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "revoked-before-history"
+          },
+          {
+            "caseId": "I07",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "original-full"
+          },
+          {
+            "caseId": "I07",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "full-stays-historical"
+          },
+          {
+            "caseId": "I07",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "new-id-new-decision"
+          },
+          {
+            "caseId": "I08",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "historical-cancel"
+          },
+          {
+            "caseId": "I08",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "new-intent-current-state"
+          },
+          {
+            "caseId": "I09",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "initial-same-intent-{\"code\":\"REGISTERED\",\"effect\":\"APPLIED\",\"registrationId\":\"37ff78144a5c5857c13edea7bd9bca86\",\"state\":\"FINAL\",\"workshopId\":\"d9a99ff6918213b5034430969b85f0eb\"}"
+          },
+          {
+            "caseId": "I09",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "initial-same-intent-{\"code\":\"REGISTERED\",\"effect\":\"APPLIED\",\"registrationId\":\"37ff78144a5c5857c13edea7bd9bca86\",\"state\":\"FINAL\",\"workshopId\":\"d9a99ff6918213b5034430969b85f0eb\"}"
+          },
+          {
+            "caseId": "I09",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "same-intent-reconciled"
+          },
+          {
+            "caseId": "I09",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "history-idempotent"
+          },
+          {
+            "caseId": "I09",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "single-result"
+          },
+          {
+            "caseId": "I10",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "cancel-unknown-0"
+          },
+          {
+            "caseId": "I10",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "cancel-history"
+          },
+          {
+            "caseId": "I10",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "reconcile-keeps-N-0"
+          },
+          {
+            "caseId": "I10",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "cancel-unknown-1"
+          },
+          {
+            "caseId": "I10",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "distinct-B"
+          },
+          {
+            "caseId": "I10",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "cancel-history"
+          },
+          {
+            "caseId": "I10",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "reconcile-keeps-N-1"
+          },
+          {
+            "caseId": "C01",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "one-active-forward"
+          },
+          {
+            "caseId": "C01",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "loser-forward"
+          },
+          {
+            "caseId": "C01",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "one-active-reverse"
+          },
+          {
+            "caseId": "C01",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "loser-reverse"
+          },
+          {
+            "caseId": "C01",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "race-initial-U-{\"code\":\"FULL\",\"effect\":\"REJECTED\",\"state\":\"FINAL\",\"workshopId\":\"5c6c342e94f7422302b5e11ba1e3a82c\"}"
+          },
+          {
+            "caseId": "C01",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "race-initial-V-{\"code\":\"REGISTERED\",\"effect\":\"APPLIED\",\"registrationId\":\"b44bb5a9cff112fe51136627dac9915c\",\"state\":\"FINAL\",\"workshopId\":\"5c6c342e94f7422302b5e11ba1e3a82c\"}"
+          },
+          {
+            "caseId": "C01",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "barrier-last-seat-race"
+          },
+          {
+            "caseId": "C01",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "race-other-final-full"
+          },
+          {
+            "caseId": "C02",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "capacity-order-forward"
+          },
+          {
+            "caseId": "C02",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "rejected-order-forward"
+          },
+          {
+            "caseId": "C02",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "capacity-order-reverse"
+          },
+          {
+            "caseId": "C02",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "rejected-order-reverse"
+          },
+          {
+            "caseId": "C02",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "race-initial-U-{\"code\":\"REGISTERED\",\"effect\":\"APPLIED\",\"registrationId\":\"35b0a89e0813c89b23213347a7b0f60d\",\"state\":\"FINAL\",\"workshopId\":\"deec6ecd1766da1d3ec07d32b9b9b9b3\"}"
+          },
+          {
+            "caseId": "C02",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "race-initial-V-{\"code\":\"FULL\",\"effect\":\"REJECTED\",\"state\":\"FINAL\",\"workshopId\":\"deec6ecd1766da1d3ec07d32b9b9b9b3\"}"
+          },
+          {
+            "caseId": "C02",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "barrier-last-seat-race"
+          },
+          {
+            "caseId": "C02",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "race-other-final-full"
+          },
+          {
+            "caseId": "C03",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "pause-order-forward"
+          },
+          {
+            "caseId": "C03",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "pause-count-forward"
+          },
+          {
+            "caseId": "C03",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "pause-order-reverse"
+          },
+          {
+            "caseId": "C03",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "pause-count-reverse"
+          },
+          {
+            "caseId": "C03",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "race-initial-U-{\"code\":\"FULL\",\"effect\":\"REJECTED\",\"state\":\"FINAL\",\"workshopId\":\"abc4ce6b06bebc64fcb0be0d55bef960\"}"
+          },
+          {
+            "caseId": "C03",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "race-initial-V-{\"code\":\"REGISTERED\",\"effect\":\"APPLIED\",\"registrationId\":\"3c3fea793ad77860c33bd84b031dae37\",\"state\":\"FINAL\",\"workshopId\":\"abc4ce6b06bebc64fcb0be0d55bef960\"}"
+          },
+          {
+            "caseId": "C03",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "barrier-last-seat-race"
+          },
+          {
+            "caseId": "C03",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "race-other-final-full"
+          },
+          {
+            "caseId": "C04",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "pause-order-forward"
+          },
+          {
+            "caseId": "C04",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "pause-count-forward"
+          },
+          {
+            "caseId": "C04",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "pause-order-reverse"
+          },
+          {
+            "caseId": "C04",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "pause-count-reverse"
+          },
+          {
+            "caseId": "C04",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "race-initial-U-{\"code\":\"REGISTERED\",\"effect\":\"APPLIED\",\"registrationId\":\"926b8b289708ef1fa94719559db166f5\",\"state\":\"FINAL\",\"workshopId\":\"ebb434b8f3770c3a89f1b30b5ff177ef\"}"
+          },
+          {
+            "caseId": "C04",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "race-initial-V-{\"code\":\"FULL\",\"effect\":\"REJECTED\",\"state\":\"FINAL\",\"workshopId\":\"ebb434b8f3770c3a89f1b30b5ff177ef\"}"
+          },
+          {
+            "caseId": "C04",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "barrier-last-seat-race"
+          },
+          {
+            "caseId": "C04",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "race-other-final-full"
+          },
+          {
+            "caseId": "C05",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "one-active-forward"
+          },
+          {
+            "caseId": "C05",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "loser-forward"
+          },
+          {
+            "caseId": "C05",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "one-active-reverse"
+          },
+          {
+            "caseId": "C05",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "loser-reverse"
+          },
+          {
+            "caseId": "C05",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "race-initial-U-{\"code\":\"FULL\",\"effect\":\"REJECTED\",\"state\":\"FINAL\",\"workshopId\":\"f4bdde4797c491549b4dac2cae741980\"}"
+          },
+          {
+            "caseId": "C05",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "race-initial-V-{\"code\":\"REGISTERED\",\"effect\":\"APPLIED\",\"registrationId\":\"90358e970dafe0c3edf53ffe5bf3c11f\",\"state\":\"FINAL\",\"workshopId\":\"f4bdde4797c491549b4dac2cae741980\"}"
+          },
+          {
+            "caseId": "C05",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "barrier-last-seat-race"
+          },
+          {
+            "caseId": "C05",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "race-other-final-full"
+          },
+          {
+            "caseId": "D01",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "capacity-0"
+          },
+          {
+            "caseId": "D01",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "capacity-1"
+          },
+          {
+            "caseId": "D01",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "capacity-1000"
+          },
+          {
+            "caseId": "D01",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "capacity-1001"
+          },
+          {
+            "caseId": "D01",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "capacity--1"
+          },
+          {
+            "caseId": "D01",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "capacity-1.5"
+          },
+          {
+            "caseId": "D01",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "capacity-null"
+          },
+          {
+            "caseId": "D01",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "missing-capacity"
+          },
+          {
+            "caseId": "D02",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "capacity-floor-8"
+          },
+          {
+            "caseId": "D02",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "no-cancel"
+          },
+          {
+            "caseId": "D02",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "capacity-floor-9"
+          },
+          {
+            "caseId": "D02",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "no-cancel"
+          },
+          {
+            "caseId": "D02",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "capacity-floor-10"
+          },
+          {
+            "caseId": "D02",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "no-cancel"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "length-0"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "length-1"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "length-120"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "length-121"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "text- \t\r\n"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "text-a\nb"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "text-a\r\nb"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "text-😀"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "missing"
+          },
+          {
+            "caseId": "D03",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "null"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "length-0"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "length-1"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "length-5000"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "length-5001"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "text- \t\r\n"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "text-a\nb"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "text-a\r\nb"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "text-😀"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "missing"
+          },
+          {
+            "caseId": "D04",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "null"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "create-title<b>abc</b>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "edit-title<b>abc</b>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "no-event-<b>abc</b>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "create-description<b>abc</b>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "edit-description<b>abc</b>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "no-event-<b>abc</b>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "create-title**abc**"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "edit-title**abc**"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "no-event-**abc**"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "create-description**abc**"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "edit-description**abc**"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "no-event-**abc**"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "create-title_abc_"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "edit-title_abc_"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "no-event-_abc_"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "create-description_abc_"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "edit-description_abc_"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "no-event-_abc_"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "create-title[abc](https://example.test)"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "edit-title[abc](https://example.test)"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "no-event-[abc](https://example.test)"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 21,
+            "status": "PASS",
+            "variant": "create-description[abc](https://example.test)"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 22,
+            "status": "PASS",
+            "variant": "edit-description[abc](https://example.test)"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 23,
+            "status": "PASS",
+            "variant": "no-event-[abc](https://example.test)"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 24,
+            "status": "PASS",
+            "variant": "create-title# Heading"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 25,
+            "status": "PASS",
+            "variant": "edit-title# Heading"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 26,
+            "status": "PASS",
+            "variant": "no-event-# Heading"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 27,
+            "status": "PASS",
+            "variant": "create-description# Heading"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 28,
+            "status": "PASS",
+            "variant": "edit-description# Heading"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 29,
+            "status": "PASS",
+            "variant": "no-event-# Heading"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 30,
+            "status": "PASS",
+            "variant": "create-title- item"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 31,
+            "status": "PASS",
+            "variant": "edit-title- item"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 32,
+            "status": "PASS",
+            "variant": "no-event-- item"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 33,
+            "status": "PASS",
+            "variant": "create-description- item"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 34,
+            "status": "PASS",
+            "variant": "edit-description- item"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 35,
+            "status": "PASS",
+            "variant": "no-event-- item"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 36,
+            "status": "PASS",
+            "variant": "create-title```x```"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 37,
+            "status": "PASS",
+            "variant": "edit-title```x```"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 38,
+            "status": "PASS",
+            "variant": "no-event-```x```"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 39,
+            "status": "PASS",
+            "variant": "create-description```x```"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 40,
+            "status": "PASS",
+            "variant": "edit-description```x```"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 41,
+            "status": "PASS",
+            "variant": "no-event-```x```"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 42,
+            "status": "PASS",
+            "variant": "create-title<!-- comment -->"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 43,
+            "status": "PASS",
+            "variant": "edit-title<!-- comment -->"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 44,
+            "status": "PASS",
+            "variant": "no-event-<!-- comment -->"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 45,
+            "status": "PASS",
+            "variant": "create-description<!-- comment -->"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 46,
+            "status": "PASS",
+            "variant": "edit-description<!-- comment -->"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 47,
+            "status": "PASS",
+            "variant": "no-event-<!-- comment -->"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 48,
+            "status": "PASS",
+            "variant": "create-title<https://example.test>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 49,
+            "status": "PASS",
+            "variant": "edit-title<https://example.test>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 50,
+            "status": "PASS",
+            "variant": "no-event-<https://example.test>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 51,
+            "status": "PASS",
+            "variant": "create-description<https://example.test>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 52,
+            "status": "PASS",
+            "variant": "edit-description<https://example.test>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 53,
+            "status": "PASS",
+            "variant": "no-event-<https://example.test>"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 54,
+            "status": "PASS",
+            "variant": "create-title[ref]: /somewhere"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 55,
+            "status": "PASS",
+            "variant": "edit-title[ref]: /somewhere"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 56,
+            "status": "PASS",
+            "variant": "no-event-[ref]: /somewhere"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 57,
+            "status": "PASS",
+            "variant": "create-description[ref]: /somewhere"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 58,
+            "status": "PASS",
+            "variant": "edit-description[ref]: /somewhere"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 59,
+            "status": "PASS",
+            "variant": "no-event-[ref]: /somewhere"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 60,
+            "status": "PASS",
+            "variant": "literal-Lớp học thủ công"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 61,
+            "status": "PASS",
+            "variant": "literal-C++ & C#"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 62,
+            "status": "PASS",
+            "variant": "literal-2 * 3 < 10"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 63,
+            "status": "PASS",
+            "variant": "literal-a_b_c"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 64,
+            "status": "PASS",
+            "variant": "literal-https://example.test"
+          },
+          {
+            "caseId": "D05",
+            "sequence": 65,
+            "status": "PASS",
+            "variant": "literal-😀"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "end-2026-10-01T09:00:00+07:00"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "end-2026-10-01T08:59:59+07:00"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "end-2026-10-01T09:00:01+07:00"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "end-2026-10-01T02:00:00Z"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "end-2026-10-01T10:00:00"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "end-2026-02-30T10:00:00Z"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "missing-null-start1"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "missing-null-start0"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "missing-null-end1"
+          },
+          {
+            "caseId": "D06",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "missing-null-end0"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "DRAFTtitle"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "repeat-DRAFTtitle"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "DRAFTdescription"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "repeat-DRAFTdescription"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "DRAFTcapacity"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "repeat-DRAFTcapacity"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "DRAFTschedule"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "repeat-DRAFTschedule"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "OPENtitle"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "repeat-OPENtitle"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "OPENdescription"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "repeat-OPENdescription"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "OPENcapacity"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "repeat-OPENcapacity"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 21,
+            "status": "PASS",
+            "variant": "OPENschedule"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 22,
+            "status": "PASS",
+            "variant": "repeat-OPENschedule"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 23,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 24,
+            "status": "PASS",
+            "variant": "PAUSEDtitle"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 25,
+            "status": "PASS",
+            "variant": "repeat-PAUSEDtitle"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 26,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 27,
+            "status": "PASS",
+            "variant": "PAUSEDdescription"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 28,
+            "status": "PASS",
+            "variant": "repeat-PAUSEDdescription"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 29,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 30,
+            "status": "PASS",
+            "variant": "PAUSEDcapacity"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 31,
+            "status": "PASS",
+            "variant": "repeat-PAUSEDcapacity"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 32,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 33,
+            "status": "PASS",
+            "variant": "PAUSEDschedule"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 34,
+            "status": "PASS",
+            "variant": "repeat-PAUSEDschedule"
+          },
+          {
+            "caseId": "D07",
+            "sequence": 35,
+            "status": "PASS",
+            "variant": "repeat-no-event"
+          },
+          {
+            "caseId": "D08",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "schedule-with-active"
+          },
+          {
+            "caseId": "D08",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "no-return-draft"
+          },
+          {
+            "caseId": "D08",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "no-delete"
+          },
+          {
+            "caseId": "D09",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "create"
+          },
+          {
+            "caseId": "D09",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "draft-fields"
+          },
+          {
+            "caseId": "D09",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "private-draft"
+          },
+          {
+            "caseId": "D09",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "atomic-result-audit-outbox"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "sqlite-step-request_results"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "sqlite-atomic-request_results"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "sqlite-step-outbox"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "sqlite-atomic-outbox"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "sqlite-step-admin_audit"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "sqlite-atomic-admin_audit"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "sqlite-prepare-error"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "sqlite-commit-rejected"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "rollback-unknown"
+          },
+          {
+            "caseId": "SQLFAIL",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "reopen-reconciles-uncommitted"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "fault-before_begin"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "atomic-before_begin"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "reconcile-before_begin"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "fault-after_domain"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "atomic-after_domain"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "reconcile-after_domain"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "fault-after_outbox"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "atomic-after_outbox"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "reconcile-after_outbox"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "fault-after_result"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "atomic-after_result"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "reconcile-after_result"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "fault-before_commit"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "atomic-before_commit"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "reconcile-before_commit"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "fault-after_commit"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "atomic-after_commit"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "reconcile-after_commit"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "admin-after_domain"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "admin-atomic-after_domain"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "admin-after_outbox"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 21,
+            "status": "PASS",
+            "variant": "admin-atomic-after_outbox"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 22,
+            "status": "PASS",
+            "variant": "admin-after_audit"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 23,
+            "status": "PASS",
+            "variant": "admin-atomic-after_audit"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 24,
+            "status": "PASS",
+            "variant": "admin-after_result"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 25,
+            "status": "PASS",
+            "variant": "admin-atomic-after_result"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 26,
+            "status": "PASS",
+            "variant": "admin-before_commit"
+          },
+          {
+            "caseId": "TX",
+            "sequence": 27,
+            "status": "PASS",
+            "variant": "admin-atomic-before_commit"
+          },
+          {
+            "caseId": "CRASH",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "injected-process-loss"
+          },
+          {
+            "caseId": "CRASH",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "durable-0"
+          },
+          {
+            "caseId": "CRASH",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "crash-reconcile"
+          },
+          {
+            "caseId": "CRASH",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "injected-process-loss"
+          },
+          {
+            "caseId": "CRASH",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "durable-1"
+          },
+          {
+            "caseId": "CRASH",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "crash-reconcile"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "unicode-trim"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "unicode-whitespace-only"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "session-expired"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "invalid-json-3"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "invalid-json-4"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "invalid-json-5"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "invalid-json-6"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "invalid-json-7"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "invalid-json-8"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "comment-rejected-9"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "comment-rejected-10"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "comment-rejected-11"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "comment-rejected-12"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "comment-rejected-13"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "comment-rejected-14"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "comment-rejected-15"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "comment-rejected-16"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "comment-rejected-17"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "comment-rejected-18"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "string-slashes-preserved-19"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "string-slashes-preserved-20"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 21,
+            "status": "PASS",
+            "variant": "string-slashes-preserved-21"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 22,
+            "status": "PASS",
+            "variant": "string-slashes-preserved-22"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 23,
+            "status": "PASS",
+            "variant": "string-slashes-preserved-23"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 24,
+            "status": "PASS",
+            "variant": "string-slashes-preserved-24"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 25,
+            "status": "PASS",
+            "variant": "string-slashes-preserved-25"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 26,
+            "status": "PASS",
+            "variant": "uint64-not-double"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 27,
+            "status": "PASS",
+            "variant": "overflow-stops"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 28,
+            "status": "PASS",
+            "variant": "unknown-field"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 29,
+            "status": "PASS",
+            "variant": "csrf"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 30,
+            "status": "PASS",
+            "variant": "origin"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 31,
+            "status": "PASS",
+            "variant": "epoch"
+          },
+          {
+            "caseId": "JSON",
+            "sequence": 32,
+            "status": "PASS",
+            "variant": "no-mutation"
+          },
+          {
+            "caseId": "K3K4",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "admin-dedup"
+          },
+          {
+            "caseId": "K3K4",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "dirty-field-last-writer"
+          },
+          {
+            "caseId": "K3K4",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "schedule-atomic-group"
+          },
+          {
+            "caseId": "K3K4",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "admin-intent-other-owner"
+          },
+          {
+            "caseId": "K3K4",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "admin-missing-unknown"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "global-0"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "global-1"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "global-2"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "global-3"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "global-4"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "global-5"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "global-6"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "global-7"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "global-8"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "global-9"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "global-10"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "global-11"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "global-12"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "global-13"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "global-14"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "global-15"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "global-16"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "global-17"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "global-18"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "global-19"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "global-20"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 21,
+            "status": "PASS",
+            "variant": "global-21"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 22,
+            "status": "PASS",
+            "variant": "global-22"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 23,
+            "status": "PASS",
+            "variant": "global-23"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 24,
+            "status": "PASS",
+            "variant": "global-24"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 25,
+            "status": "PASS",
+            "variant": "global-25"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 26,
+            "status": "PASS",
+            "variant": "global-26"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 27,
+            "status": "PASS",
+            "variant": "global-27"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 28,
+            "status": "PASS",
+            "variant": "global-28"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 29,
+            "status": "PASS",
+            "variant": "global-29"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 30,
+            "status": "PASS",
+            "variant": "global-30"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 31,
+            "status": "PASS",
+            "variant": "global-31"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 32,
+            "status": "PASS",
+            "variant": "global-32"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 33,
+            "status": "PASS",
+            "variant": "global-33"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 34,
+            "status": "PASS",
+            "variant": "global-34"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 35,
+            "status": "PASS",
+            "variant": "global-35"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 36,
+            "status": "PASS",
+            "variant": "global-36"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 37,
+            "status": "PASS",
+            "variant": "global-37"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 38,
+            "status": "PASS",
+            "variant": "global-38"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 39,
+            "status": "PASS",
+            "variant": "global-39"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 40,
+            "status": "PASS",
+            "variant": "global-40"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 41,
+            "status": "PASS",
+            "variant": "global-41"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 42,
+            "status": "PASS",
+            "variant": "global-42"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 43,
+            "status": "PASS",
+            "variant": "global-43"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 44,
+            "status": "PASS",
+            "variant": "global-44"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 45,
+            "status": "PASS",
+            "variant": "global-45"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 46,
+            "status": "PASS",
+            "variant": "global-46"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 47,
+            "status": "PASS",
+            "variant": "global-47"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 48,
+            "status": "PASS",
+            "variant": "global-48"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 49,
+            "status": "PASS",
+            "variant": "global-49"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 50,
+            "status": "PASS",
+            "variant": "global-50"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 51,
+            "status": "PASS",
+            "variant": "global-51"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 52,
+            "status": "PASS",
+            "variant": "global-52"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 53,
+            "status": "PASS",
+            "variant": "global-53"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 54,
+            "status": "PASS",
+            "variant": "global-54"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 55,
+            "status": "PASS",
+            "variant": "global-55"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 56,
+            "status": "PASS",
+            "variant": "global-56"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 57,
+            "status": "PASS",
+            "variant": "global-57"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 58,
+            "status": "PASS",
+            "variant": "global-58"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 59,
+            "status": "PASS",
+            "variant": "global-59"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 60,
+            "status": "PASS",
+            "variant": "global-60"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 61,
+            "status": "PASS",
+            "variant": "global-61"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 62,
+            "status": "PASS",
+            "variant": "global-62"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 63,
+            "status": "PASS",
+            "variant": "global-63"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 64,
+            "status": "PASS",
+            "variant": "global-64"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 65,
+            "status": "PASS",
+            "variant": "global-65"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 66,
+            "status": "PASS",
+            "variant": "global-66"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 67,
+            "status": "PASS",
+            "variant": "global-67"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 68,
+            "status": "PASS",
+            "variant": "global-68"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 69,
+            "status": "PASS",
+            "variant": "global-69"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 70,
+            "status": "PASS",
+            "variant": "global-70"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 71,
+            "status": "PASS",
+            "variant": "global-71"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 72,
+            "status": "PASS",
+            "variant": "global-72"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 73,
+            "status": "PASS",
+            "variant": "global-73"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 74,
+            "status": "PASS",
+            "variant": "global-74"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 75,
+            "status": "PASS",
+            "variant": "global-75"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 76,
+            "status": "PASS",
+            "variant": "global-76"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 77,
+            "status": "PASS",
+            "variant": "global-77"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 78,
+            "status": "PASS",
+            "variant": "global-78"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 79,
+            "status": "PASS",
+            "variant": "global-79"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 80,
+            "status": "PASS",
+            "variant": "global-80"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 81,
+            "status": "PASS",
+            "variant": "global-81"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 82,
+            "status": "PASS",
+            "variant": "global-82"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 83,
+            "status": "PASS",
+            "variant": "global-83"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 84,
+            "status": "PASS",
+            "variant": "global-84"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 85,
+            "status": "PASS",
+            "variant": "global-85"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 86,
+            "status": "PASS",
+            "variant": "global-86"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 87,
+            "status": "PASS",
+            "variant": "global-87"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 88,
+            "status": "PASS",
+            "variant": "global-88"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 89,
+            "status": "PASS",
+            "variant": "global-89"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 90,
+            "status": "PASS",
+            "variant": "global-90"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 91,
+            "status": "PASS",
+            "variant": "global-91"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 92,
+            "status": "PASS",
+            "variant": "global-92"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 93,
+            "status": "PASS",
+            "variant": "global-93"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 94,
+            "status": "PASS",
+            "variant": "global-94"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 95,
+            "status": "PASS",
+            "variant": "global-95"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 96,
+            "status": "PASS",
+            "variant": "global-96"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 97,
+            "status": "PASS",
+            "variant": "global-97"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 98,
+            "status": "PASS",
+            "variant": "global-98"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 99,
+            "status": "PASS",
+            "variant": "global-99"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 100,
+            "status": "PASS",
+            "variant": "global-100"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 101,
+            "status": "PASS",
+            "variant": "global-101"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 102,
+            "status": "PASS",
+            "variant": "global-102"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 103,
+            "status": "PASS",
+            "variant": "global-103"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 104,
+            "status": "PASS",
+            "variant": "global-104"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 105,
+            "status": "PASS",
+            "variant": "global-105"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 106,
+            "status": "PASS",
+            "variant": "global-106"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 107,
+            "status": "PASS",
+            "variant": "global-107"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 108,
+            "status": "PASS",
+            "variant": "global-108"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 109,
+            "status": "PASS",
+            "variant": "global-109"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 110,
+            "status": "PASS",
+            "variant": "global-110"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 111,
+            "status": "PASS",
+            "variant": "global-111"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 112,
+            "status": "PASS",
+            "variant": "global-112"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 113,
+            "status": "PASS",
+            "variant": "global-113"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 114,
+            "status": "PASS",
+            "variant": "global-114"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 115,
+            "status": "PASS",
+            "variant": "global-115"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 116,
+            "status": "PASS",
+            "variant": "global-116"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 117,
+            "status": "PASS",
+            "variant": "global-117"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 118,
+            "status": "PASS",
+            "variant": "global-118"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 119,
+            "status": "PASS",
+            "variant": "global-119"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 120,
+            "status": "PASS",
+            "variant": "global-120"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 121,
+            "status": "PASS",
+            "variant": "global-121"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 122,
+            "status": "PASS",
+            "variant": "global-122"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 123,
+            "status": "PASS",
+            "variant": "global-123"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 124,
+            "status": "PASS",
+            "variant": "global-124"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 125,
+            "status": "PASS",
+            "variant": "global-125"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 126,
+            "status": "PASS",
+            "variant": "global-126"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 127,
+            "status": "PASS",
+            "variant": "global-127"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 128,
+            "status": "PASS",
+            "variant": "global-128"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 129,
+            "status": "PASS",
+            "variant": "global-129"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 130,
+            "status": "PASS",
+            "variant": "global-130"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 131,
+            "status": "PASS",
+            "variant": "global-131"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 132,
+            "status": "PASS",
+            "variant": "global-132"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 133,
+            "status": "PASS",
+            "variant": "global-133"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 134,
+            "status": "PASS",
+            "variant": "global-134"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 135,
+            "status": "PASS",
+            "variant": "global-135"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 136,
+            "status": "PASS",
+            "variant": "global-136"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 137,
+            "status": "PASS",
+            "variant": "global-137"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 138,
+            "status": "PASS",
+            "variant": "global-138"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 139,
+            "status": "PASS",
+            "variant": "global-139"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 140,
+            "status": "PASS",
+            "variant": "global-140"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 141,
+            "status": "PASS",
+            "variant": "global-141"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 142,
+            "status": "PASS",
+            "variant": "global-142"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 143,
+            "status": "PASS",
+            "variant": "global-143"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 144,
+            "status": "PASS",
+            "variant": "global-144"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 145,
+            "status": "PASS",
+            "variant": "global-145"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 146,
+            "status": "PASS",
+            "variant": "global-146"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 147,
+            "status": "PASS",
+            "variant": "global-147"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 148,
+            "status": "PASS",
+            "variant": "global-148"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 149,
+            "status": "PASS",
+            "variant": "global-149"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 150,
+            "status": "PASS",
+            "variant": "global-150"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 151,
+            "status": "PASS",
+            "variant": "global-151"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 152,
+            "status": "PASS",
+            "variant": "global-152"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 153,
+            "status": "PASS",
+            "variant": "global-153"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 154,
+            "status": "PASS",
+            "variant": "global-154"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 155,
+            "status": "PASS",
+            "variant": "global-155"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 156,
+            "status": "PASS",
+            "variant": "global-156"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 157,
+            "status": "PASS",
+            "variant": "global-157"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 158,
+            "status": "PASS",
+            "variant": "global-158"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 159,
+            "status": "PASS",
+            "variant": "global-159"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 160,
+            "status": "PASS",
+            "variant": "global-160"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 161,
+            "status": "PASS",
+            "variant": "global-161"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 162,
+            "status": "PASS",
+            "variant": "global-162"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 163,
+            "status": "PASS",
+            "variant": "global-163"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 164,
+            "status": "PASS",
+            "variant": "global-164"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 165,
+            "status": "PASS",
+            "variant": "global-165"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 166,
+            "status": "PASS",
+            "variant": "global-166"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 167,
+            "status": "PASS",
+            "variant": "global-167"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 168,
+            "status": "PASS",
+            "variant": "global-168"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 169,
+            "status": "PASS",
+            "variant": "global-169"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 170,
+            "status": "PASS",
+            "variant": "global-170"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 171,
+            "status": "PASS",
+            "variant": "global-171"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 172,
+            "status": "PASS",
+            "variant": "global-172"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 173,
+            "status": "PASS",
+            "variant": "global-173"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 174,
+            "status": "PASS",
+            "variant": "global-174"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 175,
+            "status": "PASS",
+            "variant": "global-175"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 176,
+            "status": "PASS",
+            "variant": "global-176"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 177,
+            "status": "PASS",
+            "variant": "global-177"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 178,
+            "status": "PASS",
+            "variant": "global-178"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 179,
+            "status": "PASS",
+            "variant": "global-179"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 180,
+            "status": "PASS",
+            "variant": "global-180"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 181,
+            "status": "PASS",
+            "variant": "global-181"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 182,
+            "status": "PASS",
+            "variant": "global-182"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 183,
+            "status": "PASS",
+            "variant": "global-183"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 184,
+            "status": "PASS",
+            "variant": "global-184"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 185,
+            "status": "PASS",
+            "variant": "global-185"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 186,
+            "status": "PASS",
+            "variant": "global-186"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 187,
+            "status": "PASS",
+            "variant": "global-187"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 188,
+            "status": "PASS",
+            "variant": "global-188"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 189,
+            "status": "PASS",
+            "variant": "global-189"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 190,
+            "status": "PASS",
+            "variant": "global-190"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 191,
+            "status": "PASS",
+            "variant": "global-191"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 192,
+            "status": "PASS",
+            "variant": "global-192"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 193,
+            "status": "PASS",
+            "variant": "global-193"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 194,
+            "status": "PASS",
+            "variant": "global-194"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 195,
+            "status": "PASS",
+            "variant": "global-195"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 196,
+            "status": "PASS",
+            "variant": "global-196"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 197,
+            "status": "PASS",
+            "variant": "global-197"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 198,
+            "status": "PASS",
+            "variant": "global-198"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 199,
+            "status": "PASS",
+            "variant": "global-199"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 200,
+            "status": "PASS",
+            "variant": "global-over"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 201,
+            "status": "PASS",
+            "variant": "actor-0"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 202,
+            "status": "PASS",
+            "variant": "actor-1"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 203,
+            "status": "PASS",
+            "variant": "actor-2"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 204,
+            "status": "PASS",
+            "variant": "actor-3"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 205,
+            "status": "PASS",
+            "variant": "actor-4"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 206,
+            "status": "PASS",
+            "variant": "actor-5"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 207,
+            "status": "PASS",
+            "variant": "actor-6"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 208,
+            "status": "PASS",
+            "variant": "actor-7"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 209,
+            "status": "PASS",
+            "variant": "actor-8"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 210,
+            "status": "PASS",
+            "variant": "actor-9"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 211,
+            "status": "PASS",
+            "variant": "actor-10"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 212,
+            "status": "PASS",
+            "variant": "actor-11"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 213,
+            "status": "PASS",
+            "variant": "actor-12"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 214,
+            "status": "PASS",
+            "variant": "actor-13"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 215,
+            "status": "PASS",
+            "variant": "actor-14"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 216,
+            "status": "PASS",
+            "variant": "actor-15"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 217,
+            "status": "PASS",
+            "variant": "actor-16"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 218,
+            "status": "PASS",
+            "variant": "actor-17"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 219,
+            "status": "PASS",
+            "variant": "actor-18"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 220,
+            "status": "PASS",
+            "variant": "actor-19"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 221,
+            "status": "PASS",
+            "variant": "actor-20"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 222,
+            "status": "PASS",
+            "variant": "actor-21"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 223,
+            "status": "PASS",
+            "variant": "actor-22"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 224,
+            "status": "PASS",
+            "variant": "actor-23"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 225,
+            "status": "PASS",
+            "variant": "actor-24"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 226,
+            "status": "PASS",
+            "variant": "actor-25"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 227,
+            "status": "PASS",
+            "variant": "actor-26"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 228,
+            "status": "PASS",
+            "variant": "actor-27"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 229,
+            "status": "PASS",
+            "variant": "actor-28"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 230,
+            "status": "PASS",
+            "variant": "actor-29"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 231,
+            "status": "PASS",
+            "variant": "actor-30"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 232,
+            "status": "PASS",
+            "variant": "actor-31"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 233,
+            "status": "PASS",
+            "variant": "actor-32"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 234,
+            "status": "PASS",
+            "variant": "actor-33"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 235,
+            "status": "PASS",
+            "variant": "actor-34"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 236,
+            "status": "PASS",
+            "variant": "actor-35"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 237,
+            "status": "PASS",
+            "variant": "actor-36"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 238,
+            "status": "PASS",
+            "variant": "actor-37"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 239,
+            "status": "PASS",
+            "variant": "actor-38"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 240,
+            "status": "PASS",
+            "variant": "actor-39"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 241,
+            "status": "PASS",
+            "variant": "actor-isolation"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 242,
+            "status": "PASS",
+            "variant": "refill"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 243,
+            "status": "PASS",
+            "variant": "worker-held"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 244,
+            "status": "PASS",
+            "variant": "queue-0"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 245,
+            "status": "PASS",
+            "variant": "queue-1"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 246,
+            "status": "PASS",
+            "variant": "queue-2"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 247,
+            "status": "PASS",
+            "variant": "queue-3"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 248,
+            "status": "PASS",
+            "variant": "queue-4"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 249,
+            "status": "PASS",
+            "variant": "queue-5"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 250,
+            "status": "PASS",
+            "variant": "queue-6"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 251,
+            "status": "PASS",
+            "variant": "queue-7"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 252,
+            "status": "PASS",
+            "variant": "queue-8"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 253,
+            "status": "PASS",
+            "variant": "queue-9"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 254,
+            "status": "PASS",
+            "variant": "queue-10"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 255,
+            "status": "PASS",
+            "variant": "queue-11"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 256,
+            "status": "PASS",
+            "variant": "queue-12"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 257,
+            "status": "PASS",
+            "variant": "queue-13"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 258,
+            "status": "PASS",
+            "variant": "queue-14"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 259,
+            "status": "PASS",
+            "variant": "queue-15"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 260,
+            "status": "PASS",
+            "variant": "queue-16"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 261,
+            "status": "PASS",
+            "variant": "queue-17"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 262,
+            "status": "PASS",
+            "variant": "queue-18"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 263,
+            "status": "PASS",
+            "variant": "queue-19"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 264,
+            "status": "PASS",
+            "variant": "queue-20"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 265,
+            "status": "PASS",
+            "variant": "queue-21"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 266,
+            "status": "PASS",
+            "variant": "queue-22"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 267,
+            "status": "PASS",
+            "variant": "queue-23"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 268,
+            "status": "PASS",
+            "variant": "queue-24"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 269,
+            "status": "PASS",
+            "variant": "queue-25"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 270,
+            "status": "PASS",
+            "variant": "queue-26"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 271,
+            "status": "PASS",
+            "variant": "queue-27"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 272,
+            "status": "PASS",
+            "variant": "queue-28"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 273,
+            "status": "PASS",
+            "variant": "queue-29"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 274,
+            "status": "PASS",
+            "variant": "queue-30"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 275,
+            "status": "PASS",
+            "variant": "queue-31"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 276,
+            "status": "PASS",
+            "variant": "queue-32"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 277,
+            "status": "PASS",
+            "variant": "queue-33"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 278,
+            "status": "PASS",
+            "variant": "queue-34"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 279,
+            "status": "PASS",
+            "variant": "queue-35"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 280,
+            "status": "PASS",
+            "variant": "queue-36"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 281,
+            "status": "PASS",
+            "variant": "queue-37"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 282,
+            "status": "PASS",
+            "variant": "queue-38"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 283,
+            "status": "PASS",
+            "variant": "queue-39"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 284,
+            "status": "PASS",
+            "variant": "queue-40"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 285,
+            "status": "PASS",
+            "variant": "queue-41"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 286,
+            "status": "PASS",
+            "variant": "queue-42"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 287,
+            "status": "PASS",
+            "variant": "queue-43"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 288,
+            "status": "PASS",
+            "variant": "queue-44"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 289,
+            "status": "PASS",
+            "variant": "queue-45"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 290,
+            "status": "PASS",
+            "variant": "queue-46"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 291,
+            "status": "PASS",
+            "variant": "queue-47"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 292,
+            "status": "PASS",
+            "variant": "queue-48"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 293,
+            "status": "PASS",
+            "variant": "queue-49"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 294,
+            "status": "PASS",
+            "variant": "queue-50"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 295,
+            "status": "PASS",
+            "variant": "queue-51"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 296,
+            "status": "PASS",
+            "variant": "queue-52"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 297,
+            "status": "PASS",
+            "variant": "queue-53"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 298,
+            "status": "PASS",
+            "variant": "queue-54"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 299,
+            "status": "PASS",
+            "variant": "queue-55"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 300,
+            "status": "PASS",
+            "variant": "queue-56"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 301,
+            "status": "PASS",
+            "variant": "queue-57"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 302,
+            "status": "PASS",
+            "variant": "queue-58"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 303,
+            "status": "PASS",
+            "variant": "queue-59"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 304,
+            "status": "PASS",
+            "variant": "queue-60"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 305,
+            "status": "PASS",
+            "variant": "queue-61"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 306,
+            "status": "PASS",
+            "variant": "queue-62"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 307,
+            "status": "PASS",
+            "variant": "queue-63"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 308,
+            "status": "PASS",
+            "variant": "queue-over"
+          },
+          {
+            "caseId": "ADMISSION",
+            "sequence": 309,
+            "status": "PASS",
+            "variant": "drain-stops-admission"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "zero-active-accepts"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "one-active-accepts"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "two-active-rejects"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "quota-reject-no-domain-event"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "duplicate-before-quota"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "quota-is-per-actor"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "quota-before-full"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "paused-before-quota"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "cancel-releases-quota"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "old-rejection-immutable-after-cancel"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "cancelled-excluded-fresh-intent-accepts"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "repeat-cancel-no-extra-quota"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "repeat-cancel-does-not-free-active"
+          },
+          {
+            "caseId": "Q01",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "repeat-cancel-and-limit-no-event"
+          },
+          {
+            "caseId": "Q02",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "legacy-over-limit-blocks-new"
+          },
+          {
+            "caseId": "Q02",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "legacy-rows-retained-no-event"
+          },
+          {
+            "caseId": "Q02",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "legacy-duplicate-keeps-original"
+          },
+          {
+            "caseId": "Q02",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "legacy-first-cancel-allowed"
+          },
+          {
+            "caseId": "Q02",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "legacy-at-two-still-blocked"
+          },
+          {
+            "caseId": "Q02",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "legacy-second-cancel-allowed"
+          },
+          {
+            "caseId": "Q02",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "legacy-below-two-accepts"
+          },
+          {
+            "caseId": "Q02",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "legacy-history-not-deleted"
+          },
+          {
+            "caseId": "Q03",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "cancel-order-register-first"
+          },
+          {
+            "caseId": "Q03",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "registration-order-register-first"
+          },
+          {
+            "caseId": "Q03",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "counts-events-order-register-first"
+          },
+          {
+            "caseId": "Q03",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "retry-preserves-order-register-first"
+          },
+          {
+            "caseId": "Q03",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "cancel-order-cancel-first"
+          },
+          {
+            "caseId": "Q03",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "registration-order-cancel-first"
+          },
+          {
+            "caseId": "Q03",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "counts-events-order-cancel-first"
+          },
+          {
+            "caseId": "Q03",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "retry-preserves-order-cancel-first"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 0,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-0"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 1,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-0"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 2,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-0"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 3,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-1"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 4,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-1"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 5,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-1"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 6,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-2"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 7,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-2"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 8,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-2"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 9,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-3"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 10,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-3"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 11,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-3"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 12,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-4"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 13,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-4"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 14,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-4"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 15,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-5"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 16,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-5"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 17,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-5"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 18,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-6"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 19,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-6"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 20,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-6"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 21,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-7"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 22,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-7"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 23,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-7"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 24,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-8"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 25,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-8"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 26,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-8"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 27,
+            "status": "PASS",
+            "variant": "cross-workshop-one-winner-9"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 28,
+            "status": "PASS",
+            "variant": "cross-workshop-atomic-count-event-9"
+          },
+          {
+            "caseId": "Q04",
+            "sequence": 29,
+            "status": "PASS",
+            "variant": "cross-workshop-retry-both-results-9"
+          }
+        ],
+        "missing": [],
+        "failed": [],
+        "invalidJUnit": false,
+        "scope": "authored T02 cases only; inherited 137 source obligations are not all complete"
+      },
+      "artifacts": "0438ac675615fc4803976e26c4319e963dc7faa80ad6cd9654200ac88474a635  /build/dev/workshop_backend\n4bba595a539f314282a5a6ce692594d8f8ed9ea8cac197cc9023eaec2a2b929b  /build/dev/workshop_tests\n"
+    }
+  },
+  "sourceChecks": [
+    {
+      "path": "backend/CMakeLists.txt",
+      "expected": "03205badb12a02a4433a56df8f585c544caed510b12fb36d1704b4d5f238afee",
+      "actual": "03205badb12a02a4433a56df8f585c544caed510b12fb36d1704b4d5f238afee"
+    },
+    {
+      "path": "backend/CMakePresets.json",
+      "expected": "31b7446a3632c765ed8c0cdd4f52b7a83c858b737cf7dd73183f9a1fa4f626cd",
+      "actual": "31b7446a3632c765ed8c0cdd4f52b7a83c858b737cf7dd73183f9a1fa4f626cd"
+    },
+    {
+      "path": "backend/include/workshop/admission.hpp",
+      "expected": "d67e77d67d4a96947f54b16c0bda90ae308d1718752671c24e62749c2a6e0790",
+      "actual": "d67e77d67d4a96947f54b16c0bda90ae308d1718752671c24e62749c2a6e0790"
+    },
+    {
+      "path": "backend/include/workshop/executor.hpp",
+      "expected": "5fbc51aa67e0e14bdba4463f5f8331bc238802fac46a6b504383f33b29313f32",
+      "actual": "5fbc51aa67e0e14bdba4463f5f8331bc238802fac46a6b504383f33b29313f32"
+    },
+    {
+      "path": "backend/include/workshop/model.hpp",
+      "expected": "67f4b531c7a33daf89893c0858db4497f5541f05a0a97de0b1d93e66f4e8f931",
+      "actual": "67f4b531c7a33daf89893c0858db4497f5541f05a0a97de0b1d93e66f4e8f931"
+    },
+    {
+      "path": "backend/include/workshop/store.hpp",
+      "expected": "5c29b356ad1278753652e13b31ca3eea9803eb70c4309114dc7e59a1438b449d",
+      "actual": "5c29b356ad1278753652e13b31ca3eea9803eb70c4309114dc7e59a1438b449d"
+    },
+    {
+      "path": "backend/include/workshop/update_transport.hpp",
+      "expected": "53afffd15664975c8d5dae689a7e3099b6d3cff25803ceeedb78063c21a90501",
+      "actual": "53afffd15664975c8d5dae689a7e3099b6d3cff25803ceeedb78063c21a90501"
+    },
+    {
+      "path": "backend/include/workshop/updates.hpp",
+      "expected": "af76f6c54bd9e987b3ff33237bc12310778d8a949a4c2dd0019f559619557a0c",
+      "actual": "af76f6c54bd9e987b3ff33237bc12310778d8a949a4c2dd0019f559619557a0c"
+    },
+    {
+      "path": "backend/schema/001.sql",
+      "expected": "98a5dd2ee223b17e2ee4dab70f6f09f9fef2a4b32f86d0a3c719e9f94a3df01e",
+      "actual": "98a5dd2ee223b17e2ee4dab70f6f09f9fef2a4b32f86d0a3c719e9f94a3df01e"
+    },
+    {
+      "path": "backend/src/executor.cpp",
+      "expected": "482a72aa3729396990e3dc6dc5eae4b6b9fe27a209aa52ecd28602d7d0534321",
+      "actual": "482a72aa3729396990e3dc6dc5eae4b6b9fe27a209aa52ecd28602d7d0534321"
+    },
+    {
+      "path": "backend/src/main.cpp",
+      "expected": "d6efa5b7aab2d9d5eb1c20dbbb456d9249f53dedbc2b00464fd4315a42577912",
+      "actual": "d6efa5b7aab2d9d5eb1c20dbbb456d9249f53dedbc2b00464fd4315a42577912"
+    },
+    {
+      "path": "backend/src/model.cpp",
+      "expected": "36733243e0250cde6ae2dc37dda70cb25ef447678d869c0ebf07b4364b133c8b",
+      "actual": "36733243e0250cde6ae2dc37dda70cb25ef447678d869c0ebf07b4364b133c8b"
+    },
+    {
+      "path": "backend/src/store.cpp",
+      "expected": "af4634e7dde54eedaef4b4aff57761e0a943077b6710bafa5df4bef42d9c173d",
+      "actual": "af4634e7dde54eedaef4b4aff57761e0a943077b6710bafa5df4bef42d9c173d"
+    },
+    {
+      "path": "backend/src/update_transport.cpp",
+      "expected": "9d39e63291caca487fb382032f19ad66c5b856772874bd6385f5752f9bb7fd50",
+      "actual": "9d39e63291caca487fb382032f19ad66c5b856772874bd6385f5752f9bb7fd50"
+    },
+    {
+      "path": "backend/src/updates.cpp",
+      "expected": "6dfe5bd8cb642cc9baddf06e68614228e7e19fb46f14109fd2185a6caa76fdc1",
+      "actual": "6dfe5bd8cb642cc9baddf06e68614228e7e19fb46f14109fd2185a6caa76fdc1"
+    },
+    {
+      "path": "backend/tests/cases.cmake",
+      "expected": "2869056adbd304cdf5ad318a4f3e4c17ab4df3f977fc0789b4ab57be26898c3e",
+      "actual": "2869056adbd304cdf5ad318a4f3e4c17ab4df3f977fc0789b4ab57be26898c3e"
+    },
+    {
+      "path": "backend/tests/http.mjs",
+      "expected": "c90269fc1705e944324ae9ece03d52420dec167b41097f1b78af05c91b4a6138",
+      "actual": "c90269fc1705e944324ae9ece03d52420dec167b41097f1b78af05c91b4a6138"
+    },
+    {
+      "path": "backend/tests/session.mjs",
+      "expected": "5d43562656d06c8d3f551bd2228957e574891db21bb3e810f8fc4fde62b7d70c",
+      "actual": "5d43562656d06c8d3f551bd2228957e574891db21bb3e810f8fc4fde62b7d70c"
+    },
+    {
+      "path": "backend/tests/shutdown.mjs",
+      "expected": "b0167cfcb6c5127935a2bdc3f957941b44faab4755bb23893521013e04839c61",
+      "actual": "b0167cfcb6c5127935a2bdc3f957941b44faab4755bb23893521013e04839c61"
+    },
+    {
+      "path": "backend/tests/tests.cpp",
+      "expected": "d5346b18be9429f42e98833f22a617737aeede55a8dcb2a015f30a17293fa76a",
+      "actual": "d5346b18be9429f42e98833f22a617737aeede55a8dcb2a015f30a17293fa76a"
+    },
+    {
+      "path": "backend/tests/updates.cpp",
+      "expected": "d326e86598f9d8325f5a610588bf1fa2bfe63a22d5a2b29cec2315ac6a2ce82d",
+      "actual": "d326e86598f9d8325f5a610588bf1fa2bfe63a22d5a2b29cec2315ac6a2ce82d"
+    },
+    {
+      "path": "contracts/openapi.json",
+      "expected": "a65cd03056a13aa21339f7cd2f14df767c8e1efc43024a1c001bfa17113301ea",
+      "actual": "a65cd03056a13aa21339f7cd2f14df767c8e1efc43024a1c001bfa17113301ea"
+    },
+    {
+      "path": "tests/t02/coverage.json",
+      "expected": "180a8a9113974e2dd49afd4b88b508000a6328be5d759714a76fed4b1f06096f",
+      "actual": "180a8a9113974e2dd49afd4b88b508000a6328be5d759714a76fed4b1f06096f"
+    },
+    {
+      "path": "tests/t02/seed.json",
+      "expected": "1c931b81cc3569f8cfb4bce80badb3d93db2b4878cb7df6f75ffa0477d19279a",
+      "actual": "1c931b81cc3569f8cfb4bce80badb3d93db2b4878cb7df6f75ffa0477d19279a"
+    },
+    {
+      "path": "tests/t02/sqlite-diagnostic.cpp",
+      "expected": "08e91140c8a1fe64463584eb480349774d795f18bd42a95e8fc3199778f9cf86",
+      "actual": "08e91140c8a1fe64463584eb480349774d795f18bd42a95e8fc3199778f9cf86"
+    },
+    {
+      "path": "tests/t02/tsan/asan-observations.json",
+      "expected": "99f12b29cf8bad7910f1ce178a820584fceca7f2886aaa4bfe6976932af42c84",
+      "actual": "99f12b29cf8bad7910f1ce178a820584fceca7f2886aaa4bfe6976932af42c84"
+    },
+    {
+      "path": "tests/t02/tsan/control.txt",
+      "expected": "4be079ca2f9a085e99b0e85f63a7aeb739c36c2c60141f87cc23897896134b59",
+      "actual": "4be079ca2f9a085e99b0e85f63a7aeb739c36c2c60141f87cc23897896134b59"
+    },
+    {
+      "path": "tests/t02/tsan/expected.json",
+      "expected": "c01c6c1ac27192bf6f07e5c85eab2f63b868eddd6eca2ff04a4ff3acfe404d15",
+      "actual": "c01c6c1ac27192bf6f07e5c85eab2f63b868eddd6eca2ff04a4ff3acfe404d15"
+    },
+    {
+      "path": "tests/t02/tsan/gate.test.mjs",
+      "expected": "a28ae0ff55e4a37d88639c815f481537e8ea2a6b29abb38eb63bfffa540a8847",
+      "actual": "a28ae0ff55e4a37d88639c815f481537e8ea2a6b29abb38eb63bfffa540a8847"
+    },
+    {
+      "path": "tests/t02/tsan/policy.json",
+      "expected": "d79607a813f3a6a6dda11f02682f486ae4699ab875210ccdfb1e54c857617deb",
+      "actual": "d79607a813f3a6a6dda11f02682f486ae4699ab875210ccdfb1e54c857617deb"
+    },
+    {
+      "path": "tests/t02/tsan/policy.test.mjs",
+      "expected": "88ac7da07b360c5247d6f2e105fa01c1151eef299ff6f6d6523f2fc2546205f3",
+      "actual": "88ac7da07b360c5247d6f2e105fa01c1151eef299ff6f6d6523f2fc2546205f3"
+    },
+    {
+      "path": "tests/t02/tsan/r5.txt",
+      "expected": "3e5c5d8383e21a42016a08de0a0c10503d56507755d1468eaaefc5d5a5bf97e9",
+      "actual": "3e5c5d8383e21a42016a08de0a0c10503d56507755d1468eaaefc5d5a5bf97e9"
+    },
+    {
+      "path": "tests/t02/tsan/r6-C01.txt",
+      "expected": "8bfc9b449009af2f13b2314fbbe9663f8141d81b52813500460edecec251ee19",
+      "actual": "8bfc9b449009af2f13b2314fbbe9663f8141d81b52813500460edecec251ee19"
+    },
+    {
+      "path": "tests/t02/tsan/r6-C02.txt",
+      "expected": "add2483b5ba4ca4bca2359ce7717307fd4ca0f9147f0eb02d3157282206959a9",
+      "actual": "add2483b5ba4ca4bca2359ce7717307fd4ca0f9147f0eb02d3157282206959a9"
+    },
+    {
+      "path": "tests/t02/tsan/r6-C03.txt",
+      "expected": "2510e1a578b535e95d701234c8d5476b6b53c599ed79e8dfc770d82c9cef7a3b",
+      "actual": "2510e1a578b535e95d701234c8d5476b6b53c599ed79e8dfc770d82c9cef7a3b"
+    },
+    {
+      "path": "tests/t02/tsan/r6-C04.txt",
+      "expected": "518a344a2a98cb44c1371b04e8a0b6e9a38f0dc23b0c309ea6cfcafc917f6d53",
+      "actual": "518a344a2a98cb44c1371b04e8a0b6e9a38f0dc23b0c309ea6cfcafc917f6d53"
+    },
+    {
+      "path": "tests/t02/tsan/r6-C05.txt",
+      "expected": "bf63e51def9d5696921d2287b9e25575eb53d893fd4f03b6c889284c9a2cc741",
+      "actual": "bf63e51def9d5696921d2287b9e25575eb53d893fd4f03b6c889284c9a2cc741"
+    },
+    {
+      "path": "tests/t02/tsan/r6-I09.txt",
+      "expected": "10fbd9eb7465dc11114b32a7c19e60a6585b16872c13d85e7c623deafaf91c2f",
+      "actual": "10fbd9eb7465dc11114b32a7c19e60a6585b16872c13d85e7c623deafaf91c2f"
+    },
+    {
+      "path": "tests/t02/tsan/r9-read-first.txt",
+      "expected": "42d6bfb29c341eae843ef6f6ffa214a0dda5b23b50d30513593e1cea27c8ac1b",
+      "actual": "42d6bfb29c341eae843ef6f6ffa214a0dda5b23b50d30513593e1cea27c8ac1b"
+    },
+    {
+      "path": "tests/t02/tsan/signal-r7.txt",
+      "expected": "91fe32017ea529d9f166173edca5f0284ddc0ecf2e08a570670bb1fc285a5d50",
+      "actual": "91fe32017ea529d9f166173edca5f0284ddc0ecf2e08a570670bb1fc285a5d50"
+    },
+    {
+      "path": "tests/t02/tsan/wal.txt",
+      "expected": "d7fae7af1d56d443156058a49d491efde4af4e851db2cbbc6899ef9818ddd231",
+      "actual": "d7fae7af1d56d443156058a49d491efde4af4e851db2cbbc6899ef9818ddd231"
+    },
+    {
+      "path": "scripts/t02/build.sh",
+      "expected": "02d68ba9f1020fbbc5dafdf2585af349937364adfa6c15a71987f5e4bbfbc4fd",
+      "actual": "02d68ba9f1020fbbc5dafdf2585af349937364adfa6c15a71987f5e4bbfbc4fd"
+    },
+    {
+      "path": "scripts/t02/capture-case.mjs",
+      "expected": "121032a51b4c57257faebd256b7d2b94201e7ae6edca126f912e5731deb0c166",
+      "actual": "121032a51b4c57257faebd256b7d2b94201e7ae6edca126f912e5731deb0c166"
+    },
+    {
+      "path": "scripts/t02/collect.mjs",
+      "expected": "2fa7063bac1b60dfa1c6699c72c477619061e948620574b026c03e641a15a9ae",
+      "actual": "2fa7063bac1b60dfa1c6699c72c477619061e948620574b026c03e641a15a9ae"
+    },
+    {
+      "path": "scripts/t02/g2.mjs",
+      "expected": "4a815590e192c3702ca9c0466bd7e11cadebf341bc8bd8baf2ce5560bc86ac50",
+      "actual": "4a815590e192c3702ca9c0466bd7e11cadebf341bc8bd8baf2ce5560bc86ac50"
+    },
+    {
+      "path": "scripts/t02/preflight.mjs",
+      "expected": "655f704222e7f4bfbd9298792942e6dc0f72f826dabdad6038785ccdf60c452c",
+      "actual": "655f704222e7f4bfbd9298792942e6dc0f72f826dabdad6038785ccdf60c452c"
+    },
+    {
+      "path": "scripts/t02/run.mjs",
+      "expected": "c39b4c6d1568a570015c74c278f7cbb748d66d51b5db53e6d59bcdb975a0743b",
+      "actual": "c39b4c6d1568a570015c74c278f7cbb748d66d51b5db53e6d59bcdb975a0743b"
+    },
+    {
+      "path": "scripts/t02/sqlite-diagnostic.mjs",
+      "expected": "1642fba99660f043aca59c1ba91a34559158f1ab1a35b128922d64e65559a2dd",
+      "actual": "1642fba99660f043aca59c1ba91a34559158f1ab1a35b128922d64e65559a2dd"
+    },
+    {
+      "path": "scripts/t02/sqlite-diagnostic.sh",
+      "expected": "af49bef026db9dce29724a42d767a63f8e18c66fc8992b7b3f9670b99b0f41cc",
+      "actual": "af49bef026db9dce29724a42d767a63f8e18c66fc8992b7b3f9670b99b0f41cc"
+    },
+    {
+      "path": "scripts/t02/static-check.mjs",
+      "expected": "86fb6e7c4dbc54ec321f05ed9ba76b8c5262947e5260e606c1d8d098db0426c5",
+      "actual": "86fb6e7c4dbc54ec321f05ed9ba76b8c5262947e5260e606c1d8d098db0426c5"
+    },
+    {
+      "path": "scripts/t02/tsan-context.mjs",
+      "expected": "8080fae6be56f5d51f63b4d2a138f8697202dc6f4281cb3f29059569944b76e9",
+      "actual": "8080fae6be56f5d51f63b4d2a138f8697202dc6f4281cb3f29059569944b76e9"
+    },
+    {
+      "path": "scripts/t02/tsan-controls.mjs",
+      "expected": "ea8d98527feaeed541179589c9cf32f42618b864630e422271e2c7cd18106345",
+      "actual": "ea8d98527feaeed541179589c9cf32f42618b864630e422271e2c7cd18106345"
+    },
+    {
+      "path": "scripts/t02/tsan-gate.mjs",
+      "expected": "3d534d73dd3ea1c6a785b1a21c83aa137124e15bb4b59a50e54e15ef42aefec8",
+      "actual": "3d534d73dd3ea1c6a785b1a21c83aa137124e15bb4b59a50e54e15ef42aefec8"
+    },
+    {
+      "path": "scripts/t02/tsan-policy.mjs",
+      "expected": "89a83f017eff528cc545847cedb81a70924e962f02ea9af851081b21f3247d57",
+      "actual": "89a83f017eff528cc545847cedb81a70924e962f02ea9af851081b21f3247d57"
+    },
+    {
+      "path": "scripts/t05/build.sh",
+      "expected": "abecdf6535ba2f1a85059ee20795d19fae5c662aa0b11d3af1f734d8f5b2f11a",
+      "actual": "abecdf6535ba2f1a85059ee20795d19fae5c662aa0b11d3af1f734d8f5b2f11a"
+    },
+    {
+      "path": "containers/t02/vendor-lock.json",
+      "expected": "25e7b5f3eda3088b12d952853e3fd232494172a60df4a169ba3062338ce8c72a",
+      "actual": "25e7b5f3eda3088b12d952853e3fd232494172a60df4a169ba3062338ce8c72a"
+    },
+    {
+      "path": "docs/architecture/traceability.md",
+      "expected": "35d6b9cf4400b8f57e992801e84b780edecafb8107428376fd0d97ac813428d1",
+      "actual": "35d6b9cf4400b8f57e992801e84b780edecafb8107428376fd0d97ac813428d1"
+    },
+    {
+      "path": "docs/business/INDEX.md",
+      "expected": "8198d00159cda289e7eb38483a136476ffe4abf0f2cacee3999e9af043e1dc13",
+      "actual": "8198d00159cda289e7eb38483a136476ffe4abf0f2cacee3999e9af043e1dc13"
+    },
+    {
+      "path": "docs/business/features/admin.md",
+      "expected": "e4a968c85edf8f6d940f6777e0de03eb39954f5debb227157a7dfcd6e067ee26",
+      "actual": "e4a968c85edf8f6d940f6777e0de03eb39954f5debb227157a7dfcd6e067ee26"
+    },
+    {
+      "path": "docs/business/features/register-cancel.md",
+      "expected": "bdbc758021196ba29e0ed6621b832f2e1df48508d2b7001c20ab488ff3796565",
+      "actual": "bdbc758021196ba29e0ed6621b832f2e1df48508d2b7001c20ab488ff3796565"
+    },
+    {
+      "path": "docs/business/features/updates.md",
+      "expected": "6fd19ef33398d07e3bdf905a977d4c21327036aac4e4e9e13a3883debe0a93d8",
+      "actual": "6fd19ef33398d07e3bdf905a977d4c21327036aac4e4e9e13a3883debe0a93d8"
+    },
+    {
+      "path": "docs/business/features/view.md",
+      "expected": "074d983c355f150846b02ad37246d2cfbdd1d658d6dc9e23d37905ead28ef08c",
+      "actual": "074d983c355f150846b02ad37246d2cfbdd1d658d6dc9e23d37905ead28ef08c"
+    },
+    {
+      "path": "docs/business/shared/availability.md",
+      "expected": "bf4abab2fc39b31673cf62e5ffe25fbec6847202d1fcca09b032504e9b50e2f5",
+      "actual": "bf4abab2fc39b31673cf62e5ffe25fbec6847202d1fcca09b032504e9b50e2f5"
+    },
+    {
+      "path": "docs/business/shared/registration.md",
+      "expected": "1c8eedff797e26b13524314375031d7b3de619d3759565e11e79ccccc62ed2a1",
+      "actual": "1c8eedff797e26b13524314375031d7b3de619d3759565e11e79ccccc62ed2a1"
+    },
+    {
+      "path": "docs/business/shared/workshop.md",
+      "expected": "6cee18bedab9402e74171a917aec136a3eabe647a0a022b9cdc21ffd1745dcd9",
+      "actual": "6cee18bedab9402e74171a917aec136a3eabe647a0a022b9cdc21ffd1745dcd9"
+    },
+    {
+      "path": "docs/business/tests.md",
+      "expected": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822",
+      "actual": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    {
+      "path": "docs/design/admin.md",
+      "expected": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346",
+      "actual": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    {
+      "path": "docs/design/architecture.md",
+      "expected": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6",
+      "actual": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    {
+      "path": "docs/design/experience.md",
+      "expected": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e",
+      "actual": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    {
+      "path": "docs/design/operations.md",
+      "expected": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36",
+      "actual": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    {
+      "path": "docs/design/quality.md",
+      "expected": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe",
+      "actual": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    {
+      "path": "docs/engineering/android.md",
+      "expected": "d457e5b30283f1eb06b32aeb1a3f0d58e8b1301234b227aa614d966d1557e2e3",
+      "actual": "d457e5b30283f1eb06b32aeb1a3f0d58e8b1301234b227aa614d966d1557e2e3"
+    },
+    {
+      "path": "docs/engineering/cpp.md",
+      "expected": "d024d4812bbef75de51f83a31f20b269998b96d0697cd064e32f89ce2e325f74",
+      "actual": "d024d4812bbef75de51f83a31f20b269998b96d0697cd064e32f89ce2e325f74"
+    },
+    {
+      "path": "docs/engineering/ios.md",
+      "expected": "72f13ee9688dc41208b21cebe723a368b84284b697a4436324603f9dfcaf48a2",
+      "actual": "72f13ee9688dc41208b21cebe723a368b84284b697a4436324603f9dfcaf48a2"
+    },
+    {
+      "path": "docs/engineering/rules.md",
+      "expected": "8aaf5948b7a012b199522c73abee4e489fdf0b0cda1abaf2bf618d7692f0cb33",
+      "actual": "8aaf5948b7a012b199522c73abee4e489fdf0b0cda1abaf2bf618d7692f0cb33"
+    },
+    {
+      "path": "docs/engineering/tests.md",
+      "expected": "a96f51752de20d5cde4853f1bd361179f63bed202143dee162e667f93d3ec2ae",
+      "actual": "a96f51752de20d5cde4853f1bd361179f63bed202143dee162e667f93d3ec2ae"
+    },
+    {
+      "path": "docs/engineering/web.md",
+      "expected": "d65b5f8c6cc83dfb341665c13172ced90b73f602bda3966e5a34aba0a0aade48",
+      "actual": "d65b5f8c6cc83dfb341665c13172ced90b73f602bda3966e5a34aba0a0aade48"
+    },
+    {
+      "path": "docs/features.md",
+      "expected": "c1d19e6c1df13ab50096d3d3990bd5b0121034be1cf0409e0d88dd31f2a9f76c",
+      "actual": "c1d19e6c1df13ab50096d3d3990bd5b0121034be1cf0409e0d88dd31f2a9f76c"
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "expected": "af0e17197b44fc00332ed9c7a182a0e98e30c25b3b58a8af9edb71d6a8392e69",
+      "actual": "af0e17197b44fc00332ed9c7a182a0e98e30c25b3b58a8af9edb71d6a8392e69"
+    },
+    {
+      "path": "docs/kidea-handoff.md",
+      "expected": "c118c2d60509d6171f1a2e1ca1294d6437998f23b4435612cede4b8d86db1743",
+      "actual": "c118c2d60509d6171f1a2e1ca1294d6437998f23b4435612cede4b8d86db1743"
+    },
+    {
+      "path": "docs/t02/README.md",
+      "expected": "93cde5d5eb21d5d3136a546e7620f5af3ec89faf36491bb810d82cd7ccfa5a96",
+      "actual": "93cde5d5eb21d5d3136a546e7620f5af3ec89faf36491bb810d82cd7ccfa5a96"
+    },
+    {
+      "path": "docs/t02/authority.md",
+      "expected": "4e04cf9d85f36fac4186fd3659630639a88c41198cd8ada4116d5ddc889cdafd",
+      "actual": "4e04cf9d85f36fac4186fd3659630639a88c41198cd8ada4116d5ddc889cdafd"
+    },
+    {
+      "path": "docs/t02/build-proposal.md",
+      "expected": "a1810d750dd3a04a5040807f51e4636b588768016b06be87f47eaff43c820a99",
+      "actual": "a1810d750dd3a04a5040807f51e4636b588768016b06be87f47eaff43c820a99"
+    },
+    {
+      "path": "docs/t02/clang-tidy.yml",
+      "expected": "b51efb53f0fe5a006d88399aeb8024a27d379e4fb2df0bbe3396f82ea61e9207",
+      "actual": "b51efb53f0fe5a006d88399aeb8024a27d379e4fb2df0bbe3396f82ea61e9207"
+    },
+    {
+      "path": "docs/t02/read-order-r9.md",
+      "expected": "ae4916eedcc553685c563e94e2da00a946f9da63d977dfc44a22b4a62a454202",
+      "actual": "ae4916eedcc553685c563e94e2da00a946f9da63d977dfc44a22b4a62a454202"
+    },
+    {
+      "path": "docs/t02/shutdown-r8.md",
+      "expected": "08087b7be57d21b0bdd49f999829c5d5c3ee5a210cdddd3da63cc3c526d0de25",
+      "actual": "08087b7be57d21b0bdd49f999829c5d5c3ee5a210cdddd3da63cc3c526d0de25"
+    },
+    {
+      "path": "docs/t02/tsan-exception-r1.md",
+      "expected": "4ba536e32fb1909fe93cf4d59feaf3d39166a313ecfb0e0db061a2959059255e",
+      "actual": "4ba536e32fb1909fe93cf4d59feaf3d39166a313ecfb0e0db061a2959059255e"
+    },
+    {
+      "path": "docs/t02/tsan-exception-r2.md",
+      "expected": "a146160708abc39cb3f17dd7de9c50f7ea0b653d145aced6a973237f54abc697",
+      "actual": "a146160708abc39cb3f17dd7de9c50f7ea0b653d145aced6a973237f54abc697"
+    },
+    {
+      "path": "docs/t03/session-boundary.md",
+      "expected": "6fe1d8303280c3151b2daef01ab5b7ea478ea8a99a0776cdd0a0cecd12bb7033",
+      "actual": "6fe1d8303280c3151b2daef01ab5b7ea478ea8a99a0776cdd0a0cecd12bb7033"
+    },
+    {
+      "path": "docs/t04/evidence/backend.json",
+      "expected": "23e79ce2fc4ad0fe81fa1b8ee8798d86934277574a528b4c0a5087fcd4331115",
+      "actual": "23e79ce2fc4ad0fe81fa1b8ee8798d86934277574a528b4c0a5087fcd4331115"
+    },
+    {
+      "path": "docs/t04/evidence/https-manifest.json",
+      "expected": "beb9eff083170fe1835f6ce53431c4ffb5277a1c76976f3e751a87e983c0a983",
+      "actual": "beb9eff083170fe1835f6ce53431c4ffb5277a1c76976f3e751a87e983c0a983"
+    },
+    {
+      "path": "docs/t04/evidence/https-run.json",
+      "expected": "d1eac509a8fa6046c9caff279ede9deeccd6b763a87001e07f5aba96cc77b1cb",
+      "actual": "d1eac509a8fa6046c9caff279ede9deeccd6b763a87001e07f5aba96cc77b1cb"
+    },
+    {
+      "path": "docs/t04/evidence/https.json",
+      "expected": "ddcd0b09f0a530aaa68be6e641c7fc113ad96c74cd4191ddc60c1c792ed86d2b",
+      "actual": "ddcd0b09f0a530aaa68be6e641c7fc113ad96c74cd4191ddc60c1c792ed86d2b"
+    },
+    {
+      "path": "docs/t04/evidence/index.json",
+      "expected": "9f5830b680d3c1664dc532b8fd1d6e70201b0ebdaad2ebed13fa58d621c81e73",
+      "actual": "9f5830b680d3c1664dc532b8fd1d6e70201b0ebdaad2ebed13fa58d621c81e73"
+    },
+    {
+      "path": "docs/t04/evidence/mutations.json",
+      "expected": "a8f6e0fccb24c2b43ecccb4244aebbe86222e6320af188f147b45e1165f573d4",
+      "actual": "a8f6e0fccb24c2b43ecccb4244aebbe86222e6320af188f147b45e1165f573d4"
+    },
+    {
+      "path": "docs/t04/evidence/offline-results.json",
+      "expected": "b39bfe10f76a3aed053cc1aa7e8c1633733f8c943d013f70ea01b22cfa4c73e0",
+      "actual": "b39bfe10f76a3aed053cc1aa7e8c1633733f8c943d013f70ea01b22cfa4c73e0"
+    },
+    {
+      "path": "docs/t04/evidence/query-plan.txt",
+      "expected": "dd792392b36ec8cad0f248075690c886d03131098578212c91bda6e3f4d7d173",
+      "actual": "dd792392b36ec8cad0f248075690c886d03131098578212c91bda6e3f4d7d173"
+    },
+    {
+      "path": "docs/t04/evidence/tsan-classification.json",
+      "expected": "3850ea0fdbcd9884aaec33327939d85657a34e15d9d6f4e178f28990d12a6070",
+      "actual": "3850ea0fdbcd9884aaec33327939d85657a34e15d9d6f4e178f28990d12a6070"
+    },
+    {
+      "path": "docs/t04/evidence/web-results.json",
+      "expected": "e24d0b981a1a3e86c648cdbb190c65170b832ae935610651845fb304c61810eb",
+      "actual": "e24d0b981a1a3e86c648cdbb190c65170b832ae935610651845fb304c61810eb"
+    },
+    {
+      "path": "docs/t04/impact-graph.json",
+      "expected": "d6f22d7526c5c40d726a2f033db4dc6916a2fb3d1d247c7773798f61f36b4c03",
+      "actual": "d6f22d7526c5c40d726a2f033db4dc6916a2fb3d1d247c7773798f61f36b4c03"
+    },
+    {
+      "path": "docs/t04/max2.md",
+      "expected": "a5d7e58efb5265f2ef8c2a2232375674bb60588d8a06d77d50486d4476fe1b12",
+      "actual": "a5d7e58efb5265f2ef8c2a2232375674bb60588d8a06d77d50486d4476fe1b12"
+    },
+    {
+      "path": "docs/t04/oracle-extension.json",
+      "expected": "3d246a06126b6257a2e104802cdb76a1a2cf53c46759ef73e9513b8149162c88",
+      "actual": "3d246a06126b6257a2e104802cdb76a1a2cf53c46759ef73e9513b8149162c88"
+    },
+    {
+      "path": "docs/t04/report-r1.md",
+      "expected": "863fff0e8ee93bbb2c5233ce53be6b1b311b5dc72c08fc7b040028b9a856573b",
+      "actual": "863fff0e8ee93bbb2c5233ce53be6b1b311b5dc72c08fc7b040028b9a856573b"
+    },
+    {
+      "path": "docs/t05/checkpoint-admin-r1.md",
+      "expected": "905fec8c938d30475f62f4eac023157f1cb0c9688c73f0d9306e7074d8efe890",
+      "actual": "905fec8c938d30475f62f4eac023157f1cb0c9688c73f0d9306e7074d8efe890"
+    },
+    {
+      "path": "docs/t05/evidence-admin-r1.json",
+      "expected": "b4ada9bdbbbb23ce73acff19e04a868784f6057037303aa6728f4457e81e5c9b",
+      "actual": "b4ada9bdbbbb23ce73acff19e04a868784f6057037303aa6728f4457e81e5c9b"
+    },
+    {
+      "path": "docs/t05/updates-protocol-r1.md",
+      "expected": "25d46d6b9b8d52ce5a4c3e6ff67b9f573e136bbe1758024a071a2791cb0a39d0",
+      "actual": "25d46d6b9b8d52ce5a4c3e6ff67b9f573e136bbe1758024a071a2791cb0a39d0"
+    },
+    {
+      "path": "docs/workflow/evidence/backend-r10.json",
+      "expected": "c63fbde5c43c581b4d9b83a4a4436a25cc84441fae042119dce04960e540ccf5",
+      "actual": "c63fbde5c43c581b4d9b83a4a4436a25cc84441fae042119dce04960e540ccf5"
+    },
+    {
+      "path": "docs/workflow/evidence/https-manifest-r3.json",
+      "expected": "8ec1b1920c8d7f7fb8df70109dd2ea748e24ad9464bb2d3967fdb5684e25a440",
+      "actual": "8ec1b1920c8d7f7fb8df70109dd2ea748e24ad9464bb2d3967fdb5684e25a440"
+    },
+    {
+      "path": "docs/workflow/evidence/https-r3.json",
+      "expected": "fca6ea5ba5b0b2db1c7b1ccfc7780acbf5b12540f2ce982eb1822828316fdb0e",
+      "actual": "fca6ea5ba5b0b2db1c7b1ccfc7780acbf5b12540f2ce982eb1822828316fdb0e"
+    },
+    {
+      "path": "docs/workflow/legacy-provenance-r1.json",
+      "expected": "6cef096adf0a8381238bed945c3c56b38218885382f1836b082b21681ef1407a",
+      "actual": "6cef096adf0a8381238bed945c3c56b38218885382f1836b082b21681ef1407a"
+    },
+    {
+      "path": "docs/workflow/r09-checkpoint-r1.md",
+      "expected": "39c74f164f25f253f2fd63e1537291361a31a1a5dcc5b980b276c018d474365a",
+      "actual": "39c74f164f25f253f2fd63e1537291361a31a1a5dcc5b980b276c018d474365a"
+    },
+    {
+      "path": "docs/workflow/r09-replan-r1.json",
+      "expected": "201fff571eadd2c7584f22a793eea35c4c3f4b1e57b6a0b33f9c2b599cda25ae",
+      "actual": "201fff571eadd2c7584f22a793eea35c4c3f4b1e57b6a0b33f9c2b599cda25ae"
+    }
+  ],
+  "sourceUnchanged": true,
+  "notProductAcceptance": true,
+  "sourceVerification": "Manifest source closure; Git checkpoint changes are distinct from compiled source."
+}

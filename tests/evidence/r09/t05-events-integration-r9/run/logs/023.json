@@ -1,0 +1,13 @@
+{
+  "args": [
+    "exec",
+    "867776c4750d165009270aa800361f25381af6a6a538efa468d7fdc4eb7e5bc8",
+    "python3",
+    "-c",
+    "import sqlite3; db=sqlite3.connect('/out/workshop.sqlite',timeout=1); db.execute('UPDATE sessions SET revoked=? WHERE actor=?',(0,'A')); db.commit(); db.close()"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "",
+  "failure": null
+}

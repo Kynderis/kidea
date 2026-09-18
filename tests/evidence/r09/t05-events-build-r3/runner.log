@@ -1,0 +1,10 @@
+file:///Users/kendrick/Desktop/kidea-workshop-pilot/scripts/t02/preflight.mjs:15
+ if(JSON.stringify(actual)!==JSON.stringify(m.sourceHashes))throw Error('SOURCE_CLOSURE_CHANGED');
+                                                                  ^
+
+Error: SOURCE_CLOSURE_CHANGED
+    at verify (file:///Users/kendrick/Desktop/kidea-workshop-pilot/scripts/t02/preflight.mjs:15:67)
+    at file:///Users/kendrick/Desktop/kidea-workshop-pilot/scripts/t02/run.mjs:40:1
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.19.0

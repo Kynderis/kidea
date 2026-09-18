@@ -1,0 +1,4 @@
+/src/backend/src/update_transport.cpp:69:39: error: the parameter 'message' is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param,-warnings-as-errors]
+   69 |                    State &state, Json message) {
+      |                                       ^
+      |                                  const  &

@@ -1,0 +1,12 @@
+Loading svelte-check in workspace: /Users/kendrick/Desktop/kidea-workshop-pilot/web
+Getting Svelte diagnostics...
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/LiveWorkshop.svelte:4:73
+Warn: This reference only captures the initial value of `initial`. Did you mean to reference it inside a closure instead?
+https://svelte.dev/e/state_referenced_locally (svelte)
+ import {PublicUpdates,openUpdates,type UpdateStatus} from '$lib/updates';import type {Snapshot} from '$lib/state';
+ let {initial}:{initial:Snapshot}=$props();let current=$state<Snapshot>(initial),channel=$state<UpdateStatus>('UNKNOWN');
+ onMount(()=>{const state=new PublicUpdates(initial.epoch,[initial]);let actor:string|undefined,csrf='';
+
+====================================
+svelte-check found 0 errors and 1 warning in 1 file

@@ -1,0 +1,30 @@
+{
+  "base": "15cb785d4f1570f2d665c5151d2edb2ad2573c31",
+  "head": "503ea95aea850df3c51b26fb0acb95843483ccd9",
+  "compiledBackendSource": "1fb4a69f9faf69893440d43fdc8648347074e715",
+  "patchSha256": "8c60d46e6c7b905021de7904aca83209f931690798c1cf0827b1e3e50fad2644",
+  "files": [
+    "backend/CMakeLists.txt",
+    "backend/include/workshop/update_transport.hpp",
+    "backend/include/workshop/updates.hpp",
+    "backend/src/main.cpp",
+    "backend/src/update_transport.cpp",
+    "backend/src/updates.cpp",
+    "backend/tests/updates.cpp",
+    "docs/t05/updates-protocol-r1.md",
+    "scripts/t02/preflight.mjs",
+    "scripts/t02/run.mjs",
+    "scripts/t05/build.sh",
+    "web/src/lib/AdminForm.svelte",
+    "web/src/lib/LiveWorkshop.svelte",
+    "web/src/lib/Registration.svelte",
+    "web/src/lib/updates.ts",
+    "web/src/routes/workshops/[id]/+page.svelte",
+    "web/tests/unit/updates.test.mjs"
+  ],
+  "metadataExcluded": true,
+  "pilotRemote": "",
+  "patchFile": "source-final.patch",
+  "retainedEarlierAuthoringReceipt": "source-patch.json",
+  "codeScope": "outbox/WSS and detail/admin/private section; excludes live list pages, ops and full T05"
+}

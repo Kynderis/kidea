@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "98094ac1f5c33ffba349a1ffb7653dd2fe035fb85c0dfd5c2dd7fa2dddfb5ef5"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nlocator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Đăng ký', exact: true })\n    - locator resolved to <button class=\"svelte-p1vwze\">Đăng ký</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n  - element was detached from the DOM, retrying\n\n    at /plan/browser.mjs:42:125 {\n  log: [\n    \"  - waiting for getByRole('button', { name: 'Đăng ký', exact: true })\",\n    '    - locator resolved to <button class=\"svelte-p1vwze\">Đăng ký</button>',\n    '  - attempting click action',\n    '    - waiting for element to be visible, enabled and stable',\n    '  - element was detached from the DOM, retrying'\n  ],\n  name: 'TimeoutError'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

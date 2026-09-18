@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "d68c0851617d23a98f2b3de3101ea99fca1e42843f65a62bf0f1640ec30499f9"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nlocator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByText('Chưa xác nhận cập nhật trực tiếp; tải và đối chiếu trước khi dựa vào số liệu.', { exact: true }) to be visible\n\n    at checkUpdates (/plan/updates-browser.mjs:54:242)\n    at async file:///plan/browser.mjs:49:2 {\n  log: [\n    \"  - waiting for getByText('Chưa xác nhận cập nhật trực tiếp; tải và đối chiếu trước khi dựa vào số liệu.', { exact: true }) to be visible\"\n  ],\n  name: 'TimeoutError'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

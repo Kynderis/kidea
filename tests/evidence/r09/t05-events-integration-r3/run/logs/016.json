@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "ec514a6a6edd803e0268f65ae780112c2da9ca3b02b3ad41d757937659038c36"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n429 !== 200\n\n    at api (file:///plan/browser.mjs:10:84)\n    at async file:///plan/browser.mjs:42:232 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 429,\n  expected: 200,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

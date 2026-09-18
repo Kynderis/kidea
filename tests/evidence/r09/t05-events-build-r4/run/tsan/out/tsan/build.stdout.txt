@@ -1,0 +1,164 @@
+[1/149] Building CXX object CMakeFiles/workshop_core.dir/src/model.cpp.o
+[2/149] Building CXX object CMakeFiles/workshop_core.dir/src/store.cpp.o
+[3/149] Building C object CMakeFiles/workshop_sqlite.dir/vendor/sqlite/sqlite3.c.o
+[4/149] Linking C static library libworkshop_sqlite.a
+[5/149] Building CXX object CMakeFiles/workshop_core.dir/src/executor.cpp.o
+[6/149] Building CXX object CMakeFiles/workshop_core.dir/src/updates.cpp.o
+[7/149] Building CXX object CMakeFiles/workshop_test_core.dir/src/store.cpp.o
+[8/149] Building CXX object CMakeFiles/workshop_test_core.dir/src/model.cpp.o
+[9/149] Building CXX object CMakeFiles/workshop_test_core.dir/src/executor.cpp.o
+[10/149] Building CXX object CMakeFiles/workshop_test_core.dir/src/updates.cpp.o
+[11/149] Building CXX object CMakeFiles/workshop_backend.dir/src/main.cpp.o
+[12/149] Building CXX object CMakeFiles/workshop_backend.dir/src/update_transport.cpp.o
+[13/149] Building CXX object CMakeFiles/workshop_tsan_control.dir/src/tests/t02/sqlite-diagnostic.cpp.o
+[14/149] Linking CXX executable workshop_tsan_control
+[15/149] Building CXX object CMakeFiles/workshop_updates_tests.dir/tests/updates.cpp.o
+[16/149] Building CXX object CMakeFiles/workshop_tests.dir/tests/tests.cpp.o
+[17/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/AOPAdvice.cc.o
+[18/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/CacheFile.cc.o
+[19/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/ConfigAdapterManager.cc.o
+[20/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/AccessLogger.cc.o
+[21/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/ConfigLoader.cc.o
+[22/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/Cookie.cc.o
+[23/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/DrClassMap.cc.o
+[24/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/DrTemplateBase.cc.o
+[25/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/FixedWindowRateLimiter.cc.o
+[26/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/MiddlewaresFunction.cc.o
+[27/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/Histogram.cc.o
+[28/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/GlobalFilters.cc.o
+[29/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/Hodor.cc.o
+[30/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpAppFrameworkImpl.cc.o
+[31/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpBinder.cc.o
+[32/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpConnectionLimit.cc.o
+[33/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpClientImpl.cc.o
+[34/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpControllerBinder.cc.o
+[35/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpFileImpl.cc.o
+[36/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpFileUploadRequest.cc.o
+[37/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpControllersRouter.cc.o
+[38/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpRequestImpl.cc.o
+[39/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpRequestParser.cc.o
+[40/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RequestStream.cc.o
+[41/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpResponseParser.cc.o
+[42/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpResponseImpl.cc.o
+[43/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpUtils.cc.o
+/vendor/drogon/lib/src/HttpUtils.cc:62:10: warning: 'drogon::CT_APPLICATION_X_JAVASCRIPT' is deprecated: use CT_TEXT_JAVASCRIPT [-Wdeprecated-declarations]
+   62 |         {CT_APPLICATION_X_JAVASCRIPT,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /vendor/drogon/lib/src/HttpUtils.h:18,
+                 from /vendor/drogon/lib/src/HttpUtils.cc:15:
+/vendor/drogon/lib/inc/drogon/HttpTypes.h:106:5: note: declared here
+  106 |     CT_APPLICATION_X_JAVASCRIPT [[deprecated("use CT_TEXT_JAVASCRIPT")]],
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/vendor/drogon/lib/src/HttpUtils.cc: In lambda function:
+/vendor/drogon/lib/src/HttpUtils.cc:733:23: warning: 'drogon::CT_APPLICATION_X_JAVASCRIPT' is deprecated: use CT_TEXT_JAVASCRIPT [-Wdeprecated-declarations]
+  733 |         extensionMap_[CT_APPLICATION_X_JAVASCRIPT] =
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/vendor/drogon/lib/inc/drogon/HttpTypes.h:106:5: note: declared here
+  106 |     CT_APPLICATION_X_JAVASCRIPT [[deprecated("use CT_TEXT_JAVASCRIPT")]],
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+[44/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpViewData.cc.o
+[45/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/HttpServer.cc.o
+[46/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/IntranetIpFilter.cc.o
+[47/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/JsonConfigAdapter.cc.o
+[48/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/LocalHostFilter.cc.o
+[49/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/ListenerManager.cc.o
+[50/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/MultipartStreamParser.cc.o
+[51/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/NotFound.cc.o
+[52/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/MultiPart.cc.o
+[53/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/PluginsManager.cc.o
+[54/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RangeParser.cc.o
+[55/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RateLimiter.cc.o
+[56/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/PromExporter.cc.o
+[57/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RealIpResolver.cc.o
+[58/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SecureSSLRedirector.cc.o
+[59/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/Redirector.cc.o
+[60/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SessionManager.cc.o
+[61/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SlashRemover.cc.o
+[62/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SlidingWindowRateLimiter.cc.o
+[63/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/TaskTimeoutFlag.cc.o
+[64/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/TokenBucketRateLimiter.cc.o
+[65/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/StaticFileRouter.cc.o
+[66/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/Utilities.cc.o
+[67/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/WebSocketConnectionImpl.cc.o
+[68/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/YamlConfigAdapter.cc.o
+[69/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/WebSocketClientImpl.cc.o
+[70/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/drogon_test.cc.o
+[71/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/SharedLibManager.cc.o
+[72/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RedisResultSkipped.cc.o
+[73/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RedisClientSkipped.cc.o
+[74/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/ArrayParser.cc.o
+[75/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Criteria.cc.o
+[76/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/RedisClientManagerSkipped.cc.o
+[77/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbClient.cc.o
+[78/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbClientImpl.cc.o
+[79/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbClientLockFree.cc.o
+[80/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbListener.cc.o
+[81/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Exception.cc.o
+[82/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/DbConnection.cc.o
+[83/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Field.cc.o
+[84/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Result.cc.o
+[85/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/Row.cc.o
+[86/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/TransactionImpl.cc.o
+[87/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/SqlBinder.cc.o
+[88/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/orm_lib/src/RestfulController.cc.o
+[89/149] Building CXX object vendor/drogon/CMakeFiles/drogon.dir/lib/src/DbClientManagerSkipped.cc.o
+[90/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/AsyncFileLogger.cc.o
+[91/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/Date.cc.o
+[92/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/ConcurrentTaskQueue.cc.o
+[93/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/LogStream.cc.o
+[94/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/MsgBuffer.cc.o
+[95/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/Logger.cc.o
+[96/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/SerialTaskQueue.cc.o
+[97/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/TimingWheel.cc.o
+[98/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/Utilities.cc.o
+[99/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/EventLoop.cc.o
+[100/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/EventLoopThreadPool.cc.o
+[101/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/EventLoopThread.cc.o
+[102/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/InetAddress.cc.o
+[103/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/TcpClient.cc.o
+[104/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/Channel.cc.o
+[105/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/TcpServer.cc.o
+[106/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Acceptor.cc.o
+[107/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Poller.cc.o
+[108/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Connector.cc.o
+[109/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Socket.cc.o
+[110/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/MemBufferNode.cc.o
+[111/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/StreamBufferNode.cc.o
+[112/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/AsyncStreamBufferNode.cc.o
+[113/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Timer.cc.o
+[114/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/TcpConnectionImpl.cc.o
+[115/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/TimerQueue.cc.o
+[116/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/poller/KQueue.cc.o
+[117/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/poller/EpollPoller.cc.o
+[118/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/poller/PollPoller.cc.o
+[119/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/FileBufferNodeUnix.cc.o
+[120/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/utils/crypto/openssl.cc.o
+[121/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/tlsprovider/OpenSSLProvider.cc.o
+[122/149] Building CXX object vendor/drogon/trantor/CMakeFiles/trantor.dir/trantor/net/inner/NormalResolver.cc.o
+[123/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/blocks.c.o
+[124/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/buffer.c.o
+[125/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/cmark.c.o
+[126/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/cmark_ctype.c.o
+[127/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/commonmark.c.o
+[128/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/houdini_href_e.c.o
+[129/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/houdini_html_e.c.o
+[130/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/houdini_html_u.c.o
+[131/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/html.c.o
+[132/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/inlines.c.o
+[133/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/iterator.c.o
+[134/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/latex.c.o
+[135/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/man.c.o
+[136/149] Linking CXX static library vendor/drogon/trantor/libtrantor.a
+[137/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/node.c.o
+[138/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/references.c.o
+[139/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/render.c.o
+[140/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/scanners.c.o
+[141/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/utf8.c.o
+[142/149] Building C object vendor/cmark/src/CMakeFiles/cmark.dir/xml.c.o
+[143/149] Linking C static library vendor/cmark/src/libcmark.a
+[144/149] Linking CXX static library libworkshop_core.a
+[145/149] Linking CXX static library libworkshop_test_core.a
+[146/149] Linking CXX executable workshop_tests
+[147/149] Linking CXX executable workshop_updates_tests
+[148/149] Linking CXX static library vendor/drogon/libdrogon.a
+[149/149] Linking CXX executable workshop_backend

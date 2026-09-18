@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "35b99c39ac1ad244b8f9a157a14bd06991afb7cd5d3e0b5434c4711feb99bc0f"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nlocator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Đăng ký', exact: true })\n    - locator resolved to <button class=\"svelte-p1vwze\">Đăng ký</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - performing click action\n    - <html lang=\"vi\">…</html> intercepts pointer events\n  - retrying click action\n    - waiting for element to be visible, enabled and stable\n  - element was detached from the DOM, retrying\n\n    at /plan/browser.mjs:42:125 {\n  log: [\n    \"  - waiting for getByRole('button', { name: 'Đăng ký', exact: true })\",\n    '    - locator resolved to <button class=\"svelte-p1vwze\">Đăng ký</button>',\n    '  - attempting click action',\n    '    - waiting for element to be visible, enabled and stable',\n    '    - element is visible, enabled and stable',\n    '    - scrolling into view if needed',\n    '    - done scrolling',\n    '    - performing click action',\n    '    - <html lang=\"vi\">…</html> intercepts pointer events',\n    '  - retrying click action',\n    '    - waiting for element to be visible, enabled and stable',\n    '  - element was detached from the DOM, retrying'\n  ],\n  name: 'TimeoutError'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

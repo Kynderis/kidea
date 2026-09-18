@@ -1,0 +1,1289 @@
+diff --git a/backend/CMakeLists.txt b/backend/CMakeLists.txt
+index 87497cc..9375cd6 100644
+--- a/backend/CMakeLists.txt
++++ b/backend/CMakeLists.txt
+@@ -35,14 +35,14 @@ target_include_directories(workshop_sqlite SYSTEM PUBLIC "${WORKSHOP_VENDOR}/sql
+ target_compile_definitions(workshop_sqlite PRIVATE SQLITE_THREADSAFE=1 SQLITE_DQS=0 SQLITE_DEFAULT_FOREIGN_KEYS=1)
+ target_link_libraries(workshop_sqlite PUBLIC Threads::Threads ${CMAKE_DL_LIBS})
+ foreach(lib workshop_core workshop_test_core)
+-  add_library(${lib} src/model.cpp src/store.cpp src/executor.cpp)
++  add_library(${lib} src/model.cpp src/store.cpp src/executor.cpp src/updates.cpp)
+   target_include_directories(${lib} PUBLIC include)
+   target_include_directories(${lib} SYSTEM PUBLIC "${WORKSHOP_VENDOR}/cmark/src" "${CMAKE_CURRENT_BINARY_DIR}/vendor/cmark/src")
+   target_link_libraries(${lib} PUBLIC workshop_sqlite cmark PkgConfig::JSONCPP Threads::Threads)
+   target_compile_options(${lib} PRIVATE -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror)
+ endforeach()
+ target_compile_definitions(workshop_test_core PUBLIC WORKSHOP_TESTING)
+-add_executable(workshop_backend src/main.cpp)
++add_executable(workshop_backend src/main.cpp src/update_transport.cpp)
+ target_link_libraries(workshop_backend PRIVATE workshop_core drogon)
+ add_executable(workshop_tests tests/tests.cpp)
+ target_link_libraries(workshop_tests PRIVATE workshop_test_core)
+@@ -58,3 +58,8 @@ if(SANITIZER STREQUAL "thread")
+   target_link_libraries(workshop_tsan_control PRIVATE workshop_sqlite)
+   target_compile_options(workshop_tsan_control PRIVATE -Wall -Wextra -Wpedantic -Werror)
+ endif()
++
++add_executable(workshop_updates_tests tests/updates.cpp)
++target_link_libraries(workshop_updates_tests PRIVATE workshop_test_core)
++target_compile_definitions(workshop_updates_tests PRIVATE WORKSHOP_SCHEMA="${CMAKE_CURRENT_SOURCE_DIR}/schema/001.sql")
++target_compile_options(workshop_updates_tests PRIVATE -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Werror)
+diff --git a/backend/include/workshop/update_transport.hpp b/backend/include/workshop/update_transport.hpp
+new file mode 100644
+index 0000000..ad4763f
+--- /dev/null
++++ b/backend/include/workshop/update_transport.hpp
+@@ -0,0 +1,49 @@
++#pragma once
++#include "admission.hpp"
++#include "executor.hpp"
++#include "updates.hpp"
++#include <atomic>
++#include <drogon/WebSocketController.h>
++#include <memory>
++namespace workshop {
++class Updates final : public drogon::WebSocketController<Updates, false>,
++                      public std::enable_shared_from_this<Updates> {
++public:
++  Updates(std::shared_ptr<Executor> executor,
++          std::shared_ptr<Admission> admission, std::string file);
++  WS_PATH_LIST_BEGIN
++  WS_PATH_ADD("/api/v1/updates");
++  WS_PATH_LIST_END
++  void handleNewConnection(const drogon::HttpRequestPtr &,
++                           const drogon::WebSocketConnectionPtr &) override;
++  void handleNewMessage(const drogon::WebSocketConnectionPtr &, std::string &&,
++                        const drogon::WebSocketMessageType &) override;
++  void handleConnectionClosed(const drogon::WebSocketConnectionPtr &) override;
++  void tick();
++
++private:
++  using Clock = std::chrono::steady_clock;
++  struct State {
++    Subscription subscription;
++    std::string peer, quotaKey;
++    UpdateCredit credit;
++    FrameRate frames;
++    bool subscribed{};
++    Clock::time_point accepted{Clock::now()}, heartbeat{Clock::now()};
++  };
++  std::shared_ptr<Executor> executor_;
++  std::shared_ptr<Admission> admission_;
++  std::string file_;
++  std::unique_ptr<UpdateJournal> journal_;
++  std::map<drogon::WebSocketConnectionPtr, State> sockets_;
++  SocketQuota quota_;
++  std::atomic<unsigned> openings_{0};
++  std::atomic<bool> ticking_{false};
++  void close(const drogon::WebSocketConnectionPtr &);
++  bool emit(Store &, const drogon::WebSocketConnectionPtr &, State &,
++            const Json &);
++  void subscribe(Store &, const drogon::WebSocketConnectionPtr &, State &,
++                 const Json &);
++  static std::int64_t now();
++};
++} // namespace workshop
+diff --git a/backend/include/workshop/updates.hpp b/backend/include/workshop/updates.hpp
+new file mode 100644
+index 0000000..fde1414
+--- /dev/null
++++ b/backend/include/workshop/updates.hpp
+@@ -0,0 +1,65 @@
++#pragma once
++#include "store.hpp"
++#include <chrono>
++#include <deque>
++#include <map>
++namespace workshop {
++struct UpdateEvent {
++  std::int64_t id;
++  std::string epoch, workshop, version;
++};
++// Own this connection on the same worker as Store. Never share sqlite handles
++// with the HTTP/socket loops. Schema 1 already contains these obligations.
++class UpdateJournal {
++public:
++  explicit UpdateJournal(const std::string &file);
++  ~UpdateJournal();
++  UpdateJournal(const UpdateJournal &) = delete;
++  UpdateJournal &operator=(const UpdateJournal &) = delete;
++  std::string metadata(const char *key);
++  std::vector<UpdateEvent> pending();
++  void complete(const std::vector<UpdateEvent> &events);
++
++private:
++  sqlite3 *db_{};
++};
++struct Subscription {
++  std::string token, origin, csrf, actor, epoch, audience, workshop;
++};
++// All callers must revalidate before EVERY emit, including heartbeat. Invalid
++// supplied credentials cannot fall back to anonymous public access.
++bool updateAuthorized(Store &, UpdateJournal &, const Subscription &,
++                      std::int64_t now);
++std::optional<Json> updateSnapshot(Store &, UpdateJournal &,
++                                   const Subscription &, std::int64_t now);
++class UpdateCredit {
++public:
++  bool reserve(const std::string &receipt, std::size_t bytes);
++  bool acknowledge(const std::string &receipt);
++  std::size_t count() const { return pending_.size(); }
++  std::size_t bytes() const { return bytes_; }
++
++private:
++  std::deque<std::pair<std::string, std::size_t>> pending_;
++  std::size_t bytes_{};
++};
++class SocketQuota {
++public:
++  bool acquire(const std::string &key, bool authenticated);
++  void release(const std::string &key);
++  std::size_t count() const { return total_; }
++
++private:
++  std::map<std::string, std::size_t> owners_;
++  std::size_t total_{};
++};
++class FrameRate {
++public:
++  using Clock = std::chrono::steady_clock;
++  bool accept(Clock::time_point now = Clock::now());
++
++private:
++  double tokens_{10};
++  Clock::time_point at_{Clock::now()};
++};
++} // namespace workshop
+diff --git a/backend/src/main.cpp b/backend/src/main.cpp
+index f1ba9db..6eec69f 100644
+--- a/backend/src/main.cpp
++++ b/backend/src/main.cpp
+@@ -1,5 +1,6 @@
+ #include "workshop/admission.hpp"
+ #include "workshop/executor.hpp"
++#include "workshop/update_transport.hpp"
+ #include <atomic>
+ #include <cerrno>
+ #include <csignal>
+@@ -55,7 +56,12 @@ int main(int argc, char **argv) {
+         .setLogLevel(trantor::Logger::kWarn)
+         .setThreadNum(2)
+         .setClientMaxBodySize(131072)
++        .setClientMaxWebSocketMessageSize(8192)
+         .addListener("0.0.0.0", 8080);
++    auto updates =
++        std::make_shared<workshop::Updates>(executor, admission, argv[2]);
++    drogon::app().registerController(updates);
++    drogon::app().getLoop()->runEvery(0.25, [updates]() { updates->tick(); });
+     // T02 transport is internal to the network-isolated lab; HTTPS ingress is
+     // T03/T05.
+     drogon::app().registerHandlerViaRegex(
+diff --git a/backend/src/update_transport.cpp b/backend/src/update_transport.cpp
+new file mode 100644
+index 0000000..71fd069
+--- /dev/null
++++ b/backend/src/update_transport.cpp
+@@ -0,0 +1,270 @@
++#include "workshop/update_transport.hpp"
++#include <drogon/utils/Utilities.h>
++#include <set>
++namespace workshop {
++Updates::Updates(std::shared_ptr<Executor> executor,
++                 std::shared_ptr<Admission> admission, std::string file)
++    : executor_(std::move(executor)), admission_(std::move(admission)),
++      file_(std::move(file)) {}
++std::int64_t Updates::now() {
++  return std::chrono::duration_cast<std::chrono::seconds>(
++             std::chrono::system_clock::now().time_since_epoch())
++      .count();
++}
++void Updates::close(const drogon::WebSocketConnectionPtr &connection) {
++  const auto found = sockets_.find(connection);
++  if (found != sockets_.end()) {
++    quota_.release(found->second.quotaKey);
++    sockets_.erase(found);
++  }
++  connection->forceClose();
++}
++void Updates::handleNewConnection(
++    const drogon::HttpRequestPtr &request,
++    const drogon::WebSocketConnectionPtr &connection) {
++  // Controller callbacks set this once, before the worker receives the socket.
++  // Count pending handshakes as well as authorized connections.
++  const auto counted = std::make_shared<std::atomic<bool>>(false);
++  connection->setContext(counted);
++  if (openings_.fetch_add(1) >= 128) {
++    openings_.fetch_sub(1);
++    connection->forceClose();
++    return;
++  }
++  counted->store(true);
++  connection->disablePing();
++  const auto self = shared_from_this();
++  const auto origin = request->getHeader("origin"),
++             token = request->getCookie("workshop_session"),
++             peer = request->peerAddr().toIp();
++  // Never accept credentials or subscriptions in URLs. A browser sends CSRF in
++  // its first bounded SUBSCRIBE frame; no data is emitted before validation.
++  if (!request->getQuery().empty() ||
++      !executor_->submit(
++          false, [self, connection, origin, token, peer](Store &) {
++            try {
++              if (!self->journal_)
++                self->journal_ = std::make_unique<UpdateJournal>(self->file_);
++              const auto key = "peer:" + peer;
++              if (!connection->connected() ||
++                  origin != self->journal_->metadata("origin") ||
++                  !self->quota_.acquire(key, false)) {
++                connection->forceClose();
++                return;
++              }
++              State state;
++              state.subscription.token = token;
++              state.subscription.origin = origin;
++              state.peer = peer;
++              state.quotaKey = key;
++              self->sockets_.emplace(connection, std::move(state));
++            } catch (...) {
++              connection->forceClose();
++            }
++          }))
++    connection->forceClose();
++}
++bool Updates::emit(Store &store,
++                   const drogon::WebSocketConnectionPtr &connection,
++                   State &state, const Json &message) {
++  if (!connection->connected() ||
++      !updateAuthorized(store, *journal_, state.subscription, now()))
++    return false;
++  // Place an unpredictable credit receipt AFTER all payload bytes. Returning it
++  // proves receipt of this entire frame, not business mutation/delivery
++  // success.
++  const auto receipt = drogon::utils::secureRandomString(32);
++  Json marker(receipt);
++  const auto frame =
++      "{\"message\":" + dump(message) + ",\"receipt\":" + dump(marker) + "}";
++  if (!state.credit.reserve(receipt, frame.size() + 10))
++    return false;
++  connection->send(frame);
++  return true;
++}
++void Updates::subscribe(Store &store,
++                        const drogon::WebSocketConnectionPtr &connection,
++                        State &state, const Json &input) {
++  keys(input, {"type", "audience", "workshopId", "csrf", "epoch"},
++       {"type", "audience", "csrf", "epoch"});
++  if (state.subscribed)
++    throw Invalid("RESUBSCRIBE");
++  auto &s = state.subscription;
++  s.audience = string(input, "audience");
++  s.epoch = string(input, "epoch");
++  s.csrf = string(input, "csrf");
++  if (s.audience == "private") {
++    if (input.isMember("workshopId"))
++      throw Invalid("PRIVATE_SCOPE");
++  } else {
++    s.workshop = string(input, "workshopId");
++    if (s.workshop.empty())
++      throw Invalid("SCOPE");
++  }
++  if (!s.token.empty()) {
++    const auto session =
++        store.handle("GET", "/session", s.token, "", "", Json{}, now());
++    if (session.status != 200)
++      throw Invalid("SESSION");
++    s.actor = session.body["actor"].asString();
++  }
++  if (!updateAuthorized(store, *journal_, s, now()) || !admission_->global() ||
++      !admission_->caller(store.rateKey(s.token, now(), state.peer)))
++    throw Invalid("AUTHORIZATION");
++  if (!s.token.empty()) {
++    const auto key = "actor:" + s.actor;
++    quota_.release(state.quotaKey);
++    state.quotaKey.clear();
++    if (!quota_.acquire(key, true))
++      throw Invalid("ACTOR_QUOTA");
++    state.quotaKey = key;
++  }
++  state.subscribed = true;
++  Json subscribed;
++  subscribed["type"] = "SUBSCRIBED";
++  subscribed["epoch"] = s.epoch;
++  subscribed["audience"] = s.audience;
++  if (!emit(store, connection, state, subscribed))
++    throw Invalid("EMIT");
++  // Subscription exists BEFORE reading, so the next worker commit is either
++  // in this snapshot or in the durable outbox scanned by tick().
++  const auto snapshot = updateSnapshot(store, *journal_, s, now());
++  if (!snapshot)
++    throw Invalid("SNAPSHOT");
++  Json message;
++  message["type"] = "SNAPSHOT";
++  message["epoch"] = s.epoch;
++  message["audience"] = s.audience;
++  message["data"] = *snapshot;
++  if (!emit(store, connection, state, message))
++    throw Invalid("EMIT");
++}
++void Updates::handleNewMessage(const drogon::WebSocketConnectionPtr &connection,
++                               std::string &&message,
++                               const drogon::WebSocketMessageType &type) {
++  const auto self = shared_from_this();
++  if (message.size() > 8192 || type != drogon::WebSocketMessageType::Text) {
++    connection->forceClose();
++    return;
++  }
++  if (!executor_->submit(false, [self, connection,
++                                 message = std::move(message)](Store &store) {
++        auto found = self->sockets_.find(connection);
++        if (found == self->sockets_.end()) {
++          connection->forceClose();
++          return;
++        }
++        auto &state = found->second;
++        try {
++          if (!state.frames.accept())
++            throw Invalid("FRAME_RATE");
++          const auto input = decode(message);
++          const auto kind = string(input, "type");
++          if (kind == "SUBSCRIBE")
++            self->subscribe(store, connection, state, input);
++          else if (kind == "ACK") {
++            keys(input, {"type", "receipt"}, {"type", "receipt"});
++            if (!state.subscribed ||
++                !state.credit.acknowledge(string(input, "receipt")))
++              throw Invalid("ACK");
++          } else
++            throw Invalid("FRAME_TYPE");
++        } catch (...) {
++          self->close(connection);
++        }
++      }))
++    connection->forceClose();
++}
++void Updates::handleConnectionClosed(
++    const drogon::WebSocketConnectionPtr &connection) {
++  const auto counted = connection->getContext<std::atomic<bool>>();
++  if (counted && counted->exchange(false))
++    openings_.fetch_sub(1);
++  const auto self = shared_from_this();
++  // If saturated, tick removes disconnected sockets; no unbounded cleanup job.
++  executor_->submit(false,
++                    [self, connection](Store &) { self->close(connection); });
++}
++void Updates::tick() {
++  if (ticking_.exchange(true))
++    return;
++  const auto self = shared_from_this();
++  if (!executor_->submit(false, [self](Store &store) {
++        try {
++          if (!self->journal_)
++            self->journal_ = std::make_unique<UpdateJournal>(self->file_);
++          const auto events = self->journal_->pending();
++          std::set<std::string> workshops;
++          for (const auto &e : events) {
++            if (e.epoch != self->journal_->metadata("epoch"))
++              throw StorageError("OUTBOX_EPOCH");
++            workshops.insert(e.workshop);
++          }
++          std::vector<drogon::WebSocketConnectionPtr> closing;
++          for (auto &[connection, state] : self->sockets_) {
++            try {
++              if (!connection->connected() ||
++                  (!state.subscribed &&
++                   Clock::now() - state.accepted > std::chrono::seconds(5))) {
++                closing.push_back(connection);
++                continue;
++              }
++              if (!state.subscribed)
++                continue;
++              if (workshops.contains(state.subscription.workshop) ||
++                  (state.subscription.workshop == "*" && !workshops.empty()) ||
++                  (state.subscription.audience == "private" &&
++                   !workshops.empty())) {
++                const auto data = updateSnapshot(store, *self->journal_,
++                                                 state.subscription, now());
++                if (!data) {
++                  closing.push_back(connection);
++                  continue;
++                }
++                Json message;
++                message["type"] = "SNAPSHOT";
++                message["audience"] = state.subscription.audience;
++                message["epoch"] = state.subscription.epoch;
++                message["data"] = *data;
++                if (!self->emit(store, connection, state, message)) {
++                  closing.push_back(connection);
++                  continue;
++                }
++              }
++              if (Clock::now() - state.heartbeat >= std::chrono::seconds(2)) {
++                Json message;
++                message["type"] = "HEARTBEAT";
++                message["epoch"] = state.subscription.epoch;
++                message["audience"] = state.subscription.audience;
++                if (!self->emit(store, connection, state, message))
++                  closing.push_back(connection);
++                else
++                  state.heartbeat = Clock::now();
++              }
++            } catch (...) {
++              throw;
++            }
++          }
++          for (const auto &connection : closing)
++            self->close(connection);
++          // Authoritative snapshot construction + dispatch processing
++          // completed. This does NOT certify each browser's visibility. On
++          // send/crash/mark failure the obligation remains pending; duplicate
++          // snapshots are safe.
++          self->journal_->complete(events);
++        } catch (...) {
++          std::vector<drogon::WebSocketConnectionPtr> closing;
++          for (const auto &[connection, state] : self->sockets_) {
++            static_cast<void>(state);
++            closing.push_back(connection);
++          }
++          for (const auto &connection : closing)
++            self->close(connection);
++          // Persisted outbox remains pending. A later tick/start retries only
++          // projection processing, never a business mutation.
++        }
++        self->ticking_.store(false);
++      }))
++    ticking_.store(false);
++}
++} // namespace workshop
+diff --git a/backend/src/updates.cpp b/backend/src/updates.cpp
+new file mode 100644
+index 0000000..5bfcc2b
+--- /dev/null
++++ b/backend/src/updates.cpp
+@@ -0,0 +1,210 @@
++#include "workshop/updates.hpp"
++#include <algorithm>
++#include <limits>
++namespace workshop {
++namespace {
++struct Query {
++  sqlite3_stmt *stmt{};
++  std::deque<std::string> strings;
++  Query(sqlite3 *db, const char *sql) {
++    if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) != SQLITE_OK)
++      throw StorageError("UPDATE_PREPARE");
++  }
++  ~Query() { sqlite3_finalize(stmt); }
++  Query(const Query &) = delete;
++  Query &operator=(const Query &) = delete;
++  void text(int i, const std::string &value) {
++    strings.push_back(value);
++    const auto &owned = strings.back();
++    if (value.size() >
++            static_cast<std::size_t>(std::numeric_limits<int>::max()) ||
++        sqlite3_bind_text(stmt, i, owned.data(), static_cast<int>(value.size()),
++                          SQLITE_STATIC) != SQLITE_OK)
++      throw StorageError("UPDATE_BIND");
++  }
++  void number(int i, std::int64_t value) {
++    if (sqlite3_bind_int64(stmt, i, value) != SQLITE_OK)
++      throw StorageError("UPDATE_BIND");
++  }
++  bool row() {
++    const auto code = sqlite3_step(stmt);
++    if (code == SQLITE_ROW)
++      return true;
++    if (code == SQLITE_DONE)
++      return false;
++    throw StorageError("UPDATE_STEP");
++  }
++  std::string value(int i) const {
++    const auto *p = sqlite3_column_text(stmt, i);
++    if (!p)
++      throw StorageError("UPDATE_NULL");
++    return {reinterpret_cast<const char *>(p),
++            static_cast<std::size_t>(sqlite3_column_bytes(stmt, i))};
++  }
++};
++void execute(sqlite3 *db, const char *sql) {
++  if (sqlite3_exec(db, sql, nullptr, nullptr, nullptr) != SQLITE_OK)
++    throw StorageError("UPDATE_EXEC");
++}
++} // namespace
++UpdateJournal::UpdateJournal(const std::string &file) {
++  if (sqlite3_open_v2(file.c_str(), &db_,
++                      SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX,
++                      nullptr) != SQLITE_OK) {
++    sqlite3_close(db_);
++    db_ = nullptr;
++    throw StorageError("UPDATE_OPEN");
++  }
++  try {
++    if (sqlite3_busy_timeout(db_, 100) != SQLITE_OK)
++      throw StorageError("UPDATE_BUSY");
++    execute(db_, "PRAGMA foreign_keys=ON; PRAGMA synchronous=FULL;");
++    Query version(db_, "PRAGMA user_version");
++    if (!version.row() || sqlite3_column_int(version.stmt, 0) != 1)
++      throw StorageError("UPDATE_SCHEMA");
++  } catch (...) {
++    sqlite3_close(db_);
++    db_ = nullptr;
++    throw;
++  }
++}
++UpdateJournal::~UpdateJournal() { sqlite3_close(db_); }
++std::string UpdateJournal::metadata(const char *key) {
++  Query q(db_, "SELECT value FROM metadata WHERE key=?");
++  q.text(1, key);
++  if (!q.row())
++    throw StorageError("UPDATE_METADATA");
++  return q.value(0);
++}
++std::vector<UpdateEvent> UpdateJournal::pending() {
++  Query q(db_, "SELECT id,epoch,workshop,version FROM outbox WHERE completed=0 "
++               "ORDER BY id LIMIT 64");
++  std::vector<UpdateEvent> result;
++  while (q.row())
++    result.push_back(
++        {sqlite3_column_int64(q.stmt, 0), q.value(1), q.value(2), q.value(3)});
++  return result;
++}
++void UpdateJournal::complete(const std::vector<UpdateEvent> &events) {
++  if (events.empty())
++    return;
++  execute(db_, "BEGIN IMMEDIATE");
++  try {
++    for (const auto &event : events) {
++      Query q(db_, "UPDATE outbox SET completed=1 WHERE id=? AND epoch=? AND "
++                   "workshop=? AND version=?");
++      q.number(1, event.id);
++      q.text(2, event.epoch);
++      q.text(3, event.workshop);
++      q.text(4, event.version);
++      if (q.row() || sqlite3_changes(db_) != 1)
++        throw StorageError("UPDATE_IDENTITY");
++    }
++    execute(db_, "COMMIT");
++  } catch (...) {
++    sqlite3_exec(db_, "ROLLBACK", nullptr, nullptr, nullptr);
++    throw;
++  }
++}
++bool updateAuthorized(Store &store, UpdateJournal &journal,
++                      const Subscription &s, std::int64_t now) {
++  if (s.origin != journal.metadata("origin") ||
++      s.epoch != journal.metadata("epoch") ||
++      (s.audience != "public" && s.audience != "admin" &&
++       s.audience != "private"))
++    return false;
++  if (s.token.empty())
++    return s.audience == "public" && s.actor.empty() && s.csrf.empty();
++  const auto session =
++      store.handle("GET", "/session", s.token, "", "", Json{}, now);
++  if (session.status >= 500)
++    throw StorageError("UPDATE_AUTH_UNCONFIRMED");
++  const auto &v = session.body;
++  return session.status == 200 && v["actor"].asString() == s.actor &&
++         v["epoch"].asString() == s.epoch && !s.csrf.empty() &&
++         v["csrf"].asString() == s.csrf &&
++         (s.audience != "admin" || v["admin"].asBool()) &&
++         (s.audience != "private" || v["participant"].asBool());
++}
++std::optional<Json> updateSnapshot(Store &store, UpdateJournal &journal,
++                                   const Subscription &s, std::int64_t now) {
++  if (!updateAuthorized(store, journal, s, now))
++    return std::nullopt;
++  const auto route =
++      s.audience == "private"
++          ? "/me/registrations"
++          : (s.audience == "admin" ? "/admin/workshops" : "/workshops") +
++                (s.workshop == "*" ? "" : "/" + s.workshop);
++  const auto result = store.handle("GET", route, s.token, "", "", Json{}, now);
++  if (result.status >= 500)
++    throw StorageError("UPDATE_SNAPSHOT_UNCONFIRMED");
++  if (result.status != 200)
++    return std::nullopt;
++  if (s.audience == "private") {
++    if (!result.body.isArray())
++      return std::nullopt;
++    for (const auto &group : result.body)
++      if (group["actor"].asString() != s.actor ||
++          group["epoch"].asString() != s.epoch)
++        return std::nullopt;
++  } else if (s.workshop == "*") {
++    if (!result.body.isArray())
++      return std::nullopt;
++    for (const auto &w : result.body)
++      if (w["epoch"].asString() != s.epoch ||
++          (s.audience == "public" && w["state"].asString() == "DRAFT"))
++        return std::nullopt;
++  } else if (result.body["id"].asString() != s.workshop ||
++             result.body["epoch"].asString() != s.epoch) {
++    return std::nullopt;
++  }
++  return result.body;
++}
++bool UpdateCredit::reserve(const std::string &receipt, std::size_t bytes) {
++  if (receipt.empty() || pending_.size() >= 8 || bytes > 1048576 ||
++      bytes_ > 1048576 - bytes ||
++      std::any_of(pending_.begin(), pending_.end(),
++                  [&](const auto &v) { return v.first == receipt; }))
++    return false;
++  pending_.emplace_back(receipt, bytes);
++  bytes_ += bytes;
++  return true;
++}
++bool UpdateCredit::acknowledge(const std::string &receipt) {
++  // Only receipt of the oldest complete frame releases one credit. No guessed
++  // numeric cursor can acknowledge bytes a slow reader has not consumed.
++  if (pending_.empty() || pending_.front().first != receipt)
++    return false;
++  bytes_ -= pending_.front().second;
++  pending_.pop_front();
++  return true;
++}
++bool SocketQuota::acquire(const std::string &key, bool authenticated) {
++  const auto found = owners_.find(key);
++  const auto owned = found == owners_.end() ? 0 : found->second;
++  if (total_ >= 128 || owned >= (authenticated ? 8U : 16U))
++    return false;
++  ++owners_[key];
++  ++total_;
++  return true;
++}
++void SocketQuota::release(const std::string &key) {
++  const auto found = owners_.find(key);
++  if (found == owners_.end())
++    return;
++  --total_;
++  if (--found->second == 0)
++    owners_.erase(found);
++}
++bool FrameRate::accept(Clock::time_point now) {
++  tokens_ = std::min(
++      10.0,
++      tokens_ +
++          std::max(0.0, std::chrono::duration<double>(now - at_).count()) * 5);
++  at_ = now;
++  if (tokens_ < 1)
++    return false;
++  --tokens_;
++  return true;
++}
++} // namespace workshop
+diff --git a/backend/tests/updates.cpp b/backend/tests/updates.cpp
+new file mode 100644
+index 0000000..c5e9e9d
+--- /dev/null
++++ b/backend/tests/updates.cpp
+@@ -0,0 +1,205 @@
++#include "workshop/updates.hpp"
++#include <cstdlib>
++#include <filesystem>
++#include <fstream>
++#include <iostream>
++#include <iterator>
++#include <unistd.h>
++namespace {
++unsigned checks{};
++void check(bool value, const std::string &name) {
++  workshop::Json result;
++  result["caseId"] = "UPDATES";
++  result["variant"] = name;
++  result["status"] = value ? "PASS" : "FAIL";
++  std::cout << workshop::dump(result) << '\n' << std::flush;
++  if (!value)
++    throw std::runtime_error(name);
++  ++checks;
++}
++void sql(const std::string &file, const char *statement) {
++  sqlite3 *db{};
++  if (sqlite3_open(file.c_str(), &db) != SQLITE_OK)
++    throw std::runtime_error("OPEN");
++  const auto code = sqlite3_exec(db, statement, nullptr, nullptr, nullptr);
++  sqlite3_close(db);
++  if (code != SQLITE_OK)
++    throw std::runtime_error("SQL");
++}
++} // namespace
++int main() {
++  try {
++    const char *root = std::getenv("WORKSHOP_CASE_ROOT");
++    if (!root)
++      throw std::runtime_error("OUTPUT_REQUIRED");
++    const auto dir =
++        std::filesystem::path(root) / ("updates-" + std::to_string(getpid()));
++    if (!std::filesystem::create_directory(dir))
++      throw std::runtime_error("CREATE_ONLY");
++    const auto file = (dir / "db.sqlite").string();
++    std::ifstream schema(WORKSHOP_SCHEMA);
++    const std::string schemaText{std::istreambuf_iterator<char>(schema), {}};
++    auto seed = workshop::decode(
++        R"({"epoch":"E","origin":"https://workshop.test","sessions":[{"actor":"A","token":"FAKE-A","csrf":"FAKE-CSRF-A","participant":false,"admin":true,"expires":4102444800},{"actor":"U","token":"FAKE-U","csrf":"FAKE-CSRF-U","participant":true,"admin":false,"expires":4102444800}]})");
++    workshop::Store::initialize(file, schemaText, seed);
++    workshop::Store store(file);
++    constexpr std::int64_t now = 1800000000;
++    const auto create = workshop::decode(
++        R"({"epoch":"E","intentId":"CREATE","action":"CREATE","fields":{"title":"Draft","description":"Plain text","capacity":10,"schedule":{"start":"2026-10-01T09:00:00+07:00","end":"2026-10-01T10:00:00+07:00"}}})");
++    const auto result =
++        store.handle("POST", "/admin/intents", "FAKE-A", "FAKE-CSRF-A",
++                     "https://workshop.test", create, now);
++    check(result.body["code"] == "CREATED", "fixture-created");
++    const auto wid = result.body["workshopId"].asString();
++    workshop::Subscription a{
++        "FAKE-A", "https://workshop.test", "FAKE-CSRF-A", "A", "E", "admin",
++        wid};
++    workshop::Subscription u{
++        "FAKE-U", "https://workshop.test", "FAKE-CSRF-U", "U", "E", "private",
++        ""};
++    workshop::Subscription guest{
++        "", "https://workshop.test", "", "", "E", "public", wid};
++    {
++      workshop::UpdateJournal journal(file);
++      const auto pending = journal.pending();
++      check(pending.size() == 1, "durable-obligation-before-dispatch");
++      check(workshop::updateSnapshot(store, journal, a, now).has_value(),
++            "admin-draft-visible");
++      check(!workshop::updateSnapshot(store, journal, guest, now),
++            "draft-never-public");
++      check(workshop::updateSnapshot(store, journal, u, now)->empty(),
++            "private-empty-own-history");
++      auto bad = guest;
++      bad.token = "REVOKED";
++      check(!workshop::updateAuthorized(store, journal, bad, now),
++            "invalid-credential-never-downgrade");
++      bad = a;
++      bad.csrf = "WRONG";
++      check(!workshop::updateAuthorized(store, journal, bad, now),
++            "csrf-before-data");
++      bad = a;
++      bad.origin = "https://evil.test";
++      check(!workshop::updateAuthorized(store, journal, bad, now),
++            "origin-before-data");
++      bad = a;
++      bad.epoch = "OLD";
++      check(!workshop::updateAuthorized(store, journal, bad, now),
++            "epoch-before-data");
++      bad = a;
++      bad.actor = "U";
++      check(!workshop::updateAuthorized(store, journal, bad, now),
++            "captured-actor-revalidated");
++      bad = u;
++      bad.audience = "admin";
++      check(!workshop::updateAuthorized(store, journal, bad, now),
++            "participant-not-admin");
++      bad = a;
++      bad.audience = "private";
++      check(!workshop::updateAuthorized(store, journal, bad, now),
++            "admin-not-participant-default");
++    }
++    workshop::UpdateJournal journal(file);
++    check(journal.pending().size() == 1, "restart-keeps-unprocessed-event");
++    auto events = journal.pending();
++    auto wrong = events;
++    wrong[0].version = "wrong";
++    bool threw = false;
++    try {
++      journal.complete(wrong);
++    } catch (const workshop::StorageError &) {
++      threw = true;
++    }
++    check(threw && journal.pending().size() == 1,
++          "failed-processing-preserves-pending");
++    journal.complete(events);
++    check(journal.pending().empty(), "processing-mark-durable");
++    journal.complete(events);
++    check(journal.pending().empty(), "duplicate-processing-idempotent");
++    auto publish = workshop::decode(
++        R"({"epoch":"E","intentId":"PUBLISH","action":"STATE","targetState":"OPEN"})");
++    publish["workshopId"] = wid;
++    check(store.handle("POST", "/admin/intents", "FAKE-A", "FAKE-CSRF-A",
++                       "https://workshop.test", publish, now)
++                  .status == 200,
++          "publish-fixture");
++    const auto publicSnapshot =
++        workshop::updateSnapshot(store, journal, guest, now);
++    check(publicSnapshot && !publicSnapshot->isMember("actor"),
++          "public-no-private-fields");
++    auto registration =
++        workshop::decode(R"({"epoch":"E","requestId":"REGISTER"})");
++    registration["workshopId"] = wid;
++    const auto registered =
++        store.handle("POST", "/registrations", "FAKE-U", "FAKE-CSRF-U",
++                     "https://workshop.test", registration, now);
++    check(registered.body["code"] == "REGISTERED", "register-fixture");
++    store.fault([](std::string_view point) {
++      if (point == "before_begin")
++        throw workshop::StorageError("INJECTED_READ_FAILURE");
++    });
++    bool unavailable = false;
++    try {
++      static_cast<void>(workshop::updateSnapshot(store, journal, u, now));
++    } catch (const workshop::StorageError &) {
++      unavailable = true;
++    }
++    check(unavailable && journal.pending().size() == 2,
++          "storage-unknown-is-not-permission-denial-or-processing-completion");
++    store.fault({});
++    const auto history = workshop::updateSnapshot(store, journal, u, now);
++    check(history && history->size() == 1 && (*history)[0]["actor"] == "U",
++          "private-authoritative-group");
++    sql(file, "UPDATE sessions SET revoked=1 WHERE token='FAKE-U'");
++    check(!workshop::updateSnapshot(store, journal, u, now),
++          "revocation-before-next-emit");
++    check(!workshop::updateAuthorized(store, journal, a, 4102444800),
++          "expiry-before-heartbeat");
++    sql(file, "UPDATE metadata SET value='NEW' WHERE key='epoch'");
++    check(!workshop::updateAuthorized(store, journal, a, now),
++          "restore-epoch-revokes-subscription");
++    workshop::UpdateCredit credit;
++    for (unsigned i = 0; i < 8; ++i)
++      check(credit.reserve(std::to_string(i), 100),
++            "credit-message-" + std::to_string(i));
++    check(!credit.reserve("overflow", 1) && credit.count() == 8 &&
++              credit.bytes() == 800,
++          "credit-limit-eight");
++    check(!credit.acknowledge("7") && !credit.acknowledge("guessed"),
++          "cannot-ack-unread-or-out-of-order");
++    check(credit.acknowledge("0") && credit.reserve("new", 100),
++          "exact-oldest-receipt-releases-one");
++    workshop::UpdateCredit bytes;
++    check(bytes.reserve("big", 1048576) && !bytes.reserve("more", 1),
++          "credit-byte-limit-one-MiB");
++    check(!bytes.reserve("oversize", 1048577), "single-frame-too-large");
++    workshop::SocketQuota quota;
++    for (unsigned i = 0; i < 8; ++i)
++      check(quota.acquire("actor:A", true),
++            "actor-socket-" + std::to_string(i));
++    check(!quota.acquire("actor:A", true), "actor-max-eight");
++    quota.release("actor:A");
++    check(quota.acquire("actor:A", true), "closed-socket-releases-slot");
++    for (unsigned i = 0; i < 16; ++i)
++      check(quota.acquire("peer:P", false),
++            "anonymous-socket-" + std::to_string(i));
++    check(!quota.acquire("peer:P", false), "anonymous-max-sixteen");
++    for (unsigned i = 24; i < 128; ++i)
++      if (!quota.acquire("actor:" + std::to_string(i), true))
++        throw std::runtime_error("global-fill");
++    check(!quota.acquire("actor:last", true) && quota.count() == 128,
++          "global-max-128");
++    workshop::FrameRate rate;
++    const auto at = workshop::FrameRate::Clock::now();
++    for (unsigned i = 0; i < 10; ++i)
++      check(rate.accept(at), "frame-burst-" + std::to_string(i));
++    check(!rate.accept(at), "frame-burst-ten");
++    check(rate.accept(at + std::chrono::milliseconds(200)) &&
++              !rate.accept(at + std::chrono::milliseconds(200)),
++          "frame-refill-five-per-second");
++    std::cout << "checks=" << checks << '\n';
++    return 0;
++  } catch (const std::exception &e) {
++    std::cerr << e.what() << '\n';
++    return 1;
++  }
++}
+diff --git a/docs/t05/updates-protocol-r1.md b/docs/t05/updates-protocol-r1.md
+new file mode 100644
+index 0000000..9691a5d
+--- /dev/null
++++ b/docs/t05/updates-protocol-r1.md
+@@ -0,0 +1,15 @@
++# T05 updates — contract triển khai r1
++
++Phạm vi kỹ thuật theo AR-r2, không thay nghiệp vụ: GET/mutation HTTP vẫn authoritative, WSS `/api/v1/updates` chỉ snapshot/heartbeat. Không mutation hoặc credential trong URL. HTTPS/cookie/Origin qua cổng local đã xác minh; không trust thay đổi trên Mac.
++
++Sau upgrade, client gửi một TEXT frame SUBSCRIBE gồm `type`, `audience` public/admin/private, `epoch`, `csrf`, và `workshopId` cho public/admin. `*` chọn collection đã được quyền HTTP tương ứng; private không nhận workshopId và chỉ trả lịch sử actor của phiên. Origin bắt buộc đúng metadata server. Phiên có cookie phải hợp lệ và CSRF khớp kể cả audience public; cookie sai không tự hạ xuống khách. Khách không có cookie chỉ public, csrf rỗng. Không phát dữ liệu trước SUBSCRIBE hợp lệ.
++
++Server trả envelope `{"message":{...},"receipt":"..."}`; message là SUBSCRIBED, SNAPSHOT hoặc HEARTBEAT, có epoch/audience. SNAPSHOT data cùng schema authoritative HTTP. SUBSCRIBED được phát sau khi subscription tồn tại và trước snapshot/GET đối chiếu. Client subscribe trước rồi GET để khép khe live; HTTP/SSR seed khi kênh chưa sẵn sàng chỉ là quan sát UNKNOWN về cập nhật trực tiếp, SUBSCRIBED vẫn bắt buộc đọc lại. hợp nhất từng workshop/audience/actor/epoch bằng uint64 chuỗi, không thay authority bằng cộng/trừ. Cùng version khác nội dung unknown và GET đối chiếu; response thế hệ cũ không áp vào phiên mới. ACK `{"type":"ACK","receipt":"..."}` chỉ giải phóng frame credit, không chứng minh mutation hoặc browser đã hiển thị.
++
++Receipt ngẫu nhiên an toàn, riêng từng message và được đặt sau toàn payload; chỉ ACK oldest outstanding receipt. Nhờ vậy một peer đọc chậm không dùng cursor đoán được để giải phóng credit cho byte chưa đọc. Tối đa 8 frame chưa ACK và 1MiB gồm envelope/header bảo thủ; quá một trần thì force-close. Heartbeat 2s cũng qua quyền/credit. Không ACK/slow reader không chặn writer. Không thể dùng API public Drogon để đo queue TCP trực tiếp; receipt credit là giới hạn application bao phủ frame đã chuyển sang send. Kernel/Caddy buffers vẫn có giới hạn riêng, không nhận đây là đo RSS toàn hệ thống.
++
++Global pending/active socket tối đa128; trước xác thực16/peer TCP, sau xác thực8/actor; khách16/peer. Frame8KiB,5/s burst10. Với cổng hiện tại, peer TCP là cổng proxy; không tin X-Forwarded-For do client tự khai, nên giới hạn khách có thể chặt hơn theo mạng thực. Chưa nhận profile tải toàn ứng dụng đạt từ contract này. HTTP/subscription dùng Admission đã xác thực, không thêm dashboard/counters nghiệp vụ.
++
++Một worker sở hữu Store, UpdateJournal và socket state. Journal dùng schema1 đã có, không tự migration. Quét tối đa64 outbox row/lượt, coalesce bằng snapshot mới nhất; chưa xử lý còn durable qua restart. No-op/rejected HTTP không tạo event giả. Trước mỗi emit, revalidate token/role/actor/CSRF/epoch; thiếu quyền đóng socket. Đánh dấu completed chỉ nói dispatcher đã xử lý nghĩa vụ cho snapshot hiện tại; không nói mọi browser đã nhận. Crash giữa send và mark có thể gửi lại snapshot; client bỏ cũ/lặp. Không xóa row/result/audit. Lỗi storage/exception khi phát để pending và đóng kênh; quá credit hoặc mất quyền đóng client, nghĩa vụ dispatcher có thể đã xử lý nhưng client vẫn cần GET đối chiếu, client chuyển unknown/GET đối chiếu. Restore đổi epoch cần thủ tục reconciliation outbox được kiểm ở T08, không ngầm miễn readiness.
++
++Kiểm r1 dự kiến: đủ 50 CTest/856 assertion T04 và toàn HTTP/session/shutdown cũ, thêm unit quyền/epoch/credit/quota/rate/journal; dev/tidy, ASan/UBSan/TSan/release. New code không được mở rộng EX r2. Thêm HTTPS browser/socket tests trên artifact cuối; tài liệu này không PASS thay runtime. T05 tổng thể còn monitoring/backup/readiness/restore và ma trận còn thiếu.
+diff --git a/scripts/t02/preflight.mjs b/scripts/t02/preflight.mjs
+index 7360d4b..fa7457d 100644
+--- a/scripts/t02/preflight.mjs
++++ b/scripts/t02/preflight.mjs
+@@ -8,9 +8,9 @@ export const hash=p=>createHash('sha256').update(readFileSync(p)).digest('hex');
+ export function inventory(base,roots){const result={};function walk(rel){const p=path.join(base,rel),st=lstatSync(p);if(st.isSymbolicLink())throw Error('SYMLINK '+rel);if(st.isDirectory())for(const name of readdirSync(p).sort())walk(path.posix.join(rel,name));else if(st.isFile())result[rel]=hash(p);else throw Error('UNSUPPORTED '+rel);}for(const r of roots)walk(r);return result;}
+ export function verify(manifestPath){
+  const absolute=realpathSync(manifestPath),m=JSON.parse(readFileSync(absolute));
+- if(m.revision!=='r09-t04-build-r1'||m.exception?.id!=='EX-T02-WAL-01-r2'||m.exception?.policySha256!==hash(path.join(root,'tests/t02/tsan/policy.json')))throw Error('EXCEPTION_BINDING');
++ if(!['r09-t04-build-r1','r09-t05-events-build-r1'].includes(m.revision)||m.exception?.id!=='EX-T02-WAL-01-r2'||m.exception?.policySha256!==hash(path.join(root,'tests/t02/tsan/policy.json')))throw Error('EXCEPTION_BINDING');
+  if(m.root!==root||m.status!=='PROPOSED_BUILD_NOT_RUN'||m.network!=='none'||m.image!=='sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92')throw Error('MANIFEST_SCOPE');
+- if(JSON.stringify(m.sourceRoots)!==JSON.stringify(['backend','contracts','tests/t02','scripts/t02','containers/t02','docs']))throw Error('SOURCE_ROOTS');
++ if(JSON.stringify(m.sourceRoots)!==JSON.stringify(m.revision==='r09-t05-events-build-r1'?['backend','contracts','tests/t02','scripts/t02','scripts/t05','containers/t02','docs']:['backend','contracts','tests/t02','scripts/t02','containers/t02','docs']))throw Error('SOURCE_ROOTS');
+  const actual=inventory(root,m.sourceRoots);delete actual['docs/t02/build-manifest.json'];
+  if(JSON.stringify(actual)!==JSON.stringify(m.sourceHashes))throw Error('SOURCE_CLOSURE_CHANGED');
+  const git=spawnSync('git',['cat-file','-t',m.sourceCommit],{cwd:root,encoding:'utf8'});if(git.status!==0||git.stdout.trim()!=='commit')throw Error('SOURCE_COMMIT_UNAVAILABLE');
+diff --git a/scripts/t02/run.mjs b/scripts/t02/run.mjs
+index f941de2..834bb75 100644
+--- a/scripts/t02/run.mjs
++++ b/scripts/t02/run.mjs
+@@ -21,7 +21,7 @@ function size(p){if(!existsSync(p))return 0;const r=spawnSync('/usr/bin/du',['-s
+ for(const preset of ['dev','asan-ubsan','tsan','release']){
+  if(Date.now()-started>=m.limits.totalSeconds*1000)throw Error('TOTAL_DEADLINE');verify(manifestPath);
+  const dir=path.join(output,preset),build=path.join(dir,'build'),out=path.join(dir,'out');mkdirSync(build,{recursive:true});mkdirSync(out);const name=runId+'-'+preset;
+- const args=['create','--name',name,'--label','kidea.t02.run='+runId,'--label','kidea.t02.manifest='+approvedHash,'--env','KIDEA_T02_IMAGE='+m.image,'--network','none','--read-only','--user','1000:1000','--cpus','2','--memory','4g','--memory-swap','4g','--pids-limit','256','--cap-drop','ALL','--security-opt','no-new-privileges','--tmpfs','/tmp:rw,nosuid,size=268435456','--mount',`type=bind,src=${root},dst=/src,readonly`,'--mount',`type=bind,src=${checked.vendor},dst=/vendor,readonly`,'--mount',`type=bind,src=${build},dst=/build`,'--mount',`type=bind,src=${out},dst=/out`,m.image,'sh','/src/scripts/t02/build.sh',preset];
++ const args=['create','--name',name,'--label','kidea.t02.run='+runId,'--label','kidea.t02.manifest='+approvedHash,'--env','KIDEA_T02_IMAGE='+m.image,'--network','none','--read-only','--user','1000:1000','--cpus','2','--memory','4g','--memory-swap','4g','--pids-limit','256','--cap-drop','ALL','--security-opt','no-new-privileges','--tmpfs','/tmp:rw,nosuid,size=268435456','--mount',`type=bind,src=${root},dst=/src,readonly`,'--mount',`type=bind,src=${checked.vendor},dst=/vendor,readonly`,'--mount',`type=bind,src=${build},dst=/build`,'--mount',`type=bind,src=${out},dst=/out`,m.image,'sh',m.revision==='r09-t05-events-build-r1'?'/src/scripts/t05/build.sh':'/src/scripts/t02/build.sh',preset];
+  let id,reason=null,code=null;
+  try{
+   id=docker(args).trim();if(!/^[0-9a-f]{64}$/.test(id))throw Error('CONTAINER_ID');writeFileSync(path.join(dir,'container-id.txt'),id);
+diff --git a/scripts/t05/build.sh b/scripts/t05/build.sh
+new file mode 100644
+index 0000000..a04a9a4
+--- /dev/null
++++ b/scripts/t05/build.sh
+@@ -0,0 +1,23 @@
++#!/bin/sh
++set -eu
++preset="$1"
++sh /src/scripts/t02/build.sh "$preset"
++# The inherited script is a child shell; its exports cannot configure this shell.
++export WORKSHOP_CASE_ROOT="/out/$preset/cases"
++case "$preset" in
++asan-ubsan) export ASAN_OPTIONS=detect_leaks=1:halt_on_error=1:detect_stack_use_after_return=1; export UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1;;
++tsan) export TSAN_OPTIONS=halt_on_error=0:exitcode=66:report_bugs=1;;
++esac
++# Extra tests never substitute/filter any of the 50 existing CTest cases.
++if /build/$preset/workshop_updates_tests > /out/$preset/updates.stdout.txt 2> /out/$preset/updates.stderr.txt; then code=0; else code=$?; fi
++printf '%s\n' "$code" > /out/$preset/updates.exit.txt
++[ "$code" = 0 ]
++# New code must be sanitizer-clean; no new exception is inferred from EX r2.
++if grep -E 'ThreadSanitizer|AddressSanitizer|runtime error:' /out/$preset/updates.stderr.txt; then exit 1; fi
++if [ "$preset" = dev ]; then
++ for file in updates update_transport; do
++  clang-tidy-18 /src/backend/src/$file.cpp -p /build/dev --config-file=/src/docs/t02/clang-tidy.yml > /out/dev/tidy-$file.stdout.txt 2> /out/dev/tidy-$file.stderr.txt
++ done
++ clang-tidy-18 /src/backend/tests/updates.cpp -p /build/dev --config-file=/src/docs/t02/clang-tidy.yml > /out/dev/tidy-updates-tests.stdout.txt 2> /out/dev/tidy-updates-tests.stderr.txt
++fi
++sha256sum /build/$preset/workshop_updates_tests > /out/$preset/updates-artifacts.sha256
+diff --git a/web/src/lib/AdminForm.svelte b/web/src/lib/AdminForm.svelte
+index f3981d6..cf7d92d 100644
+--- a/web/src/lib/AdminForm.svelte
++++ b/web/src/lib/AdminForm.svelte
+@@ -1,20 +1,21 @@
+ <script lang="ts">
+- import {onMount} from 'svelte';import {resolve} from '$app/paths';import {observationLabel} from '$lib/display';
++ import {onMount} from 'svelte';import {openUpdates,type UpdateStatus} from '$lib/updates';import {resolve} from '$app/paths';import {observationLabel} from '$lib/display';
+  import {decodeAdmin,formOf,changedFields,fieldErrors,confirmation,sameObservation,compareAdminObservation,rebaseDraft,decodeAdminIntent,prepareAdminSend,decodeAdminResult,adminResultText,type AdminSnapshot,type AdminIntent,type Command,type Draft} from '$lib/admin';
+  let {initial}:{initial:AdminSnapshot|null}=$props();
+  let base=$state<AdminSnapshot|null>(null),draft=$state<Draft>(formOf(null)),latest=$state<AdminSnapshot|null>(null);
+  let who=$state<{actor:string;epoch:string;csrf:string}|null>(null),intent=$state<AdminIntent|null>(null),busy=$state(false),ready=$state(false),message=$state('Đang kiểm tra phiên quản trị…'),errors=$state<Record<string,string>>({}),created=$state<string|null>(null);
+- let dialog:HTMLDialogElement;let confirmationLines=$state<string[]>([]),candidate=$state<Command|null>(null);let mounted=false,generation=0;let key='';let polling=false;let conflicted=$state(false);
++ let dialog:HTMLDialogElement;let confirmationLines=$state<string[]>([]),candidate=$state<Command|null>(null);let mounted=false,generation=0;let key='';let polling=false;let channel=$state<UpdateStatus>('UNKNOWN');let stopUpdates:(()=>void)|null=null;let conflicted=$state(false);
+  const dirty=$derived(Object.keys(changedFields(base,draft)).length>0);
+  const unresolved=$derived(intent!==null&&intent.state==='UNKNOWN');
+  async function json(route:string,options:NonNullable<Parameters<typeof fetch>[1]>={}):Promise<unknown>{const response=await fetch('/api/v1'+route,{...options,cache:'no-store',signal:AbortSignal.timeout(8000)});if(!response.ok)throw new Error('UNCONFIRMED');return response.json();}
+- async function identity(){const v=await json('/session');if(typeof v!=='object'||v===null||!('admin'in v)||v.admin!==true||!('actor'in v)||typeof v.actor!=='string'||!('epoch'in v)||typeof v.epoch!=='string'||!('csrf'in v)||typeof v.csrf!=='string')throw new Error('PERMISSION');return {actor:v.actor,epoch:v.epoch,csrf:v.csrf};}
+- function clear(){generation++;who=null;base=null;latest=null;draft=formOf(null);intent=null;candidate=null;ready=false;created=null;dialog?.close();}
++ async function identity(){const response=await fetch('/api/v1/session',{cache:'no-store',signal:AbortSignal.timeout(8000)});if(!response.ok)throw new Error(response.status===401||response.status===403?'PERMISSION':'UNCONFIRMED');const v:unknown=await response.json();if(typeof v!=='object'||v===null||!('admin'in v)||v.admin!==true||!('actor'in v)||typeof v.actor!=='string'||!v.actor||!('epoch'in v)||typeof v.epoch!=='string'||!v.epoch||!('csrf'in v)||typeof v.csrf!=='string'||!v.csrf)throw new Error('PERMISSION');return {actor:v.actor,epoch:v.epoch,csrf:v.csrf};}
++ function clear(){stopUpdates?.();stopUpdates=null;channel='UNKNOWN';generation++;who=null;base=null;latest=null;draft=formOf(null);intent=null;candidate=null;ready=false;created=null;dialog?.close();}
+  function blockConflict(){conflicted=true;latest=null;candidate=null;dialog?.close();message='Cùng phiên bản nhưng nội dung khác nhau. Chưa xác nhận dữ liệu; hãy tải và đối chiếu trước khi lưu.';}
+  function persist(value:string){sessionStorage.setItem(key,value);}
+- async function currentIdentity(){const next=await identity();if(!who||next.actor!==who.actor||next.epoch!==who.epoch){clear();message='Phiên đã thay đổi. Dữ liệu cũ đã được ẩn; hãy tải lại trang.';throw new Error('SESSION_CHANGED');}who=next;}
++ async function currentIdentity(){const g=generation;let next;try{next=await identity();}catch(error){if(!mounted||g!==generation)throw error;if(error instanceof Error&&error.message==='PERMISSION'){clear();message='Chưa xác nhận được quyền quản trị. Dữ liệu riêng đã được ẩn.';}else{channel='UNKNOWN';message='Chưa kiểm tra được phiên quản trị. Chỉ đọc đối chiếu lại, không tự gửi thao tác.';}throw error;}if(!mounted||g!==generation)throw new Error('SESSION_CHANGED');if(!who||next.actor!==who.actor||next.epoch!==who.epoch){clear();message='Phiên đã thay đổi. Dữ liệu cũ đã được ẩn; hãy tải lại trang.';throw new Error('SESSION_CHANGED');}who=next;if(message==='Chưa kiểm tra được phiên quản trị. Chỉ đọc đối chiếu lại, không tự gửi thao tác.')message='Đã kiểm tra lại phiên quản trị. Thao tác vẫn được đối chiếu trước khi gửi.';}
+  async function snapshot(){if(!initial)return null;const v=decodeAdmin(await json('/admin/workshops/'+encodeURIComponent(initial.id)));if(!v||v.id!==initial.id||v.epoch!==who?.epoch)throw new Error('SNAPSHOT');return v;}
+- async function refresh(replace=false,background=false){const g=generation;await currentIdentity();const next=await snapshot();if(!mounted||g!==generation||background&&busy)return false;
++ async function refresh(replace=false,background=false){const g=generation;await currentIdentity();const next=await snapshot();if(!mounted||g!==generation||background&&busy)return false;return observe(next,replace,background);}
++ function observe(next:AdminSnapshot|null,replace=false,background=false){
+   if(base&&next){const order=compareAdminObservation(base,next);if(order==='OLDER')return false;if(order==='CONFLICT'){blockConflict();return false;}}
+   if(conflicted&&background)return false;conflicted=false;
+   if(base&&next&&!sameObservation(base,next)&&dirty&&!replace){latest=next;candidate=null;dialog?.close();message='Dữ liệu đã thay đổi. Phần bạn nhập vẫn được giữ; xem bản mới trước khi lưu.';return false;}
+@@ -45,14 +46,14 @@
+   try{await currentIdentity();const current=await snapshot();if(current&&compareAdminObservation(before,current)==='CONFLICT'){blockConflict();return;}if(!current||!sameObservation(before,current)){latest=current;message='Dữ liệu thay đổi trong lúc xác nhận. Hãy xem lại trước khi gửi.';return;}await send(command);}catch{message='Chưa xác nhận dữ liệu mới. Chưa gửi thao tác.';}finally{busy=false;}
+  }
+  onMount(()=>{mounted=true;const g=++generation;
+-  void(async()=>{try{const session=await identity();if(!mounted||g!==generation)return;who=session;key='workshop-admin:'+session.actor+':'+session.epoch+':'+(initial?.id??'CREATE');base=await snapshot();if(!mounted||g!==generation)return;draft=formOf(base);const saved=sessionStorage.getItem(key);if(saved){const restored=decodeAdminIntent(saved,session.actor,session.epoch);if(!restored){message='Mã đối chiếu đã lưu không hợp lệ. Chưa thể tạo thao tác thay thế.';return;}intent=restored;}ready=true;message=unresolved?'Có thao tác chưa xác nhận. Chỉ đọc kết quả cùng mã; không gửi lại.':'Có thể chỉnh sửa. Trạng thái được kiểm lại trước khi gửi.';}catch{if(mounted&&g===generation){clear();message='Chưa xác nhận được phiên hoặc dữ liệu quản trị.';}}})();
+-  const timer=window.setInterval(()=>{if(ready&&!busy&&!polling&&who){polling=true;void refresh(false,true).catch(()=>{if(mounted)message='Chưa đối chiếu được dữ liệu mới. Hãy tải lại trước khi thao tác.';}).finally(()=>{polling=false;});}},2000);
+-  return()=>{mounted=false;generation++;window.clearInterval(timer);};
++  void(async()=>{try{const session=await identity();if(!mounted||g!==generation)return;who=session;key='workshop-admin:'+session.actor+':'+session.epoch+':'+(initial?.id??'CREATE');base=await snapshot();await currentIdentity();if(!mounted||g!==generation)return;draft=formOf(base);const saved=sessionStorage.getItem(key);if(saved){const restored=decodeAdminIntent(saved,session.actor,session.epoch);if(!restored){message='Mã đối chiếu đã lưu không hợp lệ. Chưa thể tạo thao tác thay thế.';return;}intent=restored;}ready=true;if(initial){stopUpdates=openUpdates({audience:'admin',epoch:session.epoch,workshopId:initial.id,csrf:()=>who?.csrf??'',validate:async()=>{const before=generation;await currentIdentity();return mounted&&before===generation;},read:()=>json('/admin/workshops/'+encodeURIComponent(initial.id)),snapshot:(raw,source)=>{const next=decodeAdmin(raw);if(!next||next.id!==initial.id||next.epoch!==who?.epoch||busy)return false;return observe(next,false,source==='SOCKET');},status:value=>{if(mounted)channel=value;}});}message=unresolved?'Có thao tác chưa xác nhận. Chỉ đọc kết quả cùng mã; không gửi lại.':'Có thể chỉnh sửa. Trạng thái được kiểm lại trước khi gửi.';}catch{if(mounted&&g===generation){clear();message='Chưa xác nhận được phiên hoặc dữ liệu quản trị.';}}})();
++  const timer=window.setInterval(()=>{if(ready&&!initial&&!busy&&!polling&&who){polling=true;void refresh(false,true).catch(()=>{if(mounted)message='Chưa đối chiếu được dữ liệu mới. Hãy tải lại trước khi thao tác.';}).finally(()=>{polling=false;});}},2000);
++  return()=>{mounted=false;generation++;stopUpdates?.();window.clearInterval(timer);};
+  });
+ </script>
+ <h1>{initial?'Sửa workshop':'Tạo bản nháp'}</h1><p role="status">{message}</p>
+ {#if ready&&who}
+- {#if base}<p>{base.title} · {base.state==='DRAFT'?'Bản nháp':base.state==='OPEN'?'Đang mở':'Tạm dừng'}</p><p>Đăng ký hiệu lực: {base.active} · Sức chứa: {base.capacity} · Quan sát {observationLabel(base.observedAt)}</p>{/if}
++ {#if base}<p role="status">{channel==='OBSERVED'?'Đang đối chiếu cập nhật trực tiếp.':'Chưa xác nhận cập nhật trực tiếp; tải và đối chiếu trước khi dựa vào số liệu.'}</p><p>{base.title} · {base.state==='DRAFT'?'Bản nháp':base.state==='OPEN'?'Đang mở':'Tạm dừng'}</p><p>Đăng ký hiệu lực: {base.active} · Sức chứa: {base.capacity} · Quan sát {observationLabel(base.observedAt)}</p>{/if}
+  {#if created}<p><a href={resolve('/admin/workshops/[id]',{id:created})}>Mở bản nháp vừa tạo</a></p>{/if}
+  {#if unresolved}<p>Thao tác {intent?.command.action} đang chờ đối chiếu.</p><button disabled={busy} onclick={()=>void lookup()}>Kiểm tra kết quả</button>{/if}
+  {#if latest}<section aria-label="Dữ liệu mới"><h2>Bản mới từ máy chủ</h2><p>{latest.title} · {latest.description}</p><p>Sức chứa {latest.capacity}, đăng ký hiệu lực {latest.active}, trạng thái {latest.state}</p><p>{latest.schedule.start} — {latest.schedule.end}</p><button disabled={busy||unresolved} onclick={reviewLatest}>Đã xem bản mới, giữ các trường tôi sửa</button></section>{/if}
+diff --git a/web/src/lib/LiveWorkshop.svelte b/web/src/lib/LiveWorkshop.svelte
+new file mode 100644
+index 0000000..e5904a3
+--- /dev/null
++++ b/web/src/lib/LiveWorkshop.svelte
+@@ -0,0 +1,16 @@
++<script lang="ts">
++ import {onMount} from 'svelte';import Registration from '$lib/Registration.svelte';import {scheduleLabel,observationLabel} from '$lib/display';
++ import {PublicUpdates,openUpdates,type UpdateStatus} from '$lib/updates';import type {Snapshot} from '$lib/state';
++ let {initial}:{initial:Snapshot}=$props();let received=$state<Snapshot|null>(null),channel=$state<UpdateStatus>('UNKNOWN');const current=$derived(received??initial);
++ onMount(()=>{const state=new PublicUpdates(initial.epoch,[initial]);let actor:string|undefined,csrf='';
++  async function validate(){const r=await fetch('/api/v1/session',{cache:'no-store',signal:AbortSignal.timeout(5000)});let next='';
++   if(r.ok){const raw:unknown=await r.json();if(typeof raw!=='object'||raw===null||!('actor'in raw)||typeof raw.actor!=='string'||!('epoch'in raw)||raw.epoch!==initial.epoch||!('csrf'in raw)||typeof raw.csrf!=='string')return false;next=raw.actor;csrf=raw.csrf;}else if(r.status===401){csrf='';}else return false;
++   if(actor!==undefined&&actor!==next){window.location.reload();return false;}actor=next;return true;
++  }
++  return openUpdates({audience:'public',epoch:initial.epoch,workshopId:initial.id,csrf:()=>csrf,validate,read:async()=>{const r=await fetch('/api/v1/workshops/'+encodeURIComponent(initial.id),{cache:'no-store',signal:AbortSignal.timeout(5000)});if(!r.ok)throw Error('UNKNOWN');return r.json();},snapshot:(raw,source)=>{const ok=state.merge(raw,source);received=state.snapshots.get(initial.id)??null;return ok;},status:value=>{channel=value;}});
++ });
++</script>
++<svelte:head><title>{current.title} – Workshop thử nghiệm</title><meta name="description" content={current.description.slice(0,160)} /></svelte:head>
++<h1>{current.title}</h1><article><p class="description">{current.description}</p><p>{scheduleLabel(current.schedule.start)} — {scheduleLabel(current.schedule.end)}</p><p>{current.state==='OPEN'?'Mở đăng ký':'Tạm dừng'}</p><p>{current.remaining}/{current.capacity} chỗ còn theo lần quan sát.</p><p role="status">{channel==='OBSERVED'?'Đang đối chiếu cập nhật trực tiếp.':'Chưa xác nhận cập nhật trực tiếp. Số liệu dưới đây là lần quan sát trước.'}</p><p>Quan sát lúc {observationLabel(current.observedAt)} · Không phải cam kết giữ chỗ</p></article>
++<Registration workshop={current} />
++<style>.description{white-space:pre-wrap}</style>
+diff --git a/web/src/lib/Registration.svelte b/web/src/lib/Registration.svelte
+index 1272602..dfb1bae 100644
+--- a/web/src/lib/Registration.svelte
++++ b/web/src/lib/Registration.svelte
+@@ -1,28 +1,43 @@
+ <script lang="ts">
+  import {resolve} from '$app/paths';
+- import {onMount} from 'svelte';
++ import {onMount} from 'svelte';import {openUpdates,reconcileHistory,mergeHistory,type UpdateStatus} from '$lib/updates';
+  import {ClientState,decodeIntent,prepareSend} from '$lib/state';
+  import type {Snapshot,History,Intent} from '$lib/state';
+  import {decodeReply,resultLabel} from '$lib/reply';
+  let {workshop}:{workshop:Snapshot}=$props();
+  let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+  let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+- let cancelId=$state<string|null>(null);let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
++ let cancelId=$state<string|null>(null);let dialog:HTMLDialogElement;let generation=0;let mounted=false;let stopUpdates:(()=>void)|null=null;let channel=$state<UpdateStatus>('UNKNOWN');let historyKnown=$state(false);let contextAbort=new AbortController();
+  const signal=()=>AbortSignal.any([contextAbort.signal,AbortSignal.timeout(5000)]);
+  const clientState=new ClientState('','');
+  const key=()=>session?'workshop-intent:'+JSON.stringify([session.actor,session.epoch,workshop.id]):'';
+  const save=(value:string)=>localStorage.setItem(key(),value);
++ async function validateIdentity(g:number){
++  if(!mounted||g!==generation||!session?.participant)return false;const expected={actor:session.actor,epoch:session.epoch};
++  const r=await fetch('/api/v1/session',{cache:'no-store',signal:signal()});if(!mounted||g!==generation)return false;
++  if(!r.ok&&r.status!==401&&r.status!==403){historyKnown=false;channel='UNKNOWN';message='Chưa kiểm tra được phiên. Chỉ đọc đối chiếu lại, không tự gửi thao tác.';return false;}
++  const raw:unknown=await r.json();if(!mounted||g!==generation)return false;
++  if(!r.ok||typeof raw!=='object'||raw===null||!('actor'in raw)||raw.actor!==expected.actor||!('epoch'in raw)||raw.epoch!==expected.epoch||!('participant'in raw)||raw.participant!==true||!('csrf'in raw)||typeof raw.csrf!=='string'||!raw.csrf){
++   stopUpdates?.();stopUpdates=null;generation++;channel='UNKNOWN';historyKnown=false;session=null;history=null;pending=null;cancelId=null;busy=false;clientState.reset('','');dialog?.close();message='Phiên đã thay đổi hoặc hết quyền. Dữ liệu riêng đã được ẩn.';return false;
++  }
++  if(session)session.csrf=raw.csrf;if(message==='Chưa kiểm tra được phiên. Chỉ đọc đối chiếu lại, không tự gửi thao tác.')message='';return true;
++ }
+  async function loadHistory(g:number){
+-  const c={...clientState.context};try{const r=await fetch('/api/v1/me/registrations',{cache:'no-store',signal:signal()});if(!mounted||g!==generation)return;if(!r.ok){history=null;message='Không thể đọc dữ liệu riêng. Cần kiểm tra phiên.';return;}const raw:unknown=await r.json();if(!mounted||g!==generation)return;const merged=clientState.collection(raw,c);history=merged==='UNKNOWN'?null:clientState.history.get(workshop.id)??null;}catch{if(mounted&&g===generation){history=null;message='Chưa tải được đăng ký hiện tại.';}}
++  const c={...clientState.context};try{const r=await fetch('/api/v1/me/registrations',{cache:'no-store',signal:signal()});if(!mounted||g!==generation)return;if(!r.ok){history=null;message='Không thể đọc dữ liệu riêng. Cần kiểm tra phiên.';return;}const raw:unknown=await r.json();if(!mounted||g!==generation)return;if(!await validateIdentity(g))return;const confirmed=reconcileHistory(clientState,raw,c);historyKnown=confirmed;history=confirmed?clientState.history.get(workshop.id)??null:null;}catch{if(mounted&&g===generation){history=null;message='Chưa tải được đăng ký hiện tại.';}}
+  }
+  async function refresh(){
+-  const g=++generation;dialog?.close();cancelId=null;contextAbort.abort();contextAbort=new AbortController();session=null;history=null;pending=null;clientState.reset('','');busy=false;
++  stopUpdates?.();stopUpdates=null;channel='UNKNOWN';historyKnown=false;const g=++generation;dialog?.close();cancelId=null;contextAbort.abort();contextAbort=new AbortController();session=null;history=null;pending=null;clientState.reset('','');busy=false;
+   try{const r=await fetch('/api/v1/session',{cache:'no-store',signal:signal()});const v:unknown=await r.json();if(!mounted||g!==generation)return;
+    if(!r.ok||typeof v!=='object'||v===null||!('actor'in v)||typeof v.actor!=='string'||!v.actor||!('epoch'in v)||v.epoch!==workshop.epoch||!('csrf'in v)||typeof v.csrf!=='string'||!v.csrf||!('participant'in v)||typeof v.participant!=='boolean'){message='Cần phiên tài khoản thử hợp lệ.';return;}
+    session={actor:v.actor,epoch:v.epoch,csrf:v.csrf,participant:v.participant};clientState.reset(v.actor,v.epoch);message='';
+    try{const saved=localStorage.getItem(key());if(saved){pending=decodeIntent(saved,v.actor,v.epoch);if(!pending||pending.workshopId!==workshop.id){pending=null;message='Không thể khôi phục ý định cũ. Cần đối chiếu trước thao tác mới.';session=null;return;}if(pending.state==='UNKNOWN')message='Chưa xác nhận kết quả của ý định đã lưu.';}}
+    catch{session=null;message='Không thể lưu ý định an toàn trong trình duyệt. Chưa gửi thao tác.';return;}
+-   await loadHistory(g);
++   const epoch=v.epoch;const validate=()=>validateIdentity(g);
++   // Seed an authoritative HTTP-only observation while the live handshake is
++   // pending/unavailable. SUBSCRIBED always triggers another GET before live status.
++   if(session.participant)await loadHistory(g);if(!mounted||g!==generation||!session)return;
++   if(session.participant){stopUpdates=openUpdates({audience:'private',epoch,csrf:()=>session?.csrf??'',validate,read:async()=>{const r=await fetch('/api/v1/me/registrations',{cache:'no-store',signal:signal()});if(!r.ok)throw Error('UNKNOWN');return r.json();},snapshot:(raw,source)=>{const c={...clientState.context};if(!mounted||g!==generation)return false;const confirmed=source==='HTTP'?reconcileHistory(clientState,raw,c):mergeHistory(clientState,raw,c);historyKnown=confirmed;history=confirmed?clientState.history.get(workshop.id)??null:null;return confirmed;},status:value=>{if(mounted&&g===generation)channel=value;}});}
++
+   }catch{if(mounted&&g===generation)message='Chưa kiểm tra được phiên tài khoản thử.';}
+  }
+  async function execute(intent:Intent,readOnly=false){
+@@ -33,24 +48,24 @@
+    const r=await fetch('/api/v1'+route,{method,cache:'no-store',signal:signal(),headers:method==='POST'?{'content-type':'application/json','x-csrf-token':session.csrf}:{},body:method==='POST'?JSON.stringify({epoch:intent.epoch,requestId:intent.requestId,workshopId:intent.workshopId}):undefined});
+    const raw:unknown=await r.json();if(!mounted||g!==generation)return;
+    if(r.status===401||r.status===403){session=null;history=null;pending=null;message='Phiên đã hết quyền. Chưa xác nhận hiệu lực thao tác.';return;}
+-   const result=r.ok?decodeReply(raw,intent):null;
++   if(!await validateIdentity(g))return;const result=r.ok?decodeReply(raw,intent):null;
+    if(!result){message='Chưa xác nhận kết quả. Chỉ kiểm tra lại cùng ý định.';return;}
+    intent.state='FINAL';save(JSON.stringify(intent));pending={...intent};message=resultLabel[result.code]+' Đang đối chiếu đăng ký hiện tại.';await loadHistory(g);
+   }catch{if(mounted&&g===generation)message='Chưa xác nhận kết quả. Không tự gửi lại thao tác.';}
+   finally{if(mounted&&g===generation)busy=false;}
+  }
+- function begin(registrationId:string|null){if(!session||busy||pending?.state==='UNKNOWN')return;const intent:Intent={actor:session.actor,epoch:session.epoch,requestId:crypto.randomUUID(),workshopId:workshop.id,registrationId,sent:false,state:'UNKNOWN'};void execute(intent);}
+- onMount(()=>{mounted=true;void refresh();const show=()=>{void refresh();};window.addEventListener('pageshow',show);return()=>{mounted=false;generation++;contextAbort.abort();clientState.unmount();window.removeEventListener('pageshow',show);};});
++ function begin(registrationId:string|null){if(!session||!historyKnown||busy||pending?.state==='UNKNOWN')return;const intent:Intent={actor:session.actor,epoch:session.epoch,requestId:crypto.randomUUID(),workshopId:workshop.id,registrationId,sent:false,state:'UNKNOWN'};void execute(intent);}
++ onMount(()=>{mounted=true;void refresh();const show=()=>{void refresh();};window.addEventListener('pageshow',show);return()=>{mounted=false;generation++;contextAbort.abort();stopUpdates?.();clientState.unmount();window.removeEventListener('pageshow',show);};});
+  const active=$derived(history?.registrations.find(r=>r.state==='ACTIVE'));
+ </script>
+-<section aria-label="Đăng ký của bạn"><h2>Đăng ký của bạn</h2><p role="status">{message}</p>
++<section aria-label="Đăng ký của bạn"><h2>Đăng ký của bạn</h2>{#if session?.participant}<p role="status">{channel==='OBSERVED'?'Đang đối chiếu đăng ký trực tiếp.':'Chưa xác nhận cập nhật đăng ký trực tiếp.'}</p>{/if}<p role="status">{message}</p>
+ {#if history}<ul>{#each history.registrations as r (r.id)}<li>{r.id} · {r.state==='ACTIVE'?'Đã đăng ký':'Đã hủy'}</li>{/each}</ul>{/if}
+ {#if session?.participant}
+  <p><a href={resolve('/me')}>Xem đăng ký của tôi</a></p>
+  {#if pending?.state==='UNKNOWN'}<button disabled={busy} onclick={()=>{if(pending)void execute(pending,true);}}>Kiểm tra kết quả</button>
+- {:else if workshop.state==='OPEN'}
++ {:else if workshop.state==='OPEN'&&historyKnown}
+   {#if active}<button disabled={busy} onclick={()=>{cancelId=active?.id??null;dialog.showModal();}}>Hủy đăng ký</button>{:else}<button disabled={busy} onclick={()=>begin(null)}>{workshop.remaining===0?'Kiểm tra và đăng ký':'Đăng ký'}</button>{/if}
+- {:else}<p>Workshop tạm dừng nhận thao tác mới.</p>{/if}
++ {:else}<p>{workshop.state==='PAUSED'?'Workshop tạm dừng nhận thao tác mới.':'Chưa xác nhận đăng ký hiện tại. Hãy đọc đối chiếu trước thao tác mới.'}</p>{/if}
+ {/if}
+ <button disabled={busy} onclick={()=>{void refresh();}}>Kiểm tra phiên và tải lại dữ liệu</button>
+ <dialog bind:this={dialog} aria-labelledby="cancel-title" oncancel={()=>{cancelId=null;}}><h2 id="cancel-title">Hủy chỗ này?</h2><p>{workshop.title}</p><button onclick={()=>{cancelId=null;dialog.close();}}>Giữ chỗ</button><button onclick={()=>{const id=cancelId;cancelId=null;dialog.close();if(id)begin(id);}}>Xác nhận hủy</button></dialog>
+diff --git a/web/src/lib/updates.ts b/web/src/lib/updates.ts
+new file mode 100644
+index 0000000..258ecb7
+--- /dev/null
++++ b/web/src/lib/updates.ts
+@@ -0,0 +1,93 @@
++import {decodeSnapshot,decodeHistory,type ClientState,type Context,type Snapshot,version} from './state.ts';
++export type UpdateStatus='UNKNOWN'|'OBSERVED';
++export type UpdateSource='HTTP'|'SOCKET';
++export interface UpdateWire {
++ state():number;send(data:string):void;close():void;
++ listen(kind:'open'|'message'|'close'|'error',fn:(data?:unknown)=>void):void;
++}
++export type UpdateOptions={
++ audience:'public'|'admin'|'private';epoch:string;workshopId?:string;
++ csrf:()=>string;validate:()=>Promise<boolean>;read:()=>Promise<unknown>;
++ snapshot:(data:unknown,source:UpdateSource)=>boolean;status:(state:UpdateStatus)=>void;
++ factory?:()=>UpdateWire;now?:()=>number;reconnectMs?:number;
++};
++const object=(v:unknown):v is Record<string,unknown>=>v!==null&&typeof v==='object'&&!Array.isArray(v);
++export function decodeUpdate(raw:string,epoch:string,audience:string){
++ let parsed:unknown;try{parsed=JSON.parse(raw);}catch{return null;}
++ if(!object(parsed)||typeof parsed.receipt!=='string'||parsed.receipt.length!==32||!object(parsed.message))return null;
++ const v=parsed.message;if(v.epoch!==epoch||v.audience!==audience||!['SUBSCRIBED','SNAPSHOT','HEARTBEAT'].includes(String(v.type)))return null;
++ if(v.type==='SNAPSHOT'&&!('data'in v))return null;
++ return {receipt:parsed.receipt,message:v};
++}
++export class PublicUpdates {
++ readonly snapshots=new Map<string,Snapshot>();readonly uncertain=new Set<string>();
++ readonly epoch:string;
++ constructor(epoch:string,initial:Snapshot[]){this.epoch=epoch;for(const w of initial)if(w.epoch===epoch)this.snapshots.set(w.id,w);}
++ merge(raw:unknown,source:UpdateSource):boolean {
++  const values=Array.isArray(raw)?raw:[raw];const next:Snapshot[]=[];const ids=new Set<string>();
++  for(const v of values){const w=decodeSnapshot(v);if(!w||w.epoch!==this.epoch||ids.has(w.id))return false;ids.add(w.id);next.push(w);}
++  for(const w of next){const before=this.snapshots.get(w.id);
++   if(before){if(BigInt(w.version)<BigInt(before.version))continue;
++    if(w.version===before.version){const content=({observedAt:_,...value}:Snapshot)=>{void _;return JSON.stringify(value);};
++     if(source==='SOCKET'&&content(w)!==content(before)){this.uncertain.add(w.id);continue;}
++     if(source==='SOCKET'&&this.uncertain.has(w.id))continue;
++    }
++   }
++   this.snapshots.set(w.id,w);this.uncertain.delete(w.id);
++  }
++  return this.uncertain.size===0;
++ }
++}
++// A private authoritative HTTP read can resolve a same-version contradiction;
++// this helper never permits an older GET to erase a newer CANCELLED/history.
++export function authoritativeHistoryVersion(before:string|undefined,next:unknown):boolean {
++ return version(next)&&(!before||BigInt(next)>=BigInt(before));
++}
++function historyBatch(raw:unknown,context:Context){
++ if(!Array.isArray(raw))return null;const values=[];const ids=new Set<string>();
++ for(const v of raw){const next=decodeHistory(v);if(!next||next.actor!==context.actor||next.epoch!==context.epoch||ids.has(next.workshopId))return null;ids.add(next.workshopId);values.push(next);}return values;
++}
++export function mergeHistory(client:ClientState,raw:unknown,context:Context):boolean {
++ if(!client.accepts(context))return false;const values=historyBatch(raw,context);if(!values)return false;
++ for(const next of values)client.merge(next,context);return client.uncertain.size===0;
++}
++export function reconcileHistory(client:ClientState,raw:unknown,context:Context):boolean {
++ if(!client.accepts(context))return false;const values=historyBatch(raw,context);if(!values)return false;
++ for(const next of values){if(!authoritativeHistoryVersion(client.history.get(next.workshopId)?.workshopVersion,next.workshopVersion))continue;client.history.set(next.workshopId,next);client.uncertain.delete(next.workshopId);}
++ return client.uncertain.size===0;
++}
++function browserWire():UpdateWire {
++ const socket=new globalThis.WebSocket((globalThis.location.protocol==='https:'?'wss:':'ws:')+'//'+globalThis.location.host+'/api/v1/updates');
++ return {state:()=>socket.readyState,send:data=>socket.send(data),close:()=>socket.close(),listen:(kind,fn)=>socket.addEventListener(kind,event=>fn(kind==='message'&&'data'in event?event.data:undefined))};
++}
++export function openUpdates(options:UpdateOptions):()=>void {
++ let stopped=false,attempt=0,wire:UpdateWire|null=null,reconnect:ReturnType<typeof setTimeout>|null=null;
++ let alive:number|null=null,validData=false,subscribed=false;const now=options.now??Date.now;
++ let last:UpdateStatus|null=null;const status=(value:UpdateStatus)=>{if(value!==last){last=value;options.status(value);}};
++ function freshness(){status(subscribed&&validData&&alive!==null&&now()>=alive&&now()-alive<=5000?'OBSERVED':'UNKNOWN');}
++ function fail(a:number){if(stopped||a!==attempt)return;attempt++;subscribed=false;alive=null;validData=false;status('UNKNOWN');const old=wire;wire=null;old?.close();if(reconnect===null)reconnect=setTimeout(()=>{reconnect=null;void connect();},options.reconnectMs??1000);}
++ async function valid(a:number){const permitted=await options.validate();return permitted&&!stopped&&a===attempt;}
++ async function read(a:number){const raw=await options.read();if(!await valid(a))return false;validData=options.snapshot(raw,'HTTP');return validData;}
++ async function connect(){const a=++attempt;status('UNKNOWN');
++  try{if(!await valid(a)){fail(a);return;}const socket=(options.factory??browserWire)();if(stopped||a!==attempt){socket.close();return;}wire=socket;
++   const queue={count:0,bytes:0,promise:Promise.resolve()};
++   socket.listen('open',()=>{void(async()=>{try{if(!await valid(a)){fail(a);return;}socket.send(JSON.stringify({type:'SUBSCRIBE',audience:options.audience,epoch:options.epoch,csrf:options.csrf(),...(options.workshopId?{workshopId:options.workshopId}:{})}));}catch{fail(a);}})();});
++   socket.listen('message',raw=>{
++    const receivedAt=now();if(stopped||a!==attempt)return;if(typeof raw!=='string'){fail(a);return;}const size=new TextEncoder().encode(raw).length;
++    if(++queue.count>8||(queue.bytes+=size)>1048576){fail(a);return;}
++    queue.promise=queue.promise.then(async()=>{
++     if(stopped||a!==attempt)return;const envelope=decodeUpdate(raw,options.epoch,options.audience);if(!envelope||!await valid(a)){fail(a);return;}
++     const message=envelope.message;
++     if(message.type==='SUBSCRIBED'){if(subscribed){fail(a);return;}subscribed=true;if(!await read(a)){validData=false;}}
++     else if(!subscribed){fail(a);return;}
++     else if(message.type==='SNAPSHOT'){validData=options.snapshot(message.data,'SOCKET');if(!validData)await read(a);}
++     else if(!validData)await read(a);
++     if(stopped||a!==attempt)return;alive=receivedAt;freshness();socket.send(JSON.stringify({type:'ACK',receipt:envelope.receipt}));
++    }).catch(()=>fail(a)).finally(()=>{queue.count--;queue.bytes-=size;});
++   });
++   socket.listen('close',()=>fail(a));socket.listen('error',()=>fail(a));
++  }catch{fail(a);}
++ }
++ const stale=globalThis.setInterval(()=>{if(!stopped)freshness();},250);void connect();
++ return()=>{if(stopped)return;stopped=true;attempt++;globalThis.clearInterval(stale);if(reconnect!==null)clearTimeout(reconnect);wire?.close();wire=null;};
++}
+diff --git a/web/src/routes/admin/+layout.svelte b/web/src/routes/admin/+layout.svelte
+index c6d3ce5..a07b698 100644
+--- a/web/src/routes/admin/+layout.svelte
++++ b/web/src/routes/admin/+layout.svelte
+@@ -1,11 +1,13 @@
+ <script lang="ts">
+  import {onMount,flushSync} from 'svelte';import {resolve} from '$app/paths';
+- let {children}=$props();let visible=$state(true);
++ let {children}=$props();let visible=$state(true),retained=$state(true),unavailable=$state(false);
+  onMount(()=>{let stopped=false;let identity:string|null=null;let busy=false;
+-  const hide=()=>flushSync(()=>{visible=false;});
+-  async function check(){if(busy||stopped)return;busy=true;try{const r=await fetch('/api/v1/session',{cache:'no-store',signal:AbortSignal.timeout(5000)});const v=await r.json();if(stopped)return;if(!r.ok||v.admin!==true||typeof v.actor!=='string'||typeof v.epoch!=='string'){hide();return;}const next=v.actor+'\n'+v.epoch;if(identity!==null&&identity!==next){hide();window.location.reload();return;}identity=next;}catch{if(!stopped)hide();}finally{busy=false;}}
++  const hide=()=>flushSync(()=>{visible=false;retained=false;unavailable=false;});
++  const pause=()=>flushSync(()=>{visible=false;unavailable=true;});
++  async function check(){if(busy||stopped||!retained)return;busy=true;try{const r=await fetch('/api/v1/session',{cache:'no-store',signal:AbortSignal.timeout(5000)});if(stopped)return;if(!r.ok){if(r.status===401||r.status===403)hide();else pause();return;}const v:unknown=await r.json();if(stopped)return;if(typeof v!=='object'||v===null||!('admin'in v)||v.admin!==true||!('actor'in v)||typeof v.actor!=='string'||!v.actor||!('epoch'in v)||typeof v.epoch!=='string'||!v.epoch||!('csrf'in v)||typeof v.csrf!=='string'||!v.csrf){hide();return;}const next=JSON.stringify([v.actor,v.epoch]);if(identity!==null&&identity!==next){hide();window.location.reload();return;}identity=next;visible=true;unavailable=false;}catch{if(!stopped&&retained)pause();}finally{busy=false;}}
+   const show=(e:{persisted:boolean})=>{if(e.persisted){hide();window.location.reload();}};window.addEventListener('pagehide',hide);window.addEventListener('pageshow',show);void check();const timer=window.setInterval(()=>void check(),2000);
+   return()=>{stopped=true;window.clearInterval(timer);window.removeEventListener('pagehide',hide);window.removeEventListener('pageshow',show);};
+  });
+ </script>
+-{#if visible}<nav aria-label="Quản trị"><a href={resolve('/admin/workshops')}>Quản trị workshop</a></nav>{@render children()}{:else}<h1>Cần kiểm tra lại phiên quản trị</h1><p role="status">Dữ liệu riêng đã được ẩn. Tải lại trang sau khi có phiên hợp lệ.</p>{/if}
++{#if retained}<div hidden={!visible} inert={!visible}><nav aria-label="Quản trị"><a href={resolve('/admin/workshops')}>Quản trị workshop</a></nav>{@render children()}</div>{/if}
++{#if unavailable}<h1>Chưa xác nhận phiên quản trị</h1><p role="status">Dữ liệu đang tạm ẩn. Chỉ đọc đối chiếu lại, không tự gửi thao tác.</p>{:else if !retained}<h1>Cần kiểm tra lại phiên quản trị</h1><p role="status">Dữ liệu riêng đã được ẩn. Tải lại trang sau khi có phiên hợp lệ.</p>{/if}
+diff --git a/web/src/routes/workshops/[id]/+page.svelte b/web/src/routes/workshops/[id]/+page.svelte
+index 6a98139..a21be5e 100644
+--- a/web/src/routes/workshops/[id]/+page.svelte
++++ b/web/src/routes/workshops/[id]/+page.svelte
+@@ -1,5 +1,4 @@
+-<script lang="ts">import Registration from '$lib/Registration.svelte';import {scheduleLabel,observationLabel} from '$lib/display';import {resolve} from '$app/paths';import type {PageData} from './$types';let {data}:{data:PageData}=$props();</script>
+-<svelte:head><title>{data.workshop.title} – Workshop thử nghiệm</title><meta name="description" content={data.workshop.description.slice(0,160)} /><link rel="canonical" href={'https://workshop.test/workshops/'+encodeURIComponent(data.workshop.id)} /></svelte:head>
+-<a href={resolve('/workshops')}>← Danh sách workshop</a><h1>{data.workshop.title}</h1><article><p class="description">{data.workshop.description}</p><p>{scheduleLabel(data.workshop.schedule.start)} — {scheduleLabel(data.workshop.schedule.end)}</p><p>{data.workshop.state==='OPEN'?'Mở đăng ký':'Tạm dừng'}</p><p>{data.workshop.remaining}/{data.workshop.capacity} chỗ còn theo lần quan sát.</p><p>Số chỗ chưa được cập nhật trực tiếp trên lát triển khai này. Cần phiên tài khoản thử hợp lệ để đăng ký.</p><p>Quan sát lúc {observationLabel(data.workshop.observedAt)} · Chưa cập nhật trực tiếp</p></article>
+-{#key JSON.stringify([data.workshop.id,data.workshop.epoch])}<Registration workshop={data.workshop} />{/key}
+-<style>.description{white-space:pre-wrap}</style>
++<script lang="ts">import LiveWorkshop from '$lib/LiveWorkshop.svelte';import {resolve} from '$app/paths';import type {PageData} from './$types';let {data}:{data:PageData}=$props();</script>
++<svelte:head><link rel="canonical" href={'https://workshop.test/workshops/'+encodeURIComponent(data.workshop.id)} /></svelte:head>
++<a href={resolve('/workshops')}>← Danh sách workshop</a>
++{#key JSON.stringify([data.workshop.id,data.workshop.epoch])}<LiveWorkshop initial={data.workshop} />{/key}
+diff --git a/web/tests/unit/updates.test.mjs b/web/tests/unit/updates.test.mjs
+new file mode 100644
+index 0000000..fbeb803
+--- /dev/null
++++ b/web/tests/unit/updates.test.mjs
+@@ -0,0 +1,29 @@
++import test from 'node:test';import assert from 'node:assert/strict';
++import {PublicUpdates,decodeUpdate,openUpdates,authoritativeHistoryVersion,reconcileHistory,mergeHistory} from '../../src/lib/updates.ts';
++import {ClientState} from '../../src/lib/state.ts';
++const snap=(version='1',extra={})=>({id:'W',epoch:'E',version,state:'OPEN',title:'Workshop',description:'Plain text',capacity:10,active:0,remaining:10,observedAt:1,schedule:{start:'2026-10-01T09:00:00+07:00',end:'2026-10-01T10:00:00+07:00'},...extra});
++const frame=(type,extra={})=>JSON.stringify({message:{type,epoch:'E',audience:'public',...extra},receipt:'x'.repeat(32)});
++const flush=async()=>{for(let i=0;i<20;i++)await Promise.resolve();};
++function harness(extra={}){const listeners={},sent=[],statuses=[],reads=[];let closed=false;const wire={state:()=>1,send:v=>sent.push(JSON.parse(v)),close:()=>{closed=true;},listen:(kind,fn)=>{listeners[kind]=fn;}};const stop=openUpdates({audience:'public',epoch:'E',workshopId:'W',csrf:()=>'',validate:async()=>true,read:async()=>{reads.push('GET');return snap();},snapshot:()=>true,status:v=>statuses.push(v),factory:()=>wire,...extra});return {listeners,sent,statuses,reads,stop,closed:()=>closed};}
++test('public stream replaces whole snapshots, never applies seat deltas',()=>{const s=new PublicUpdates('E',[snap()]);assert.equal(s.merge(snap('2',{active:1,remaining:9}),'SOCKET'),true);assert.equal(s.merge(snap('1'),'HTTP'),true);assert.equal(s.snapshots.get('W').active,1);assert.equal(s.merge(snap('2',{active:1,remaining:9}),'SOCKET'),true);assert.equal(s.snapshots.get('W').active,1);});
++test('public same-version contradiction becomes unknown until explicit HTTP read',()=>{const s=new PublicUpdates('E',[snap()]);assert.equal(s.merge(snap('1',{title:'Wrong'}),'SOCKET'),false);assert.equal(s.snapshots.get('W').title,'Workshop');assert.equal(s.merge(snap(),'SOCKET'),false);assert.equal(s.merge(snap(),'HTTP'),true);assert.equal(s.uncertain.size,0);});
++test('uint64 ordering is exact and separate workshops never share a cursor',()=>{const s=new PublicUpdates('E',[snap('9007199254740993')]);s.merge(snap('9007199254740992',{title:'Old'}),'HTTP');s.merge(snap('1',{id:'OTHER',title:'Other'}),'SOCKET');assert.equal(s.snapshots.get('W').title,'Workshop');assert.equal(s.snapshots.size,2);});
++test('bad schema, private identity, DRAFT and wrong epoch do not enter public state',()=>{const s=new PublicUpdates('E',[snap()]);for(const v of [snap('1',{state:'DRAFT'}),snap('1',{epoch:'OLD'}),snap('1',{remaining:999}),{actor:'SECRET'}])assert.equal(s.merge(v,'SOCKET'),false);assert.equal(s.snapshots.size,1);});
++test('an older collection cannot delete an already observed workshop',()=>{const s=new PublicUpdates('E',[snap(),snap('2',{id:'OTHER'})]);assert.equal(s.merge([],'HTTP'),true);assert.equal(s.snapshots.size,2);});
++test('strict envelope matches epoch and audience; malformed frames fail closed',()=>{assert.ok(decodeUpdate(frame('HEARTBEAT'),'E','public'));for(const raw of ['{',frame('SNAPSHOT'),frame('MUTATION'),frame('HEARTBEAT',{epoch:'OLD'}),frame('HEARTBEAT',{audience:'private'})])assert.equal(decodeUpdate(raw,'E','public'),null);});
++test('subscribe happens before GET and all further commands are ACK, never POST',async()=>{const h=harness();try{await flush();h.listeners.open();await flush();assert.equal(h.sent[0].type,'SUBSCRIBE');assert.deepEqual(h.reads,[]);h.listeners.message(frame('SUBSCRIBED'));await flush();assert.deepEqual(h.reads,['GET']);assert.equal(h.sent[1].type,'ACK');assert.deepEqual(h.statuses,['UNKNOWN','OBSERVED']);}finally{h.stop();}});
++test('known disconnection immediately marks unknown',async()=>{const h=harness({reconnectMs:100000});try{await flush();h.listeners.open();await flush();h.listeners.message(frame('SUBSCRIBED'));await flush();h.listeners.close();assert.equal(h.statuses.at(-1),'UNKNOWN');assert.equal(h.closed(),true);}finally{h.stop();}});
++test('a generation closed while GET is pending never applies late data',async()=>{let finish,applied=0;const h=harness({read:()=>new Promise(r=>{finish=r;}),snapshot:()=>{applied++;return true;}});await flush();h.listeners.open();await flush();h.listeners.message(frame('SUBSCRIBED'));await flush();h.stop();finish(snap());await flush();assert.equal(applied,0);assert.equal(h.sent.length,1);});
++test('revoked actor before a message cannot render private payload or ACK it',async()=>{let allowed=true,applied=0;const h=harness({validate:async()=>allowed,snapshot:()=>{applied++;return true;},reconnectMs:100000});try{await flush();h.listeners.open();await flush();h.listeners.message(frame('SUBSCRIBED'));await flush();assert.equal(applied,1);allowed=false;h.listeners.message(frame('SNAPSHOT',{data:snap('2')}));await flush();assert.equal(applied,1);assert.equal(h.closed(),true);assert.equal(h.statuses.at(-1),'UNKNOWN');}finally{h.stop();}});
++test('bounded client queue rejects a ninth frame while validation is stuck',async()=>{let allowed=true;const h=harness({validate:()=>allowed?Promise.resolve(true):new Promise(()=>{}),reconnectMs:100000});try{await flush();h.listeners.open();await flush();allowed=false;for(let i=0;i<9;i++)h.listeners.message(frame('HEARTBEAT'));await flush();assert.equal(h.closed(),true);}finally{h.stop();}});
++test('oversize envelope closes the client without applying data',async()=>{const h=harness({reconnectMs:100000});try{await flush();h.listeners.message('x'.repeat(1048577));assert.equal(h.closed(),true);}finally{h.stop();}});
++test('authoritative private GET cannot resurrect history older than its high-water',()=>{assert.equal(authoritativeHistoryVersion('9007199254740993','9007199254740992'),false);assert.equal(authoritativeHistoryVersion('2','2'),true);assert.equal(authoritativeHistoryVersion('2','3'),true);assert.equal(authoritativeHistoryVersion('2',3),false);});
++
++test('private explicit reconciliation resolves equal version while preserving newer CANCELLED',()=>{const client=new ClientState('A','E'),c={...client.context};const group={actor:'A',epoch:'E',workshopId:'W',workshopVersion:'2',registrations:[{id:'R',state:'CANCELLED'}]};client.merge(group,c);client.merge({...group,registrations:[{id:'R',state:'ACTIVE'}]},c);assert.equal(client.uncertain.has('W'),true);assert.equal(reconcileHistory(client,[group],c),true);assert.equal(reconcileHistory(client,[{...group,workshopVersion:'1',registrations:[{id:'R',state:'ACTIVE'}]}],c),true);assert.equal(client.history.get('W').registrations[0].state,'CANCELLED');client.reset('B','E');assert.equal(reconcileHistory(client,[group],c),false);assert.equal(client.history.size,0);});
++test('malformed private HTTP batch is rejected before any partial application',()=>{const client=new ClientState('A','E'),c={...client.context};const group={actor:'A',epoch:'E',workshopId:'W',workshopVersion:'1',registrations:[]};assert.equal(reconcileHistory(client,[group,{...group,actor:'B'}],c),false);assert.equal(client.history.size,0);assert.equal(reconcileHistory(client,[group,group],c),false);});
++
++test('buffered heartbeat processing never invents a fresh receive timestamp',async()=>{let stamp=0,finish;const h=harness({now:()=>stamp,read:()=>new Promise(r=>{finish=r;})});try{await flush();h.listeners.open();await flush();h.listeners.message(frame('SUBSCRIBED'));await flush();stamp=6000;finish(snap());await flush();assert.equal(h.statuses.at(-1),'UNKNOWN');h.listeners.message(frame('HEARTBEAT'));await flush();assert.equal(h.statuses.at(-1),'OBSERVED');}finally{h.stop();}});
++
++test('malformed socket collection never partially advances private history',()=>{const client=new ClientState('A','E'),c={...client.context};const group={actor:'A',epoch:'E',workshopId:'W',workshopVersion:'1',registrations:[{id:'R',state:'CANCELLED'}]};assert.equal(mergeHistory(client,[group,{...group,actor:'B'}],c),false);assert.equal(client.history.size,0);assert.equal(mergeHistory(client,[group,group],c),false);assert.equal(mergeHistory(client,[group],c),true);assert.equal(client.history.get('W').registrations[0].state,'CANCELLED');});
++
++test('a contradictory duplicate workshop in one collection is rejected before applying either',()=>{const s=new PublicUpdates('E',[]);assert.equal(s.merge([snap(),snap('1',{title:'Contradiction'})],'SOCKET'),false);assert.equal(s.snapshots.size,0);assert.equal(s.merge([snap(),snap()],'HTTP'),false);assert.equal(s.snapshots.size,0);});

@@ -1,0 +1,70 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "public-SSR-JS-off-TLS",
+      "status": "PASS"
+    },
+    {
+      "name": "server-session-cookie-isolation",
+      "status": "PASS"
+    },
+    {
+      "name": "real-commit-lost-response-reload-GET-only",
+      "status": "PASS"
+    },
+    {
+      "name": "last-seat-FULL-other-user",
+      "status": "PASS"
+    },
+    {
+      "name": "Escape-no-write-exact-id-cancel",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel-rebook-old-result-immutable",
+      "status": "PASS"
+    },
+    {
+      "name": "private-SSR-no-cross-user-data",
+      "status": "PASS"
+    },
+    {
+      "name": "proxy-forgery-and-CSRF-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "restored-page-server-revalidates-new-actor",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid-session-clears-private-page",
+      "status": "PASS"
+    },
+    {
+      "name": "real-JS-off-intro-list-detail-navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "PAUSED-public-SSR-and-participant-controls",
+      "status": "PASS"
+    },
+    {
+      "name": "PAUSED-preserves-old-result-and-denies-new-registration",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline-PAUSED-cancel-rejected-before-T09",
+      "status": "PASS"
+    },
+    {
+      "name": "quota-second-ACTIVE-real-browser",
+      "status": "PASS"
+    },
+    {
+      "name": "quota-third-ACTIVE-rejected-without-consuming-seat",
+      "status": "PASS"
+    }
+  ],
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Đăng ký', exact: true })\n    - locator resolved to <button class=\"svelte-p1vwze\">Đăng ký</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - performing click action\n    - <html lang=\"vi\">…</html> intercepts pointer events\n  - retrying click action\n    - waiting for element to be visible, enabled and stable\n  - element was detached from the DOM, retrying\n\n    at /plan/browser.mjs:42:125"
+}

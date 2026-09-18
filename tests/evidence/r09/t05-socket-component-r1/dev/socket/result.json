@@ -1,0 +1,16 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "public-DRAFT-no-private-snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Origin-CSRF-role-epoch-checked-before-payload",
+      "status": "PASS"
+    }
+  ],
+  "error": "Error: TIMEOUT all subscribed\n    at until (file:///plan/t03-integration/socket-client.mjs:3:145)\n    at async file:///plan/t05-socket-component.mjs:17:182",
+  "transport": "loopback HTTP/WSS protocol component only; not TLS",
+  "newSanitizerException": false
+}

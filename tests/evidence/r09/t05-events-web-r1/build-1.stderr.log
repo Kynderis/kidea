@@ -1,0 +1,20 @@
+npm notice run kidea-r05-web-sample@0.0.0 build
+npm notice run vite build
+1:40:44 PM [vite-plugin-svelte] src/lib/LiveWorkshop.svelte:4:72 This reference only captures the initial value of `initial`. Did you mean to reference it inside a closure instead?
+https://svelte.dev/e/state_referenced_locally
+2:  import {onMount} from 'svelte';import Registration from '$lib/Registration.svelte';import {scheduleLabel,observationLabel} from '$lib/display';
+3:  import {PublicUpdates,openUpdates,type UpdateStatus} from '$lib/updates';import type {Snapshot} from '$lib/state';
+4:  let {initial}:{initial:Snapshot}=$props();let current=$state<Snapshot>(initial),channel=$state<UpdateStatus>('UNKNOWN');
+                                                                                  ^
+5:  onMount(()=>{const state=new PublicUpdates(initial.epoch,[initial]);let actor:string|undefined,csrf='';
+6:   async function validate(){const r=await fetch('/api/v1/session',{cache:'no-store',signal:AbortSignal.timeout(5000)});let next='';
+1:40:45 PM [vite-plugin-svelte] src/lib/LiveWorkshop.svelte:4:72 This reference only captures the initial value of `initial`. Did you mean to reference it inside a closure instead?
+https://svelte.dev/e/state_referenced_locally
+2:  import {onMount} from 'svelte';import Registration from '$lib/Registration.svelte';import {scheduleLabel,observationLabel} from '$lib/display';
+3:  import {PublicUpdates,openUpdates,type UpdateStatus} from '$lib/updates';import type {Snapshot} from '$lib/state';
+4:  let {initial}:{initial:Snapshot}=$props();let current=$state<Snapshot>(initial),channel=$state<UpdateStatus>('UNKNOWN');
+                                                                                  ^
+5:  onMount(()=>{const state=new PublicUpdates(initial.epoch,[initial]);let actor:string|undefined,csrf='';
+6:   async function validate(){const r=await fetch('/api/v1/session',{cache:'no-store',signal:AbortSignal.timeout(5000)});let next='';
+Generated an empty chunk: "chunks/env.js".
+Generated an empty chunk: "chunks/updates.js".

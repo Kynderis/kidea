@@ -1,0 +1,610 @@
+{
+  "nodeId": "T04-QUALITY",
+  "verdict": "NO_CHANGE",
+  "reason": "The change adds a concurrency invariant but does not change any inherited latency, freshness, recovery or resource threshold.",
+  "behavior": "The existing immediate transaction serializes quota and seat decisions; failures remain UNKNOWN. Existing partial index supplies actor lookup. Performance and independent recovery obligations remain pending for the complete product.",
+  "verification": "Four full presets retain 796 assertions and add 60; real two-connection races preserve quota. Actual pinned SQLite EXPLAIN uses one_active. This is functional evidence, not WQ/E1 performance PASS; TSan has only the existing two EX r2 pairs.",
+  "inputBasis": "de60739b35a3019870c58bb523f20638fe3d731dc58a7ab6dfbbba8483dae3b4",
+  "assumptions": "Single local Intel pilot, fixed source and fake data. Scoped T04 change only; performance, independent recovery, full-product G2, release and R09 Human acceptance remain pending.",
+  "evidenceRefs": [
+    {
+      "path": "docs/t04/report-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/index.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/backend.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/https.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/mutations.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/query-plan.txt",
+      "anchor": null
+    },
+    {
+      "path": "docs/architecture/traceability.md",
+      "anchor": null
+    }
+  ],
+  "downstream": [
+    "T04-TESTS"
+  ],
+  "resolved": true,
+  "format": "kidea-impact-assessment-r1",
+  "graphDigest": "700846fbe2e50bf1d7f5690154b2b727ee153b7f2d972d8d2c2a79945dc7e8d0",
+  "inputVersionRefs": [
+    {
+      "source": {
+        "path": "docs/t04/max2.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-2.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "a5d7e58efb5265f2ef8c2a2232375674bb60588d8a06d77d50486d4476fe1b12",
+        "byteLength": 5222
+      }
+    },
+    {
+      "source": {
+        "path": "docs/features.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-3.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "c1d19e6c1df13ab50096d3d3990bd5b0121034be1cf0409e0d88dd31f2a9f76c",
+        "byteLength": 5201
+      }
+    },
+    {
+      "source": {
+        "path": "docs/business/shared/registration.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-4.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "1c8eedff797e26b13524314375031d7b3de619d3759565e11e79ccccc62ed2a1",
+        "byteLength": 12848
+      }
+    },
+    {
+      "source": {
+        "path": "docs/business/features/register-cancel.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-5.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "bdbc758021196ba29e0ed6621b832f2e1df48508d2b7001c20ab488ff3796565",
+        "byteLength": 4220
+      }
+    },
+    {
+      "source": {
+        "path": "docs/business/tests.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-6.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822",
+        "byteLength": 18221
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/quality.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-7.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe",
+        "byteLength": 28447
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/experience.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-8.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e",
+        "byteLength": 27063
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/lib/reply.ts",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-9.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "8e5dac8d60a9700b51b1d0b2eb7b24e8d3dae833da808165e7e9373706509fd8",
+        "byteLength": 1739
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/lib/Registration.svelte",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-10.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "37da5b88df4da544711b861e27cac7e7fcb6fff0dce58c5d3b751ec14ab767ea",
+        "byteLength": 6734
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/lib/state.ts",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-11.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "4ad2ad4deb741661702460afdd6e9981d7aa0d885f85a06d708eed585f064695",
+        "byteLength": 5494
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/operations.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-12.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36",
+        "byteLength": 29188
+      }
+    },
+    {
+      "source": {
+        "path": "backend/src/store.cpp",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-13.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "af4634e7dde54eedaef4b4aff57761e0a943077b6710bafa5df4bef42d9c173d",
+        "byteLength": 24638
+      }
+    },
+    {
+      "source": {
+        "path": "backend/schema/001.sql",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-14.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "98a5dd2ee223b17e2ee4dab70f6f09f9fef2a4b32f86d0a3c719e9f94a3df01e",
+        "byteLength": 2489
+      }
+    },
+    {
+      "source": {
+        "path": "docs/business/shared/availability.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-15.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "bf4abab2fc39b31673cf62e5ffe25fbec6847202d1fcca09b032504e9b50e2f5",
+        "byteLength": 11543
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/admin.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-16.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346",
+        "byteLength": 23270
+      }
+    },
+    {
+      "source": {
+        "path": "docs/design/architecture.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-17.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6",
+        "byteLength": 41234
+      }
+    },
+    {
+      "source": {
+        "path": "contracts/openapi.json",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-18.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "a65cd03056a13aa21339f7cd2f14df767c8e1efc43024a1c001bfa17113301ea",
+        "byteLength": 54049
+      }
+    },
+    {
+      "source": {
+        "path": "backend/src/executor.cpp",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-19.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "482a72aa3729396990e3dc6dc5eae4b6b9fe27a209aa52ecd28602d7d0534321",
+        "byteLength": 1898
+      }
+    },
+    {
+      "source": {
+        "path": "docs/engineering/tests.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-20.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "a96f51752de20d5cde4853f1bd361179f63bed202143dee162e667f93d3ec2ae",
+        "byteLength": 25688
+      }
+    },
+    {
+      "source": {
+        "path": "backend/tests/tests.cpp",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-21.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "d5346b18be9429f42e98833f22a617737aeede55a8dcb2a015f30a17293fa76a",
+        "byteLength": 47741
+      }
+    },
+    {
+      "source": {
+        "path": "backend/tests/cases.cmake",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-22.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "2869056adbd304cdf5ad318a4f3e4c17ab4df3f977fc0789b4ab57be26898c3e",
+        "byteLength": 517
+      }
+    },
+    {
+      "source": {
+        "path": "web/tests/unit/state.test.mjs",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-23.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "73982efebdd5824acc20abc24f3a8825167f7d0e4f57a7d98c7a84a12ae5604d",
+        "byteLength": 6336
+      }
+    },
+    {
+      "source": {
+        "path": "backend/src/main.cpp",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-24.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "a9709d321905ff19131792382a0fa5f1f6803089f7dedd334067500dc6d256a6",
+        "byteLength": 6026
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/routes/me/+page.server.ts",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-25.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "fe419e231a9361f3669348c18233c0f411efce89f37113001702089cf49a2407",
+        "byteLength": 2085
+      }
+    },
+    {
+      "source": {
+        "path": "web/src/lib/server/public.ts",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-26.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "3bb5fa4a6c5b112581f91b1ff0e11dab071d74ac4eac950fb99a705c652198f5",
+        "byteLength": 1103
+      }
+    },
+    {
+      "source": {
+        "path": "docs/engineering/rules.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-27.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "8aaf5948b7a012b199522c73abee4e489fdf0b0cda1abaf2bf618d7692f0cb33",
+        "byteLength": 6181
+      }
+    },
+    {
+      "source": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": null
+      },
+      "location": {
+        "kind": "SNAPSHOT",
+        "ref": {
+          "path": ".kidea/checkpoints/operations/599f4a39-8c2c-4aa2-a51b-7851b50f35f9/context-28.bin",
+          "anchor": null
+        }
+      },
+      "integrity": {
+        "method": "SHA256",
+        "value": "39c74f164f25f253f2fd63e1537291361a31a1a5dcc5b980b276c018d474365a",
+        "byteLength": 5378
+      }
+    }
+  ],
+  "tool": {
+    "version": "kidea-change-r1",
+    "components": [
+      {
+        "name": "change.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "65927bcad2e3a9745c4ff25e1393f895b8f254861c24df783fb7ee7cabe67ba1",
+          "byteLength": 14728
+        }
+      },
+      {
+        "name": "impact.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "9b6594b04f175ecf2d82b9bbdbd867b5f3c29a2d0fd509b0837c08cae093c8ad",
+          "byteLength": 6505
+        }
+      },
+      {
+        "name": "maps.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "40ba496e0b214ae1073a1b8f4ccd72b6c235db0de9558db03450648c8a3988f4",
+          "byteLength": 6935
+        }
+      },
+      {
+        "name": "maps-cpp.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "520978d5ba2d29197d8d76be715c978f63211e782511bc129cba503cbc83c8b8",
+          "byteLength": 4958
+        }
+      },
+      {
+        "name": "maps-web.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "7eaf242ddbc0a510bca3666234f4b1291bfc21193e0dd144e3c2eecdff59e1b2",
+          "byteLength": 6377
+        }
+      },
+      {
+        "name": "resume.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "3c5c456c6beb79f9a6d2c6807741179b2cca4943b543365d56ab009e1d0db48b",
+          "byteLength": 14451
+        }
+      },
+      {
+        "name": "write-internal.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "78c8a5a0c82c1b40eedc3a71460ff1d5e68a2162af1ffb97f6e7d1bbc692ef79",
+          "byteLength": 41609
+        }
+      },
+      {
+        "name": "schema.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "1ce11eb44ba1266b2036142e3c46d9f70e4d33617637db1725734c596aa8397a",
+          "byteLength": 6054
+        }
+      },
+      {
+        "name": "status.mjs",
+        "integrity": {
+          "method": "SHA256",
+          "value": "32419f6b86bbc7e7b16ed7b8546928a9241846699cfc22b3cc2970a389525292",
+          "byteLength": 29164
+        }
+      }
+    ]
+  }
+}

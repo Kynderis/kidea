@@ -1,0 +1,13 @@
+npm notice run kidea-r05-web-sample@0.0.0 build
+npm notice run vite build
+Generated an empty chunk: "chunks/env.js".
+Generated an empty chunk: "chunks/updates.js".
+[33m[PLUGIN_TIMINGS] [0mPlugin hooks ran for 4.2s. The build took 3.1s. Hooks such as `closeBundle` run after the build ends, so hook time can be more than build time.
+The slowest hooks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - vite-plugin-sveltekit-compile writeBundle (84%, 2.6s, 1 call)
+  - vite-plugin-sveltekit-compile closeBundle (37%, 1.2s, 1 call)
+Additional hook time came from the hooks below and from hooks under 1s.
+1 hook is listed without a time. Its calls overlapped, so the time inside one call includes work from other calls. To find its cost, profile the build with `node --cpu-prof`:
+  - vite-plugin-sveltekit-guard resolveId (692 calls)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+

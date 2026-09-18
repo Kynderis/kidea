@@ -1,0 +1,1434 @@
+{
+  "cases": [
+    {
+      "name": "wrong-origin",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "invalid-cookie-no-downgrade",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "wrong-CSRF",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "participant-not-admin",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "old-epoch",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "URL-credentials",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "role-forgery",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "participant temporary session HTTP 429 recovers",
+      "status": "PASS",
+      "injectedFault": true,
+      "faultReplies": 2
+    },
+    {
+      "name": "participant temporary session HTTP 503 recovers",
+      "status": "PASS",
+      "injectedFault": true,
+      "faultReplies": 2
+    },
+    {
+      "name": "admin temporary session HTTP 429 preserves draft and recovers",
+      "status": "PASS",
+      "injectedFault": true,
+      "faultReplies": 3
+    },
+    {
+      "name": "admin temporary session HTTP 503 preserves draft and recovers",
+      "status": "PASS",
+      "injectedFault": true,
+      "faultReplies": 3
+    }
+  ],
+  "measurements": [
+    {
+      "case": "registration to all three observed UIs and raw channels",
+      "milliseconds": 318,
+      "limitMilliseconds": 5000,
+      "injectedFault": false,
+      "scope": "single mutation lab; not workload percentile/performance certification"
+    },
+    {
+      "case": "actual owned app-container pause to stale UI",
+      "milliseconds": 4353,
+      "scope": ">5s stale threshold plus 250ms local timer and measured control roundtrip; retained last observation"
+    }
+  ],
+  "sockets": [],
+  "unfinishedSockets": [
+    {
+      "index": 0,
+      "closed": false,
+      "messages": [
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "SUBSCRIBED"
+          },
+          "receipt": "xidW5BNf9TUAcdrMofWbb4c-u6m1NvO4"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718964,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718964,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718964,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718964,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "EJ94Kj6KfTJCRfZhxOhXZ9Od77HMjOWE"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718964,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718964,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718964,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718964,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "rDI6+g1pDyndQhlDBgwmzlRVwOd-0+U+"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718965,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718965,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718965,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718965,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              },
+              {
+                "active": 0,
+                "capacity": 2,
+                "description": "Dữ liệu giả T05; không có thanh toán.",
+                "epoch": "epoch-t02-fixture",
+                "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+                "observedAt": 1789718965,
+                "remaining": 2,
+                "schedule": {
+                  "end": "2026-10-03T10:00:00+07:00",
+                  "start": "2026-10-03T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop cập nhật trực tiếp",
+                "version": "2"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "OnEjtP4deqfXRsHhb-IdMr3lsW-lfqnG"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "NCEdq1aXwrdhuFxPp7JuHTn8kF5h-U0s"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718966,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718966,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718966,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718966,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              },
+              {
+                "active": 1,
+                "capacity": 2,
+                "description": "Dữ liệu giả T05; không có thanh toán.",
+                "epoch": "epoch-t02-fixture",
+                "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+                "observedAt": 1789718966,
+                "remaining": 1,
+                "schedule": {
+                  "end": "2026-10-03T10:00:00+07:00",
+                  "start": "2026-10-03T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop cập nhật trực tiếp",
+                "version": "3"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "Rut-Gx-nj2UC2Wvbjs8fLYxPp7J3SFIS"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718967,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718967,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718967,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718967,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              },
+              {
+                "active": 0,
+                "capacity": 2,
+                "description": "Dữ liệu giả T05; không có thanh toán.",
+                "epoch": "epoch-t02-fixture",
+                "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+                "observedAt": 1789718967,
+                "remaining": 2,
+                "schedule": {
+                  "end": "2026-10-03T10:00:00+07:00",
+                  "start": "2026-10-03T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop cập nhật trực tiếp",
+                "version": "4"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "n3HQp7wLcJfnaUCE5uYm+e+k5SYpy--J"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "1+YTVIYu8AwjbwfeX7BjNhBn4Ngsasr5"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "iV6cx8VPZbfldkMgprH58ADUvJ8Zqmjs"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "B8+Sd9D6R3mMcvtkJl9YZUT1rTK3mEix"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "2ETSN0yPnnGCXqE0hoM+YQtCXYKqDyyr"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "ks8j+7hT7BMN9RkSxGYQw6Iv+MgLo3Rv"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "ISJ6NVjjRoETWfDx1PICAwYQNifbrmAF"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "zJ4xh2RE946bq+xQYjF3zGB380tb08o8"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "zXCLFRb+C+LyvmkW1TAvMnAxQWKFYkBL"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "closed": false,
+      "messages": [
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "SUBSCRIBED"
+          },
+          "receipt": "pOndcCWD+EsjLN5fBYpjHqHw1azKpcwr"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718964,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718964,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718964,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718964,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "8bOTrCQmBkhZ61pa1wo7RfV91niFI9YX"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718964,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718964,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718964,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718964,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              },
+              {
+                "active": 0,
+                "capacity": 2,
+                "description": "Dữ liệu giả T05; không có thanh toán.",
+                "epoch": "epoch-t02-fixture",
+                "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+                "observedAt": 1789718964,
+                "remaining": 2,
+                "schedule": {
+                  "end": "2026-10-03T10:00:00+07:00",
+                  "start": "2026-10-03T09:00:00+07:00"
+                },
+                "state": "DRAFT",
+                "title": "Workshop cập nhật trực tiếp",
+                "version": "1"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "uEzBvVbENmckpNDqGvI-lEqnRkT0cQ8h"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718965,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718965,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718965,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718965,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              },
+              {
+                "active": 0,
+                "capacity": 2,
+                "description": "Dữ liệu giả T05; không có thanh toán.",
+                "epoch": "epoch-t02-fixture",
+                "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+                "observedAt": 1789718965,
+                "remaining": 2,
+                "schedule": {
+                  "end": "2026-10-03T10:00:00+07:00",
+                  "start": "2026-10-03T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop cập nhật trực tiếp",
+                "version": "2"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "zZ9cnmurm7VsLNG0mDBvW5Mes0jMHr9s"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "8pY75MhDOsleTirlY0W7qXN1GvnpMm22"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718966,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718966,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718966,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718966,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              },
+              {
+                "active": 1,
+                "capacity": 2,
+                "description": "Dữ liệu giả T05; không có thanh toán.",
+                "epoch": "epoch-t02-fixture",
+                "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+                "observedAt": 1789718966,
+                "remaining": 1,
+                "schedule": {
+                  "end": "2026-10-03T10:00:00+07:00",
+                  "start": "2026-10-03T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop cập nhật trực tiếp",
+                "version": "3"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "JRfYqCrLpEDl489m8sOu1WydNJ30Ti-u"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "data": [
+              {
+                "active": 0,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "903d044fc8aa7dce1bd9d47a4d55275a",
+                "observedAt": 1789718967,
+                "remaining": 10,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 2",
+                "version": "4"
+              },
+              {
+                "active": 1,
+                "capacity": 1,
+                "description": "Dữ liệu giả để kiểm đăng ký, riêng tư và phục hồi ý định.",
+                "epoch": "epoch-t02-fixture",
+                "id": "9230f7cdec91a9509955b428cdb56e46",
+                "observedAt": 1789718967,
+                "remaining": 0,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "PAUSED",
+                "title": "Workshop lập trình thử nghiệm",
+                "version": "6"
+              },
+              {
+                "active": 1,
+                "capacity": 10,
+                "description": "Dữ liệu giả kiểm hạn mức toàn workshop.",
+                "epoch": "epoch-t02-fixture",
+                "id": "af87ff3ad7460902b1a14592d7a4090e",
+                "observedAt": 1789718967,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-01T10:00:00+07:00",
+                  "start": "2026-10-01T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop hạn mức 3",
+                "version": "3"
+              },
+              {
+                "active": 0,
+                "capacity": 9,
+                "description": "Nội dung từ người sửa khác",
+                "epoch": "epoch-t02-fixture",
+                "id": "d8731686f49a9f01843ce0044257e01e",
+                "observedAt": 1789718967,
+                "remaining": 9,
+                "schedule": {
+                  "end": "2026-10-02T10:00:00+07:00",
+                  "start": "2026-10-02T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Kết quả riêng sau đổi phiên",
+                "version": "8"
+              },
+              {
+                "active": 0,
+                "capacity": 2,
+                "description": "Dữ liệu giả T05; không có thanh toán.",
+                "epoch": "epoch-t02-fixture",
+                "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+                "observedAt": 1789718967,
+                "remaining": 2,
+                "schedule": {
+                  "end": "2026-10-03T10:00:00+07:00",
+                  "start": "2026-10-03T09:00:00+07:00"
+                },
+                "state": "OPEN",
+                "title": "Workshop cập nhật trực tiếp",
+                "version": "4"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "ouugleY0P7eyQH7rncd9dPhEygKX16bj"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "Qd7EaFdLBrWh5K-PdBMl+gbcNj6terhF"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "00taVSj3lxDSz8VLk5Y9SyP4BzL-VLrR"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "0+pta+BAAmSBl9w7a+W7aTO3OTKmJafT"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "1ae1tciLn0iJy9K5ybf8Mq9LAwXA-8q5"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "AkAxDrDKbHxFTozvXJRvCBAk+DF9pGEi"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "seQcDo7oMOE-FdfvUlBBfgRs54VWZyUO"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "u0E2Z2UIWXCuhVktwvyRdK3xc-GmSUOY"
+        },
+        {
+          "message": {
+            "audience": "admin",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "mA3tCA8Keqz2zZu+5ESacApATuRaStLc"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "closed": true,
+      "messages": [
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "SUBSCRIBED"
+          },
+          "receipt": "g+OWuFmDVsIQ8RLRH0v1XQm+dc1-fZ2N"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "closed": true,
+      "messages": []
+    },
+    {
+      "index": 4,
+      "closed": true,
+      "messages": []
+    },
+    {
+      "index": 5,
+      "closed": true,
+      "messages": []
+    },
+    {
+      "index": 6,
+      "closed": true,
+      "messages": []
+    },
+    {
+      "index": 7,
+      "closed": true,
+      "messages": []
+    },
+    {
+      "index": 8,
+      "closed": true,
+      "messages": []
+    },
+    {
+      "index": 9,
+      "closed": true,
+      "messages": []
+    },
+    {
+      "index": 10,
+      "closed": false,
+      "messages": [
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "SUBSCRIBED"
+          },
+          "receipt": "8ZbMsroH1NDEqyaj+hYvYmoIa4RDPYwk"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": {
+              "active": 0,
+              "capacity": 2,
+              "description": "Dữ liệu giả T05; không có thanh toán.",
+              "epoch": "epoch-t02-fixture",
+              "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+              "observedAt": 1789718965,
+              "remaining": 2,
+              "schedule": {
+                "end": "2026-10-03T10:00:00+07:00",
+                "start": "2026-10-03T09:00:00+07:00"
+              },
+              "state": "OPEN",
+              "title": "Workshop cập nhật trực tiếp",
+              "version": "2"
+            },
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "Q-Ph3FYL9uZ1W1WDF+tm-fj1RvJnVxxX"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": {
+              "active": 1,
+              "capacity": 2,
+              "description": "Dữ liệu giả T05; không có thanh toán.",
+              "epoch": "epoch-t02-fixture",
+              "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+              "observedAt": 1789718966,
+              "remaining": 1,
+              "schedule": {
+                "end": "2026-10-03T10:00:00+07:00",
+                "start": "2026-10-03T09:00:00+07:00"
+              },
+              "state": "OPEN",
+              "title": "Workshop cập nhật trực tiếp",
+              "version": "3"
+            },
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "sheLSfRjcPe33XpwQjHPSX4nQSRxkmzz"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": {
+              "active": 0,
+              "capacity": 2,
+              "description": "Dữ liệu giả T05; không có thanh toán.",
+              "epoch": "epoch-t02-fixture",
+              "id": "01a7e2de68a942a72cbe705dd4ed5ce6",
+              "observedAt": 1789718967,
+              "remaining": 2,
+              "schedule": {
+                "end": "2026-10-03T10:00:00+07:00",
+                "start": "2026-10-03T09:00:00+07:00"
+              },
+              "state": "OPEN",
+              "title": "Workshop cập nhật trực tiếp",
+              "version": "4"
+            },
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "8tQBsA0feNaEYB-fAXCG2-cVyH9OXBi0"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "Yd1pwXjobYTcWf0MtqRibrEovN+PBkNA"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "ZX3gfzX457I-lKGbhdzdlDcgN82Oz7dY"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "CVTrvse1mO01a6h1KTTxWiKJq3+jLaBM"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "GwVohTn4s02Q78fesFQvvcE5VY1p7yUB"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "FxHjfhoWYtWhUrJp8HQnS+whSXXDruq7"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "UtMhhw3Izh5RczozMrLMcoMOQv+2jpdc"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "UXGmByPKNQkuxCESOUFmKHv--PYc-QYI"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "5L58a-GgqXToS1GYv47lEAvQzk0hApFw"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "closed": false,
+      "messages": [
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "SUBSCRIBED"
+          },
+          "receipt": "3kRAd2F3ayJC5zT-xOYunJt77T3apLZK"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "data": [],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "NWsrhWErPQVBolofa0DLREm2rayvJ42M"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "data": [
+              {
+                "actor": "V",
+                "epoch": "epoch-t02-fixture",
+                "registrations": [
+                  {
+                    "id": "536e3898fd62351aaddab288dc7733ae",
+                    "state": "ACTIVE"
+                  }
+                ],
+                "workshopId": "01a7e2de68a942a72cbe705dd4ed5ce6",
+                "workshopVersion": "3"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "96CZkGRcr2nJjZRJyyg2OuKGZ8Vv8N4K"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "data": [
+              {
+                "actor": "V",
+                "epoch": "epoch-t02-fixture",
+                "registrations": [
+                  {
+                    "id": "536e3898fd62351aaddab288dc7733ae",
+                    "state": "CANCELLED"
+                  }
+                ],
+                "workshopId": "01a7e2de68a942a72cbe705dd4ed5ce6",
+                "workshopVersion": "4"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "50b+rTsopFmo0eLTq1RqlwBs4d3brdgU"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "Y+vreKlvg-QfnO7w5L+UweocdlfK1GCh"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "OwoawK9-Am5n-PQiqY-38pSauCl+JnxA"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "MZ5d0rVxsK3qGw3bgVDKJwMqP9Yr3Mz8"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "SPNyKpK3jWFie4w8DhSKQXl5yyvmjGxI"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "cbMKQnJiTd2t4s2O4kH7F4OgWKiM4zPk"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "AoQw-3xFN83Kl-8l3fhP35L+i3yL7QMr"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "Dag7XW465lak2r+DkSqlFh5FIh57J6dT"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "xiEHCYRba7iEjnJeUFZzE8QPKfzThWVE"
+        }
+      ]
+    }
+  ]
+}

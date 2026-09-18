@@ -1,0 +1,162 @@
+{
+  "run": {
+    "id": "r09-web-0de1b354-98b4-47b5-b324-5bb4d4d319c8",
+    "manifestHash": "7f968eecf43beda0136e114cbf68eb7bb553ca6e7d3d315313f00c07ea48e91b",
+    "started": "2026-09-18T07:42:53.029Z",
+    "ended": "2026-09-18T07:47:19.634Z",
+    "status": "FAIL",
+    "error": "AssertionError [ERR_ASSERTION]: BROWSER_EXIT\n\n1 !== 0\n\n    at file:///Users/kendrick/Desktop/kidea/tests/r09/t03-integration/run.mjs:21:337\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+  },
+  "browser": {
+    "status": "FAIL",
+    "checks": [
+      {
+        "name": "public-SSR-JS-off-TLS",
+        "status": "PASS"
+      },
+      {
+        "name": "server-session-cookie-isolation",
+        "status": "PASS"
+      },
+      {
+        "name": "real-commit-lost-response-reload-GET-only",
+        "status": "PASS"
+      },
+      {
+        "name": "last-seat-FULL-other-user",
+        "status": "PASS"
+      },
+      {
+        "name": "Escape-no-write-exact-id-cancel",
+        "status": "PASS"
+      },
+      {
+        "name": "cancel-rebook-old-result-immutable",
+        "status": "PASS"
+      },
+      {
+        "name": "private-SSR-no-cross-user-data",
+        "status": "PASS"
+      },
+      {
+        "name": "proxy-forgery-and-CSRF-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "restored-page-server-revalidates-new-actor",
+        "status": "PASS"
+      },
+      {
+        "name": "invalid-session-clears-private-page",
+        "status": "PASS"
+      },
+      {
+        "name": "real-JS-off-intro-list-detail-navigation",
+        "status": "PASS"
+      },
+      {
+        "name": "PAUSED-public-SSR-and-participant-controls",
+        "status": "PASS"
+      },
+      {
+        "name": "PAUSED-preserves-old-result-and-denies-new-registration",
+        "status": "PASS"
+      },
+      {
+        "name": "baseline-PAUSED-cancel-rejected-before-T09",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-second-ACTIVE-real-browser",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-third-ACTIVE-rejected-without-consuming-seat",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-cancel-releases-slot-new-intent-old-rejection-immutable",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-create-real-commit-loss-reload-GET-only-exact-ID",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-draft-never-public-or-anonymous-SSR",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-dirty-only-patch-no-implicit-publish",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-state-separate-confirm-Escape-no-write",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-changed-observation-invalidates-sensitive-confirmation",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-reviewed-rebase-preserves-other-editors-fields",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-same-version-conflict-blocks-writes-until-authoritative-reconcile",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-invalid-field-preserves-input-without-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-responsive-360-no-horizontal-overflow",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-actor-switch-hides-form-and-denies-old-result",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-original-actor-restores-intent-through-GET-without-replay",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-collection-creation-DRAFT-admin-only",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-public-DRAFT-no-snapshot",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-Origin-CSRF-epoch-role-cookie-URL-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-publish-enters-authorized-public-collection",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-public-admin-private-authoritative-version-audience",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-CANCELLED-not-resurrected-and-seats-reconciled",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-live-public-admin-360-no-horizontal-overflow",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-injected-participant-session-429-503-read-recovery-not-revocation-no-POST",
+        "status": "PASS"
+      }
+    ],
+    "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByText('Ch\u01b0a x\u00e1c nh\u1eadn c\u1eadp nh\u1eadt tr\u1ef1c ti\u1ebfp; t\u1ea3i v\u00e0 \u0111\u1ed1i chi\u1ebfu tr\u01b0\u1edbc khi d\u1ef1a v\u00e0o s\u1ed1 li\u1ec7u.', { exact: true }) to be visible\n\n    at checkUpdates (/plan/updates-browser.mjs:54:242)\n    at async file:///plan/browser.mjs:49:2",
+    "pageErrors": [],
+    "external": []
+  }
+}

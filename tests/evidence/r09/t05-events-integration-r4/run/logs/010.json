@@ -1,0 +1,13 @@
+{
+  "args": [
+    "exec",
+    "69917da995296c7af6bc845230772742f61f2b50cbff5af6215856e210d8a4ad",
+    "sh",
+    "-c",
+    "i=0; while [ ! -f /data/caddy/pki/authorities/local/root.crt ]; do i=$((i+1)); [ \"$i\" -le 100 ] || exit 1; sleep 0.1; done"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "",
+  "failure": null
+}
