@@ -1,0 +1,422 @@
+{
+  "source": "/Users/kendrick/Desktop/kidea/.test-output/r09-web-83508322-4662-4bcd-9796-40f989554f21",
+  "run": {
+    "id": "r09-web-83508322-4662-4bcd-9796-40f989554f21",
+    "manifestHash": "a663eb858c0d8472d67d2516a0ebebee56f3ec3a4607bb105c0cffca5e2deb10",
+    "started": "2026-09-18T10:16:26.079Z",
+    "ended": "2026-09-18T10:20:59.084Z",
+    "status": "FAIL",
+    "error": "AssertionError [ERR_ASSERTION]: BROWSER_EXIT\n\n1 !== 0\n\n    at file:///Users/kendrick/Desktop/kidea/tests/r09/t03-integration/run.mjs:22:337\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+  },
+  "browser": {
+    "status": "FAIL",
+    "checks": [
+      {
+        "name": "public-SSR-JS-off-TLS",
+        "status": "PASS"
+      },
+      {
+        "name": "server-session-cookie-isolation",
+        "status": "PASS"
+      },
+      {
+        "name": "real-commit-lost-response-reload-GET-only",
+        "status": "PASS"
+      },
+      {
+        "name": "last-seat-FULL-other-user",
+        "status": "PASS"
+      },
+      {
+        "name": "Escape-no-write-exact-id-cancel",
+        "status": "PASS"
+      },
+      {
+        "name": "cancel-rebook-old-result-immutable",
+        "status": "PASS"
+      },
+      {
+        "name": "private-SSR-no-cross-user-data",
+        "status": "PASS"
+      },
+      {
+        "name": "proxy-forgery-and-CSRF-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "restored-page-server-revalidates-new-actor",
+        "status": "PASS"
+      },
+      {
+        "name": "invalid-session-clears-private-page",
+        "status": "PASS"
+      },
+      {
+        "name": "real-JS-off-intro-list-detail-navigation",
+        "status": "PASS"
+      },
+      {
+        "name": "PAUSED-public-SSR-and-participant-controls",
+        "status": "PASS"
+      },
+      {
+        "name": "PAUSED-preserves-old-result-and-denies-new-registration",
+        "status": "PASS"
+      },
+      {
+        "name": "baseline-PAUSED-cancel-rejected-before-T09",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-second-ACTIVE-real-browser",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-third-ACTIVE-rejected-without-consuming-seat",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-cancel-releases-slot-new-intent-old-rejection-immutable",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-create-real-commit-loss-reload-GET-only-exact-ID",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-draft-never-public-or-anonymous-SSR",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-dirty-only-patch-no-implicit-publish",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-state-separate-confirm-Escape-no-write",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-changed-observation-invalidates-sensitive-confirmation",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-reviewed-rebase-preserves-other-editors-fields",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-same-version-conflict-blocks-writes-until-authoritative-reconcile",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-invalid-field-preserves-input-without-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-responsive-360-no-horizontal-overflow",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-actor-switch-hides-form-and-denies-old-result",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-original-actor-restores-intent-through-GET-without-replay",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-admin-DRAFT-four-field-UI-patch-schedule-confirm-state-ID-stable",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-admin-OPEN-four-field-UI-patch-schedule-confirm-state-ID-stable",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-EDIT-real-commit-lost-reply-reload-GET-only",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-admin-PAUSED-four-field-UI-patch-schedule-confirm-state-ID-stable",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-all-nine-STATE-cells-noop-rejection-version-and-read-only-result",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-real-server-four-field-rejections-and-unknown-state-no-version-change",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-real-duplicate-titles-distinct-authoritative-IDs",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-real-capacity-wins-race-tenth-registration-FULL-no-version-event",
+        "status": "PASS"
+      }
+    ],
+    "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'UNKNOWN'\n\n    at checkMatrix (file:///plan/matrix-browser.mjs:112:179)\n    at async file:///plan/browser.mjs:50:2",
+    "pageErrors": [],
+    "external": []
+  },
+  "files": [
+    {
+      "path": "app/backend.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/backend.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/backend.stdout",
+      "sha256": "ddb715bf44b1e12a8634f8457ea406d3214eb07378e96f66c3b6cbf5a1b60620"
+    },
+    {
+      "path": "app/init.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/init.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/init.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/seed.json",
+      "sha256": "da3ebe89e70ff3d72829a1ac338afa5e90a98d2171fbfcfa2c1e9f6eb0634a4f"
+    },
+    {
+      "path": "app/web.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/web.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/web.stdout",
+      "sha256": "1280bed20c1210eb20be935c8f0d5629cc2eb73cc66d115341830fd01e0dbbd3"
+    },
+    {
+      "path": "app/workshop.sqlite",
+      "sha256": "373d3034be1a54b9df34bc881f39380ee5ff86fe547e3b89ff42c3c99a843b00"
+    },
+    {
+      "path": "browser/admin-360.png",
+      "sha256": "ffaf40118d2c1b2a23c93e5bea9a66f2a9f66d20beea15a5dd4649741ea2f1cb"
+    },
+    {
+      "path": "browser/failure-pages.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser/history.json",
+      "sha256": "53415c9fbfa3bdf70afd8bd09b2f90cb2734565a5b98a824c793f2f8d5a87c2e"
+    },
+    {
+      "path": "browser/matrix-capacity-rejected.png",
+      "sha256": "6f61afc84fb2b81cb044a48f3a9e25dd2e53a4cc0e1ce0889bf7cc61f0e505ec"
+    },
+    {
+      "path": "browser/matrix-evidence.json",
+      "sha256": "a6bac6e0dfd4631e7b011eb259037d55fdc1af1a793ed16f499bd9f13952544b"
+    },
+    {
+      "path": "browser/matrix-failure-0.html",
+      "sha256": "de56549f7aafa541fbbfc2064b42e7d1374f4c7d8fa2073cbde0a024a27041b7"
+    },
+    {
+      "path": "browser/private.png",
+      "sha256": "94de6db74b3de76a58715719e1db64199271da9faae12c3f6d06eabdcc40b6cb"
+    },
+    {
+      "path": "browser/quota-rejected.png",
+      "sha256": "91ac348fbdd32f088c0fc6f3159cfc97ed1ddf3726222f1f34da14789ee01f56"
+    },
+    {
+      "path": "browser/requests.json",
+      "sha256": "b9f694362d8e03df5be0ff32faafaf1024253c17bafb43b206f2d8b4a86961e8"
+    },
+    {
+      "path": "browser/result.json",
+      "sha256": "155056d07fc09a49df8d289124312d0203fdc30596fedee8e8d2665a7beefd42"
+    },
+    {
+      "path": "browser/session-observations.json",
+      "sha256": "b40aee36abc10e66c9b3c47dcba145c5b072f95c1fea1e0f40fa1b2982a05c62"
+    },
+    {
+      "path": "fixtures/app-ready.json",
+      "sha256": "9dc9203043c682283c7f245a5f35cf931ca521fa263757dac3a338738ac985aa"
+    },
+    {
+      "path": "fixtures/root.crt",
+      "sha256": "9387484dbb0494cc6223b123967b819b58309570488c97733318841f349f90f0"
+    },
+    {
+      "path": "fixtures/workshop.json",
+      "sha256": "218537e3bf8b0ee582755ccff1c6fedd295d23dbed426ea977802cbec3d9193e"
+    },
+    {
+      "path": "logs/001.json",
+      "sha256": "e02b141cc942268f26045f66b7c0dbbba18e8889fd946e8705372868c9553096"
+    },
+    {
+      "path": "logs/002.json",
+      "sha256": "2a8d8552ce58bc22a1bdfa752ff022b581b88242957ebd81ac7d376928ec36a2"
+    },
+    {
+      "path": "logs/003.json",
+      "sha256": "0f0c9980dd31f7bcb6821f140196caf879b4fc2448a6788628b20d64c43393ae"
+    },
+    {
+      "path": "logs/004.json",
+      "sha256": "28a30a51219ad1af27811e072374b50210ffa5a7561efa4bee22312463d7dbe7"
+    },
+    {
+      "path": "logs/005.json",
+      "sha256": "e03c0b95b1ffed453bd15f047bc3c4ba8bba3e7d3ea3d635f3bc85fa26441e57"
+    },
+    {
+      "path": "logs/006.json",
+      "sha256": "60af1b9fa4dfcb56bc31520a6332a16a155d068592ffd693591b33562727da10"
+    },
+    {
+      "path": "logs/007.json",
+      "sha256": "ffac73b953936bcd06cc999d94ed8f2ae8e4932193d81d3925c745eebbcb8978"
+    },
+    {
+      "path": "logs/008.json",
+      "sha256": "11a50710cd11973a328471ed4523732acc7872fe5523d336707fb54ed1142188"
+    },
+    {
+      "path": "logs/009.json",
+      "sha256": "918e81ea557d6a9b93ff7bd85b25d7c8f3414b081ea7ad9720d4ad3fea2493b0"
+    },
+    {
+      "path": "logs/010.json",
+      "sha256": "ce748d50e2751706d986176bbc33a201db582de5ba23170b4b3f9f961c02465d"
+    },
+    {
+      "path": "logs/011.json",
+      "sha256": "51382a22c527c8858bc7e4c9834159ed1b386f45688597dc50f0903eba1f751a"
+    },
+    {
+      "path": "logs/012.json",
+      "sha256": "404510825e620eba06f92172aec1f1df22248f03c6eec088f7e39117d29bbead"
+    },
+    {
+      "path": "logs/013.json",
+      "sha256": "ca2e9b5ef402bf7dc001cb5e5ab88daa03538539e969c7d821dc0475fd0e26ca"
+    },
+    {
+      "path": "logs/014.json",
+      "sha256": "391ddea336b6a509a475fe74d04e71e53ddc6ebf5ac3d186433bae3a31143595"
+    },
+    {
+      "path": "logs/015.json",
+      "sha256": "2d088a04730ad6feeffa79cdadd95cc157e19db4e37834702d950d9145e6bcf2"
+    },
+    {
+      "path": "logs/016.json",
+      "sha256": "ae51632c7cb637a500c749f99c169b0e9ae6948174099c3b90090b9692f12b0d"
+    },
+    {
+      "path": "logs/017.json",
+      "sha256": "2d088a04730ad6feeffa79cdadd95cc157e19db4e37834702d950d9145e6bcf2"
+    },
+    {
+      "path": "logs/018.json",
+      "sha256": "8c8d4f65e9b48c66eb261e0a54e7f19108212a5b1c5830cde1c6d2f8d32c0cc3"
+    },
+    {
+      "path": "logs/019.json",
+      "sha256": "1351c9ed148b820280f03320acf4374102a6f373ec3f2bcf886a3935a3e07506"
+    },
+    {
+      "path": "logs/020.json",
+      "sha256": "88788b32ae6957c235d06c6e7da856357683b914e7538b384de27c99347694c7"
+    },
+    {
+      "path": "logs/021.json",
+      "sha256": "fed95d162eb7d10141695720c5692164920baa55aafed9d1b4989d2176145180"
+    },
+    {
+      "path": "logs/022.json",
+      "sha256": "bebd0e6e6f2761327a4f3f3d797429fc1beab045e3fb56f6e85c3a7d2d80d377"
+    },
+    {
+      "path": "logs/023.json",
+      "sha256": "5970b7e3e95bfeb4f17056b513600cd16db72323d953cf23e0113bb3d1cc0549"
+    },
+    {
+      "path": "logs/024.json",
+      "sha256": "40d1b9dc9b1bf10c3606acb23419025242c85dd51c7816ec9cf6af05cf3b48c5"
+    },
+    {
+      "path": "logs/025.json",
+      "sha256": "3a00bbf22f06515e0356d69c2a9f0619a37be9d3a7cfa618e444a9881f0fcbb7"
+    },
+    {
+      "path": "logs/026.json",
+      "sha256": "869aa1111e84d0ec707a4af1b9cbbca69d2cc7cae84befe8162b9418e2e30408"
+    },
+    {
+      "path": "logs/027.json",
+      "sha256": "967a341f57d34f4e8dcd63ee2da7fa992d7a8a9a905e2fbeabc37517210aad87"
+    },
+    {
+      "path": "logs/028.json",
+      "sha256": "1c5f7d29b7020f11079a2efa659642ee5d4bcaa7da92e8fafe7b6525c9a05f91"
+    },
+    {
+      "path": "logs/029.json",
+      "sha256": "b2c01f2437f088abca8cbed90e0cb47466d3ce1ef1461d90c42c8ebb21b6ae69"
+    },
+    {
+      "path": "logs/app-state.json",
+      "sha256": "0ffc052d41d5e0824de4e7854460591460229bbac523e92aa5e25058877bc9ea"
+    },
+    {
+      "path": "logs/app.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/browser-state.json",
+      "sha256": "686521e1830f764270d7426805562820768da66608a51712ede3e22a285a8ac5"
+    },
+    {
+      "path": "logs/browser.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/caddy-state.json",
+      "sha256": "336aaedc345c19929a430ec43bba28bfb9791d81833fa60edf66c95320b993d0"
+    },
+    {
+      "path": "logs/caddy.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result.json",
+      "sha256": "95038c38d88bf1ee8a8e9278385896e8ddb3665b17388089e1620201b8765b63"
+    }
+  ],
+  "excluded": [
+    "ephemeral CA private keys",
+    "browser profile"
+  ],
+  "notProductAcceptance": true
+}

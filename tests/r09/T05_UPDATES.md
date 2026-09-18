@@ -117,3 +117,31 @@ records missing clauses individually, retains the4Max2 amendment cases
 separately and leaves the compiled original T02 ledger unchanged. Component
 PASS, covered functional row, partial and NOT_RUN are distinct; this ledger
 does not close G2, impacts or Human acceptance.
+
+## Administration response loss, double clicks and both race orders
+
+The fault/concurrency extension retains all71 preceding HTTPS/WSS checks and
+adds6 functional groups. It holds the tenth participant POST until the C10,N9
+capacity reduction commits; the real backend must then return FULL and preserve
+C9,N9 without a version/outbox increment for that rejection. The preceding
+registration-winning C10,N10 case remains unchanged.
+
+Separately dropped EDIT and CREATE requests never reach the backend. Two reloads
+and exact-intent GETs must return the real202/stateUNKNOWN, keep controls blocked
+and issue no replacement POST. CREATE also forbids a title/collection lookup or
+an invented server ID. Two real pointer clicks during the held request interval
+exercise CREATE/EDIT/STATE; each requires one POST, one durable audit/result and
+exactly one version change. Only request drop/hold/order is controlled; domain
+results, writes and the post-shutdown SQL audit are real.
+
+The initial raw protocol-field assertion error belongs to the test harness:
+backend responses use `state`, not `finality`. Keep that FAIL and its frozen plan;
+correct the reader against the existing contract, retain all safety oracles and
+run the complete suite again. Snapshot comparisons bind authoritative fields,
+excluding observation timestamps; this does not relax version/data assertions.
+The current coverage audit requires these new proof selectors and durable SQL
+checks before assessing AD-T04/AR-T06 as covered functional rows. Its old version
+remains in historical evidence; AD-T08 and the rest of the missing variants are
+not automatically promoted. No monitoring, workload or crash/restore acceptance
+is inferred from this extension. Application and Kidea runtime source changes
+remain distinct from harness fixes and additional execution evidence.

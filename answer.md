@@ -1,7 +1,9 @@
-Đã audit137 nghĩa vụ T05, giữ4ca Max2 riêng, thêm9ca quản trị và sửa thông báo/lỗi sức chứa khi có đăng ký cạnh tranh.
+Đã hoàn thành phần kiểm mất phản hồi, nhấp đúp và tranh chấp quản trị. :codex-annotation{index="1"}
 
-Nguồn cuối:93unit,18SSR–Chrome Mac và71/71HTTPS/WSS backend thật PASS; SQL audit PASS. Giữ đủ62ca cũ cùng raw FAIL/PASS, không giảm kiểm an toàn. Backend112nguồn/artifact không đổi. Checkpoint công khai revision5 DRAFT và bàn giao đã lưu; commit/push được xác minh khi kết thúc lượt.
+- **77/77 kiểm tích hợp PASS**, giữ đủ71 kiểm cũ và thêm6 nhóm; audit dữ liệu PASS cho66 ý định quản trị/20 workshop.
+- Xác nhận không gửi lại khi chưa rõ kết quả, nhấp đúp chỉ ghi một lần và sức chứa đúng ở cả hai thứ tự tranh chấp.
+- Sửa bộ kiểm/auditor; không phát hiện lỗi mới trong ứng dụng hoặc lõi Kidea. Log FAIL/PASS được giữ đầy đủ; checkpoint đã lưu, không thay trạng thái/phê duyệt.
 
-T05/R09 còn mở: các nhánh admin failure/concurrency/actor namespace, monitoring/observer, backup/readiness/restore, đo tải và các gate nghiệm thu. Apple Silicon NOT_RUN; native Future; R10 chưa mở.
+Đã cập nhật tài liệu và bằng chứng, commit/push repo Kidea; pilot lưu commit local. **T05/R09 vẫn mở**: còn các nhánh lỗi quản trị, monitoring, backup/restore và đo tải.
 
-Tiếp theo: hoàn thiện regression admin failure/concurrency/actor namespace theo bảng audit. Độ khó cao; đề xuất GPT-5.6 Sol + High, đủ sâu cho lát hữu hạn và chưa cần XHigh/Max. High được hỗ trợ theo [OpenAI Docs](https://developers.openai.com/api/docs/models/gpt-5.6-sol); không suy chi phí Codex từ giá API.
+Task tiếp theo: kiểm lỗi phát cập nhật sau khi đã lưu và tách phạm vi người dùng. Độ khó cao; đề xuất **GPT-5.6 Sol + High** theo đánh giá phạm vi công việc. [OpenAI Docs](https://developers.openai.com/api/docs/models/gpt-5.6-sol).

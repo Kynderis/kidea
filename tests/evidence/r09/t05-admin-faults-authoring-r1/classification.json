@@ -1,0 +1,30 @@
+{
+  "at": "2026-09-18T10:23:58.131485+00:00",
+  "classification": [
+    {
+      "item": "r1 raw absent-intent result key mismatch",
+      "owner": "integration harness authored by Codex",
+      "productDefectProved": false,
+      "kideaRuntimeDefectProved": false
+    },
+    {
+      "item": "snapshot timestamp comparison corrected in review",
+      "owner": "integration harness",
+      "observedRuntimeFailure": false
+    },
+    {
+      "item": "reverse race and pending-intent/double-click new groups",
+      "owner": "additional pilot evidence",
+      "status": "r3 all6 added groups PASS"
+    },
+    {
+      "item": "r2 first POST timeout/unhandled async wait",
+      "owner": "harness path; exact first-click cause not directly observed",
+      "productDefectProved": false,
+      "kideaRuntimeDefectProved": false,
+      "evidence": "../t05-admin-faults-integration-r2/run/logs/016.json",
+      "resolution": "r3 PASS with unchanged application/runtime source and corrected target/async diagnostics; original r2 first-click coordinates not directly observed"
+    }
+  ],
+  "kideaValidation": "Use public READ/SAVE for continuation with exact evidence; preserve review, gate, status, blockers and return stack. No automatic Kidea repair inferred from pilot failures."
+}

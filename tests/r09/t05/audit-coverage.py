@@ -7,7 +7,7 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
-repo, pilot, integration, destination = map(Path, sys.argv[1:])
+repo, pilot, integration, destination = (Path(arg).resolve() for arg in sys.argv[1:])
 sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
 original = pilot / 'tests/t02/coverage.json'
 rows = json.loads(original.read_text())
@@ -32,11 +32,11 @@ mapping = {
  'AD-T01': ['admin-create-real-commit-loss-reload-GET-only-exact-ID', 'admin-invalid-field-preserves-input-without-POST'],
  'AD-T02': [f'matrix-admin-{s}-four-field-UI-patch-schedule-confirm-state-ID-stable' for s in ['DRAFT','OPEN','PAUSED']],
  'AD-T03': ['matrix-all-nine-STATE-cells-noop-rejection-version-and-read-only-result', 'matrix-real-server-four-field-rejections-and-unknown-state-no-version-change'],
- 'AD-T04': ['matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry'],
+ 'AD-T04': ['matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry', 'matrix-real-capacity-wins-race-tenth-registration-FULL-no-version-event'],
  'AD-T05': ['admin-state-separate-confirm-Escape-no-write'],
  'AD-T06': ['admin-changed-observation-invalidates-sensitive-confirmation', 'matrix-admin-OPEN-four-field-UI-patch-schedule-confirm-state-ID-stable'],
  'AD-T07': ['admin-dirty-only-patch-no-implicit-publish', 'matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content'],
- 'AD-T08': ['admin-create-real-commit-loss-reload-GET-only-exact-ID', 'matrix-EDIT-real-commit-lost-reply-reload-GET-only', 'matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content', 'matrix-real-duplicate-titles-distinct-authoritative-IDs'],
+ 'AD-T08': ['admin-create-real-commit-loss-reload-GET-only-exact-ID', 'matrix-EDIT-real-commit-lost-reply-reload-GET-only', 'matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content', 'matrix-real-duplicate-titles-distinct-authoritative-IDs', 'matrix-unreceived-POST-real-absent-lookup-UNKNOWN-two-reloads-GET-only-no-replacement', 'matrix-CREATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-title-search-no-POST-replay'] + [f'matrix-double-pointer-click-{action}-one-POST-one-version-durable-result' for action in ['CREATE','EDIT','STATE']],
  'AD-T09': ['admin-draft-never-public-or-anonymous-SSR', 'admin-actor-switch-hides-form-and-denies-old-result', 'updates-real-admin-revocation-hides-form-without-replaying-intent'],
  'AD-T10': ['matrix-all-nine-STATE-cells-noop-rejection-version-and-read-only-result'],
  'AD-T11': ['matrix-EDIT-real-commit-lost-reply-reload-GET-only'],
@@ -58,10 +58,10 @@ mapping = {
  'UX-T15': ['admin-invalid-field-preserves-input-without-POST'],
  'AR-T01': ['last-seat-FULL-other-user', 'matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry'],
  'AR-T02': ['last-seat-FULL-other-user'],
- 'AR-T03': ['matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry'],
+ 'AR-T03': ['matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry', 'matrix-real-capacity-wins-race-tenth-registration-FULL-no-version-event'],
  'AR-T04': ['real-commit-lost-response-reload-GET-only'],
  'AR-T05': ['admin-create-real-commit-loss-reload-GET-only-exact-ID'],
- 'AR-T06': ['admin-create-real-commit-loss-reload-GET-only-exact-ID'],
+ 'AR-T06': ['admin-create-real-commit-loss-reload-GET-only-exact-ID', 'matrix-CREATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-title-search-no-POST-replay'],
  'AR-T07': ['admin-reviewed-rebase-preserves-other-editors-fields', 'admin-changed-observation-invalidates-sensitive-confirmation'],
  'AR-T08': ['updates-heartbeat-is-not-domain-event-noop-no-fake-snapshot'],
  'AR-T09': ['admin-same-version-conflict-blocks-writes-until-authoritative-reconcile'],
@@ -81,11 +81,10 @@ gaps = {
  'E08':'Actual mutation snapshots/no-op and new admin SQL event/version audit covered; complete six-action retry/reject event matrix remains.',
  'E09':'Audience and SSR protection covered; full HTTP/SSR/socket/log and monitoring permutations remain.',
  'AD-T01':'Server INVALID_FIELDS has no field detail; complete invalid CREATE UI field matrix remains unproven.',
- 'AD-T04':'Browser proves registration wins at C10,N9; reverse order is component C02, not this real HTTP/UI race.',
  'AD-T05':'Both register/cancel versus PAUSE orders remain component C03/C04; real concurrent browser orders not all executed.',
  'AD-T06':'Full sensitive-dialog variants including PAUSE/capacity and source changes need individual proof.',
  'AD-T07':'Lost publish reply after successful commit does not prove actual failed publish after saved EDIT; that branch is missing.',
- 'AD-T08':'Double-click for all three actions and GET-not-found retaining UNKNOWN need explicit browser checks.',
+ 'AD-T08':'Real lost replies/reloads and double pointer clicks cover all three actions; unreceived CREATE/EDIT remain UNKNOWN with no replay. Explicit absent STATE lookup variant remains; no whole A-ERROR matrix certification.',
  'AD-T09':'Complete G/U/admin-only/missing/forged/revoked scope matrix across HTTP/SSR/WSS and caches remains.',
  'AD-T11':'Fault injection is component TX/SQLFAIL; admin process crash pre/post commit and real I/O failures not all proved.',
  'AD-T12':'New durable audit excludes fake token/CSRF/private body markers; full public export/forged actor matrix not proved.',
@@ -93,7 +92,6 @@ gaps = {
  'AD-T14':'All-state field edits/IDs proved; audience and delayed view variants not exhaustively combined with each edit.',
  'AD-T15':'No controlled quota/old recovery-point/epoch restoration exercise; no automatic deletion/replay authorized.',
  'AR-T04':'Component crash covers registrations; admin and outbox emission crash boundaries remain incomplete.',
- 'AR-T06':'Real CREATE lost reply/reload proved; GET-not-found branch with exact retained UNKNOWN is missing.',
  'AR-T10':'Executed blackout is greater than 5s, not the specified 30s; no complete backlog/heartbeat-silence matrix.',
  'AR-T13':'Online SQLite backup with concurrent WAL and interrupted verified destination not implemented/tested.',
  'AR-T14':'New-host restore, epoch rotation/revocation and remembered client intents not tested.',
@@ -129,6 +127,15 @@ component_links = {'AR-T02':['C01','R03'], 'AR-T03':['C02','C03','C04'], 'AR-T04
  'AD-T04':['C02'], 'AD-T05':['C03','C04'], 'AD-T11':['TX','SQLFAIL'], 'QT11':[f'D{i:02}' for i in range(1,10)], 'QT07':['CRASH']}
 units = repo / 'tests/evidence/r09/t05-matrix-authoring-r1/web-r2/checks-final.json'
 assert all(value == 0 for value in json.loads(units.read_text()).values())
+matrix = json.loads((integration / 'run/browser/matrix-evidence.json').read_text())
+assert matrix['race']['after']['capacity'] == matrix['race']['after']['active'] == 10
+assert matrix['reverseRace']['after']['capacity'] == matrix['reverseRace']['after']['active'] == 9
+assert matrix['reverseRace']['registration']['code'] == 'FULL'
+missing_create = [item for item in matrix['unreceived'] if item['command']['action'] == 'CREATE']
+assert len(missing_create) == 2 and all(item['status'] == 202 and item['result']['state'] == 'UNKNOWN' for item in missing_create)
+assert {item['action'] for item in matrix['doubleClicks']} == {'CREATE', 'EDIT', 'STATE'}
+assert all(item['posts'] == 1 for item in matrix['doubleClicks'])
+covered_functional = {'AD-T02','AD-T03','AD-T04','AD-T10','AR-T06'}
 for row in rows:
     source = pilot / row['source']['path']
     assert sha(source) == row['source']['sha256'], source
@@ -141,7 +148,7 @@ for row in rows:
     for name in mapping.get(row['id'], []):
         assert checks[name] == 'PASS', name
         evidence.append({'kind':'REAL_HTTPS_WSS_FUNCTIONAL','path':str(browser_path.relative_to(repo)), 'sha256':sha(browser_path), 'selector':name, 'status':'PASS'})
-    if row['id'] in {'AD-T02','AD-T03','AD-T10','AD-T12'}:
+    if row['id'] in {'AD-T02','AD-T03','AD-T04','AD-T08','AD-T10','AD-T12','AR-T06'}:
         evidence.append({'kind':'DURABLE_SQL_READ_ONLY','path':str(audit_path.relative_to(repo)), 'sha256':sha(audit_path), 'selector':'checks; see bound matrix-evidence.json for exact intents', 'status':'PASS'})
     if re.fullmatch('E0[1-6]',row['id']) or row['id'] == 'QT05':
         evidence.append({'kind':'CURRENT_WEB_UNIT_SUITE','path':str(units.relative_to(repo)), 'sha256':sha(units), 'selector':'93-test suite; inspect web/tests/unit/updates.test.mjs and collections.test.mjs', 'status':'PASS','limit':'Suite support only; not exhaustive live variant coverage.'})
@@ -154,7 +161,7 @@ for row in rows:
             evidence.append({'kind':'REUSED_SESSION_SHUTDOWN_COMPONENT','path':str(proof.relative_to(repo)), 'sha256':sha(proof), 'selector':'results: '+str(len(items))+' checks', 'status':'PASS','limit':'Not backup/observer readiness or a measured full recovery/drain exercise.'})
     row['originalRuntime'] = row.pop('runtime')
     row['evidence'] = evidence
-    row['runtime'] = 'COVERED_FUNCTIONAL' if row['id'] in {'AD-T02','AD-T03','AD-T10'} else 'PARTIAL' if evidence else 'NOT_RUN'
+    row['runtime'] = 'COVERED_FUNCTIONAL' if row['id'] in covered_functional else 'PARTIAL' if evidence else 'NOT_RUN'
     row['remaining'] = 'No missing clause found within this functional source row; platform/load/operational obligations remain separate.' if row['runtime']=='COVERED_FUNCTIONAL' else gaps.get(row['id'],
       'Independent operations thresholds, failure persistence and observer recovery not implemented/tested.' if row['id'].startswith('OP-') else
       'Component source vectors are executed; complete equivalent current Web/HTTP/WSS variants and explicit source-clause closure still require evidence.' if names else

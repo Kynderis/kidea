@@ -1,0 +1,691 @@
+{
+  "cases": [
+    {
+      "name": "wrong-origin",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "invalid-cookie-no-downgrade",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "wrong-CSRF",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "participant-not-admin",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "old-epoch",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "URL-credentials",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "role-forgery",
+      "status": "PASS",
+      "messages": []
+    },
+    {
+      "name": "participant temporary session HTTP 429 recovers",
+      "status": "PASS",
+      "injectedFault": true,
+      "faultReplies": 2
+    },
+    {
+      "name": "participant temporary session HTTP 503 recovers",
+      "status": "PASS",
+      "injectedFault": true,
+      "faultReplies": 2
+    },
+    {
+      "name": "admin temporary session HTTP 429 preserves draft and recovers",
+      "status": "PASS",
+      "injectedFault": true,
+      "faultReplies": 1
+    },
+    {
+      "name": "admin temporary session HTTP 503 preserves draft and recovers",
+      "status": "PASS",
+      "injectedFault": true,
+      "faultReplies": 1
+    },
+    {
+      "name": "actual native TLS browser sockets closed and reopened",
+      "status": "PASS",
+      "timeline": [
+        {
+          "kind": "SUBSCRIBE",
+          "audience": "public"
+        },
+        {
+          "kind": "GET",
+          "audience": "public"
+        },
+        {
+          "kind": "SUBSCRIBE",
+          "audience": "private"
+        },
+        {
+          "kind": "GET",
+          "audience": "private"
+        },
+        {
+          "kind": "SUBSCRIBE",
+          "audience": "public"
+        },
+        {
+          "kind": "SUBSCRIBE",
+          "audience": "public"
+        },
+        {
+          "kind": "SUBSCRIBE",
+          "audience": "public"
+        },
+        {
+          "kind": "SUBSCRIBE",
+          "audience": "public"
+        }
+      ]
+    },
+    {
+      "name": "unknown-command",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid-ACK",
+      "status": "PASS"
+    },
+    {
+      "name": "oversize-frame",
+      "status": "PASS"
+    },
+    {
+      "name": "fragmented-oversize",
+      "status": "PASS"
+    }
+  ],
+  "measurements": [
+    {
+      "case": "registration to all three observed UIs and raw channels",
+      "milliseconds": 440,
+      "limitMilliseconds": 5000,
+      "injectedFault": false,
+      "scope": "single mutation lab; not workload percentile/performance certification"
+    },
+    {
+      "case": "actual owned app-container pause to stale UI",
+      "milliseconds": 4838,
+      "scope": ">5s stale threshold plus 250ms local timer and measured control roundtrip; retained last observation"
+    }
+  ],
+  "sockets": [
+    {
+      "name": "public",
+      "messages": [
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "SUBSCRIBED"
+          },
+          "receipt": "2ghrKvvcuGKlE5W7Xtd9QowqPd0dtdYQ"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": {
+              "active": 0,
+              "capacity": 2,
+              "description": "Dữ liệu giả T05; không có thanh toán.",
+              "epoch": "epoch-t02-fixture",
+              "id": "9598fa2b117acf539d58c13539c0e7e4",
+              "observedAt": 1789727604,
+              "remaining": 2,
+              "schedule": {
+                "end": "2026-10-03T10:00:00+07:00",
+                "start": "2026-10-03T09:00:00+07:00"
+              },
+              "state": "OPEN",
+              "title": "Workshop cập nhật trực tiếp",
+              "version": "2"
+            },
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "uh360kF4DUIDPsxWjO8gFy+mgUYIkNhZ"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": {
+              "active": 1,
+              "capacity": 2,
+              "description": "Dữ liệu giả T05; không có thanh toán.",
+              "epoch": "epoch-t02-fixture",
+              "id": "9598fa2b117acf539d58c13539c0e7e4",
+              "observedAt": 1789727606,
+              "remaining": 1,
+              "schedule": {
+                "end": "2026-10-03T10:00:00+07:00",
+                "start": "2026-10-03T09:00:00+07:00"
+              },
+              "state": "OPEN",
+              "title": "Workshop cập nhật trực tiếp",
+              "version": "3"
+            },
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "BCdEj+OBdLojJE8iBCbLzMMXcrNjPOB6"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": {
+              "active": 0,
+              "capacity": 2,
+              "description": "Dữ liệu giả T05; không có thanh toán.",
+              "epoch": "epoch-t02-fixture",
+              "id": "9598fa2b117acf539d58c13539c0e7e4",
+              "observedAt": 1789727606,
+              "remaining": 2,
+              "schedule": {
+                "end": "2026-10-03T10:00:00+07:00",
+                "start": "2026-10-03T09:00:00+07:00"
+              },
+              "state": "OPEN",
+              "title": "Workshop cập nhật trực tiếp",
+              "version": "4"
+            },
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "iHKhjT9IfUbJ4ICKGHG8rnGyVto3KbTJ"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "Ejwuq3FSsbB3ohQDUm9Tx1m41j1KWrkE"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": {
+              "active": 0,
+              "capacity": 2,
+              "description": "Dữ liệu giả T05; không có thanh toán.",
+              "epoch": "epoch-t02-fixture",
+              "id": "9598fa2b117acf539d58c13539c0e7e4",
+              "observedAt": 1789727606,
+              "remaining": 2,
+              "schedule": {
+                "end": "2026-10-03T10:00:00+07:00",
+                "start": "2026-10-03T09:00:00+07:00"
+              },
+              "state": "OPEN",
+              "title": "Tên mới qua cập nhật danh sách",
+              "version": "5"
+            },
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "tQKwQwSc57MYhvV62xBrlNBVdEfqRVqU"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "data": {
+              "active": 0,
+              "capacity": 2,
+              "description": "Dữ liệu giả T05; không có thanh toán.",
+              "epoch": "epoch-t02-fixture",
+              "id": "9598fa2b117acf539d58c13539c0e7e4",
+              "observedAt": 1789727607,
+              "remaining": 2,
+              "schedule": {
+                "end": "2026-10-03T10:00:00+07:00",
+                "start": "2026-10-03T09:00:00+07:00"
+              },
+              "state": "OPEN",
+              "title": "Workshop cập nhật trực tiếp",
+              "version": "6"
+            },
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "G2uC0NCiPll1ESwHnXGqHs+xaY6XRQyy"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "K9ZQ4in3fROYBBeBBvlH9rLMxAINw-p3"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "e6Nw+wpKrqQyzujUiT8RaNS2hsdwKPVo"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "PUZ0-h3IMS8MCdZiB50XsmK9ISUD-mid"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "y8A0nWCYIDqbIRHbX8nbjAucnrHTaXBP"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "Zn97Zw21-QZDcnvs7cq8+2TkSYEc2VO9"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "vit60QGCNegvtuZ-8e6jtWFd7LU7BdEg"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "18aa6dQeq2j0LCyhXIRSLgp6H0qUA78O"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "uhRRn3l2o-jXzAZMlgcAfxY9OBpvFIgA"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "aw+htqiYGE7Nnp9XuobITYKMpwbsbLOU"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "5Uadnomtn-mTz6rrH0j6D6sFMAdz2rcs"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "91Xi-1kTneaU+namhKHTr+X4uBjDS9tr"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "hAjvUTWhu0UE6HLR2bajzqNbYyoWDp2d"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "cQfyas2LSy9lwjY1CZ96ddRY6rfZ6UoV"
+        },
+        {
+          "message": {
+            "audience": "public",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "phe0ZjAPiKKlrq6TRZvFuA3bMncqdUQH"
+        }
+      ]
+    },
+    {
+      "name": "private-own-V",
+      "messages": [
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "SUBSCRIBED"
+          },
+          "receipt": "6STgs39ar6jqYi50vrJXtnlXKG2Ra6xr"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "data": [],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "SyuluP+PIi5IAUsHhwzNyNfT+rfaV9O0"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "data": [
+              {
+                "actor": "V",
+                "epoch": "epoch-t02-fixture",
+                "registrations": [
+                  {
+                    "id": "985b6cf44325ba51c4de97f65b211d2f",
+                    "state": "ACTIVE"
+                  }
+                ],
+                "workshopId": "9598fa2b117acf539d58c13539c0e7e4",
+                "workshopVersion": "3"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "qmHMKOhrN4u9GGgVRMCRUhNglWLv3Q0W"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "data": [
+              {
+                "actor": "V",
+                "epoch": "epoch-t02-fixture",
+                "registrations": [
+                  {
+                    "id": "985b6cf44325ba51c4de97f65b211d2f",
+                    "state": "CANCELLED"
+                  }
+                ],
+                "workshopId": "9598fa2b117acf539d58c13539c0e7e4",
+                "workshopVersion": "4"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "Sc2ktt6kdDHTJvTZhmV1zs2e+DXe9Q34"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "EvAqX2bWcRDKAifpnGgzbaKRAfkipdrJ"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "data": [
+              {
+                "actor": "V",
+                "epoch": "epoch-t02-fixture",
+                "registrations": [
+                  {
+                    "id": "985b6cf44325ba51c4de97f65b211d2f",
+                    "state": "CANCELLED"
+                  }
+                ],
+                "workshopId": "9598fa2b117acf539d58c13539c0e7e4",
+                "workshopVersion": "5"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "a0lyibC5hxUW2aRhTcBjTyZ+Z2t9kcN1"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "data": [
+              {
+                "actor": "V",
+                "epoch": "epoch-t02-fixture",
+                "registrations": [
+                  {
+                    "id": "985b6cf44325ba51c4de97f65b211d2f",
+                    "state": "CANCELLED"
+                  }
+                ],
+                "workshopId": "9598fa2b117acf539d58c13539c0e7e4",
+                "workshopVersion": "6"
+              }
+            ],
+            "epoch": "epoch-t02-fixture",
+            "type": "SNAPSHOT"
+          },
+          "receipt": "h2jxwfRwXwLvHPFqYCBtT-IVZ4aICDcr"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "hZGaUaLF1vwylLOcnDBpYme1yDWC0S3c"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "NZlRZh5yUhPT0Wzii+FESAjwbfjrc40u"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "Fw4ppx1HVYe45lvyDUdofqmKZPJFZ6tS"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "sqKBelAT3xZdWzTNFP-MlaiG2QrCosig"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "nermQgEIptpNLjXQ6MzDtvp8tXcy2U9U"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "V0YUNMmqlUGWlgSGLGpKQ4WFqSTpBiRS"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "3e3sTZX7CIDzYOxmICc48hIcVy6r-UIS"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "nKNnkPoYgFq3plUvVR2qSz8h0j8czp26"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "eJwRhzTWEn1Kiuu0dFxNJenkBv7Oxg0n"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "sxN9B-dMNvBlYe73TSA7CEYfdnmMyMQH"
+        },
+        {
+          "message": {
+            "audience": "private",
+            "epoch": "epoch-t02-fixture",
+            "type": "HEARTBEAT"
+          },
+          "receipt": "GdiGYF1Iet9F3H-xFjB07V5bHQ4GC2ba"
+        }
+      ]
+    }
+  ],
+  "collectionPages": {
+    "timeline": [
+      {
+        "page": "public-list",
+        "kind": "SUBSCRIBE",
+        "audience": "public"
+      },
+      {
+        "page": "public-list",
+        "kind": "GET",
+        "audience": "public"
+      },
+      {
+        "page": "admin-list",
+        "kind": "SUBSCRIBE",
+        "audience": "admin"
+      },
+      {
+        "page": "admin-list",
+        "kind": "GET",
+        "audience": "admin"
+      },
+      {
+        "page": "me",
+        "kind": "GET",
+        "audience": "public"
+      },
+      {
+        "page": "me",
+        "kind": "GET",
+        "audience": "private"
+      },
+      {
+        "page": "me",
+        "kind": "SUBSCRIBE",
+        "audience": "public"
+      },
+      {
+        "page": "me",
+        "kind": "GET",
+        "audience": "public"
+      },
+      {
+        "page": "me",
+        "kind": "SUBSCRIBE",
+        "audience": "private"
+      },
+      {
+        "page": "me",
+        "kind": "GET",
+        "audience": "private"
+      },
+      {
+        "page": "me",
+        "kind": "SUBSCRIBE",
+        "audience": "private"
+      },
+      {
+        "page": "me",
+        "kind": "GET",
+        "audience": "private"
+      },
+      {
+        "page": "me",
+        "kind": "SUBSCRIBE",
+        "audience": "public"
+      },
+      {
+        "page": "me",
+        "kind": "GET",
+        "audience": "public"
+      },
+      {
+        "page": "me",
+        "kind": "SUBSCRIBE",
+        "audience": "public"
+      },
+      {
+        "page": "me",
+        "kind": "GET",
+        "audience": "public"
+      },
+      {
+        "page": "me",
+        "kind": "SUBSCRIBE",
+        "audience": "private"
+      },
+      {
+        "page": "me",
+        "kind": "GET",
+        "audience": "private"
+      }
+    ],
+    "lateHistoryHits": 1,
+    "meFaultHits": 2,
+    "newPageWrites": 0,
+    "fixtureScope": "Only old private GET and session503 explicitly injected; collection mutations and WSS use real TLS/backend"
+  },
+  "unfinishedSockets": []
+}

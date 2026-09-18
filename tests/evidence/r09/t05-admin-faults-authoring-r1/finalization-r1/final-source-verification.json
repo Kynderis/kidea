@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "webSourceBuildDependenciesUnchanged": {
+    "webSource": 31,
+    "webBuild": 180,
+    "webDependencies": 5255
+  },
+  "backendSourceClosure": 112,
+  "frozenIntegrationFiles": 23,
+  "runtimeAndPackageFilesUnchanged": true,
+  "newCurrentDocumentationLinksExist": true,
+  "pilotCommit": "75853eacebd1abfbe8beb36b347356826b737209",
+  "verificationAuthoringDiagnostic": {
+    "firstAttempt": "AssertionError webDependencies",
+    "cause": "helper dereferenced .bin symlinks instead of comparing link targets as original manifest does",
+    "finalAttempt": "exact original inventory semantics PASS, no inputs modified"
+  },
+  "scope": "post-public-save final closure; no new execution or acceptance"
+}

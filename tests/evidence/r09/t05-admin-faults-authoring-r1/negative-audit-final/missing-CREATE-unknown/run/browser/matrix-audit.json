@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checks": [
+    "SQL quick_check",
+    "one durable result/audit per actual admin intent including GET-only reconciliation",
+    "APPLIED deltas versus NO_CHANGE/REJECTED empty deltas",
+    "exact durable version/outbox obligations: changes only, no event for rejected/no-op/read",
+    "audit has no fake session token/CSRF/private body marker",
+    "capacity race preserves ten real registrations and capacity invariant",
+    "reverse race: durable FULL and no registration/version/outbox effect",
+    "unreceived intent absent after repeated GET-only UNKNOWN reconciliation",
+    "double pointer click CREATE/EDIT/STATE each has one durable admin audit/result"
+  ],
+  "notProductAcceptance": true,
+  "scope": "read-only durable SQL audit after owned backend shutdown; no crash/restore claim",
+  "adminIntents": 66,
+  "workshops": 20,
+  "databaseSha256": "ad1566ebe2378bf063d0beaf503df1e627a1f07e2aa6ce988e6aecac1dd318c4"
+}

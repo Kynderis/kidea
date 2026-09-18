@@ -1,0 +1,30 @@
+{
+  "attempts": [
+    {
+      "attempt": "integration-r1",
+      "result": "FAIL",
+      "run": "r09-web-83508322-4662-4bcd-9796-40f989554f21",
+      "evidence": "../t05-admin-faults-integration-r1",
+      "cause": "Harness incorrectly expected non-contract raw result field finality; real backend absent lookup returned 202 and state UNKNOWN. No application/runtime source change. Original assertions for no replay/disabled controls/version remain. Reverse race passed before failure; later groups NOT_RUN.",
+      "correction": "Use raw state UNKNOWN per Store reply and decodeAdminResult contract. Compare authoritative snapshot fields, excluding changing observation timestamp (review correction, not an observed second failure). Add exact AR-T06 CREATE absent lookup branch."
+    },
+    {
+      "attempt": "integration-r2",
+      "result": "FAIL",
+      "run": "r09-web-59082d8a-22fa-43c9-a4ba-7e2f18b2de79",
+      "evidence": "../t05-admin-faults-integration-r2",
+      "cause": "Unhandled 30s response timeout at double-click pointer group; browser result/matrix diagnostics absent. Raw error retained in run/logs/016.json stderr. No observed coordinates or receipt establish exactly why first pointer click failed to submit.",
+      "correction": "Scroll target into viewport and record/assert its geometry. Immediately handle response promise outcomes; race request arrival with the unchanged response deadline and rethrow failure through diagnostics. No relaxed domain/safety oracle or runtime source change."
+    },
+    {
+      "attempt": "integration-r3",
+      "result": "PASS",
+      "run": "r09-web-75194fa9-0430-43c1-b562-d29678db9050",
+      "evidence": "../t05-admin-faults-integration-r3",
+      "checks": 77,
+      "sqlAudit": "PASS 66 intents/20 workshops",
+      "manifestHash": "1b49df50b097ff24486d40a74ec1c56fbda4d3e5b1dce491c26955f31cbc58b6",
+      "observedPointerGeometry": "CREATE before scroll y755.73 and EDIT y982.52, viewport height720; both clicked at visible y504 after scroll. Consistent with r2 missed-target inference; r2 coordinates were not directly recorded."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "0f3d8661700743bb902cae2b2e7f0fa01447d01691b4220e34d334cd378f4695"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/process/promises:394\n    triggerUncaughtException(err, true /* fromPromise */);\n    ^\n\npage.waitForResponse: Timeout 30000ms exceeded while waiting for event \"response\"\n    at postResponse (/plan/matrix-browser.mjs:20:26)\n    at checkMatrix (/plan/matrix-browser.mjs:147:72)\n    at async file:///plan/browser.mjs:50:2 {\n  log: [],\n  name: 'TimeoutError'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}
