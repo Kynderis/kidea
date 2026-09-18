@@ -1,0 +1,196 @@
+diff --git a/backend/src/main.cpp b/backend/src/main.cpp
+index f4c2be0..f1ba9db 100644
+--- a/backend/src/main.cpp
++++ b/backend/src/main.cpp
+@@ -1,11 +1,14 @@
+ #include "workshop/admission.hpp"
+ #include "workshop/executor.hpp"
+ #include <atomic>
++#include <cerrno>
++#include <csignal>
+ #include <drogon/drogon.h>
+ #include <fstream>
+ #include <iostream>
+ #include <iterator>
+ #include <map>
++#include <pthread.h>
+ namespace {
+ std::string load(const char *file) {
+   std::ifstream in(file, std::ios::binary);
+@@ -35,6 +38,16 @@ int main(int argc, char **argv) {
+                    "--serve-component-fixture DB\n";
+       return 2;
+     }
++    // Block before creating any worker: every thread inherits this mask.
++    // The event loop consumes signals synchronously; no allocator, logger or
++    // queue operation runs in an asynchronous signal handler.
++    sigset_t terminationSignals{};
++    if (sigemptyset(&terminationSignals) != 0 ||
++        sigaddset(&terminationSignals, SIGTERM) != 0 ||
++        sigaddset(&terminationSignals, SIGINT) != 0 ||
++        pthread_sigmask(SIG_BLOCK, &terminationSignals, nullptr) != 0)
++      return 1;
++    bool signalWaitFailed = false;
+     auto executor = std::make_shared<workshop::Executor>(argv[2]);
+     auto active = std::make_shared<std::atomic<unsigned>>(0);
+     auto admission = std::make_shared<workshop::Admission>();
+@@ -108,10 +121,22 @@ int main(int argc, char **argv) {
+             finish(workshop::reply(503, "QUEUE_FULL", "UNKNOWN"));
+         },
+         {drogon::Get, drogon::Post});
++    drogon::app().disableSigtermHandling();
++    drogon::app().getLoop()->runEvery(0.05, [terminationSignals,
++                                             &signalWaitFailed]() {
++      const timespec noWait{};
++      const int signal = sigtimedwait(&terminationSignals, nullptr, &noWait);
++      if (signal == SIGTERM || signal == SIGINT) {
++        drogon::app().quit();
++      } else if (signal < 0 && errno != EAGAIN && errno != EINTR) {
++        signalWaitFailed = true;
++        drogon::app().quit();
++      }
++    });
+     drogon::app().run();
+     if (!executor->drain(std::chrono::seconds(30)))
+       std::_Exit(2);
+-    return 0;
++    return signalWaitFailed ? 1 : 0;
+   } catch (...) {
+     std::cerr << "backend startup/initialization failed; no payload logged\n";
+     return 1;
+diff --git a/backend/tests/shutdown.mjs b/backend/tests/shutdown.mjs
+new file mode 100644
+index 0000000..f1bbe23
+--- /dev/null
++++ b/backend/tests/shutdown.mjs
+@@ -0,0 +1,14 @@
++// Real signals against the built server, all presets; no warning exemptions.
++import {spawn} from 'node:child_process';
++import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
++import assert from 'node:assert/strict';
++const [binary,out]=process.argv.slice(2);mkdirSync(out);
++const seed=JSON.parse(readFileSync('/src/tests/t02/seed.json'));for(const s of seed.sessions)s.expires=Math.floor(Date.now()/1000)+300;writeFileSync(out+'/seed.json',JSON.stringify(seed));
++function start(args,label){const p=spawn(binary,args,{stdio:['ignore','pipe','pipe']});let stdout='',stderr='',error=null;p.stdout.on('data',b=>stdout+=b);p.stderr.on('data',b=>stderr+=b);p.on('error',e=>error=e.message);const done=new Promise(resolve=>p.on('close',(code,signal)=>{const r={code,signal,error};writeFileSync(out+'/'+label+'.stdout.txt',stdout);writeFileSync(out+'/'+label+'.stderr.txt',stderr);writeFileSync(out+'/'+label+'.json',JSON.stringify(r));resolve({...r,stderr});}));return {p,done};}
++const results=[];
++for(const signal of ['SIGTERM','SIGINT']){
++ const db=out+'/'+signal+'.sqlite';const init=start(['--initialize',db,'/src/backend/schema/001.sql',out+'/seed.json'],signal+'-init');let timeout=setTimeout(()=>init.p.kill('SIGKILL'),10000);const initialized=await init.done;clearTimeout(timeout);assert.equal(initialized.code,0);assert.equal(initialized.stderr,'');
++ const server=start(['--serve-component-fixture',db],signal);timeout=setTimeout(()=>server.p.kill('SIGKILL'),15000);
++ try{let ready=false;for(let i=0;i<100;i++){try{ready=(await fetch('http://127.0.0.1:8080/api/v1/workshops',{signal:AbortSignal.timeout(1000)})).status===200;}catch{/* Startup not yet ready; bounded retries below. */}if(ready)break;await new Promise(r=>setTimeout(r,50));}assert.ok(ready);assert.ok(server.p.kill(signal));const r=await server.done;assert.equal(r.code,0);assert.equal(r.signal,null);assert.equal(r.error,null);assert.equal(r.stderr,'');results.push({signal,status:'PASS',exit:r.code});}
++ finally{if(server.p.exitCode===null&&server.p.signalCode===null)server.p.kill('SIGKILL');await server.done;clearTimeout(timeout);writeFileSync(out+'/results.json',JSON.stringify(results,null,2));}
++}
+diff --git a/docs/kidea-handoff.md b/docs/kidea-handoff.md
+index 7524421..8e60e1a 100644
+--- a/docs/kidea-handoff.md
++++ b/docs/kidea-handoff.md
+@@ -1,5 +1,8 @@
+ # Workshop pilot — bàn giao hiện hành R09/C
+ 
++**Current full R09 authority:** R09 full-scope approved. R7 FAIL during HTTP shutdown: Drogon SIGTERM handler allocated twice under TSan. All18 HTTP assertions and796 case assertions passed. No new exception: signal-unsafe report stays BLOCKED. R8 uses blocked SIGTERM/SIGINT before worker creation and synchronous sigtimedwait in main event loop; quit runs outside async handler. New shutdown regression sends both signals to each preset and requires clean process exit/stderr. Vendor/DB logic/EX r2 policy unchanged. Full build rerun is covered by phase authority; no per-build approval.
++
++
+ Current: EX r2 approved and [implemented offline](t02/tsan-exception-r2.md).99offline tests/5static checks pass. R6 immutable logs classify under the newly approved policy only in an offline review; r6 remains FAIL. Build r7 NOT_RUN, requires final-source manifest approval; no new container execution granted.
+ 
+ Current: r6 ran once on source763ab55/manifest5685e999 and FAILED at TSan report classification. Dev/ASan each46CTest+796assertions+18HTTP passed. TSan controls and796functional assertions passed, but six exit66 cases include a NEW memcmp read at walTryBeginRead70780; TSanHTTP/release NOT_RUN. All3containers removed, evidence retained in Kidea tests/evidence/r09/t02-build-r6/. Parser now recognizes the exact Linux (deleted) suffix for previously approved stack pairs only;85offline tests pass and all six new-pair logs still BLOCKED. EX r2 proposed at Kidea docs/R09_T02_TSAN_GATE_R2_PROPOSAL.md; not approved/applied. Do not rerun consumed manifests or extend r1 silently.
+diff --git a/docs/t02/build-proposal.md b/docs/t02/build-proposal.md
+index 9d4f7f0..bcde0d9 100644
+--- a/docs/t02/build-proposal.md
++++ b/docs/t02/build-proposal.md
+@@ -1,5 +1,8 @@
+ # T02 build r1 — đề xuất thực thi hữu hạn, CHƯA DUYỆT
+ 
++**Current full R09 authority:** R09 full-scope approved. R7 FAIL during HTTP shutdown: Drogon SIGTERM handler allocated twice under TSan. All18 HTTP assertions and796 case assertions passed. No new exception: signal-unsafe report stays BLOCKED. R8 uses blocked SIGTERM/SIGINT before worker creation and synchronous sigtimedwait in main event loop; quit runs outside async handler. New shutdown regression sends both signals to each preset and requires clean process exit/stderr. Vendor/DB logic/EX r2 policy unchanged. Full build rerun is covered by phase authority; no per-build approval.
++
++
+ Current: EX r2 approved and [implemented offline](tsan-exception-r2.md).99offline tests/5static checks pass. R6 immutable logs classify under the newly approved policy only in an offline review; r6 remains FAIL. Build r7 NOT_RUN, requires final-source manifest approval; no new container execution granted.
+ 
+ Current: r6 ran once on source763ab55/manifest5685e999 and FAILED at TSan report classification. Dev/ASan each46CTest+796assertions+18HTTP passed. TSan controls and796functional assertions passed, but six exit66 cases include a NEW memcmp read at walTryBeginRead70780; TSanHTTP/release NOT_RUN. All3containers removed, evidence retained in Kidea tests/evidence/r09/t02-build-r6/. Parser now recognizes the exact Linux (deleted) suffix for previously approved stack pairs only;85offline tests pass and all six new-pair logs still BLOCKED. EX r2 proposed at Kidea docs/R09_T02_TSAN_GATE_R2_PROPOSAL.md; not approved/applied. Do not rerun consumed manifests or extend r1 silently.
+diff --git a/docs/t02/shutdown-r8.md b/docs/t02/shutdown-r8.md
+new file mode 100644
+index 0000000..2863b29
+--- /dev/null
++++ b/docs/t02/shutdown-r8.md
+@@ -0,0 +1,3 @@
++# R8 signal shutdown fix
++
++R09 full-scope approved. R7 FAIL during HTTP shutdown: Drogon SIGTERM handler allocated twice under TSan. All18 HTTP assertions and796 case assertions passed. No new exception: signal-unsafe report stays BLOCKED. R8 uses blocked SIGTERM/SIGINT before worker creation and synchronous sigtimedwait in main event loop; quit runs outside async handler. New shutdown regression sends both signals to each preset and requires clean process exit/stderr. Vendor/DB logic/EX r2 policy unchanged. Full build rerun is covered by phase authority; no per-build approval.
+diff --git a/scripts/t02/build.sh b/scripts/t02/build.sh
+index 5574239..8d9a6c5 100644
+--- a/scripts/t02/build.sh
++++ b/scripts/t02/build.sh
+@@ -55,4 +55,5 @@ if [ "$preset" = tsan ]; then
+ else
+   node /src/backend/tests/http.mjs "/build/$preset/workshop_backend" "/out/$preset/http" > "/out/$preset/http.stdout.txt" 2> "/out/$preset/http.stderr.txt"
+ fi
++node /src/backend/tests/shutdown.mjs "/build/$preset/workshop_backend" "/out/$preset/shutdown" > "/out/$preset/shutdown.stdout.txt" 2> "/out/$preset/shutdown.stderr.txt"
+ sha256sum "/build/$preset/workshop_backend" "/build/$preset/workshop_tests" > "/out/$preset/artifacts.sha256"
+diff --git a/scripts/t02/preflight.mjs b/scripts/t02/preflight.mjs
+index 712963a..f22c3c5 100644
+--- a/scripts/t02/preflight.mjs
++++ b/scripts/t02/preflight.mjs
+@@ -8,7 +8,7 @@ export const hash=p=>createHash('sha256').update(readFileSync(p)).digest('hex');
+ export function inventory(base,roots){const result={};function walk(rel){const p=path.join(base,rel),st=lstatSync(p);if(st.isSymbolicLink())throw Error('SYMLINK '+rel);if(st.isDirectory())for(const name of readdirSync(p).sort())walk(path.posix.join(rel,name));else if(st.isFile())result[rel]=hash(p);else throw Error('UNSUPPORTED '+rel);}for(const r of roots)walk(r);return result;}
+ export function verify(manifestPath){
+  const absolute=realpathSync(manifestPath),m=JSON.parse(readFileSync(absolute));
+- if(m.revision!=='r09-t02-build-r7'||m.exception?.id!=='EX-T02-WAL-01-r2'||m.exception?.policySha256!==hash(path.join(root,'tests/t02/tsan/policy.json')))throw Error('EXCEPTION_BINDING');
++ if(m.revision!=='r09-t02-build-r8'||m.exception?.id!=='EX-T02-WAL-01-r2'||m.exception?.policySha256!==hash(path.join(root,'tests/t02/tsan/policy.json')))throw Error('EXCEPTION_BINDING');
+  if(m.root!==root||m.status!=='PROPOSED_BUILD_NOT_RUN'||m.network!=='none'||m.image!=='sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92')throw Error('MANIFEST_SCOPE');
+  if(JSON.stringify(m.sourceRoots)!==JSON.stringify(['backend','contracts','tests/t02','scripts/t02','containers/t02','docs']))throw Error('SOURCE_ROOTS');
+  const actual=inventory(root,m.sourceRoots);delete actual['docs/t02/build-manifest.json'];
+diff --git a/tests/t02/tsan/policy.test.mjs b/tests/t02/tsan/policy.test.mjs
+index 4bf6d71..2c98184 100644
+--- a/tests/t02/tsan/policy.test.mjs
++++ b/tests/t02/tsan/policy.test.mjs
+@@ -47,4 +47,5 @@ for(const [name,text,extra]of [
+  ['new reader missing stack',r6.replace('#2 walTryBeginRead','#3 walTryBeginRead'),{}]
+ ])test(name,()=>assert.equal(run(text,extra).state,'BLOCKED'));
+ test('new reader still requires full data oracle',()=>assert.throws(()=>requireObservations(expected.observations.filter(x=>x.caseId!=='I09'),expected.observations)));
++test('r7 signal-unsafe allocation remains outside WAL exception',()=>assert.equal(run(read('signal-r7.txt')).state,'BLOCKED'));
+ console.log(JSON.stringify({state:'OFFLINE_TESTS_PASS' ,count,runtimeContainers:0}));
+diff --git a/tests/t02/tsan/signal-r7.txt b/tests/t02/tsan/signal-r7.txt
+new file mode 100644
+index 0000000..7a4d809
+--- /dev/null
++++ b/tests/t02/tsan/signal-r7.txt
+@@ -0,0 +1,42 @@
++==================
++WARNING: ThreadSanitizer: signal-unsafe call inside of a signal (pid=1296)
++    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.2+0xa6fae) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
++    #1 trantor::MpscQueue<std::function<void ()> >::enqueue(std::function<void ()>&&) /vendor/drogon/trantor/trantor/utils/LockFreeQueue.h:55 (workshop_backend+0x4aaf72) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #2 trantor::EventLoop::queueInLoop(std::function<void ()>&&) /vendor/drogon/trantor/trantor/net/EventLoop.cc:283 (workshop_backend+0x4a8eef) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #3 drogon::HttpAppFrameworkImpl::quit() /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:1038 (workshop_backend+0x1135a8) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #4 drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}::operator()() const /vendor/drogon/lib/src/HttpAppFrameworkImpl.h:744 (workshop_backend+0x11a475) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #5 void std::__invoke_impl<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>(std::__invoke_other, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&) /usr/include/c++/13/bits/invoke.h:61 (workshop_backend+0x13e1b7) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #6 std::enable_if<is_invocable_r_v<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>, void>::type std::__invoke_r<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>(drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&) /usr/include/c++/13/bits/invoke.h:111 (workshop_backend+0x134285) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #7 std::_Function_handler<void (), drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}>::_M_invoke(std::_Any_data const&) /usr/include/c++/13/bits/std_function.h:290 (workshop_backend+0x128a80) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #8 std::function<void ()>::operator()() const /usr/include/c++/13/bits/std_function.h:591 (workshop_backend+0xebeba) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #9 TERMFunction /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:173 (workshop_backend+0x10d6d6) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #10 CallUserSignalHandler ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:2096 (libtsan.so.2+0x517d5) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
++    #11 trantor::EpollPoller::poll(int, std::vector<trantor::Channel*, std::allocator<trantor::Channel*> >*) /vendor/drogon/trantor/trantor/net/inner/poller/EpollPoller.cc:80 (workshop_backend+0x5059af) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #12 trantor::EventLoop::loop() /vendor/drogon/trantor/trantor/net/EventLoop.cc:221 (workshop_backend+0x4a8845) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #13 drogon::HttpAppFrameworkImpl::run() /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:689 (workshop_backend+0x110716) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #14 main /src/backend/src/main.cpp:111 (workshop_backend+0x313b9) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++
++SUMMARY: ThreadSanitizer: signal-unsafe call inside of a signal ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 in operator new(unsigned long)
++==================
++==================
++WARNING: ThreadSanitizer: signal-unsafe call inside of a signal (pid=1296)
++    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.2+0xa6fae) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
++    #1 trantor::MpscQueue<std::function<void ()> >::BufferNode::BufferNode(std::function<void ()>&&) <null> (workshop_backend+0x4abef8) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #2 trantor::MpscQueue<std::function<void ()> >::enqueue(std::function<void ()>&&) /vendor/drogon/trantor/trantor/utils/LockFreeQueue.h:55 (workshop_backend+0x4aaf92) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #3 trantor::EventLoop::queueInLoop(std::function<void ()>&&) /vendor/drogon/trantor/trantor/net/EventLoop.cc:283 (workshop_backend+0x4a8eef) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #4 drogon::HttpAppFrameworkImpl::quit() /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:1038 (workshop_backend+0x1135a8) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #5 drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}::operator()() const /vendor/drogon/lib/src/HttpAppFrameworkImpl.h:744 (workshop_backend+0x11a475) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #6 void std::__invoke_impl<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>(std::__invoke_other, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&) /usr/include/c++/13/bits/invoke.h:61 (workshop_backend+0x13e1b7) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #7 std::enable_if<is_invocable_r_v<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>, void>::type std::__invoke_r<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>(drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&) /usr/include/c++/13/bits/invoke.h:111 (workshop_backend+0x134285) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #8 std::_Function_handler<void (), drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}>::_M_invoke(std::_Any_data const&) /usr/include/c++/13/bits/std_function.h:290 (workshop_backend+0x128a80) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #9 std::function<void ()>::operator()() const /usr/include/c++/13/bits/std_function.h:591 (workshop_backend+0xebeba) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #10 TERMFunction /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:173 (workshop_backend+0x10d6d6) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #11 CallUserSignalHandler ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:2096 (libtsan.so.2+0x517d5) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
++    #12 trantor::EpollPoller::poll(int, std::vector<trantor::Channel*, std::allocator<trantor::Channel*> >*) /vendor/drogon/trantor/trantor/net/inner/poller/EpollPoller.cc:80 (workshop_backend+0x5059af) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #13 trantor::EventLoop::loop() /vendor/drogon/trantor/trantor/net/EventLoop.cc:221 (workshop_backend+0x4a8845) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #14 drogon::HttpAppFrameworkImpl::run() /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:689 (workshop_backend+0x110716) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++    #15 main /src/backend/src/main.cpp:111 (workshop_backend+0x313b9) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
++
++SUMMARY: ThreadSanitizer: signal-unsafe call inside of a signal ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 in operator new(unsigned long)
++==================
++ThreadSanitizer: reported 2 warnings

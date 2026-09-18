@@ -1,0 +1,35 @@
+npm notice run kidea-r05-web-sample@0.0.0 test:unit
+npm notice run node --test tests/unit/*.test.mjs
+✔ decode public snapshot strips optional private additions (3.596538ms)
+✔ reject snapshot draft (0.341877ms)
+✔ reject snapshot overflow (0.191937ms)
+✔ reject snapshot numeric (1.20673ms)
+✔ reject snapshot mixed (0.17831ms)
+✔ reject snapshot capacity (0.131084ms)
+✔ reject snapshot schedule (0.145736ms)
+✔ uint64 exact ordering beyond JS integer (0.545588ms)
+✔ cancel rebook cannot be revived by old response (0.297086ms)
+✔ missing collection group does not erase known history (0.400693ms)
+✔ workshop versions independent (0.251516ms)
+✔ same version conflicting content remains unknown on repeated original (0.265182ms)
+✔ late response discarded after actor (0.234427ms)
+✔ late response discarded after epoch (0.108174ms)
+✔ late response discarded after login (0.082121ms)
+✔ late response discarded after unmount (0.143896ms)
+✔ reject invalid history [{"id":"A","state":"ACTIVE"},{"id":"A","state":"CANCELLED"}] (0.149614ms)
+✔ reject invalid history [{"id":"A","state":"ACTIVE"},{"id":"B","state":"ACTIVE"}] (0.095888ms)
+✔ reject invalid history [{"id":"A","state":"BAD"}] (0.066401ms)
+✔ sent persisted before POST; reload can only GET (0.290019ms)
+✔ storage failure blocks mutation (0.345738ms)
+✔ intent cannot cross actor or restored epoch (0.169957ms)
+✔ silent and known disconnect never claim fresh (0.162065ms)
+✔ schedule preserves both dates and explicit offset (0.348049ms)
+✔ observation time uses declared UTC and invalid stays unknown (1.521958ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 221.319421

@@ -1,5 +1,7 @@
 # R09-T02 build r7 — EX-T02-WAL-01 r2
 
+**Quyền hiện hành: Human đã duyệt [thực thi trọn R09](R09_EXECUTION_AUTHORITY.md).** Bao gồm r7 và các lượt sửa/kiểm tiếp theo trong giới hạn chung; không hỏi lại từng build. Những đoạn chờ quyền từng lượt bên dưới là lịch sử.
+
 **PROPOSED — chưa chạy, chờ quyền một lượt.** Human đã duyệt EX r2; [99 kiểm offline và 5 kiểm tĩnh PASS](../tests/evidence/r09/t02-tsan-policy-r2.md). Không xin lại ngoại lệ. Lượt r6 vẫn FAIL; r7 mới sẽ kiểm thực trên nguồn cuối.
 
 ## Nguồn/lệnh cụ thể

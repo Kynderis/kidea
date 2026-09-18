@@ -1,0 +1,24 @@
+npm notice run kidea-r05-web-sample@0.0.0 test:server
+npm notice run node --test tests/server/*.test.mjs
+✔ intro is prerendered readable HTML with noindex and fixed canonical (11.261051ms)
+✔ SSR list escapes title and strips all private fields (62.843663ms)
+✔ SSR detail retains public schedule and identity link (14.508677ms)
+✔ hidden and missing are generic without private body (13.117122ms)
+✔ concurrent actor cookies never forwarded into public SSR (14.096922ms)
+✔ bad backend invalid is unavailable, not empty success (8.425894ms)
+✔ bad backend malformed is unavailable, not empty success (7.197442ms)
+✔ Chrome public SSR navigation 360 zoom 1 (1007.554347ms)
+✔ Chrome public SSR navigation 1280 zoom 1 (619.945086ms)
+✔ Chrome public SSR navigation 360 zoom 2 (782.58863ms)
+✔ Chrome public SSR navigation 1280 zoom 2 (547.866792ms)
+✔ Chrome lost mutation response reload GET reconciliation and exact cancel (1485.108192ms)
+✔ Chrome JS disabled list and detail readable (902.795033ms)
+{"serverStdout":"Listening on http://127.0.0.1:63204\n","serverStderr":"\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n","scope":"Built Web + local fake API contract; not backend integration or product acceptance"}
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11840.220181

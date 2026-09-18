@@ -1,0 +1,42 @@
+==================
+WARNING: ThreadSanitizer: signal-unsafe call inside of a signal (pid=1296)
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.2+0xa6fae) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 trantor::MpscQueue<std::function<void ()> >::enqueue(std::function<void ()>&&) /vendor/drogon/trantor/trantor/utils/LockFreeQueue.h:55 (workshop_backend+0x4aaf72) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #2 trantor::EventLoop::queueInLoop(std::function<void ()>&&) /vendor/drogon/trantor/trantor/net/EventLoop.cc:283 (workshop_backend+0x4a8eef) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #3 drogon::HttpAppFrameworkImpl::quit() /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:1038 (workshop_backend+0x1135a8) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #4 drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}::operator()() const /vendor/drogon/lib/src/HttpAppFrameworkImpl.h:744 (workshop_backend+0x11a475) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #5 void std::__invoke_impl<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>(std::__invoke_other, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&) /usr/include/c++/13/bits/invoke.h:61 (workshop_backend+0x13e1b7) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #6 std::enable_if<is_invocable_r_v<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>, void>::type std::__invoke_r<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>(drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&) /usr/include/c++/13/bits/invoke.h:111 (workshop_backend+0x134285) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #7 std::_Function_handler<void (), drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}>::_M_invoke(std::_Any_data const&) /usr/include/c++/13/bits/std_function.h:290 (workshop_backend+0x128a80) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #8 std::function<void ()>::operator()() const /usr/include/c++/13/bits/std_function.h:591 (workshop_backend+0xebeba) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #9 TERMFunction /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:173 (workshop_backend+0x10d6d6) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #10 CallUserSignalHandler ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:2096 (libtsan.so.2+0x517d5) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #11 trantor::EpollPoller::poll(int, std::vector<trantor::Channel*, std::allocator<trantor::Channel*> >*) /vendor/drogon/trantor/trantor/net/inner/poller/EpollPoller.cc:80 (workshop_backend+0x5059af) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #12 trantor::EventLoop::loop() /vendor/drogon/trantor/trantor/net/EventLoop.cc:221 (workshop_backend+0x4a8845) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #13 drogon::HttpAppFrameworkImpl::run() /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:689 (workshop_backend+0x110716) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #14 main /src/backend/src/main.cpp:111 (workshop_backend+0x313b9) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+
+SUMMARY: ThreadSanitizer: signal-unsafe call inside of a signal ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 in operator new(unsigned long)
+==================
+==================
+WARNING: ThreadSanitizer: signal-unsafe call inside of a signal (pid=1296)
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.2+0xa6fae) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 trantor::MpscQueue<std::function<void ()> >::BufferNode::BufferNode(std::function<void ()>&&) <null> (workshop_backend+0x4abef8) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #2 trantor::MpscQueue<std::function<void ()> >::enqueue(std::function<void ()>&&) /vendor/drogon/trantor/trantor/utils/LockFreeQueue.h:55 (workshop_backend+0x4aaf92) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #3 trantor::EventLoop::queueInLoop(std::function<void ()>&&) /vendor/drogon/trantor/trantor/net/EventLoop.cc:283 (workshop_backend+0x4a8eef) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #4 drogon::HttpAppFrameworkImpl::quit() /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:1038 (workshop_backend+0x1135a8) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #5 drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}::operator()() const /vendor/drogon/lib/src/HttpAppFrameworkImpl.h:744 (workshop_backend+0x11a475) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #6 void std::__invoke_impl<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>(std::__invoke_other, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&) /usr/include/c++/13/bits/invoke.h:61 (workshop_backend+0x13e1b7) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #7 std::enable_if<is_invocable_r_v<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>, void>::type std::__invoke_r<void, drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&>(drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}&) /usr/include/c++/13/bits/invoke.h:111 (workshop_backend+0x134285) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #8 std::_Function_handler<void (), drogon::HttpAppFrameworkImpl::termSignalHandler_::{lambda()#1}>::_M_invoke(std::_Any_data const&) /usr/include/c++/13/bits/std_function.h:290 (workshop_backend+0x128a80) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #9 std::function<void ()>::operator()() const /usr/include/c++/13/bits/std_function.h:591 (workshop_backend+0xebeba) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #10 TERMFunction /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:173 (workshop_backend+0x10d6d6) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #11 CallUserSignalHandler ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:2096 (libtsan.so.2+0x517d5) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #12 trantor::EpollPoller::poll(int, std::vector<trantor::Channel*, std::allocator<trantor::Channel*> >*) /vendor/drogon/trantor/trantor/net/inner/poller/EpollPoller.cc:80 (workshop_backend+0x5059af) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #13 trantor::EventLoop::loop() /vendor/drogon/trantor/trantor/net/EventLoop.cc:221 (workshop_backend+0x4a8845) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #14 drogon::HttpAppFrameworkImpl::run() /vendor/drogon/lib/src/HttpAppFrameworkImpl.cc:689 (workshop_backend+0x110716) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+    #15 main /src/backend/src/main.cpp:111 (workshop_backend+0x313b9) (BuildId: 706fc5d67924f078bbdde8eb3d541ac6157cb87b)
+
+SUMMARY: ThreadSanitizer: signal-unsafe call inside of a signal ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 in operator new(unsigned long)
+==================
+ThreadSanitizer: reported 2 warnings

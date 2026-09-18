@@ -1,0 +1,38 @@
+npm notice run kidea-r05-web-sample@0.0.0 test:server
+npm notice run node --test tests/server/*.test.mjs
+✔ intro is prerendered readable HTML with noindex and fixed canonical (10.716294ms)
+✔ SSR list escapes title and strips all private fields (62.483871ms)
+✔ SSR detail retains public schedule and identity link (15.314376ms)
+✔ hidden and missing are generic without private body (12.233417ms)
+✔ concurrent actor cookies never forwarded into public SSR (14.030394ms)
+✔ bad backend invalid is unavailable, not empty success (7.585018ms)
+✔ bad backend malformed is unavailable, not empty success (6.067235ms)
+✔ Chrome public SSR navigation 360 zoom 1 (1311.146254ms)
+✔ Chrome public SSR navigation 1280 zoom 1 (553.813488ms)
+✔ Chrome public SSR navigation 360 zoom 2 (1001.912846ms)
+✔ Chrome public SSR navigation 1280 zoom 2 (696.058357ms)
+✖ Chrome lost mutation response reload GET reconciliation and exact cancel (3477.624798ms)
+✔ Chrome JS disabled list and detail readable (691.885343ms)
+{"serverStdout":"Listening on http://127.0.0.1:63284\n","serverStderr":"\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n","scope":"Built Web + local fake API contract; not backend integration or product acceptance"}
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15109.391144
+
+✖ failing tests:
+
+test at tests/server/public.test.mjs:32:9
+✖ Chrome lost mutation response reload GET reconciliation and exact cancel (3477.624798ms)
+  locator.waitFor: Timeout 2000ms exceeded.
+  Call log:
+  [2m  - waiting for getByRole('button', { name: 'Đăng ký', exact: true }) to be visible[22m
+  
+      at TestContext.<anonymous> (/Users/kendrick/Desktop/kidea-workshop-pilot/web/tests/server/public.test.mjs:47:278)
+      at async file:///Users/kendrick/Desktop/kidea-workshop-pilot/web/tests/server/public.test.mjs:32:3 {
+    name: 'TimeoutError',
+    log: [ "  - waiting for getByRole('button', { name: 'Đăng ký', exact: true }) to be visible" ]
+  }

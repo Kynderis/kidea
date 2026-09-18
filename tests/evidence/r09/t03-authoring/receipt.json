@@ -1,0 +1,46 @@
+{
+  "scope": "T03 partial public SSR and client state only; no actual backend integration/private registration or T03 acceptance",
+  "sourceHashes": {
+    "web/README.md": "60d37a7872f59cdd7d6bcf9d3aa5d1880526ac31b54697c09e1d52e2a2bcf48a",
+    "web/eslint.config.js": "f3cdebbcb8cf43ab8319b60e4ce6267d5ca8e75efebe5e197a9d6c49d059e23c",
+    "web/package-lock.json": "45f0a6b360bc70fa127e47c5df2ce3db3c9c5cb21d40216166bda80b63954545",
+    "web/package.json": "eaff7c1197077ec14ee2161fa1d0be6777eed231c7b230298c42ee737c2679ba",
+    "web/src/app.html": "3c432102be6077941e580467886374c73be132017d3f3851ec18cbc62aa1cc4e",
+    "web/src/lib/display.ts": "7d155f7cd2d0b3b6fd7ff1e89009b85f01f9f7194ec77087ae9214d3924f889d",
+    "web/src/lib/server/public.ts": "3bb5fa4a6c5b112581f91b1ff0e11dab071d74ac4eac950fb99a705c652198f5",
+    "web/src/lib/state.ts": "4ad2ad4deb741661702460afdd6e9981d7aa0d885f85a06d708eed585f064695",
+    "web/src/routes/+error.svelte": "8b030dbea88c35943904fa4814f31ebb3df2c02182a8ff797f9a6288884e5120",
+    "web/src/routes/+layout.svelte": "be2481dd948f6d4b078b47c5cc43bdd21df5c6ed908d1da987a28b47615aff73",
+    "web/src/routes/+page.svelte": "961da437fa7d7f3881dab30bdb28ba788483e17791bfd10ee636ccb03744abf7",
+    "web/src/routes/+page.ts": "9b61973cd5b564e8d732673fca7747092927ac8747205c1963a7312b14544594",
+    "web/src/routes/workshops/+page.server.ts": "a8697c305d052eaad8c0a34b27b5ede86b8a72455aba616cbc7fad794549a515",
+    "web/src/routes/workshops/+page.svelte": "ecf694cfd7ffcba1ed7ffe225dd464298f1d1eaf1f8338ff003aea4e5fa77c30",
+    "web/src/routes/workshops/[id]/+page.server.ts": "f5e3615b206f829d61a78bf19e28971e44a0a8df4aae3efec46972d48d3fa9f1",
+    "web/src/routes/workshops/[id]/+page.svelte": "800173cf48a8b8874f4f17d98f098c65890cb5a12b83ba19976f9966d717225d",
+    "web/svelte.config.js": "e205f6ea457920bd40b90d7d73950244fc2df05acc48fbfff926de796809c938",
+    "web/tests/server/public.test.mjs": "839cd7a0100473f3c35d274554dbd5ac1f90f4fb7fa8bb755816fc93f9923274",
+    "web/tests/unit/state.test.mjs": "c44812ac742e8530f15d92e6f0ca07e0073b5707e2cd9ae62d37bb3c2bd48f9d",
+    "web/tsconfig.json": "6202643ccf59d3e51f4215e6c8cb5a96245ccacc7a47496afdf4eb7b748fe928",
+    "web/vite.config.ts": "1e849563c7b7403a43680ae811628bef59bf4b008af9f2f76d8968c5101ddf5f"
+  },
+  "unitTests": 25,
+  "SSRAndBrowserTests": 12,
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "build": "PASS",
+  "dependencyInstall": "npm ci --offline --ignore-scripts; existing R05 cache; no network download",
+  "packageLockSameAsR05": true,
+  "remaining": [
+    "authenticated session/bootstrap and private history",
+    "registration/cancel/reconcile UI wired to actual backend",
+    "HTTPS ingress and full freshness/events",
+    "full T03 obligations and maps/G2"
+  ],
+  "notes": [
+    "Preserved first lint failures and SSR test URL-resolution error. Test now checks resolved navigation destination rather than absolute href serialization.",
+    "Source HTML language corrected en to vi.",
+    "Chrome screenshots reviewed at narrow 200%; no horizontal overflow.",
+    "Favicon requests return404; no page script errors in tested public routes."
+  ],
+  "pilotCommit": "6be33d1873091e060b64d994bdef3c0d32519bfb"
+}

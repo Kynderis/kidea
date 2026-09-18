@@ -1,0 +1,36 @@
+{
+  "runId": "t02-f692cc61-8e2c-4fcb-92c9-80647c53ebce",
+  "state": "FAIL",
+  "sourceUnchanged": true,
+  "sourceFiles": 75,
+  "result": {
+    "runId": "t02-f692cc61-8e2c-4fcb-92c9-80647c53ebce",
+    "manifestHash": "8e1dd7e7de27da211c3132c8d67258dcfc53ce61b72fe2e2bf4de036ea9d5793",
+    "results": [
+      {
+        "preset": "dev",
+        "code": 0,
+        "reason": null
+      },
+      {
+        "preset": "asan-ubsan",
+        "code": 0,
+        "reason": null
+      },
+      {
+        "preset": "tsan",
+        "code": 1,
+        "reason": "BUILD_OR_TEST_FAILED"
+      }
+    ],
+    "state": "FAIL",
+    "notProductAcceptance": true
+  },
+  "newFailure": "TSan signal-unsafe allocation during Drogon default SIGTERM handler; not WAL; not exempt",
+  "httpAssertions": 18,
+  "httpAssertionsPassed": 18,
+  "release": "NOT_RUN",
+  "containersRemaining": "",
+  "outputKiB": 1961284,
+  "capturedAt": "2026-09-18T01:52:58.988657+00:00"
+}

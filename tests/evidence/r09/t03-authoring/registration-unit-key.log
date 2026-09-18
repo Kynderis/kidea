@@ -1,0 +1,43 @@
+npm notice run kidea-r05-web-sample@0.0.0 test:unit
+npm notice run node --test tests/unit/*.test.mjs
+✔ decode public snapshot strips optional private additions (7.527276ms)
+✔ reject snapshot draft (0.445219ms)
+✔ reject snapshot overflow (0.653241ms)
+✔ reject snapshot numeric (0.181329ms)
+✔ reject snapshot mixed (0.18699ms)
+✔ reject snapshot capacity (0.178255ms)
+✔ reject snapshot schedule (0.159009ms)
+✔ uint64 exact ordering beyond JS integer (0.662944ms)
+✔ cancel rebook cannot be revived by old response (0.308106ms)
+✔ missing collection group does not erase known history (0.419791ms)
+✔ workshop versions independent (0.251092ms)
+✔ same version conflicting content remains unknown on repeated original (0.26566ms)
+✔ late response discarded after actor (0.263888ms)
+✔ late response discarded after epoch (0.117568ms)
+✔ late response discarded after login (0.103743ms)
+✔ late response discarded after unmount (0.149302ms)
+✔ reject invalid history [{"id":"A","state":"ACTIVE"},{"id":"A","state":"CANCELLED"}] (0.11259ms)
+✔ reject invalid history [{"id":"A","state":"ACTIVE"},{"id":"B","state":"ACTIVE"}] (0.070346ms)
+✔ reject invalid history [{"id":"A","state":"BAD"}] (0.067493ms)
+✔ sent persisted before POST; reload can only GET (0.306017ms)
+✔ storage failure blocks mutation (0.355691ms)
+✔ intent cannot cross actor or restored epoch (0.192378ms)
+✔ silent and known disconnect never claim fresh (0.14287ms)
+✔ schedule preserves both dates and explicit offset (0.326044ms)
+✔ observation time uses declared UTC and invalid stays unknown (1.682433ms)
+✔ historical registration result decodes but does not change current history (0.296277ms)
+✔ uncertain or mismatched reply {"state":"UNKNOWN"} (0.131513ms)
+✔ uncertain or mismatched reply {"effect":"REJECTED"} (0.079701ms)
+✔ uncertain or mismatched reply {"workshopId":"other"} (0.072826ms)
+✔ uncertain or mismatched reply {"registrationId":""} (0.079864ms)
+✔ uncertain or mismatched reply {"code":"CREATED"} (0.080807ms)
+✔ uncertain or mismatched reply {"code":"NEW_UNKNOWN_CODE"} (0.067305ms)
+✔ cancellation reply must match exact registration (0.187373ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 228.658821

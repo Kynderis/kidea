@@ -1,5 +1,9 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
+**Tiếp tục trọn R09:** [R7](tests/evidence/r09/t02-build-r7.md) FAIL ở signal handler HTTP, đã sửa đường dừng và thêm regression, không mở ngoại lệ. R8 đang chạy theo quyền chung (source1a4dc77, manifestffcaa888);100offline PASS. [Web T03](tests/evidence/r09/t03-authoring.md) có33unit/13SSR–Chrome PASS trên API giả (pilot0d50d3c), chưa nối backend thật. [View hiện tại](tests/evidence/r09/pilot-view-current.md)24mẫu Chrome đạt khi không build, giữ FAIL dưới tải; chưa khép T14/toàn R09.
+
+**Quyền hiện hành: Human đã duyệt [thực thi trọn R09](docs/R09_EXECUTION_AUTHORITY.md).** Bao gồm r7 và các lượt sửa/kiểm tiếp theo trong giới hạn chung; không hỏi lại từng build. Những đoạn chờ quyền từng lượt bên dưới là lịch sử.
+
 **Hiện hành — EX-T02-WAL-01 r2 đã duyệt, triển khai offline:** [99 kiểm offline/5 kiểm tĩnh PASS](tests/evidence/r09/t02-tsan-policy-r2.md). Đúng một cặp memcmp mới được phân loại có điều kiện; r6 gốc vẫn FAIL. Source55640a5/HEADe5265da sạch, pilot không remote; public SAVE/READ giữ W-001/gates. [Build r7](docs/R09_T02_BUILD_R7_REVIEW.md) chờ quyền một lượt, manifest8e1dd7e7,75source/824vendor preflight PASS. Chưa chạy container mới; TSanHTTP/release chưa kiểm lại. T02/R09 chưa nghiệm thu, R10 chưa mở. Các đoạn sau giữ lịch sử.
 
 **Hiện hành — r6 đã duyệt/chạy, FAIL tại TSan gate:** [Kết quả](tests/evidence/r09/t02-build-r6.md). Dev/ASan mỗi46CTest+796assertions+18HTTP đạt; TSan controls/796functional assertions đạt nhưng6exit66/12report, có cặp memcmp mới ngoài EX r1. TSanHTTP/release NOT_RUN. Sửa parser suffix (deleted),85kiểm offline đạt, sáu log mới vẫn BLOCKED; không mở rộng ngoại lệ. [EX r2](docs/R09_T02_TSAN_GATE_R2_PROPOSAL.md) chờ quyết định đúng cặp mới.3container đã thu hồi; source6308476/HEADf52d38c sạch/không remote, publicSAVE giữ W-001/gates. R09/T02 chưa nghiệm thu/R10 chưa mở. Các đoạn dưới là lịch sử.

@@ -1,0 +1,201 @@
+npm notice run kidea-r05-web-sample@0.0.0 check
+npm notice run svelte-check --tsconfig ./tsconfig.json --fail-on-warnings
+Loading svelte-check in workspace: /Users/kendrick/Desktop/kidea-workshop-pilot/web
+Getting Svelte diagnostics...
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:7:14
+Warn: It looks like you're using the `$state` rune, but there is a local binding called `state`. Referencing a local variable with a `$` prefix will create a store subscription. Please rename `state` to avoid the ambiguity
+https://svelte.dev/e/store_rune_conflict (svelte)
+ let {workshop}:{workshop:Snapshot}=$props();
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:14
+Warn: It looks like you're using the `$state` rune, but there is a local binding called `state`. Referencing a local variable with a `$` prefix will create a store subscription. Please rename `state` to avoid the ambiguity
+https://svelte.dev/e/store_rune_conflict (svelte)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:49
+Warn: It looks like you're using the `$state` rune, but there is a local binding called `state`. Referencing a local variable with a `$` prefix will create a store subscription. Please rename `state` to avoid the ambiguity
+https://svelte.dev/e/store_rune_conflict (svelte)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:83
+Warn: It looks like you're using the `$state` rune, but there is a local binding called `state`. Referencing a local variable with a `$` prefix will create a store subscription. Please rename `state` to avoid the ambiguity
+https://svelte.dev/e/store_rune_conflict (svelte)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:130
+Warn: It looks like you're using the `$state` rune, but there is a local binding called `state`. Referencing a local variable with a `$` prefix will create a store subscription. Please rename `state` to avoid the ambiguity
+https://svelte.dev/e/store_rune_conflict (svelte)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:7:6
+Warn: `session` is updated, but is not declared with `$state(...)`. Changing its value will not correctly trigger updates
+https://svelte.dev/e/non_reactive_update (svelte)
+ let {workshop}:{workshop:Snapshot}=$props();
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:6
+Warn: `history` is updated, but is not declared with `$state(...)`. Changing its value will not correctly trigger updates
+https://svelte.dev/e/non_reactive_update (svelte)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:41
+Warn: `pending` is updated, but is not declared with `$state(...)`. Changing its value will not correctly trigger updates
+https://svelte.dev/e/non_reactive_update (svelte)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:75
+Warn: `message` is updated, but is not declared with `$state(...)`. Changing its value will not correctly trigger updates
+https://svelte.dev/e/non_reactive_update (svelte)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:125
+Warn: `busy` is updated, but is not declared with `$state(...)`. Changing its value will not correctly trigger updates
+https://svelte.dev/e/non_reactive_update (svelte)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:7:14
+Error: Block-scoped variable '$state' used before its declaration. (ts)
+ let {workshop}:{workshop:Snapshot}=$props();
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:7:14
+Error: Untyped function calls may not accept type arguments. (ts)
+ let {workshop}:{workshop:Snapshot}=$props();
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:14
+Error: Block-scoped variable '$state' used before its declaration. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:14
+Error: Untyped function calls may not accept type arguments. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:49
+Error: Block-scoped variable '$state' used before its declaration. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:49
+Error: Untyped function calls may not accept type arguments. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:83
+Error: Block-scoped variable '$state' used before its declaration. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:130
+Error: Block-scoped variable '$state' used before its declaration. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:43:52
+Error: Parameter 'r' implicitly has an 'any' type. (ts)
+ onMount(()=>{mounted=true;void refresh();const show=()=>{void refresh();};window.addEventListener('pageshow',show);return()=>{mounted=false;generation++;contextAbort.abort();state.unmount();window.removeEventListener('pageshow',show);};});
+ const active=$derived(history?.registrations.find(r=>r.state==='ACTIVE'));
+</script>
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:7:14
+Error: Cannot use 'state' as a store. 'state' needs to be an object with a subscribe method on it.
+
+No overload matches this call.
+  Overload 1 of 2, '(store: SvelteStore<any>): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'.
+  Overload 2 of 2, '(store: SvelteStore<any> | null | undefined): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'. (ts)
+ let {workshop}:{workshop:Snapshot}=$props();
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:14
+Error: Cannot use 'state' as a store. 'state' needs to be an object with a subscribe method on it.
+
+No overload matches this call.
+  Overload 1 of 2, '(store: SvelteStore<any>): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'.
+  Overload 2 of 2, '(store: SvelteStore<any> | null | undefined): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:49
+Error: Cannot use 'state' as a store. 'state' needs to be an object with a subscribe method on it.
+
+No overload matches this call.
+  Overload 1 of 2, '(store: SvelteStore<any>): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'.
+  Overload 2 of 2, '(store: SvelteStore<any> | null | undefined): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:83
+Error: Cannot use 'state' as a store. 'state' needs to be an object with a subscribe method on it.
+
+No overload matches this call.
+  Overload 1 of 2, '(store: SvelteStore<any>): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'.
+  Overload 2 of 2, '(store: SvelteStore<any> | null | undefined): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/Registration.svelte:8:130
+Error: Cannot use 'state' as a store. 'state' needs to be an object with a subscribe method on it.
+
+No overload matches this call.
+  Overload 1 of 2, '(store: SvelteStore<any>): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'.
+  Overload 2 of 2, '(store: SvelteStore<any> | null | undefined): any', gave the following error.
+    Argument of type 'ClientState' is not assignable to parameter of type 'SvelteStore<any>'.
+      Property 'subscribe' is missing in type 'ClientState' but required in type 'SvelteStore<any>'. (ts)
+ let session=$state<{actor:string;epoch:string;csrf:string;participant:boolean}|null>(null);
+ let history=$state<History|null>(null),pending=$state<Intent|null>(null),message=$state('Cần phiên tài khoản thử hợp lệ.'),busy=$state(false);
+ let dialog:HTMLDialogElement;let generation=0;let mounted=false;let contextAbort=new AbortController();
+
+====================================
+svelte-check found 14 errors and 10 warnings in 1 file

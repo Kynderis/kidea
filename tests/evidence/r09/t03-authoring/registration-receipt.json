@@ -1,0 +1,38 @@
+{
+  "pilotCommit": "0d50d3cd5615271469d1492a62df24738a1435db",
+  "sourceHashes": {
+    "web/README.md": "52c4641344c80810a4e86e5f08483d53308c3b2f30ca137ce1cf262c6aca29b5",
+    "web/eslint.config.js": "703f663e57202ccdd9cf7c7c8b0b9233c30c0e2f37cbbec1cd067e84b949188d",
+    "web/package-lock.json": "45f0a6b360bc70fa127e47c5df2ce3db3c9c5cb21d40216166bda80b63954545",
+    "web/package.json": "eaff7c1197077ec14ee2161fa1d0be6777eed231c7b230298c42ee737c2679ba",
+    "web/src/app.html": "3c432102be6077941e580467886374c73be132017d3f3851ec18cbc62aa1cc4e",
+    "web/src/lib/Registration.svelte": "86641bf7b2a00be5049f90dc1801fd4a4d1785704fe3ca0566f494ab0f5601d3",
+    "web/src/lib/display.ts": "7d155f7cd2d0b3b6fd7ff1e89009b85f01f9f7194ec77087ae9214d3924f889d",
+    "web/src/lib/reply.ts": "40995d8f89f65b203ec03ee69889642bc310bf11c020da05568054d4b4f9bcb4",
+    "web/src/lib/server/public.ts": "3bb5fa4a6c5b112581f91b1ff0e11dab071d74ac4eac950fb99a705c652198f5",
+    "web/src/lib/state.ts": "4ad2ad4deb741661702460afdd6e9981d7aa0d885f85a06d708eed585f064695",
+    "web/src/routes/+error.svelte": "8b030dbea88c35943904fa4814f31ebb3df2c02182a8ff797f9a6288884e5120",
+    "web/src/routes/+layout.svelte": "be2481dd948f6d4b078b47c5cc43bdd21df5c6ed908d1da987a28b47615aff73",
+    "web/src/routes/+page.svelte": "961da437fa7d7f3881dab30bdb28ba788483e17791bfd10ee636ccb03744abf7",
+    "web/src/routes/+page.ts": "9b61973cd5b564e8d732673fca7747092927ac8747205c1963a7312b14544594",
+    "web/src/routes/workshops/+page.server.ts": "a8697c305d052eaad8c0a34b27b5ede86b8a72455aba616cbc7fad794549a515",
+    "web/src/routes/workshops/+page.svelte": "ecf694cfd7ffcba1ed7ffe225dd464298f1d1eaf1f8338ff003aea4e5fa77c30",
+    "web/src/routes/workshops/[id]/+page.server.ts": "f5e3615b206f829d61a78bf19e28971e44a0a8df4aae3efec46972d48d3fa9f1",
+    "web/src/routes/workshops/[id]/+page.svelte": "f0c712fb041cecc71e3e92c09bf9820904dc440c12d900c2ab0b6ba1fc0ec2cf",
+    "web/svelte.config.js": "e205f6ea457920bd40b90d7d73950244fc2df05acc48fbfff926de796809c938",
+    "web/tests/server/public.test.mjs": "282ae4c6d10d2148e48cb4162cd7fea76bc22a4b4ca1e878e993117d4cb58fb2",
+    "web/tests/unit/state.test.mjs": "4a08fdf41587e3a64019d95b9466e43be0f2db5eba0ddf563faf5ab4f2ae67db",
+    "web/tsconfig.json": "6202643ccf59d3e51f4215e6c8cb5a96245ccacc7a47496afdf4eb7b748fe928",
+    "web/vite.config.ts": "1e849563c7b7403a43680ae811628bef59bf4b008af9f2f76d8968c5101ddf5f"
+  },
+  "unitPassed": 33,
+  "SSRChromePassed": 13,
+  "check": "PASS no warnings",
+  "lint": "PASS",
+  "build": "PASS",
+  "integration": "FAKE_API_ONLY; actual session endpoint and HTTPS ingress not implemented",
+  "failuresRetained": [
+    "Svelte state variable collided with $state rune; renamed clientState",
+    "route reused pending intent from W on W2; keyed component by workshop/epoch fixes and regression passes"
+  ]
+}

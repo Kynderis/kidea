@@ -1,0 +1,173 @@
+==================
+WARNING: ThreadSanitizer: data race (pid=877)
+  Write of size 8 at 0x7ff7c3604030 by thread T2 (mutexes: write M0):
+    #0 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 (libtsan.so.2+0x8bd30) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:107 (libtsan.so.2+0x8bd30)
+    #2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68469 (workshop_tsan_control+0x51f67) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #3 walFrames /vendor/sqlite/sqlite3.c:71777 (workshop_tsan_control+0x5847f) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #4 sqlite3WalFrames /vendor/sqlite/sqlite3.c:71803 (workshop_tsan_control+0x5851b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #5 pagerWalFrames /vendor/sqlite/sqlite3.c:62900 (workshop_tsan_control+0x48a0d) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #6 sqlite3PagerCommitPhaseOne /vendor/sqlite/sqlite3.c:66193 (workshop_tsan_control+0x4f23b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #7 sqlite3BtreeCommitPhaseOne /vendor/sqlite/sqlite3.c:77555 (workshop_tsan_control+0x635db) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #8 vdbeCommit /vendor/sqlite/sqlite3.c:90879 (workshop_tsan_control+0x886c7) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #9 sqlite3VdbeHalt /vendor/sqlite/sqlite3.c:91295 (workshop_tsan_control+0x896e2) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #10 sqlite3VdbeExec /vendor/sqlite/sqlite3.c:100648 (workshop_tsan_control+0x9f114) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #11 sqlite3Step /vendor/sqlite/sqlite3.c:94551 (workshop_tsan_control+0x913ba) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #12 sqlite3_step /vendor/sqlite/sqlite3.c:94612 (workshop_tsan_control+0x9180b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #13 sqlite3_exec /vendor/sqlite/sqlite3.c:142366 (workshop_tsan_control+0x111130) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #14 exec /src/tests/t02/sqlite-diagnostic.cpp:32 (workshop_tsan_control+0xe07d) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #15 writes /src/tests/t02/sqlite-diagnostic.cpp:54 (workshop_tsan_control+0xe43e) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #16 operator() /src/tests/t02/sqlite-diagnostic.cpp:106 (workshop_tsan_control+0xe560) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #17 __invoke_impl<void, main(int, char**)::<lambda((anonymous namespace)::Db&, std::__exception_ptr::exception_ptr&)>, std::reference_wrapper<(anonymous namespace)::Db>, std::reference_wrapper<std::__exception_ptr::exception_ptr> > /usr/include/c++/13/bits/invoke.h:61 (workshop_tsan_control+0x10387) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #18 __invoke<main(int, char**)::<lambda((anonymous namespace)::Db&, std::__exception_ptr::exception_ptr&)>, std::reference_wrapper<(anonymous namespace)::Db>, std::reference_wrapper<std::__exception_ptr::exception_ptr> > /usr/include/c++/13/bits/invoke.h:96 (workshop_tsan_control+0x101d9) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #19 _M_invoke<0, 1, 2> /usr/include/c++/13/bits/std_thread.h:292 (workshop_tsan_control+0x10030) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #20 operator() /usr/include/c++/13/bits/std_thread.h:299 (workshop_tsan_control+0xff56) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #21 _M_run /usr/include/c++/13/bits/std_thread.h:244 (workshop_tsan_control+0xfeba) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #22 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Previous read of size 8 at 0x7ff7c3604030 by thread T1 (mutexes: write M1):
+    #0 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 (libtsan.so.2+0x8bd30) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:107 (libtsan.so.2+0x8bd30)
+    #2 walIndexTryHdr /vendor/sqlite/sqlite3.c:70135 (workshop_tsan_control+0x55614) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #3 walIndexReadHdr /vendor/sqlite/sqlite3.c:70218 (workshop_tsan_control+0x558b0) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #4 walTryBeginRead /vendor/sqlite/sqlite3.c:70600 (workshop_tsan_control+0x5618c) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #5 walBeginReadTransaction /vendor/sqlite/sqlite3.c:70930 (workshop_tsan_control+0x56603) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #6 sqlite3WalBeginReadTransaction /vendor/sqlite/sqlite3.c:71014 (workshop_tsan_control+0x56664) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #7 pagerBeginReadTransaction /vendor/sqlite/sqlite3.c:62941 (workshop_tsan_control+0x48b6d) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #8 sqlite3PagerSharedLock /vendor/sqlite/sqlite3.c:65125 (workshop_tsan_control+0x4d0e8) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #9 lockBtree /vendor/sqlite/sqlite3.c:76515 (workshop_tsan_control+0x609e3) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #10 btreeBeginTrans /vendor/sqlite/sqlite3.c:76936 (workshop_tsan_control+0x618e2) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #11 sqlite3BtreeBeginTrans /vendor/sqlite/sqlite3.c:77036 (workshop_tsan_control+0x61e07) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #12 sqlite3VdbeExec /vendor/sqlite/sqlite3.c:100734 (workshop_tsan_control+0x9f3c1) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #13 sqlite3Step /vendor/sqlite/sqlite3.c:94551 (workshop_tsan_control+0x913ba) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #14 sqlite3_step /vendor/sqlite/sqlite3.c:94612 (workshop_tsan_control+0x9180b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #15 sqlite3_exec /vendor/sqlite/sqlite3.c:142366 (workshop_tsan_control+0x111130) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #16 exec /src/tests/t02/sqlite-diagnostic.cpp:32 (workshop_tsan_control+0xe07d) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #17 writes /src/tests/t02/sqlite-diagnostic.cpp:52 (workshop_tsan_control+0xe412) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #18 operator() /src/tests/t02/sqlite-diagnostic.cpp:106 (workshop_tsan_control+0xe560) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #19 __invoke_impl<void, main(int, char**)::<lambda((anonymous namespace)::Db&, std::__exception_ptr::exception_ptr&)>, std::reference_wrapper<(anonymous namespace)::Db>, std::reference_wrapper<std::__exception_ptr::exception_ptr> > /usr/include/c++/13/bits/invoke.h:61 (workshop_tsan_control+0x10387) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #20 __invoke<main(int, char**)::<lambda((anonymous namespace)::Db&, std::__exception_ptr::exception_ptr&)>, std::reference_wrapper<(anonymous namespace)::Db>, std::reference_wrapper<std::__exception_ptr::exception_ptr> > /usr/include/c++/13/bits/invoke.h:96 (workshop_tsan_control+0x101d9) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #21 _M_invoke<0, 1, 2> /usr/include/c++/13/bits/std_thread.h:292 (workshop_tsan_control+0x10030) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #22 operator() /usr/include/c++/13/bits/std_thread.h:299 (workshop_tsan_control+0xff56) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #23 _M_run /usr/include/c++/13/bits/std_thread.h:244 (workshop_tsan_control+0xfeba) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #24 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Location is global '<null>' at 0x000000000000 (db.sqlite-shm+0x30)
+
+  Mutex M0 (0x720c00000308) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1315 (libtsan.so.2+0x594cd) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 pthreadMutexAlloc /vendor/sqlite/sqlite3.c:30782 (workshop_tsan_control+0x1fead) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #2 sqlite3MutexAlloc /vendor/sqlite/sqlite3.c:30301 (workshop_tsan_control+0x1fc1b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #3 openDatabase /vendor/sqlite/sqlite3.c:190800 (workshop_tsan_control+0x1962d0) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #4 sqlite3_open_v2 /vendor/sqlite/sqlite3.c:191106 (workshop_tsan_control+0x196ca5) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #5 Db /src/tests/t02/sqlite-diagnostic.cpp:17 (workshop_tsan_control+0xdee4) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #6 main /src/tests/t02/sqlite-diagnostic.cpp:90 (workshop_tsan_control+0xebb0) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+
+  Mutex M1 (0x720c00000218) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1315 (libtsan.so.2+0x594cd) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 pthreadMutexAlloc /vendor/sqlite/sqlite3.c:30782 (workshop_tsan_control+0x1fead) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #2 sqlite3MutexAlloc /vendor/sqlite/sqlite3.c:30301 (workshop_tsan_control+0x1fc1b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #3 openDatabase /vendor/sqlite/sqlite3.c:190800 (workshop_tsan_control+0x1962d0) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #4 sqlite3_open_v2 /vendor/sqlite/sqlite3.c:191106 (workshop_tsan_control+0x196ca5) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #5 Db /src/tests/t02/sqlite-diagnostic.cpp:17 (workshop_tsan_control+0xdee4) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #6 main /src/tests/t02/sqlite-diagnostic.cpp:90 (workshop_tsan_control+0xeb51) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+
+  Thread T2 (tid=880, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 main /src/tests/t02/sqlite-diagnostic.cpp:112 (workshop_tsan_control+0xedfd) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+
+  Thread T1 (tid=879, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 main /src/tests/t02/sqlite-diagnostic.cpp:111 (workshop_tsan_control+0xeda3) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+
+SUMMARY: ThreadSanitizer: data race ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy
+==================
+==================
+WARNING: ThreadSanitizer: data race (pid=877)
+  Write of size 8 at 0x7ff7c3604000 by thread T2 (mutexes: write M0):
+    #0 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 (libtsan.so.2+0x8bd30) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:107 (libtsan.so.2+0x8bd30)
+    #2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68471 (workshop_tsan_control+0x51f8f) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #3 walFrames /vendor/sqlite/sqlite3.c:71777 (workshop_tsan_control+0x5847f) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #4 sqlite3WalFrames /vendor/sqlite/sqlite3.c:71803 (workshop_tsan_control+0x5851b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #5 pagerWalFrames /vendor/sqlite/sqlite3.c:62900 (workshop_tsan_control+0x48a0d) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #6 sqlite3PagerCommitPhaseOne /vendor/sqlite/sqlite3.c:66193 (workshop_tsan_control+0x4f23b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #7 sqlite3BtreeCommitPhaseOne /vendor/sqlite/sqlite3.c:77555 (workshop_tsan_control+0x635db) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #8 vdbeCommit /vendor/sqlite/sqlite3.c:90879 (workshop_tsan_control+0x886c7) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #9 sqlite3VdbeHalt /vendor/sqlite/sqlite3.c:91295 (workshop_tsan_control+0x896e2) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #10 sqlite3VdbeExec /vendor/sqlite/sqlite3.c:100648 (workshop_tsan_control+0x9f114) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #11 sqlite3Step /vendor/sqlite/sqlite3.c:94551 (workshop_tsan_control+0x913ba) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #12 sqlite3_step /vendor/sqlite/sqlite3.c:94612 (workshop_tsan_control+0x9180b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #13 sqlite3_exec /vendor/sqlite/sqlite3.c:142366 (workshop_tsan_control+0x111130) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #14 exec /src/tests/t02/sqlite-diagnostic.cpp:32 (workshop_tsan_control+0xe07d) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #15 writes /src/tests/t02/sqlite-diagnostic.cpp:54 (workshop_tsan_control+0xe43e) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #16 operator() /src/tests/t02/sqlite-diagnostic.cpp:106 (workshop_tsan_control+0xe560) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #17 __invoke_impl<void, main(int, char**)::<lambda((anonymous namespace)::Db&, std::__exception_ptr::exception_ptr&)>, std::reference_wrapper<(anonymous namespace)::Db>, std::reference_wrapper<std::__exception_ptr::exception_ptr> > /usr/include/c++/13/bits/invoke.h:61 (workshop_tsan_control+0x10387) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #18 __invoke<main(int, char**)::<lambda((anonymous namespace)::Db&, std::__exception_ptr::exception_ptr&)>, std::reference_wrapper<(anonymous namespace)::Db>, std::reference_wrapper<std::__exception_ptr::exception_ptr> > /usr/include/c++/13/bits/invoke.h:96 (workshop_tsan_control+0x101d9) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #19 _M_invoke<0, 1, 2> /usr/include/c++/13/bits/std_thread.h:292 (workshop_tsan_control+0x10030) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #20 operator() /usr/include/c++/13/bits/std_thread.h:299 (workshop_tsan_control+0xff56) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #21 _M_run /usr/include/c++/13/bits/std_thread.h:244 (workshop_tsan_control+0xfeba) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #22 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Previous read of size 8 at 0x7ff7c3604000 by thread T1 (mutexes: write M1):
+    #0 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 (libtsan.so.2+0x8bd30) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:107 (libtsan.so.2+0x8bd30)
+    #2 walIndexTryHdr /vendor/sqlite/sqlite3.c:70133 (workshop_tsan_control+0x555e6) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #3 walIndexReadHdr /vendor/sqlite/sqlite3.c:70218 (workshop_tsan_control+0x558b0) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #4 walTryBeginRead /vendor/sqlite/sqlite3.c:70600 (workshop_tsan_control+0x5618c) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #5 walBeginReadTransaction /vendor/sqlite/sqlite3.c:70930 (workshop_tsan_control+0x56603) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #6 sqlite3WalBeginReadTransaction /vendor/sqlite/sqlite3.c:71014 (workshop_tsan_control+0x56664) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #7 pagerBeginReadTransaction /vendor/sqlite/sqlite3.c:62941 (workshop_tsan_control+0x48b6d) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #8 sqlite3PagerSharedLock /vendor/sqlite/sqlite3.c:65125 (workshop_tsan_control+0x4d0e8) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #9 lockBtree /vendor/sqlite/sqlite3.c:76515 (workshop_tsan_control+0x609e3) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #10 btreeBeginTrans /vendor/sqlite/sqlite3.c:76936 (workshop_tsan_control+0x618e2) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #11 sqlite3BtreeBeginTrans /vendor/sqlite/sqlite3.c:77036 (workshop_tsan_control+0x61e07) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #12 sqlite3VdbeExec /vendor/sqlite/sqlite3.c:100734 (workshop_tsan_control+0x9f3c1) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #13 sqlite3Step /vendor/sqlite/sqlite3.c:94551 (workshop_tsan_control+0x913ba) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #14 sqlite3_step /vendor/sqlite/sqlite3.c:94612 (workshop_tsan_control+0x9180b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #15 sqlite3_exec /vendor/sqlite/sqlite3.c:142366 (workshop_tsan_control+0x111130) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #16 exec /src/tests/t02/sqlite-diagnostic.cpp:32 (workshop_tsan_control+0xe07d) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #17 writes /src/tests/t02/sqlite-diagnostic.cpp:52 (workshop_tsan_control+0xe412) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #18 operator() /src/tests/t02/sqlite-diagnostic.cpp:106 (workshop_tsan_control+0xe560) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #19 __invoke_impl<void, main(int, char**)::<lambda((anonymous namespace)::Db&, std::__exception_ptr::exception_ptr&)>, std::reference_wrapper<(anonymous namespace)::Db>, std::reference_wrapper<std::__exception_ptr::exception_ptr> > /usr/include/c++/13/bits/invoke.h:61 (workshop_tsan_control+0x10387) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #20 __invoke<main(int, char**)::<lambda((anonymous namespace)::Db&, std::__exception_ptr::exception_ptr&)>, std::reference_wrapper<(anonymous namespace)::Db>, std::reference_wrapper<std::__exception_ptr::exception_ptr> > /usr/include/c++/13/bits/invoke.h:96 (workshop_tsan_control+0x101d9) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #21 _M_invoke<0, 1, 2> /usr/include/c++/13/bits/std_thread.h:292 (workshop_tsan_control+0x10030) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #22 operator() /usr/include/c++/13/bits/std_thread.h:299 (workshop_tsan_control+0xff56) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #23 _M_run /usr/include/c++/13/bits/std_thread.h:244 (workshop_tsan_control+0xfeba) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #24 <null> <null> (libstdc++.so.6+0xecdb3) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+
+  Location is global '<null>' at 0x000000000000 (db.sqlite-shm+0x0)
+
+  Mutex M0 (0x720c00000308) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1315 (libtsan.so.2+0x594cd) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 pthreadMutexAlloc /vendor/sqlite/sqlite3.c:30782 (workshop_tsan_control+0x1fead) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #2 sqlite3MutexAlloc /vendor/sqlite/sqlite3.c:30301 (workshop_tsan_control+0x1fc1b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #3 openDatabase /vendor/sqlite/sqlite3.c:190800 (workshop_tsan_control+0x1962d0) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #4 sqlite3_open_v2 /vendor/sqlite/sqlite3.c:191106 (workshop_tsan_control+0x196ca5) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #5 Db /src/tests/t02/sqlite-diagnostic.cpp:17 (workshop_tsan_control+0xdee4) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #6 main /src/tests/t02/sqlite-diagnostic.cpp:90 (workshop_tsan_control+0xebb0) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+
+  Mutex M1 (0x720c00000218) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1315 (libtsan.so.2+0x594cd) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 pthreadMutexAlloc /vendor/sqlite/sqlite3.c:30782 (workshop_tsan_control+0x1fead) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #2 sqlite3MutexAlloc /vendor/sqlite/sqlite3.c:30301 (workshop_tsan_control+0x1fc1b) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #3 openDatabase /vendor/sqlite/sqlite3.c:190800 (workshop_tsan_control+0x1962d0) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #4 sqlite3_open_v2 /vendor/sqlite/sqlite3.c:191106 (workshop_tsan_control+0x196ca5) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #5 Db /src/tests/t02/sqlite-diagnostic.cpp:17 (workshop_tsan_control+0xdee4) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+    #6 main /src/tests/t02/sqlite-diagnostic.cpp:90 (workshop_tsan_control+0xeb51) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+
+  Thread T2 (tid=880, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 main /src/tests/t02/sqlite-diagnostic.cpp:112 (workshop_tsan_control+0xedfd) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+
+  Thread T1 (tid=879, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1022 (libtsan.so.2+0x5ac1a) (BuildId: 2a13a7710e361d06f7babbea53065ca2be93f738)
+    #1 std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) <null> (libstdc++.so.6+0xeceb0) (BuildId: 753c6c8608b61d4e67be8f0c890e03e0aa046b8b)
+    #2 main /src/tests/t02/sqlite-diagnostic.cpp:111 (workshop_tsan_control+0xeda3) (BuildId: abd3859dd91cb19be461e2c5d38862f5f01d0ac8)
+
+SUMMARY: ThreadSanitizer: data race ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy
+==================
+ThreadSanitizer: reported 2 warnings
