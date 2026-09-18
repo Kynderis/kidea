@@ -1,0 +1,12 @@
+{
+  "status": "REPRODUCED_FAIL",
+  "component": "pilot Web AdminForm, not Kidea runtime",
+  "sourceHash": "f762e86ac40e543e70b0f0a2831fb451a465457c8e05269436136daf258b0303",
+  "sourceCommit": "2607aa618c07bfbb7c2bac5a9f063944289dc27a",
+  "regressionSourceHash": "8d9f017150ab700d93ff28da105d8454a94f833fff51e6e5edd161cbb600ca1b",
+  "baselineExitCode": 1,
+  "observed": "after saved EDIT then STATE503, confirmed-content region absent (0 expected1)",
+  "scope": "native Mac Chrome/built Web with explicit fake API; real Docker backend integration separate",
+  "contract": "docs/design/admin.md#commands: report saved content separately from failed/unknown publication",
+  "candidateNotAppliedDuringFrozenRun": true
+}

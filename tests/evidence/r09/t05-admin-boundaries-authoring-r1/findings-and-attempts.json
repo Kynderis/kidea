@@ -1,0 +1,54 @@
+{
+  "integrationR1": {
+    "status": "FAIL",
+    "rawRun": "r09-web-5e8952ea-11b5-4703-9b91-1b0b95b23a2c",
+    "checksBeforeFailure": 31,
+    "newBoundaryGroups": "NOT_RUN",
+    "observed": "real committed EDIT lost reply; newer snapshot overwrote UNKNOWN warning with dirty-data warning",
+    "sourceUnchanged": "Web2607aa6, backend112closure1fb4a69"
+  },
+  "nativeBaselineR2": {
+    "exitCode": 1,
+    "fail": 2,
+    "pass": 2,
+    "skipped": 0,
+    "testSourceSha256": "729053bf10e6c077ba9ce7a3cd4afa896b4d02b76ed471ae0e81b1459d816f2b"
+  },
+  "classification": "two pilot Web UX defects; not Kidea runtime; preserve full FAIL receipts and fix source without relaxing original safety assertions",
+  "integrationR2": {
+    "status": "FAIL",
+    "rawRun": "r09-web-87772fee-b7ff-4380-984b-7e4be209f188",
+    "checksBeforeFailure": 43,
+    "newBoundaryGroups": "publication starts; remaining NOT_RUN",
+    "failure": "Chromium Network.getResponseBody could not retrieve POST503 JSON; exact transport/cache cause not established",
+    "observed": "DOM UNKNOWN and distinct prior EDIT confirmation present; no PASS claimed",
+    "fix": "route.fetch actual backend response JSON captured before unchanged fulfill; browser503 compared to APIResponse503; no mock domain result/status",
+    "additionalHarnessReview": "A\u2192B valid-admin layout automatically reloads; final oracle waits main-frame navigation and B readiness rather than a fleeting revoked-role heading"
+  },
+  "integrationR3": {
+    "status": "FAIL",
+    "rawRun": "r09-web-d027a4c5-3b6d-4b85-b7f3-fde7cad61e57",
+    "checksBeforeFailure": 46,
+    "failure": "namespace test reused participants with earlier ACTIVE registrations; real backend correctly returned LIMIT_REACHED",
+    "fix": "two dedicated fake participants BOUNDARY-U/V, no prior registration; retain Max2 and all old assertions",
+    "remainingBoundaryGroups": "NOT_RUN"
+  },
+  "integrationR4": {
+    "status": "FAIL",
+    "rawRun": "r09-web-72614a01-9198-4cea-a628-e3efa658be5d",
+    "checksBeforeFailure": 46,
+    "failure": "changed registration payload targeted private DRAFT; visibility guard correctly returned404 before canonical request conflict409",
+    "fix": "target another existing public workshop for conflicting payload; preserve both visibility guard and request conflict expectation; no application changes",
+    "remainingBoundaryGroups": "NOT_RUN"
+  },
+  "integrationR5": {
+    "status": "PASS",
+    "rawRun": "r09-web-285a3c04-61aa-499a-a412-a848d096d69a",
+    "checks": 85,
+    "all77Retained": true,
+    "sqlChecks": 14,
+    "webUnchangedAfterFinalWebChecks": true,
+    "noSkippedCases": true,
+    "scope": "bounded functional integration; no physical storage/crash/backup/load or Human acceptance"
+  }
+}

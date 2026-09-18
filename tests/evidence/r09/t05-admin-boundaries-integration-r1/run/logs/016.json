@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "b80d7ac886d99b0f784548fa0ccb7cd61ceadfa9e97793261ed9e4e66ef23f84"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nlocator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByText('Chưa xác nhận kết quả. Không tự gửi lại thao tác; dùng Kiểm tra kết quả.', { exact: true }) to be visible\n\n    at loseReply (/plan/matrix-browser.mjs:37:174)\n    at async checkMatrix (/plan/matrix-browser.mjs:61:91)\n    at async file:///plan/browser.mjs:51:2 {\n  log: [\n    \"  - waiting for getByText('Chưa xác nhận kết quả. Không tự gửi lại thao tác; dùng Kiểm tra kết quả.', { exact: true }) to be visible\"\n  ],\n  name: 'TimeoutError'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

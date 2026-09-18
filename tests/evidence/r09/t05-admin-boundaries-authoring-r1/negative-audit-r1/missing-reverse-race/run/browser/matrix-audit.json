@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "checks": [
+    "SQL quick_check",
+    "one durable result/audit per actual admin intent including GET-only reconciliation",
+    "APPLIED deltas versus NO_CHANGE/REJECTED empty deltas",
+    "exact durable version/outbox obligations: changes only, no event for rejected/no-op/read",
+    "audit has no fake session token/CSRF/private body marker",
+    "capacity race preserves ten real registrations and capacity invariant",
+    "reverse race: durable FULL and no registration/version/outbox effect",
+    "unreceived intent absent after repeated GET-only UNKNOWN reconciliation",
+    "double pointer click CREATE/EDIT/STATE each has one durable admin audit/result",
+    "boundary A/B intents bind actor/payload/result/field delta and exact versions/outbox",
+    "failed publication audit rolls back STATE/result/event, retains prior committed EDIT; absent STATE stays absent",
+    "same literal ID isolated by registration owner/admin namespace; replay/conflict/other-admin denied without domain effects",
+    "A/B/A browser recovery only GETs original durable A result; marker never becomes B intent",
+    "two forms preserve different dirty fields; same field follows both committed orders"
+  ],
+  "notProductAcceptance": true,
+  "scope": "read-only durable SQL audit after owned backend shutdown; no crash/restore claim",
+  "boundaryAdminIntents": 18,
+  "boundaryWorkshops": 9,
+  "adminIntents": 66,
+  "workshops": 20,
+  "databaseSha256": "3c6266f1f4571f0b76076ecd78c1a8d95d6bbf7e6f41818fc75bc83c2741dac4"
+}

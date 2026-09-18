@@ -145,3 +145,8 @@ remains in historical evidence; AD-T08 and the rest of the missing variants are
 not automatically promoted. No monitoring, workload or crash/restore acceptance
 is inferred from this extension. Application and Kidea runtime source changes
 remain distinct from harness fixes and additional execution evidence.
+
+
+## 2026-09-18 — admin boundaries r5
+
+Full HTTPS/WSS85/85 giữ77; SQL14checks tracked66+18intents/20+9workshops PASS. Web4544bd6 sửa hai UXbugs: historical EDIT confirmation riêng/revalidated và UNKNOWN warning survives newer observations.93unit/18nativeSSR/4newregression/type/lint/build mớiPASS. Backendartifact/EXr2/core293 reuse; Kidea runtime unchanged. FakeSQLtransactionabort không physicalI/O/crash/backup. RawFAILr1–r4 giữ riêng, finalplan/hash r5 bất biến. Dedicated participants tránh quota contamination; conflicting registration dùng publicworkshop để đi qua visibility guard hợp lệ. Không giảmMax2/quyền/kỳ vọng. Coverage1379covered/90partial/38NOT_RUN,6negativeproofguardsPASS; originalledgerbytes giữ. Xem docs/R09_T05_PROGRESS.md và tests/evidence/r09/t05-admin-boundaries-authoring-r1/. IN_PROGRESS/DRAFT, chưaG2/Humanacceptance.

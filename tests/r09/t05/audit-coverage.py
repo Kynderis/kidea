@@ -35,13 +35,13 @@ mapping = {
  'AD-T04': ['matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry', 'matrix-real-capacity-wins-race-tenth-registration-FULL-no-version-event'],
  'AD-T05': ['admin-state-separate-confirm-Escape-no-write'],
  'AD-T06': ['admin-changed-observation-invalidates-sensitive-confirmation', 'matrix-admin-OPEN-four-field-UI-patch-schedule-confirm-state-ID-stable'],
- 'AD-T07': ['admin-dirty-only-patch-no-implicit-publish', 'matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content'],
- 'AD-T08': ['admin-create-real-commit-loss-reload-GET-only-exact-ID', 'matrix-EDIT-real-commit-lost-reply-reload-GET-only', 'matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content', 'matrix-real-duplicate-titles-distinct-authoritative-IDs', 'matrix-unreceived-POST-real-absent-lookup-UNKNOWN-two-reloads-GET-only-no-replacement', 'matrix-CREATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-title-search-no-POST-replay'] + [f'matrix-double-pointer-click-{action}-one-POST-one-version-durable-result' for action in ['CREATE','EDIT','STATE']],
- 'AD-T09': ['admin-draft-never-public-or-anonymous-SSR', 'admin-actor-switch-hides-form-and-denies-old-result', 'updates-real-admin-revocation-hides-form-without-replaying-intent'],
+ 'AD-T07': ['admin-dirty-only-patch-no-implicit-publish', 'boundary-saved-EDIT-real-STATE-audit-abort-503-UNKNOWN-no-rollback-of-edit-no-replay'],
+ 'AD-T08': ['admin-create-real-commit-loss-reload-GET-only-exact-ID', 'matrix-EDIT-real-commit-lost-reply-reload-GET-only', 'matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content', 'matrix-real-duplicate-titles-distinct-authoritative-IDs', 'matrix-unreceived-POST-real-absent-lookup-UNKNOWN-two-reloads-GET-only-no-replacement', 'matrix-CREATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-title-search-no-POST-replay'] + [f'matrix-double-pointer-click-{action}-one-POST-one-version-durable-result' for action in ['CREATE','EDIT','STATE']] + ['boundary-STATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-POST-replay'],
+ 'AD-T09': ['admin-draft-never-public-or-anonymous-SSR', 'admin-actor-switch-hides-form-and-denies-old-result', 'updates-real-admin-revocation-hides-form-without-replaying-intent', 'boundary-browser-admin-A-B-A-intent-marker-isolated-GET-only-recovery'],
  'AD-T10': ['matrix-all-nine-STATE-cells-noop-rejection-version-and-read-only-result'],
  'AD-T11': ['matrix-EDIT-real-commit-lost-reply-reload-GET-only'],
  'AD-T12': ['proxy-forgery-and-CSRF-denied'],
- 'AD-T13': ['admin-reviewed-rebase-preserves-other-editors-fields', 'admin-changed-observation-invalidates-sensitive-confirmation'],
+ 'AD-T13': ['admin-reviewed-rebase-preserves-other-editors-fields', 'admin-changed-observation-invalidates-sensitive-confirmation'] + [f'boundary-two-real-admin-forms-{variant}-dirty-patches-serialize-no-whole-record-overwrite' for variant in ['different-fields','same-field-A-then-B','same-field-B-then-A']],
  'AD-T14': [f'matrix-admin-{s}-four-field-UI-patch-schedule-confirm-state-ID-stable' for s in ['DRAFT','OPEN','PAUSED']] + ['collection-pages-real-content-update-keeps-ID-links-and-private-history'],
  'UX-T01': ['real-JS-off-intro-list-detail-navigation', 'PAUSED-public-SSR-and-participant-controls'],
  'UX-T02': ['collection-pages-real-DRAFT-admin-only-private-empty-subscription', 'me-injected-session-503-hides-then-recovers-same-actor-history-no-POST'],
@@ -60,14 +60,15 @@ mapping = {
  'AR-T02': ['last-seat-FULL-other-user'],
  'AR-T03': ['matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry', 'matrix-real-capacity-wins-race-tenth-registration-FULL-no-version-event'],
  'AR-T04': ['real-commit-lost-response-reload-GET-only'],
- 'AR-T05': ['admin-create-real-commit-loss-reload-GET-only-exact-ID'],
+ 'AR-T05': ['admin-create-real-commit-loss-reload-GET-only-exact-ID', 'boundary-admin-literal-intent-exact-replay-payload-conflict-other-admin-no-result-leak'],
  'AR-T06': ['admin-create-real-commit-loss-reload-GET-only-exact-ID', 'matrix-CREATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-title-search-no-POST-replay'],
- 'AR-T07': ['admin-reviewed-rebase-preserves-other-editors-fields', 'admin-changed-observation-invalidates-sensitive-confirmation'],
+ 'AR-T07': ['admin-reviewed-rebase-preserves-other-editors-fields', 'admin-changed-observation-invalidates-sensitive-confirmation'] + [f'boundary-two-real-admin-forms-{variant}-dirty-patches-serialize-no-whole-record-overwrite' for variant in ['different-fields','same-field-A-then-B','same-field-B-then-A']],
  'AR-T08': ['updates-heartbeat-is-not-domain-event-noop-no-fake-snapshot'],
  'AR-T09': ['admin-same-version-conflict-blocks-writes-until-authoritative-reconcile'],
  'AR-T10': ['updates-real-app-blackout-local-stale-then-valid-signal-no-mutation-replay', 'updates-real-known-close-reconnect-SUBSCRIBE-before-GET-no-POST'],
  'AR-T11': ['updates-Origin-CSRF-epoch-role-cookie-URL-denied', 'updates-real-session-revocation-closes-channel-hides-private-history'],
  'AR-T12': ['real-JS-off-intro-list-detail-navigation', 'private-SSR-no-cross-user-data'],
+ 'AR-T19': ['boundary-registration-literal-ID-U-V-admin-namespaces-isolated-real-HTTP'],
  'AR-T20': ['me-injected-older-GET-cannot-resurrect-live-CANCELLED-no-POST', 'me-real-session-revocation-clears-private-collection'],
  'AR-T22': ['updates-real-global-128-pending-active-limit', 'updates-real-no-ACK-reader-eight-frame-bound-and-close', 'updates-real-writer-durable-result-while-reader-credit-full'],
  'QT05': ['admin-same-version-conflict-blocks-writes-until-authoritative-reconcile'],
@@ -83,15 +84,16 @@ gaps = {
  'AD-T01':'Server INVALID_FIELDS has no field detail; complete invalid CREATE UI field matrix remains unproven.',
  'AD-T05':'Both register/cancel versus PAUSE orders remain component C03/C04; real concurrent browser orders not all executed.',
  'AD-T06':'Full sensitive-dialog variants including PAUSE/capacity and source changes need individual proof.',
- 'AD-T07':'Lost publish reply after successful commit does not prove actual failed publish after saved EDIT; that branch is missing.',
- 'AD-T08':'Real lost replies/reloads and double pointer clicks cover all three actions; unreceived CREATE/EDIT remain UNKNOWN with no replay. Explicit absent STATE lookup variant remains; no whole A-ERROR matrix certification.',
+ 'AD-T07':'Actual SQLite audit-aborted publication after committed EDIT now preserves distinct historical confirmation and UNKNOWN; no physical I/O/crash proof inferred.',
+ 'AD-T08':'Committed and unreceived loss, reload, double pointer clicks cover all three actions; duplicate titles keep exact IDs. Operational/platform cases remain separate.',
  'AD-T09':'Complete G/U/admin-only/missing/forged/revoked scope matrix across HTTP/SSR/WSS and caches remains.',
  'AD-T11':'Fault injection is component TX/SQLFAIL; admin process crash pre/post commit and real I/O failures not all proved.',
  'AD-T12':'New durable audit excludes fake token/CSRF/private body markers; full public export/forged actor matrix not proved.',
- 'AD-T13':'Two live forms same/different fields and every arrival point need full concurrency proof.',
+ 'AD-T13':'Real A/B text-field forms cover same/different dirty patches and both committed orders; full sensitive-field and arrival-point matrix remains.',
  'AD-T14':'All-state field edits/IDs proved; audience and delayed view variants not exhaustively combined with each edit.',
  'AD-T15':'No controlled quota/old recovery-point/epoch restoration exercise; no automatic deletion/replay authorized.',
  'AR-T04':'Component crash covers registrations; admin and outbox emission crash boundaries remain incomplete.',
+ 'AR-T07':'Real A/B forms cover title/description dirty patches and both same-field orders; complete two-form sensitive capacity/schedule/state variants are not inferred from these text-field cases.',
  'AR-T10':'Executed blackout is greater than 5s, not the specified 30s; no complete backlog/heartbeat-silence matrix.',
  'AR-T13':'Online SQLite backup with concurrent WAL and interrupted verified destination not implemented/tested.',
  'AR-T14':'New-host restore, epoch rotation/revocation and remembered client intents not tested.',
@@ -125,7 +127,7 @@ gaps = {
 component_links = {'AR-T02':['C01','R03'], 'AR-T03':['C02','C03','C04'], 'AR-T04':['CRASH','TX'],
  'AR-T05':['I05','K3K4'], 'AR-T08':['TX','SQLFAIL'], 'AR-T19':['Q03','I05'],
  'AD-T04':['C02'], 'AD-T05':['C03','C04'], 'AD-T11':['TX','SQLFAIL'], 'QT11':[f'D{i:02}' for i in range(1,10)], 'QT07':['CRASH']}
-units = repo / 'tests/evidence/r09/t05-matrix-authoring-r1/web-r2/checks-final.json'
+units = repo / 'tests/evidence/r09/t05-admin-boundaries-authoring-r1/web-r1/checks.json'
 assert all(value == 0 for value in json.loads(units.read_text()).values())
 matrix = json.loads((integration / 'run/browser/matrix-evidence.json').read_text())
 assert matrix['race']['after']['capacity'] == matrix['race']['after']['active'] == 10
@@ -135,7 +137,34 @@ missing_create = [item for item in matrix['unreceived'] if item['command']['acti
 assert len(missing_create) == 2 and all(item['status'] == 202 and item['result']['state'] == 'UNKNOWN' for item in missing_create)
 assert {item['action'] for item in matrix['doubleClicks']} == {'CREATE', 'EDIT', 'STATE'}
 assert all(item['posts'] == 1 for item in matrix['doubleClicks'])
-covered_functional = {'AD-T02','AD-T03','AD-T04','AD-T10','AR-T06'}
+boundary_path = integration / 'run/browser/admin-boundaries-evidence.json'
+boundary = json.loads(boundary_path.read_text())
+assert boundary['publication']['status'] == 503 and boundary['publication']['result']['state'] == 'UNKNOWN'
+assert boundary['publication']['posts'] == 2
+assert boundary['publication']['saved']['title'] == boundary['publication']['after']['title']
+assert boundary['publication']['saved']['state'] == boundary['publication']['after']['state'] == 'DRAFT'
+assert len(boundary['publication']['lookups']) == 2 and all(r['status'] == 202 and r['result']['state'] == 'UNKNOWN' for r in boundary['publication']['lookups'])
+assert len(boundary['absentState']) == 2 and all(r['status'] == 202 and r['result']['state'] == 'UNKNOWN' and r['posts'] == 1 for r in boundary['absentState'])
+assert boundary['packet']['first'] == boundary['packet']['replay']
+assert boundary['packet']['mismatch']['code'] == 'REQUEST_CONFLICT' and boundary['packet']['crossGetStatus'] == 404
+assert boundary['namespaces']['actors'] == ['BOUNDARY-U','BOUNDARY-V']
+assert boundary['namespaces']['ur']['registrationId'] != boundary['namespaces']['vr']['registrationId']
+assert boundary['namespaces']['regConflict']['code'] == 'REQUEST_CONFLICT'
+assert [r['status'] for r in boundary['namespaces']['lookups']] == [200,200,200,404,404,401,404]
+assert boundary['actorSwitch']['posts'] == 1 and boundary['actorSwitch']['otherAdminStatus'] == 404
+assert {r['variant'] for r in boundary['twoForms']} == {'different-fields','same-field-A-then-B','same-field-B-then-A'}
+assert all(r['posts'] == [1,1] for r in boundary['twoForms'])
+wire_path = integration / 'run/browser/requests.json'
+wire = json.loads(wire_path.read_text())
+def browser_posts(workshop):
+    return [json.loads(r['body']) for r in wire if r['method'] == 'POST' and r['path'] == '/api/v1/admin/intents' and json.loads(r['body']).get('workshopId') == workshop]
+assert len(browser_posts(boundary['publication']['id'])) == 2
+assert len(browser_posts(boundary['absentState'][0]['command']['workshopId'])) == 1
+assert browser_posts(boundary['actorSwitch']['command']['workshopId']) == [boundary['actorSwitch']['command']]
+for item in boundary['twoForms']:
+    assert len(browser_posts(item['id'])) == 2
+    assert {r['intentId'] for r in browser_posts(item['id'])} == {step['command']['intentId'] for step in item['steps']}
+covered_functional = {'AD-T02','AD-T03','AD-T04','AD-T07','AD-T08','AD-T10','AR-T05','AR-T06','AR-T19'}
 for row in rows:
     source = pilot / row['source']['path']
     assert sha(source) == row['source']['sha256'], source
@@ -148,7 +177,10 @@ for row in rows:
     for name in mapping.get(row['id'], []):
         assert checks[name] == 'PASS', name
         evidence.append({'kind':'REAL_HTTPS_WSS_FUNCTIONAL','path':str(browser_path.relative_to(repo)), 'sha256':sha(browser_path), 'selector':name, 'status':'PASS'})
-    if row['id'] in {'AD-T02','AD-T03','AD-T04','AD-T08','AD-T10','AD-T12','AR-T06'}:
+    if row['id'] in {'AD-T07','AD-T08','AD-T09','AD-T13','AR-T05','AR-T07','AR-T19'}:
+        evidence.append({'kind':'BROWSER_ALL_REQUESTS','path':str(wire_path.relative_to(repo)), 'sha256':sha(wire_path), 'selector':'all request events including after route removal/reload; no new or replayed POST for bounded workshop IDs', 'status':'PASS'})
+        evidence.append({'kind':'REAL_ADMIN_BOUNDARY_DETAILS','path':str(boundary_path.relative_to(repo)), 'sha256':sha(boundary_path), 'selector':'publication/absentState/packet/namespaces/actorSwitch/twoForms as applicable; explicit fake SQLite trigger', 'status':'PASS'})
+    if row['id'] in {'AD-T02','AD-T03','AD-T04','AD-T07','AD-T08','AD-T09','AD-T10','AD-T12','AD-T13','AR-T05','AR-T06','AR-T07','AR-T19'}:
         evidence.append({'kind':'DURABLE_SQL_READ_ONLY','path':str(audit_path.relative_to(repo)), 'sha256':sha(audit_path), 'selector':'checks; see bound matrix-evidence.json for exact intents', 'status':'PASS'})
     if re.fullmatch('E0[1-6]',row['id']) or row['id'] == 'QT05':
         evidence.append({'kind':'CURRENT_WEB_UNIT_SUITE','path':str(units.relative_to(repo)), 'sha256':sha(units), 'selector':'93-test suite; inspect web/tests/unit/updates.test.mjs and collections.test.mjs', 'status':'PASS','limit':'Suite support only; not exhaustive live variant coverage.'})

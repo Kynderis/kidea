@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "7c83909f3304ef3cf33308ec617483769857a213dfba122831873feac0dca6bc"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n404 !== 409\n\n    at reg (file:///plan/admin-boundaries-browser.mjs:44:193)\n    at async checkAdminBoundaries (file:///plan/admin-boundaries-browser.mjs:45:294)\n    at async file:///plan/browser.mjs:52:2 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 404,\n  expected: 409,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

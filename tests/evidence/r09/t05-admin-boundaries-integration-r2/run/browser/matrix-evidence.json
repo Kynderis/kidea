@@ -1,0 +1,3704 @@
+{
+  "intents": [
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-1",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị DRAFT",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "3a88d594-19d3-4565-ba0f-f4774083dfcb",
+        "action": "EDIT",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd",
+        "fields": {
+          "title": "Tên mới DRAFT"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "59e43e94-07b1-4795-9274-a580248d15f1",
+        "action": "EDIT",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd",
+        "fields": {
+          "description": "FAKE-PRIVATE-CONTENT-DRAFT"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "ad2a6a07-a1c6-4b91-a1e1-9a9043778e8e",
+        "action": "EDIT",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd",
+        "fields": {
+          "capacity": 11
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "c1ccbdcd-3700-4824-89b6-59a8f6ca4bc3",
+        "action": "EDIT",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-02T09:00:00+07:00",
+            "end": "2026-11-02T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "9c9463ea-8e8b-4f8c-a526-66f32ba128cd",
+        "action": "STATE",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e8e7304950a82bb21af52593186a78bd"
+      },
+      "lostReply": true
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-2",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị OPEN",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-3",
+        "action": "STATE",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "2f5b006a-8a99-409a-8e70-69b6b7b878db",
+        "action": "EDIT",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "fields": {
+          "title": "Tên mới OPEN"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "95f0cf18-1aa4-483b-856a-b074543c2087",
+        "action": "EDIT",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "fields": {
+          "description": "FAKE-PRIVATE-CONTENT-OPEN"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "74bded2a-5b27-4f38-96e5-c2751423457e",
+        "action": "EDIT",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "fields": {
+          "capacity": 11
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "0b807033-2516-406f-a22a-73992d93c387",
+        "action": "EDIT",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-02T09:00:00+07:00",
+            "end": "2026-11-02T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d9df91ab81274baa2bf77ef04fd8fd07"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-4",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị PAUSED",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-5",
+        "action": "STATE",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-6",
+        "action": "STATE",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "0b9a630b-0b56-45c6-85f3-5378f14b17df",
+        "action": "EDIT",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "fields": {
+          "title": "Tên mới PAUSED"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "774bbbcf-0429-4b61-b666-73b935edc070",
+        "action": "EDIT",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "fields": {
+          "description": "FAKE-PRIVATE-CONTENT-PAUSED"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "76eeb41e-eff9-4c1c-992d-9adc8264b82d",
+        "action": "EDIT",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "fields": {
+          "capacity": 11
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "4c5e2a5f-a889-43a0-80a7-e81362734397",
+        "action": "EDIT",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-02T09:00:00+07:00",
+            "end": "2026-11-02T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "997313e1-d52a-415f-8cca-8a796582e4d9",
+        "action": "EDIT",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "fields": {
+          "title": "Tên sau phản hồi thất lạc"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9b5ccad0a280652bb94f0cfca1fd20e6"
+      },
+      "lostReply": true
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-7",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị DRAFT",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d8e832995da2656706ead469a5547f28"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-8",
+        "action": "STATE",
+        "workshopId": "d8e832995da2656706ead469a5547f28",
+        "targetState": "DRAFT"
+      },
+      "result": {
+        "code": "UNCHANGED",
+        "effect": "NO_CHANGE",
+        "state": "FINAL",
+        "workshopId": "d8e832995da2656706ead469a5547f28"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-9",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị DRAFT",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "dbc2ceed0595de920c8df208184dfe7d"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-10",
+        "action": "STATE",
+        "workshopId": "dbc2ceed0595de920c8df208184dfe7d",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "dbc2ceed0595de920c8df208184dfe7d"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-11",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị DRAFT",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "45d05f094fb0865e629959e3aa97cff6"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-12",
+        "action": "STATE",
+        "workshopId": "45d05f094fb0865e629959e3aa97cff6",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "STATE_REJECTED",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "45d05f094fb0865e629959e3aa97cff6"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-13",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị OPEN",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "dcf74338d1b1281e2110663599596f4f"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-14",
+        "action": "STATE",
+        "workshopId": "dcf74338d1b1281e2110663599596f4f",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "dcf74338d1b1281e2110663599596f4f"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-15",
+        "action": "STATE",
+        "workshopId": "dcf74338d1b1281e2110663599596f4f",
+        "targetState": "DRAFT"
+      },
+      "result": {
+        "code": "STATE_REJECTED",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "dcf74338d1b1281e2110663599596f4f"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-16",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị OPEN",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "f6e59b8981a4bd8cb71825fb3a3e4b36"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-17",
+        "action": "STATE",
+        "workshopId": "f6e59b8981a4bd8cb71825fb3a3e4b36",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "f6e59b8981a4bd8cb71825fb3a3e4b36"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-18",
+        "action": "STATE",
+        "workshopId": "f6e59b8981a4bd8cb71825fb3a3e4b36",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UNCHANGED",
+        "effect": "NO_CHANGE",
+        "state": "FINAL",
+        "workshopId": "f6e59b8981a4bd8cb71825fb3a3e4b36"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-19",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị OPEN",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "427e905551f93f425fa21dd30e64f3b1"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-20",
+        "action": "STATE",
+        "workshopId": "427e905551f93f425fa21dd30e64f3b1",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "427e905551f93f425fa21dd30e64f3b1"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-21",
+        "action": "STATE",
+        "workshopId": "427e905551f93f425fa21dd30e64f3b1",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "427e905551f93f425fa21dd30e64f3b1"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-22",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị PAUSED",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d7291eaf418193f27b40e4d410c5e52e"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-23",
+        "action": "STATE",
+        "workshopId": "d7291eaf418193f27b40e4d410c5e52e",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d7291eaf418193f27b40e4d410c5e52e"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-24",
+        "action": "STATE",
+        "workshopId": "d7291eaf418193f27b40e4d410c5e52e",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "d7291eaf418193f27b40e4d410c5e52e"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-25",
+        "action": "STATE",
+        "workshopId": "d7291eaf418193f27b40e4d410c5e52e",
+        "targetState": "DRAFT"
+      },
+      "result": {
+        "code": "STATE_REJECTED",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "d7291eaf418193f27b40e4d410c5e52e"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-26",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị PAUSED",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8017bcbba8f2b3b83589b9fa2b2a396e"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-27",
+        "action": "STATE",
+        "workshopId": "8017bcbba8f2b3b83589b9fa2b2a396e",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8017bcbba8f2b3b83589b9fa2b2a396e"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-28",
+        "action": "STATE",
+        "workshopId": "8017bcbba8f2b3b83589b9fa2b2a396e",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8017bcbba8f2b3b83589b9fa2b2a396e"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-29",
+        "action": "STATE",
+        "workshopId": "8017bcbba8f2b3b83589b9fa2b2a396e",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8017bcbba8f2b3b83589b9fa2b2a396e"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-30",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị PAUSED",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "24ad02edc7899112b8101bcc976aeac9"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-31",
+        "action": "STATE",
+        "workshopId": "24ad02edc7899112b8101bcc976aeac9",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "24ad02edc7899112b8101bcc976aeac9"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-32",
+        "action": "STATE",
+        "workshopId": "24ad02edc7899112b8101bcc976aeac9",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "24ad02edc7899112b8101bcc976aeac9"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-33",
+        "action": "STATE",
+        "workshopId": "24ad02edc7899112b8101bcc976aeac9",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UNCHANGED",
+        "effect": "NO_CHANGE",
+        "state": "FINAL",
+        "workshopId": "24ad02edc7899112b8101bcc976aeac9"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-34",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị DRAFT",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-35",
+        "action": "EDIT",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8",
+        "fields": {
+          "title": ""
+        }
+      },
+      "result": {
+        "code": "INVALID_FIELDS",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-36",
+        "action": "EDIT",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8",
+        "fields": {
+          "description": ""
+        }
+      },
+      "result": {
+        "code": "INVALID_FIELDS",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-37",
+        "action": "EDIT",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8",
+        "fields": {
+          "capacity": 0
+        }
+      },
+      "result": {
+        "code": "INVALID_FIELDS",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-38",
+        "action": "EDIT",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-03T10:00:00+07:00",
+            "end": "2026-11-03T09:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "INVALID_FIELDS",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-39",
+        "action": "STATE",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8",
+        "targetState": "ARCHIVED"
+      },
+      "result": {
+        "code": "STATE_REJECTED",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "c7e4f1f488642473838d88e8598428b8"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-40",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị DRAFT",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "eb9267f1997febd465533a817cf0e332"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-41",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị OPEN",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0d83ca7347fe9ef251609e3cff125c0c"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-42",
+        "action": "STATE",
+        "workshopId": "0d83ca7347fe9ef251609e3cff125c0c",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0d83ca7347fe9ef251609e3cff125c0c"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "42ee985b-08ca-43bd-9a23-ac1aa3059276",
+        "action": "EDIT",
+        "workshopId": "0d83ca7347fe9ef251609e3cff125c0c",
+        "fields": {
+          "capacity": 9
+        }
+      },
+      "result": {
+        "code": "BELOW_ACTIVE",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "0d83ca7347fe9ef251609e3cff125c0c"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-43",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị OPEN",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8bf6fafae523dd3b2eea033b9ab4e238"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-44",
+        "action": "STATE",
+        "workshopId": "8bf6fafae523dd3b2eea033b9ab4e238",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8bf6fafae523dd3b2eea033b9ab4e238"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "4f520ec0-8d49-4a80-b963-71f2256531d3",
+        "action": "EDIT",
+        "workshopId": "8bf6fafae523dd3b2eea033b9ab4e238",
+        "fields": {
+          "capacity": 9
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8bf6fafae523dd3b2eea033b9ab4e238"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-45",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị DRAFT",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "311697ea3cbb8e5ae76d3502dd5665dd"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "f2972203-d3d4-443c-b33c-2e3402e28597",
+        "action": "CREATE",
+        "fields": {
+          "title": "Nhấp đúp CREATE",
+          "description": "Nội dung giả",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "609f64b0d76875af75501573af60e5e2"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-46",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị DRAFT",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "46f9bf33ccc8e8e25baacda7dddb8713"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "21e3065d-6544-4a21-b6ac-d41e4d0783a8",
+        "action": "EDIT",
+        "workshopId": "46f9bf33ccc8e8e25baacda7dddb8713",
+        "fields": {
+          "title": "Nhấp đúp EDIT"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "46f9bf33ccc8e8e25baacda7dddb8713"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "matrix-47",
+        "action": "CREATE",
+        "fields": {
+          "title": "Ma trận quản trị DRAFT",
+          "description": "Văn bản giả để kiểm từng trường.",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "f147872323f65bf4a31fed395d08f1b7"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "7a307df8-a07f-48ce-b4f5-cb0a9470088f",
+        "action": "STATE",
+        "workshopId": "f147872323f65bf4a31fed395d08f1b7",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "f147872323f65bf4a31fed395d08f1b7"
+      }
+    }
+  ],
+  "ui": [
+    {
+      "state": "DRAFT",
+      "patch": {
+        "title": "Tên mới DRAFT"
+      },
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "e8e7304950a82bb21af52593186a78bd",
+        "observedAt": 1789729970,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Ma trận quản trị DRAFT",
+        "version": "1"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "e8e7304950a82bb21af52593186a78bd",
+        "observedAt": 1789729970,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Tên mới DRAFT",
+        "version": "2"
+      }
+    },
+    {
+      "state": "DRAFT",
+      "patch": {
+        "description": "FAKE-PRIVATE-CONTENT-DRAFT"
+      },
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "e8e7304950a82bb21af52593186a78bd",
+        "observedAt": 1789729971,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Tên mới DRAFT",
+        "version": "2"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-DRAFT",
+        "epoch": "epoch-t02-fixture",
+        "id": "e8e7304950a82bb21af52593186a78bd",
+        "observedAt": 1789729972,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Tên mới DRAFT",
+        "version": "3"
+      }
+    },
+    {
+      "state": "DRAFT",
+      "patch": {
+        "capacity": 11
+      },
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-DRAFT",
+        "epoch": "epoch-t02-fixture",
+        "id": "e8e7304950a82bb21af52593186a78bd",
+        "observedAt": 1789729973,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Tên mới DRAFT",
+        "version": "3"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 11,
+        "description": "FAKE-PRIVATE-CONTENT-DRAFT",
+        "epoch": "epoch-t02-fixture",
+        "id": "e8e7304950a82bb21af52593186a78bd",
+        "observedAt": 1789729973,
+        "remaining": 11,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Tên mới DRAFT",
+        "version": "4"
+      }
+    },
+    {
+      "state": "DRAFT",
+      "patch": {
+        "schedule": {
+          "start": "2026-11-02T09:00:00+07:00",
+          "end": "2026-11-02T10:00:00+07:00"
+        }
+      },
+      "before": {
+        "active": 0,
+        "capacity": 11,
+        "description": "FAKE-PRIVATE-CONTENT-DRAFT",
+        "epoch": "epoch-t02-fixture",
+        "id": "e8e7304950a82bb21af52593186a78bd",
+        "observedAt": 1789729974,
+        "remaining": 11,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Tên mới DRAFT",
+        "version": "4"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 11,
+        "description": "FAKE-PRIVATE-CONTENT-DRAFT",
+        "epoch": "epoch-t02-fixture",
+        "id": "e8e7304950a82bb21af52593186a78bd",
+        "observedAt": 1789729974,
+        "remaining": 11,
+        "schedule": {
+          "end": "2026-11-02T10:00:00+07:00",
+          "start": "2026-11-02T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Tên mới DRAFT",
+        "version": "5"
+      }
+    },
+    {
+      "state": "OPEN",
+      "patch": {
+        "title": "Tên mới OPEN"
+      },
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "observedAt": 1789729977,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Ma trận quản trị OPEN",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "observedAt": 1789729977,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Tên mới OPEN",
+        "version": "4"
+      }
+    },
+    {
+      "state": "OPEN",
+      "patch": {
+        "description": "FAKE-PRIVATE-CONTENT-OPEN"
+      },
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "observedAt": 1789729979,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Tên mới OPEN",
+        "version": "4"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-OPEN",
+        "epoch": "epoch-t02-fixture",
+        "id": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "observedAt": 1789729979,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Tên mới OPEN",
+        "version": "5"
+      }
+    },
+    {
+      "state": "OPEN",
+      "patch": {
+        "capacity": 11
+      },
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-OPEN",
+        "epoch": "epoch-t02-fixture",
+        "id": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "observedAt": 1789729980,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Tên mới OPEN",
+        "version": "5"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 11,
+        "description": "FAKE-PRIVATE-CONTENT-OPEN",
+        "epoch": "epoch-t02-fixture",
+        "id": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "observedAt": 1789729980,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Tên mới OPEN",
+        "version": "6"
+      }
+    },
+    {
+      "state": "OPEN",
+      "patch": {
+        "schedule": {
+          "start": "2026-11-02T09:00:00+07:00",
+          "end": "2026-11-02T10:00:00+07:00"
+        }
+      },
+      "before": {
+        "active": 1,
+        "capacity": 11,
+        "description": "FAKE-PRIVATE-CONTENT-OPEN",
+        "epoch": "epoch-t02-fixture",
+        "id": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "observedAt": 1789729981,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Tên mới OPEN",
+        "version": "6"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 11,
+        "description": "FAKE-PRIVATE-CONTENT-OPEN",
+        "epoch": "epoch-t02-fixture",
+        "id": "d9df91ab81274baa2bf77ef04fd8fd07",
+        "observedAt": 1789729981,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-02T10:00:00+07:00",
+          "start": "2026-11-02T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Tên mới OPEN",
+        "version": "7"
+      }
+    },
+    {
+      "state": "PAUSED",
+      "patch": {
+        "title": "Tên mới PAUSED"
+      },
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "observedAt": 1789729984,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Ma trận quản trị PAUSED",
+        "version": "4"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "observedAt": 1789729984,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Tên mới PAUSED",
+        "version": "5"
+      }
+    },
+    {
+      "state": "PAUSED",
+      "patch": {
+        "description": "FAKE-PRIVATE-CONTENT-PAUSED"
+      },
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "observedAt": 1789729985,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Tên mới PAUSED",
+        "version": "5"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-PAUSED",
+        "epoch": "epoch-t02-fixture",
+        "id": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "observedAt": 1789729985,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Tên mới PAUSED",
+        "version": "6"
+      }
+    },
+    {
+      "state": "PAUSED",
+      "patch": {
+        "capacity": 11
+      },
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-PAUSED",
+        "epoch": "epoch-t02-fixture",
+        "id": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "observedAt": 1789729986,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Tên mới PAUSED",
+        "version": "6"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 11,
+        "description": "FAKE-PRIVATE-CONTENT-PAUSED",
+        "epoch": "epoch-t02-fixture",
+        "id": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "observedAt": 1789729986,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Tên mới PAUSED",
+        "version": "7"
+      }
+    },
+    {
+      "state": "PAUSED",
+      "patch": {
+        "schedule": {
+          "start": "2026-11-02T09:00:00+07:00",
+          "end": "2026-11-02T10:00:00+07:00"
+        }
+      },
+      "before": {
+        "active": 1,
+        "capacity": 11,
+        "description": "FAKE-PRIVATE-CONTENT-PAUSED",
+        "epoch": "epoch-t02-fixture",
+        "id": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "observedAt": 1789729988,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Tên mới PAUSED",
+        "version": "7"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 11,
+        "description": "FAKE-PRIVATE-CONTENT-PAUSED",
+        "epoch": "epoch-t02-fixture",
+        "id": "9b5ccad0a280652bb94f0cfca1fd20e6",
+        "observedAt": 1789729988,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-02T10:00:00+07:00",
+          "start": "2026-11-02T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Tên mới PAUSED",
+        "version": "8"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/c1ccbdcd-3700-4824-89b6-59a8f6ca4bc3",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/9c9463ea-8e8b-4f8c-a526-66f32ba128cd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/e8e7304950a82bb21af52593186a78bd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/d9df91ab81274baa2bf77ef04fd8fd07",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/4c5e2a5f-a889-43a0-80a7-e81362734397",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/997313e1-d52a-415f-8cca-8a796582e4d9",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/9b5ccad0a280652bb94f0cfca1fd20e6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/0d83ca7347fe9ef251609e3cff125c0c",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/0d83ca7347fe9ef251609e3cff125c0c",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/0d83ca7347fe9ef251609e3cff125c0c",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/0d83ca7347fe9ef251609e3cff125c0c",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/0d83ca7347fe9ef251609e3cff125c0c",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/0d83ca7347fe9ef251609e3cff125c0c",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/8bf6fafae523dd3b2eea033b9ab4e238",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/8bf6fafae523dd3b2eea033b9ab4e238",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/8bf6fafae523dd3b2eea033b9ab4e238",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/8bf6fafae523dd3b2eea033b9ab4e238",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/8bf6fafae523dd3b2eea033b9ab4e238",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/311697ea3cbb8e5ae76d3502dd5665dd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/311697ea3cbb8e5ae76d3502dd5665dd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/311697ea3cbb8e5ae76d3502dd5665dd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/311697ea3cbb8e5ae76d3502dd5665dd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/311697ea3cbb8e5ae76d3502dd5665dd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/291be89f-679f-48f5-ad28-b74c0b2e52ce",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/311697ea3cbb8e5ae76d3502dd5665dd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/311697ea3cbb8e5ae76d3502dd5665dd",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/291be89f-679f-48f5-ad28-b74c0b2e52ce",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/159bdd2e-b888-4719-aa86-eb27b04f38c6",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/159bdd2e-b888-4719-aa86-eb27b04f38c6",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/46f9bf33ccc8e8e25baacda7dddb8713",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/46f9bf33ccc8e8e25baacda7dddb8713",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/46f9bf33ccc8e8e25baacda7dddb8713",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/46f9bf33ccc8e8e25baacda7dddb8713",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/f147872323f65bf4a31fed395d08f1b7",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/f147872323f65bf4a31fed395d08f1b7",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/f147872323f65bf4a31fed395d08f1b7",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/f147872323f65bf4a31fed395d08f1b7",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workshops/f147872323f65bf4a31fed395d08f1b7",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session",
+      "status": 200
+    }
+  ],
+  "race": {
+    "id": "0d83ca7347fe9ef251609e3cff125c0c",
+    "after": {
+      "active": 10,
+      "capacity": 10,
+      "description": "Văn bản giả để kiểm từng trường.",
+      "epoch": "epoch-t02-fixture",
+      "id": "0d83ca7347fe9ef251609e3cff125c0c",
+      "observedAt": 1789729998,
+      "remaining": 0,
+      "schedule": {
+        "end": "2026-11-01T10:00:00+07:00",
+        "start": "2026-11-01T09:00:00+07:00"
+      },
+      "state": "OPEN",
+      "title": "Ma trận quản trị OPEN",
+      "version": "12"
+    },
+    "result": {
+      "code": "BELOW_ACTIVE",
+      "effect": "REJECTED",
+      "state": "FINAL",
+      "workshopId": "0d83ca7347fe9ef251609e3cff125c0c"
+    }
+  },
+  "reverseRace": {
+    "id": "8bf6fafae523dd3b2eea033b9ab4e238",
+    "committed": {
+      "active": 9,
+      "capacity": 9,
+      "description": "Văn bản giả để kiểm từng trường.",
+      "epoch": "epoch-t02-fixture",
+      "id": "8bf6fafae523dd3b2eea033b9ab4e238",
+      "observedAt": 1789730002,
+      "remaining": 0,
+      "schedule": {
+        "end": "2026-11-01T10:00:00+07:00",
+        "start": "2026-11-01T09:00:00+07:00"
+      },
+      "state": "OPEN",
+      "title": "Ma trận quản trị OPEN",
+      "version": "12"
+    },
+    "after": {
+      "active": 9,
+      "capacity": 9,
+      "description": "Văn bản giả để kiểm từng trường.",
+      "epoch": "epoch-t02-fixture",
+      "id": "8bf6fafae523dd3b2eea033b9ab4e238",
+      "observedAt": 1789730002,
+      "remaining": 0,
+      "schedule": {
+        "end": "2026-11-01T10:00:00+07:00",
+        "start": "2026-11-01T09:00:00+07:00"
+      },
+      "state": "OPEN",
+      "title": "Ma trận quản trị OPEN",
+      "version": "12"
+    },
+    "registration": {
+      "code": "FULL",
+      "effect": "REJECTED",
+      "state": "FINAL",
+      "workshopId": "8bf6fafae523dd3b2eea033b9ab4e238"
+    },
+    "command": {
+      "epoch": "epoch-t02-fixture",
+      "requestId": "4d3f3467-e234-491f-8c50-9429e2038768",
+      "workshopId": "8bf6fafae523dd3b2eea033b9ab4e238"
+    }
+  },
+  "unreceived": [
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "291be89f-679f-48f5-ad28-b74c0b2e52ce",
+        "action": "EDIT",
+        "workshopId": "311697ea3cbb8e5ae76d3502dd5665dd",
+        "fields": {
+          "title": "Chưa tới máy chủ"
+        }
+      },
+      "status": 202,
+      "result": {
+        "code": "UNCONFIRMED",
+        "state": "UNKNOWN"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "311697ea3cbb8e5ae76d3502dd5665dd",
+        "observedAt": 1789730004,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Ma trận quản trị DRAFT",
+        "version": "1"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "291be89f-679f-48f5-ad28-b74c0b2e52ce",
+        "action": "EDIT",
+        "workshopId": "311697ea3cbb8e5ae76d3502dd5665dd",
+        "fields": {
+          "title": "Chưa tới máy chủ"
+        }
+      },
+      "status": 202,
+      "result": {
+        "code": "UNCONFIRMED",
+        "state": "UNKNOWN"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "311697ea3cbb8e5ae76d3502dd5665dd",
+        "observedAt": 1789730004,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Ma trận quản trị DRAFT",
+        "version": "1"
+      }
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "159bdd2e-b888-4719-aa86-eb27b04f38c6",
+        "action": "CREATE",
+        "fields": {
+          "title": "Chưa tới máy chủ CREATE",
+          "description": "Nội dung giả",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "status": 202,
+      "result": {
+        "code": "UNCONFIRMED",
+        "state": "UNKNOWN"
+      },
+      "after": null
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "159bdd2e-b888-4719-aa86-eb27b04f38c6",
+        "action": "CREATE",
+        "fields": {
+          "title": "Chưa tới máy chủ CREATE",
+          "description": "Nội dung giả",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "status": 202,
+      "result": {
+        "code": "UNCONFIRMED",
+        "state": "UNKNOWN"
+      },
+      "after": null
+    }
+  ],
+  "doubleClicks": [
+    {
+      "action": "CREATE",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "f2972203-d3d4-443c-b33c-2e3402e28597",
+        "action": "CREATE",
+        "fields": {
+          "title": "Nhấp đúp CREATE",
+          "description": "Nội dung giả",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-01T09:00:00+07:00",
+            "end": "2026-11-01T10:00:00+07:00"
+          }
+        }
+      },
+      "before": null,
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Nội dung giả",
+        "epoch": "epoch-t02-fixture",
+        "id": "609f64b0d76875af75501573af60e5e2",
+        "observedAt": 1789730010,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Nhấp đúp CREATE",
+        "version": "1"
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "609f64b0d76875af75501573af60e5e2"
+      },
+      "posts": 1
+    },
+    {
+      "action": "EDIT",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "21e3065d-6544-4a21-b6ac-d41e4d0783a8",
+        "action": "EDIT",
+        "workshopId": "46f9bf33ccc8e8e25baacda7dddb8713",
+        "fields": {
+          "title": "Nhấp đúp EDIT"
+        }
+      },
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "46f9bf33ccc8e8e25baacda7dddb8713",
+        "observedAt": 1789730012,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Ma trận quản trị DRAFT",
+        "version": "1"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "46f9bf33ccc8e8e25baacda7dddb8713",
+        "observedAt": 1789730012,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Nhấp đúp EDIT",
+        "version": "2"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "46f9bf33ccc8e8e25baacda7dddb8713"
+      },
+      "posts": 1
+    },
+    {
+      "action": "STATE",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "7a307df8-a07f-48ce-b4f5-cb0a9470088f",
+        "action": "STATE",
+        "workshopId": "f147872323f65bf4a31fed395d08f1b7",
+        "targetState": "OPEN"
+      },
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "f147872323f65bf4a31fed395d08f1b7",
+        "observedAt": 1789730014,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Ma trận quản trị DRAFT",
+        "version": "1"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Văn bản giả để kiểm từng trường.",
+        "epoch": "epoch-t02-fixture",
+        "id": "f147872323f65bf4a31fed395d08f1b7",
+        "observedAt": 1789730014,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-01T10:00:00+07:00",
+          "start": "2026-11-01T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Ma trận quản trị DRAFT",
+        "version": "2"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "f147872323f65bf4a31fed395d08f1b7"
+      },
+      "posts": 1
+    }
+  ],
+  "scope": "real TLS/backend; reply loss, request hold/drop and capacity race ordering are controlled; domain results are real",
+  "createUnknownPaths": [
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/intents"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/159bdd2e-b888-4719-aa86-eb27b04f38c6"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/intents/159bdd2e-b888-4719-aa86-eb27b04f38c6"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/session"
+    }
+  ],
+  "pointerTargets": [
+    {
+      "action": "CREATE",
+      "beforeScroll": {
+        "x": 135,
+        "y": 755.734375,
+        "width": 118.953125,
+        "height": 48.78125
+      },
+      "box": {
+        "x": 135,
+        "y": 504.734375,
+        "width": 118.953125,
+        "height": 48.78125
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "action": "EDIT",
+      "beforeScroll": {
+        "x": 135,
+        "y": 982.515625,
+        "width": 115.34375,
+        "height": 48.78125
+      },
+      "box": {
+        "x": 135,
+        "y": 504.515625,
+        "width": 115.34375,
+        "height": 48.78125
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "action": "STATE",
+      "beforeScroll": {
+        "x": 500.59375,
+        "y": 437.09375,
+        "width": 148.765625,
+        "height": 48.78125
+      },
+      "box": {
+        "x": 500.59375,
+        "y": 437.09375,
+        "width": 148.765625,
+        "height": 48.78125
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    }
+  ]
+}

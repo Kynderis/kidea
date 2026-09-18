@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "b8ecf91b775c231c47471a23c0ea6b7155f1725d789e0500c608cd57b628ad4e"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'LIMIT_REACHED'\n- 'REGISTERED'\n\n    at checkAdminBoundaries (file:///plan/admin-boundaries-browser.mjs:44:82)\n    at async file:///plan/browser.mjs:52:2 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 'LIMIT_REACHED',\n  expected: 'REGISTERED',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

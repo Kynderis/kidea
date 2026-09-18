@@ -1,0 +1,51 @@
+{
+  "intents": [
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-1",
+        "action": "CREATE",
+        "fields": {
+          "title": "Publication before edit",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e14c87180a44e776bbb689954d6e09aa"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "cbf504d1-5114-47a4-b34b-ccc717919c63",
+        "action": "EDIT",
+        "workshopId": "e14c87180a44e776bbb689954d6e09aa",
+        "fields": {
+          "title": "FAKE-BOUNDARY-SAVED-EDIT"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e14c87180a44e776bbb689954d6e09aa"
+      }
+    }
+  ],
+  "publication": null,
+  "absentState": [],
+  "packet": null,
+  "namespaces": null,
+  "actorSwitch": null,
+  "twoForms": []
+}

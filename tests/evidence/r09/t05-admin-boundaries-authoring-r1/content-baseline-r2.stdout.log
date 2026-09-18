@@ -1,0 +1,51 @@
+✖ confirmed EDIT remains distinct from unknown publication and is reverified after reload without POST replay (1043.581004ms)
+✖ newer authoritative read cannot erase UNKNOWN warning for committed EDIT with lost reply (675.664796ms)
+✔ foreign actor saved-content marker is never rendered or looked up (437.500661ms)
+✔ unavailable historical result cannot be restored as confirmed from local marker alone (432.060888ms)
+{"serverStdout":"Listening on http://127.0.0.1:51811\n","serverStderr":"\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n","scope":"built Web/native Mac Chrome + explicit fake API; no backend integration/acceptance"}
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3995.006676
+
+✖ failing tests:
+
+test at tests/r09/t05/admin-content-server.test.mjs:22:8
+✖ confirmed EDIT remains distinct from unknown publication and is reverified after reload without POST replay (1043.581004ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-content-server.test.mjs:22:904)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-content-server.test.mjs:22:2 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r09/t05/admin-content-server.test.mjs:26:8
+✖ newer authoritative read cannot erase UNKNOWN warning for committed EDIT with lost reply (675.664796ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-content-server.test.mjs:26:979)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-content-server.test.mjs:26:2 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

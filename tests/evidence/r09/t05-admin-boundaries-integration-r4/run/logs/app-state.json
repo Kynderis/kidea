@@ -1,0 +1,311 @@
+[
+    {
+        "Id": "e55aa88e5fe7846b293884642fbc9f0798b0ebe395781517bb179c5e13b0c550",
+        "Created": "2026-09-18T12:15:01.404334693Z",
+        "Path": "timeout",
+        "Args": [
+            "--signal=TERM",
+            "--kill-after=35",
+            "1200",
+            "node",
+            "/plan/app.mjs"
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-09-18T12:15:15.979882399Z",
+            "FinishedAt": "2026-09-18T12:18:26.039589856Z"
+        },
+        "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+        "ResolvConfPath": "/var/lib/docker/containers/e55aa88e5fe7846b293884642fbc9f0798b0ebe395781517bb179c5e13b0c550/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/e55aa88e5fe7846b293884642fbc9f0798b0ebe395781517bb179c5e13b0c550/hostname",
+        "HostsPath": "/var/lib/docker/containers/e55aa88e5fe7846b293884642fbc9f0798b0ebe395781517bb179c5e13b0c550/hosts",
+        "LogPath": "/var/lib/docker/containers/e55aa88e5fe7846b293884642fbc9f0798b0ebe395781517bb179c5e13b0c550/e55aa88e5fe7846b293884642fbc9f0798b0ebe395781517bb179c5e13b0c550-json.log",
+        "Name": "/r09-web-72614a01-9198-4cea-a628-e3efa658be5d-app",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {
+                    "max-file": "2",
+                    "max-size": "8m"
+                }
+            },
+            "NetworkMode": "r09-web-72614a01-9198-4cea-a628-e3efa658be5d",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": [
+                "ALL"
+            ],
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": true,
+            "SecurityOpt": [
+                "no-new-privileges"
+            ],
+            "Tmpfs": {
+                "/tmp": "rw,nosuid,size=512m"
+            },
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 268435456,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 4294967296,
+            "NanoCpus": 2000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 4294967296,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": 256,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "Mounts": [
+                {
+                    "Type": "bind",
+                    "Source": "/Users/kendrick/Desktop/kidea/tests/r09/t03-integration",
+                    "Target": "/plan",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+                    "Target": "/src",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/Users/kendrick/Desktop/kidea-workshop-pilot/web",
+                    "Target": "/web",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/Users/kendrick/Desktop/kidea-t02-build-lab/t02-2c35fb49-1645-4ca1-bfab-bc65d6c85449/release/build/release/workshop_backend",
+                    "Target": "/backend",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/Users/kendrick/Desktop/kidea/.test-output/r09-web-72614a01-9198-4cea-a628-e3efa658be5d/app",
+                    "Target": "/out"
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/Users/kendrick/Desktop/kidea/.test-output/r09-web-72614a01-9198-4cea-a628-e3efa658be5d/fixtures",
+                    "Target": "/fixtures"
+                }
+            ],
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/Users/kendrick/Desktop/kidea-t02-build-lab/t02-2c35fb49-1645-4ca1-bfab-bc65d6c85449/release/build/release/workshop_backend",
+                "Destination": "/backend",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/Users/kendrick/Desktop/kidea/.test-output/r09-web-72614a01-9198-4cea-a628-e3efa658be5d/fixtures",
+                "Destination": "/fixtures",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/Users/kendrick/Desktop/kidea/.test-output/r09-web-72614a01-9198-4cea-a628-e3efa658be5d/app",
+                "Destination": "/out",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/Users/kendrick/Desktop/kidea/tests/r09/t03-integration",
+                "Destination": "/plan",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+                "Destination": "/src",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/Users/kendrick/Desktop/kidea-workshop-pilot/web",
+                "Destination": "/web",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "e55aa88e5fe7",
+            "Domainname": "",
+            "User": "1000:1000",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/opt/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "--signal=TERM",
+                "--kill-after=35",
+                "1200",
+                "node",
+                "/plan/app.mjs"
+            ],
+            "Image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+            "Volumes": null,
+            "WorkingDir": "/work",
+            "Entrypoint": [
+                "timeout"
+            ],
+            "Labels": {
+                "kidea.r09.owner": "r09-web-72614a01-9198-4cea-a628-e3efa658be5d",
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "Networks": {
+                "r09-web-72614a01-9198-4cea-a628-e3efa658be5d": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "app"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "2b779420741f3b28b20e3e5e0c67589b32eca71faf921ca45529a2e085db1092",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "MacAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "r09-web-72614a01-9198-4cea-a628-e3efa658be5d-app",
+                        "app",
+                        "e55aa88e5fe7"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+            "size": 1439,
+            "annotations": {
+                "io.containerd.image.name": "docker.io/library/kidea-r05-e2:toolchain",
+                "org.opencontainers.image.created": "2026-09-16T12:54:10Z",
+                "org.opencontainers.image.ref.name": "toolchain"
+            },
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]
