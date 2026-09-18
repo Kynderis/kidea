@@ -1,0 +1,66 @@
+Delivery evidence: /Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.test-output/r09/delivery-9RTpJL
+✔ public release, UNKNOWN/FAILED history and retry have distinct attempt identity (25686.565898ms)
+✔ wrong target/revision/script/artifact/config and invented step cannot certify success (19919.512776ms)
+✔ new release revision retains old attempt pin and refuses stale request or overwritten attempt (26526.257899ms)
+✔ BUGFIX round pins an actual public release while retaining unfinished MVP work (35792.731364ms)
+Interop evidence: /Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.test-output/r09/interop-hEYIdj
+✔ impact CLOSE in CHANGE keeps the paused MVP blocker without treating it as a current impact blocker (49198.905794ms)
+✔ existing schema2 Git-pinned release and execution-plan evidence can receive a new observation (17658.733428ms)
+✔ serialized envelope over128MiB is rejected before guard and leaves work unchanged (4289.722814ms)
+✔ changed tool remains blocked without migration, and exact scoped migration can complete only metadata (5259.880564ms)
+✔ wrong operation, digest, missing/additional pair, blank statement and wrong new integrity cannot migrate (4805.086891ms)
+✔ migration does not waive stale basis, OTHER bytes, source drift or runtime changes (13604.405622ms)
+✖ individual planned file over64MiB is rejected before guard despite envelope below128MiB (1945.816294ms)
+Recovery evidence: /Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.test-output/r09/recovery-2Tdvm3
+✔ before, partial and planned recover in a fresh process; original evidence survives (13911.09303ms)
+✔ source drift, stale/new authority, foreign bytes and unknown pending entries remain blocked (9178.386686ms)
+✔ interruption during recovery retains guard and requires fresh explicit replacement grant (5492.309064ms)
+✔ interrupted CREATE-only bootstrap completes exact files; changed checkout and request bytes block (8258.658084ms)
+Cycle evidence: /Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.test-output/r09/cycle-KpJhoq
+✔ reviewed retirement preserves unfinished work, old approval bytes and the continuation (24169.63554ms)
+✔ forged approval, stale basis and missing authority are rejected without writes (18774.216297ms)
+✔ changed producer requires reassessing no-diff consumer and parent (16751.239576ms)
+✔ new round creation and switch preserve MVP, prohibit implicit round completion (30024.74241ms)
+✔ BUGFIX requires pinned release baseline and exact ten-step dependency chain (19989.011972ms)
+✔ missing dispositions, silently changed preserved work, mandatory step retirement and dependency cycles block (31251.822973ms)
+✔ ten actual public step completions allow returning to the unchanged unfinished MVP (258738.46649ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 21
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 399912.740913
+
+✖ failing tests:
+
+test at tests/r09/recovery-size-migration.test.mjs:57:1
+✖ individual planned file over64MiB is rejected before guard despite envelope below128MiB (1945.816294ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'CONTEXT_REFERENCES_REQUIRED'
+  -   code: 'RECOVERY_FILE_TOO_LARGE'
+    }
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/tests/r09/recovery-size-migration.test.mjs:59:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: CONTEXT_REFERENCES_REQUIRED
+        at fail (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.agents/skills/kidea/scripts/write-internal.mjs:29:39)
+        at preparePlan (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.agents/skills/kidea/scripts/write-internal.mjs:259:139)
+        at prepareInternalWrite (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.agents/skills/kidea/scripts/write-internal.mjs:86:53)
+        at assert.throws.code (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/tests/r09/recovery-size-migration.test.mjs:59:20)
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/tests/r09/recovery-size-migration.test.mjs:59:9)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: { code: 'RECOVERY_FILE_TOO_LARGE' },
+    operator: 'throws',
+    diff: 'simple'
+  }

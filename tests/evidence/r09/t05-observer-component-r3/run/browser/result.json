@@ -1,0 +1,170 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "OBS-CHROME-GUEST-DENIED",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-PARTICIPANT-FORGED-DENIED",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-ADMIN-SSR-TLS",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-PRIVATE-HEADERS-NO-CONTROLS",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-VIEWPORT-360",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-VIEWPORT-1280",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-200PERCENT",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-SAME-HOST-READINESS-BLOCKED",
+      "status": "PASS"
+    },
+    {
+      "id": "M1",
+      "status": "PASS",
+      "stimulusAtMs": 1789745785081,
+      "detectedAtMs": 1789745785190,
+      "shownAtMs": 1789745786673
+    },
+    {
+      "id": "OBS-CHROME-HTTP200-INVALID-NOT-FRESH",
+      "status": "PASS",
+      "changedAtMs": 1789745786836
+    },
+    {
+      "id": "OBS-CHROME-SIGKILL-RESTART-DURABLE",
+      "status": "PASS"
+    },
+    {
+      "id": "M6",
+      "status": "PASS",
+      "stimulusAtMs": 1789745792754,
+      "detectedAtMs": 1789745800603,
+      "shownAtMs": 1789745800671
+    },
+    {
+      "id": "OBS-CHROME-OBSERVER-DOWN-NO-FALSE-GREEN",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-ACTUAL-FALLBACK-SESSION-REVOCATION-CLEAR",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-READONLY-WIRE-NO-JS-ERRORS",
+      "status": "PASS"
+    }
+  ],
+  "timings": [
+    {
+      "id": "M1",
+      "stimulusAtMs": 1789745785081,
+      "detectedAtMs": 1789745785190,
+      "shownAtMs": 1789745786673
+    },
+    {
+      "id": "M6",
+      "stimulusAtMs": 1789745792754,
+      "detectedAtMs": 1789745800603,
+      "shownAtMs": 1789745800671
+    }
+  ],
+  "wire": [
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/operations",
+      "atMs": 1789745784603
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745784925
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745784967
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745786662
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745788661
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745790250
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745790660
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745792660
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745794660
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745796660
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745798660
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745800660
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745802661
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745804660
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745806412
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745806660
+    }
+  ],
+  "consoleErrors": [],
+  "scope": "Actual TLS/Chrome/process/durable observer on one Docker/Mac; all source signals synthetic. Not OP runtime coverage, E1, backend-host-loss, Human oncall or verified backup."
+}

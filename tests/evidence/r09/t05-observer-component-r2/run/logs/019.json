@@ -1,0 +1,10 @@
+{
+  "command": [
+    "docker",
+    "logs",
+    "r09-observer-2610d222-ed79-4df3-a326-8044a9df134d-observer"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "file:///observer/src/store.mjs:19\n      || (typeof process.getuid === 'function' && st.uid !== process.getuid())) throw new Error('STATE_PERMISSION');\n                                                                                      ^\n\nError: STATE_PERMISSION\n    at new SnapshotStore (file:///observer/src/store.mjs:19:87)\n    at new Runtime (file:///observer/src/runtime.mjs:5:38)\n    at file:///observer/src/main.mjs:16:15\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.19.0\n"
+}

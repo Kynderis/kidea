@@ -1,0 +1,41 @@
+{
+  "operation": "READ_RECOVERY",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "toolMigration": {
+      "operationId": "bef9054c-51f3-4f07-a54b-0892fc95247d",
+      "planDigest": "c176db9833e9359afde230eb0e620e40a4264896690a562c73260ac1e075589d",
+      "components": [
+        {
+          "name": "write-internal.mjs",
+          "from": {
+            "method": "SHA256",
+            "value": "78c8a5a0c82c1b40eedc3a71460ff1d5e68a2162af1ffb97f6e7d1bbc692ef79",
+            "byteLength": 41609
+          },
+          "to": {
+            "method": "SHA256",
+            "value": "2fb82388ae6cdb8d7355baf5dce6aaf41930d2fb8d846b8a68a2d7377ab27e60",
+            "byteLength": 42609
+          }
+        },
+        {
+          "name": "recovery.mjs",
+          "from": {
+            "method": "SHA256",
+            "value": "52579a3e6fdab67a89e7b1a707a52da719c8efc325c401085d02eee04f59c9fc",
+            "byteLength": 13258
+          },
+          "to": {
+            "method": "SHA256",
+            "value": "4ebaef824cc3d48c23b398f1b56bf47f50358a1c8745ff0f75468ef2ae6fbb59",
+            "byteLength": 14180
+          }
+        }
+      ],
+      "statement": "Candidate read-only inspection under existing R09 read/authoring grant. No authorization to apply new cap, install helper changes, complete metadata or retire pending; final Human decision required."
+    }
+  }
+}

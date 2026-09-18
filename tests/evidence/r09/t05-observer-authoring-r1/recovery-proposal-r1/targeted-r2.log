@@ -1,0 +1,58 @@
+✔ serialized envelope over128MiB is rejected before guard and leaves work unchanged (3568.659848ms)
+✖ changed tool remains blocked without migration, and exact scoped migration can complete only metadata (1797.294211ms)
+✖ wrong operation, digest, missing/additional pair, blank statement and wrong new integrity cannot migrate (1522.827964ms)
+✖ migration does not waive stale basis, OTHER bytes, source drift or runtime changes (1507.402ms)
+Recovery evidence: /Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.test-output/r09/recovery-5vbVYO
+✔ before, partial and planned recover in a fresh process; original evidence survives (10521.830185ms)
+✔ source drift, stale/new authority, foreign bytes and unknown pending entries remain blocked (6998.159486ms)
+✔ interruption during recovery retains guard and requires fresh explicit replacement grant (4140.319885ms)
+✔ interrupted CREATE-only bootstrap completes exact files; changed checkout and request bytes block (6419.418671ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 5
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28275.350523
+
+✖ failing tests:
+
+test at tests/r09/recovery-size-migration.test.mjs:28:1
+✖ changed tool remains blocked without migration, and exact scoped migration can complete only metadata (1797.294211ms)
+  Error: CONTINUATION_NOTE_REQUIRED
+      at fail (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.agents/skills/kidea/scripts/resume.mjs:19:56)
+      at prepareContinuation (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.agents/skills/kidea/scripts/resume.mjs:105:235)
+      at oldToolPending (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/tests/r09/recovery-size-migration.test.mjs:15:40)
+      at async TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/tests/r09/recovery-size-migration.test.mjs:29:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'CONTINUATION_NOTE_REQUIRED',
+    diagnostics: []
+  }
+
+test at tests/r09/recovery-size-migration.test.mjs:35:1
+✖ wrong operation, digest, missing/additional pair, blank statement and wrong new integrity cannot migrate (1522.827964ms)
+  Error: CONTINUATION_NOTE_REQUIRED
+      at fail (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.agents/skills/kidea/scripts/resume.mjs:19:56)
+      at prepareContinuation (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.agents/skills/kidea/scripts/resume.mjs:105:235)
+      at oldToolPending (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/tests/r09/recovery-size-migration.test.mjs:15:40)
+      at async TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/tests/r09/recovery-size-migration.test.mjs:36:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'CONTINUATION_NOTE_REQUIRED',
+    diagnostics: []
+  }
+
+test at tests/r09/recovery-size-migration.test.mjs:39:1
+✖ migration does not waive stale basis, OTHER bytes, source drift or runtime changes (1507.402ms)
+  Error: CONTINUATION_NOTE_REQUIRED
+      at fail (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.agents/skills/kidea/scripts/resume.mjs:19:56)
+      at prepareContinuation (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/.agents/skills/kidea/scripts/resume.mjs:105:235)
+      at oldToolPending (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/tests/r09/recovery-size-migration.test.mjs:15:40)
+      at async TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/.test-output/r09-recovery-patch-r1/tests/r09/recovery-size-migration.test.mjs:41:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'CONTINUATION_NOTE_REQUIRED',
+    diagnostics: []
+  }

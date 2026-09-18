@@ -1,0 +1,24 @@
+public review-revise-r9 start
+public review-revise-r9 REVIEW_RECORDED 899.5671143729996
+public resume-read-final start
+public resume-read-final WAITING 554.9887546179816
+public resume-save-final start
+Traceback (most recent call last):
+  File "/Users/kendrick/Desktop/kidea/.test-output/t05-observer-finalize.py", line 36, in <module>
+    r=call('resume','resume-save-final',request);assert r['state']=='CONTINUATION_SAVED';after=data(p/'.kidea/work.md');fields=[k for k in work_before if after[k]!=work_before[k]];assert set(fields)=={'nextAction','checkpointRef'}
+  File "/Users/kendrick/Desktop/kidea/.test-output/t05-observer-finalize.py", line 9, in call
+    r=subprocess.run([node,str(helper),action],cwd=p,input=json.dumps(request),text=True,capture_output=True,timeout=1200)
+  File "/usr/local/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 557, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1221, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 2154, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1268, in _check_timeout
+    raise TimeoutExpired(
+    ...<2 lines>...
+            stderr=b''.join(stderr_seq) if stderr_seq else None)
+subprocess.TimeoutExpired: Command '['/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node', '/Users/kendrick/Desktop/kidea/.agents/skills/kidea/scripts/kidea.mjs', 'resume']' timed out after 1200 seconds

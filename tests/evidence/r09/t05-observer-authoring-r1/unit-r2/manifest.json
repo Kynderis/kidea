@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-18T15:29:09.852260+00:00",
+  "files": {
+    "package-lock.json": "22d886883a7d968ec9137d640abca167e832312c331bbd472f3dc36070f98473",
+    "package.json": "87c0294839cb8189ee2f20b276609192d66cbe860d87f3844c0052ca4af2e36a",
+    "src/display.mjs": "9932f0852e049f2c0486fa8281eb3c54cd759ea60a6c1f8659b51827368d0096",
+    "src/http.mjs": "2e34b5a7f23c3119b97b8bff28c07dcc7151754fe68c5d8fed4c0bd0f581336f",
+    "src/main.mjs": "c77bd754f5ebdef50f1a35bfc26a2c8ac9b70c26fba3548ae82b8c1a8a7a1b7f",
+    "src/model.mjs": "ca5099fc990884062b141daf94f9d4f2715671d05b4f0af723d3096bfedb36ec",
+    "src/runtime.mjs": "0219cda38e32503263d398c689bf7c4600a4fca9c929ca5290dcbd369de302d5",
+    "src/server.mjs": "ffa84b538eb3d75b1e2912bdbc305c8a3803d2a3a9e5474572726670cc41b41d",
+    "src/store.mjs": "f5a389a6f9fe103a26a2f936cf950473bf43fd200d05ea15ed555255f1b09a1d",
+    "tests/fixtures.mjs": "5627bbf85962c6a70a9f90dba9f9e1273f9a56b98b882eb1981223eb13cc6a2e",
+    "tests/http.test.mjs": "341ebc0c4f2ab5e9734768833c9eca24cf78b973c63c33c27f618e3aa4355b0e",
+    "tests/model.test.mjs": "c2022ff4549f666ca68ad9d6ee43429b4fac9db0ca8ac292ea3d04fc52b6bf08",
+    "tests/store.test.mjs": "0b3f56aa4c7c87c528a0c888eb2c4bdf28a80f14f5ca325133098542551f6074",
+    "tests/tls-fixture.mjs": "fe97699ba74f0d7918035a9013e23c7d86088669663b33ea2ec7d8677e6af3ef"
+  },
+  "command": [
+    "/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/model.test.mjs",
+    "tests/store.test.mjs",
+    "tests/http.test.mjs"
+  ],
+  "scope": "Synthetic source/logical clocks; real temporary loopback TLS HTTP; no source metric, host failure or backup PASS",
+  "openssl": "/usr/local/bin/openssl"
+}

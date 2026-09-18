@@ -1,0 +1,30 @@
+✔ OP-T01: confirmed empty pending is N/A; missing sample >5s keeps last value and UNKNOWN (6.578767ms)
+✔ OP-T02: one obligation at5s,5s+epsilon,30s; grows without new events (1.159691ms)
+✔ OP-T03: old last processing success is not a heartbeat; no latency sample is N/A (1.032531ms)
+✔ OP-T04: old/schema/nonce/authority-shaped samples never refresh freshness or accept secret fields (5.30853ms)
+✔ OP-T05: invariant and version/permission conflict critical even if other sources UNKNOWN (1.361453ms)
+✔ OP-T06 component: two probe failures, target-specific, then three distinct5s successes (1.175361ms)
+✔ OP-T07: stopped probe/observer unknown; no server-side delivered claim and no write-ready (0.516954ms)
+✔ OP-T08:100 repeats coalesce; escalation, distinct component and exactly5minute reminder (7.670418ms)
+✔ OP-T09: good/missing/good is not recovery; ticks and same-time samples never add healthy observations (1.392318ms)
+✔ OP-T09: M2/invariant cannot close from zero logs without explicit reconciliation resolution (1.511101ms)
+✔ OP-T09: restart preserves first/count/severity/notified; resets freshness and recovery streak (1.38716ms)
+✔ OP-T10:80%/2GiB and incomplete destinations; known critical survives missing data (0.924015ms)
+✔ OP-T10/15:10/15minute boundaries, no verified backup critical, recovery only two30s samples (1.299358ms)
+✔ OP-T12:M3/M7 no event=N/A; uncovered changes/error/missed offers/latency retain denominator (0.664738ms)
+✔ OP-T13: unconfirmed/expired run outside monitoring; same-host fixture never admission-ready (0.706034ms)
+✔ Clock/source identity: conservative skew, expired clock calibration, new boot retires previous boot (0.6177ms)
+✔ Wall jump/config/state corruption cannot create green or leak arbitrary saved fields (1.286072ms)
+✔ OP-T09:atomic durable checkpoint restart keeps incidents and notifications; fresh observation required (310.885271ms)
+✔ Storage corruption/config drift never resets data to healthy; bytes retained (122.20576ms)
+✔ Durability error never publishes uncommitted data or readiness (119.232577ms)
+✔ Single local writer: active lock rejected, no data overwrite (40.914665ms)
+✔ Symlink/public state directory and oversized snapshot rejected without deleting evidence (43.218084ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 911.710549

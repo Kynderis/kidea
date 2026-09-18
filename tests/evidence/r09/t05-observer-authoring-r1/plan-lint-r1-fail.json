@@ -1,0 +1,63 @@
+[
+  {
+    "filePath": "/Users/kendrick/Desktop/kidea/tests/r09/observer-component/browser.mjs",
+    "messages": [
+      {
+        "ruleId": "no-empty",
+        "severity": 2,
+        "message": "Empty block statement.",
+        "line": 60,
+        "column": 283,
+        "messageId": "unexpected",
+        "endLine": 60,
+        "endColumn": 285,
+        "suggestions": [
+          {
+            "messageId": "suggestComment",
+            "data": {
+              "type": "block"
+            },
+            "fix": {
+              "range": [
+                7597,
+                7597
+              ],
+              "text": " /* empty */ "
+            },
+            "desc": "Add comment inside empty block statement."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import fs from 'node:fs';import assert from 'node:assert/strict';import{createRequire}from 'node:module';\nconst require=createRequire('/web/package.json');const{chromium}=require('playwright');\nconst results=[],timings=[],wire=[],consoleErrors=[];let browser,context,page,controlId=0;\nconst base='https://observer.test:8443',admin='A'.repeat(48),participant='P'.repeat(48);\nconst check=(id,details={})=>{results.push({...details,id,status:'PASS'});fs.writeFileSync('/out/progress.json',JSON.stringify(results));};\nasync function control(action){const q={id:++controlId,action,atMs:Date.now()};fs.writeFileSync('/out/control-request.json',JSON.stringify(q));\n for(let i=0;i<200;i++){const f='/out/control-result-'+q.id+'.json';if(fs.existsSync(f)){const r=JSON.parse(fs.readFileSync(f));assert.equal(r.action,action);assert.equal(r.status,'DONE');return r;}await new Promise(r=>setTimeout(r,100));}throw Error('CONTROL_TIMEOUT');}\nconst snapshot=async()=>{const r=await context.request.get(base+'/api/observation');assert.equal(r.status(),200);return r.json();};\nasync function waitView(predicate,timeout=20000){const start=Date.now();let v;\n while(Date.now()-start<timeout){try{v=await snapshot();if(predicate(v))return v;}catch{/* observer restarting */}await new Promise(r=>setTimeout(r,100));}throw Error('VIEW_TIMEOUT '+JSON.stringify(v));}\nconst cookie=token=>[{name:'__Host-workshop_observer',value:token,url:base,secure:true,httpOnly:true,sameSite:'Strict'}];\ntry{\n browser=await chromium.launch({headless:true,args:['--disable-dev-shm-usage','--no-sandbox']});\n context=await browser.newContext({viewport:{width:360,height:900}});page=await context.newPage();\n page.on('request',r=>wire.push({method:r.method(),url:r.url(),atMs:Date.now()}));page.on('pageerror',e=>consoleErrors.push(e.message));\n for(const route of ['/operations','/api/observation','/health/observer']){\n  const guest=await context.request.get(base+route);assert.equal(guest.status(),403);assert.equal(await guest.text(),'');\n }\n check('OBS-CHROME-GUEST-DENIED');await context.addCookies(cookie(participant));\n const denied=await context.request.get(base+'/operations',{headers:{'x-role':'admin'}});assert.equal(denied.status(),403);check('OBS-CHROME-PARTICIPANT-FORGED-DENIED');\n await context.clearCookies();await context.addCookies(cookie(admin));await page.goto(base+'/operations');\n await page.waitForSelector('#data');assert.match(await page.locator('h1').innerText(),/màn dự phòng/);assert.ok(!await page.content().then(s=>s.includes(admin)));\n check('OBS-CHROME-ADMIN-SSR-TLS');\n const response=await context.request.get(base+'/api/observation');assert.match(response.headers()['cache-control'],/no-store/);assert.match(response.headers()['x-robots-tag'],/noindex/);\n assert.equal((await context.request.post(base+'/api/observation',{data:{role:'admin'}})).status(),405);\n assert.equal((await context.request.get(base+'/restore')).status(),404);check('OBS-CHROME-PRIVATE-HEADERS-NO-CONTROLS');\n for(const width of [360,1280]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));\n await page.locator('#refresh').focus();await page.keyboard.press('Enter');check('OBS-CHROME-VIEWPORT-'+width);}\n await page.evaluate(()=>{document.body.style.fontSize='200%';});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));check('OBS-CHROME-200PERCENT');\n const normal=await waitView(v=>v.sources.fast.current&&v.sources.slow.current&&v.probes.application?.ok);\n assert.equal(normal.eligibility.writeReady,false);assert.equal(normal.eligibility.observationReady,false);check('OBS-CHROME-SAME-HOST-READINESS-BLOCKED');\n await page.setViewportSize({width:360,height:900});\n const raised=await control('PENDING_CRITICAL');const critical=await waitView(v=>v.incidents['M1:pending']?.level==='CRITICAL');\n await page.waitForFunction(()=>document.getElementById('data').textContent.includes('M1:pending — Nghiêm trọng'),undefined,{timeout:12000});\n const shown=Date.now(),n=critical.notifications.find(n=>n.key==='M1:pending'&&n.type==='RAISED');\n assert.ok(shown-n.atMs<=5000);assert.ok(shown-raised.changedAtMs<=8000);timings.push({id:'M1',stimulusAtMs:raised.changedAtMs,detectedAtMs:n.atMs,shownAtMs:shown});\n await page.screenshot({path:'/out/critical-360.png',fullPage:true});check('OBS-CHROME-CRITICAL-AT-RECEIVER',timings.at(-1));\n const invalid=await control('INVALID_FAST');const stale=await waitView(v=>!v.sources.fast.current);\n assert.equal(stale.conclusion,'CRITICAL');assert.equal(stale.sources.fast.last.M1.pending,1);assert.ok(!JSON.stringify(stale).includes('FakeSecretMustNotEscape'));\n await page.locator('#refresh').click();await page.waitForFunction(()=>document.getElementById('data').textContent.includes('chưa xác nhận độ mới'));\n check('OBS-CHROME-HTTP200-INVALID-NOT-FRESH',{changedAtMs:invalid.changedAtMs});\n const first=stale.incidents['M1:pending'].firstSeenMs,notified=stale.incidents['M1:pending'].lastNotifiedMs;\n await control('CRASH_RESTART_OBSERVER');const restarted=await waitView(v=>v.restartCount===1);\n assert.equal(restarted.incidents['M1:pending'].firstSeenMs,first);assert.equal(restarted.incidents['M1:pending'].lastNotifiedMs,notified);\n assert.equal(restarted.incidents['M1:pending'].healthy,0);check('OBS-CHROME-SIGKILL-RESTART-DURABLE');\n await control('VALID_FAST');await waitView(v=>v.sources.fast.current);const stopped=await control('STOP_SOURCE');\n const probed=await waitView(v=>v.incidents['M6:application']?.level==='CRITICAL',18000);\n await page.waitForFunction(()=>document.getElementById('data').textContent.includes('M6:application — Nghiêm trọng'),undefined,{timeout:5000});\n const received=Date.now(),pn=probed.notifications.find(n=>n.key==='M6:application'&&n.type==='RAISED');\n assert.ok(received-stopped.changedAtMs<=17000);assert.ok(received-pn.atMs<=5000);\n timings.push({id:'M6',stimulusAtMs:stopped.changedAtMs,detectedAtMs:pn.atMs,shownAtMs:received});check('OBS-CHROME-SOURCE-PROCESS-DOWN-FALLBACK-RECEIVER',timings.at(-1));\n await control('STOP_OBSERVER');await page.waitForFunction(()=>document.getElementById('status').textContent.includes('bộ quan sát không rõ'),undefined,{timeout:12000});\n assert.match(await page.locator('#status').innerText(),/lỗi nghiêm trọng đã biết/);check('OBS-CHROME-OBSERVER-DOWN-NO-FALSE-GREEN');\n await control('RESTART_OBSERVER');await waitView(v=>v.restartCount===2);await page.locator('#refresh').click();\n await control('REVOKE_ADMIN');await page.waitForFunction(()=>document.getElementById('data').textContent===''&&document.getElementById('initial').textContent==='',{timeout:8000});\n assert.match(await page.locator('#status').innerText(),/Không có quyền/);assert.equal((await context.request.get(base+'/operations')).status(),403);\n check('OBS-CHROME-ACTUAL-FALLBACK-SESSION-REVOCATION-CLEAR');assert.deepEqual(consoleErrors,[]);\n assert.ok(wire.every(r=>r.method==='GET'));check('OBS-CHROME-READONLY-WIRE-NO-JS-ERRORS');\n fs.writeFileSync('/out/result.json',JSON.stringify({status:'PASS',checks:results,timings,wire,consoleErrors,scope:'Actual TLS/Chrome/process/durable observer on one Docker/Mac; all source signals synthetic. Not OP runtime coverage, E1, backend-host-loss, Human oncall or verified backup.'},null,2));\n}catch(e){fs.writeFileSync('/out/result.json',JSON.stringify({status:'FAIL',error:e.stack,checks:results,timings,wire,consoleErrors},null,2));if(page)try{await page.screenshot({path:'/out/failure.png',fullPage:true});fs.writeFileSync('/out/failure.html',await page.content());}catch{}process.exitCode=1;}\nfinally{if(browser)await browser.close();}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/kendrick/Desktop/kidea/tests/r09/observer-component/manager.mjs",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/kendrick/Desktop/kidea/tests/r09/observer-component/source-fixture.mjs",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  }
+]

@@ -1,0 +1,194 @@
+diff --git a/.agents/skills/kidea/references/recovery.md b/.agents/skills/kidea/references/recovery.md
+index 6050324e..73b38b14 100644
+--- a/.agents/skills/kidea/references/recovery.md
++++ b/.agents/skills/kidea/references/recovery.md
+@@ -2,7 +2,7 @@
+ 
+ Use public `resume` only. Ordinary READ/SAVE/status still block while any pending entry exists. `READ_RECOVERY` is read-only and accepts `{operation, permission:{root,readProject:true,allowReadLocalGit}}`; it returns a fresh basis, original operation/project/owner, exact target list and observed BEFORE/PLANNED/PARTIAL_PLANNED bytes, checkout and whether a prior recovery guard exists.
+ 
+-This version supports only `choice: COMPLETE_PLANNED`. It is **not rollback, cleanup, an editor merge, product execution or external-command replay**. Each target must be exactly before/planned or a strict prefix of the retained planned bytes (including an interrupted empty CREATE). OTHER/UNKNOWN, missing/malformed evidence, foreign pending entries, changed source/Git/tool/runtime, and invalid projected graph remain blocked. Legacy pending writes without the retained digest-bound prepared request remain blocked; do not reconstruct intent or remove their marker.
++This version supports only `choice: COMPLETE_PLANNED`. It is **not rollback, cleanup, an editor merge, product execution or external-command replay**. Each target must be exactly before/planned or a strict prefix of the retained planned bytes (including an interrupted empty CREATE). OTHER/UNKNOWN, missing/malformed evidence, foreign pending entries, changed source/Git, unapproved tool changes, changed runtime, and invalid projected graph remain blocked. Legacy pending writes without the retained digest-bound prepared request remain blocked; do not reconstruct intent or remove their marker.
+ 
+ An interrupted public init can include its originally authorized CREATE-only draft Feature Map. Completing those exact original bytes does not permit additional product authoring or changing existing sources. Read the full target allowlist, not only the work record, before granting completion.
+ 
+@@ -13,3 +13,7 @@ Supply `{operation:'RECOVER',choice:'COMPLETE_PLANNED',expectedBasis,expectedPro
+ If recovery itself was interrupted, first establish that no cooperative writer is still running. READ again and explicitly grant replacing the **observed** interrupted guard via `allowReplaceInterruptedGuard:true`; no automatic takeover by PID/age. A fresh basis binds its bytes. The previous guard and checkpoint are preserved in a new journal before replacement. Without that decision the guard remains blocking. The guard is cooperative, not an OS sandbox against unrelated writers.
+ 
+ Recovery preserves original prepared request/checkpoint, before/planned copies and prior observations in retained checkpoint bytes. It performs full byte/graph readback before retiring only its exact marker. A new interruption retains the pending marker and evidence; read/reconcile again. A repeated request after completion is rejected because the pending operation is gone. `RECOVERY_COMPLETED` certifies metadata reconciliation only. External effects still require separately authorized live observations and must never be resubmitted by this helper.
++
++Prepared request files have a shared128MiB envelope bound; individual source, copy and checkpoint files remain capped at64MiB. The writer rejects an oversized request or retained file before creating its pending guard, including CREATE-only bootstrap. This is a metadata envelope limit, not an application file-size guarantee.
++
++Only an explicitly selected recovery may use `permission.toolMigration: {operationId, planDigest, components:[{name,from,to}], statement}`. The ID/digest must match the retained original operation, and the ordered pairs must equal every actual changed component with its original/installed integrity. Only `recovery.mjs` and `write-internal.mjs` may differ. Node/runtime and all other components must remain unchanged. Missing/extra/foreign pairs or blank statements block. The exact migration is included in the fresh READ basis and the recovery decision journal. READ may inspect a candidate without granting completion; completing metadata still needs a new explicit grant covering both these exact code pairs and the original target allowlist. Do not reuse a candidate inspection statement as Human approval, bypass a size check or rewrite the original request, snapshots or tool identity.
+diff --git a/.agents/skills/kidea/scripts/recovery.mjs b/.agents/skills/kidea/scripts/recovery.mjs
+index a41d7c69..cd9ba96c 100644
+--- a/.agents/skills/kidea/scripts/recovery.mjs
++++ b/.agents/skills/kidea/scripts/recovery.mjs
+@@ -6,6 +6,7 @@ import {isDeepStrictEqual as same} from 'node:util';
+ import {parseTree} from 'jsonc-parser';
+ import {localEntry,byteIntegrity,hashBytes,recordBytes} from './bootstrap-plan.mjs';
+ import {diagnosePending} from './diagnose-pending.mjs';
++import {MAX_PREPARED_REQUEST_BYTES,MAX_RECOVERY_FILE_BYTES} from './write-internal.mjs';
+ import {inspectBoundGraph} from './status.mjs';
+ import {readGitContext,readGitVersion} from './git-versions.mjs';
+ import {assertRuntime,assertLocalRoot,hasLocalAssumptions,portablePathKey} from './runtime.mjs';
+@@ -16,16 +17,21 @@ const markerPath='.kidea/checkpoints/pending/active.json';
+ function json(b){const t=new TextDecoder('utf-8',{fatal:true}).decode(b),errors=[],tree=parseTree(t,errors,{disallowComments:true,allowTrailingComma:false});if(!tree||errors.length)fail('RECOVERY_JSON');const walk=n=>{if(n.type==='object'){const keys=n.children.map(p=>p.children[0].value);if(new Set(keys).size!==keys.length)fail('RECOVERY_JSON');}for(const c of n.children??[])walk(c);};walk(tree);return JSON.parse(t);}
+ function inspect(root,p) {
+  assertRuntime();assertLocalRoot(root);
+- if(!path.isAbsolute(root)||realpathSync(root)!==root||lstatSync(root).isSymbolicLink()||!closed(p,['root','readProject','allowReadLocalGit','allowCompletePlanned','allowReplaceInterruptedGuard','ownerId','targets','statement','assumptions'])||p.root!==root||p.readProject!==true||typeof p.allowReadLocalGit!=='boolean')fail('RECOVERY_READ_PERMISSION');
+- const reads=new Map(),read=(f,missing=false)=>{const e=localEntry(root,f);if(!e){if(missing){reads.set(f,null);return null;}fail('RECOVERY_EVIDENCE_MISSING');}if(!e.stat.isFile()||e.stat.size>64*1024*1024)fail('RECOVERY_FILE_UNSUPPORTED');const b=readFileSync(e.full);reads.set(f,b);return b;};
++ if(!path.isAbsolute(root)||realpathSync(root)!==root||lstatSync(root).isSymbolicLink()||!closed(p,['root','readProject','allowReadLocalGit','allowCompletePlanned','allowReplaceInterruptedGuard','ownerId','targets','statement','assumptions','toolMigration'])||p.root!==root||p.readProject!==true||typeof p.allowReadLocalGit!=='boolean')fail('RECOVERY_READ_PERMISSION');
++ const reads=new Map(),read=(f,missing=false,limit=MAX_RECOVERY_FILE_BYTES)=>{const e=localEntry(root,f);if(!e){if(missing){reads.set(f,null);return null;}fail('RECOVERY_EVIDENCE_MISSING');}if(!e.stat.isFile()||e.stat.size>limit)fail('RECOVERY_FILE_UNSUPPORTED');const b=readFileSync(e.full);reads.set(f,b);return b;};
+  const diagnosis=diagnosePending(root,{allowGit:p.allowReadLocalGit});
+  if(diagnosis.state!=='RECONCILIATION_REQUIRED'||diagnosis.diagnostics.length||diagnosis.targets.some(t=>t.code||t.match==='UNKNOWN'))fail('RECOVERY_UNKNOWN');
+- const markerBytes=read(markerPath),marker=json(markerBytes),prefix=`.kidea/checkpoints/operations/${marker.operationId}/`,requestBytes=read(prefix+'prepared-request.json');
++ const markerBytes=read(markerPath),marker=json(markerBytes),prefix=`.kidea/checkpoints/operations/${marker.operationId}/`,requestBytes=read(prefix+'prepared-request.json',false,MAX_PREPARED_REQUEST_BYTES);
+  if(hashBytes(requestBytes)!==marker.planDigest)fail('RECOVERY_REQUEST_CHANGED');
+  const request=json(requestBytes),checkpointPath=prefix+'checkpoint.md';
+  if(request.protocolVersion!==2||request.root!==root||request.operationId!==marker.operationId||request.cleanup||!validate(request.context?.tool,'ToolIdentity',()=>{})||!Array.isArray(request.inputs)||!Array.isArray(request.targets)||request.targets.length!==diagnosis.targets.length||!same(request.authorization.targets,request.targets.map(({path,action})=>({path,action}))))fail('RECOVERY_REQUEST_INVALID');
+  // Changed code/runtime is a separate migration decision, not implicit replay.
+- for(const c of request.context.tool.components){let bytes;if(c.name===`node-${process.versions.node}-${process.platform}-${process.arch}`)bytes=readFileSync(process.execPath);else if(/^[a-z][a-z0-9-]*\.mjs$/.test(c.name))bytes=readFileSync(new URL(c.name,import.meta.url));else fail('RECOVERY_TOOL_CHANGED');if(!same(byteIntegrity(bytes),c.integrity))fail('RECOVERY_TOOL_CHANGED');}
++ const changed=[],actualComponents=[];
++ for(const c of request.context.tool.components){let bytes;if(c.name===`node-${process.versions.node}-${process.platform}-${process.arch}`)bytes=readFileSync(process.execPath);else if(/^[a-z][a-z0-9-]*\.mjs$/.test(c.name))bytes=readFileSync(new URL(c.name,import.meta.url));else fail('RECOVERY_TOOL_CHANGED');const actual=byteIntegrity(bytes);actualComponents.push({name:c.name,integrity:actual});if(!same(actual,c.integrity))changed.push({name:c.name,from:c.integrity,to:actual});}
++ const migration=p.toolMigration??null;
++ if(migration!==null) {
++  if(!closed(migration,['operationId','planDigest','components','statement'])||migration.operationId!==marker.operationId||migration.planDigest!==marker.planDigest||typeof migration.statement!=='string'||!migration.statement.trim()||!Array.isArray(migration.components)||!changed.length||changed.some(c=>!['recovery.mjs','write-internal.mjs'].includes(c.name))||!same(migration.components,changed))fail('RECOVERY_MIGRATION_PERMISSION');
++ } else if(changed.length)fail('RECOVERY_TOOL_CHANGED');
+  const checkout=localEntry(root,'.git')?(p.allowReadLocalGit?readGitContext(root):fail('GIT_READ_NOT_AUTHORIZED')):null;
+  if(!Object.hasOwn(request,'recoveryCheckout')||!same(checkout,request.recoveryCheckout)||request.continuation&&!same(checkout,request.continuation.checkout))fail('RECOVERY_CHECKOUT_CHANGED');
+  const files=new Map(),gitVersions=new Map(),targets=[],names=new Set();
+@@ -51,8 +57,8 @@ function inspect(root,p) {
+  files.set(checkpointPath,recordBytes(checkpoint));
+  const graph=inspectBoundGraph(root,files,{gitVersions,checkpointPaths:[checkpointPath]});
+  if(graph.status.readState!=='OK'||graph.status.projectId!==request.context.projectId||!graph.status.data.items.some(i=>i.id===request.context.ownerId))throw Object.assign(new Error('RECOVERY_GRAPH_INVALID'),{code:'RECOVERY_GRAPH_INVALID',diagnostics:graph.status.diagnostics});
+- const basis=hashBytes(Buffer.from(JSON.stringify({root,checkout,reads:[...reads].map(([p,b])=>[p,b===null?null:byteIntegrity(b)]),tool:request.context.tool})));
+- return {reads,files,gitVersions,checkpoint,request,markerBytes,prefix,checkpointPath,checkout,result:{state:'RECOVERY_READY',basis,projectId:request.context.projectId,ownerId:request.context.ownerId,operationId:marker.operationId,planDigest:marker.planDigest,checkout,targets,interruptedRecovery:reads.get(prefix+'recovery-guard.json')!==null,verification:'EXACT_METADATA_COMPLETION_ONLY_NOT_EXTERNAL_REPLAY'}};
++ const basis=hashBytes(Buffer.from(JSON.stringify({root,checkout,reads:[...reads].map(([p,b])=>[p,b===null?null:byteIntegrity(b)]),tool:request.context.tool,actualComponents,toolMigration:migration})));
++ return {reads,files,gitVersions,checkpoint,request,markerBytes,prefix,checkpointPath,checkout,result:{state:'RECOVERY_READY',basis,projectId:request.context.projectId,ownerId:request.context.ownerId,operationId:marker.operationId,planDigest:marker.planDigest,checkout,targets,toolMigration:migration,interruptedRecovery:reads.get(prefix+'recovery-guard.json')!==null,verification:'EXACT_METADATA_COMPLETION_ONLY_NOT_EXTERNAL_REPLAY'}};
+ }
+ export function readRecovery(root,q){if(!closed(q,['operation','permission'])||q.operation!=='READ_RECOVERY')fail('RECOVERY_INPUT_INVALID');return inspect(root,q.permission).result;}
+ export function completeRecovery(root,q,{testFault=null}={}) {
+diff --git a/.agents/skills/kidea/scripts/write-internal.mjs b/.agents/skills/kidea/scripts/write-internal.mjs
+index a131f325..d133562f 100644
+--- a/.agents/skills/kidea/scripts/write-internal.mjs
++++ b/.agents/skills/kidea/scripts/write-internal.mjs
+@@ -15,6 +15,16 @@ import { assertRuntime,assertLocalRoot,hasLocalAssumptions,portablePathKey,check
+ const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+ const integrity=bytes=>({method:'SHA256',value:sha(bytes),byteLength:bytes.length});
+ const same=isDeepStrictEqual;
++// Limits match the reader: only the digest-bound internal request has the
++// larger envelope allowance; individual source/copy/checkpoint files stay64MiB.
++export const MAX_PREPARED_REQUEST_BYTES=128*1024*1024;
++export const MAX_RECOVERY_FILE_BYTES=64*1024*1024;
++function recoverableRequest(request,line) {
++  if(Buffer.byteLength(line)>MAX_PREPARED_REQUEST_BYTES)fail('RECOVERY_REQUEST_TOO_LARGE');
++  const decodedLength=b=>Math.floor(b.length*3/4)-(b.endsWith('==')?2:b.endsWith('=')?1:0);
++  const bodies=[...(request.inputs??[]).map(i=>i.expectedBase64),...(request.targets??[]).flatMap(t=>[t.beforeBase64,t.plannedBase64]),...[...(request.bootstrap?.evidence??[]),...(request.continuation?.evidence??[])].map(e=>e.bytesBase64)];
++  if(bodies.some(b=>b!==null&&decodedLength(b)>MAX_RECOVERY_FILE_BYTES))fail('RECOVERY_FILE_TOO_LARGE');
++}
+ const preparedPlans=new WeakSet();
+ const fail=code=>{throw Object.assign(new Error(code),{code});};
+ const inside=(root,target)=>{const rel=path.relative(root,target);return rel!== '..'&&!rel.startsWith(`..${path.sep}`)&&!path.isAbsolute(rel);};
+@@ -124,6 +134,7 @@ export function prepareInternalBootstrap(args) {
+   const request=prepareBootstrapRequest(args);
+   request.recoveryCheckout=args.authorization.allowReadLocalGit===true&&localEntry(args.root,'.git',true)?readGitContext(args.root):null;
+   const line=JSON.stringify(request);
++  recoverableRequest(request,line);
+   const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId:request.operationId});
+   preparedPlans.add(prepared);return prepared;
+ }
+@@ -288,6 +299,7 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
+   if(binding)request.continuation={checkout:structuredClone(binding.checkout),evidence:binding.evidence.map(e=>({path:e.path,bytesBase64:e.bytes.toString('base64')}))};
+   if(impact)request.impact={directories:impact.directories};
+   const line=JSON.stringify(request);
++  recoverableRequest(request,line);
+   const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId});
+   preparedPlans.add(prepared);return prepared;
+ }
+@@ -435,6 +447,10 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
+       if(localEntry(root,'.kidea',true))fail('KIDEA_ALREADY_EXISTS');
+       for(const d of request.bootstrap.directories)if(localEntry(root,d,true))fail('DIRECTORY_ALREADY_EXISTS');
+     }
++    checkpoint={schemaVersion:2,projectId:context.projectId,kind:'checkpoint',id:operationId,ownerId:context.ownerId,createdAt:now(),tool:context.tool,
++      permissionRefs:context.permissionRefs,inputRefs:context.inputRefs,targets:targets.map((t,i)=>({path:t.path,action:t.action,before:copy(t,i,'before'),planned:copy(t,i,'planned')})),
++      observations:[],nextAction:'Prepared only. Reconcile actual bytes before continuing an interrupted operation.'};
++    if(record(checkpoint).length>MAX_RECOVERY_FILE_BYTES)fail('RECOVERY_FILE_TOO_LARGE');
+     directory('.kidea',!!request.bootstrap);directory('.kidea/checkpoints');directory(pendingDirectory);
+     if(readdirSync(path.join(root,pendingDirectory)).length)fail('INCOMPLETE_WRITE_EXISTS');
+     pendingBytes=Buffer.from(JSON.stringify({protocolVersion:2,operationId,planDigest:prepared.planDigest,checkpointRef:{path:checkpointPath,anchor:null}})+'\n');
+@@ -448,9 +464,6 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
+       if(!readGitVersion(root,t.beforeVersion.location).equals(t.before)||!same(t.beforeVersion.integrity,integrity(t.before)))fail('GIT_PREIMAGE_CHANGED');
+       gitVersions.set(JSON.stringify(t.beforeVersion.location),t.before);
+     }
+-    checkpoint={schemaVersion:2,projectId:context.projectId,kind:'checkpoint',id:operationId,ownerId:context.ownerId,createdAt:now(),tool:context.tool,
+-      permissionRefs:context.permissionRefs,inputRefs:context.inputRefs,targets:targets.map((t,i)=>({path:t.path,action:t.action,before:copy(t,i,'before'),planned:copy(t,i,'planned')})),
+-      observations:[],nextAction:'Prepared only. Reconcile actual bytes before continuing an interrupted operation.'};
+     for(const e of request.bootstrap?.evidence??[])remember(e.path,Buffer.from(e.bytesBase64,'base64'));
+     for(const e of request.continuation?.evidence??[])remember(e.path,Buffer.from(e.bytesBase64,'base64'));
+     for(const [i,t]of targets.entries()) {
+diff --git a/tests/r09/recovery-size-migration.test.mjs b/tests/r09/recovery-size-migration.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/r09/recovery-size-migration.test.mjs
+@@ -0,0 +1,61 @@
++// Synthetic private fixtures only; never edit the active pilot checkpoint.
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {mkdirSync,mkdtempSync,readFileSync,writeFileSync,existsSync,readdirSync} from 'node:fs';
++import path from 'node:path';
++import {fresh,put,ref,readRequest,assumptions,record} from './support.mjs';
++import {readResume,prepareContinuation} from '../../.agents/skills/kidea/scripts/resume.mjs';
++import {executeInternalWrite,prepareInternalWrite,MAX_PREPARED_REQUEST_BYTES} from '../../.agents/skills/kidea/scripts/write-internal.mjs';
++import {readRecovery,completeRecovery} from '../../.agents/skills/kidea/scripts/recovery.mjs';
++import {initToolIdentity} from '../../.agents/skills/kidea/scripts/init.mjs';
++import {byteIntegrity,hashBytes,recordBytes} from '../../.agents/skills/kidea/scripts/bootstrap-plan.mjs';
++mkdirSync('.test-output/r09',{recursive:true});const base=mkdtempSync(path.resolve('.test-output/r09/size-migration-'));
++function save(root,requiredFiles=[ref('docs/plan.md')]){const q={...readRequest(root),requiredFiles},r=readResume(root,q);return {...q,operation:'SAVE',expectedBasis:r.basis,permission:{...q.permission,allowSaveContinuation:true,assumptions,statement:'Synthetic private fixture note only.'},checkpoint:{itemId:r.context.currentItem.id,completed:'Fixture milestone.',remaining:'No product acceptance.',nextAction:'Continue fixture.',sourceRefs:requiredFiles}};}
++const permission=root=>({root,readProject:true,allowReadLocalGit:false});
++async function oldToolPending(){
++ const root=await fresh(base),prepared=prepareContinuation(root,save(root));await executeInternalWrite(prepared.prepared,{testFault:'BEFORE_FIRST_WRITE'});
++ const markerPath=path.join(root,'.kidea/checkpoints/pending/active.json'),marker=JSON.parse(readFileSync(markerPath)),prefix=path.join(root,'.kidea/checkpoints/operations',marker.operationId),request=JSON.parse(readFileSync(path.join(prefix,'prepared-request.json'))),changed=[];
++ for(const c of request.context.tool.components)if(['recovery.mjs','write-internal.mjs'].includes(c.name)){const actual=c.integrity;c.integrity=byteIntegrity(Buffer.from('Synthetic prior tool '+c.name));changed.push({name:c.name,from:c.integrity,to:actual});}
++ // This reconstructs an old-tool synthetic fixture, not a real interrupted write.
++ for(const name of ['prepared.md','checkpoint.md']){const old=JSON.parse(readFileSync(path.join(prefix,name),'utf8').match(/```json\n([\s\S]*?)\n```/)[1]);old.tool=request.context.tool;writeFileSync(path.join(prefix,name),recordBytes(old));}
++ const bytes=Buffer.from(JSON.stringify(request));writeFileSync(path.join(prefix,'prepared-request.json'),bytes);marker.planDigest=hashBytes(bytes);writeFileSync(markerPath,JSON.stringify(marker)+'\n');
++ return {root,prefix,marker,migration:{operationId:marker.operationId,planDigest:marker.planDigest,components:changed,statement:'Synthetic exact scoped tool migration; no production permission.'}};
++}
++function grant(root,p){const r=readRecovery(root,{operation:'READ_RECOVERY',permission:p});return {operation:'RECOVER',choice:'COMPLETE_PLANNED',expectedBasis:r.basis,expectedProjectId:r.projectId,expectedOwnerId:r.ownerId,expectedGit:r.checkout,permission:{...p,allowCompletePlanned:true,allowReplaceInterruptedGuard:false,ownerId:r.ownerId,targets:r.targets.map(({path,action})=>({path,action})),assumptions,statement:'Explicit synthetic permission for this exact fixture metadata and migration.'}};}
++test('serialized envelope over128MiB is rejected before guard and leaves work unchanged',async()=>{
++ const root=await fresh(base);put(root,'docs/large.md',Buffer.alloc(52*1024*1024,97));const before=readFileSync(path.join(root,'.kidea/work.md')),q=save(root,[ref('docs/large.md')]);
++ assert.throws(()=>prepareContinuation(root,q),{code:'RECOVERY_REQUEST_TOO_LARGE'});assert.ok(readFileSync(path.join(root,'.kidea/work.md')).equals(before));assert.equal(existsSync(path.join(root,'.kidea/checkpoints/pending/active.json')),false);assert.equal(MAX_PREPARED_REQUEST_BYTES,128*1024*1024);
++});
++test('changed tool remains blocked without migration, and exact scoped migration can complete only metadata',async()=>{
++ const f=await oldToolPending();assert.throws(()=>readRecovery(f.root,{operation:'READ_RECOVERY',permission:permission(f.root)}),{code:'RECOVERY_TOOL_CHANGED'});
++ const p={...permission(f.root),toolMigration:f.migration},before=readFileSync(path.join(f.prefix,'prepared-request.json')),q=grant(f.root,p);
++ assert.throws(()=>completeRecovery(f.root,{...q,permission:{...q.permission,allowCompletePlanned:false}}),{code:'RECOVERY_NEW_PERMISSION_REQUIRED'});
++ assert.equal(completeRecovery(f.root,q).state,'RECOVERY_COMPLETED');assert.ok(readFileSync(path.join(f.prefix,'prepared-request.json')).equals(before));assert.equal(existsSync(path.join(f.root,'.kidea/checkpoints/pending/active.json')),false);
++ const journals=readdirSync(f.prefix).filter(n=>/^recovery-.*\.json$/.test(n)&&!n.endsWith('-verified.json')&&n!=='recovery-guard.json');assert.equal(journals.length,1);assert.deepEqual(JSON.parse(readFileSync(path.join(f.prefix,journals[0]))).request.permission.toolMigration,f.migration);
++});
++test('wrong operation, digest, missing/additional pair, blank statement and wrong new integrity cannot migrate',async()=>{
++ const f=await oldToolPending();const changes=[m=>m.operationId='foreign',m=>m.planDigest='0'.repeat(64),m=>m.components.pop(),m=>m.components.push(m.components[0]),m=>m.statement='',m=>m.components[0].to.value='0'.repeat(64)];
++ for(const edit of changes){const m=structuredClone(f.migration);edit(m);assert.throws(()=>readRecovery(f.root,{operation:'READ_RECOVERY',permission:{...permission(f.root),toolMigration:m}}),{code:'RECOVERY_MIGRATION_PERMISSION'});}assert.ok(existsSync(path.join(f.root,'.kidea/checkpoints/pending/active.json')));
++});
++test('migration does not waive stale basis, OTHER bytes, source drift or runtime changes',async()=>{
++ for(const scenario of ['basis','other','source','runtime']){
++  const f=await oldToolPending(),p={...permission(f.root),toolMigration:f.migration},q=grant(f.root,p);
++  if(scenario==='basis'){q.expectedBasis='stale';assert.throws(()=>completeRecovery(f.root,q),{code:'RECOVERY_BASIS_CHANGED'});}
++  if(scenario==='other'){put(f.root,'.kidea/work.md','foreign data');assert.throws(()=>readRecovery(f.root,{operation:'READ_RECOVERY',permission:p}),{code:'RECOVERY_OTHER_BYTES'});}
++  if(scenario==='source'){put(f.root,'docs/plan.md','source drift');assert.throws(()=>readRecovery(f.root,{operation:'READ_RECOVERY',permission:p}),{code:'RECOVERY_SOURCE_CHANGED'});}
++  if(scenario==='runtime'){
++   const m=JSON.parse(readFileSync(path.join(f.prefix,'prepared-request.json'))),node=m.context.tool.components.find(c=>c.name.startsWith('node-'));assert.ok(node);const actual=node.integrity;node.integrity=byteIntegrity(Buffer.from('Synthetic different Node binary'));
++   for(const name of ['prepared.md','checkpoint.md']){const c=JSON.parse(readFileSync(path.join(f.prefix,name),'utf8').match(/```json\n([\s\S]*?)\n```/)[1]);c.tool=m.context.tool;writeFileSync(path.join(f.prefix,name),recordBytes(c));}
++   const bytes=Buffer.from(JSON.stringify(m));writeFileSync(path.join(f.prefix,'prepared-request.json'),bytes);f.marker.planDigest=hashBytes(bytes);writeFileSync(path.join(f.root,'.kidea/checkpoints/pending/active.json'),JSON.stringify(f.marker)+'\n');
++   p.toolMigration.planDigest=f.marker.planDigest;p.toolMigration.components.push({name:node.name,from:node.integrity,to:actual});p.toolMigration.components.sort((a,b)=>m.context.tool.components.findIndex(c=>c.name===a.name)-m.context.tool.components.findIndex(c=>c.name===b.name));
++   assert.throws(()=>readRecovery(f.root,{operation:'READ_RECOVERY',permission:p}),{code:'RECOVERY_MIGRATION_PERMISSION'});
++  }
++  assert.ok(existsSync(path.join(f.root,'.kidea/checkpoints/pending/active.json')));
++ }
++});
++
++test('individual planned file over64MiB is rejected before guard despite envelope below128MiB',async()=>{
++ const root=await fresh(base),work=record(root),before=readFileSync(path.join(root,'docs/plan.md'));put(root,'evidence/authority.md',before);const version={source:ref('docs/plan.md'),location:{kind:'SNAPSHOT',ref:ref('evidence/authority.md')},integrity:byteIntegrity(before)};
++ assert.throws(()=>prepareInternalWrite({root,authorization:{root,metadataRoot:'.kidea/checkpoints',targets:[{path:'docs/plan.md',action:'UPDATE'}],allowRestoreUpdate:false,allowRetireOwnPending:true,allowReadLocalGit:false,assumptions},context:{projectId:work.projectId,ownerId:work.currentItemId,tool:initToolIdentity(),permissionRefs:[version],inputRefs:[version]},targets:[{path:'docs/plan.md',action:'UPDATE',plannedBytes:Buffer.alloc(65*1024*1024,97)}]}),{code:'RECOVERY_FILE_TOO_LARGE'});
++ assert.ok(readFileSync(path.join(root,'docs/plan.md')).equals(before));assert.equal(existsSync(path.join(root,'.kidea/checkpoints/pending/active.json')),false);
++});

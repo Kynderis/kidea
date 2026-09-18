@@ -1,0 +1,175 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "OBS-CHROME-GUEST-DENIED",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-PARTICIPANT-FORGED-DENIED",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-ADMIN-SSR-TLS",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-PRIVATE-HEADERS-NO-CONTROLS",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-VIEWPORT-360",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-VIEWPORT-1280",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-200PERCENT",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-SAME-HOST-READINESS-BLOCKED",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-CRITICAL-AT-RECEIVER",
+      "stimulusAtMs": 1789745867120,
+      "detectedAtMs": 1789745867444,
+      "shownAtMs": 1789745868740,
+      "status": "PASS"
+    },
+    {
+      "changedAtMs": 1789745868875,
+      "id": "OBS-CHROME-HTTP200-INVALID-NOT-FRESH",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-SIGKILL-RESTART-DURABLE",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-SOURCE-PROCESS-DOWN-FALLBACK-RECEIVER",
+      "stimulusAtMs": 1789745874941,
+      "detectedAtMs": 1789745882916,
+      "shownAtMs": 1789745884739,
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-OBSERVER-DOWN-NO-FALSE-GREEN",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-ACTUAL-FALLBACK-SESSION-REVOCATION-CLEAR",
+      "status": "PASS"
+    },
+    {
+      "id": "OBS-CHROME-READONLY-WIRE-NO-JS-ERRORS",
+      "status": "PASS"
+    }
+  ],
+  "timings": [
+    {
+      "id": "M1",
+      "stimulusAtMs": 1789745867120,
+      "detectedAtMs": 1789745867444,
+      "shownAtMs": 1789745868740
+    },
+    {
+      "id": "M6",
+      "stimulusAtMs": 1789745874941,
+      "detectedAtMs": 1789745882916,
+      "shownAtMs": 1789745884739
+    }
+  ],
+  "wire": [
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/operations",
+      "atMs": 1789745866679
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745866965
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745867012
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745868720
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745870722
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745872582
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745872720
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745874720
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745876721
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745878720
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745880720
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745882720
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745884721
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745886721
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745888720
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745890628
+    },
+    {
+      "method": "GET",
+      "url": "https://observer.test:8443/api/observation",
+      "atMs": 1789745890720
+    }
+  ],
+  "consoleErrors": [],
+  "scope": "Actual TLS/Chrome/process/durable observer on one Docker/Mac; all source signals synthetic. Not OP runtime coverage, E1, backend-host-loss, Human oncall or verified backup."
+}

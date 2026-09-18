@@ -1,0 +1,23 @@
+{
+  "scope": "Read-only bridge assessment for next task; no source/schema/data change, gate or approval",
+  "hashes": {
+    "backend/schema/001.sql": "98a5dd2ee223b17e2ee4dab70f6f09f9fef2a4b32f86d0a3c719e9f94a3df01e",
+    "backend/src/store.cpp": "af4634e7dde54eedaef4b4aff57761e0a943077b6710bafa5df4bef42d9c173d",
+    "backend/src/updates.cpp": "6dfe5bd8cb642cc9baddf06e68614228e7e19fb46f14109fd2185a6caa76fdc1",
+    "backend/src/update_transport.cpp": "7eea5c4f6dacaa9f7ebc87145b11a1ed4ff75bd3aa72c3e8c9ff6c83669979a7",
+    "backend/src/main.cpp": "d6efa5b7aab2d9d5eb1c20dbbb456d9249f53dedbc2b00464fd4315a42577912",
+    "observer/src/model.mjs": "ca5099fc990884062b141daf94f9d4f2715671d05b4f0af723d3096bfedb36ec"
+  },
+  "findings": [
+    "Current outbox table has id/epoch/workshop/version/completed and no durable commit timestamp. pending() reads at most64 rows; do not substitute vector.size for full pending count or fabricate age from rowID/UI.",
+    "Publisher catches processing errors without the durable open-error catalog required by M2. Real telemetry must bind known failure/resolution to true writer/journal state, preserving result/outbox authority.",
+    "Observer v1 validates complete fast envelope; real partial-source bridge must represent unavailable per-signal data while retaining independently known critical M2. Do not emit empty pending/errors or lastSuccess:none to cover unavailable queries.",
+    "M3/M7 current basis is declared single observer and source metadata only; real event/version cover and offered-load measurements remain absent.",
+    "Actual M8 all destinations/headroom and M9 backup API/hash/integrity/durable independent receipt are not implemented; synthetic VERIFIED markers do not prove them.",
+    "Backend currently serves component fixture and has no production admission readiness. New observer writeReady:false is component contract, not implemented backend503 admission gate.",
+    "Primary SvelteKit W5/collector least-read server authority and independent fallback identity need wiring and cross-surface permission/clear tests.",
+    "Any backend source closure change requires complete fresh4preset build, retained old50CTest/control/oracle/http/session/shutdown/updates checks and unchangedEXr2, before fullWeb/integration run. No stale binary reuse.",
+    "No live/archivedSQLite read-write or migration performed; new schema/profile compatibility and old missing-timestamp data must be handled explicitly.",
+    "Complete quantitative fallback/W5 p95, sample/freshness/coverage scope and private actor/BFCache/late-read variants with real wiring. Current fallback Chrome evidence covers scoped viewport/textsize/keyboard/revocation facets, not full OP/UX lifecycle."
+  ]
+}
