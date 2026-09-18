@@ -33,8 +33,8 @@ mapping = {
  'AD-T02': [f'matrix-admin-{s}-four-field-UI-patch-schedule-confirm-state-ID-stable' for s in ['DRAFT','OPEN','PAUSED']],
  'AD-T03': ['matrix-all-nine-STATE-cells-noop-rejection-version-and-read-only-result', 'matrix-real-server-four-field-rejections-and-unknown-state-no-version-change'],
  'AD-T04': ['matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry', 'matrix-real-capacity-wins-race-tenth-registration-FULL-no-version-event'],
- 'AD-T05': ['admin-state-separate-confirm-Escape-no-write'],
- 'AD-T06': ['admin-changed-observation-invalidates-sensitive-confirmation', 'matrix-admin-OPEN-four-field-UI-patch-schedule-confirm-state-ID-stable'],
+ 'AD-T05': ['admin-state-separate-confirm-Escape-no-write'] + [f'sensitive-PAUSE-{op}-{order}-real-held-browser-requests-serial-results' for op in ['register','cancel'] for order in ['participant-first','pause-first']],
+ 'AD-T06': ['admin-changed-observation-invalidates-sensitive-confirmation', 'matrix-admin-OPEN-four-field-UI-patch-schedule-confirm-state-ID-stable'] + [f'sensitive-live-{kind}-change-invalidates-dialog-zero-POST-until-new-confirmation' for kind in ['capacity','schedule','state-capacity','state-state']],
  'AD-T07': ['admin-dirty-only-patch-no-implicit-publish', 'boundary-saved-EDIT-real-STATE-audit-abort-503-UNKNOWN-no-rollback-of-edit-no-replay'],
  'AD-T08': ['admin-create-real-commit-loss-reload-GET-only-exact-ID', 'matrix-EDIT-real-commit-lost-reply-reload-GET-only', 'matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content', 'matrix-real-duplicate-titles-distinct-authoritative-IDs', 'matrix-unreceived-POST-real-absent-lookup-UNKNOWN-two-reloads-GET-only-no-replacement', 'matrix-CREATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-title-search-no-POST-replay'] + [f'matrix-double-pointer-click-{action}-one-POST-one-version-durable-result' for action in ['CREATE','EDIT','STATE']] + ['boundary-STATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-POST-replay'],
  'AD-T09': ['admin-draft-never-public-or-anonymous-SSR', 'admin-actor-switch-hides-form-and-denies-old-result', 'updates-real-admin-revocation-hides-form-without-replaying-intent', 'boundary-browser-admin-A-B-A-intent-marker-isolated-GET-only-recovery'],
@@ -77,19 +77,25 @@ mapping = {
  'QT15': ['real-JS-off-intro-list-detail-navigation', 'PAUSED-public-SSR-and-participant-controls'],
  'QT16': ['admin-responsive-360-no-horizontal-overflow', 'collection-pages-360-and-SUBSCRIBE-before-reconcile-GET'],
 }
+sensitive_forms = ['sensitive-two-forms-mixed-A-B-confirmed-before-decision-exact-patches'] + [f'sensitive-two-forms-{kind}-{order}-confirmed-before-decision-exact-patches' for kind in ['capacity','schedule','state'] for order in ['A-B','B-A']]
+sensitive_dialogs = [f'sensitive-live-{kind}-change-invalidates-dialog-zero-POST-until-new-confirmation' for kind in ['capacity','schedule','state-capacity','state-state']]
+sensitive_pauses = [f'sensitive-PAUSE-{op}-{order}-real-held-browser-requests-serial-results' for op in ['register','cancel'] for order in ['participant-first','pause-first']]
+mapping['AD-T13'] += sensitive_forms
+mapping['AR-T07'] += sensitive_forms + sensitive_dialogs
+mapping['AR-T03'] += sensitive_pauses
 gaps = {
  'E07':'Real commit with lost reply and GET-only lookup proved; complete uncertain durability versus stale-view variants remain.',
  'E08':'Actual mutation snapshots/no-op and new admin SQL event/version audit covered; complete six-action retry/reject event matrix remains.',
  'E09':'Audience and SSR protection covered; full HTTP/SSR/socket/log and monitoring permutations remain.',
  'AD-T01':'Server INVALID_FIELDS has no field detail; complete invalid CREATE UI field matrix remains unproven.',
- 'AD-T05':'Both register/cancel versus PAUSE orders remain component C03/C04; real concurrent browser orders not all executed.',
- 'AD-T06':'Full sensitive-dialog variants including PAUSE/capacity and source changes need individual proof.',
+ 'AD-T05':'Both register/cancel and PAUSE orders now executed with real held browser POSTs and durable results; preserve MVP block on new PAUSED cancels until T09.',
+ 'AD-T06':'Real capacity/schedule/state dialogs invalidate four known live source changes and require fresh confirmation; isolated N-only change and complete observation/error permutations still unproven.',
  'AD-T07':'Actual SQLite audit-aborted publication after committed EDIT now preserves distinct historical confirmation and UNKNOWN; no physical I/O/crash proof inferred.',
  'AD-T08':'Committed and unreceived loss, reload, double pointer clicks cover all three actions; duplicate titles keep exact IDs. Operational/platform cases remain separate.',
  'AD-T09':'Complete G/U/admin-only/missing/forged/revoked scope matrix across HTTP/SSR/WSS and caches remains.',
  'AD-T11':'Fault injection is component TX/SQLFAIL; admin process crash pre/post commit and real I/O failures not all proved.',
  'AD-T12':'New durable audit excludes fake token/CSRF/private body markers; full public export/forged actor matrix not proved.',
- 'AD-T13':'Real A/B text-field forms cover same/different dirty patches and both committed orders; full sensitive-field and arrival-point matrix remains.',
+ 'AD-T13':'Adds real capacity/schedule/state forms in both commit orders and mixed-field patches, preserving prior text-field tests; complete arrival-point/observation-error permutations remain.',
  'AD-T14':'All-state field edits/IDs proved; audience and delayed view variants not exhaustively combined with each edit.',
  'AD-T15':'No controlled quota/old recovery-point/epoch restoration exercise; no automatic deletion/replay authorized.',
  'AR-T04':'Component crash covers registrations; admin and outbox emission crash boundaries remain incomplete.',
@@ -127,7 +133,7 @@ gaps = {
 component_links = {'AR-T02':['C01','R03'], 'AR-T03':['C02','C03','C04'], 'AR-T04':['CRASH','TX'],
  'AR-T05':['I05','K3K4'], 'AR-T08':['TX','SQLFAIL'], 'AR-T19':['Q03','I05'],
  'AD-T04':['C02'], 'AD-T05':['C03','C04'], 'AD-T11':['TX','SQLFAIL'], 'QT11':[f'D{i:02}' for i in range(1,10)], 'QT07':['CRASH']}
-units = repo / 'tests/evidence/r09/t05-admin-boundaries-authoring-r1/web-r1/checks.json'
+units = repo / 'tests/evidence/r09/t05-admin-sensitive-authoring-r1/web-r1/checks.json'
 assert all(value == 0 for value in json.loads(units.read_text()).values())
 matrix = json.loads((integration / 'run/browser/matrix-evidence.json').read_text())
 assert matrix['race']['after']['capacity'] == matrix['race']['after']['active'] == 10
@@ -164,7 +170,27 @@ assert browser_posts(boundary['actorSwitch']['command']['workshopId']) == [bound
 for item in boundary['twoForms']:
     assert len(browser_posts(item['id'])) == 2
     assert {r['intentId'] for r in browser_posts(item['id'])} == {step['command']['intentId'] for step in item['steps']}
-covered_functional = {'AD-T02','AD-T03','AD-T04','AD-T07','AD-T08','AD-T10','AR-T05','AR-T06','AR-T19'}
+sensitive_path = integration / 'run/browser/admin-sensitive-evidence.json'
+sensitive = json.loads(sensitive_path.read_text())
+assert len(sensitive['forms']) == 7 and len(sensitive['dialogs']) == 4 and len(sensitive['pauseRaces']) == 4
+assert {(v['kind'],v['order']) for v in sensitive['forms']} == {('mixed','A-B')} | {(kind,order) for kind in ['capacity','schedule','state'] for order in ['A-B','B-A']}
+assert {v['kind'] for v in sensitive['dialogs']} == {'capacity','schedule','state-capacity','state-state'}
+for item in sensitive['forms']:
+    assert item['posts'] == [1,1]
+    assert len(browser_posts(item['id'])) == 2
+    assert {c['intentId'] for c in browser_posts(item['id'])} == {v['command']['intentId'] for v in item['steps']}
+for item in sensitive['dialogs']:
+    assert item['posts'] == 1 and browser_posts(item['id']) == [item['command']], 'sensitive dialogs wire replay'
+assert {(v['operation'],v['order']) for v in sensitive['pauseRaces']} == {(op,order) for op in ['register','cancel'] for order in ['participant-first','pause-first']}
+for item in sensitive['pauseRaces']:
+    assert item['posts'] == [1,1] and len(browser_posts(item['id'])) == 1
+    writes = [json.loads(v['body']) for v in wire if v['method']=='POST' and v['path']==item['path'] and json.loads(v['body']).get('workshopId')==item['id']]
+    assert writes == [item['command']], 'sensitive PAUSE wire replay'
+    assert [v['side'] for v in item['steps']] == (['participant','pause'] if item['order']=='participant-first' else ['pause','participant'])
+    assert item['result']['code'] == ('PAUSED' if item['order']=='pause-first' else 'REGISTERED' if item['operation']=='register' else 'CANCELLED')
+    assert item['after']['state']=='PAUSED'
+    assert item['after']['active'] == (int(item['order']=='participant-first') if item['operation']=='register' else int(item['order']=='pause-first'))
+covered_functional = {'AD-T05','AD-T02','AD-T03','AD-T04','AD-T07','AD-T08','AD-T10','AR-T05','AR-T06','AR-T19'}
 for row in rows:
     source = pilot / row['source']['path']
     assert sha(source) == row['source']['sha256'], source
@@ -182,6 +208,8 @@ for row in rows:
         evidence.append({'kind':'REAL_ADMIN_BOUNDARY_DETAILS','path':str(boundary_path.relative_to(repo)), 'sha256':sha(boundary_path), 'selector':'publication/absentState/packet/namespaces/actorSwitch/twoForms as applicable; explicit fake SQLite trigger', 'status':'PASS'})
     if row['id'] in {'AD-T02','AD-T03','AD-T04','AD-T07','AD-T08','AD-T09','AD-T10','AD-T12','AD-T13','AR-T05','AR-T06','AR-T07','AR-T19'}:
         evidence.append({'kind':'DURABLE_SQL_READ_ONLY','path':str(audit_path.relative_to(repo)), 'sha256':sha(audit_path), 'selector':'checks; see bound matrix-evidence.json for exact intents', 'status':'PASS'})
+    if row['id'] in {'AD-T05','AD-T06','AD-T13','AR-T03','AR-T07'}:
+        evidence.append({'kind':'REAL_SENSITIVE_ADMIN_AND_PAUSE_DETAILS','path':str(sensitive_path.relative_to(repo)), 'sha256':sha(sensitive_path), 'selector':'forms/dialogs/pauseRaces; exact literal requests, held before decision, current PAUSED cancel rule','status':'PASS'})
     if re.fullmatch('E0[1-6]',row['id']) or row['id'] == 'QT05':
         evidence.append({'kind':'CURRENT_WEB_UNIT_SUITE','path':str(units.relative_to(repo)), 'sha256':sha(units), 'selector':'93-test suite; inspect web/tests/unit/updates.test.mjs and collections.test.mjs', 'status':'PASS','limit':'Suite support only; not exhaustive live variant coverage.'})
     if row['id'] == 'AR-T21':

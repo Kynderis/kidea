@@ -1,0 +1,17 @@
+{
+  "status": "PASS_BYTE_EXACT_RESTORED",
+  "cause": "default sqlite diagnostic read removed archived WAL/SHM on close; database bytes unchanged; avoid mutable archived database access",
+  "restoredFromCurrentHEADOnlyUsingCreateExclusive": [
+    {
+      "path": "tests/evidence/r09/t05-admin-boundaries-integration-r5/run/app/workshop.sqlite-shm",
+      "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+    },
+    {
+      "path": "tests/evidence/r09/t05-admin-boundaries-integration-r5/run/app/workshop.sqlite-wal",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "priorCollectionAllFilesStillExact": true,
+  "futureReads": "immutable read-only URI or temporary copied database only",
+  "noSourceOrUserChangesReset": true
+}

@@ -1,0 +1,51 @@
+✔ new authoritative socket observation invalidates open capacity confirmation without POST (1665.99123ms)
+✔ new authoritative socket observation invalidates open schedule confirmation without POST (761.650062ms)
+✖ new authoritative socket observation invalidates open state-capacity confirmation without POST (744.961519ms)
+✖ new authoritative socket observation invalidates open state-state confirmation without POST (795.627621ms)
+{"serverStdout":"Listening on http://127.0.0.1:52472\n","serverStderr":"","scope":"built Web/native Mac Chrome + explicit fake API; no backend integration/acceptance"}
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6021.675998
+
+✖ failing tests:
+
+test at tests/r09/t05/admin-sensitive-server.test.mjs:23:81
+✖ new authoritative socket observation invalidates open state-capacity confirmation without POST (744.961519ms)
+  AssertionError [ERR_ASSERTION]: changed confirmed source must close the old dialog
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-sensitive-server.test.mjs:33:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-sensitive-server.test.mjs:23:75 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r09/t05/admin-sensitive-server.test.mjs:23:81
+✖ new authoritative socket observation invalidates open state-state confirmation without POST (795.627621ms)
+  AssertionError [ERR_ASSERTION]: changed confirmed source must close the old dialog
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-sensitive-server.test.mjs:33:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-sensitive-server.test.mjs:23:75 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,24 @@
+{
+  "sourceCommit": "b496e88c182ebcf817017829244d5d532569ec97",
+  "sourceSha256": "d8d73ffcccef098e083327163d8902c12992c91192adb371d84299c46203f199",
+  "patch": "diff --git a/web/src/lib/AdminForm.svelte b/web/src/lib/AdminForm.svelte\nindex cd1a9d5..bc28c7f 100644\n--- a/web/src/lib/AdminForm.svelte\n+++ b/web/src/lib/AdminForm.svelte\n@@ -19,6 +19,8 @@\n  function observe(next:AdminSnapshot|null,replace=false,background=false){\n   if(base&&next){const order=compareAdminObservation(base,next);if(order==='OLDER')return false;if(order==='CONFLICT'){blockConflict();return false;}}\n   if(conflicted&&background)return false;conflicted=false;\n+  // A confirmation belongs to the observed source, even with no dirty fields.\n+  if(base&&next&&!sameObservation(base,next)&&candidate){candidate=null;dialog?.close();message='D\u1eef li\u1ec7u thay \u0111\u1ed5i trong l\u00fac x\u00e1c nh\u1eadn. H\u00e3y xem l\u1ea1i tr\u01b0\u1edbc khi g\u1eedi.';}\n   if(base&&next&&!sameObservation(base,next)&&dirty&&!replace){latest=next;candidate=null;dialog?.close();if(!unresolved)message='D\u1eef li\u1ec7u \u0111\u00e3 thay \u0111\u1ed5i. Ph\u1ea7n b\u1ea1n nh\u1eadp v\u1eabn \u0111\u01b0\u1ee3c gi\u1eef; xem b\u1ea3n m\u1edbi tr\u01b0\u1edbc khi l\u01b0u.';return false;}\n   if(next){if(replace||!dirty)draft=formOf(next);base=next;}latest=null;return true;\n  }\n",
+  "checks": {
+    "test:unit": 0,
+    "check": 0,
+    "lint": 0,
+    "build": 0,
+    "test:server": 0,
+    "content-regression": 0,
+    "sensitive-regression": 0
+  },
+  "unitChecks": 93,
+  "retainedNativeSSRChecks": 18,
+  "retainedContentRegressions": 4,
+  "newSensitiveRegressions": 4,
+  "baseline": {
+    "PASS": 2,
+    "FAIL": 2,
+    "SKIP": 0
+  },
+  "notBackendOrCoreBuild": true
+}
