@@ -1,0 +1,26 @@
+Loading svelte-check in workspace: /Users/kendrick/Desktop/kidea-workshop-pilot/web
+Getting Svelte diagnostics...
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/operations/+page.svelte:4:57
+Warn: This reference only captures the initial value of `data`. Did you mean to reference it inside a derived instead?
+https://svelte.dev/e/state_referenced_locally (svelte)
+ import {decodeOperations,OperationsCritical,type Operations} from '$lib/operations';
+ let {data}=$props();let current:Operations|null=$state(data.operations),fresh=$state(true),allowed=$state(true),paused=$state(false);
+ const incidents=new OperationsCritical();incidents.ingest(data.operations);let conclusion=$state(incidents.conclusion(current));
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/operations/+page.svelte:5:60
+Warn: This reference only captures the initial value of `data`. Did you mean to reference it inside a closure instead?
+https://svelte.dev/e/state_referenced_locally (svelte)
+ let {data}=$props();let current:Operations|null=$state(data.operations),fresh=$state(true),allowed=$state(true),paused=$state(false);
+ const incidents=new OperationsCritical();incidents.ingest(data.operations);let conclusion=$state(incidents.conclusion(current));
+ let refresh:()=>void=()=>{};
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/operations/+page.svelte:5:120
+Warn: This reference only captures the initial value of `current`. Did you mean to reference it inside a derived instead?
+https://svelte.dev/e/state_referenced_locally (svelte)
+ let {data}=$props();let current:Operations|null=$state(data.operations),fresh=$state(true),allowed=$state(true),paused=$state(false);
+ const incidents=new OperationsCritical();incidents.ingest(data.operations);let conclusion=$state(incidents.conclusion(current));
+ let refresh:()=>void=()=>{};
+
+====================================
+svelte-check found 0 errors and 3 warnings in 1 file

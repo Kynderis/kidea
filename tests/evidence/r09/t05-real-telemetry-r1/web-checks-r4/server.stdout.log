@@ -1,0 +1,20 @@
+✔ intro is prerendered readable HTML with noindex and fixed canonical (10.257464ms)
+✔ SSR list escapes title and strips all private fields (60.202911ms)
+✔ SSR detail retains public schedule and identity link (14.328194ms)
+✔ hidden and missing are generic without private body (10.889998ms)
+✔ concurrent actor cookies never forwarded into public SSR (12.352531ms)
+✔ bad backend invalid is unavailable, not empty success (7.643635ms)
+✔ bad backend malformed is unavailable, not empty success (5.877023ms)
+✔ private SSR isolates simultaneous actors and never embeds credentials (20.963801ms)
+✔ private SSR denies missing or invalid session  (3.695966ms)
+✔ private SSR denies missing or invalid session workshop_session=REVOKED (7.393217ms)
+✔ private SSR rejects wrong actor group (10.154585ms)
+{"serverStdout":"Listening on http://127.0.0.1:55190\n","serverStderr":"","scope":"Built Web + local fake API contract; not backend integration or product acceptance"}
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 591.043327

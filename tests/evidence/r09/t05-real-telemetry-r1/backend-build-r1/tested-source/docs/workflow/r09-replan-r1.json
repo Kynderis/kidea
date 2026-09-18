@@ -1,0 +1,852 @@
+{
+  "operation": "REPLAN_WORK",
+  "reason": "Reconcile the already accepted R03–R05 content and first verified implementation slice into the public ten-step tree; preserve all history and keep MVP incomplete. No imported DONE or future acceptance.",
+  "nextAction": "After exact Human acceptance, use public resume transitions to record inherited content and verified first implementation leaves; then apply the approved max2ACTIVE change through impact while the remaining MVP leaves stay pending.",
+  "items": [
+    {
+      "id": "W-001",
+      "roundId": "ROUND-001",
+      "name": "Ý tưởng và phạm vi",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "scope"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/features.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "scope"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-001-CONTENT",
+      "roundId": "ROUND-001",
+      "name": "Đối chiếu nội dung đã nghiệm thu",
+      "kind": "TASK",
+      "parentId": "W-001",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "scope"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/features.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "scope"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-002",
+      "roundId": "ROUND-001",
+      "name": "Nghiệp vụ",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "business"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/business/INDEX.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/features/admin.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/features/register-cancel.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/features/updates.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/features/view.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/shared/availability.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/shared/registration.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/shared/workshop.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "business"
+      },
+      "dependencyIds": [
+        "W-001"
+      ]
+    },
+    {
+      "id": "W-002-CONTENT",
+      "roundId": "ROUND-001",
+      "name": "Đối chiếu nội dung đã nghiệm thu",
+      "kind": "TASK",
+      "parentId": "W-002",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "business"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/business/INDEX.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/features/admin.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/features/register-cancel.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/features/updates.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/features/view.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/shared/availability.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/shared/registration.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/shared/workshop.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/business/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "business"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-003",
+      "roundId": "ROUND-001",
+      "name": "Yêu cầu chất lượng",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "quality"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/quality.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "quality"
+      },
+      "dependencyIds": [
+        "W-002"
+      ]
+    },
+    {
+      "id": "W-003-CONTENT",
+      "roundId": "ROUND-001",
+      "name": "Đối chiếu nội dung đã nghiệm thu",
+      "kind": "TASK",
+      "parentId": "W-003",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "quality"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/quality.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "quality"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-004",
+      "roundId": "ROUND-001",
+      "name": "Trải nghiệm",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "experience"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/experience.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "experience"
+      },
+      "dependencyIds": [
+        "W-003"
+      ]
+    },
+    {
+      "id": "W-004-CONTENT",
+      "roundId": "ROUND-001",
+      "name": "Đối chiếu nội dung đã nghiệm thu",
+      "kind": "TASK",
+      "parentId": "W-004",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "experience"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/experience.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "experience"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-005",
+      "roundId": "ROUND-001",
+      "name": "Monitoring và vận hành",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "operations"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/operations.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "operations"
+      },
+      "dependencyIds": [
+        "W-004"
+      ]
+    },
+    {
+      "id": "W-005-CONTENT",
+      "roundId": "ROUND-001",
+      "name": "Đối chiếu nội dung đã nghiệm thu",
+      "kind": "TASK",
+      "parentId": "W-005",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "operations"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/operations.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "operations"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-006",
+      "roundId": "ROUND-001",
+      "name": "Quản trị",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "admin"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/admin.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "admin"
+      },
+      "dependencyIds": [
+        "W-005"
+      ]
+    },
+    {
+      "id": "W-006-CONTENT",
+      "roundId": "ROUND-001",
+      "name": "Đối chiếu nội dung đã nghiệm thu",
+      "kind": "TASK",
+      "parentId": "W-006",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "admin"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/admin.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "admin"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-007",
+      "roundId": "ROUND-001",
+      "name": "Kiến trúc",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "architecture"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/architecture.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/rules.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/cpp.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/web.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "architecture"
+      },
+      "dependencyIds": [
+        "W-006"
+      ]
+    },
+    {
+      "id": "W-007-CONTENT",
+      "roundId": "ROUND-001",
+      "name": "Đối chiếu nội dung đã nghiệm thu",
+      "kind": "TASK",
+      "parentId": "W-007",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "architecture"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/design/architecture.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/rules.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/cpp.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/web.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "architecture"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-008",
+      "roundId": "ROUND-001",
+      "name": "Test kỹ thuật",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "technical-tests"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/engineering/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "technical-tests"
+      },
+      "dependencyIds": [
+        "W-007"
+      ]
+    },
+    {
+      "id": "W-008-CONTENT",
+      "roundId": "ROUND-001",
+      "name": "Đối chiếu nội dung đã nghiệm thu",
+      "kind": "TASK",
+      "parentId": "W-008",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "technical-tests"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/engineering/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "technical-tests"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-009",
+      "roundId": "ROUND-001",
+      "name": "Lộ trình và triển khai",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "implementation"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "implementation"
+      },
+      "dependencyIds": [
+        "W-008"
+      ]
+    },
+    {
+      "id": "W-009-BACKEND",
+      "roundId": "ROUND-001",
+      "name": "Kiểm lát backend nền",
+      "kind": "TASK",
+      "parentId": "W-009",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "backend-leaf"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "backend-leaf"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-009-WEB",
+      "roundId": "ROUND-001",
+      "name": "Kiểm lát Web đầu tiên",
+      "kind": "TASK",
+      "parentId": "W-009",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "web-leaf"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "web-leaf"
+      },
+      "dependencyIds": [
+        "W-009-BACKEND"
+      ]
+    },
+    {
+      "id": "W-009-MAX2",
+      "roundId": "ROUND-001",
+      "name": "Impact giới hạn hai ACTIVE khi MVP dở",
+      "kind": "TASK",
+      "parentId": "W-009",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "max2-leaf"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "max2-leaf"
+      },
+      "dependencyIds": [
+        "W-009-WEB"
+      ]
+    },
+    {
+      "id": "W-009-ADMIN-OPS",
+      "roundId": "ROUND-001",
+      "name": "Hoàn thiện admin, sự kiện và vận hành",
+      "kind": "TASK",
+      "parentId": "W-009",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "admin-ops-leaf"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "admin-ops-leaf"
+      },
+      "dependencyIds": [
+        "W-009-MAX2"
+      ]
+    },
+    {
+      "id": "W-009-G2",
+      "roundId": "ROUND-001",
+      "name": "Kiểm toàn bộ nguồn cuối",
+      "kind": "TASK",
+      "parentId": "W-009",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "g2-leaf"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        },
+        {
+          "path": "docs/engineering/tests.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "g2-leaf"
+      },
+      "dependencyIds": [
+        "W-009-ADMIN-OPS"
+      ]
+    },
+    {
+      "id": "W-010",
+      "roundId": "ROUND-001",
+      "name": "Triển khai và xác nhận vận hành",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "COMPLETE",
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "dependencyIds": [
+        "W-009"
+      ]
+    },
+    {
+      "id": "W-010-PREPARE",
+      "roundId": "ROUND-001",
+      "name": "Chuẩn bị exact release lab và script",
+      "kind": "TASK",
+      "parentId": "W-010",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "dependencyIds": []
+    },
+    {
+      "id": "W-010-HUMAN-PROD",
+      "roundId": "ROUND-001",
+      "name": "Human thực hiện vai PROD trên lab",
+      "kind": "TASK",
+      "parentId": "W-010",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "dependencyIds": [
+        "W-010-PREPARE"
+      ]
+    },
+    {
+      "id": "W-010-READBACK",
+      "roundId": "ROUND-001",
+      "name": "Đối chiếu running identity và restore",
+      "kind": "TASK",
+      "parentId": "W-010",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "dependencyIds": [
+        "W-010-HUMAN-PROD"
+      ]
+    },
+    {
+      "id": "W-010-ACCEPT",
+      "roundId": "ROUND-001",
+      "name": "Nghiệm thu vận hành đúng phạm vi",
+      "kind": "TASK",
+      "parentId": "W-010",
+      "shape": "LEAF",
+      "decomposition": null,
+      "scopeRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        }
+      ],
+      "completionRef": {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "release"
+      },
+      "dependencyIds": [
+        "W-010-READBACK"
+      ]
+    }
+  ],
+  "dispositions": [
+    {
+      "id": "W-001",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    },
+    {
+      "id": "W-002",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    },
+    {
+      "id": "W-003",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    },
+    {
+      "id": "W-004",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    },
+    {
+      "id": "W-005",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    },
+    {
+      "id": "W-006",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    },
+    {
+      "id": "W-007",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    },
+    {
+      "id": "W-008",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    },
+    {
+      "id": "W-009",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    },
+    {
+      "id": "W-010",
+      "decision": "REASSESS",
+      "reason": "Replace initial placeholder definitions with stable reviewed scope and explicit leaves; downstream steps are reassessed, not silently preserved as complete."
+    }
+  ],
+  "nextItemId": "W-001"
+}

@@ -1,0 +1,2274 @@
+[
+  {
+    "id": "P01",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "access",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| P01 | Khách/người tham gia/admin × đọc công khai DRAFT/OPEN/PAUSED | DRAFT không công khai cho bất kỳ actor nào; admin đọc DRAFT qua phạm vi admin; OPEN/PAUSED công khai, PAUSED có nhãn. Không thay dữ liệu |",
+    "technicalGroups": [
+      "TC-01"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "P02",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "access",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| P02 | Khách/người tham gia/admin × tạo/sửa/đặt state/monitoring | Chỉ quyền admin nhận; khách/tham gia không thể thực hiện; role client giả admin không vượt quyền |",
+    "technicalGroups": [
+      "TC-01"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "P03",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "access",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| P03 | Khách, chính chủ, người khác, admin-only × đăng ký/hủy/xem lịch sử | Khách không có thao tác cá nhân; người tham gia chỉ chính chủ; admin không hủy hộ hoặc xem danh tính qua trang admin; không rò kết quả riêng |",
+    "technicalGroups": [
+      "TC-01"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "P04",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "access",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| P04 | ID không tồn tại và ID người khác; cả OPEN và PAUSED | Cùng không thể thực hiện trong phạm vi truy cập; không tiết lộ state/C/N hay kết quả cũ |",
+    "technicalGroups": [
+      "TC-01"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "P05",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "access",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| P05 | OPEN/PAUSED có start trước/sau và hai workshop cùng start; thêm DRAFT | Chỉ public OPEN/PAUSED, tăng theo thời điểm rồi ID ổn định; không biến lịch quá khứ thành đóng |",
+    "technicalGroups": [
+      "TC-01"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "P06",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "access",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| P06 | Chủ có ACTIVE A và CANCELLED B; người khác hỏi cùng danh sách | Chủ thấy phân biệt cả hai; người khác không thấy; không lọc mất lịch sử hủy |",
+    "technicalGroups": [
+      "TC-01"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "P07",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "access",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| P07 | Admin đặt đích DRAFT/OPEN/PAUSED từ mỗi trạng thái (9 ô), thêm giá trị lạ | Chính xác ma trận W-STATE: 3 không đổi, 3 chấp nhận, 3 từ chối; giá trị lạ từ chối. Không đổi/từ chối không event giả |",
+    "technicalGroups": [
+      "TC-01"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "P08",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "access",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| P08 | Thời gian trôi qua start/end ở mỗi DRAFT/OPEN/PAUSED | State/dữ liệu giữ nguyên, không tự đóng/xóa hoặc hủy đăng ký |",
+    "technicalGroups": [
+      "TC-01"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "R01",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "registration",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| R01 | Không có ACTIVE; C1,N0 và C10,N9: đăng ký mới | Nhận ID mới ACTIVE, N+1=C, một nghĩa vụ thay đổi |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "R02",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "registration",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| R02 | Không có ACTIVE; C1,N1 và C10,N10: đăng ký mới | Hết chỗ; N/C/registrations giữ nguyên |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "R03",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "registration",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| R03 | Đã ACTIVE; lần lượt N<C và N=C; mã mới đăng ký | Đã đăng ký trước kiểm đầy; không thêm ACTIVE/event |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "R04",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "registration",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| R04 | A ACTIVE chính chủ; N1 và N=C: hủy A | A CANCELLED, N−1, một nghĩa vụ thay đổi |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "R05",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "registration",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| R05 | A CANCELLED; còn chỗ: đăng ký lại B rồi hủy A bằng mã mới | B ID khác A, ACTIVE; hủy A trả đã hủy, B/N không đổi ở bước cuối |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "R06",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "registration",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| R06 | A CANCELLED, không rebook; mã mới hủy A hai lần khi OPEN | Cả hai đã hủy, không giảm N hoặc event |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "R07",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "registration",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| R07 | PAUSED với không ACTIVE/đã ACTIVE × N<C/N=C; đăng ký mới; hủy ACTIVE/CANCELLED mới | Tất cả báo hiện không nhận thao tác trước duplicate/full/already-cancelled; N giữ nguyên |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "R08",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "registration",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| R08 | DRAFT, người tham gia thao tác ID không thuộc phạm vi; và thiếu registrationID khi hủy | DRAFT chặn quyền không lộ state; thiếu ID lỗi hình thức trước truy đối tượng; không tìm ACTIVE khác để hủy |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I01",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I01 | Nhận đăng ký với mã X, mất phản hồi, gửi X cùng nội dung 2 lần | Trả kết quả đầu; chỉ một registration, N chỉ tăng 1, không event nghiệp vụ lần hai |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I02",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I02 | Hủy A mã X thành công, gửi X lại | Trả hủy cũ, N không giảm lần hai |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I03",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I03 | X có kết quả; đổi action/workshop/registrationID (từng biến thể) | Xung đột nội dung, không chạy ý định mới |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I04",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I04 | X cùng nội dung đang xử lý hoặc chưa xác định hiệu lực lưu | Chưa có kết quả cuối, tra/tiếp tục X; không tự nói thất bại cuối hoặc tạo mã Y |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I05",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I05 | X đăng ký thành công; hủy A, PAUSE workshop (xét riêng và cùng xảy ra); gửi X | Quyền hiện tại hợp lệ: kết quả lịch sử cũ, trạng thái hiện tại không bị nói thành ACTIVE; không hồi sinh/chỗ/event |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I06",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I06 | X đã có kết quả; quyền hiện tại bị thu hồi hoặc actor khác biết X | Chặn đọc, không lộ kết quả; dữ liệu không đổi |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I07",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I07 | X bị FULL; sau đó có chỗ; gửi X rồi tạo ý định Y | X vẫn FULL lịch sử, không nhận; Y kiểm mới, nhận nếu điều kiện vẫn hợp lệ |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I08",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I08 | X đã hủy thành công; PAUSE; gửi X rồi mã mới Y hủy cùng ID | X trả lịch sử; Y báo tạm dừng trước đã hủy; N giữ nguyên |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I09",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I09 | OPEN,C2,N0; cùng U gửi hai bản REGISTER X cùng nội dung đồng thời khi chưa có kết quả | Chỉ một ý định/ID ACTIVE,N1 và một nghĩa vụ thay đổi; trong xử lý có thể chưa-final, khi đã final cả lần đọc trả cùng kết quả/ID lịch sử. Không đổi bản thứ hai thành mã mới hoặc kết quả đã đăng ký của ý định khác; không đặt thời hạn |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "I10",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "retry",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| I10 | OPEN,C3,N2,A ACTIVE; CANCEL Y đã đổi A CANCELLED,N1 nhưng chưa xác định lưu kết quả/nghĩa vụ; gửi lại Y. Xét thêm nhánh sau đó U đăng ký mới B khi authority có thể xử lý hợp lệ | Giữ chưa-final/tra cùng Y tới khi có căn cứ kết quả; không giảm N lần hai, không báo thất bại cuối do mất phản hồi, giữ nghĩa vụ cập nhật. Không có B: N1; có B: B ACTIVE,N2, phục hồi Y không hủy B. Không suy việc tạo B giải quyết sự chưa biết của Y |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "C01",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "concurrency",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| C01 | C10,N9; U và V khác người đăng ký | U nhận N10, V FULL | V nhận N10, U FULL |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "C02",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "concurrency",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| C02 | C10,N9; đăng ký U và giảm C9 | U nhận N10, giảm bị từ chối C10 | Giảm C9,N9, U FULL |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "C03",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "concurrency",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| C03 | C10,N0 OPEN; U đăng ký và PAUSE | U nhận N1, sau PAUSED vẫn ACTIVE | PAUSED trước, U tạm dừng, N0 |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "C04",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "concurrency",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| C04 | C10,N1, A ACTIVE OPEN; hủy A và PAUSE | Hủy A CANCELLED,N0, sau PAUSED | PAUSED trước, hủy tạm dừng, A ACTIVE,N1 |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "C05",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "concurrency",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| C05 | C10,N0; cùng người U, hai mã mới X/Y đăng ký | X nhận một ACTIVE,N1; Y đã đăng ký | Y nhận một ACTIVE,N1; X đã đăng ký |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "D01",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "data",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| D01 | N0, C đề nghị 0/1/1000/1001; thêm −1, 1.5, null, thiếu | Chỉ 1 và 1000 nhận; còn lại từ chối, không làm tròn |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "D02",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "data",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| D02 | C10,N9; đề nghị C8/C9/C10 | C8 từ chối; C9 nhận; C10 không đổi; không tự hủy ACTIVE |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "D03",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "data",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| D03 | Tiêu đề sau trim dài 0/1/120/121; whitespace-only, newline, thiếu/null | Chỉ độ dài 1/120 một dòng hợp lệ; còn lại sai. Có emoji ngoài BMP: tính một code point, không hai UTF-16 unit |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "D04",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "data",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| D04 | Mô tả sau trim dài 0/1/5000/5001; newline giữa văn bản, thiếu/null | 1/5000 và newline trong giới hạn hợp lệ; 0/5001/thiếu/null sai; trim trước đếm |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "D05",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "data",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| D05 | Tạo mới và sửa workshop có sẵn: nhập nội dung HTML `<b>abc</b>` hoặc Markdown `**abc**` vào tiêu đề/mô tả; đối chứng văn bản thuần `Lớp học thủ công` | Hai dạng markup bị từ chối theo W-DATA/B2; tạo không sinh workshop, sửa giữ nguyên nội dung/C/N/state, không event thay đổi. Văn bản thuần thỏa các điều kiện khác được nhận, giữ nghĩa. Không coi lưu literal markup là chấp nhận hợp lệ, không tự đặt bộ lọc dấu câu |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "D06",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "data",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| D06 | Start=end, start>end, end>start; thiếu timezone ở từng mốc, thiếu/null từng mốc; hai timezone biểu diễn cùng instant | Chỉ end>start và đủ timezone nhận; cùng instant vẫn bằng nên từ chối; không so chữ giờ địa phương |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "D07",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "data",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| D07 | 3 state × sửa từng title/description/schedule/C hợp lệ; lặp lại chính nội dung đã chuẩn hóa | Thay đổi thực nhận với đúng nghĩa vụ; lặp không đổi không event giả; DRAFT không phát nội dung cho public |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "D08",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "data",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| D08 | Đang có ACTIVE; sửa lịch hợp lệ, thử xóa workshop/quay DRAFT | Sửa lịch nhận, đăng ký giữ nguyên, không hứa thông báo riêng; xóa/quay DRAFT không được phép |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "D09",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "data",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| D09 | Admin đủ quyền; chưa có workshop đích. Tạo với title=`Lớp học thủ công`, description=`Buổi thực hành`, C=10, start=2026-10-01T09:00:00+07:00, end=2026-10-01T10:00:00+07:00 | Tạo một ID workshop mới,DRAFT,N=0,C=10 và nội dung/lịch trên; admin đọc được, public không thấy. Thành công cuối chỉ khi kết quả/nghĩa vụ đã chắc, theo [W-STATE](shared/workshop.md#state), [W-ACCESS](shared/workshop.md#access), [V-PUBLISH](shared/availability.md#publish), [AC-A5](features/admin.md#ac). Nhánh dữ liệu sai tại D01/D03–D06 không tạo workshop |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T02",
+    "runtime": "NOT_RUN",
+    "testFiles": [
+      "backend/tests/tests.cpp"
+    ],
+    "variantPolicy": "Execute every source-row variant; authored test is uncompiled and not yet accepted as complete coverage."
+  },
+  {
+    "id": "E01",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E01 | Đã thấy v11; nhận v12 snapshot C10,N9 nhất quán | Hiện v12, còn1; không ghép C/N khác version |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "E02",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E02 | Đã thấy v12; nhận v12 cùng nội dung, rồi v11 | Không đổi hoặc đếm lại/lùi về v11 |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "E03",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E03 | Đã thấy v12; nhận v12 khác C/N/nội dung (từng loại) | Báo lỗi cần đối chiếu, không chọn tùy tiện; chưa xác nhận |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "E04",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E04 | Mất v12/v13; nhận v14 snapshot đủ bao phủ | Khôi phục v14, không bắt replay từng event cũ/đăng ký |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "E05",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E05 | Gián đoạn, bản nhận không đủ bao phủ | Giữ quan sát gần nhất có nhãn; đọc nguồn thẩm quyền rồi khôi phục; giữ event lỗi |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "E06",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E06 | Đang hiện còn1 tại T; mất kết nối; biến thể chưa từng có snapshot | Có bản: giữ 1/T với “chưa cập nhật”; chưa có: không bịa 0/T; phục hồi cập nhật đúng bản |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "E07",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E07 | Lưu kết quả/nghĩa vụ thay đổi chưa biết; biến thể đã lưu chắc nhưng view chưa nhận | Chưa biết: không thành công/thất bại cuối, giữ mã; đã chắc: được trả kết quả cuối, view trễ không đảo nghiệp vụ |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "E08",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E08 | Thay đổi đăng ký/hủy/C/state/nội dung công khai (từng loại); thêm no-op/từ chối/retry | Thay đổi thực có nghĩa vụ và version phù hợp; ba loại không đổi không tạo thay đổi giả |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "E09",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E09 | Public snapshot/log hiển thị, cá nhân, monitoring; DRAFT thay đổi | Public không identity/requestID/dữ liệu đăng ký riêng; DRAFT chỉ admin; riêng tư kiểm quyền; không đưa lỗi chứa dữ liệu riêng ra public |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "E10",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "events",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| E10 | Admin xem pending/error/lag/last-success; mất quan sát; người không quyền; tìm replay/delete | Chỉ admin xem dữ liệu quan sát; mất tín hiệu không giả 0/healthy; không nút replay/delete; giữ lỗi để đối chiếu |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "T01",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "trace",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| T01 | Đọc độc lập cả [xem](features/view.md#flow), [đăng ký](features/register-cancel.md#flow), [admin](features/admin.md#flow), [updates](features/updates.md#flow) | Theo input/state xác định nhánh/kết quả và mục nguồn; mỗi Feature có AC/test, không cần transcript |",
+    "technicalGroups": [
+      "TC-16"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "T02",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "trace",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| T02 | Theo link mọi rule/AC/test, rồi backlink tại [C-REG](shared/registration.md#relations), [C-LIFE](shared/workshop.md#relations), [C-VIEW](shared/availability.md#relations) | Đích tồn tại, đúng mục đích; không chỉ có link tới trang nhưng sai hợp đồng |",
+    "technicalGroups": [
+      "TC-16"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "T03",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "trace",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| T03 | Giả lập đề xuất đổi cho hủy PAUSED hoặc max2ACTIVE toàn hệ thống | Chưa áp dụng [Future](../features.md#later); truy ảnh hưởng state/new/retry/caller/AC/test, xin quyết định thay đổi phạm vi trước triển khai |",
+    "technicalGroups": [
+      "TC-16"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "T04",
+    "source": {
+      "path": "docs/business/tests.md",
+      "anchor": "trace",
+      "sha256": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822"
+    },
+    "expected": "| T04 | Cùng case đăng ký/xem trên Web; biến thể Android/iOS Future chưa roadmap; web JS-off cho public list/detail và trang giới thiệu | Cùng nghĩa nghiệp vụ; public nội dung đọc trước JS theo [phạm vi nền tảng](../features.md#boundaries); hiện NOT_RUN vì chưa sản phẩm/thiết bị, không lấy hồ sơ thay bằng chứng |",
+    "technicalGroups": [
+      "TC-16"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T01",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T01 | Tắt JS, mở `/`, danh sách và OPEN/PAUSED detail | Đọc được nội dung/public links, đúng metadata; [S-DESIGN](#seo), không thao tác cá nhân giả hoạt động khi thiếu runtime |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T02",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T02 | Từng W1/W3 (N1 Future): loading → empty hợp lệ, rồi lỗi mạng/quyền | Phân biệt bốn trạng thái; [U-SCREENS](#screens), [U-ERROR](#error) |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T03",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T03 | Đăng ký X, mất phản hồi, back/reload/app restart, quay lại | Giữ ý định/kiểm X sau đúng quyền, không X→Y tự động; [U-ACTION](#action) |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T04",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T04 | X thành công, hủy A rồi rebook B, đọc lại X | Kết quả lịch sử không hồi sinh A, lịch sử phân biệt A/B; [U-ACTION](#action) |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T05",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T05 | OPEN/PAUSED × chưa ACTIVE/ACTIVE/CANCELLED; thêm cache đầy/cũ | Nút/nhãn đúng bảng action; state đổi giữa nhìn/bấm vẫn theo server, không thay rule; [U-ACTION](#action) |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T06",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T06 | Hủy: đóng dialog, Escape, xác nhận; double-click | Hai nhánh đầu không mutation, xác nhận đúng ID/ý định, không hủy hai lần; [U-ACTION](#action), [U-USABILITY](#usability) |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T07",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T07 | Mất tín hiệu rõ/âm thầm, chưa từng có snapshot, version xung đột | Nhãn/thời gian theo [QF](quality.md#freshness), không giả 0/xanh/lùi state; [U-ERROR](#error) |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T08",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T08 | Đổi actor/mất quyền, ID người khác/DRAFT/không có | Không leak metadata/HTML/cache/history/back stack; [U-ERROR](#error), [S-DESIGN](#seo) |",
+    "technicalGroups": [
+      "TC-09"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T09",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T09 | Tiêu đề/description biên, emoji, lịch khác ngày/timezone, ngày quá khứ | Đúng miền và nghĩa, không cắt mất thông tin hoặc auto-close; [U-USABILITY](#usability) |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T10",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T10 | Bàn phím, focus dialog/field, 360/1280 px, chữ 200%, chữ native lớn Future | Hoàn thành luồng chính không mắc kẹt/mất nút/nhãn; [U-USABILITY](#usability) |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T11",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T11 | Đổi tên workshop, URL tham số/ID sai và config origin sai | URL identity không đổi; URL lỗi không biến thành trang hợp lệ/canonical giả; [S-DESIGN](#seo) |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T12",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T12 | HTML lab/public/private, tìm Event JSON-LD và sitemap submission | Noindex đúng thiết kế, không private/markup giả, không submit mạng; [S-DESIGN](#seo) |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T13",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T13 | Hành trình Web W1/W3 → W2 → back; biến thể Android/iOS N1 Tất cả/Của tôi → N2 → back Future | Cùng rule/identity, giữ navigation không mutation; không admin native; [U-SCREENS](#screens) |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T14",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T14 | Phục hồi mất ổ với recovery point trước kết quả client đã nhớ | Cảnh báo/đối chiếu/chặn replay không căn cứ theo [QD](quality.md#recovery), [U-ERROR](#error); cơ chế kỹ thuật còn gate kiến trúc |",
+    "technicalGroups": [
+      "TC-12"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "UX-T15",
+    "source": {
+      "path": "docs/design/experience.md",
+      "anchor": "cases",
+      "sha256": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e"
+    },
+    "expected": "| UX-T15 | Admin thao tác sai field, ops mất collector; phiên không admin | UI thể hiện lỗi/giới hạn, không cấp quyền qua nút; [U-SCREENS](#screens), không giả đã hoàn thành bước 5–6 |",
+    "technicalGroups": [
+      "TC-05"
+    ],
+    "stage": "T03",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T01",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T01 | Pending=0 từ mẫu hợp lệ, sau đó không có mẫu | Ban đầu tuổi pending N/A; >5s UNKNOWN và giữ giá trị cuối, không 0 giả; [O-SIGNALS](#signals), [O-DISPLAY](#display) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T02",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T02 | Một nghĩa vụ tồn tại tới 5s/5s+ε/30s, không phát thêm event | 5s chưa vượt ngưỡng cảnh báo, >5s cảnh báo, ≥30s nghiêm trọng; không phụ thuộc count tăng; [O-SIGNALS](#signals) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T03",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T03 | Không có event mới, collector vẫn trả mẫu tươi | Last-processing-success cũ không gây báo chết; độ trễ N/A, heartbeat tươi; [O-SIGNALS](#signals) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T04",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T04 | Collector trả HTTP thành công nhưng sample cũ/sai schema/mất quyền | Không refresh last-observation; UNKNOWN và cảnh báo đúng ngân sách; [O-SIGNALS](#signals), [O-ALERT](#alerts) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T05",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T05 | Cùng version khác nội dung/invariant sai | Nghiêm trọng, giữ lỗi mở và dừng bài thử; không repair/replay; [O-RESPONSE](#response), [V-RECONCILE](../business/shared/availability.md#reconcile) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T06",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T06 | Đóng phiên AI; lần lượt ngắt dashboard, backend tiến trình, backend host | Đường dự phòng còn quan sát và hiển thị cảnh báo theo ngân sách M6; không dùng log gửi thay đầu nhận; [O-ALERT](#alerts) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T07",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T07 | Ngắt kênh nhận/dừng observer/thiết bị người trực | Không ghi delivered/healthy; mất tín hiệu sống khiến phiên chưa sẵn sàng, dừng; không hứa phát hiện mọi lỗi đồng thời; [O-ALERT](#alerts) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T08",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T08 | Lặp một lỗi 100 lần, tăng mức, thêm lỗi thành phần khác, chờ 5 phút | Gom đúng mục/count, lỗi mới/tăng mức báo ngay theo ngân sách, nhắc nghiêm trọng 5 phút không spam mỗi mẫu; [O-ALERT](#alerts) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T09",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T09 | Lỗi → một mẫu tốt → mất mẫu; rồi đủ mẫu tốt; restart collector | Không khôi phục giả; đủ điều kiện mới báo recovered, giữ lỗi qua restart; [O-ALERT](#alerts) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T10",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T10 | Dữ liệu 80%/2GiB và backup mốc 10/15 phút rồi vượt, thiếu đích | Ngưỡng và UNKNOWN đúng M8/M9, dừng khi vượt/thiếu readiness; không xóa dữ liệu; [O-SIGNALS](#signals) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T11",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T11 | Khách/người tham gia/admin × W5/kênh dự phòng; log chứa token/requestID giả | Chỉ quyền phù hợp xem, trường nhạy cảm không rò public/dashboard; [O-PRIVACY](#privacy) |",
+    "technicalGroups": [
+      "TC-09"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T12",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T12 | Client vẫn chưa nhận event, authority đã chắc; latency mẫu ít/lỗi/thiếu | Không đảo kết quả đăng ký, không bỏ mẫu thiếu hoặc tô p95=0; [O-SIGNALS](#signals), [QF](quality.md#freshness) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T13",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T13 | Hết phiên/người trực rời, chưa có target/kênh đã xác nhận | Không nhận đang trực/24×7 hoặc tự chạy; [O-RESPONSE](#response) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T14",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T14 | Tìm replay/delete/restart/restore/ack/mute hoặc thử làm mới | Không có điều khiển mới; làm mới chỉ đọc, người trực ghi đã thấy không khép lỗi; [O-RESPONSE](#response) |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "OP-T15",
+    "source": {
+      "path": "docs/design/operations.md",
+      "anchor": "cases",
+      "sha256": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36"
+    },
+    "expected": "| OP-T15 | Bản backup có job success nhưng chưa biết recovery point; restore drill chưa chạy | Không báo backup/restore đạt chỉ từ exit 0; [O-SIGNALS](#signals), [QD](quality.md#recovery) |",
+    "technicalGroups": [
+      "TC-11"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T01",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T01 | Admin tạo dữ liệu hợp lệ; các biến thể thiếu/sai field | Nhánh hợp lệ ID mới,DRAFT,N0, không public; nhánh sai không tạo, lỗi đúng field; [A-COMMAND](#commands), R03 D01–D09 |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T02",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T02 | Cả ba state × sửa từng field hợp lệ, gồm lịch có ACTIVE | Kết quả W-EDIT và đối thoại xác nhận tương ứng, không đổi state hoặc hứa email; [A-COMMAND](#commands) |",
+    "technicalGroups": [
+      "TC-05"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T03",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T03 | Tất cả 9 ô state, thêm state lạ/request trực tiếp | Đúng W-STATE, no-op không event, không có nút chuyển trái phép; [A-COMMAND](#commands) |",
+    "technicalGroups": [
+      "TC-01"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T04",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T04 | C10,N9; giảm C9 cạnh tranh đăng ký ở hai thứ tự | Đúng R03 C02, không ưu tiên admin/hủy người khác; [A-CONFIRM](#confirm) |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T05",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T05 | Chuyển PAUSED cạnh tranh đăng ký/hủy | Đúng R03 C03/C04; text xác nhận nói chặn cả hai, không tắt server; [A-COMMAND](#commands) |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T06",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T06 | Dialog nhạy cảm: quay lại, Escape, xác nhận; thay đổi nguồn khi đang mở | Hủy dialog không gửi; nguồn được biết đã đổi thì xem lại; không giả dialog là khóa; [A-CONFIRM](#confirm) |",
+    "technicalGroups": [
+      "TC-05"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T07",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T07 | Đang nhập chưa lưu rồi bấm xuất bản; lưu xong nhưng xuất bản lỗi | Không ngầm lưu+xuất bản; kết quả từng thao tác riêng, không rollback tự động; [A-COMMAND](#commands) |",
+    "technicalGroups": [
+      "TC-05"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T08",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T08 | Tạo/sửa/state mất phản hồi, double-click/reload; tạo trùng tên | Không gửi lại mù/nhân đôi create; không chọn ID theo tên, unknown còn khi chưa có căn cứ; [A-ERROR](#errors) |",
+    "technicalGroups": [
+      "TC-05"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T09",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T09 | Khách/người tham gia/role giả/admin bị thu hồi, ID ngoài phạm vi | Không mutation/leak; dừng render/cache đúng quyền; [A-SCOPE](#scope), [A-ERROR](#errors) |",
+    "technicalGroups": [
+      "TC-09"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T10",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T10 | No-op/từ chối/thay đổi thực và đọc đối chiếu | Audit phân biệt, không domain event giả; [A-AUDIT](#audit) |",
+    "technicalGroups": [
+      "TC-04"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T11",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T11 | Ghi dấu thất bại trước/sau mutation; crash trước phản hồi | Không success giả hoặc khẳng định dữ liệu chưa đổi; bảo toàn/đối chiếu theo hợp đồng, cơ chế phải được chốt trước thực thi; [A-AUDIT](#audit) |",
+    "technicalGroups": [
+      "TC-04"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T12",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T12 | Payload chứa token giả/chuỗi riêng, actor giả; audit public export | Không lưu/xuất dữ liệu cấm, không nâng actor chưa xác thực; [A-AUDIT](#audit) |",
+    "technicalGroups": [
+      "TC-09"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T13",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T13 | Hai form/bản quan sát khác nhau; số liệu mới về khi đang nhập | Không tự ghi đè khi phát hiện khác, không giả có lock/version chưa chốt; [A-ERROR](#errors) |",
+    "technicalGroups": [
+      "TC-05"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T14",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T14 | Đổi tên/nội dung DRAFT/OPEN/PAUSED; view chậm | URL ổn định, audience đúng, trạng thái lưu và view tách biệt; [A-INTEGRATION](#integration) |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AD-T15",
+    "source": {
+      "path": "docs/design/admin.md",
+      "anchor": "cases",
+      "sha256": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346"
+    },
+    "expected": "| AD-T15 | Gần ngân sách/restore recovery point; tìm xóa/restart/restore/hủy hộ | Không xóa dấu để đủ chỗ hoặc tự replay sau restore, không có chức năng ngoài scope; [A-AUDIT](#audit), [A-INTEGRATION](#integration) |",
+    "technicalGroups": [
+      "TC-12"
+    ],
+    "stage": "T05",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T01",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T01 | Hợp đồng cùng vector qua Web; Android/iOS Future | C++ là authority, không lệch miền/quyền |",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T02",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T02 | Hai người tranh chỗ cuối, cùng actor hai mã | Một ACTIVE, 0≤N≤C |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T03",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T03 | C/state cùng đăng ký/hủy, hai thứ tự | Đúng R-SERIAL/R-NEW, không ưu tiên admin |",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T04",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T04 | Crash trước/sau commit, trước/sau phát | Result/audit/outbox nguyên khối, không mất ACK với ổ nguyên |",
+    "technicalGroups": [
+      "TC-04"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T05",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T05 | Double packet admin, đổi payload/actor cùng mã | Không hai create, không rò kết quả, mismatch không thực thi |",
+    "technicalGroups": [
+      "TC-05"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T06",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T06 | Create mất phản hồi/reload/GET không tìm thấy | Không tìm tên, không POST lại, unknown đúng nghĩa |",
+    "technicalGroups": [
+      "TC-05"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T07",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T07 | Hai form cùng/khác field và thay đổi sau confirm | K4, không mất field không sửa; không hứa lock |",
+    "technicalGroups": [
+      "TC-05"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T08",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T08 | No-op/reject, log/audit I/O lỗi | Không event giả, mutation không final nếu lưu chưa rõ |",
+    "technicalGroups": [
+      "TC-04"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T09",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T09 | Socket trùng/đảo/gap/same-version khác content | Snapshot reconcile, không mutation replay |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T10",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T10 | Blackout 30 giây, heartbeat im/lỗi, subscribe race | QF và không giữ xanh/dữ liệu riêng sai actor |",
+    "technicalGroups": [
+      "TC-13"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T11",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T11 | Thu hồi quyền, ID DRAFT/khác actor, CSRF, token URL | Không lộ/bypass, cả HTTP/SSR/socket; native Future |",
+    "technicalGroups": [
+      "TC-09"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T12",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T12 | SSR không JS, metadata/URL và cache riêng | Đúng UX/SEO, noindex lab, không Event markup |",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T13",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T13 | WAL đang ghi và backup chuyển bị gián đoạn | Chỉ snapshot verified thành recovery point |",
+    "technicalGroups": [
+      "TC-11"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T14",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T14 | Restore trên host đích, client còn mã/epoch cũ | QD, revoke phiên, không replay/lẫn thế hệ |",
+    "technicalGroups": [
+      "TC-12"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T15",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T15 | Hỏng backend/dashboard/AI; restart collector | Màn độc lập cảnh báo theo OP, giữ incident mở |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T16",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T16 | Hết dung lượng, mất số đo/backup quá hạn | QB/OP đúng, không xóa tự động/unknown thành xanh |",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T17",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T17 | WQ1/WQ2 đủ lặp, clock và máy đo ghi manifest | QR/QF/QC đúng phương pháp, không loại timeout |",
+    "technicalGroups": [
+      "TC-13"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T18",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T18 | Cặp client/server cũ–mới và rollback/migration | Không mất nghĩa API/schema/data, restore khác rollback |",
+    "technicalGroups": [
+      "TC-15"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T19",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T19 | U và V đủ quyền đăng ký cùng literal requestID X; sau đó V tra kết quả | Hai ý định trong namespace actor riêng; V không nhận dữ liệu U; cùng actor đổi content vẫn xung đột theo R-RETRY |",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T20",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T20 | GET history ACTIVE chậm sau socket CANCELLED/rebook; hai workshop cùng version; đổi actor/epoch giữa request | Merge đúng nhóm/audience/version, giữ ID lịch sử, response thế hệ cũ không áp vào cache mới |",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T21",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T21 | Start thiếu DB/backup/observer, stop lúc RAM pending và ngay sau commit; hết drain | Không mở ghi sớm, không ACK hàng RAM hoặc phủ định commit; khôi phục đối chiếu, observer còn tới cuối |",
+    "technicalGroups": [
+      "TC-10"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "AR-T22",
+    "source": {
+      "path": "docs/design/architecture.md",
+      "anchor": "cases",
+      "sha256": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6"
+    },
+    "expected": "| AR-T22 | Vượt từng ngưỡng rate/HTTP/queue/socket/frame, response mất sau gửi, client chậm | Hữu hạn, lỗi kỹ thuật không final domain, không rò dữ liệu hoặc replay; tải WQ không bị tự loại mẫu để đạt |",
+    "technicalGroups": [
+      "TC-08"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT01",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "response",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QR — Thời gian phản hồi và tải (Q1/Q2)\n\nNguồn: [AC xem](../business/features/view.md#ac), [AC đăng ký](../business/features/register-cancel.md#ac), [retry](../business/shared/registration.md#retry). Theo WQ/E1; chỉ số tại client từ gửi request đến nhận hết phản hồi có thể phân loại. Backend còn ghi thời gian xử lý riêng để chẩn đoán, không lấy nó thay thời gian người dùng chờ.\n\nMục tiêu p95 đọc ≤1.000 ms, p95 ghi ≤2.000 ms, lỗi kỹ thuật ≤1% mỗi nhóm; tính p95 bằng nearest-rank: phần tử thứ ceil(0,95×n) của mẫu tăng dần. Không request treo quá deadline 10 giây. Đây không tự cấp rule retry mới: mất phản hồi vẫn giữ cùng mã và trạng thái chưa xác nhận. Thông lượng thực, p50/p95/max và số lỗi phải được báo cùng nhau; missed-offer >0 khiến lượt không hợp lệ, không tự giảm 5 req/s.\n\nCase QT01: thực hiện WQ1, đối chiếu cả kỳ vọng nghiệp vụ lẫn QR; QT02: trì hoãn phản hồi tới sau deadline để kiểm không báo thành công/thất bại cuối giả; QT03: WQ2 và các lịch concurrency R03, mọi vòng giữ invariant, không dùng tỷ lệ lỗi để bỏ qua vượt chỗ. Các case kỹ thuật phải được cụ thể hóa ở R05 trước thực thi R09.",
+    "technicalGroups": [
+      "TC-13"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT02",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "response",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QR — Thời gian phản hồi và tải (Q1/Q2)\n\nNguồn: [AC xem](../business/features/view.md#ac), [AC đăng ký](../business/features/register-cancel.md#ac), [retry](../business/shared/registration.md#retry). Theo WQ/E1; chỉ số tại client từ gửi request đến nhận hết phản hồi có thể phân loại. Backend còn ghi thời gian xử lý riêng để chẩn đoán, không lấy nó thay thời gian người dùng chờ.\n\nMục tiêu p95 đọc ≤1.000 ms, p95 ghi ≤2.000 ms, lỗi kỹ thuật ≤1% mỗi nhóm; tính p95 bằng nearest-rank: phần tử thứ ceil(0,95×n) của mẫu tăng dần. Không request treo quá deadline 10 giây. Đây không tự cấp rule retry mới: mất phản hồi vẫn giữ cùng mã và trạng thái chưa xác nhận. Thông lượng thực, p50/p95/max và số lỗi phải được báo cùng nhau; missed-offer >0 khiến lượt không hợp lệ, không tự giảm 5 req/s.\n\nCase QT01: thực hiện WQ1, đối chiếu cả kỳ vọng nghiệp vụ lẫn QR; QT02: trì hoãn phản hồi tới sau deadline để kiểm không báo thành công/thất bại cuối giả; QT03: WQ2 và các lịch concurrency R03, mọi vòng giữ invariant, không dùng tỷ lệ lỗi để bỏ qua vượt chỗ. Các case kỹ thuật phải được cụ thể hóa ở R05 trước thực thi R09.",
+    "technicalGroups": [
+      "TC-03"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT03",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "response",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QR — Thời gian phản hồi và tải (Q1/Q2)\n\nNguồn: [AC xem](../business/features/view.md#ac), [AC đăng ký](../business/features/register-cancel.md#ac), [retry](../business/shared/registration.md#retry). Theo WQ/E1; chỉ số tại client từ gửi request đến nhận hết phản hồi có thể phân loại. Backend còn ghi thời gian xử lý riêng để chẩn đoán, không lấy nó thay thời gian người dùng chờ.\n\nMục tiêu p95 đọc ≤1.000 ms, p95 ghi ≤2.000 ms, lỗi kỹ thuật ≤1% mỗi nhóm; tính p95 bằng nearest-rank: phần tử thứ ceil(0,95×n) của mẫu tăng dần. Không request treo quá deadline 10 giây. Đây không tự cấp rule retry mới: mất phản hồi vẫn giữ cùng mã và trạng thái chưa xác nhận. Thông lượng thực, p50/p95/max và số lỗi phải được báo cùng nhau; missed-offer >0 khiến lượt không hợp lệ, không tự giảm 5 req/s.\n\nCase QT01: thực hiện WQ1, đối chiếu cả kỳ vọng nghiệp vụ lẫn QR; QT02: trì hoãn phản hồi tới sau deadline để kiểm không báo thành công/thất bại cuối giả; QT03: WQ2 và các lịch concurrency R03, mọi vòng giữ invariant, không dùng tỷ lệ lỗi để bỏ qua vượt chỗ. Các case kỹ thuật phải được cụ thể hóa ở R05 trước thực thi R09.",
+    "technicalGroups": [
+      "TC-02"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT04",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "freshness",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QF — Độ mới hiển thị và nhận biết mất quan sát (Q3)\n\nNguồn: [V-PUBLISH](../business/shared/availability.md#publish), [V-RECONCILE](../business/shared/availability.md#reconcile), [V-STALE](../business/shared/availability.md#stale), [V-MONITOR](../business/shared/availability.md#monitor). Không thay source authority bằng cache.\n\nVới WQ1/E1, đo từ commit thay đổi đã chắc đến observer trên từng Web đang kết nối nhận và render bản bao phủ thay đổi đó: p95 ≤2 giây, max ≤5 giây. Snapshot mới bao phủ nhiều thay đổi vẫn hợp lệ; không bắt client render mọi version trung gian. Mọi thay đổi thực trong cửa sổ đều phải được observer bao phủ; chưa bao phủ sau 5 giây là FAIL, không bỏ khỏi mẫu. Ghi riêng độ trễ pipeline và render khi chẩn đoán.\n\nBiết mất kết nối/đang reconciliation thì đánh dấu chưa cập nhật ở lần render kế tiếp trong ≤1 giây. Nếu mất kết nối âm thầm: quá 5 giây kể từ lần xác nhận liên lạc/độ mới thành công gần nhất phải đánh dấu chưa cập nhật; không dùng thời gian business event cuối để kết luận mạng mất khi không có sự kiện mới. Chưa từng quan sát không bịa timestamp/số 0. Giữ số cũ đúng nguồn; quá chậm không đảo kết quả đăng ký.\n\nQT04: ghi thành công, chặn đường cập nhật 30 giây; backend vẫn đúng, client báo cũ, sau nối lại bắt kịp trong 10 giây với backlog của WQ1. QT05: duplicate/cũ/gap/cùng version khác nội dung theo E01–E06 của R03, không đếm đôi/lùi hoặc ghép trạng thái. QT06: mất telemetry không báo pending/error/lag bằng 0; mất cả dashboard phải được phát hiện qua đường không phụ thuộc chính nó ở thiết kế monitoring. Ngưỡng backlog/cảnh báo và người nhận cụ thể còn thuộc bước 5, không giả đã có dịch vụ.",
+    "technicalGroups": [
+      "TC-13"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT05",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "freshness",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QF — Độ mới hiển thị và nhận biết mất quan sát (Q3)\n\nNguồn: [V-PUBLISH](../business/shared/availability.md#publish), [V-RECONCILE](../business/shared/availability.md#reconcile), [V-STALE](../business/shared/availability.md#stale), [V-MONITOR](../business/shared/availability.md#monitor). Không thay source authority bằng cache.\n\nVới WQ1/E1, đo từ commit thay đổi đã chắc đến observer trên từng Web đang kết nối nhận và render bản bao phủ thay đổi đó: p95 ≤2 giây, max ≤5 giây. Snapshot mới bao phủ nhiều thay đổi vẫn hợp lệ; không bắt client render mọi version trung gian. Mọi thay đổi thực trong cửa sổ đều phải được observer bao phủ; chưa bao phủ sau 5 giây là FAIL, không bỏ khỏi mẫu. Ghi riêng độ trễ pipeline và render khi chẩn đoán.\n\nBiết mất kết nối/đang reconciliation thì đánh dấu chưa cập nhật ở lần render kế tiếp trong ≤1 giây. Nếu mất kết nối âm thầm: quá 5 giây kể từ lần xác nhận liên lạc/độ mới thành công gần nhất phải đánh dấu chưa cập nhật; không dùng thời gian business event cuối để kết luận mạng mất khi không có sự kiện mới. Chưa từng quan sát không bịa timestamp/số 0. Giữ số cũ đúng nguồn; quá chậm không đảo kết quả đăng ký.\n\nQT04: ghi thành công, chặn đường cập nhật 30 giây; backend vẫn đúng, client báo cũ, sau nối lại bắt kịp trong 10 giây với backlog của WQ1. QT05: duplicate/cũ/gap/cùng version khác nội dung theo E01–E06 của R03, không đếm đôi/lùi hoặc ghép trạng thái. QT06: mất telemetry không báo pending/error/lag bằng 0; mất cả dashboard phải được phát hiện qua đường không phụ thuộc chính nó ở thiết kế monitoring. Ngưỡng backlog/cảnh báo và người nhận cụ thể còn thuộc bước 5, không giả đã có dịch vụ.",
+    "technicalGroups": [
+      "TC-07"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT06",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "freshness",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QF — Độ mới hiển thị và nhận biết mất quan sát (Q3)\n\nNguồn: [V-PUBLISH](../business/shared/availability.md#publish), [V-RECONCILE](../business/shared/availability.md#reconcile), [V-STALE](../business/shared/availability.md#stale), [V-MONITOR](../business/shared/availability.md#monitor). Không thay source authority bằng cache.\n\nVới WQ1/E1, đo từ commit thay đổi đã chắc đến observer trên từng Web đang kết nối nhận và render bản bao phủ thay đổi đó: p95 ≤2 giây, max ≤5 giây. Snapshot mới bao phủ nhiều thay đổi vẫn hợp lệ; không bắt client render mọi version trung gian. Mọi thay đổi thực trong cửa sổ đều phải được observer bao phủ; chưa bao phủ sau 5 giây là FAIL, không bỏ khỏi mẫu. Ghi riêng độ trễ pipeline và render khi chẩn đoán.\n\nBiết mất kết nối/đang reconciliation thì đánh dấu chưa cập nhật ở lần render kế tiếp trong ≤1 giây. Nếu mất kết nối âm thầm: quá 5 giây kể từ lần xác nhận liên lạc/độ mới thành công gần nhất phải đánh dấu chưa cập nhật; không dùng thời gian business event cuối để kết luận mạng mất khi không có sự kiện mới. Chưa từng quan sát không bịa timestamp/số 0. Giữ số cũ đúng nguồn; quá chậm không đảo kết quả đăng ký.\n\nQT04: ghi thành công, chặn đường cập nhật 30 giây; backend vẫn đúng, client báo cũ, sau nối lại bắt kịp trong 10 giây với backlog của WQ1. QT05: duplicate/cũ/gap/cùng version khác nội dung theo E01–E06 của R03, không đếm đôi/lùi hoặc ghép trạng thái. QT06: mất telemetry không báo pending/error/lag bằng 0; mất cả dashboard phải được phát hiện qua đường không phụ thuộc chính nó ở thiết kế monitoring. Ngưỡng backlog/cảnh báo và người nhận cụ thể còn thuộc bước 5, không giả đã có dịch vụ.",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT07",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "recovery",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QD — Độ bền và phục hồi (Q4)\n\nNguồn: [R-INV](../business/shared/registration.md#invariant), [R-RETRY](../business/shared/registration.md#retry), [V-PUBLISH](../business/shared/availability.md#publish). Giữ kết quả lịch sử/nghĩa vụ cập nhật; chưa biết lưu thì không thành công cuối.\n\n| Sự cố / bài thử | Mất dữ liệu cho phép | Mục tiêu thời gian và cách xác nhận |\n|---|---|---|\n| QT07 crash tiến trình, storage còn nguyên; tiêm trước lưu, sau lưu trước phản hồi và lúc view chưa cập nhật | 0 kết quả đã xác nhận; trạng thái chưa xác nhận phải đối chiếu, không chạy ý định lần hai | ≤5 phút từ thời điểm tiêm crash đến khi đăng ký/đọc/monitor và đối chiếu backlog hoạt động đúng; kiểm trực tiếp authority, retry và view |\n| QT08 mất ổ chứa dữ liệu trong lab giả | **Đề xuất tối đa 15 phút thay đổi sau mốc backup; cần Human duyệt ngoại lệ này** | ≤60 phút từ lúc tuyên bố mất storage đến restore trên vùng thay thế được cấp quyền, kiểm quyền/invariant, lịch sử tại recovery point và tái lập view |\n\nQT08 chỉ được chạy trên bản sao/fixture cô lập và theo quyền phá hủy riêng ở R09, không phá ổ máy thật. Backup phải độc lập miền lỗi của ổ nguồn, nhất quán cả dữ liệu/kết quả retry/nghĩa vụ cập nhật, truy được recovery point. Cùng ổ D hoặc cùng ổ vật lý khác partition không chứng minh độc lập. Chưa có đích backup/phần cứng/quyền thì BLOCKED, không ghi sẵn sàng; không thuê dịch vụ trong gói này.\n\nPhải kiểm tuổi recovery point ≤15 phút tại thời điểm sự cố, không chỉ lịch chạy backup. Backup fail/stale chặn nhận điều kiện QD; không giả bản sao luôn thành công. Giữ tập thao tác sau recovery point trong log bài thử để đo mất thực; không lén phát lại chúng nhằm che mất dữ liệu. Sau restore phải cô lập client/bản dữ liệu cũ, thông báo recovery point và các kết quả không còn xác nhận, đối chiếu trước mở ghi; thiết kế kiến trúc chốt epoch/cache/retry reconciliation. Không trả dữ liệu cũ như kết quả hiện tại, không nhận restore là rollback app an toàn.\n\nNgoại lệ mất ổ chỉ dành lab, không thay yêu cầu crash thường và không được đem thành bảo đảm production. Nếu Human muốn mất ổ cũng không mất bất kỳ kết quả nào đã xác nhận, cần đổi Q4 và đánh giá thêm tài nguyên/chi phí trước kiến trúc. Không chọn công nghệ backup ở đây.",
+    "technicalGroups": [
+      "TC-12"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT08",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "recovery",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QD — Độ bền và phục hồi (Q4)\n\nNguồn: [R-INV](../business/shared/registration.md#invariant), [R-RETRY](../business/shared/registration.md#retry), [V-PUBLISH](../business/shared/availability.md#publish). Giữ kết quả lịch sử/nghĩa vụ cập nhật; chưa biết lưu thì không thành công cuối.\n\n| Sự cố / bài thử | Mất dữ liệu cho phép | Mục tiêu thời gian và cách xác nhận |\n|---|---|---|\n| QT07 crash tiến trình, storage còn nguyên; tiêm trước lưu, sau lưu trước phản hồi và lúc view chưa cập nhật | 0 kết quả đã xác nhận; trạng thái chưa xác nhận phải đối chiếu, không chạy ý định lần hai | ≤5 phút từ thời điểm tiêm crash đến khi đăng ký/đọc/monitor và đối chiếu backlog hoạt động đúng; kiểm trực tiếp authority, retry và view |\n| QT08 mất ổ chứa dữ liệu trong lab giả | **Đề xuất tối đa 15 phút thay đổi sau mốc backup; cần Human duyệt ngoại lệ này** | ≤60 phút từ lúc tuyên bố mất storage đến restore trên vùng thay thế được cấp quyền, kiểm quyền/invariant, lịch sử tại recovery point và tái lập view |\n\nQT08 chỉ được chạy trên bản sao/fixture cô lập và theo quyền phá hủy riêng ở R09, không phá ổ máy thật. Backup phải độc lập miền lỗi của ổ nguồn, nhất quán cả dữ liệu/kết quả retry/nghĩa vụ cập nhật, truy được recovery point. Cùng ổ D hoặc cùng ổ vật lý khác partition không chứng minh độc lập. Chưa có đích backup/phần cứng/quyền thì BLOCKED, không ghi sẵn sàng; không thuê dịch vụ trong gói này.\n\nPhải kiểm tuổi recovery point ≤15 phút tại thời điểm sự cố, không chỉ lịch chạy backup. Backup fail/stale chặn nhận điều kiện QD; không giả bản sao luôn thành công. Giữ tập thao tác sau recovery point trong log bài thử để đo mất thực; không lén phát lại chúng nhằm che mất dữ liệu. Sau restore phải cô lập client/bản dữ liệu cũ, thông báo recovery point và các kết quả không còn xác nhận, đối chiếu trước mở ghi; thiết kế kiến trúc chốt epoch/cache/retry reconciliation. Không trả dữ liệu cũ như kết quả hiện tại, không nhận restore là rollback app an toàn.\n\nNgoại lệ mất ổ chỉ dành lab, không thay yêu cầu crash thường và không được đem thành bảo đảm production. Nếu Human muốn mất ổ cũng không mất bất kỳ kết quả nào đã xác nhận, cần đổi Q4 và đánh giá thêm tài nguyên/chi phí trước kiến trúc. Không chọn công nghệ backup ở đây.",
+    "technicalGroups": [
+      "TC-12"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT09",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "privacy",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QS — Quyền, bảo mật và lưu giữ (giữ nguồn, không miễn theo tỷ lệ)\n\nNguồn: [W-ACCESS](../business/shared/workshop.md#access), [W-DATA](../business/shared/workshop.md#data), [W-LISTS](../business/shared/workshop.md#lists), [R-RETRY](../business/shared/registration.md#retry), [V-PUBLISH](../business/shared/availability.md#publish). Dữ liệu/actor giả, không PII/secret thật; kết quả/lịch sử lab không TTL/xóa tự động.\n\nQT09: toàn ma trận quyền P01–P08; role giả, ID người khác, quyền bị thu hồi với request cũ. Kết quả mong đợi theo nguồn; **0 tiết lộ sai quyền hoặc mutation trái phép**. QT10: HTML SSR, cache chia sẻ, event, lỗi và log public không chứa DRAFT/danh tính/requestID riêng; private response chỉ chính chủ theo nguồn. QT11: đầu vào markup/biên theo D01–D09, dữ liệu không được thực thi như nội dung chủ động. Không nhận pass các ca này là đã kiểm hết mọi lỗ hổng.\n\nTrong thiết kế bước 5–7 phải quyết định cơ chế xác thực, secret/config, bảo vệ đường truyền, chống lạm dụng và audit với test tương ứng; không coi “lab” là miễn kiểm quyền server. Audit/telemetry chỉ giữ trường tối thiểu cần chẩn đoán, không payload riêng; thời hạn/lưu trữ audit còn phải trình khi thiết kế admin, không tự dọn lịch sử để đáp ứng dung lượng. Bản backup/evidence cũng giữ ranh giới đọc tương ứng, không đẩy lên nguồn public dữ liệu không được phép.",
+    "technicalGroups": [
+      "TC-09"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT10",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "privacy",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QS — Quyền, bảo mật và lưu giữ (giữ nguồn, không miễn theo tỷ lệ)\n\nNguồn: [W-ACCESS](../business/shared/workshop.md#access), [W-DATA](../business/shared/workshop.md#data), [W-LISTS](../business/shared/workshop.md#lists), [R-RETRY](../business/shared/registration.md#retry), [V-PUBLISH](../business/shared/availability.md#publish). Dữ liệu/actor giả, không PII/secret thật; kết quả/lịch sử lab không TTL/xóa tự động.\n\nQT09: toàn ma trận quyền P01–P08; role giả, ID người khác, quyền bị thu hồi với request cũ. Kết quả mong đợi theo nguồn; **0 tiết lộ sai quyền hoặc mutation trái phép**. QT10: HTML SSR, cache chia sẻ, event, lỗi và log public không chứa DRAFT/danh tính/requestID riêng; private response chỉ chính chủ theo nguồn. QT11: đầu vào markup/biên theo D01–D09, dữ liệu không được thực thi như nội dung chủ động. Không nhận pass các ca này là đã kiểm hết mọi lỗ hổng.\n\nTrong thiết kế bước 5–7 phải quyết định cơ chế xác thực, secret/config, bảo vệ đường truyền, chống lạm dụng và audit với test tương ứng; không coi “lab” là miễn kiểm quyền server. Audit/telemetry chỉ giữ trường tối thiểu cần chẩn đoán, không payload riêng; thời hạn/lưu trữ audit còn phải trình khi thiết kế admin, không tự dọn lịch sử để đáp ứng dung lượng. Bản backup/evidence cũng giữ ranh giới đọc tương ứng, không đẩy lên nguồn public dữ liệu không được phép.",
+    "technicalGroups": [
+      "TC-09"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT11",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "privacy",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QS — Quyền, bảo mật và lưu giữ (giữ nguồn, không miễn theo tỷ lệ)\n\nNguồn: [W-ACCESS](../business/shared/workshop.md#access), [W-DATA](../business/shared/workshop.md#data), [W-LISTS](../business/shared/workshop.md#lists), [R-RETRY](../business/shared/registration.md#retry), [V-PUBLISH](../business/shared/availability.md#publish). Dữ liệu/actor giả, không PII/secret thật; kết quả/lịch sử lab không TTL/xóa tự động.\n\nQT09: toàn ma trận quyền P01–P08; role giả, ID người khác, quyền bị thu hồi với request cũ. Kết quả mong đợi theo nguồn; **0 tiết lộ sai quyền hoặc mutation trái phép**. QT10: HTML SSR, cache chia sẻ, event, lỗi và log public không chứa DRAFT/danh tính/requestID riêng; private response chỉ chính chủ theo nguồn. QT11: đầu vào markup/biên theo D01–D09, dữ liệu không được thực thi như nội dung chủ động. Không nhận pass các ca này là đã kiểm hết mọi lỗ hổng.\n\nTrong thiết kế bước 5–7 phải quyết định cơ chế xác thực, secret/config, bảo vệ đường truyền, chống lạm dụng và audit với test tương ứng; không coi “lab” là miễn kiểm quyền server. Audit/telemetry chỉ giữ trường tối thiểu cần chẩn đoán, không payload riêng; thời hạn/lưu trữ audit còn phải trình khi thiết kế admin, không tự dọn lịch sử để đáp ứng dung lượng. Bản backup/evidence cũng giữ ranh giới đọc tương ứng, không đẩy lên nguồn public dữ liệu không được phép.",
+    "technicalGroups": [
+      "TC-06"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT12",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "resources",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QB — Khả dụng, chi phí và dung lượng (Q5)\n\nNguồn: [giới hạn lab](../features.md#boundaries). 0 đồng phát sinh giữ nguyên. Đề xuất lab chỉ hoạt động trong cửa sổ thử đã xác nhận có người phụ trách; ngoài cửa sổ ghi offline theo kế hoạch, không cam kết tháng/24×7. Trong WQ1 không tiêm lỗi, lỗi kỹ thuật phải qua QR; trong diễn tập lỗi áp QF/QD, báo downtime riêng, không loại khỏi báo cáo chung để tô đẹp.\n\nNgân sách đề xuất **2 GiB tổng dữ liệu pilot đang dùng + log + backup**, bố trí trên D hoặc đích sẵn có được phép; không bao gồm toolchain/SDK/artifact cài đặt, chúng phải được kiểm dung lượng và duyệt ở phase sau. Không phát sinh cài đặt lên C trong R04. Đạt 80% ngân sách phải báo, dự kiến vượt hoặc không đủ dung lượng an toàn trên đích thì dừng bài thử/xin quyết định, không tự xóa lịch sử/backup hay ép dữ liệu vào C.\n\nQT12: đo dung lượng trước/sau mỗi lượt WQ và diễn tập, tính cả backup/log; thử giả lập gần giới hạn trên fixture để chắc báo/dừng, không fill ổ thật. Ghi CPU/RAM/IO/network cùng độ trễ để biết bottleneck; chưa đặt trần CPU/RAM/pin tùy tiện khi chưa chọn thiết bị. Đủ RAM/ổ và ngưỡng cảnh báo tài nguyên là đầu vào kiến trúc/ops phải chốt trước chạy, không phải miễn kiểm. Nhu cầu toolchain có thể lớn hơn nhiều ngân sách dữ liệu này; chưa có quyền cài.",
+    "technicalGroups": [
+      "TC-14"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT13",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "client-seo",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QC — Trải nghiệm Web và SEO; native Future (Q6 và phần đã duyệt)\n\nNguồn: [AC-V3](../business/features/view.md#ac), [nền tảng](../features.md#boundaries), [V-STALE](../business/shared/availability.md#stale). D3 gói R04 đã xác nhận N/A cho index/ranking/trích dẫn thật trong lab; không N/A nội dung/HTML/riêng tư.\n\nQT13: mỗi nền tảng E1, 100 lần thao tác cục bộ không phụ thuộc mạng (chọn lọc, chạm nút) → phản hồi loading/disabled/focus p95 ≤100 ms; không nhận loading là đã đăng ký thành công. QT14: 30 lần khởi động lạnh mỗi nền tảng, mỗi lần reset trạng thái tiến trình theo protocol được phép, không xóa nghiệp vụ; p95 ≤3 giây từ mở app/điều hướng trang tới nội dung công khai đầu tiên có ích. Ghi riêng cold/warm cache, định nghĩa cold cụ thể theo browser/OS ở R05; không dùng warm thay cold. Đồng thời giữ QR cho response và không bỏ mẫu lỗi.\n\nQT15: tắt JS, trang giới thiệu/danh sách/chi tiết công khai vẫn có nội dung đúng audience, title/description và đường liên kết hợp lệ; không DRAFT/private lọt HTML dùng chung. QT16: bàn phím/nhãn lỗi/focus, màn hẹp và trạng thái không chỉ dùng màu được đặc tả ở bước UX rồi kiểm; không tuyên bố chứng nhận chuẩn accessibility chưa được chọn. Khả năng phản hồi khi mất mạng theo QF/QS; không đặt giờ pin/khung hình như đã đo. Các ngân sách riêng có thể bổ sung với căn cứ thiết bị ở bước kỹ thuật nhưng không thay các mục tiêu đã duyệt âm thầm.",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT14",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "client-seo",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QC — Trải nghiệm Web và SEO; native Future (Q6 và phần đã duyệt)\n\nNguồn: [AC-V3](../business/features/view.md#ac), [nền tảng](../features.md#boundaries), [V-STALE](../business/shared/availability.md#stale). D3 gói R04 đã xác nhận N/A cho index/ranking/trích dẫn thật trong lab; không N/A nội dung/HTML/riêng tư.\n\nQT13: mỗi nền tảng E1, 100 lần thao tác cục bộ không phụ thuộc mạng (chọn lọc, chạm nút) → phản hồi loading/disabled/focus p95 ≤100 ms; không nhận loading là đã đăng ký thành công. QT14: 30 lần khởi động lạnh mỗi nền tảng, mỗi lần reset trạng thái tiến trình theo protocol được phép, không xóa nghiệp vụ; p95 ≤3 giây từ mở app/điều hướng trang tới nội dung công khai đầu tiên có ích. Ghi riêng cold/warm cache, định nghĩa cold cụ thể theo browser/OS ở R05; không dùng warm thay cold. Đồng thời giữ QR cho response và không bỏ mẫu lỗi.\n\nQT15: tắt JS, trang giới thiệu/danh sách/chi tiết công khai vẫn có nội dung đúng audience, title/description và đường liên kết hợp lệ; không DRAFT/private lọt HTML dùng chung. QT16: bàn phím/nhãn lỗi/focus, màn hẹp và trạng thái không chỉ dùng màu được đặc tả ở bước UX rồi kiểm; không tuyên bố chứng nhận chuẩn accessibility chưa được chọn. Khả năng phản hồi khi mất mạng theo QF/QS; không đặt giờ pin/khung hình như đã đo. Các ngân sách riêng có thể bổ sung với căn cứ thiết bị ở bước kỹ thuật nhưng không thay các mục tiêu đã duyệt âm thầm.",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT15",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "client-seo",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QC — Trải nghiệm Web và SEO; native Future (Q6 và phần đã duyệt)\n\nNguồn: [AC-V3](../business/features/view.md#ac), [nền tảng](../features.md#boundaries), [V-STALE](../business/shared/availability.md#stale). D3 gói R04 đã xác nhận N/A cho index/ranking/trích dẫn thật trong lab; không N/A nội dung/HTML/riêng tư.\n\nQT13: mỗi nền tảng E1, 100 lần thao tác cục bộ không phụ thuộc mạng (chọn lọc, chạm nút) → phản hồi loading/disabled/focus p95 ≤100 ms; không nhận loading là đã đăng ký thành công. QT14: 30 lần khởi động lạnh mỗi nền tảng, mỗi lần reset trạng thái tiến trình theo protocol được phép, không xóa nghiệp vụ; p95 ≤3 giây từ mở app/điều hướng trang tới nội dung công khai đầu tiên có ích. Ghi riêng cold/warm cache, định nghĩa cold cụ thể theo browser/OS ở R05; không dùng warm thay cold. Đồng thời giữ QR cho response và không bỏ mẫu lỗi.\n\nQT15: tắt JS, trang giới thiệu/danh sách/chi tiết công khai vẫn có nội dung đúng audience, title/description và đường liên kết hợp lệ; không DRAFT/private lọt HTML dùng chung. QT16: bàn phím/nhãn lỗi/focus, màn hẹp và trạng thái không chỉ dùng màu được đặc tả ở bước UX rồi kiểm; không tuyên bố chứng nhận chuẩn accessibility chưa được chọn. Khả năng phản hồi khi mất mạng theo QF/QS; không đặt giờ pin/khung hình như đã đo. Các ngân sách riêng có thể bổ sung với căn cứ thiết bị ở bước kỹ thuật nhưng không thay các mục tiêu đã duyệt âm thầm.",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  },
+  {
+    "id": "QT16",
+    "source": {
+      "path": "docs/design/quality.md",
+      "anchor": "client-seo",
+      "sha256": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe"
+    },
+    "expected": "## QC — Trải nghiệm Web và SEO; native Future (Q6 và phần đã duyệt)\n\nNguồn: [AC-V3](../business/features/view.md#ac), [nền tảng](../features.md#boundaries), [V-STALE](../business/shared/availability.md#stale). D3 gói R04 đã xác nhận N/A cho index/ranking/trích dẫn thật trong lab; không N/A nội dung/HTML/riêng tư.\n\nQT13: mỗi nền tảng E1, 100 lần thao tác cục bộ không phụ thuộc mạng (chọn lọc, chạm nút) → phản hồi loading/disabled/focus p95 ≤100 ms; không nhận loading là đã đăng ký thành công. QT14: 30 lần khởi động lạnh mỗi nền tảng, mỗi lần reset trạng thái tiến trình theo protocol được phép, không xóa nghiệp vụ; p95 ≤3 giây từ mở app/điều hướng trang tới nội dung công khai đầu tiên có ích. Ghi riêng cold/warm cache, định nghĩa cold cụ thể theo browser/OS ở R05; không dùng warm thay cold. Đồng thời giữ QR cho response và không bỏ mẫu lỗi.\n\nQT15: tắt JS, trang giới thiệu/danh sách/chi tiết công khai vẫn có nội dung đúng audience, title/description và đường liên kết hợp lệ; không DRAFT/private lọt HTML dùng chung. QT16: bàn phím/nhãn lỗi/focus, màn hẹp và trạng thái không chỉ dùng màu được đặc tả ở bước UX rồi kiểm; không tuyên bố chứng nhận chuẩn accessibility chưa được chọn. Khả năng phản hồi khi mất mạng theo QF/QS; không đặt giờ pin/khung hình như đã đo. Các ngân sách riêng có thể bổ sung với căn cứ thiết bị ở bước kỹ thuật nhưng không thay các mục tiêu đã duyệt âm thầm.",
+    "technicalGroups": [
+      "TC-19"
+    ],
+    "stage": "T05–T14",
+    "runtime": "NOT_RUN",
+    "testFiles": [],
+    "variantPolicy": "Retained obligation for later slice; not waived or represented as PASS."
+  }
+]

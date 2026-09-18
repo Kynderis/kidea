@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "ec9c7ae185776c25897ab059ba1472dd761ea9563dfe08326307392eca693731"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n429 !== 200\n\n    at read (file:///plan/admin-browser.mjs:16:122)\n    at async checkAdmin (file:///plan/admin-browser.mjs:24:624)\n    at async file:///plan/browser.mjs:53:2 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 429,\n  expected: 200,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

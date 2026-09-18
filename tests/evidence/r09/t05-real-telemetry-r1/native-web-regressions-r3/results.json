@@ -1,0 +1,42 @@
+[
+  {
+    "name": "full-server-native",
+    "args": [
+      "--test",
+      "tests/server/public.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "content",
+    "args": [
+      "--test",
+      "tests/r09/t05/admin-content-server.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "sensitive",
+    "args": [
+      "--test",
+      "tests/r09/t05/admin-sensitive-server.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "observation",
+    "args": [
+      "--test",
+      "tests/r09/t05/admin-observation-server.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "operations",
+    "args": [
+      "--test",
+      "tests/r09/t05/operations-server.test.mjs"
+    ],
+    "exitCode": 0
+  }
+]

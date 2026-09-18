@@ -1,0 +1,11 @@
+{
+  "processingIdentityPreimage": "processing-identity-preimage/result.json",
+  "preimageResult": "8 PASS/1 FAIL",
+  "cause": "Outer operations snapshot identity was validated, but inner lastSuccess epoch was not. Old inner epoch could be accepted; actual new regression failed.",
+  "fix": "Require current exact epoch and bound canonical uint64 version text to20 digits before BigInt; source48d4fc3.",
+  "finalWebChecks": "web-checks-r7/results.json",
+  "finalUnitTests": 102,
+  "nativeFullFinal": "native-final-checks-r2.json",
+  "nativeFinalTests": 40,
+  "previousSourcesAndRawFailuresPreserved": true
+}

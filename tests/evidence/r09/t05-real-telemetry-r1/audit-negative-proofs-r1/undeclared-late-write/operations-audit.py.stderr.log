@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/kendrick/Desktop/kidea/tests/r09/t03-integration/operations-audit.py", line 8, in <module>
+    assert db.execute('SELECT intent_id FROM admin_audit WHERE rowid>=?',(boundary,)).fetchall()==[(c['intentId'],)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

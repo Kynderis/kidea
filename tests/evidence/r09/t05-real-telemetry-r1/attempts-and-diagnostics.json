@@ -1,0 +1,61 @@
+{
+  "attempts": [
+    {
+      "attempt": "web-checks-r1",
+      "result": "FAIL",
+      "rawResults": "web-checks-r1/results.json"
+    },
+    {
+      "attempt": "web-checks-r2",
+      "result": "FAIL",
+      "rawResults": "web-checks-r2/results.json"
+    },
+    {
+      "attempt": "web-checks-r3",
+      "result": "FAIL",
+      "rawResults": "web-checks-r3/results.json"
+    },
+    {
+      "attempt": "web-checks-r4",
+      "result": "PASS",
+      "rawResults": "web-checks-r4/results.json"
+    },
+    {
+      "attempt": "web-checks-r5",
+      "result": "PASS",
+      "rawResults": "web-checks-r5/results.json"
+    },
+    {
+      "attempt": "web-checks-r6",
+      "result": "PASS",
+      "rawResults": "web-checks-r6/results.json"
+    },
+    {
+      "attempt": "native-web-regressions-r1",
+      "result": "PASS",
+      "rawResults": "native-web-regressions-r1/results.json"
+    },
+    {
+      "attempt": "native-web-regressions-r2",
+      "result": "FAIL",
+      "rawResults": "native-web-regressions-r2/results.json"
+    },
+    {
+      "attempt": "native-web-regressions-r3",
+      "result": "PASS",
+      "rawResults": "native-web-regressions-r3/results.json"
+    }
+  ],
+  "authoringFailures": {
+    "web-checks-r1": "npm ci offline used default cache missing a required existing dependency tarball. No lockfile/version change; corrected process npm cache to the already present matching R05 Web cache.",
+    "web-checks-r2": "Three Svelte initial-data capture warnings were treated as failure. Source uses untrack initial capture and an explicit owner-change invalidation effect; no warning suppression.",
+    "web-checks-r3": "ESLint caught browser globals and unkeyed each blocks. Use explicit window members and keyed blocks; no lint-rule change.",
+    "native-web-regressions-r2": "Caller selected nonexistent admin-operations-server.test.mjs; earlier four groups passed, six operations cases were NOT_RUN. Corrected caller filename and reran every group as r3.",
+    "operations-unit-initial": "Authoring caller used incorrect root-relative test path; no application test ran. Corrected cwd/path.",
+    "critical-latch-preimage": "Actual eight operations cases against retained d1cb8c9 source: 7 PASS/1 FAIL. A later valid sample with unknown catalog removed known critical banner. Fixed source; full final 101 unit and 40 native tests pass.",
+    "backend-build-r1": "Full old dev checks passed, then clang-tidy caught two inefficient vector growth sites in updates.cpp. Extra telemetry/sanitizer/release were NOT_RUN. Reserve the three bounded identity vectors and run all four presets on a new frozen source/manifest."
+  },
+  "noSourceOrOracleWeakening": true,
+  "preFreezeWebFailures": "Raw authoring logs belong to their intermediate source stages, not final source637b885. Final Web source is copied and pinned separately; each Docker backend/integration attempt has its own frozen closure.",
+  "scope": "Only actual completed attempts marked PASS; preserve every original FAIL. Backend r2/integration are assessed from completed evidence later."
+}

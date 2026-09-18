@@ -1,0 +1,27 @@
+✔ intro is prerendered readable HTML with noindex and fixed canonical (11.318401ms)
+✔ SSR list escapes title and strips all private fields (96.063037ms)
+✔ SSR detail retains public schedule and identity link (16.152858ms)
+✔ hidden and missing are generic without private body (11.866946ms)
+✔ concurrent actor cookies never forwarded into public SSR (13.602617ms)
+✔ bad backend invalid is unavailable, not empty success (8.193394ms)
+✔ bad backend malformed is unavailable, not empty success (6.642375ms)
+✔ private SSR isolates simultaneous actors and never embeds credentials (23.361737ms)
+✔ private SSR denies missing or invalid session  (3.892673ms)
+✔ private SSR denies missing or invalid session workshop_session=REVOKED (5.650057ms)
+✔ private SSR rejects wrong actor group (7.593829ms)
+✔ Chrome public SSR navigation 360 zoom 1 (826.344299ms)
+✔ Chrome public SSR navigation 1280 zoom 1 (523.124005ms)
+✔ Chrome public SSR navigation 360 zoom 2 (776.880299ms)
+✔ Chrome public SSR navigation 1280 zoom 2 (512.318588ms)
+✔ Chrome lost mutation response reload GET reconciliation and exact cancel (1578.372666ms)
+✔ Chrome restored private page revalidates changed session before revealing history (670.064548ms)
+✔ Chrome JS disabled list and detail readable (452.705963ms)
+{"serverStdout":"Listening on http://127.0.0.1:56347\n","serverStderr":"\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n","scope":"Built Web + local fake API contract; not backend integration or product acceptance"}
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11389.511673

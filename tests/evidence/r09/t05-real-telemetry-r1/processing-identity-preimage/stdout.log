@@ -1,0 +1,83 @@
+✔ confirmed empty means N/A while remaining metrics stay unknown (2.484319ms)
+✔ total pending exceeds batch and conservative age interval is accepted (0.486421ms)
+✔ an upper bound alone does not prove critical durable age (0.295332ms)
+✔ known invariant persists alongside missing processing observation (0.309506ms)
+✔ reject cross-identity, stale/future clock, malformed, unsafe numbers and fake health (0.73524ms)
+✔ legacy signals remain explicitly unknown with a known aggregate count (0.278575ms)
+✔ critical pending recovery needs three separate source cadences; unknown resets progress (0.280327ms)
+✔ critical invariant cannot disappear when another valid sample loses the error catalog (0.289363ms)
+✖ processing success must match current epoch and canonical uint64 identity (3.347485ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 197.295657
+
+✖ failing tests:
+
+test at tests/evidence/r09/t05-real-telemetry-r1/processing-identity-preimage/tests/unit/operations.test.mjs:15:1
+✖ processing success must match current epoch and canonical uint64 identity (3.347485ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   actor: 'A',
+  +   epoch: 'E',
+  +   profile: 'outbox-telemetry-r1',
+  +   sampledAtMs: 1800000000000,
+  +   schema: 1,
+  +   signals: {
+  +     M1: {
+  +       ageBasis: 'EMPTY_NA',
+  +       countState: 'KNOWN',
+  +       oldestAgeLowerMs: null,
+  +       oldestAgeUpperMs: null,
+  +       pending: 0,
+  +       state: 'KNOWN'
+  +     },
+  +     M2: {
+  +       catalogState: 'KNOWN',
+  +       open: [],
+  +       state: 'KNOWN'
+  +     },
+  +     M4: {
+  +       lastSuccess: {
+  +         atMs: 1800000000000,
+  +         epoch: 'OLD',
+  +         version: '1',
+  +         workshop: 'W'
+  +       },
+  +       state: 'KNOWN',
+  +       timeBasis: 'PROCESSING_TRANSACTION_TIME'
+  +     }
+  +   },
+  +   unknown: [
+  +     'M3',
+  +     'M5',
+  +     'M6',
+  +     'M7',
+  +     'M8',
+  +     'M9',
+  +     'BACKEND_ADMISSION_NOT_WIRED'
+  +   ],
+  +   writeReady: false
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/evidence/r09/t05-real-telemetry-r1/processing-identity-preimage/tests/unit/operations.test.mjs:15:422)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { schema: 1, profile: 'outbox-telemetry-r1', sampledAtMs: 1800000000000, actor: 'A', epoch: 'E', writeReady: false, unknown: [ 'M3', 'M5', 'M6', 'M7', 'M8', 'M9', 'BACKEND_ADMISSION_NOT_WIRED' ], signals: { M1: [Object], M2: [Object], M4: [Object] } },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,1 @@
+CREATE TRIGGER registration_capacity BEFORE INSERT ON registrations WHEN NEW.state='ACTIVE' AND (SELECT count(*) FROM registrations WHERE workshop=NEW.workshop AND state='ACTIVE')>=(SELECT capacity FROM workshops WHERE id=NEW.workshop) BEGIN SELECT RAISE(ABORT,'capacity invariant'); END

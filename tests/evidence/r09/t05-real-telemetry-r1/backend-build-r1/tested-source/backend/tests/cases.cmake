@@ -1,0 +1,8 @@
+foreach(case P01 P02 P03 P04 P05 P06 P07 P08 R01 R02 R03 R04 R05 R06 R07 R08 I01 I02 I03 I04 I05 I06 I07 I08 I09 I10 C01 C02 C03 C04 C05 D01 D02 D03 D04 D05 D06 D07 D08 D09 SQLFAIL TX CRASH JSON K3K4 ADMISSION Q01 Q02 Q03 Q04)
+  if(SANITIZER STREQUAL "thread")
+    add_test(NAME ${case} COMMAND node /src/scripts/t02/capture-case.mjs $<TARGET_FILE:workshop_tests> ${case})
+  else()
+    add_test(NAME ${case} COMMAND workshop_tests ${case})
+  endif()
+  set_tests_properties(${case} PROPERTIES TIMEOUT 60)
+endforeach()

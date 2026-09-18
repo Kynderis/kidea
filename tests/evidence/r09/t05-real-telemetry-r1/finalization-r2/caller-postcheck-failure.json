@@ -1,0 +1,9 @@
+{
+  "status": "CALLER_ASSERTION_FAIL_AFTER_SUCCESSFUL_PUBLIC_REVISE",
+  "reviewOperationState": "REVIEW_RECORDED",
+  "reviewRevision": 10,
+  "reviewStatus": "DRAFT",
+  "error": "Caller assumed historyRefs is a cumulative prefix. Public archive() instead keeps the complete prior review with its nested history, as documented by current code.",
+  "workUnchanged": true,
+  "fix": "Verify byte-exact archived whole revision9 and its unchanged nested history integrity; reuse completed REVISE, only READ/SAVE in fresh finalization-r3. No metadata reset or repeated REVISE."
+}

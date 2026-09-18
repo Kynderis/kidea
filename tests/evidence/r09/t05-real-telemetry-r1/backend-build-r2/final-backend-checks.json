@@ -1,0 +1,168 @@
+{
+  "status": "PASS_UNDER_EXISTING_EX_R2",
+  "sourceCommit": "0fda8b778fcf3f2a9d807ed00c22a0485e36dcea",
+  "manifestSha256": "aca3150cdf272400aa6f9643f5584a1887044b9f579f6a7690e9daaae5fe134f",
+  "sourceFiles": 116,
+  "sourceUnchanged": true,
+  "profiles": {
+    "dev": {
+      "execution": {
+        "preset": "dev",
+        "code": 0,
+        "reason": null
+      },
+      "ctestCasesExecuted": 50,
+      "rawCtestFailureIds": [],
+      "skipped": 0,
+      "coreAssertionsPass": 856,
+      "telemetryChecksPass": 167,
+      "telemetryRuntimeStderrBytes": 0,
+      "updatesChecksPass": 77,
+      "updatesRuntimeStderrBytes": 0,
+      "httpChecksPass": 18,
+      "sessionChecksPass": 8,
+      "shutdownChecksPass": 2
+    },
+    "asan-ubsan": {
+      "execution": {
+        "preset": "asan-ubsan",
+        "code": 0,
+        "reason": null
+      },
+      "ctestCasesExecuted": 50,
+      "rawCtestFailureIds": [],
+      "skipped": 0,
+      "coreAssertionsPass": 856,
+      "telemetryChecksPass": 167,
+      "telemetryRuntimeStderrBytes": 0,
+      "updatesChecksPass": 77,
+      "updatesRuntimeStderrBytes": 0,
+      "httpChecksPass": 18,
+      "sessionChecksPass": 8,
+      "shutdownChecksPass": 2
+    },
+    "tsan": {
+      "execution": {
+        "preset": "tsan",
+        "code": 0,
+        "reason": null
+      },
+      "ctestCasesExecuted": 50,
+      "rawCtestFailureIds": [
+        "I09",
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "Q04"
+      ],
+      "skipped": 0,
+      "coreAssertionsPass": 856,
+      "telemetryChecksPass": 167,
+      "telemetryRuntimeStderrBytes": 0,
+      "updatesChecksPass": 77,
+      "updatesRuntimeStderrBytes": 0,
+      "httpChecksPass": 18,
+      "sessionChecksPass": 8,
+      "shutdownChecksPass": 2,
+      "knownWalCases": {
+        "I09": {
+          "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED",
+          "reports": 2,
+          "pairs": [
+            "68469:70135",
+            "68471:70780"
+          ],
+          "exception": "EX-T02-WAL-01-r2",
+          "code": 66
+        },
+        "C01": {
+          "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED",
+          "reports": 2,
+          "pairs": [
+            "68469:70135",
+            "68471:70780"
+          ],
+          "exception": "EX-T02-WAL-01-r2",
+          "code": 66
+        },
+        "C02": {
+          "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED",
+          "reports": 2,
+          "pairs": [
+            "68469:70135",
+            "68471:70780"
+          ],
+          "exception": "EX-T02-WAL-01-r2",
+          "code": 66
+        },
+        "C03": {
+          "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED",
+          "reports": 2,
+          "pairs": [
+            "68469:70135",
+            "68471:70780"
+          ],
+          "exception": "EX-T02-WAL-01-r2",
+          "code": 66
+        },
+        "C04": {
+          "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED",
+          "reports": 2,
+          "pairs": [
+            "68469:70135",
+            "68471:70780"
+          ],
+          "exception": "EX-T02-WAL-01-r2",
+          "code": 66
+        },
+        "C05": {
+          "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED",
+          "reports": 2,
+          "pairs": [
+            "68469:70135",
+            "68471:70780"
+          ],
+          "exception": "EX-T02-WAL-01-r2",
+          "code": 66
+        },
+        "Q04": {
+          "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED",
+          "reports": 2,
+          "pairs": [
+            "68469:70135",
+            "68471:70780"
+          ],
+          "exception": "EX-T02-WAL-01-r2",
+          "code": 66
+        }
+      },
+      "knownWalReports": 14,
+      "cleanOldCases": 43
+    },
+    "release": {
+      "execution": {
+        "preset": "release",
+        "code": 0,
+        "reason": null
+      },
+      "ctestCasesExecuted": 50,
+      "rawCtestFailureIds": [],
+      "skipped": 0,
+      "coreAssertionsPass": 856,
+      "telemetryChecksPass": 167,
+      "telemetryRuntimeStderrBytes": 0,
+      "updatesChecksPass": 77,
+      "updatesRuntimeStderrBytes": 0,
+      "httpChecksPass": 18,
+      "sessionChecksPass": 8,
+      "shutdownChecksPass": 2
+    }
+  },
+  "tsanRawJUnitRemainsFailSevenKnownCases": true,
+  "tsanNotEntireBackendClean": true,
+  "newTelemetryAndExistingUpdatesSanitizerClean": true,
+  "newSafetyExceptions": 0,
+  "notProductAcceptance": true
+}

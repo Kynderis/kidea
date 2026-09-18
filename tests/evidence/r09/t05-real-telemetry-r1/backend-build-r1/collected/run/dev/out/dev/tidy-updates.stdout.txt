@@ -1,0 +1,8 @@
+/src/backend/src/updates.cpp:97:9: error: 'push_back' is called inside a loop; consider pre-allocating the container capacity before the loop [performance-inefficient-vector-operation,-warnings-as-errors]
+   96 |       for (const auto &event : result)
+   97 |         ids.push_back(event.id);
+      |         ^
+/src/backend/src/updates.cpp:130:7: error: 'push_back' is called inside a loop; consider pre-allocating the container capacity before the loop [performance-inefficient-vector-operation,-warnings-as-errors]
+  129 |     for (const auto &event : events)
+  130 |       ids.push_back(event.id);
+      |       ^

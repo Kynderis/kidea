@@ -1,0 +1,19 @@
+PRAGMA user_version=1;
+CREATE TABLE metadata(key TEXT PRIMARY KEY,value TEXT NOT NULL) STRICT;
+CREATE TABLE sessions(token TEXT PRIMARY KEY,csrf TEXT NOT NULL,actor TEXT NOT NULL,participant INTEGER NOT NULL CHECK(participant IN(0,1)),admin INTEGER NOT NULL CHECK(admin IN(0,1)),expires INTEGER NOT NULL,revoked INTEGER NOT NULL DEFAULT 0 CHECK(revoked IN(0,1))) STRICT;
+CREATE TABLE workshops(id TEXT PRIMARY KEY,title TEXT NOT NULL,description TEXT NOT NULL,capacity INTEGER NOT NULL CHECK(capacity BETWEEN 1 AND 1000),start TEXT NOT NULL,end TEXT NOT NULL,start_seconds INTEGER NOT NULL,start_fraction TEXT NOT NULL,state TEXT NOT NULL CHECK(state IN('DRAFT','OPEN','PAUSED')),version TEXT NOT NULL) STRICT;
+CREATE TABLE registrations(id TEXT PRIMARY KEY,actor TEXT NOT NULL,workshop TEXT NOT NULL REFERENCES workshops(id),state TEXT NOT NULL CHECK(state IN('ACTIVE','CANCELLED'))) STRICT;
+CREATE UNIQUE INDEX one_active ON registrations(actor,workshop) WHERE state='ACTIVE';
+CREATE INDEX registration_count ON registrations(workshop,state);
+CREATE TABLE request_results(epoch TEXT NOT NULL,namespace TEXT NOT NULL,owner TEXT NOT NULL,request_id TEXT NOT NULL,actor TEXT NOT NULL,payload TEXT NOT NULL,result TEXT NOT NULL,PRIMARY KEY(epoch,namespace,owner,request_id)) STRICT;
+CREATE TABLE admin_audit(id INTEGER PRIMARY KEY,epoch TEXT NOT NULL,actor TEXT NOT NULL,intent_id TEXT NOT NULL,action TEXT NOT NULL,workshop TEXT NOT NULL,result TEXT NOT NULL,changed_fields TEXT NOT NULL,received_at INTEGER NOT NULL,result_at INTEGER NOT NULL,changes TEXT NOT NULL) STRICT;
+CREATE TABLE outbox(id INTEGER PRIMARY KEY,epoch TEXT NOT NULL,workshop TEXT NOT NULL REFERENCES workshops(id),version TEXT NOT NULL,completed INTEGER NOT NULL DEFAULT 0 CHECK(completed IN(0,1)),UNIQUE(epoch,workshop,version)) STRICT;
+CREATE TRIGGER capacity_floor BEFORE UPDATE OF capacity ON workshops WHEN NEW.capacity<(SELECT count(*) FROM registrations WHERE workshop=NEW.id AND state='ACTIVE') BEGIN SELECT RAISE(ABORT,'capacity invariant'); END;
+CREATE TRIGGER registration_capacity BEFORE INSERT ON registrations WHEN NEW.state='ACTIVE' AND (SELECT count(*) FROM registrations WHERE workshop=NEW.workshop AND state='ACTIVE')>=(SELECT capacity FROM workshops WHERE id=NEW.workshop) BEGIN SELECT RAISE(ABORT,'capacity invariant'); END;
+CREATE TRIGGER no_reactivation BEFORE UPDATE OF state ON registrations WHEN OLD.state='CANCELLED' AND NEW.state='ACTIVE' BEGIN SELECT RAISE(ABORT,'history invariant'); END;
+
+-- Optional telemetry profile on CREATE-ONLY lab databases. No auto migration.
+INSERT INTO metadata(key,value) VALUES('telemetry_profile','outbox-telemetry-r1');
+CREATE TABLE outbox_timing(outbox_id INTEGER PRIMARY KEY REFERENCES outbox(id),transaction_at_ms INTEGER NOT NULL CHECK(transaction_at_ms>=0),first_observed_at_ms INTEGER CHECK(first_observed_at_ms>=transaction_at_ms)) STRICT;
+CREATE TABLE outbox_processing(outbox_id INTEGER PRIMARY KEY REFERENCES outbox(id),processed_at_ms INTEGER NOT NULL CHECK(processed_at_ms>=0)) STRICT;
+CREATE TABLE processing_errors(outbox_id INTEGER NOT NULL CHECK(outbox_id>=0),code TEXT NOT NULL CHECK(code IN('PROCESSING','RECONCILE','INVARIANT')),first_seen_ms INTEGER NOT NULL CHECK(first_seen_ms>=0),resolved_at_ms INTEGER CHECK(resolved_at_ms>=first_seen_ms),PRIMARY KEY(outbox_id,code)) STRICT;

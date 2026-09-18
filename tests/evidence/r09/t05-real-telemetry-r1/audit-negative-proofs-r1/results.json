@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "scope": "Independent clones of newly-owned synthetic final database; original raw DB unchanged. Full old22/new5 auditors reject untracked later write/denial, missing old denial and untracked old-phase write. No production data or oracle changed.",
+  "fixtures": [
+    {
+      "fixture": "baseline",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matrixExit": 0,
+      "opsExit": 0
+    },
+    {
+      "fixture": "undeclared-late-denied",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "matrixExit": 0,
+      "opsExit": 1
+    },
+    {
+      "fixture": "undeclared-late-write",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "matrixExit": 0,
+      "opsExit": 1
+    },
+    {
+      "fixture": "missing-observation-denial",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "matrixExit": 1,
+      "opsExit": 0
+    },
+    {
+      "fixture": "undeclared-observation-write",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "matrixExit": 1,
+      "opsExit": 0
+    }
+  ]
+}

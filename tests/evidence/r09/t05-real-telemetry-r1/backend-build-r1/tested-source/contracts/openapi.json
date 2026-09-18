@@ -1,0 +1,2113 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Workshop T02 component contract",
+    "version": "0.1.0-draft",
+    "description": "Authored, NOT_RUN. Internal component fixture only. HTTPS/SSR/WebSocket/operations and release readiness are later slices. No public deployment."
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "paths": {
+    "/workshops": {
+      "get": {
+        "operationId": "get__workshops",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Snapshot"
+                  }
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {},
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/workshops/{id}": {
+      "get": {
+        "operationId": "get__workshops_id",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Snapshot"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "security": [
+          {},
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/me/registrations": {
+      "get": {
+        "operationId": "get__me_registrations",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoryGroup"
+                  }
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/requests/{id}": {
+      "get": {
+        "operationId": "get__requests_id",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Final"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/registrations": {
+      "post": {
+        "operationId": "post__registrations",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Final"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "epoch": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "requestId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "workshopId": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "epoch",
+                  "requestId",
+                  "workshopId"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/registrations/{id}/cancel": {
+      "post": {
+        "operationId": "post__registrations_id_cancel",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Final"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "epoch": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "requestId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "workshopId": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "epoch",
+                  "requestId",
+                  "workshopId"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/admin/workshops": {
+      "get": {
+        "operationId": "get__admin_workshops",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Snapshot"
+                  }
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/admin/workshops/{id}": {
+      "get": {
+        "operationId": "get__admin_workshops_id",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Snapshot"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/admin/intents": {
+      "post": {
+        "operationId": "post__admin_intents",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Final"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "epoch": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "intentId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "action": {
+                        "const": "CREATE"
+                      },
+                      "fields": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 120
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 5000
+                          },
+                          "capacity": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 1000
+                          },
+                          "schedule": {
+                            "type": "object",
+                            "properties": {
+                              "start": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "end": {
+                                "type": "string",
+                                "format": "date-time"
+                              }
+                            },
+                            "required": [
+                              "start",
+                              "end"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [
+                          "title",
+                          "description",
+                          "capacity",
+                          "schedule"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "epoch",
+                      "intentId",
+                      "action",
+                      "fields"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "epoch": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "intentId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "action": {
+                        "const": "EDIT"
+                      },
+                      "workshopId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "fields": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 120
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 5000
+                          },
+                          "capacity": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 1000
+                          },
+                          "schedule": {
+                            "type": "object",
+                            "properties": {
+                              "start": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "end": {
+                                "type": "string",
+                                "format": "date-time"
+                              }
+                            },
+                            "required": [
+                              "start",
+                              "end"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "epoch",
+                      "intentId",
+                      "action",
+                      "workshopId",
+                      "fields"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "epoch": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "intentId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "action": {
+                        "const": "STATE"
+                      },
+                      "workshopId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "targetState": {
+                        "enum": [
+                          "DRAFT",
+                          "OPEN",
+                          "PAUSED"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "epoch",
+                      "intentId",
+                      "action",
+                      "workshopId",
+                      "targetState"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/admin/intents/{id}": {
+      "get": {
+        "operationId": "get__admin_intents_id",
+        "responses": {
+          "200": {
+            "description": "Read snapshot or FINAL domain result; historical result does not certify current ACTIVE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Final"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/session": {
+      "get": {
+        "operationId": "get_session",
+        "description": "Current authenticated lab session; no-store; cookie token is never returned. No role supplied by client is trusted.",
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current actor/epoch/CSRF and server roles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, expired or revoked session"
+          }
+        }
+      }
+    },
+    "/admin/operations": {
+      "get": {
+        "operationId": "get_admin_operations",
+        "responses": {
+          "200": {
+            "description": "Partial real outbox source; incomplete metrics explicitly UNKNOWN. No-store.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationsEnvelope"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNKNOWN; not proof of nonexecution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed UTF-8/JSON/typed input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing/revoked/expired session or CSRF/Origin denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Generic unavailable object/operation; no private detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Epoch or request-content conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 128 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit, no FINAL business decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Technical unavailable/UNKNOWN; no inference about a previous attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "description": "Admin-only read-only partial telemetry. No migration, replay, error-clear or admission claim."
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "session": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "workshop_session"
+      }
+    },
+    "schemas": {
+      "Fields": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 5000
+          },
+          "capacity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "schedule": {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "end": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "capacity",
+          "schedule"
+        ],
+        "additionalProperties": false
+      },
+      "Schedule": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "additionalProperties": false
+      },
+      "RegistrationRequest": {
+        "type": "object",
+        "properties": {
+          "epoch": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "workshopId": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "epoch",
+          "requestId",
+          "workshopId"
+        ],
+        "additionalProperties": false
+      },
+      "AdminIntent": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "epoch": {
+                "type": "string",
+                "minLength": 1
+              },
+              "intentId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "action": {
+                "const": "CREATE"
+              },
+              "fields": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5000
+                  },
+                  "capacity": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 1000
+                  },
+                  "schedule": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "end": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    },
+                    "required": [
+                      "start",
+                      "end"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "title",
+                  "description",
+                  "capacity",
+                  "schedule"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "epoch",
+              "intentId",
+              "action",
+              "fields"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "epoch": {
+                "type": "string",
+                "minLength": 1
+              },
+              "intentId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "action": {
+                "const": "EDIT"
+              },
+              "workshopId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "fields": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5000
+                  },
+                  "capacity": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 1000
+                  },
+                  "schedule": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "end": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    },
+                    "required": [
+                      "start",
+                      "end"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "epoch",
+              "intentId",
+              "action",
+              "workshopId",
+              "fields"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "epoch": {
+                "type": "string",
+                "minLength": 1
+              },
+              "intentId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "action": {
+                "const": "STATE"
+              },
+              "workshopId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "targetState": {
+                "enum": [
+                  "DRAFT",
+                  "OPEN",
+                  "PAUSED"
+                ]
+              }
+            },
+            "required": [
+              "epoch",
+              "intentId",
+              "action",
+              "workshopId",
+              "targetState"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "Final": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "const": "FINAL"
+          },
+          "effect": {
+            "enum": [
+              "APPLIED",
+              "NO_CHANGE",
+              "REJECTED"
+            ]
+          },
+          "code": {
+            "enum": [
+              "REGISTERED",
+              "FULL",
+              "LIMIT_REACHED",
+              "ALREADY_REGISTERED",
+              "CANCELLED",
+              "ALREADY_CANCELLED",
+              "PAUSED",
+              "CREATED",
+              "UPDATED",
+              "UNCHANGED",
+              "STATE_REJECTED",
+              "BELOW_ACTIVE",
+              "INVALID_FIELDS"
+            ]
+          },
+          "workshopId": {
+            "type": "string"
+          },
+          "registrationId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "effect",
+          "code"
+        ],
+        "additionalProperties": false
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "enum": [
+              "ERROR",
+              "UNKNOWN"
+            ]
+          },
+          "code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "code"
+        ],
+        "additionalProperties": false
+      },
+      "Snapshot": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 5000
+          },
+          "capacity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "schedule": {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "end": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ],
+            "additionalProperties": false
+          },
+          "id": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "DRAFT",
+              "OPEN",
+              "PAUSED"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "uint64 bounded decimal; never a JSON number"
+          },
+          "active": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "remaining": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "epoch": {
+            "type": "string"
+          },
+          "observedAt": {
+            "type": "integer",
+            "description": "UTC epoch seconds; observation time is not workshop content version"
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "capacity",
+          "schedule",
+          "id",
+          "state",
+          "version",
+          "active",
+          "remaining",
+          "epoch",
+          "observedAt"
+        ],
+        "additionalProperties": false
+      },
+      "HistoryGroup": {
+        "type": "object",
+        "properties": {
+          "actor": {
+            "type": "string"
+          },
+          "epoch": {
+            "type": "string"
+          },
+          "workshopId": {
+            "type": "string"
+          },
+          "workshopVersion": {
+            "type": "string"
+          },
+          "registrations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "state": {
+                  "enum": [
+                    "ACTIVE",
+                    "CANCELLED"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "state"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "actor",
+          "epoch",
+          "workshopId",
+          "workshopVersion",
+          "registrations"
+        ],
+        "additionalProperties": false
+      },
+      "Session": {
+        "type": "object",
+        "properties": {
+          "actor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "epoch": {
+            "type": "string",
+            "minLength": 1
+          },
+          "csrf": {
+            "type": "string",
+            "minLength": 1
+          },
+          "participant": {
+            "type": "boolean"
+          },
+          "admin": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "actor",
+          "epoch",
+          "csrf",
+          "participant",
+          "admin"
+        ],
+        "additionalProperties": false
+      },
+      "OperationsEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schema",
+          "profile",
+          "sampledAtMs",
+          "actor",
+          "epoch",
+          "writeReady",
+          "unknown",
+          "signals"
+        ],
+        "properties": {
+          "schema": {
+            "const": 1
+          },
+          "profile": {
+            "const": "outbox-telemetry-r1"
+          },
+          "sampledAtMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "actor": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "epoch": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "writeReady": {
+            "const": false
+          },
+          "unknown": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "M3",
+                "M5",
+                "M6",
+                "M7",
+                "M8",
+                "M9",
+                "BACKEND_ADMISSION_NOT_WIRED"
+              ]
+            },
+            "minItems": 7,
+            "maxItems": 7
+          },
+          "signals": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "M1",
+              "M2",
+              "M4"
+            ],
+            "properties": {
+              "M1": {
+                "type": "object",
+                "description": "All pending, not batch64; timestamp-derived conservative age bounds or explicit UNKNOWN/N/A."
+              },
+              "M2": {
+                "type": "object",
+                "description": "Durable dispatcher errors only; readable known critical errors remain even with UNKNOWN processing health."
+              },
+              "M4": {
+                "type": "object",
+                "description": "Last real processing transaction bound to epoch/workshop/version, or none/UNKNOWN; not browser coverage."
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-source": "docs/design/architecture.md#api",
+  "x-policy": {
+    "unknownFields": "reject",
+    "duplicateJSONKeys": "reject",
+    "mutationAuthority": "server session and current DB transaction",
+    "privateCache": "no-store",
+    "version": "uint64 decimal string",
+    "adminRetry": "GET only after uncertain response; no automatic POST",
+    "futureEndpoints": [
+      "/operations",
+      "WSS /updates"
+    ],
+    "runtimeStatus": "NOT_RUN"
+  }
+}

@@ -1,0 +1,41 @@
+✔ confirmed empty means N/A while remaining metrics stay unknown (2.019979ms)
+✔ total pending exceeds batch and conservative age interval is accepted (0.442604ms)
+✔ an upper bound alone does not prove critical durable age (0.283249ms)
+✔ known invariant persists alongside missing processing observation (0.33806ms)
+✔ reject cross-identity, stale/future clock, malformed, unsafe numbers and fake health (0.790198ms)
+✔ legacy signals remain explicitly unknown with a known aggregate count (0.380737ms)
+✔ critical pending recovery needs three separate source cadences; unknown resets progress (0.412233ms)
+✖ critical invariant cannot disappear when another valid sample loses the error catalog (2.029943ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 217.402266
+
+✖ failing tests:
+
+test at tests/evidence/r09/t05-real-telemetry-r1/critical-latch-preimage/tests/unit/operations.test.mjs:13:1
+✖ critical invariant cannot disappear when another valid sample loses the error catalog (2.029943ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'UNKNOWN'
+  - 'CRITICAL'
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/evidence/r09/t05-real-telemetry-r1/critical-latch-preimage/tests/unit/operations.test.mjs:13:395)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'UNKNOWN',
+    expected: 'CRITICAL',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

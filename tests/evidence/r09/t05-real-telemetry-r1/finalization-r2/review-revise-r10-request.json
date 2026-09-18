@@ -1,0 +1,3323 @@
+{
+  "operation": "REVISE",
+  "id": "R09-T04-OUTPUT-r1",
+  "revision": 9,
+  "expectedDigest": "101005389856430a1db8cbb899844d999f82e476b75fa91ec7b4b1366ae7559b",
+  "ownerIds": [
+    "impact-901e965b353931ed6be30c82",
+    "impact-674f707e883397e64ce404d0",
+    "impact-23c3cb811463886499569ba2",
+    "impact-8df8104c3f943afb7b262c0d",
+    "impact-2cb80e52da66be40410037b8",
+    "impact-cbb2f91a37bb56058b134fe6",
+    "impact-1606a9590ba51ba0bf6a4d16",
+    "impact-58984aa7bc29f63705c60cdc",
+    "impact-4727c527de7a2cb3e11cfdb8",
+    "impact-79b5ab18c02a4cb4fa24b917"
+  ],
+  "package": {
+    "subjectRefs": [
+      {
+        "path": "docs/t04/report-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/architecture/traceability.md",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/532e0469-c851-410d-8865-b664d4476a24.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/c9a84ff9-d90d-4a88-9cd7-8373cf006101.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/599f4a39-8c2c-4aa2-a51b-7851b50f35f9.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/eddb3e17-c364-458c-bc9f-4a2f71d08739.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/da73531b-e423-4d4d-a894-09efce6d93a9.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/5613ef84-50b4-4979-9656-097b0d9bebd3.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/1661164b-8f69-4e69-b464-a0d7a507c246.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/8b636986-e71e-4dad-93fe-e3f65f0f36f6.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/788de9c1-8a9d-4413-aee2-27ab2d1ceb50.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/impact/6a1a6e68-51d6-49fc-ba57-647adfbdd2da.json",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/store.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/tests.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/cases.cmake",
+        "anchor": null
+      },
+      {
+        "path": "contracts/openapi.json",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/reply.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/unit/state.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t02/tsan/expected.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/coverage-audit-r1/coverage.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-boundaries-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-boundaries-evidence-r1/https-browser.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-boundaries-evidence-r1/matrix-audit.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-boundaries-evidence-r1/coverage.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/https-browser.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/matrix-audit.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/coverage.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/https-browser.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/matrix-audit.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/coverage.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/source.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/source-audit.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/browser.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/run.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/collection.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/unit-checks.json",
+        "anchor": null
+      },
+      {
+        "path": "observer/README.md",
+        "anchor": null
+      },
+      {
+        "path": "observer/eslint.config.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/package-lock.json",
+        "anchor": null
+      },
+      {
+        "path": "observer/package.json",
+        "anchor": null
+      },
+      {
+        "path": "observer/src/display.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/src/http.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/src/main.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/src/model.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/src/runtime.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/src/server.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/src/store.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/tests/fixtures.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/tests/http.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/tests/model.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/tests/store.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "observer/tests/tls-fixture.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/real-telemetry-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/real-telemetry-evidence-r1/source.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/real-telemetry-evidence-r1/checks.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/real-telemetry-evidence-r1/integration.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/real-telemetry-evidence-r1/backend-results.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/real-telemetry-evidence-r1/backend-manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "backend/CMakeLists.txt",
+        "anchor": null
+      },
+      {
+        "path": "backend/include/workshop/store.hpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/include/workshop/telemetry.hpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/include/workshop/updates.hpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/schema/001.sql",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/telemetry.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/update_transport.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/updates.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/telemetry.cpp",
+        "anchor": null
+      },
+      {
+        "path": "docs/t05/real-telemetry-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t05/build.sh",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/operations.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/server/operations.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/admin/+layout.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/operations/+page.server.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/operations/+page.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/unit/operations.test.mjs",
+        "anchor": null
+      }
+    ],
+    "inputRefs": [
+      {
+        "path": "docs/t04/max2.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/features.md",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/checkpoints/maps/6c499310-3376-4a1e-882d-42b130ec8503.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/business/shared/registration.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/business/features/register-cancel.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/business/tests.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/design/quality.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/design/experience.md",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/reply.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/Registration.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/state.ts",
+        "anchor": null
+      },
+      {
+        "path": "docs/design/operations.md",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/store.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/schema/001.sql",
+        "anchor": null
+      },
+      {
+        "path": "docs/business/shared/availability.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/design/admin.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/design/architecture.md",
+        "anchor": null
+      },
+      {
+        "path": "contracts/openapi.json",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/executor.cpp",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/tests.md",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/tests.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/cases.cmake",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/unit/state.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/main.cpp",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/me/+page.server.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/server/public.ts",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/rules.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/backend.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/https-manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/https-run.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/https.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/index.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/mutations.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/offline-results.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/query-plan.txt",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/tsan-classification.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/web-results.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/oracle-extension.json",
+        "anchor": null
+      },
+      {
+        "path": ".kidea/reviews/evidence/R09-T04-OUTPUT-r1-ecc3a765-cd2b-45aa-bc1f-17c28b81c078-3.md",
+        "anchor": null
+      },
+      {
+        "path": "backend/CMakeLists.txt",
+        "anchor": null
+      },
+      {
+        "path": "backend/include/workshop/updates.hpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/include/workshop/update_transport.hpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/updates.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/update_transport.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/updates.cpp",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t05/build.sh",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/updates.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/LiveWorkshop.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/AdminForm.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/workshops/[id]/+page.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/unit/updates.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "docs/t05/updates-protocol-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/admin/+layout.svelte",
+        "anchor": null
+      },
+      {
+        "path": ".gitattributes",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/core.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/ssr.stdout.log",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/backend.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/component.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/web.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/https-run.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/https-browser.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/https-manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/source.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/source-audit.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/evidence/byte-portability.json",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/collections.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/LiveCollection.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/LiveHistory.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/workshops/+page.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/admin/workshops/+page.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/me/+page.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/unit/collections.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/server/public.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/backend-source-audit.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/attempts.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/web.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/ssr.stdout.log",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/https-run.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/https-browser.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/https-manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/source.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/https-browser.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/https-run.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/matrix-audit.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/matrix.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/Caddyfile",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/README.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/admin-browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/app.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/browser-bootstrap.sh",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/control-receipt.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/matrix-audit.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/matrix-browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/prepare.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/run.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/socket-client.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/plan/updates-browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/source.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/ssr.stdout.log",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/unit.stdout.log",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/matrix-evidence-r1/web-checks.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/coverage-audit-r1/audit-coverage.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/coverage-audit-r1/coverage.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/coverage-audit-r1/coverage.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-boundaries-evidence-r1/content-server.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-boundaries-evidence-r1/plan/admin-boundaries-browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-boundaries-evidence-r1/plan/admin-boundary-fixtures.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-boundaries-evidence-r1/plan/matrix-audit.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-boundaries-evidence-r1/requests.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/content-server.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/plan/admin-boundaries-browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/plan/admin-boundary-fixtures.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/plan/matrix-audit.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/requests.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/sensitive.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/sensitive-server.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/plan/admin-sensitive-browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-sensitive-evidence-r1/plan/admin_sensitive_audit.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/content-server.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/plan/admin-boundaries-browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/plan/admin-boundary-fixtures.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/plan/matrix-audit.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/requests.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/sensitive.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/sensitive-server.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/plan/admin-sensitive-browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/plan/admin_sensitive_audit.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/observation.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/observation-server.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/plan/admin-observation-browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/plan/admin_observation_audit.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/admin-observation-evidence-r1/audit-coverage.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/unit.stdout.log",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/unit.stderr.log",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/unit-manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/diagnostics.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/cleanup.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/budget.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/prior-coverage.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/prior-coverage.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/observer-state.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/plan/README.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/plan/browser-bootstrap.sh",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/plan/browser.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/plan/manager.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/plan/run.py",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/observer-component-evidence-r1/plan/source-fixture.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/real-telemetry-evidence-r1/coverage-preservation.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/real-telemetry-evidence-r1/facets.md",
+        "anchor": null
+      }
+    ],
+    "purpose": "CONTENT",
+    "waiverReason": null
+  },
+  "comparison": {
+    "reason": "Read every fixed old/current source in order including duplicates. Store writer adds transactionally durable telemetry, exact schema hash changes only for new CREATE-only profile; existing schema1 remains business-compatible with unknown unavailable signals, no migration/reset. Dispatcher adds durable real event-identity PROCESSING/INVARIANT/RECONCILE catalog and capacity-authority validation; ordinary success resolves only exact PROCESSING errors and cannot clear critical incidents. Exact pending total replaces batch64 as metric; age is a conservative transaction/first-observation interval, never claimed exact commit age. M4 is processing identity/time, never browser receipt. OpenAPI adds admin-only GET operations; primary Svelte W5 adds actor/epoch-bound no-store SSR/read-only polling, strict stale/clock/identity guards, private DOM clearing/fences and retained known critical detail. New source/tests/build retain all old cases/EXr2; fresh four backend presets and real TLS integration pass, 102 units and40native fake-API tests pass; every FAIL retained. Sourceprofile and exact schema/config changed semantically, so reopen DRAFT and preserve original acceptance/history. M2 producers partial; M3/M5/M6/M7/M8/M9/admission remain UNKNOWN, fallback observer unchanged/not bridged, writeReady false. Original137coverage not promoted; backup/admission/WQ/E1/independent host/Human oncall/PROD/G2/T08/final acceptance remain missing. No business rule, permission, safety exception or budget change.",
+    "affectedIds": [
+      "impact-901e965b353931ed6be30c82",
+      "impact-674f707e883397e64ce404d0",
+      "impact-23c3cb811463886499569ba2",
+      "impact-8df8104c3f943afb7b262c0d",
+      "impact-2cb80e52da66be40410037b8",
+      "impact-cbb2f91a37bb56058b134fe6",
+      "impact-1606a9590ba51ba0bf6a4d16",
+      "impact-58984aa7bc29f63705c60cdc",
+      "impact-4727c527de7a2cb3e11cfdb8",
+      "impact-79b5ab18c02a4cb4fa24b917",
+      "W-009",
+      "W-009-MAX2",
+      "W-009-ADMIN-OPS",
+      "W-009-G2"
+    ],
+    "currentSources": [
+      {
+        "ref": {
+          "path": "docs/t04/report-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "863fff0e8ee93bbb2c5233ce53be6b1b311b5dc72c08fc7b040028b9a856573b",
+          "byteLength": 6531
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/architecture/traceability.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "35d6b9cf4400b8f57e992801e84b780edecafb8107428376fd0d97ac813428d1",
+          "byteLength": 8484
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/532e0469-c851-410d-8865-b664d4476a24.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e88d8863f0c6815a734f5d221f4009d45f4eb41552ec4901eed92eccb7ca27d0",
+          "byteLength": 16957
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/c9a84ff9-d90d-4a88-9cd7-8373cf006101.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "aabc1ea398eececdf095bfac00fe9821839e256677e22c592d376adca47abf44",
+          "byteLength": 17039
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/599f4a39-8c2c-4aa2-a51b-7851b50f35f9.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "0ce3ab6c44870f62f5d8eff8523fc79b7ada64b761c52376b1c383ad514d7279",
+          "byteLength": 17141
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/eddb3e17-c364-458c-bc9f-4a2f71d08739.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "4d7eebbf920b6d5c3f05688ba9eaa3ced0fb8bcccad80b9929ce85edbd5bf3bb",
+          "byteLength": 17052
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/da73531b-e423-4d4d-a894-09efce6d93a9.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "ebc4c8345f3410a331e2722a62e7edccce713bf9d01b92d333d4a3eb6c823667",
+          "byteLength": 17132
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/5613ef84-50b4-4979-9656-097b0d9bebd3.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "9e5b472e1c6808eb65cf4112859589dd2adbc9d9859b61383e0d5e1a3237854f",
+          "byteLength": 17057
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/1661164b-8f69-4e69-b464-a0d7a507c246.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "51a1ebbdef4a704897fc71db6bc65dcca6bc46e7292770212be4772423486f64",
+          "byteLength": 17111
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/8b636986-e71e-4dad-93fe-e3f65f0f36f6.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "28adc9a92e51c1556702237dee33ddfdd4d688542298151940b020d766d5e225",
+          "byteLength": 17159
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/788de9c1-8a9d-4413-aee2-27ab2d1ceb50.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "a121baa31420a825faf10c53b447b59d4c6c5f4f83207744cad105d0819952dd",
+          "byteLength": 17118
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/impact/6a1a6e68-51d6-49fc-ba57-647adfbdd2da.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "a3eee220e808bc1de72181d7d52c242af122ce374529d6cecedac26eae1d543f",
+          "byteLength": 17106
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/src/store.cpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "43c7a10a61a997a53e0a441d64adf491b08ced432d05dab7bc5b99a157e60514",
+          "byteLength": 24926
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/tests/tests.cpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "d5346b18be9429f42e98833f22a617737aeede55a8dcb2a015f30a17293fa76a",
+          "byteLength": 47741
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/tests/cases.cmake",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "2869056adbd304cdf5ad318a4f3e4c17ab4df3f977fc0789b4ab57be26898c3e",
+          "byteLength": 517
+        }
+      },
+      {
+        "ref": {
+          "path": "contracts/openapi.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fc684b2296b14230d608118fe15294c0ac905be8c162310d03a4ac731a12f22d",
+          "byteLength": 59306
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/reply.ts",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "8e5dac8d60a9700b51b1d0b2eb7b24e8d3dae833da808165e7e9373706509fd8",
+          "byteLength": 1739
+        }
+      },
+      {
+        "ref": {
+          "path": "web/tests/unit/state.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "73982efebdd5824acc20abc24f3a8825167f7d0e4f57a7d98c7a84a12ae5604d",
+          "byteLength": 6336
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t02/tsan/expected.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "c01c6c1ac27192bf6f07e5c85eab2f63b868eddd6eca2ff04a4ff3acfe404d15",
+          "byteLength": 106202
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/checkpoint-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "da67302ed9eedfceb3e73b56a26b76880a8f3c237c7d07f74b1d22b4530befd5",
+          "byteLength": 2096
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/pages-checkpoint-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "46f71caa3acef7560f56b2e4f1e157d2255ded0b0c4e3edb3944a280103a75e9",
+          "byteLength": 2521
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-checkpoint-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "878146931c007d5034658c64e95e73a3cf7dfcd15aba2696796e4a17fc52900d",
+          "byteLength": 2449
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/coverage-audit-r1/coverage.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "2783a923d2529c37ab972f8bb54acf66278d6f90ca05aba91c021e54c9b41de0",
+          "byteLength": 27996
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-boundaries-checkpoint-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "400e53b15f5f36d763d45664d29176c0bb26d7e5d6a3bcd6494d07c182a64a14",
+          "byteLength": 3723
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-boundaries-evidence-r1/https-browser.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "aaf6d9dfcdda959c5b31dc4e8d3c92face658ef5d27045b8b15e5764b836ba3c",
+          "byteLength": 9946
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-boundaries-evidence-r1/matrix-audit.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "c9b8cc419a3cef22a6cf8cc5d64a2d19ad4720bcf513556d3e348211830ab2f3",
+          "byteLength": 1533
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-boundaries-evidence-r1/coverage.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "c06c45a8c4976645ba04281a2a233bb34c478b0101e9e90e89bbef159e30137a",
+          "byteLength": 235519
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-checkpoint-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "4cceabb8f43201d133e2e6d8cdb0c2704f267bf5622b7dcc26bf10224c8d9c0f",
+          "byteLength": 3160
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/https-browser.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "bd5abdff02c3a22457eecbb71cca73fda89872d9d95fa621aa57ff49edb5e0c2",
+          "byteLength": 11908
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/matrix-audit.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "6f6bc602883d24ba8c47b929d8d1f060a2dc076040cadef3113de8bcbec97a46",
+          "byteLength": 2086
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/coverage.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "0911d6d14cc7128a55ec98bbf4bb65bfbf87d80c89e0922c8372ccb1971e830e",
+          "byteLength": 249255
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-checkpoint-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "abab1a2b3ed66669e6a1e291d444b4c8427b98eb0c9bfcaaa48dfeec404ff614",
+          "byteLength": 5195
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/https-browser.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "b2d53e297bb54e712f321b12f168f61b6132c614d779824d06a72af35e6ff417",
+          "byteLength": 15862
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/matrix-audit.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "72eea86db2945b5835cdc0d8ced667e5e43ea698b1224e332e083bbbdfba87fc",
+          "byteLength": 2934
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/coverage.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "85cde7fc4c03abf21e668075d0e96884f5ed23ea008a3380d758d1e5890b7e0d",
+          "byteLength": 329473
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-checkpoint-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "39ca78e8bbd86d7ad97179de481d1509d610c91c20d7f2098d7cf1934bf34e1a",
+          "byteLength": 6000
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/source.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "743ae3f98c10c09621fc4f7a52a8e8224bc86861a927b85d6928c167cf28c11f",
+          "byteLength": 3720
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/source-audit.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "f6cfb9a845af9147cafa31f1d1dc1b85b973fc6f030fcb03cdff7561710cef23",
+          "byteLength": 634
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/browser.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e0b4525241df553c61f7b401e27e93afa03795b83d4e5d0e568bf8b467d262b6",
+          "byteLength": 4305
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/run.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fc78bd49d2fc17efd0461c76a2537ad156d43c68b448be9db55cd981663dd940",
+          "byteLength": 266
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/manifest.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e6b8644ab751cc02ae361df5993ca14c6d54f646d570ca520c3ea79f664b9464",
+          "byteLength": 5138
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/collection.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "2dde7acfd58793a83a4d411c768dc479954c145f8c0b1f60baaabc93ecf72ea5",
+          "byteLength": 10154
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/unit-checks.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fa7911a71c797d6caff0b240223ad955f954e5a55c572801c5b7864113afdb51",
+          "byteLength": 252
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/README.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "8fea874c4c00d58e8d9c40f130b7bcab9d11327ae52096a21d002887b7930ee1",
+          "byteLength": 6757
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/eslint.config.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "dce41127612b26ebb6a5ea295b516fd592b925da2bfd65883d34373a941c571c",
+          "byteLength": 581
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/package-lock.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "22d886883a7d968ec9137d640abca167e832312c331bbd472f3dc36070f98473",
+          "byteLength": 268
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/package.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e7f7713f5de28ba6833b8af44f223401e796c2569ca7852fcc8791d6bd91212f",
+          "byteLength": 308
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/src/display.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "9932f0852e049f2c0486fa8281eb3c54cd759ea60a6c1f8659b51827368d0096",
+          "byteLength": 3019
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/src/http.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "2e34b5a7f23c3119b97b8bff28c07dcc7151754fe68c5d8fed4c0bd0f581336f",
+          "byteLength": 3326
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/src/main.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "c77bd754f5ebdef50f1a35bfc26a2c8ac9b70c26fba3548ae82b8c1a8a7a1b7f",
+          "byteLength": 2283
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/src/model.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "ca5099fc990884062b141daf94f9d4f2715671d05b4f0af723d3096bfedb36ec",
+          "byteLength": 20930
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/src/runtime.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "0219cda38e32503263d398c689bf7c4600a4fca9c929ca5290dcbd369de302d5",
+          "byteLength": 1492
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/src/server.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "ffa84b538eb3d75b1e2912bdbc305c8a3803d2a3a9e5474572726670cc41b41d",
+          "byteLength": 5172
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/src/store.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "f5a389a6f9fe103a26a2f936cf950473bf43fd200d05ea15ed555255f1b09a1d",
+          "byteLength": 3986
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/tests/fixtures.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "5627bbf85962c6a70a9f90dba9f9e1273f9a56b98b882eb1981223eb13cc6a2e",
+          "byteLength": 1675
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/tests/http.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "341ebc0c4f2ab5e9734768833c9eca24cf78b973c63c33c27f618e3aa4355b0e",
+          "byteLength": 5650
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/tests/model.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "c2022ff4549f666ca68ad9d6ee43429b4fac9db0ca8ac292ea3d04fc52b6bf08",
+          "byteLength": 10768
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/tests/store.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "0b3f56aa4c7c87c528a0c888eb2c4bdf28a80f14f5ca325133098542551f6074",
+          "byteLength": 3094
+        }
+      },
+      {
+        "ref": {
+          "path": "observer/tests/tls-fixture.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fe97699ba74f0d7918035a9013e23c7d86088669663b33ea2ec7d8677e6af3ef",
+          "byteLength": 680
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "a5d7e58efb5265f2ef8c2a2232375674bb60588d8a06d77d50486d4476fe1b12",
+          "byteLength": 5222
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/features.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "c1d19e6c1df13ab50096d3d3990bd5b0121034be1cf0409e0d88dd31f2a9f76c",
+          "byteLength": 5201
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/checkpoints/maps/6c499310-3376-4a1e-882d-42b130ec8503.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "551534b37d9bb92b8665e97aa4123d2f92264acb312cf33dc4f900147616b787",
+          "byteLength": 38792
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/business/shared/registration.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "1c8eedff797e26b13524314375031d7b3de619d3759565e11e79ccccc62ed2a1",
+          "byteLength": 12848
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/business/features/register-cancel.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "bdbc758021196ba29e0ed6621b832f2e1df48508d2b7001c20ab488ff3796565",
+          "byteLength": 4220
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/business/tests.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "85c4811dd015ef5ad8efd8b8425840e19958c14924185674557271da45900822",
+          "byteLength": 18221
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/design/quality.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "f5c5031ed182c1eb8ebbe53bee79eaa87c148555bcebe75dd6a16e3d168b8dbe",
+          "byteLength": 28447
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/design/experience.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "cdb00c7d1b162af144e86f4285e2e2e42b9bd4c11b78898ea80b5cc942a1c85e",
+          "byteLength": 27063
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/reply.ts",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "8e5dac8d60a9700b51b1d0b2eb7b24e8d3dae833da808165e7e9373706509fd8",
+          "byteLength": 1739
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/Registration.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "71cae94b45992a4b1debdcb65ae35452b3b4056bccf443cec7f1d8674b2294da",
+          "byteLength": 9672
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/state.ts",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "4ad2ad4deb741661702460afdd6e9981d7aa0d885f85a06d708eed585f064695",
+          "byteLength": 5494
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/design/operations.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "17f6f50f0b5f3264b059f90c7e471096e73c0a12f2f6c656794802000a8b1a36",
+          "byteLength": 29188
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/src/store.cpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "43c7a10a61a997a53e0a441d64adf491b08ced432d05dab7bc5b99a157e60514",
+          "byteLength": 24926
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/schema/001.sql",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "f0fc83385e4762ecf5483dd22b81fe0db02c50272c2774ccc8f4c634e4acd064",
+          "byteLength": 3332
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/business/shared/availability.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "bf4abab2fc39b31673cf62e5ffe25fbec6847202d1fcca09b032504e9b50e2f5",
+          "byteLength": 11543
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/design/admin.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "1145a29d933d63c4997e3dfa1590cdefcf9d57b57b913752a095cf8489594346",
+          "byteLength": 23270
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/design/architecture.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "f5c6e7ccf5d3f882dcdef031b36f88a2ae01257ec53cb081a3ac457578129ba6",
+          "byteLength": 41234
+        }
+      },
+      {
+        "ref": {
+          "path": "contracts/openapi.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fc684b2296b14230d608118fe15294c0ac905be8c162310d03a4ac731a12f22d",
+          "byteLength": 59306
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/src/executor.cpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "482a72aa3729396990e3dc6dc5eae4b6b9fe27a209aa52ecd28602d7d0534321",
+          "byteLength": 1898
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/engineering/tests.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "a96f51752de20d5cde4853f1bd361179f63bed202143dee162e667f93d3ec2ae",
+          "byteLength": 25688
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/tests/tests.cpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "d5346b18be9429f42e98833f22a617737aeede55a8dcb2a015f30a17293fa76a",
+          "byteLength": 47741
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/tests/cases.cmake",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "2869056adbd304cdf5ad318a4f3e4c17ab4df3f977fc0789b4ab57be26898c3e",
+          "byteLength": 517
+        }
+      },
+      {
+        "ref": {
+          "path": "web/tests/unit/state.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "73982efebdd5824acc20abc24f3a8825167f7d0e4f57a7d98c7a84a12ae5604d",
+          "byteLength": 6336
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/src/main.cpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "d6efa5b7aab2d9d5eb1c20dbbb456d9249f53dedbc2b00464fd4315a42577912",
+          "byteLength": 6335
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/routes/me/+page.server.ts",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fe419e231a9361f3669348c18233c0f411efce89f37113001702089cf49a2407",
+          "byteLength": 2085
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/server/public.ts",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "3bb5fa4a6c5b112581f91b1ff0e11dab071d74ac4eac950fb99a705c652198f5",
+          "byteLength": 1103
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/engineering/rules.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "8aaf5948b7a012b199522c73abee4e489fdf0b0cda1abaf2bf618d7692f0cb33",
+          "byteLength": 6181
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/workflow/r09-checkpoint-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "39c74f164f25f253f2fd63e1537291361a31a1a5dcc5b980b276c018d474365a",
+          "byteLength": 5378
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/backend.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "23e79ce2fc4ad0fe81fa1b8ee8798d86934277574a528b4c0a5087fcd4331115",
+          "byteLength": 447256
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/https-manifest.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "beb9eff083170fe1835f6ce53431c4ffb5277a1c76976f3e751a87e983c0a983",
+          "byteLength": 880378
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/https-run.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "d1eac509a8fa6046c9caff279ede9deeccd6b763a87001e07f5aba96cc77b1cb",
+          "byteLength": 261
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/https.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "ddcd0b09f0a530aaa68be6e641c7fc113ad96c74cd4191ddc60c1c792ed86d2b",
+          "byteLength": 1738
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/index.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "9f5830b680d3c1664dc532b8fd1d6e70201b0ebdaad2ebed13fa58d621c81e73",
+          "byteLength": 3583
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/mutations.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "a8f6e0fccb24c2b43ecccb4244aebbe86222e6320af188f147b45e1165f573d4",
+          "byteLength": 1108
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/offline-results.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "b39bfe10f76a3aed053cc1aa7e8c1633733f8c943d013f70ea01b22cfa4c73e0",
+          "byteLength": 186
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/query-plan.txt",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "dd792392b36ec8cad0f248075690c886d03131098578212c91bda6e3f4d7d173",
+          "byteLength": 77
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/tsan-classification.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "3850ea0fdbcd9884aaec33327939d85657a34e15d9d6f4e178f28990d12a6070",
+          "byteLength": 5101
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/evidence/web-results.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e24d0b981a1a3e86c648cdbb190c65170b832ae935610651845fb304c61810eb",
+          "byteLength": 232
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t04/oracle-extension.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "3d246a06126b6257a2e104802cdb76a1a2cf53c46759ef73e9513b8149162c88",
+          "byteLength": 361
+        }
+      },
+      {
+        "ref": {
+          "path": ".kidea/reviews/evidence/R09-T04-OUTPUT-r1-ecc3a765-cd2b-45aa-bc1f-17c28b81c078-3.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "6ad36ec4b9a7eb7a4528ace08bb9e80296e1a89c1e61873adc1091d03a218055",
+          "byteLength": 472
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/CMakeLists.txt",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "f769809dcb33c5b51e65369c6efec0f347b84d660d253069c05247e5cc6c2a2c",
+          "byteLength": 4112
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/include/workshop/updates.hpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "5b18706a268be25484097ece8951c56cb2526ea1db1324a5c85bf3e53c19e631",
+          "byteLength": 2108
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/include/workshop/update_transport.hpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "575c84b2b282fab5ebe56bfb0962234a964f223fdebfb1e7ec44cd6b308608f8",
+          "byteLength": 1797
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/src/updates.cpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "29e0903c7f4202848d90300955a252c5109491055fa01f8e6aef559533b2abec",
+          "byteLength": 9318
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/src/update_transport.cpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "50c6d971b9b2ef7dd22bb60d466e872cd4e5890374741db1760b262de335d729",
+          "byteLength": 11537
+        }
+      },
+      {
+        "ref": {
+          "path": "backend/tests/updates.cpp",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "d326e86598f9d8325f5a610588bf1fa2bfe63a22d5a2b29cec2315ac6a2ce82d",
+          "byteLength": 9088
+        }
+      },
+      {
+        "ref": {
+          "path": "scripts/t05/build.sh",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "a4aa63b87f8db9ebabb8333e607e0996ed557e2b54734f6f71193cdb4529e83a",
+          "byteLength": 2234
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/updates.ts",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "257bd3ec752a50f14c3f4422ac773e6da8465cd2af708143f8b9707d4ac27aee",
+          "byteLength": 7131
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/LiveWorkshop.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "f1422dc25e9ccdd52098aeb3899633671cb35e16492d503238ee786a90f48f20",
+          "byteLength": 2425
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/AdminForm.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "76503cbcd0c33e71ce06d5b29c64eba136e7fb17668d3bbdb0f7cbf8b34de4f6",
+          "byteLength": 17352
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/routes/workshops/[id]/+page.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "cf5690f9a297463b76d5a862b0b6da5f7306c5b30f8f15bf4ad6fd4873587d5d",
+          "byteLength": 489
+        }
+      },
+      {
+        "ref": {
+          "path": "web/tests/unit/updates.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "6020ec12f01808898667b49b5f52b8f6f2c6bd0a89624ed02350f6afc70ad17c",
+          "byteLength": 8378
+        }
+      },
+      {
+        "ref": {
+          "path": "docs/t05/updates-protocol-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "25d46d6b9b8d52ce5a4c3e6ff67b9f573e136bbe1758024a071a2791cb0a39d0",
+          "byteLength": 4342
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/routes/admin/+layout.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "ac70c33adb6a048add34dd73abaf64a9677f4df62bf57250cedad4044b15688b",
+          "byteLength": 2194
+        }
+      },
+      {
+        "ref": {
+          "path": ".gitattributes",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "08d69786957ac6c63e95a5796a4e89f0cf27a889346cab97cb1132757aff62c3",
+          "byteLength": 83
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/core.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fe6e4e613ffedcd675f0b0e29b7c32c628adc856255d84fd9cb9b8cbda7288fd",
+          "byteLength": 12019
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/ssr.stdout.log",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "cffa42b43e8056b157bd93c38d49c58f9d9e88e3f6405987c52d0400d2154966",
+          "byteLength": 2532
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/backend.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "95b203c96ba225340e5ff746da939217949f4afd0a47bb64a1fd06d2c02c1313",
+          "byteLength": 568
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/component.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "9778aecffb1e02e92b2e6abf1435bc848bcdfa7a33415a4339de040d6f338769",
+          "byteLength": 621
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/web.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "bd56c67513746fe2c3781bef1b48bf89b4d062e41ef3c382dbc8fada2bc6f9d4",
+          "byteLength": 62
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/https-run.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "48d64c106cd928b01026de1cb3eb90533a14f2bfb1758d099f2bfa145d912d56",
+          "byteLength": 261
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/https-browser.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "054343fbf2faee5a0914c59392dec844b027bc7ba89cde177dc1438a6ef101e2",
+          "byteLength": 5765
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/https-manifest.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "cb4d99cdb25be837c7c4b93ade05d8e095552cfaa718bf3441fc98e07a8b1ff6",
+          "byteLength": 891476
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/source.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "f3a5338f8ad53018a9f79e3fef1285dca6e86af0c9c1e1fb206bfdc27c08f61f",
+          "byteLength": 464
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/source-audit.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "0bc33bfc45bceec2edc7cc4d24d8233eac92da9d667faed3012ec7fbe6c04301",
+          "byteLength": 404
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/evidence/byte-portability.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "9817e10692b9a98b6a2800df5bc301d5a1aa0c78e51d43d4dc387f01cec0384f",
+          "byteLength": 802
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/collections.ts",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "2977c6266293d0a4de7865be7849cb4d5accf7f93eb0b8c5b33229189b29abe1",
+          "byteLength": 6372
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/LiveCollection.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "1c3fc7c22db6dd0bc4bea4e818030684d258c4bcc6f858578d0ab95de4eee74f",
+          "byteLength": 2695
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/lib/LiveHistory.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "5f68227ae13b2bb5ba53aed7827e786787def6299a9bf853036d764818571774",
+          "byteLength": 5065
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/routes/workshops/+page.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "3b0392bf8c9d547524a0afe8ad510b04172e6b78985573cd9f73f4bef3916b11",
+          "byteLength": 495
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/routes/admin/workshops/+page.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "cd496310d90ff4b57ec84c4f94f713f917bf5c223a23921993ecdd6bf9cd07be",
+          "byteLength": 552
+        }
+      },
+      {
+        "ref": {
+          "path": "web/src/routes/me/+page.svelte",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "727c0df704f1348d07aa963da800825fe374bb386fe30b1394c8bbd3e8713ee6",
+          "byteLength": 465
+        }
+      },
+      {
+        "ref": {
+          "path": "web/tests/unit/collections.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "321e53e2408aad5b76c1cd6ff5b64b61065168802ded5096c429f4974ff29b5c",
+          "byteLength": 7139
+        }
+      },
+      {
+        "ref": {
+          "path": "web/tests/server/public.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "b82f133faa5be0fc5cf840f05ffcbbc562abb2a7c339e8d0d7c6b27f86c720e6",
+          "byteLength": 13192
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/pages-evidence-r1/backend-source-audit.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e3abad25350c980232c1b8758cab8bda98d8258932e668c154075bb7e94e7ad4",
+          "byteLength": 28342
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/pages-evidence-r1/attempts.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "756bd91bafd14e7f084fe2b1a2bae65c3460b67556afc8d49ff5aee5f339d1e5",
+          "byteLength": 1846
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/pages-evidence-r1/web.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "147743e69e895aa8db9ccbb27ce90beba9d5821e258697d84e0f856ccb0f53db",
+          "byteLength": 81
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/pages-evidence-r1/ssr.stdout.log",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "1c66815dca4b0a954b06a4e71563f5d7a8e9b7f41182eba32d9271f2c7866a26",
+          "byteLength": 3026
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/pages-evidence-r1/https-run.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "7a2fb3af830300752c2589ae34ce1eb61f60a1db26d44232e729282ec092be46",
+          "byteLength": 261
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/pages-evidence-r1/https-browser.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "36c36435712b252dd833dba78cbffb834979e013261a5f0f8805bcb001be139a",
+          "byteLength": 6939
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/pages-evidence-r1/https-manifest.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "25f628bea3d6d39176433126d607ad5052966271b7a2cb574e5b7a40f056b04e",
+          "byteLength": 893214
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/pages-evidence-r1/source.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "35438d9a7f618556ba48fa847f3be166a40077166d4e5e0df1acbd40c8ceb93b",
+          "byteLength": 3677
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-checkpoint-r1.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "878146931c007d5034658c64e95e73a3cf7dfcd15aba2696796e4a17fc52900d",
+          "byteLength": 2449
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/https-browser.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "79486845990aeb022c6d7535115082fcf7333899ed82c517f1487ecacf72ad10",
+          "byteLength": 8049
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/https-run.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "69a0a3e20564b53a2b9594a5fc0c2e7ad88dade261eaeb614f01f6d439d4b475",
+          "byteLength": 261
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/manifest.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "828bc077cf319825a800cb451462bc3e7921edfde814481a81514c09b884f2c1",
+          "byteLength": 893511
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/matrix-audit.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "64f3ea8b0aec9696d7dc5c1f957e1712b889d7c67509cc5cdd28a5a2bc17f492",
+          "byteLength": 708
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/matrix.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "39869338b82d632fe6c486b4cb2c698965625ec480c368eae571904bc75c4f77",
+          "byteLength": 61971
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/Caddyfile",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fba7258536ee72ae3c10498f464b961b4e7213b766ba9b00af8fb7b4e42f9f49",
+          "byteLength": 961
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/README.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "1e45f4024aafa3c2c194f48808256648c2281cfd58aa9fe6c168366c75845cd4",
+          "byteLength": 2252
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/admin-browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "6111ebd441e857a1e9d0727f607ede33987306b2d46f382387e26896573e6f9f",
+          "byteLength": 10591
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/app.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e3fa54538df1fc02dc151a391ba1cec2deebe5382a07abadb42d25caaf111ba9",
+          "byteLength": 3443
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/browser-bootstrap.sh",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "3125f31c827feea51bcde1a563331ce37c5411c55c0617724ea470676a16661c",
+          "byteLength": 464
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "ede8649b8f3305efe68ed62310cbf33ce12153241bc6d30412c9bd375d5e6c46",
+          "byteLength": 15231
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/control-receipt.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "050c0644584ea8abd9849389d1b3510c796a23c57397dd627fdb6aa17fde3ad0",
+          "byteLength": 758
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/matrix-audit.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "7e8c6d179de18e617fbc2f506c2e4042af588c5a042f98715a7a7fe8e8ddc9da",
+          "byteLength": 4328
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/matrix-browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e16d807b01f6d3f2e055311bc5c063e118ec17a475dbfa81cd4a180d71da79bd",
+          "byteLength": 12808
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/prepare.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "09c6f1d919d4cebd33a935144c72a5d5b5df8eec739c3a2f6b0a5ebaaacd15c5",
+          "byteLength": 2071
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/run.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "3372cb8056ea7990a2e667cfed858c624aee3404e9c84444a047aec5ec496c12",
+          "byteLength": 8881
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/socket-client.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "420610d0618a69aa5d9223a75a019c4480e43eebf2e0a504e6bf0d379cb8a85b",
+          "byteLength": 3378
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/plan/updates-browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "8c056881ff9e15d8403bd1d4d351e30500d2c0d4f958d342b9cff5f229b5305f",
+          "byteLength": 28292
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/source.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "0b2a46bfddb03a329d36eb5c1d2ffaa929347e1373a80df2e69fa38bb8d6efd4",
+          "byteLength": 541
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/ssr.stdout.log",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fb0a98a390dce672604bdfac49540acfac98edb4521c8b64f712e11a680d493a",
+          "byteLength": 3079
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/unit.stdout.log",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "adbbf02bc8ffbb5d4688725690bcbafe694315969e11ca1825b70e4fe22920e9",
+          "byteLength": 6800
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/matrix-evidence-r1/web-checks.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "2bc24b48dcaeb7d431898cc276c495eec838c72278989c21bf6d6638d8ea6a1d",
+          "byteLength": 82
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/coverage-audit-r1/audit-coverage.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "24fee56687c98400459567c1fc29dff19e3a8facd492550991912f8445b47bd8",
+          "byteLength": 17370
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/coverage-audit-r1/coverage.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "b291d0fa66a6779cb1e5c8af30d9e44138640cb686031665fd66f7f1e95a0e42",
+          "byteLength": 218081
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/coverage-audit-r1/coverage.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "2783a923d2529c37ab972f8bb54acf66278d6f90ca05aba91c021e54c9b41de0",
+          "byteLength": 27996
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-boundaries-evidence-r1/content-server.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "729053bf10e6c077ba9ce7a3cd4afa896b4d02b76ed471ae0e81b1459d816f2b",
+          "byteLength": 8695
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-boundaries-evidence-r1/plan/admin-boundaries-browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "63ba35ff044ea0e3316246254ca3f332e3222b5a07665ed52c6fc0539d1bab86",
+          "byteLength": 16302
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-boundaries-evidence-r1/plan/admin-boundary-fixtures.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "370a748b0ebedbfbdc060c2a11d8815ee237f87580b69e3e9f6baa89ab06d786",
+          "byteLength": 450
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-boundaries-evidence-r1/plan/matrix-audit.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "a7c11b3d199063364a7864be35980cb6f294e3ac55ddeca11ef06012c43e6c06",
+          "byteLength": 12884
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-boundaries-evidence-r1/requests.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "d9aac892d70dd2948ecd2130470423e34230ec6df219e1a0b0fd9f753771decf",
+          "byteLength": 144109
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/content-server.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "729053bf10e6c077ba9ce7a3cd4afa896b4d02b76ed471ae0e81b1459d816f2b",
+          "byteLength": 8695
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/plan/admin-boundaries-browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "63ba35ff044ea0e3316246254ca3f332e3222b5a07665ed52c6fc0539d1bab86",
+          "byteLength": 16302
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/plan/admin-boundary-fixtures.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "370a748b0ebedbfbdc060c2a11d8815ee237f87580b69e3e9f6baa89ab06d786",
+          "byteLength": 450
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/plan/matrix-audit.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "cee5852759d46fa4481f5f420b1ca8edbf4e2c15243af285fb51307b608d59ca",
+          "byteLength": 13017
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/requests.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "c4488ebed98e536efaa99d2364197990f541d97aefe87c369c69f1f38b3ca4d3",
+          "byteLength": 227488
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/sensitive.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "9e38888b4387f6a76d90e20b7d11191843d8533a04e8ee035697234214227972",
+          "byteLength": 82026
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/sensitive-server.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "95513b1385c08b263ab257ae9dd040a199365189cb4ad4b7f13c0dc29b8bf9c5",
+          "byteLength": 6372
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/plan/admin-sensitive-browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "5551ae33eb1d83a512de507f3f71d3016fb4c205a3f66cc25def8a138a8754d1",
+          "byteLength": 11437
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-sensitive-evidence-r1/plan/admin_sensitive_audit.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "25231b097a5bbcb728e73881d0625c189a4396f94f3cbeb910b3251de5e9a653",
+          "byteLength": 5787
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/content-server.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "729053bf10e6c077ba9ce7a3cd4afa896b4d02b76ed471ae0e81b1459d816f2b",
+          "byteLength": 8695
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/plan/admin-boundaries-browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "63ba35ff044ea0e3316246254ca3f332e3222b5a07665ed52c6fc0539d1bab86",
+          "byteLength": 16302
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/plan/admin-boundary-fixtures.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "370a748b0ebedbfbdc060c2a11d8815ee237f87580b69e3e9f6baa89ab06d786",
+          "byteLength": 450
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/plan/matrix-audit.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "6afe08e3e83a05111d0e16eb46ffee688e84e4885319db21c4d2e70c73c759c1",
+          "byteLength": 13125
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/requests.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "fc370f93bd94bf3bb09580aa2953e1a36d789c522ff2e3bf074d004c26842c31",
+          "byteLength": 281418
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/sensitive.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "2f95696c0c2ac460934a13144eb42b15ddd7175fed136d4ea3bf8e2b5d38790c",
+          "byteLength": 82026
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/sensitive-server.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "95513b1385c08b263ab257ae9dd040a199365189cb4ad4b7f13c0dc29b8bf9c5",
+          "byteLength": 6372
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/plan/admin-sensitive-browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "5551ae33eb1d83a512de507f3f71d3016fb4c205a3f66cc25def8a138a8754d1",
+          "byteLength": 11437
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/plan/admin_sensitive_audit.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "25231b097a5bbcb728e73881d0625c189a4396f94f3cbeb910b3251de5e9a653",
+          "byteLength": 5787
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/observation.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "739b875bfb7fd016c5bd82b3236ac84e431e185e2858342eb1e4fe52f09351df",
+          "byteLength": 299128
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/observation-server.test.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "1b0c0c4300a41630b77e21ed4479e80c1b14c3815a2a1e4a3c810d6ca4258037",
+          "byteLength": 6704
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/plan/admin-observation-browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "0372abdced88b9e5c35e44d95e47282aadd04d31ca9cf7a9f5601520385f9eb6",
+          "byteLength": 18487
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/plan/admin_observation_audit.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "a0f8368009e91635344be1da0b2fa7550519e4c5175f0ca6e627700514a07b75",
+          "byteLength": 7971
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/admin-observation-evidence-r1/audit-coverage.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "48faa320e09145299215c16097474250f4f15326b2f6d025697a28a8eb1afe87",
+          "byteLength": 33452
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/unit.stdout.log",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "dd0e3819a695e8bd2a9adced9d005945f36211fa7611d088c63ed8cb38c07b23",
+          "byteLength": 3175
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/unit.stderr.log",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "byteLength": 0
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/unit-manifest.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "14a6991d947992ae917eb06f5243ac68f4eb203b8ef7ec425c203863cfa92264",
+          "byteLength": 2379
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/diagnostics.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "3d287e884cd9e60fb30fc466f935570c8c69e8918fa96a4ba57076e676fd5200",
+          "byteLength": 1626
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/cleanup.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "6d3eb868d6e116d0586a997d900bcbc604228d391e1605967b429d9dcc4b0ade",
+          "byteLength": 573
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/budget.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "7dab5db54bde519afea0ca9ff348a92efb08809b382257b6e055b62bdb94c8d6",
+          "byteLength": 440
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/prior-coverage.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "85cde7fc4c03abf21e668075d0e96884f5ed23ea008a3380d758d1e5890b7e0d",
+          "byteLength": 329473
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/prior-coverage.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "e05a51027329f0c2ecc176c9c32540d1529046b7cf43f17fe1fd333897b27628",
+          "byteLength": 49917
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/observer-state.json",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "621f30530c19bd88016af43718251c80586c66af40ce8848d412c39ca7d1c583",
+          "byteLength": 3494
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/plan/README.md",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "8f5f00b1dcf2041eead251339fe20f64f3cf7b617ef3826d9b742f408351103b",
+          "byteLength": 1911
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/plan/browser-bootstrap.sh",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "cd48d958858aab5f34d3320afee125d8ea43a41795b1881bbfcee2fec69df257",
+          "byteLength": 539
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/plan/browser.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "a471122d197919c6de06be20ff34339630f588755ea2b0885ee9520111c0e5cb",
+          "byteLength": 7781
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/plan/manager.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "6b458d47bb60b68ca440ce581bfe27731c9f6175ec1283500f91b07cf19f778b",
+          "byteLength": 1761
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/plan/run.py",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "b12101e7f6b870170099cf939a2f504f0ec8f3823c962d960401e133fc055eb9",
+          "byteLength": 10244
+        }
+      },
+      {
+        "ref": {
+          "path": "tests/t05/observer-component-evidence-r1/plan/source-fixture.mjs",
+          "anchor": null
+        },
+        "integrity": {
+          "method": "SHA256",
+          "value": "87ac56a1b6bb097f5ac20677e561a14a4e4836d852d3f54f64b032c60bcd377d",
+          "byteLength": 1995
+        }
+      }
+    ]
+  },
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "reviewPath": ".kidea/reviews/R09-T04-OUTPUT-r1.md",
+    "ownerIds": [
+      "impact-901e965b353931ed6be30c82",
+      "impact-674f707e883397e64ce404d0",
+      "impact-23c3cb811463886499569ba2",
+      "impact-8df8104c3f943afb7b262c0d",
+      "impact-2cb80e52da66be40410037b8",
+      "impact-cbb2f91a37bb56058b134fe6",
+      "impact-1606a9590ba51ba0bf6a4d16",
+      "impact-58984aa7bc29f63705c60cdc",
+      "impact-4727c527de7a2cb3e11cfdb8",
+      "impact-79b5ab18c02a4cb4fa24b917"
+    ],
+    "allowReviewMetadata": true,
+    "allowCreateEvidence": true,
+    "createDirectories": [],
+    "allowReadLocalGit": true,
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human full R09 execution grant and current Lam tiep di authorize additive real C++ telemetry/primary Web implementation, tests, bounded public review/continuation metadata, local pilot commit and Kidea commit/push. REVISE only to revision10 DRAFT; preserve accepted T04 history, owners, gates, blockers and resource baseline. No Human acceptance/COMPLETE/PROD/oncall, install, cloud or deployment."
+  }
+}

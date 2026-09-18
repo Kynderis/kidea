@@ -1,0 +1,557 @@
+{
+  "scope": "Real C++ partial M1/M2/M4 + primary W5 over verified TLS; fault DB/lifecycle/HTTP responses explicitly controlled; no full OP/WQ/E1/backup/oncall claim",
+  "samples": [
+    {
+      "actor": "A",
+      "epoch": "epoch-t02-fixture",
+      "profile": "outbox-telemetry-r1",
+      "sampledAtMs": 1789761795316,
+      "schema": 1,
+      "signals": {
+        "M1": {
+          "ageBasis": "TRANSACTION_START_UPPER_BOUND",
+          "countState": "KNOWN",
+          "oldestAgeLowerMs": null,
+          "oldestAgeUpperMs": 11,
+          "pending": 1,
+          "state": "BOUNDED"
+        },
+        "M2": {
+          "catalogState": "KNOWN",
+          "open": [],
+          "state": "KNOWN"
+        },
+        "M4": {
+          "lastSuccess": {
+            "atMs": 1789761718288,
+            "epoch": "epoch-t02-fixture",
+            "version": "6",
+            "workshop": "245bd71076c3b5084330b53dae150352"
+          },
+          "state": "KNOWN",
+          "timeBasis": "PROCESSING_TRANSACTION_TIME"
+        }
+      },
+      "unknown": [
+        "M3",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9",
+        "BACKEND_ADMISSION_NOT_WIRED"
+      ],
+      "writeReady": false
+    },
+    {
+      "actor": "A",
+      "epoch": "epoch-t02-fixture",
+      "profile": "outbox-telemetry-r1",
+      "sampledAtMs": 1789761795572,
+      "schema": 1,
+      "signals": {
+        "M1": {
+          "ageBasis": "EMPTY_NA",
+          "countState": "KNOWN",
+          "oldestAgeLowerMs": null,
+          "oldestAgeUpperMs": null,
+          "pending": 0,
+          "state": "KNOWN"
+        },
+        "M2": {
+          "catalogState": "KNOWN",
+          "open": [],
+          "state": "KNOWN"
+        },
+        "M4": {
+          "lastSuccess": {
+            "atMs": 1789761795466,
+            "epoch": "epoch-t02-fixture",
+            "version": "1",
+            "workshop": "087fdb84102c492e5cdb4a4ce6564066"
+          },
+          "state": "KNOWN",
+          "timeBasis": "PROCESSING_TRANSACTION_TIME"
+        }
+      },
+      "unknown": [
+        "M3",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9",
+        "BACKEND_ADMISSION_NOT_WIRED"
+      ],
+      "writeReady": false
+    },
+    {
+      "actor": "A",
+      "epoch": "epoch-t02-fixture",
+      "profile": "outbox-telemetry-r1",
+      "sampledAtMs": 1789761800308,
+      "schema": 1,
+      "signals": {
+        "M1": {
+          "ageBasis": "EMPTY_NA",
+          "countState": "KNOWN",
+          "oldestAgeLowerMs": null,
+          "oldestAgeUpperMs": null,
+          "pending": 0,
+          "state": "KNOWN"
+        },
+        "M2": {
+          "catalogState": "KNOWN",
+          "open": [
+            {
+              "code": "INVARIANT",
+              "count": 1,
+              "firstSeenMs": 1789761798469
+            }
+          ],
+          "state": "UNKNOWN"
+        },
+        "M4": {
+          "lastSuccess": {
+            "atMs": 1789761795466,
+            "epoch": "epoch-t02-fixture",
+            "version": "1",
+            "workshop": "087fdb84102c492e5cdb4a4ce6564066"
+          },
+          "state": "KNOWN",
+          "timeBasis": "PROCESSING_TRANSACTION_TIME"
+        }
+      },
+      "unknown": [
+        "M3",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9",
+        "BACKEND_ADMISSION_NOT_WIRED"
+      ],
+      "writeReady": false
+    },
+    {
+      "actor": "A",
+      "epoch": "epoch-t02-fixture",
+      "profile": "outbox-telemetry-r1",
+      "sampledAtMs": 1789761803274,
+      "schema": 1,
+      "signals": {
+        "M1": {
+          "ageBasis": "EMPTY_NA",
+          "countState": "KNOWN",
+          "oldestAgeLowerMs": null,
+          "oldestAgeUpperMs": null,
+          "pending": 0,
+          "state": "KNOWN"
+        },
+        "M2": {
+          "catalogState": "KNOWN",
+          "open": [
+            {
+              "code": "INVARIANT",
+              "count": 1,
+              "firstSeenMs": 1789761798469
+            }
+          ],
+          "state": "KNOWN"
+        },
+        "M4": {
+          "lastSuccess": {
+            "atMs": 1789761795466,
+            "epoch": "epoch-t02-fixture",
+            "version": "1",
+            "workshop": "087fdb84102c492e5cdb4a4ce6564066"
+          },
+          "state": "KNOWN",
+          "timeBasis": "PROCESSING_TRANSACTION_TIME"
+        }
+      },
+      "unknown": [
+        "M3",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9",
+        "BACKEND_ADMISSION_NOT_WIRED"
+      ],
+      "writeReady": false
+    },
+    {
+      "actor": "B",
+      "epoch": "epoch-t02-fixture",
+      "profile": "outbox-telemetry-r1",
+      "sampledAtMs": 1789761804263,
+      "schema": 1,
+      "signals": {
+        "M1": {
+          "ageBasis": "EMPTY_NA",
+          "countState": "KNOWN",
+          "oldestAgeLowerMs": null,
+          "oldestAgeUpperMs": null,
+          "pending": 0,
+          "state": "KNOWN"
+        },
+        "M2": {
+          "catalogState": "KNOWN",
+          "open": [
+            {
+              "code": "INVARIANT",
+              "count": 1,
+              "firstSeenMs": 1789761798469
+            }
+          ],
+          "state": "KNOWN"
+        },
+        "M4": {
+          "lastSuccess": {
+            "atMs": 1789761795466,
+            "epoch": "epoch-t02-fixture",
+            "version": "1",
+            "workshop": "087fdb84102c492e5cdb4a4ce6564066"
+          },
+          "state": "KNOWN",
+          "timeBasis": "PROCESSING_TRANSACTION_TIME"
+        }
+      },
+      "unknown": [
+        "M3",
+        "M5",
+        "M6",
+        "M7",
+        "M8",
+        "M9",
+        "BACKEND_ADMISSION_NOT_WIRED"
+      ],
+      "writeReady": false
+    }
+  ],
+  "faults": [
+    {
+      "id": 8,
+      "action": "OPS_FAULT_INVARIANT",
+      "status": "DONE",
+      "at": "2026-09-18T20:03:18.410Z"
+    },
+    {
+      "id": 9,
+      "action": "OPS_REPAIR_INVARIANT",
+      "status": "DONE",
+      "at": "2026-09-18T20:03:20.746Z"
+    },
+    {
+      "id": 10,
+      "action": "REVOKE_A",
+      "status": "DONE",
+      "at": "2026-09-18T20:03:29.716Z"
+    },
+    {
+      "id": 11,
+      "action": "RESTORE_A",
+      "status": "DONE",
+      "at": "2026-09-18T20:03:34.359Z"
+    }
+  ],
+  "permissions": [
+    {
+      "expected": 401,
+      "api": {
+        "code": "UNAVAILABLE",
+        "state": "ERROR"
+      },
+      "ssrStatus": 401
+    },
+    {
+      "expected": 404,
+      "api": {
+        "code": "UNAVAILABLE",
+        "state": "ERROR"
+      },
+      "ssrStatus": 404
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/assets/0.DA3PA-bX.css"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/assets/8.CQINscTw.css"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/entry/start.Jeq47RbY.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/DkH0uQlV.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/Dk5McGHQ.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/entry/app.BqAcVc-2.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/xihTtKlq.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/0.BiGhjel_.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/8.CeeP30gh.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/1.De8GzHUD.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/B6pkJz-R.js"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/assets/0.DA3PA-bX.css"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/assets/8.CQINscTw.css"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/entry/start.Jeq47RbY.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/DkH0uQlV.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/Dk5McGHQ.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/entry/app.BqAcVc-2.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/xihTtKlq.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/0.BiGhjel_.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/8.CeeP30gh.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/1.De8GzHUD.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/B6pkJz-R.js"
+    },
+    {
+      "method": "GET",
+      "path": "/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/assets/0.DA3PA-bX.css"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/assets/8.CQINscTw.css"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/entry/start.Jeq47RbY.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/DkH0uQlV.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/Dk5McGHQ.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/entry/app.BqAcVc-2.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/xihTtKlq.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/0.BiGhjel_.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/8.CeeP30gh.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/1.De8GzHUD.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/B6pkJz-R.js"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/assets/0.DA3PA-bX.css"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/assets/8.CQINscTw.css"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/entry/start.Jeq47RbY.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/DkH0uQlV.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/Dk5McGHQ.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/entry/app.BqAcVc-2.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/xihTtKlq.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/0.BiGhjel_.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/8.CeeP30gh.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/nodes/1.De8GzHUD.js"
+    },
+    {
+      "method": "GET",
+      "path": "/_app/immutable/chunks/B6pkJz-R.js"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/operations"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/operations"
+    }
+  ],
+  "viewports": [
+    {
+      "name": "mobile",
+      "vp": {
+        "width": 360,
+        "height": 780
+      },
+      "scale": 1,
+      "overflow": false,
+      "keyboardFocus": true
+    },
+    {
+      "name": "desktop",
+      "vp": {
+        "width": 1280,
+        "height": 900
+      },
+      "scale": 1,
+      "overflow": false,
+      "keyboardFocus": true
+    },
+    {
+      "name": "text200",
+      "vp": {
+        "width": 360,
+        "height": 780
+      },
+      "scale": 2,
+      "overflow": false,
+      "keyboardFocus": true
+    }
+  ],
+  "created": {
+    "command": {
+      "epoch": "epoch-t02-fixture",
+      "intentId": "ops-real-source-create",
+      "action": "CREATE",
+      "fields": {
+        "title": "OPS telemetry authority fixture",
+        "description": "FAKE controlled fault fixture only",
+        "capacity": 10,
+        "schedule": {
+          "start": "2026-12-10T09:00:00+07:00",
+          "end": "2026-12-10T10:00:00+07:00"
+        }
+      }
+    },
+    "result": {
+      "code": "CREATED",
+      "effect": "APPLIED",
+      "state": "FINAL",
+      "workshopId": "087fdb84102c492e5cdb4a4ce6564066"
+    }
+  }
+}

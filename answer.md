@@ -1,5 +1,5 @@
-Đã áp bản vá và phục hồi checkpoint thành công. **293/293 kiểm lõi + 9/9 kiểm phục hồi PASS** trên bản Kidea đang dùng. Bộ hồi quy R09 đã kiểm đủ chín nhóm và đạt trên cùng nguồn cuối; giữ lượt FAIL do thiếu cấu hình R06 cùng kết quả chạy lại đầy đủ.
+Đã hoàn tất mốc số đo backend thật và màn vận hành Web của pilot: 144 kiểm Chrome/HTTPS, 27 SQL, 102 unit và 40 SSR–Chrome Mac (API giả) PASS. Backend kiểm mới bốn preset theo EX r2 đã duyệt; raw FAIL TSan và mọi lượt lỗi vẫn được giữ.
 
-Ghi chú tiếp tục đã lưu đúng nội dung chuẩn bị; dữ liệu, owner, trạng thái phê duyệt và lịch sử giữ nguyên. Pilot đã commit local `aba73cf`. Bằng chứng FAIL/PASS cũ được giữ, [kết quả phục hồi mới](tests/evidence/r09/t05-observer-recovery-r1/preservation.json) đã lưu.
+Đã lưu bằng chứng và điểm tiếp tục. R09/T05 vẫn IN_PROGRESS, review DRAFT; còn collector/màn dự phòng thật, backup, readiness, đo tải và gate cuối.
 
-T05/R09 vẫn mở; observer hiện dùng số đo giả lập. Task tiếp theo là nối số đo/lỗi thật từ backend và màn vận hành chính W5. Độ khó cao; đề xuất **GPT-5.6 Sol + High** để đủ chiều sâu trong phạm vi đã rõ, giữ chi phí hợp lý; [OpenAI Docs](https://developers.openai.com/api/docs/models/gpt-5.6-sol). Phần phục hồi đã duyệt không cần xác nhận thêm.
+Bước tiếp: collector chỉ đọc với quyền tối thiểu và nối màn dự phòng. Độ khó cao; đề xuất **GPT-5.6 Sol + High**. [Bằng chứng và điểm tiếp tục](docs/R09_T05_PROGRESS.md), [OpenAI Docs](https://developers.openai.com/api/docs/models/gpt-5.6-sol).
