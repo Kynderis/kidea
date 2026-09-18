@@ -1,0 +1,50 @@
+sqlite SHA256 b1dd5d74ec7f29055a6684fa06fb3c2f6821c87dd38f9a458dfd2e8a1db28189
+70741:       return (rc&0xFF)==SQLITE_BUSY ? WAL_RETRY : rc;
+70742:     }
+70743:     /* Now that the read-lock has been obtained, check that neither the
+70744:     ** value in the aReadMark[] array or the contents of the wal-index
+70745:     ** header have changed.
+70746:     **
+70747:     ** It is necessary to check that the wal-index header did not change
+70748:     ** between the time it was read and when the shared-lock was obtained
+70749:     ** on WAL_READ_LOCK(mxI) was obtained to account for the possibility
+70750:     ** that the log file may have been wrapped by a writer, or that frames
+70751:     ** that occur later in the log than pWal->hdr.mxFrame may have been
+70752:     ** copied into the database by a checkpointer. If either of these things
+70753:     ** happened, then reading the database with the current value of
+70754:     ** pWal->hdr.mxFrame risks reading a corrupted snapshot. So, retry
+70755:     ** instead.
+70756:     **
+70757:     ** Before checking that the live wal-index header has not changed
+70758:     ** since it was read, set Wal.minFrame to the first frame in the wal
+70759:     ** file that has not yet been checkpointed. This client will not need
+70760:     ** to read any frames earlier than minFrame from the wal file - they
+70761:     ** can be safely read directly from the database file.
+70762:     **
+70763:     ** Because a ShmBarrier() call is made between taking the copy of
+70764:     ** nBackfill and checking that the wal-header in shared-memory still
+70765:     ** matches the one cached in pWal->hdr, it is guaranteed that the
+70766:     ** checkpointer that set nBackfill was not working with a wal-index
+70767:     ** header newer than that cached in pWal->hdr. If it were, that could
+70768:     ** cause a problem. The checkpointer could omit to checkpoint
+70769:     ** a version of page X that lies before pWal->minFrame (call that version
+70770:     ** A) on the basis that there is a newer version (version B) of the same
+70771:     ** page later in the wal file. But if version B happens to like past
+70772:     ** frame pWal->hdr.mxFrame - then the client would incorrectly assume
+70773:     ** that it can read version A from the database file. However, since
+70774:     ** we can guarantee that the checkpointer that set nBackfill could not
+70775:     ** see any pages past pWal->hdr.mxFrame, this problem does not come up.
+70776:     */
+70777:     pWal->minFrame = AtomicLoad(&pInfo->nBackfill)+1; SEH_INJECT_FAULT;
+70778:     walShmBarrier(pWal);
+70779:     if( AtomicLoad(pInfo->aReadMark+mxI)!=mxReadMark
+70780:      || memcmp((void *)walIndexHdr(pWal), &pWal->hdr, sizeof(WalIndexHdr))
+70781:     ){
+70782:       walUnlockShared(pWal, WAL_READ_LOCK(mxI));
+70783:       return WAL_RETRY;
+70784:     }else{
+70785:       assert( mxReadMark<=pWal->hdr.mxFrame );
+70786:       pWal->readLock = (i16)mxI;
+70787:     }
+70788:   }
+70789:   return rc;

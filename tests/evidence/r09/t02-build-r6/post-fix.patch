@@ -1,0 +1,36 @@
+diff --git a/scripts/t02/tsan-policy.mjs b/scripts/t02/tsan-policy.mjs
+index b332265..2d217f9 100644
+--- a/scripts/t02/tsan-policy.mjs
++++ b/scripts/t02/tsan-policy.mjs
+@@ -29,7 +29,8 @@ export function classify({stderr,code,signal=null,timedOut=false,oom=false,conte
+     };
+     const pair=frame(accesses[0][3],'walIndexWriteHdr')+':'+frame(accesses[1][3],'walIndexTryHdr');
+     const offset=pair==='68469:70135'?'30':pair==='68471:70133'?'0':null;
+-    if (offset===null || !new RegExp("^  Location is global '<null>' at 0x0+ \\([^\\n()]+-shm\\+0x"+offset+"\\)$",'m').test(b)) return blocked('HEADER_LOCATION');
++    if(offset===null)return blocked('ACCESS_STACK');
++    if (!new RegExp("^  Location is global '<null>' at 0x0+ \\([^\\n()]+-shm(?: \\(deleted\\))?\\+0x"+offset+"\\)$",'m').test(b)) return blocked('HEADER_LOCATION');
+     if ((b.match(/^  (?:Previous )?(?:Read|Write|read|write|Atomic|atomic)[^\n]* of size /gm)??[]).length!==2) return blocked('EXTRA_ACCESS');
+     if (!/^SUMMARY: ThreadSanitizer: data race .*sanitizer_common_interceptors_memintrinsics\.inc:115 in memcpy$/m.test(b)) return blocked('SUMMARY');
+     pairs.push(pair);
+diff --git a/tests/t02/tsan/policy.test.mjs b/tests/t02/tsan/policy.test.mjs
+index aa3a4e2..3066d06 100644
+--- a/tests/t02/tsan/policy.test.mjs
++++ b/tests/t02/tsan/policy.test.mjs
+@@ -1,6 +1,6 @@
+ import assert from 'node:assert/strict';
+ import {readFileSync} from 'node:fs';
+-import {classify,policy,requireObservations,parseObservations} from '../../../scripts/t02/tsan-policy.mjs';
++import {classify,policy,requireObservations,parseObservations,completeReports} from '../../../scripts/t02/tsan-policy.mjs';
+ const read=n=>readFileSync(new URL(n,import.meta.url),'utf8');const wal=read('wal.txt'),control=read('control.txt');let count=0;
+ function test(name,fn){fn();count++;console.log('PASS '+name);}
+ const run=(stderr=wal,extra={})=>classify({stderr,code:66,context:policy,...extra});
+@@ -25,4 +25,9 @@ test('real ASan oracle labels match despite generated IDs and race winner',()=>r
+ test('invalid dynamic suffix blocked',()=>assert.throws(()=>requireObservations(expected.observations.map(x=>x.caseId==='I09'&&x.variant.startsWith('initial-same-intent-')?{...x,variant:'initial-same-intent-not-json'}:x),expected.observations)));
+ test('missing final race invariant blocked',()=>assert.throws(()=>requireObservations(expected.observations.filter(x=>x.variant!=='barrier-last-seat-race'),expected.observations)));
+ test('failure in dynamic variant blocked',()=>assert.throws(()=>requireObservations(expected.observations.map(x=>x.caseId==='I09'&&x.variant.startsWith('initial-same-intent-')?{...x,status:'FAIL'}:x),expected.observations)));
++const firstR6='==================\n'+completeReports(read('r6-I09.txt'))[0]+'==================\nThreadSanitizer: reported 1 warnings\n';
++test('same approved pair with Linux deleted suffix',()=>assert.equal(run(firstR6).state,'KNOWN_WAL_REPORT_REVIEW_REQUIRED'));
++test('deleted suffix wrong header offset remains blocked',()=>assert.equal(run(firstR6.replace('(deleted)+0x30','(deleted)+0x40')).state,'BLOCKED'));
++test('unknown mapping decoration remains blocked',()=>assert.equal(run(firstR6.replace('(deleted)','(other)')).state,'BLOCKED'));
++for(const id of ['I09','C01','C02','C03','C04','C05'])test('r6 new memcmp access remains blocked '+id,()=>assert.equal(run(read('r6-'+id+'.txt')).state,'BLOCKED'));
+ console.log(JSON.stringify({state:'OFFLINE_TESTS_PASS' ,count,runtimeContainers:0}));

@@ -1,0 +1,155 @@
+{
+  "reports": {
+    "I09": [
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7fbd5e344030 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7fbd5e344030 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x30)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68469 (workshop_tests+0xf5a23) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walIndexTryHdr /vendor/sqlite/sqlite3.c:70135 (workshop_tests+0xf90d0) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      },
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7fbd5e344000 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7fbd5e344000 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x0)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68471 (workshop_tests+0xf5a4b) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walTryBeginRead /vendor/sqlite/sqlite3.c:70780 (workshop_tests+0xfa014) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      }
+    ],
+    "C01": [
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7fe2cd617030 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7fe2cd617030 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x30)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68469 (workshop_tests+0xf5a23) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walIndexTryHdr /vendor/sqlite/sqlite3.c:70135 (workshop_tests+0xf90d0) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      },
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7fe2cd617000 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7fe2cd617000 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x0)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68471 (workshop_tests+0xf5a4b) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walTryBeginRead /vendor/sqlite/sqlite3.c:70780 (workshop_tests+0xfa014) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      }
+    ],
+    "C02": [
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7f07f911d030 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7f07f911d030 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x30)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68469 (workshop_tests+0xf5a23) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walIndexTryHdr /vendor/sqlite/sqlite3.c:70135 (workshop_tests+0xf90d0) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      },
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7f07f911d000 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7f07f911d000 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x0)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68471 (workshop_tests+0xf5a4b) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walTryBeginRead /vendor/sqlite/sqlite3.c:70780 (workshop_tests+0xfa014) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      }
+    ],
+    "C03": [
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7f8b0c56f030 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7f8b0c56f030 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x30)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68469 (workshop_tests+0xf5a23) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walIndexTryHdr /vendor/sqlite/sqlite3.c:70135 (workshop_tests+0xf90d0) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      },
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7f8b0c56f000 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7f8b0c56f000 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x0)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68471 (workshop_tests+0xf5a4b) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walTryBeginRead /vendor/sqlite/sqlite3.c:70780 (workshop_tests+0xfa014) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      }
+    ],
+    "C04": [
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7f025aad9030 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7f025aad9030 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x30)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68469 (workshop_tests+0xf5a23) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walIndexTryHdr /vendor/sqlite/sqlite3.c:70135 (workshop_tests+0xf90d0) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      },
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7f025aad9000 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7f025aad9000 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x0)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68471 (workshop_tests+0xf5a4b) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walTryBeginRead /vendor/sqlite/sqlite3.c:70780 (workshop_tests+0xfa014) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      }
+    ],
+    "C05": [
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7feee8c04030 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7feee8c04030 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x30)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68469 (workshop_tests+0xf5a23) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walIndexTryHdr /vendor/sqlite/sqlite3.c:70135 (workshop_tests+0xf90d0) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      },
+      {
+        "accesses": [
+          "  Write of size 8 at 0x7feee8c04000 by thread T1 (mutexes: write M0):",
+          "  Previous read of size 8 at 0x7feee8c04000 by thread T2 (mutexes: write M1):",
+          "  Location is global '<null>' at 0x000000000000 (db.sqlite-shm (deleted)+0x0)"
+        ],
+        "frames": [
+          "#2 walIndexWriteHdr /vendor/sqlite/sqlite3.c:68471 (workshop_tests+0xf5a4b) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)",
+          "#2 walTryBeginRead /vendor/sqlite/sqlite3.c:70780 (workshop_tests+0xfa014) (BuildId: daa556b6d68e57a21ec8324c12321ea8f1227df8)"
+        ]
+      }
+    ]
+  },
+  "knownPair": "68469:70135",
+  "newPair": "68471:70780",
+  "waiverForNewPair": false,
+  "primarySources": [
+    "https://man7.org/linux/man-pages/man5/proc_pid_maps.5.html",
+    "https://sqlite.org/walformat.html"
+  ]
+}

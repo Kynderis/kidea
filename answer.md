@@ -1,5 +1,9 @@
-Đã triển khai EX-T02-WAL-01 r1: **76 kiểm offline và 22 kiểm tĩnh PASS**. Giữ log FAIL ban đầu, raw TSan/CTest và assertion gốc; chưa chạy Docker bản mới.
+R6 đã chạy và dừng đúng gate:
 
-Đã chuẩn bị [build r6](docs/R09_T02_BUILD_R6_REVIEW.md) trên nguồn cuối: **1 lượt, tối đa 2 giờ, 4 container tuần tự, mỗi container 2 CPU/4 GiB RAM; thêm ≤8 GiB đĩa, không tải/cài thêm**.
+- **Dev và ASan/UBSan đạt** toàn bộ 46 CTest / 796 assertion / 18 HTTP.
+- TSan đủ 796 assertion chức năng, nhưng có **một cặp truy cập SQLite mới ngoài ngoại lệ đã duyệt**; TSanHTTP/release chưa chạy.
+- Đã thu hồi 3 container, giữ log FAIL; sửa lỗi đọc định dạng report và 85 kiểm offline đạt. Cảnh báo mới vẫn bị chặn.
 
-Bạn duyệt **build r6** nhé? Quyền vừa duyệt chỉ mở triển khai/kiểm offline; gói chạy nay đã có nguồn và manifest cụ thể. Không cần duyệt lại ngoại lệ TSan. R09 chưa hoàn tất.
+Tôi đã chuẩn bị [EX r2](docs/R09_T02_TSAN_GATE_R2_PROPOSAL.md), chỉ đề nghị bổ sung đúng cặp đọc header mới, giữ đầy đủ test/log. Bạn duyệt phần bổ sung này nhé?
+
+Cần xác nhận vì đây là mở rộng phạm vi ngoại lệ r1, không phải duyệt lại việc cũ. R09 chưa hoàn tất.

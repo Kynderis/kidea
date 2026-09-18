@@ -1,5 +1,7 @@
 # R09-T02 build r6 — gate TSan với ngoại lệ có điều kiện
 
+**APPROVED và đã thực thi — FAIL tại gate TSan.** Human “Duyệt r6” cho gói tại f67626a. [Kết quả thực](../tests/evidence/r09/t02-build-r6.md); quyền một lượt đã dùng, TSanHTTP/release chưa chạy. Nội dung đề xuất bên dưới giữ lịch sử.
+
 **PROPOSED — chưa chạy, chờ quyền thực thi một lượt.** Human đã duyệt EX-T02-WAL-01 r1 và phần viết/kiểm offline tại `7cdb089`; không hỏi lại quyết định ngoại lệ đó. [Kết quả triển khai](../tests/evidence/r09/t02-tsan-policy-implementation-r1.md): 76 kiểm offline và 22 kiểm tĩnh PASS, giữ FAIL ban đầu khi đối chiếu nhãn chứa ID ngẫu nhiên. CMake/C++/harness runtime mới chưa được chạy.
 
 ## Nguồn/lệnh cụ thể

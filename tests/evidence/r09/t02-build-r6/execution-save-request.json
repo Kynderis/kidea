@@ -1,0 +1,58 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human Duyệt r6 authorizes one bounded manifest5685e999 build, now consumed. Existing scoped authoring covers mapping-format parser correction/offline regressions and checkpoint; no new memcmp exception or container rerun."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t02/build-proposal.md",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/tsan-policy.mjs",
+      "anchor": null
+    },
+    {
+      "path": "tests/t02/tsan/policy.test.mjs",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "5e5f731a99bce2e4ad1949abb03228eeb8b39c752095894774597cb624afd516",
+  "expectedGit": {
+    "head": "6308476df12572cc5e4613f9040ecc80a566a658",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "r6 executed on763ab55: dev/ASan each46CTest/796assertions/18HTTP PASS; TSan compile/controls/796functional assertions complete. Raw6exit66 cases include12reports; gate blocked HEADER_LOCATION. All3containers removed; source68hash unchanged after run; FAIL and raw evidence retained. Parser-only (deleted) suffix fix with85offline tests now distinguishes new memcmp read and keeps all6real logs BLOCKED; source6308476.",
+    "remaining": "TSanHTTP and release NOT_RUN. New read walTryBeginRead70780 outside approved EX r1; no automatic waiver or T02/R09 acceptance. R10 unopened.",
+    "nextAction": "Review Kidea docs/R09_T02_TSAN_GATE_R2_PROPOSAL.md for exactly the added memcmp header-read pair before implementing any exception expansion. No repeated container/build grant exists; preserve raw r6 failure and controls. New build requires final-source manifest after approved changes.",
+    "sourceRefs": [
+      {
+        "path": "docs/t02/build-proposal.md",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/tsan-policy.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t02/tsan/policy.test.mjs",
+        "anchor": null
+      }
+    ]
+  }
+}
