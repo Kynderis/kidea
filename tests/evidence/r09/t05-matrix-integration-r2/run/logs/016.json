@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "ad6ac6cc53faf436c4169c6b49d338f3db536ebfd1e4777f7e6645119ebf6385"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n429 !== 200\n\n    at save (file:///plan/matrix-browser.mjs:26:37)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)\n    at async checkMatrix (file:///plan/matrix-browser.mjs:45:59)\n    at async file:///plan/browser.mjs:50:2 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 429,\n  expected: 200,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "b80a89401c3be5820078605dd593fd1dd5ec3fd04852d208e74a7c584a1931f3"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ undefined\n- {\n-   capacity: 9\n- }\n\n    at checkAdmin (file:///plan/admin-browser.mjs:14:674)\n    at async file:///plan/browser.mjs:49:2 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: undefined,\n  expected: { capacity: 9 },\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

@@ -92,3 +92,28 @@ Chrome and62 real HTTPS/WSS checks.
 Full T05 matrix, monitoring/backup/readiness, workload measurements,
 independent restore and later R09 gates remain pending. Only public Kidea helpers
 write `.kidea`; a DRAFT source review is not a new Human approval or DONE result.
+
+## Source matrix and durable administration audit
+
+The matrix suite retains the preceding62 real integration checks and adds9
+functional groups. It exercises three states × four UI fields, all9 STATE cells,
+unknown-state/field rejection, distinct authoritative IDs for duplicate titles,
+committed EDIT/STATE response loss and GET-only reconciliation, and the exact
+C10,N9→C9 registration-winning race. Only response loss and race timing are
+controlled; backend commits and domain results are real. An explicit1100ms
+pause between independent UI field actions keeps this functional suite separate
+from offered-load WQ; HTTP20/s burst40 and success/error oracles are unchanged.
+
+After every owned container/network is cleaned, matrix-audit.py opens the
+durable fake fixture SQLite database read-only. Runner PASS also requires one
+result/audit per observed intent, exact field deltas, no changes/events for
+rejection/no-op/GET, contiguous durable versions/outbox and capacity invariants.
+This is post-shutdown audit, not crash/restore or independent host survival.
+
+The source-preserving audit-coverage.py takes Kidea root, pilot root, completed
+integration evidence directory and a CREATE-only output directory. It checks
+all137 original IDs/source hashes/expected text and actual proof selectors,
+records missing clauses individually, retains the4Max2 amendment cases
+separately and leaves the compiled original T02 ledger unchanged. Component
+PASS, covered functional row, partial and NOT_RUN are distinct; this ledger
+does not close G2, impacts or Human acceptance.

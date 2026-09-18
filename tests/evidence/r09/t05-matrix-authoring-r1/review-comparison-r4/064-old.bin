@@ -1,0 +1,210 @@
+#include "workshop/updates.hpp"
+#include <algorithm>
+#include <limits>
+namespace workshop {
+namespace {
+struct Query {
+  sqlite3_stmt *stmt{};
+  std::deque<std::string> strings;
+  Query(sqlite3 *db, const char *sql) {
+    if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) != SQLITE_OK)
+      throw StorageError("UPDATE_PREPARE");
+  }
+  ~Query() { sqlite3_finalize(stmt); }
+  Query(const Query &) = delete;
+  Query &operator=(const Query &) = delete;
+  void text(int i, const std::string &value) {
+    strings.push_back(value);
+    const auto &owned = strings.back();
+    if (value.size() >
+            static_cast<std::size_t>(std::numeric_limits<int>::max()) ||
+        sqlite3_bind_text(stmt, i, owned.data(), static_cast<int>(value.size()),
+                          SQLITE_STATIC) != SQLITE_OK)
+      throw StorageError("UPDATE_BIND");
+  }
+  void number(int i, std::int64_t value) {
+    if (sqlite3_bind_int64(stmt, i, value) != SQLITE_OK)
+      throw StorageError("UPDATE_BIND");
+  }
+  bool row() {
+    const auto code = sqlite3_step(stmt);
+    if (code == SQLITE_ROW)
+      return true;
+    if (code == SQLITE_DONE)
+      return false;
+    throw StorageError("UPDATE_STEP");
+  }
+  std::string value(int i) const {
+    const auto *p = sqlite3_column_text(stmt, i);
+    if (!p)
+      throw StorageError("UPDATE_NULL");
+    return {reinterpret_cast<const char *>(p),
+            static_cast<std::size_t>(sqlite3_column_bytes(stmt, i))};
+  }
+};
+void execute(sqlite3 *db, const char *sql) {
+  if (sqlite3_exec(db, sql, nullptr, nullptr, nullptr) != SQLITE_OK)
+    throw StorageError("UPDATE_EXEC");
+}
+} // namespace
+UpdateJournal::UpdateJournal(const std::string &file) {
+  if (sqlite3_open_v2(file.c_str(), &db_,
+                      SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX,
+                      nullptr) != SQLITE_OK) {
+    sqlite3_close(db_);
+    db_ = nullptr;
+    throw StorageError("UPDATE_OPEN");
+  }
+  try {
+    if (sqlite3_busy_timeout(db_, 100) != SQLITE_OK)
+      throw StorageError("UPDATE_BUSY");
+    execute(db_, "PRAGMA foreign_keys=ON; PRAGMA synchronous=FULL;");
+    Query version(db_, "PRAGMA user_version");
+    if (!version.row() || sqlite3_column_int(version.stmt, 0) != 1)
+      throw StorageError("UPDATE_SCHEMA");
+  } catch (...) {
+    sqlite3_close(db_);
+    db_ = nullptr;
+    throw;
+  }
+}
+UpdateJournal::~UpdateJournal() { sqlite3_close(db_); }
+std::string UpdateJournal::metadata(const char *key) {
+  Query q(db_, "SELECT value FROM metadata WHERE key=?");
+  q.text(1, key);
+  if (!q.row())
+    throw StorageError("UPDATE_METADATA");
+  return q.value(0);
+}
+std::vector<UpdateEvent> UpdateJournal::pending() {
+  Query q(db_, "SELECT id,epoch,workshop,version FROM outbox WHERE completed=0 "
+               "ORDER BY id LIMIT 64");
+  std::vector<UpdateEvent> result;
+  while (q.row())
+    result.push_back(
+        {sqlite3_column_int64(q.stmt, 0), q.value(1), q.value(2), q.value(3)});
+  return result;
+}
+void UpdateJournal::complete(const std::vector<UpdateEvent> &events) {
+  if (events.empty())
+    return;
+  execute(db_, "BEGIN IMMEDIATE");
+  try {
+    for (const auto &event : events) {
+      Query q(db_, "UPDATE outbox SET completed=1 WHERE id=? AND epoch=? AND "
+                   "workshop=? AND version=?");
+      q.number(1, event.id);
+      q.text(2, event.epoch);
+      q.text(3, event.workshop);
+      q.text(4, event.version);
+      if (q.row() || sqlite3_changes(db_) != 1)
+        throw StorageError("UPDATE_IDENTITY");
+    }
+    execute(db_, "COMMIT");
+  } catch (...) {
+    sqlite3_exec(db_, "ROLLBACK", nullptr, nullptr, nullptr);
+    throw;
+  }
+}
+bool updateAuthorized(Store &store, UpdateJournal &journal,
+                      const Subscription &s, std::int64_t now) {
+  if (s.origin != journal.metadata("origin") ||
+      s.epoch != journal.metadata("epoch") ||
+      (s.audience != "public" && s.audience != "admin" &&
+       s.audience != "private"))
+    return false;
+  if (s.token.empty())
+    return s.audience == "public" && s.actor.empty() && s.csrf.empty();
+  const auto session =
+      store.handle("GET", "/session", s.token, "", "", Json{}, now);
+  if (session.status >= 500)
+    throw StorageError("UPDATE_AUTH_UNCONFIRMED");
+  const auto &v = session.body;
+  return session.status == 200 && v["actor"].asString() == s.actor &&
+         v["epoch"].asString() == s.epoch && !s.csrf.empty() &&
+         v["csrf"].asString() == s.csrf &&
+         (s.audience != "admin" || v["admin"].asBool()) &&
+         (s.audience != "private" || v["participant"].asBool());
+}
+std::optional<Json> updateSnapshot(Store &store, UpdateJournal &journal,
+                                   const Subscription &s, std::int64_t now) {
+  if (!updateAuthorized(store, journal, s, now))
+    return std::nullopt;
+  const auto route =
+      s.audience == "private"
+          ? "/me/registrations"
+          : (s.audience == "admin" ? "/admin/workshops" : "/workshops") +
+                (s.workshop == "*" ? "" : "/" + s.workshop);
+  const auto result = store.handle("GET", route, s.token, "", "", Json{}, now);
+  if (result.status >= 500)
+    throw StorageError("UPDATE_SNAPSHOT_UNCONFIRMED");
+  if (result.status != 200)
+    return std::nullopt;
+  if (s.audience == "private") {
+    if (!result.body.isArray())
+      return std::nullopt;
+    for (const auto &group : result.body)
+      if (group["actor"].asString() != s.actor ||
+          group["epoch"].asString() != s.epoch)
+        return std::nullopt;
+  } else if (s.workshop == "*") {
+    if (!result.body.isArray())
+      return std::nullopt;
+    for (const auto &w : result.body)
+      if (w["epoch"].asString() != s.epoch ||
+          (s.audience == "public" && w["state"].asString() == "DRAFT"))
+        return std::nullopt;
+  } else if (result.body["id"].asString() != s.workshop ||
+             result.body["epoch"].asString() != s.epoch) {
+    return std::nullopt;
+  }
+  return result.body;
+}
+bool UpdateCredit::reserve(const std::string &receipt, std::size_t bytes) {
+  if (receipt.empty() || pending_.size() >= 8 || bytes > 1048576 ||
+      bytes_ > 1048576 - bytes ||
+      std::any_of(pending_.begin(), pending_.end(),
+                  [&](const auto &v) { return v.first == receipt; }))
+    return false;
+  pending_.emplace_back(receipt, bytes);
+  bytes_ += bytes;
+  return true;
+}
+bool UpdateCredit::acknowledge(const std::string &receipt) {
+  // Only receipt of the oldest complete frame releases one credit. No guessed
+  // numeric cursor can acknowledge bytes a slow reader has not consumed.
+  if (pending_.empty() || pending_.front().first != receipt)
+    return false;
+  bytes_ -= pending_.front().second;
+  pending_.pop_front();
+  return true;
+}
+bool SocketQuota::acquire(const std::string &key, bool authenticated) {
+  const auto found = owners_.find(key);
+  const auto owned = found == owners_.end() ? 0 : found->second;
+  if (total_ >= 128 || owned >= (authenticated ? 8U : 16U))
+    return false;
+  ++owners_[key];
+  ++total_;
+  return true;
+}
+void SocketQuota::release(const std::string &key) {
+  const auto found = owners_.find(key);
+  if (found == owners_.end())
+    return;
+  --total_;
+  if (--found->second == 0)
+    owners_.erase(found);
+}
+bool FrameRate::accept(Clock::time_point now) {
+  tokens_ = std::min(
+      10.0,
+      tokens_ +
+          std::max(0.0, std::chrono::duration<double>(now - at_).count()) * 5);
+  at_ = now;
+  if (tokens_ < 1)
+    return false;
+  --tokens_;
+  return true;
+}
+} // namespace workshop

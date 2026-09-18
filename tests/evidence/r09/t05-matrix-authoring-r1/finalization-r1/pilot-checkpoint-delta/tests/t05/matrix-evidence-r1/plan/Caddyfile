@@ -1,0 +1,42 @@
+{
+ admin off
+ auto_https disable_redirects
+ skip_install_trust
+ grace_period 30s
+ servers {
+  protocols h1 h2
+  max_header_size 16KiB
+  strict_sni_host on
+ }
+}
+https://workshop.test {
+ tls internal
+ route {
+  request_body {
+   max_size 128KiB
+  }
+  header {
+   X-Robots-Tag "noindex, nofollow"
+   Cache-Control "no-store"
+   defer
+  }
+  @badAuthority expression `{http.request.hostport} != "workshop.test"`
+  respond @badAuthority "Untrusted authority" 400
+  @forged expression `{http.request.header.Forwarded} != "" || {http.request.header.X-Forwarded-Host} != "" || {http.request.header.X-Forwarded-Proto} != "" || {http.request.header.X-Forwarded-For} != ""`
+  respond @forged "Untrusted proxy headers" 400
+  handle /api/v1/* {
+   reverse_proxy app:8080 {
+    header_up -Forwarded
+    header_up -X-Actor
+    header_up -X-Role
+   }
+  }
+  handle {
+   reverse_proxy app:4173 {
+    header_up -Forwarded
+    header_up -X-Actor
+    header_up -X-Role
+   }
+  }
+ }
+}

@@ -1,0 +1,47 @@
+diff --git a/web/src/lib/AdminForm.svelte b/web/src/lib/AdminForm.svelte
+index cf7d92d..8c4b4cb 100644
+--- a/web/src/lib/AdminForm.svelte
++++ b/web/src/lib/AdminForm.svelte
+@@ -3,13 +3,13 @@
+  import {decodeAdmin,formOf,changedFields,fieldErrors,confirmation,sameObservation,compareAdminObservation,rebaseDraft,decodeAdminIntent,prepareAdminSend,decodeAdminResult,adminResultText,type AdminSnapshot,type AdminIntent,type Command,type Draft} from '$lib/admin';
+  let {initial}:{initial:AdminSnapshot|null}=$props();
+  let base=$state<AdminSnapshot|null>(null),draft=$state<Draft>(formOf(null)),latest=$state<AdminSnapshot|null>(null);
+- let who=$state<{actor:string;epoch:string;csrf:string}|null>(null),intent=$state<AdminIntent|null>(null),busy=$state(false),ready=$state(false),message=$state('Đang kiểm tra phiên quản trị…'),errors=$state<Record<string,string>>({}),created=$state<string|null>(null);
++ let who=$state<{actor:string;epoch:string;csrf:string}|null>(null),intent=$state<AdminIntent|null>(null),busy=$state(false),ready=$state(false),message=$state('Đang kiểm tra phiên quản trị…'),outcomeMessage=$state(''),errors=$state<Record<string,string>>({}),created=$state<string|null>(null);
+  let dialog:HTMLDialogElement;let confirmationLines=$state<string[]>([]),candidate=$state<Command|null>(null);let mounted=false,generation=0;let key='';let polling=false;let channel=$state<UpdateStatus>('UNKNOWN');let stopUpdates:(()=>void)|null=null;let conflicted=$state(false);
+  const dirty=$derived(Object.keys(changedFields(base,draft)).length>0);
+  const unresolved=$derived(intent!==null&&intent.state==='UNKNOWN');
+  async function json(route:string,options:NonNullable<Parameters<typeof fetch>[1]>={}):Promise<unknown>{const response=await fetch('/api/v1'+route,{...options,cache:'no-store',signal:AbortSignal.timeout(8000)});if(!response.ok)throw new Error('UNCONFIRMED');return response.json();}
+  async function identity(){const response=await fetch('/api/v1/session',{cache:'no-store',signal:AbortSignal.timeout(8000)});if(!response.ok)throw new Error(response.status===401||response.status===403?'PERMISSION':'UNCONFIRMED');const v:unknown=await response.json();if(typeof v!=='object'||v===null||!('admin'in v)||v.admin!==true||!('actor'in v)||typeof v.actor!=='string'||!v.actor||!('epoch'in v)||typeof v.epoch!=='string'||!v.epoch||!('csrf'in v)||typeof v.csrf!=='string'||!v.csrf)throw new Error('PERMISSION');return {actor:v.actor,epoch:v.epoch,csrf:v.csrf};}
+- function clear(){stopUpdates?.();stopUpdates=null;channel='UNKNOWN';generation++;who=null;base=null;latest=null;draft=formOf(null);intent=null;candidate=null;ready=false;created=null;dialog?.close();}
++ function clear(){stopUpdates?.();stopUpdates=null;channel='UNKNOWN';generation++;who=null;base=null;latest=null;draft=formOf(null);intent=null;candidate=null;ready=false;created=null;outcomeMessage='';errors={};dialog?.close();}
+  function blockConflict(){conflicted=true;latest=null;candidate=null;dialog?.close();message='Cùng phiên bản nhưng nội dung khác nhau. Chưa xác nhận dữ liệu; hãy tải và đối chiếu trước khi lưu.';}
+  function persist(value:string){sessionStorage.setItem(key,value);}
+  async function currentIdentity(){const g=generation;let next;try{next=await identity();}catch(error){if(!mounted||g!==generation)throw error;if(error instanceof Error&&error.message==='PERMISSION'){clear();message='Chưa xác nhận được quyền quản trị. Dữ liệu riêng đã được ẩn.';}else{channel='UNKNOWN';message='Chưa kiểm tra được phiên quản trị. Chỉ đọc đối chiếu lại, không tự gửi thao tác.';}throw error;}if(!mounted||g!==generation)throw new Error('SESSION_CHANGED');if(!who||next.actor!==who.actor||next.epoch!==who.epoch){clear();message='Phiên đã thay đổi. Dữ liệu cũ đã được ẩn; hãy tải lại trang.';throw new Error('SESSION_CHANGED');}who=next;if(message==='Chưa kiểm tra được phiên quản trị. Chỉ đọc đối chiếu lại, không tự gửi thao tác.')message='Đã kiểm tra lại phiên quản trị. Thao tác vẫn được đối chiếu trước khi gửi.';}
+@@ -25,12 +25,14 @@
+  async function reload(){if(busy||!who)return;busy=true;try{await refresh();}catch{message='Chưa tải được bản mới. Không có thao tác nào được gửi.';}finally{busy=false;}}
+  function discard(){if(!base||unresolved)return;draft=formOf(latest??base);base=latest??base;latest=null;errors={};message='Đã bỏ phần chưa lưu.';}
+  async function lookup(){if(!intent||busy||!who)return;busy=true;const g=generation;try{await currentIdentity();const old=intent;const raw=await json('/admin/intents/'+encodeURIComponent(old.command.intentId));await currentIdentity();if(!mounted||g!==generation)return;await accept(raw,old);}catch{if(mounted&&g===generation)message='Chưa xác nhận kết quả. Chỉ đọc đối chiếu, không tự gửi lại thao tác.';}finally{busy=false;}}
+- async function accept(raw:unknown,pending:AdminIntent){const result=decodeAdminResult(raw,pending);if(!result)throw new Error('UNCONFIRMED');pending.state='FINAL';intent=pending;persist(JSON.stringify(pending));message=adminResultText(result);if(pending.command.action==='CREATE'&&result.code==='CREATED')created=result.workshopId??null;
+-  if(initial){try{await refresh(result.effect!=='REJECTED');}catch{message+=' Chưa tải được trạng thái hiện tại.';}}
++ async function accept(raw:unknown,pending:AdminIntent){const result=decodeAdminResult(raw,pending);if(!result)throw new Error('UNCONFIRMED');const g=generation;pending.state='FINAL';intent=pending;persist(JSON.stringify(pending));outcomeMessage=adminResultText(result);message='';errors=result.code==='BELOW_ACTIVE'?{capacity:outcomeMessage}:{};if(pending.command.action==='CREATE'&&result.code==='CREATED')created=result.workshopId??null;
++  // A newer observation cannot replace the validated historical result. A
++  // confirmed identity loss clears both; stale refreshes cannot add old text.
++  if(initial){try{await refresh(result.effect!=='REJECTED');}catch{if(mounted&&g===generation&&who)message='Chưa tải được trạng thái hiện tại.';}}
+  }
+  async function send(command:Command){if(!who||unresolved)return;const g=generation;const pending:AdminIntent={actor:who.actor,epoch:who.epoch,command,sent:false,state:'UNKNOWN'};
+   // Commit the local correlation marker before the only POST. A reload only GETs.
+-  try{prepareAdminSend(pending,persist);}catch{message='Không lưu được mã đối chiếu trên trình duyệt. Chưa gửi thao tác.';return;}intent=pending;message='Đang gửi thao tác…';
++  try{prepareAdminSend(pending,persist);}catch{message='Không lưu được mã đối chiếu trên trình duyệt. Chưa gửi thao tác.';return;}intent=pending;outcomeMessage='';message='Đang gửi thao tác…';
+   try{const raw=await json('/admin/intents',{method:'POST',headers:{'content-type':'application/json','x-csrf-token':who.csrf},body:JSON.stringify(command)});await currentIdentity();if(!mounted||g!==generation)return;await accept(raw,pending);}catch{if(mounted&&g===generation)message='Chưa xác nhận kết quả. Không tự gửi lại thao tác; dùng Kiểm tra kết quả.';}
+  }
+  async function begin(target?:'OPEN'|'PAUSED'){
+@@ -51,7 +53,7 @@
+   return()=>{mounted=false;generation++;stopUpdates?.();window.clearInterval(timer);};
+  });
+ </script>
+-<h1>{initial?'Sửa workshop':'Tạo bản nháp'}</h1><p role="status">{message}</p>
++<h1>{initial?'Sửa workshop':'Tạo bản nháp'}</h1><p role="status">{outcomeMessage}{outcomeMessage&&message?' ':''}{message}</p>
+ {#if ready&&who}
+  {#if base}<p role="status">{channel==='OBSERVED'?'Đang đối chiếu cập nhật trực tiếp.':'Chưa xác nhận cập nhật trực tiếp; tải và đối chiếu trước khi dựa vào số liệu.'}</p><p>{base.title} · {base.state==='DRAFT'?'Bản nháp':base.state==='OPEN'?'Đang mở':'Tạm dừng'}</p><p>Đăng ký hiệu lực: {base.active} · Sức chứa: {base.capacity} · Quan sát {observationLabel(base.observedAt)}</p>{/if}
+  {#if created}<p><a href={resolve('/admin/workshops/[id]',{id:created})}>Mở bản nháp vừa tạo</a></p>{/if}

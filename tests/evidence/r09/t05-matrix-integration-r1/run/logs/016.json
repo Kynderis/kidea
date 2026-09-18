@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "574c28671c3d07975a9b4943dbc535b4e391594af0ca9e6ca5bb8b5ee7903eb0"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nlocator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByText('Lần đó đã lưu thay đổi.', { exact: true }) to be visible\n\n    at save (/plan/matrix-browser.mjs:26:61)\n    at async checkMatrix (/plan/matrix-browser.mjs:43:102)\n    at async file:///plan/browser.mjs:50:2 {\n  log: [\n    \"  - waiting for getByText('Lần đó đã lưu thay đổi.', { exact: true }) to be visible\"\n  ],\n  name: 'TimeoutError'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

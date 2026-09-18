@@ -1,0 +1,25 @@
+{
+  "intent": {
+    "command": {
+      "epoch": "epoch-t02-fixture",
+      "intentId": "be88967c-4c29-4278-87fb-c6de73a6ef97",
+      "action": "EDIT",
+      "workshopId": "d7c75388b03f4f2b817fc8ea9a612988",
+      "fields": {
+        "capacity": 9
+      }
+    },
+    "result": {
+      "code": "BELOW_ACTIVE",
+      "effect": "REJECTED",
+      "state": "FINAL",
+      "workshopId": "d7c75388b03f4f2b817fc8ea9a612988"
+    }
+  },
+  "durableCapacity": 10,
+  "durableActive": 10,
+  "version": "12",
+  "backendInvariantCorrect": true,
+  "browserAssertionFailed": "historical BELOW_ACTIVE message not visible",
+  "causeAssessment": "AdminForm.accept sets the result message, then refresh(false) observes newer active count with dirty capacity and observe replaces message; server field error is also not assigned."
+}

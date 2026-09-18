@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "124088f3ed36fb160bbf1bee1c307a32bc3a2083ce3dd3ef9c09a573b03872d7"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nlocator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByText('Lần đó bị từ chối: sức chứa thấp hơn số đăng ký đang hiệu lực.').first() to be visible\n\n    at checkMatrix (/plan/matrix-browser.mjs:79:659)\n    at async file:///plan/browser.mjs:50:2 {\n  log: [\n    \"  - waiting for getByText('Lần đó bị từ chối: sức chứa thấp hơn số đăng ký đang hiệu lực.').first() to be visible\"\n  ],\n  name: 'TimeoutError'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}
