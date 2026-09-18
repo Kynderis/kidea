@@ -1,0 +1,66 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human duyệt after Kidea13073e3 approves EX-T02-WAL-01 r2: exact validation-reader pair plus offline implementation/tests and continuation only; no new Docker execution grant or product acceptance."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t02/tsan-exception-r2.md",
+      "anchor": null
+    },
+    {
+      "path": "scripts/t02/tsan-policy.mjs",
+      "anchor": null
+    },
+    {
+      "path": "tests/t02/tsan/policy.json",
+      "anchor": null
+    },
+    {
+      "path": "tests/t02/tsan/policy.test.mjs",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "16c73dea0502d05d8a3310531796d5bfe34a0e46695846b110d8aadd4f890d2a",
+  "expectedGit": {
+    "head": "55640a5ed9668a13f22d6262cdc00460415ecd6a",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "EX r2 implemented: exact memcpy68471/memcmp70780 access pair only; source55640a5.99offline tests/5static checks passed; offline r6 evidence closure46cases/796assertions verified with r2 review policy, raw r6 FAIL unchanged. New r7 manifest8e1dd7e7 prepared for75source/824vendor. No new container run.",
+    "remaining": "R7 full build/controls/TSanHTTP/release NOT_RUN. Acceptance requires runtime evidence and review; no TSan-clean claim or T02/R09 acceptance.",
+    "nextAction": "Review Kidea docs/R09_T02_BUILD_R7_REVIEW.md and exact manifest8e1dd7e7de27da211c3132c8d67258dcfc53ce61b72fe2e2bf4de036ea9d5793 for one bounded r7 build. Do not replay consumed r6 or treat offline reclassification as runtime PASS.",
+    "sourceRefs": [
+      {
+        "path": "docs/t02/tsan-exception-r2.md",
+        "anchor": null
+      },
+      {
+        "path": "scripts/t02/tsan-policy.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t02/tsan/policy.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t02/tsan/policy.test.mjs",
+        "anchor": null
+      }
+    ]
+  }
+}

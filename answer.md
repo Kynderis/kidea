@@ -1,9 +1,5 @@
-R6 đã chạy và dừng đúng gate:
+Đã áp dụng EX r2: **99 kiểm offline và 5 kiểm tĩnh PASS**; giữ nguyên bằng chứng FAIL r6. Đã lưu checkpoint và chuẩn bị nguồn/manifest build r7. R09 chưa hoàn tất.
 
-- **Dev và ASan/UBSan đạt** toàn bộ 46 CTest / 796 assertion / 18 HTTP.
-- TSan đủ 796 assertion chức năng, nhưng có **một cặp truy cập SQLite mới ngoài ngoại lệ đã duyệt**; TSanHTTP/release chưa chạy.
-- Đã thu hồi 3 container, giữ log FAIL; sửa lỗi đọc định dạng report và 85 kiểm offline đạt. Cảnh báo mới vẫn bị chặn.
+Bạn duyệt **một lượt build r7 trong Docker**, tối đa2giờ,4container tuần tự,2CPU/4GiB mỗi container,đĩa mới≤8GiB,không tải/cài thêm nhé?
 
-Tôi đã chuẩn bị [EX r2](docs/R09_T02_TSAN_GATE_R2_PROPOSAL.md), chỉ đề nghị bổ sung đúng cặp đọc header mới, giữ đầy đủ test/log. Bạn duyệt phần bổ sung này nhé?
-
-Cần xác nhận vì đây là mở rộng phạm vi ngoại lệ r1, không phải duyệt lại việc cũ. R09 chưa hoàn tất.
+Cần duyệt lượt chạy này vì [gói EX r2](docs/R09_T02_TSAN_GATE_R2_PROPOSAL.md) vừa duyệt chỉ mở triển khai offline và yêu cầu trình [manifest nguồn cuối](docs/R09_T02_BUILD_R7_REVIEW.md) trước Docker.

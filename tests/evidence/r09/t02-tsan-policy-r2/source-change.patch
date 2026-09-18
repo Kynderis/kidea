@@ -1,0 +1,132 @@
+diff --git a/docs/kidea-handoff.md b/docs/kidea-handoff.md
+index 2f6ce99..7524421 100644
+--- a/docs/kidea-handoff.md
++++ b/docs/kidea-handoff.md
+@@ -1,5 +1,7 @@
+ # Workshop pilot — bàn giao hiện hành R09/C
+ 
++Current: EX r2 approved and [implemented offline](t02/tsan-exception-r2.md).99offline tests/5static checks pass. R6 immutable logs classify under the newly approved policy only in an offline review; r6 remains FAIL. Build r7 NOT_RUN, requires final-source manifest approval; no new container execution granted.
++
+ Current: r6 ran once on source763ab55/manifest5685e999 and FAILED at TSan report classification. Dev/ASan each46CTest+796assertions+18HTTP passed. TSan controls and796functional assertions passed, but six exit66 cases include a NEW memcmp read at walTryBeginRead70780; TSanHTTP/release NOT_RUN. All3containers removed, evidence retained in Kidea tests/evidence/r09/t02-build-r6/. Parser now recognizes the exact Linux (deleted) suffix for previously approved stack pairs only;85offline tests pass and all six new-pair logs still BLOCKED. EX r2 proposed at Kidea docs/R09_T02_TSAN_GATE_R2_PROPOSAL.md; not approved/applied. Do not rerun consumed manifests or extend r1 silently.
+ 
+ Current: EX-T02-WAL-01 r1 approved for scoped offline implementation; [harness and continuation](t02/tsan-exception-r1.md). 76 offline tests passed; build r6 NOT_RUN, requires exact new manifest grant. r5 six TSan FAIL remain. Diagnostic r2 completed with100 updates/quick_check and two WAL reports, not product PASS.
+diff --git a/docs/t02/build-proposal.md b/docs/t02/build-proposal.md
+index d257ba3..9d4f7f0 100644
+--- a/docs/t02/build-proposal.md
++++ b/docs/t02/build-proposal.md
+@@ -1,5 +1,7 @@
+ # T02 build r1 — đề xuất thực thi hữu hạn, CHƯA DUYỆT
+ 
++Current: EX r2 approved and [implemented offline](tsan-exception-r2.md).99offline tests/5static checks pass. R6 immutable logs classify under the newly approved policy only in an offline review; r6 remains FAIL. Build r7 NOT_RUN, requires final-source manifest approval; no new container execution granted.
++
+ Current: r6 ran once on source763ab55/manifest5685e999 and FAILED at TSan report classification. Dev/ASan each46CTest+796assertions+18HTTP passed. TSan controls and796functional assertions passed, but six exit66 cases include a NEW memcmp read at walTryBeginRead70780; TSanHTTP/release NOT_RUN. All3containers removed, evidence retained in Kidea tests/evidence/r09/t02-build-r6/. Parser now recognizes the exact Linux (deleted) suffix for previously approved stack pairs only;85offline tests pass and all six new-pair logs still BLOCKED. EX r2 proposed at Kidea docs/R09_T02_TSAN_GATE_R2_PROPOSAL.md; not approved/applied. Do not rerun consumed manifests or extend r1 silently.
+ 
+ Current: EX-T02-WAL-01 r1 approved for scoped offline implementation; [harness and continuation](tsan-exception-r1.md). 76 offline tests passed; build r6 NOT_RUN, requires exact new manifest grant. r5 six TSan FAIL remain. Diagnostic r2 completed with100 updates/quick_check and two WAL reports, not product PASS.
+diff --git a/docs/t02/tsan-exception-r2.md b/docs/t02/tsan-exception-r2.md
+new file mode 100644
+index 0000000..961404f
+--- /dev/null
++++ b/docs/t02/tsan-exception-r2.md
+@@ -0,0 +1,11 @@
++# EX-T02-WAL-01 r2 — approved scoped classifier update
++
++Human “duyệt” after Kidea13073e3 approved EX r2 for the one added pair: memcpy walIndexWriteHdr68471 to memcmp walTryBeginRead70780. Retain r1 conditions and original two pairs. No blanket SQLite exemption, instrumentation suppression, changed data oracle or product acceptance. This approval covers authoring/offline checks only; build r7 needs a new immutable execution grant.
++
++Classifier checks write8/read8, same address, exact two interceptor frames and SQLite function/line, shared header offset0 for the new pair; identity binds source/image/GCC/package inventory/flags and policy r2. Existing raw exit66/JUnit failure remain. Unknown or incomplete reports, mixed application race and missing data remain blocked.
++
++65 policy tests +34 gate tests =99 offline PASS. Five syntax/static/unchanged-source checks PASS. Offline evaluation of immutable r6 evidence verifies all46case/796assertion closures:40clean,6known-report-review-required under r2. This substitutes only the policy ID for an offline review; it is not a new runtime result and does not rewrite r6 FAIL. Original r6 controls/HTTP/release statuses stay historical.
++
++Implementation errors and fixes are retained in Kidea evidence: initial new approval test rejects before implementation; one editing escape syntax error; one mutation targeted an unrelated lower stack frame instead of the exact access frame, corrected to #2. Final negative tests actually modify the intended frame and block. No backend, C++ assertion, HTTP oracle, vendor, controls, build script or collector semantics changed.
++
++Next: review Kidea docs/R09_T02_BUILD_R7_REVIEW.md and its final-source manifest. Proposed one run≤2h/4sequential containers,2CPU/4GiB each,≤8GiB new disk/≤2GiB data,free≥100GiB,no network/download/hostports. Run dev,ASan+UBSan,TSan,release with all controls/tests; failures stop without replay. Highest automatic state remains EVIDENCE_READY_WITH_TSAN_LIMITATION_REVIEW_REQUIRED. Human reviews exact warnings and full evidence before limited acceptance. T02/R09 still open; R10 unopened.
+diff --git a/scripts/t02/preflight.mjs b/scripts/t02/preflight.mjs
+index 632bd34..712963a 100644
+--- a/scripts/t02/preflight.mjs
++++ b/scripts/t02/preflight.mjs
+@@ -8,7 +8,7 @@ export const hash=p=>createHash('sha256').update(readFileSync(p)).digest('hex');
+ export function inventory(base,roots){const result={};function walk(rel){const p=path.join(base,rel),st=lstatSync(p);if(st.isSymbolicLink())throw Error('SYMLINK '+rel);if(st.isDirectory())for(const name of readdirSync(p).sort())walk(path.posix.join(rel,name));else if(st.isFile())result[rel]=hash(p);else throw Error('UNSUPPORTED '+rel);}for(const r of roots)walk(r);return result;}
+ export function verify(manifestPath){
+  const absolute=realpathSync(manifestPath),m=JSON.parse(readFileSync(absolute));
+- if(m.revision!=='r09-t02-build-r6'||m.exception?.id!=='EX-T02-WAL-01-r1'||m.exception?.policySha256!==hash(path.join(root,'tests/t02/tsan/policy.json')))throw Error('EXCEPTION_BINDING');
++ if(m.revision!=='r09-t02-build-r7'||m.exception?.id!=='EX-T02-WAL-01-r2'||m.exception?.policySha256!==hash(path.join(root,'tests/t02/tsan/policy.json')))throw Error('EXCEPTION_BINDING');
+  if(m.root!==root||m.status!=='PROPOSED_BUILD_NOT_RUN'||m.network!=='none'||m.image!=='sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92')throw Error('MANIFEST_SCOPE');
+  if(JSON.stringify(m.sourceRoots)!==JSON.stringify(['backend','contracts','tests/t02','scripts/t02','containers/t02','docs']))throw Error('SOURCE_ROOTS');
+  const actual=inventory(root,m.sourceRoots);delete actual['docs/t02/build-manifest.json'];
+diff --git a/scripts/t02/tsan-policy.mjs b/scripts/t02/tsan-policy.mjs
+index 2d217f9..2ac115f 100644
+--- a/scripts/t02/tsan-policy.mjs
++++ b/scripts/t02/tsan-policy.mjs
+@@ -1,4 +1,4 @@
+-// EX-T02-WAL-01 r1. Classification is separate from the immutable raw failure.
++// EX-T02-WAL-01 r2. Classification is separate from the immutable raw failure.
+ import {readFileSync} from 'node:fs';
+ export const policy = JSON.parse(readFileSync(new URL('../../tests/t02/tsan/policy.json',import.meta.url)));
+ const blocked = reason => ({state:'BLOCKED',reason});
+@@ -19,16 +19,23 @@ export function classify({stderr,code,signal=null,timedOut=false,oom=false,conte
+   const pairs=[];
+   for (const b of reports) {
+     if((b.match(/WARNING:/g)??[]).length!==1 || (b.match(/SUMMARY:/g)??[]).length!==1 || /FATAL:|ERROR:|DEADLYSIGNAL/.test(b))return blocked('EXTRA_DIAGNOSTIC');
+-    // Only the two observed 8-byte memcpy accesses at the beginning of a WAL header.
++    // Only the three approved 8-byte WAL access pairs; no broad SQLite allowance.
+     const accesses=[...b.matchAll(/^  (Write|Previous read) of size 8 at (0x[0-9a-f]+) by thread T\d+ \(mutexes: write M\d+\):\n((?:    #[^\n]+\n)+)/gm)];
+     if (accesses.length!==2 || accesses[0][1]!=='Write' || accesses[1][1]!=='Previous read' || accesses[0][2]!==accesses[1][2]) return blocked('ACCESS_PAIR');
+-    const frame=(stack,fn)=> {
++    const frame=(stack,fn,interceptor)=> {
+       const lines=stack.trim().split('\n').map(x=>x.trim());
+-      if (!/^#0 memcpy .*sanitizer_common_interceptors_memintrinsics\.inc:115 /.test(lines[0]) || !/^#1 memcpy .*sanitizer_common_interceptors_memintrinsics\.inc:107 /.test(lines[1])) return null;
++      const patterns=interceptor==='memcpy'
++        ? [/^#0 memcpy .*sanitizer_common_interceptors_memintrinsics\.inc:115 /,/^#1 memcpy .*sanitizer_common_interceptors_memintrinsics\.inc:107 /]
++        : [/^#0 memcmp .*sanitizer_common_interceptors\.inc:844 /,/^#1 memcmp .*sanitizer_common_interceptors\.inc:840 /];
++      if(!patterns[0].test(lines[0])||!patterns[1].test(lines[1]))return null;
+       return lines[2]?.match(new RegExp('^#2 '+fn+' /vendor/sqlite/sqlite3\\.c:(\\d+) '))?.[1];
+     };
+-    const pair=frame(accesses[0][3],'walIndexWriteHdr')+':'+frame(accesses[1][3],'walIndexTryHdr');
+-    const offset=pair==='68469:70135'?'30':pair==='68471:70133'?'0':null;
++    const writer=frame(accesses[0][3],'walIndexWriteHdr','memcpy');
++    const headerReader=frame(accesses[1][3],'walIndexTryHdr','memcpy');
++    const validationReader=frame(accesses[1][3],'walTryBeginRead','memcmp');
++    const pair=writer+':'+(headerReader??validationReader);
++    const offset=writer==='68469'&&headerReader==='70135'?'30'
++      :writer==='68471'&&(headerReader==='70133'||validationReader==='70780')?'0':null;
+     if(offset===null)return blocked('ACCESS_STACK');
+     if (!new RegExp("^  Location is global '<null>' at 0x0+ \\([^\\n()]+-shm(?: \\(deleted\\))?\\+0x"+offset+"\\)$",'m').test(b)) return blocked('HEADER_LOCATION');
+     if ((b.match(/^  (?:Previous )?(?:Read|Write|read|write|Atomic|atomic)[^\n]* of size /gm)??[]).length!==2) return blocked('EXTRA_ACCESS');
+diff --git a/tests/t02/tsan/policy.json b/tests/t02/tsan/policy.json
+index d4596ff..e3e7817 100644
+--- a/tests/t02/tsan/policy.json
++++ b/tests/t02/tsan/policy.json
+@@ -1,5 +1,5 @@
+ {
+-  "id": "EX-T02-WAL-01-r1",
++  "id": "EX-T02-WAL-01-r2",
+   "sqliteSha256": "b1dd5d74ec7f29055a6684fa06fb3c2f6821c87dd38f9a458dfd2e8a1db28189",
+   "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+   "compiler": "13.3.0",
+diff --git a/tests/t02/tsan/policy.test.mjs b/tests/t02/tsan/policy.test.mjs
+index 3066d06..4bf6d71 100644
+--- a/tests/t02/tsan/policy.test.mjs
++++ b/tests/t02/tsan/policy.test.mjs
+@@ -29,5 +29,22 @@ const firstR6='==================\n'+completeReports(read('r6-I09.txt'))[0]+'===
+ test('same approved pair with Linux deleted suffix',()=>assert.equal(run(firstR6).state,'KNOWN_WAL_REPORT_REVIEW_REQUIRED'));
+ test('deleted suffix wrong header offset remains blocked',()=>assert.equal(run(firstR6.replace('(deleted)+0x30','(deleted)+0x40')).state,'BLOCKED'));
+ test('unknown mapping decoration remains blocked',()=>assert.equal(run(firstR6.replace('(deleted)','(other)')).state,'BLOCKED'));
+-for(const id of ['I09','C01','C02','C03','C04','C05'])test('r6 new memcmp access remains blocked '+id,()=>assert.equal(run(read('r6-'+id+'.txt')).state,'BLOCKED'));
++for(const id of ['I09','C01','C02','C03','C04','C05'])test('r6 approved r2 memcmp report requires review '+id,()=>assert.equal(run(read('r6-'+id+'.txt')).state,'KNOWN_WAL_REPORT_REVIEW_REQUIRED'));
++const r6=read('r6-I09.txt');
++for(const [name,text,extra]of [
++ ['new reader function',r6.replace('#2 walTryBeginRead','#2 otherReader'),{}],
++ ['new reader line',r6.replace('70780','70781'),{}],
++ ['new reader interceptor0',r6.replace('#0 memcmp','#0 memcpy'),{}],
++ ['new reader interceptor1',r6.replace('#1 memcmp','#1 memcpy'),{}],
++ ['new reader interceptor line',r6.replace('interceptors.inc:844','interceptors.inc:845'),{}],
++ ['new reader offset',r6.replace('(deleted)+0x0','(deleted)+0x8'),{}],
++ ['new reader size',r6.replace(/Previous read of size 8/g,'Previous read of size 4'),{}],
++ ['new reader hash',r6,{context:{...policy,sqliteSha256:'changed'}}],
++ ['old exception identity',r6,{context:{...policy,id:'EX-T02-WAL-01-r1'}}],
++ ['new reader mixed app race',r6+control,{}],
++ ['new reader missing report tail',r6.slice(0,-100),{}],
++ ['new reader wrong writer',r6.replace('68471','68469'),{}],
++ ['new reader missing stack',r6.replace('#2 walTryBeginRead','#3 walTryBeginRead'),{}]
++])test(name,()=>assert.equal(run(text,extra).state,'BLOCKED'));
++test('new reader still requires full data oracle',()=>assert.throws(()=>requireObservations(expected.observations.filter(x=>x.caseId!=='I09'),expected.observations)));
+ console.log(JSON.stringify({state:'OFFLINE_TESTS_PASS' ,count,runtimeContainers:0}));

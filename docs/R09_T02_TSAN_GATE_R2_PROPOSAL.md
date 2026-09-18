@@ -1,5 +1,7 @@
 # EX-T02-WAL-01 r2 — thêm một cặp truy cập WAL đã thấy trong r6
 
+**APPROVED và đã triển khai offline.** Human “duyệt” sau13073e3. [Kết quả99offline/5static PASS](../tests/evidence/r09/t02-tsan-policy-r2.md); [build r7](R09_T02_BUILD_R7_REVIEW.md) chờ quyền chạy riêng đúng điều kiện gói. Nội dung bên dưới là đề xuất lịch sử.
+
 **PROPOSED, chưa duyệt/chưa áp dụng.** [R6 thực](../tests/evidence/r09/t02-build-r6.md) dừng đúng gate; r1 không tự mở rộng sang report mới. Human chỉ đã duyệt r6 một lượt và EX r1. Đây là quyết định bổ sung hẹp, không xin lại hai cặp cũ hay nghiệp vụ.
 
 ## Phát hiện và đề xuất

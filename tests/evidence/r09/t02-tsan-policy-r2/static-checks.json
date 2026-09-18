@@ -1,0 +1,27 @@
+[
+  {
+    "check": "scripts/t02/tsan-policy.mjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "check": "scripts/t02/preflight.mjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "check": "tests/t02/tsan/policy.test.mjs",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "check": "source137 consistency",
+    "exit": 0,
+    "stdout": "{\n  \"state\": \"STATIC_ONLY\",\n  \"sourceCases\": 137,\n  \"counts\": {\n    \"T02\": 40,\n    \"T05\u2013T14\": 52,\n    \"T03\": 15,\n    \"T05\": 30\n  },\n  \"files\": 46,\n  \"runtimeTestsRun\": 0,\n  \"missing\": [],\n  \"note\": \"Path/schema/source consistency only; does not prove compilation, behavior or complete variant coverage.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "check": "runtime backend/oracles/gate/build runner unchanged",
+    "exit": 0
+  }
+]
