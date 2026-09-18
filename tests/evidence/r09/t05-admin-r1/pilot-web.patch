@@ -1,0 +1,278 @@
+diff --git a/web/src/lib/AdminForm.svelte b/web/src/lib/AdminForm.svelte
+new file mode 100644
+index 0000000..f3981d6
+--- /dev/null
++++ b/web/src/lib/AdminForm.svelte
+@@ -0,0 +1,72 @@
++<script lang="ts">
++ import {onMount} from 'svelte';import {resolve} from '$app/paths';import {observationLabel} from '$lib/display';
++ import {decodeAdmin,formOf,changedFields,fieldErrors,confirmation,sameObservation,compareAdminObservation,rebaseDraft,decodeAdminIntent,prepareAdminSend,decodeAdminResult,adminResultText,type AdminSnapshot,type AdminIntent,type Command,type Draft} from '$lib/admin';
++ let {initial}:{initial:AdminSnapshot|null}=$props();
++ let base=$state<AdminSnapshot|null>(null),draft=$state<Draft>(formOf(null)),latest=$state<AdminSnapshot|null>(null);
++ let who=$state<{actor:string;epoch:string;csrf:string}|null>(null),intent=$state<AdminIntent|null>(null),busy=$state(false),ready=$state(false),message=$state('Đang kiểm tra phiên quản trị…'),errors=$state<Record<string,string>>({}),created=$state<string|null>(null);
++ let dialog:HTMLDialogElement;let confirmationLines=$state<string[]>([]),candidate=$state<Command|null>(null);let mounted=false,generation=0;let key='';let polling=false;let conflicted=$state(false);
++ const dirty=$derived(Object.keys(changedFields(base,draft)).length>0);
++ const unresolved=$derived(intent!==null&&intent.state==='UNKNOWN');
++ async function json(route:string,options:NonNullable<Parameters<typeof fetch>[1]>={}):Promise<unknown>{const response=await fetch('/api/v1'+route,{...options,cache:'no-store',signal:AbortSignal.timeout(8000)});if(!response.ok)throw new Error('UNCONFIRMED');return response.json();}
++ async function identity(){const v=await json('/session');if(typeof v!=='object'||v===null||!('admin'in v)||v.admin!==true||!('actor'in v)||typeof v.actor!=='string'||!('epoch'in v)||typeof v.epoch!=='string'||!('csrf'in v)||typeof v.csrf!=='string')throw new Error('PERMISSION');return {actor:v.actor,epoch:v.epoch,csrf:v.csrf};}
++ function clear(){generation++;who=null;base=null;latest=null;draft=formOf(null);intent=null;candidate=null;ready=false;created=null;dialog?.close();}
++ function blockConflict(){conflicted=true;latest=null;candidate=null;dialog?.close();message='Cùng phiên bản nhưng nội dung khác nhau. Chưa xác nhận dữ liệu; hãy tải và đối chiếu trước khi lưu.';}
++ function persist(value:string){sessionStorage.setItem(key,value);}
++ async function currentIdentity(){const next=await identity();if(!who||next.actor!==who.actor||next.epoch!==who.epoch){clear();message='Phiên đã thay đổi. Dữ liệu cũ đã được ẩn; hãy tải lại trang.';throw new Error('SESSION_CHANGED');}who=next;}
++ async function snapshot(){if(!initial)return null;const v=decodeAdmin(await json('/admin/workshops/'+encodeURIComponent(initial.id)));if(!v||v.id!==initial.id||v.epoch!==who?.epoch)throw new Error('SNAPSHOT');return v;}
++ async function refresh(replace=false,background=false){const g=generation;await currentIdentity();const next=await snapshot();if(!mounted||g!==generation||background&&busy)return false;
++  if(base&&next){const order=compareAdminObservation(base,next);if(order==='OLDER')return false;if(order==='CONFLICT'){blockConflict();return false;}}
++  if(conflicted&&background)return false;conflicted=false;
++  if(base&&next&&!sameObservation(base,next)&&dirty&&!replace){latest=next;candidate=null;dialog?.close();message='Dữ liệu đã thay đổi. Phần bạn nhập vẫn được giữ; xem bản mới trước khi lưu.';return false;}
++  if(next){if(replace||!dirty)draft=formOf(next);base=next;}latest=null;return true;
++ }
++ function reviewLatest(){if(!base||!latest)return;draft=rebaseDraft(base,latest,draft);base=latest;latest=null;message='Đã đối chiếu bản mới và giữ riêng các trường bạn sửa. Kiểm tra rồi lưu lại.';}
++ async function reload(){if(busy||!who)return;busy=true;try{await refresh();}catch{message='Chưa tải được bản mới. Không có thao tác nào được gửi.';}finally{busy=false;}}
++ function discard(){if(!base||unresolved)return;draft=formOf(latest??base);base=latest??base;latest=null;errors={};message='Đã bỏ phần chưa lưu.';}
++ async function lookup(){if(!intent||busy||!who)return;busy=true;const g=generation;try{await currentIdentity();const old=intent;const raw=await json('/admin/intents/'+encodeURIComponent(old.command.intentId));await currentIdentity();if(!mounted||g!==generation)return;await accept(raw,old);}catch{if(mounted&&g===generation)message='Chưa xác nhận kết quả. Chỉ đọc đối chiếu, không tự gửi lại thao tác.';}finally{busy=false;}}
++ async function accept(raw:unknown,pending:AdminIntent){const result=decodeAdminResult(raw,pending);if(!result)throw new Error('UNCONFIRMED');pending.state='FINAL';intent=pending;persist(JSON.stringify(pending));message=adminResultText(result);if(pending.command.action==='CREATE'&&result.code==='CREATED')created=result.workshopId??null;
++  if(initial){try{await refresh(result.effect!=='REJECTED');}catch{message+=' Chưa tải được trạng thái hiện tại.';}}
++ }
++ async function send(command:Command){if(!who||unresolved)return;const g=generation;const pending:AdminIntent={actor:who.actor,epoch:who.epoch,command,sent:false,state:'UNKNOWN'};
++  // Commit the local correlation marker before the only POST. A reload only GETs.
++  try{prepareAdminSend(pending,persist);}catch{message='Không lưu được mã đối chiếu trên trình duyệt. Chưa gửi thao tác.';return;}intent=pending;message='Đang gửi thao tác…';
++  try{const raw=await json('/admin/intents',{method:'POST',headers:{'content-type':'application/json','x-csrf-token':who.csrf},body:JSON.stringify(command)});await currentIdentity();if(!mounted||g!==generation)return;await accept(raw,pending);}catch{if(mounted&&g===generation)message='Chưa xác nhận kết quả. Không tự gửi lại thao tác; dùng Kiểm tra kết quả.';}
++ }
++ async function begin(target?:'OPEN'|'PAUSED'){
++  if(busy||unresolved||conflicted||!ready||!who||latest)return;busy=true;candidate=null;
++  try{if(target&&dirty){message='Hãy lưu hoặc bỏ phần chưa lưu trước khi đổi trạng thái.';return;}errors=target?{}:fieldErrors(draft);if(Object.keys(errors).length){message='Hãy kiểm tra các trường được ghi lỗi.';return;}
++   if(!await refresh())return;if(!who)return;const fields=changedFields(base,draft);if(!target&&base&&!Object.keys(fields).length){message='Không có trường nào được sửa.';return;}
++   const command:Command={epoch:who.epoch,intentId:crypto.randomUUID(),action:target?'STATE':base?'EDIT':'CREATE',...(base?{workshopId:base.id}:{}),...(target?{targetState:target}:{fields})};
++   confirmationLines=target?[target==='PAUSED'?'Tạm dừng đăng ký và hủy mới; giữ các đăng ký hiện có.':base?.state==='DRAFT'?'Công khai workshop và mở nhận đăng ký.':'Mở lại nhận đăng ký và hủy mới; không gửi lại yêu cầu cũ.']:base?confirmation(base,fields):[];
++   if(confirmationLines.length){candidate=command;dialog.showModal();return;}await send(command);
++  }catch{message='Chưa xác nhận phiên hoặc dữ liệu hiện tại. Chưa gửi thao tác.';}finally{busy=false;}
++ }
++ async function confirm(){if(!candidate||busy||!base||!who)return;busy=true;const command=candidate;const before=base;candidate=null;dialog.close();
++  try{await currentIdentity();const current=await snapshot();if(current&&compareAdminObservation(before,current)==='CONFLICT'){blockConflict();return;}if(!current||!sameObservation(before,current)){latest=current;message='Dữ liệu thay đổi trong lúc xác nhận. Hãy xem lại trước khi gửi.';return;}await send(command);}catch{message='Chưa xác nhận dữ liệu mới. Chưa gửi thao tác.';}finally{busy=false;}
++ }
++ onMount(()=>{mounted=true;const g=++generation;
++  void(async()=>{try{const session=await identity();if(!mounted||g!==generation)return;who=session;key='workshop-admin:'+session.actor+':'+session.epoch+':'+(initial?.id??'CREATE');base=await snapshot();if(!mounted||g!==generation)return;draft=formOf(base);const saved=sessionStorage.getItem(key);if(saved){const restored=decodeAdminIntent(saved,session.actor,session.epoch);if(!restored){message='Mã đối chiếu đã lưu không hợp lệ. Chưa thể tạo thao tác thay thế.';return;}intent=restored;}ready=true;message=unresolved?'Có thao tác chưa xác nhận. Chỉ đọc kết quả cùng mã; không gửi lại.':'Có thể chỉnh sửa. Trạng thái được kiểm lại trước khi gửi.';}catch{if(mounted&&g===generation){clear();message='Chưa xác nhận được phiên hoặc dữ liệu quản trị.';}}})();
++  const timer=window.setInterval(()=>{if(ready&&!busy&&!polling&&who){polling=true;void refresh(false,true).catch(()=>{if(mounted)message='Chưa đối chiếu được dữ liệu mới. Hãy tải lại trước khi thao tác.';}).finally(()=>{polling=false;});}},2000);
++  return()=>{mounted=false;generation++;window.clearInterval(timer);};
++ });
++</script>
++<h1>{initial?'Sửa workshop':'Tạo bản nháp'}</h1><p role="status">{message}</p>
++{#if ready&&who}
++ {#if base}<p>{base.title} · {base.state==='DRAFT'?'Bản nháp':base.state==='OPEN'?'Đang mở':'Tạm dừng'}</p><p>Đăng ký hiệu lực: {base.active} · Sức chứa: {base.capacity} · Quan sát {observationLabel(base.observedAt)}</p>{/if}
++ {#if created}<p><a href={resolve('/admin/workshops/[id]',{id:created})}>Mở bản nháp vừa tạo</a></p>{/if}
++ {#if unresolved}<p>Thao tác {intent?.command.action} đang chờ đối chiếu.</p><button disabled={busy} onclick={()=>void lookup()}>Kiểm tra kết quả</button>{/if}
++ {#if latest}<section aria-label="Dữ liệu mới"><h2>Bản mới từ máy chủ</h2><p>{latest.title} · {latest.description}</p><p>Sức chứa {latest.capacity}, đăng ký hiệu lực {latest.active}, trạng thái {latest.state}</p><p>{latest.schedule.start} — {latest.schedule.end}</p><button disabled={busy||unresolved} onclick={reviewLatest}>Đã xem bản mới, giữ các trường tôi sửa</button></section>{/if}
++ <form onsubmit={(e)=>{e.preventDefault();void begin();}}>
++ <fieldset disabled={busy||unresolved}><legend>Nội dung workshop</legend>
++ <label>Tên<input bind:value={draft.title} aria-invalid={!!errors.title} aria-describedby="title-error" /></label><p id="title-error">{errors.title??''}</p>
++ <label>Mô tả văn bản thuần<textarea bind:value={draft.description} rows="5" aria-invalid={!!errors.description} aria-describedby="description-error"></textarea></label><p id="description-error">{errors.description??''}</p>
++ <label>Sức chứa<input bind:value={draft.capacity} inputmode="numeric" aria-invalid={!!errors.capacity} aria-describedby="capacity-error" /></label><p id="capacity-error">{errors.capacity??''}</p>
++ <label>Bắt đầu, kèm múi giờ<input bind:value={draft.start} placeholder="2026-10-01T09:00:00+07:00" aria-invalid={!!errors.start} aria-describedby="start-error" /></label><p id="start-error">{errors.start??''}</p>
++ <label>Kết thúc, kèm múi giờ<input bind:value={draft.end} placeholder="2026-10-01T10:00:00+07:00" aria-invalid={!!errors.end} aria-describedby="end-error" /></label><p id="end-error">{errors.end??''}</p>
++ <button type="submit" disabled={!!latest||conflicted}>{base?'Lưu nội dung':'Tạo bản nháp'}</button>{#if base}<button type="button" onclick={discard}>Bỏ phần chưa lưu</button>{/if}
++ </fieldset></form>
++ {#if base}<button disabled={busy||unresolved||conflicted||dirty||!!latest} onclick={()=>void begin(base?.state==='OPEN'?'PAUSED':'OPEN')}>{base.state==='DRAFT'?'Xuất bản':base.state==='OPEN'?'Tạm dừng':'Mở lại'}</button>{/if}
++ <button disabled={busy} onclick={()=>void reload()}>Tải và đối chiếu</button>
++{/if}
++<dialog bind:this={dialog} oncancel={()=>{candidate=null;}}><h2>Xác nhận thay đổi</h2><p>{base?.title} · {base?.id}</p><p>Quan sát {base?observationLabel(base.observedAt):''}</p>{#each confirmationLines as line(line)}<p>{line}</p>{/each}<button onclick={()=>{candidate=null;dialog.close();}}>Quay lại</button><button disabled={busy} onclick={()=>void confirm()}>Xác nhận thay đổi</button></dialog>
++<style>label{display:grid;gap:.3rem;margin-top:.8rem}input,textarea{width:100%;min-width:0;font:inherit;padding:.5rem}fieldset{border:1px solid #c9d6df;padding:1rem}button{font:inherit;padding:.6rem;margin:.4rem .5rem .4rem 0;max-width:100%;white-space:normal}dialog{max-width:min(92vw,40rem);max-height:85vh;overflow:auto}section{border:2px solid #9b5100;padding:1rem;margin:1rem 0}p{overflow-wrap:anywhere}[aria-invalid=true]{border:2px solid #a22828}</style>
+diff --git a/web/src/lib/admin.ts b/web/src/lib/admin.ts
+new file mode 100644
+index 0000000..f2a0981
+--- /dev/null
++++ b/web/src/lib/admin.ts
+@@ -0,0 +1,75 @@
++import {decodeSnapshot,type Snapshot} from './state.ts';
++export type AdminSnapshot=Omit<Snapshot,'state'>&{state:'DRAFT'|'OPEN'|'PAUSED'};
++export type Fields={title:string;description:string;capacity:number;schedule:{start:string;end:string}};
++export type Draft={title:string;description:string;capacity:string;start:string;end:string};
++export type Command={epoch:string;intentId:string;action:'CREATE'|'EDIT'|'STATE';workshopId?:string;fields?:Partial<Fields>;targetState?:'OPEN'|'PAUSED'};
++export type AdminIntent={actor:string;epoch:string;command:Command;sent:boolean;state:'UNKNOWN'|'FINAL'};
++const object=(v:unknown):v is Record<string,unknown>=>v!==null&&typeof v==='object'&&!Array.isArray(v);
++const text=(v:unknown):v is string=>typeof v==='string'&&v.length>0;
++export function decodeAdmin(v:unknown):AdminSnapshot|null {
++ if(!object(v)||!['DRAFT','OPEN','PAUSED'].includes(String(v.state)))return null;
++ const parsed=decodeSnapshot({...v,state:v.state==='DRAFT'?'OPEN':v.state});
++ return parsed?{...parsed,state:v.state as AdminSnapshot['state']}:null;
++}
++export function formOf(v:AdminSnapshot|null):Draft{return v?{title:v.title,description:v.description,capacity:String(v.capacity),start:v.schedule.start,end:v.schedule.end}:{title:'',description:'',capacity:'10',start:'',end:''};}
++export function changedFields(base:AdminSnapshot|null,draft:Draft):Partial<Fields>{
++ const fields:Partial<Fields>={};
++ if(!base||draft.title!==base.title)fields.title=draft.title;
++ if(!base||draft.description!==base.description)fields.description=draft.description;
++ if(!base||draft.capacity!==String(base.capacity))fields.capacity=Number(draft.capacity);
++ if(!base||draft.start!==base.schedule.start||draft.end!==base.schedule.end)fields.schedule={start:draft.start,end:draft.end};
++ return fields;
++}
++export function fieldErrors(draft:Draft):Record<string,string>{
++ const errors:Record<string,string>={};
++ if(!draft.title.trim()||[...draft.title.trim()].length>120||/[\r\n\u0085\u2028\u2029]/u.test(draft.title))errors.title='Tên cần 1–120 ký tự, trên một dòng.';
++ if(!draft.description.trim()||[...draft.description.trim()].length>5000)errors.description='Mô tả cần 1–5.000 ký tự văn bản thuần.';
++ if(!/^\d+$/.test(draft.capacity)||!Number.isSafeInteger(Number(draft.capacity))||Number(draft.capacity)<1||Number(draft.capacity)>1000)errors.capacity='Sức chứa cần là số nguyên từ 1 đến 1.000.';
++ for(const key of ['start','end'] as const)if(!/(Z|[+-]\d\d:\d\d)$/.test(draft[key])||!Number.isFinite(Date.parse(draft[key])))errors[key]='Nhập ngày giờ có múi giờ, ví dụ 2026-10-01T09:00:00+07:00.';
++ if(!errors.start&&!errors.end&&Date.parse(draft.end)<=Date.parse(draft.start))errors.end='Kết thúc phải sau bắt đầu.';
++ return errors;
++}
++export function confirmation(base:AdminSnapshot,patch:Partial<Fields>):string[]{
++ const rows:string[]=[];
++ if(patch.capacity!==undefined&&patch.capacity<base.capacity)rows.push(`Giảm sức chứa: ${base.capacity} → ${patch.capacity}; đang có ${base.active} đăng ký theo lần quan sát.`);
++ if(patch.schedule&&base.active>0)rows.push(`Đổi lịch: ${base.schedule.start} — ${base.schedule.end} → ${patch.schedule.start} — ${patch.schedule.end}. Giữ các đăng ký hiện có; không gửi thông báo tự động.`);
++ return rows;
++}
++export function sameObservation(a:AdminSnapshot,b:AdminSnapshot):boolean {
++ const strip=({observedAt:_,...v}:AdminSnapshot)=>{void _;return JSON.stringify(v);};return strip(a)===strip(b);
++}
++export function decodeAdminIntent(raw:string,actor:string,epoch:string):AdminIntent|null{
++ let v:unknown;try{v=JSON.parse(raw);}catch{return null;}
++ if(!object(v)||v.actor!==actor||v.epoch!==epoch||!object(v.command)||v.command.epoch!==epoch||!text(v.command.intentId)||!['CREATE','EDIT','STATE'].includes(String(v.command.action))||typeof v.sent!=='boolean'||!['UNKNOWN','FINAL'].includes(String(v.state)))return null;
++ const c=v.command;if(c.action!=='CREATE'&&!text(c.workshopId))return null;
++ if(c.action==='STATE'&&!['OPEN','PAUSED'].includes(String(c.targetState)))return null;
++ if(c.action!=='STATE'&&!object(c.fields))return null;
++ // Recovered content is retained for lookup only; it is never replayed as POST.
++ return {actor,epoch,command:c as Command,sent:v.sent,state:v.state as AdminIntent['state']};
++}
++export function prepareAdminSend(intent:AdminIntent,persist:(text:string)=>void):'POST'|'GET'{
++ if(intent.sent)return 'GET';persist(JSON.stringify({...intent,sent:true}));intent.sent=true;return 'POST';
++}
++export type AdminResult={state:'FINAL';code:string;effect:'APPLIED'|'NO_CHANGE'|'REJECTED';workshopId?:string};
++export function decodeAdminResult(raw:unknown,intent:AdminIntent):AdminResult|null {
++ if(!object(raw)||raw.state!=='FINAL')return null;
++ const codes:Record<string,string>={CREATED:'APPLIED',UPDATED:'APPLIED',UNCHANGED:'NO_CHANGE',INVALID_FIELDS:'REJECTED',BELOW_ACTIVE:'REJECTED',STATE_REJECTED:'REJECTED'};
++ if(typeof raw.code!=='string'||codes[raw.code]!==raw.effect)return null;
++ const action=intent.command.action;
++ if(action==='CREATE'&&!['CREATED','INVALID_FIELDS'].includes(raw.code)||action==='EDIT'&&!['UPDATED','UNCHANGED','INVALID_FIELDS','BELOW_ACTIVE'].includes(raw.code)||action==='STATE'&&!['UPDATED','UNCHANGED','STATE_REJECTED'].includes(raw.code))return null;
++ if(action!=='CREATE'&&raw.workshopId!==intent.command.workshopId||raw.code==='CREATED'&&!text(raw.workshopId))return null;
++ return {state:'FINAL',code:raw.code,effect:raw.effect as AdminResult['effect'],...(typeof raw.workshopId==='string'?{workshopId:raw.workshopId}:{})};
++}
++export function adminResultText(result:AdminResult):string{return ({CREATED:'Lần đó đã tạo bản nháp.',UPDATED:'Lần đó đã lưu thay đổi.',UNCHANGED:'Lần đó không có thay đổi.',INVALID_FIELDS:'Lần đó bị từ chối: hãy kiểm tra tên, mô tả văn bản thuần, sức chứa và lịch.',BELOW_ACTIVE:'Lần đó bị từ chối: sức chứa thấp hơn số đăng ký đang hiệu lực.',STATE_REJECTED:'Lần đó bị từ chối: không thể chuyển trạng thái như yêu cầu.'} as Record<string,string>)[result.code];}
++
++export function rebaseDraft(before:AdminSnapshot,latest:AdminSnapshot,draft:Draft):Draft{
++ const changed=changedFields(before,draft),next=formOf(latest);
++ if(changed.title!==undefined)next.title=draft.title;if(changed.description!==undefined)next.description=draft.description;if(changed.capacity!==undefined)next.capacity=draft.capacity;if(changed.schedule){next.start=draft.start;next.end=draft.end;}return next;
++}
++
++export function compareAdminObservation(before:AdminSnapshot,next:AdminSnapshot):'OLDER'|'SAME'|'NEWER'|'CONFLICT'{
++ if(before.id!==next.id||before.epoch!==next.epoch)return 'CONFLICT';
++ if(BigInt(next.version)<BigInt(before.version))return 'OLDER';
++ if(BigInt(next.version)>BigInt(before.version))return 'NEWER';
++ return sameObservation(before,next)?'SAME':'CONFLICT';
++}
+diff --git a/web/src/lib/server/admin.ts b/web/src/lib/server/admin.ts
+new file mode 100644
+index 0000000..51cfa52
+--- /dev/null
++++ b/web/src/lib/server/admin.ts
+@@ -0,0 +1,14 @@
++import {error} from '@sveltejs/kit';
++import {env} from '$env/dynamic/private';
++import {decodeAdmin,type AdminSnapshot} from '$lib/admin';
++export async function readAdmin(token:string|undefined,id?:string):Promise<AdminSnapshot[]> {
++ if(!token)error(401,'Cần phiên quản trị hợp lệ');
++ const base=env.WORKSHOP_BACKEND;if(!base||!/^http:\/\/(127\.0\.0\.1|localhost):[0-9]+$/.test(base))error(503,'Chưa cấu hình kết nối workshop');
++ async function get(route:string):Promise<unknown>{
++  let response:Response;try{response=await fetch(base+'/api/v1'+route,{headers:{cookie:'workshop_session='+encodeURIComponent(token??''),accept:'application/json'},signal:AbortSignal.timeout(5000),redirect:'error'});}catch{error(503,'Chưa tải được dữ liệu quản trị');}
++  if(response.status===401)error(401,'Cần phiên quản trị hợp lệ');if(response.status===403||response.status===404)error(404,'Không thể truy cập nội dung này');if(!response.ok)error(503,'Chưa tải được dữ liệu quản trị');try{return await response.json();}catch{error(503,'Chưa xác nhận dữ liệu quản trị');}
++ }
++ const who=await get('/session');if(typeof who!=='object'||who===null||!('admin'in who)||who.admin!==true||!('epoch'in who)||typeof who.epoch!=='string')error(404,'Không thể truy cập nội dung này');
++ const raw=await get('/admin/workshops'+(id?'/'+encodeURIComponent(id):''));const values=id?[raw]:raw;if(!Array.isArray(values))error(503,'Chưa xác nhận dữ liệu quản trị');
++ return values.map(v=>{const w=decodeAdmin(v);if(!w||w.epoch!==who.epoch||id&&w.id!==id)error(503,'Chưa xác nhận dữ liệu quản trị');return w;});
++}
+diff --git a/web/src/routes/admin/+layout.svelte b/web/src/routes/admin/+layout.svelte
+new file mode 100644
+index 0000000..c6d3ce5
+--- /dev/null
++++ b/web/src/routes/admin/+layout.svelte
+@@ -0,0 +1,11 @@
++<script lang="ts">
++ import {onMount,flushSync} from 'svelte';import {resolve} from '$app/paths';
++ let {children}=$props();let visible=$state(true);
++ onMount(()=>{let stopped=false;let identity:string|null=null;let busy=false;
++  const hide=()=>flushSync(()=>{visible=false;});
++  async function check(){if(busy||stopped)return;busy=true;try{const r=await fetch('/api/v1/session',{cache:'no-store',signal:AbortSignal.timeout(5000)});const v=await r.json();if(stopped)return;if(!r.ok||v.admin!==true||typeof v.actor!=='string'||typeof v.epoch!=='string'){hide();return;}const next=v.actor+'\n'+v.epoch;if(identity!==null&&identity!==next){hide();window.location.reload();return;}identity=next;}catch{if(!stopped)hide();}finally{busy=false;}}
++  const show=(e:{persisted:boolean})=>{if(e.persisted){hide();window.location.reload();}};window.addEventListener('pagehide',hide);window.addEventListener('pageshow',show);void check();const timer=window.setInterval(()=>void check(),2000);
++  return()=>{stopped=true;window.clearInterval(timer);window.removeEventListener('pagehide',hide);window.removeEventListener('pageshow',show);};
++ });
++</script>
++{#if visible}<nav aria-label="Quản trị"><a href={resolve('/admin/workshops')}>Quản trị workshop</a></nav>{@render children()}{:else}<h1>Cần kiểm tra lại phiên quản trị</h1><p role="status">Dữ liệu riêng đã được ẩn. Tải lại trang sau khi có phiên hợp lệ.</p>{/if}
+diff --git a/web/src/routes/admin/workshops/+page.server.ts b/web/src/routes/admin/workshops/+page.server.ts
+new file mode 100644
+index 0000000..2a240f6
+--- /dev/null
++++ b/web/src/routes/admin/workshops/+page.server.ts
+@@ -0,0 +1,2 @@
++import {readAdmin} from '$lib/server/admin';
++export const load=async({cookies,setHeaders})=>{setHeaders({'cache-control':'no-store'});return {workshops:await readAdmin(cookies.get('workshop_session'))};};
+diff --git a/web/src/routes/admin/workshops/+page.svelte b/web/src/routes/admin/workshops/+page.svelte
+new file mode 100644
+index 0000000..a3cf7d3
+--- /dev/null
++++ b/web/src/routes/admin/workshops/+page.svelte
+@@ -0,0 +1,4 @@
++<script lang="ts">import {resolve} from '$app/paths';import {scheduleLabel,observationLabel} from '$lib/display';import type {PageData} from './$types';let {data}:{data:PageData}=$props();</script>
++<svelte:head><title>Quản trị workshop – Workshop thử nghiệm</title></svelte:head>
++<h1>Quản trị workshop</h1><p><a href={resolve('/admin/workshops/new')}>Tạo bản nháp</a></p><p>Dữ liệu theo lần đọc hiện tại. Mở workshop để đối chiếu và chỉnh sửa.</p>
++{#each data.workshops as w(w.id)}<article><h2><a href={resolve('/admin/workshops/[id]',{id:w.id})}>{w.title}</a></h2><p>{w.state==='DRAFT'?'Bản nháp':w.state==='OPEN'?'Đang mở':'Tạm dừng'} · Sức chứa {w.capacity} · Đăng ký hiệu lực {w.active}</p><p>{scheduleLabel(w.schedule.start)} — {scheduleLabel(w.schedule.end)}</p><p>Quan sát lúc {observationLabel(w.observedAt)}</p></article>{:else}<p>Chưa có workshop.</p>{/each}
+diff --git a/web/src/routes/admin/workshops/[id]/+page.server.ts b/web/src/routes/admin/workshops/[id]/+page.server.ts
+new file mode 100644
+index 0000000..acdf848
+--- /dev/null
++++ b/web/src/routes/admin/workshops/[id]/+page.server.ts
+@@ -0,0 +1,2 @@
++import {readAdmin} from '$lib/server/admin';
++export const load=async({cookies,params,setHeaders})=>{setHeaders({'cache-control':'no-store'});return {workshop:(await readAdmin(cookies.get('workshop_session'),params.id))[0]};};
+diff --git a/web/src/routes/admin/workshops/[id]/+page.svelte b/web/src/routes/admin/workshops/[id]/+page.svelte
+new file mode 100644
+index 0000000..9556361
+--- /dev/null
++++ b/web/src/routes/admin/workshops/[id]/+page.svelte
+@@ -0,0 +1,3 @@
++<script lang="ts">import AdminForm from '$lib/AdminForm.svelte';import type {PageData} from './$types';let {data}:{data:PageData}=$props();</script>
++<svelte:head><title>Sửa workshop – Workshop thử nghiệm</title></svelte:head>
++{#key data.workshop.id}<AdminForm initial={data.workshop} />{/key}
+diff --git a/web/src/routes/admin/workshops/new/+page.server.ts b/web/src/routes/admin/workshops/new/+page.server.ts
+new file mode 100644
+index 0000000..92e8f92
+--- /dev/null
++++ b/web/src/routes/admin/workshops/new/+page.server.ts
+@@ -0,0 +1,2 @@
++import {readAdmin} from '$lib/server/admin';
++export const load=async({cookies,setHeaders})=>{setHeaders({'cache-control':'no-store'});await readAdmin(cookies.get('workshop_session'));return {};};
+diff --git a/web/src/routes/admin/workshops/new/+page.svelte b/web/src/routes/admin/workshops/new/+page.svelte
+new file mode 100644
+index 0000000..fe2040a
+--- /dev/null
++++ b/web/src/routes/admin/workshops/new/+page.svelte
+@@ -0,0 +1,3 @@
++<script lang="ts">import AdminForm from '$lib/AdminForm.svelte';</script>
++<svelte:head><title>Tạo bản nháp – Workshop thử nghiệm</title></svelte:head>
++<AdminForm initial={null} />
+diff --git a/web/tests/unit/admin.test.mjs b/web/tests/unit/admin.test.mjs
+new file mode 100644
+index 0000000..252d8a7
+--- /dev/null
++++ b/web/tests/unit/admin.test.mjs
+@@ -0,0 +1,24 @@
++import test from 'node:test';import assert from 'node:assert/strict';
++import {decodeAdmin,formOf,changedFields,fieldErrors,confirmation,sameObservation,compareAdminObservation,rebaseDraft,decodeAdminIntent,prepareAdminSend,decodeAdminResult} from '../../src/lib/admin.ts';
++const snap=()=>({id:'W',epoch:'E',version:'1',state:'DRAFT',title:'Workshop',description:'Văn bản',capacity:10,active:2,remaining:8,observedAt:1,schedule:{start:'2026-10-01T09:00:00+07:00',end:'2026-10-01T10:00:00+07:00'}});
++const intent=(action='CREATE')=>({actor:'A',epoch:'E',sent:false,state:'UNKNOWN',command:{epoch:'E',intentId:'I',action,...(action==='CREATE'?{fields:{title:'Workshop'}}:action==='EDIT'?{workshopId:'W',fields:{title:'Tên mới'}}:{workshopId:'W',targetState:'OPEN'})}});
++test('admin snapshot accepts DRAFT but strips extraneous private identity',()=>{assert.deepEqual(decodeAdmin({...snap(),participant:'secret'}),snap());});
++for(const [key,val]of Object.entries({state:'BROKEN',remaining:99,version:'18446744073709551616',epoch:''}))test('admin refuses invalid '+key,()=>assert.equal(decodeAdmin({...snap(),[key]:val}),null));
++test('dirty patch excludes untouched fields',()=>{const b=snap(),d=formOf(b);d.title='Changed';assert.deepEqual(changedFields(b,d),{title:'Changed'});});
++test('schedule edits always send both endpoints',()=>{const b=snap(),d=formOf(b);d.end='2026-10-02T10:00:00+07:00';assert.deepEqual(changedFields(b,d),{schedule:{start:b.schedule.start,end:d.end}});});
++test('explicit review preserves only edited fields over newest data',()=>{const b=snap(),d=formOf(b);d.title='My change';const n={...b,version:'2',description:'Other editor',capacity:11,remaining:9};const merged=rebaseDraft(b,n,d);assert.equal(merged.title,'My change');assert.equal(merged.description,'Other editor');assert.equal(merged.capacity,'11');assert.deepEqual(changedFields(n,merged),{title:'My change'});});
++test('same field remains an explicit user decision, not a silent overwrite',()=>{const b=snap(),d=formOf(b);d.title='Mine';const n={...b,version:'2',title:'Theirs'};assert.equal(rebaseDraft(b,n,d).title,'Mine');assert.equal(formOf(n).title,'Theirs');});
++test('observation time alone does not trigger a stale edit, state/count/version do',()=>{const b=snap();assert.equal(sameObservation(b,{...b,observedAt:2}),true);for(const extra of [{state:'OPEN'},{version:'2'},{active:3,remaining:7},{title:'New'}])assert.equal(sameObservation(b,{...b,...extra}),false);});
++test('sensitive changes share one confirmation with both consequences',()=>{const b=snap();assert.equal(confirmation(b,{capacity:9,schedule:{start:'X',end:'Y'}}).length,2);assert.equal(confirmation(b,{capacity:11,title:'New'}).length,0);assert.equal(confirmation({...b,active:0},{schedule:{start:'X',end:'Y'}}).length,0);});
++for(const [key,value]of Object.entries({title:'\n',description:'',capacity:'1.5',start:'2026-10-01T09:00:00',end:'2026-09-01T09:00:00Z'}))test('field error for '+key,()=>{const d=formOf(snap());d[key]=value;assert.ok(fieldErrors(d)[key]);});
++test('Unicode point count and explicit offsets retain valid inputs',()=>{const d=formOf(snap());d.title='😀'.repeat(120);assert.deepEqual(fieldErrors(d),{});d.title+='😀';assert.ok(fieldErrors(d).title);});
++test('persist before POST, double submit and reload only GET',()=>{const p=intent();let saved;assert.equal(prepareAdminSend(p,x=>{saved=x;assert.equal(p.sent,false);assert.equal(JSON.parse(x).sent,true);}), 'POST');assert.equal(prepareAdminSend(p,()=>assert.fail()),'GET');const restored=decodeAdminIntent(saved,'A','E');assert.equal(prepareAdminSend(restored,()=>assert.fail()),'GET');assert.deepEqual(restored.command,p.command);});
++test('storage failure prevents sending and preserves unsent state',()=>{const p=intent();assert.throws(()=>prepareAdminSend(p,()=>{throw Error('FULL');}));assert.equal(p.sent,false);});
++for(const [actor,epoch]of [['B','E'],['A','NEW']])test('intent cannot cross '+actor+'/'+epoch,()=>assert.equal(decodeAdminIntent(JSON.stringify(intent()),actor,epoch),null));
++test('corrupt and mismatched payload cannot unlock replacement',()=>{assert.equal(decodeAdminIntent('{','A','E'),null);const p=intent();p.command.epoch='WRONG';assert.equal(decodeAdminIntent(JSON.stringify(p),'A','E'),null);});
++for(const action of ['CREATE','EDIT','STATE'])test('decode correct '+action+' final only',()=>{const p=intent(action),code=action==='CREATE'?'CREATED':'UPDATED';assert.ok(decodeAdminResult({state:'FINAL',code,effect:'APPLIED',workshopId:'W'},p));for(const extra of [{state:'UNKNOWN'},{effect:'REJECTED'},{code:'REGISTERED'}])assert.equal(decodeAdminResult({state:'FINAL',code,effect:'APPLIED',workshopId:'W',...extra},p),null);});
++test('create gets exact result ID, never title or current state',()=>{const p=intent();assert.equal(decodeAdminResult({state:'FINAL',code:'CREATED',effect:'APPLIED',title:'Same title'},p),null);assert.equal(decodeAdminResult({state:'FINAL',code:'UPDATED',effect:'APPLIED',workshopId:'W'},p),null);});
++test('edit/state results bind exact target and action',()=>{for(const action of ['EDIT','STATE'])assert.equal(decodeAdminResult({state:'FINAL',code:'UPDATED',effect:'APPLIED',workshopId:'OTHER'},intent(action)),null);assert.equal(decodeAdminResult({state:'FINAL',code:'BELOW_ACTIVE',effect:'REJECTED',workshopId:'W'},intent('STATE')),null);});
++
++test('admin observation conflict includes same-version content and wrong identity',()=>{const b=snap();for(const patch of [{title:'Contradiction'},{active:3,remaining:7},{id:'OTHER'},{epoch:'OTHER'}])assert.equal(compareAdminObservation(b,{...b,...patch}),'CONFLICT');});
++test('admin observation order preserves exact uint64 and ignores timestamp-only changes',()=>{const b={...snap(),version:'9007199254740993'};assert.equal(compareAdminObservation(b,{...b,observedAt:2}),'SAME');assert.equal(compareAdminObservation(b,{...b,version:'9007199254740992'}),'OLDER');assert.equal(compareAdminObservation(b,{...b,version:'9007199254740994'}),'NEWER');});

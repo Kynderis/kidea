@@ -1,6 +1,8 @@
 # Bàn giao Kidea sang phiên Codex trên Mac
 
-**Hiện hành 2026-09-18 — T04 đã kiểm, chờ review đầu ra:** dev/ASan/release đủ 50case/856assertion; TSan 43case sạch +7case đúng EXr2 (14report), raw FAIL giữ nguyên. Web34unit/18SSR–Chrome và HTTPS18kiểm PASS;4mutant bị phát hiện. Ba bản đồ cập nhật nhưng vẫn INCOMPLETE; chưa G2/137nghĩa vụ hoặc nghiệm thu R09. [Gói cụ thể](R09_T04_REVIEW.md). Các ghi chú “đang chạy” bên dưới là lịch sử.
+**Hiện hành — T04 đã được Human nghiệm thu; đang làm T05.** Quản trị Web: 63 unit, 18 SSR–Chrome Mac và 29 HTTPS/backend kiểm tích hợp PASS; r1/r2 FAIL giữ nguyên. [Bằng chứng và việc còn lại](R09_T05_PROGRESS.md). T05 chưa hoàn tất, chưa G2/nghiệm thu R09. Public APPROVE/CLOSE/COMPLETE đã ghi đúng bản; điểm tiếp tục W-009-ADMIN-OPS IN_PROGRESS. Không xin lại quyền chạy từng lệnh. Các ghi chú chờ review T04 bên dưới là lịch sử.
+
+**Lịch sử trước nghiệm thu T04, 2026-09-18:** dev/ASan/release đủ 50case/856assertion; TSan 43case sạch +7case đúng EXr2 (14report), raw FAIL giữ nguyên. Web34unit/18SSR–Chrome và HTTPS18kiểm PASS;4mutant bị phát hiện. Ba bản đồ cập nhật nhưng vẫn INCOMPLETE; chưa G2/137nghĩa vụ hoặc nghiệm thu R09. [Gói cụ thể](R09_T04_REVIEW.md). Các ghi chú “đang chạy” bên dưới là lịch sử.
 
 **Tiếp tục 2026-09-18 — T04:** Human “Tôi phê duyệt nhé” đã được ghi cho R09-REPLAN-LEGACY-r1 qua public APPROVE; REPLAN_WORK và49transition hoàn tất.8bước nội dung cùng2lát backend/Web được ghi đúng phạm vi; W-009-MAX2 IN_PROGRESS, public impact OPEN giữ MVP dở. Nguồn backend `c168eea`, Web `de26fb6`;34unit/18SSR–Chrome PASS. Build4preset T04 đang chạy với manifest `7b0f5fa8fe6b2df7e5537765147e7fedadfc7ed5c617989c495d443a0c45949a`, output `kidea-t02-build-lab/t02-be72d72c-9405-4dfa-88d3-ddfe608d5330`; tra kết quả trước retry. Trạng thái trước dưới đây là lịch sử; không còn chờ duyệt gói cây việc.
 

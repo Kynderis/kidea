@@ -1,0 +1,66 @@
+Loading svelte-check in workspace: /Users/kendrick/Desktop/kidea-workshop-pilot/web
+Getting Svelte diagnostics...
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/admin/workshops/+page.server.ts:2:45
+Error: Cannot find module './$types.js' or its corresponding type declarations. (this likely means that SvelteKit's type generation didn't run yet - try running it by executing 'npm run dev' or 'npm run build') 
+import {readAdmin} from '$lib/server/admin';
+export const load=async({cookies,setHeaders})=>{setHeaders({'cache-control':'no-store'});return {workshops:await readAdmin(cookies.get('workshop_session'))};};
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/admin/workshops/[id]/+page.server.ts:2:52
+Error: Cannot find module './$types.js' or its corresponding type declarations. (this likely means that SvelteKit's type generation didn't run yet - try running it by executing 'npm run dev' or 'npm run build') 
+import {readAdmin} from '$lib/server/admin';
+export const load=async({cookies,params,setHeaders})=>{setHeaders({'cache-control':'no-store'});return {workshop:(await readAdmin(cookies.get('workshop_session'),params.id))[0]};};
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/admin/workshops/new/+page.server.ts:2:45
+Error: Cannot find module './$types.js' or its corresponding type declarations. (this likely means that SvelteKit's type generation didn't run yet - try running it by executing 'npm run dev' or 'npm run build') 
+import {readAdmin} from '$lib/server/admin';
+export const load=async({cookies,setHeaders})=>{setHeaders({'cache-control':'no-store'});await readAdmin(cookies.get('workshop_session'));return {};};
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/AdminForm.svelte:53:35
+Error: Argument of type '["/admin/workshops/[id]", { id: string; }]' is not assignable to parameter of type '[route: "/"] | [route: "/me"] | [route: "/workshops"] | [route: "/workshops/[id]", params: { id: string; }] | [route: `/workshops/${string}` & {}] | [route: `/?${string}`] | [route: `/me?${string}`] | [route: `/workshops?${string}`] | [route: `/workshops/[id]?${string}`, params: { id: string; }] | [route: `/#${strin...'.
+  Type '["/admin/workshops/[id]", { id: string; }]' is not assignable to type '[route: "/workshops/[id]", params: { id: string; }] | [route: `/workshops/[id]?${string}`, params: { id: string; }] | [route: `/workshops/[id]#${string}`, params: { id: string; }]'.
+    Type '["/admin/workshops/[id]", { id: string; }]' is not assignable to type '[route: `/workshops/[id]#${string}`, params: { id: string; }]'.
+      Type at position 0 in source is not compatible with type at position 0 in target.
+        Type '"/admin/workshops/[id]"' is not assignable to type '`/workshops/[id]#${string}`'. (ts)
+ {#if base}<p>{base.title} · {base.state==='DRAFT'?'Bản nháp':base.state==='OPEN'?'Đang mở':'Tạm dừng'}</p><p>Đăng ký hiệu lực: {base.active} · Sức chứa: {base.capacity} · Quan sát {observationLabel(base.observedAt)}</p>{/if}
+ {#if created}<p><a href={resolve('/admin/workshops/[id]',{id:created})}>Mở bản nháp vừa tạo</a></p>{/if}
+ {#if unresolved}<p>Thao tác {intent?.command.action} đang chờ đối chiếu.</p><button disabled={busy} onclick={()=>void lookup()}>Kiểm tra kết quả</button>{/if}
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/admin/+layout.svelte:11:58
+Error: Argument of type '["/admin/workshops"]' is not assignable to parameter of type '[route: "/"] | [route: "/me"] | [route: "/workshops"] | [route: "/workshops/[id]", params: { id: string; }] | [route: `/workshops/${string}` & {}] | [route: `/?${string}`] | [route: `/me?${string}`] | [route: `/workshops?${string}`] | [route: `/workshops/[id]?${string}`, params: { id: string; }] | [route: `/#${strin...'.
+  Type '["/admin/workshops"]' is not assignable to type '[route: "/"] | [route: "/me"] | [route: "/workshops"] | [route: `/workshops/${string}` & {}] | [route: `/?${string}`] | [route: `/me?${string}`] | [route: `/workshops?${string}`] | [route: `/#${string}`] | [route: `/me#${string}`] | [route: `/workshops#${string}`] | [route: `${`/workshops/${string}` & {}}?${string}`...'.
+    Type '["/admin/workshops"]' is not assignable to type '[route: `${`/workshops/${string}` & {}}#${string}`]'.
+      Type '"/admin/workshops"' is not assignable to type '`${`/workshops/${string}` & {}}#${string}`'. (ts)
+</script>
+{#if visible}<nav aria-label="Quản trị"><a href={resolve('/admin/workshops')}>Quản trị workshop</a></nav>{@render children()}{:else}<h1>Cần kiểm tra lại phiên quản trị</h1><p role="status">Dữ liệu riêng đã được ẩn. Tải lại trang sau khi có phiên hợp lệ.</p>{/if}
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/admin/workshops/+page.svelte:1:142
+Error: Cannot find module './$types' or its corresponding type declarations. (ts)
+<script lang="ts">import {resolve} from '$app/paths';import {scheduleLabel,observationLabel} from '$lib/display';import type {PageData} from './$types';let {data}:{data:PageData}=$props();</script>
+<svelte:head><title>Quản trị workshop – Workshop thử nghiệm</title></svelte:head>
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/admin/workshops/+page.svelte:3:47
+Error: Argument of type '["/admin/workshops/new"]' is not assignable to parameter of type '[route: "/"] | [route: "/me"] | [route: "/workshops"] | [route: "/workshops/[id]", params: { id: string; }] | [route: `/workshops/${string}` & {}] | [route: `/?${string}`] | [route: `/me?${string}`] | [route: `/workshops?${string}`] | [route: `/workshops/[id]?${string}`, params: { id: string; }] | [route: `/#${strin...'.
+  Type '["/admin/workshops/new"]' is not assignable to type '[route: "/"] | [route: "/me"] | [route: "/workshops"] | [route: `/workshops/${string}` & {}] | [route: `/?${string}`] | [route: `/me?${string}`] | [route: `/workshops?${string}`] | [route: `/#${string}`] | [route: `/me#${string}`] | [route: `/workshops#${string}`] | [route: `${`/workshops/${string}` & {}}?${string}`...'.
+    Type '["/admin/workshops/new"]' is not assignable to type '[route: `${`/workshops/${string}` & {}}#${string}`]'.
+      Type '"/admin/workshops/new"' is not assignable to type '`${`/workshops/${string}` & {}}#${string}`'. (ts)
+<svelte:head><title>Quản trị workshop – Workshop thử nghiệm</title></svelte:head>
+<h1>Quản trị workshop</h1><p><a href={resolve('/admin/workshops/new')}>Tạo bản nháp</a></p><p>Dữ liệu theo lần đọc hiện tại. Mở workshop để đối chiếu và chỉnh sửa.</p>
+{#each data.workshops as w(w.id)}<article><h2><a href={resolve('/admin/workshops/[id]',{id:w.id})}>{w.title}</a></h2><p>{w.state==='DRAFT'?'Bản nháp':w.state==='OPEN'?'Đang mở':'Tạm dừng'} · Sức chứa {w.capacity} · Đăng ký hiệu lực {w.active}</p><p>{scheduleLabel(w.schedule.start)} — {scheduleLabel(w.schedule.end)}</p><p>Quan sát lúc {observationLabel(w.observedAt)}</p></article>{:else}<p>Chưa có workshop.</p>{/each}
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/admin/workshops/+page.svelte:4:64
+Error: Argument of type '["/admin/workshops/[id]", { id: any; }]' is not assignable to parameter of type '[route: "/"] | [route: "/me"] | [route: "/workshops"] | [route: "/workshops/[id]", params: { id: string; }] | [route: `/workshops/${string}` & {}] | [route: `/?${string}`] | [route: `/me?${string}`] | [route: `/workshops?${string}`] | [route: `/workshops/[id]?${string}`, params: { id: string; }] | [route: `/#${strin...'.
+  Type '["/admin/workshops/[id]", { id: any; }]' is not assignable to type '[route: "/workshops/[id]", params: { id: string; }] | [route: `/workshops/[id]?${string}`, params: { id: string; }] | [route: `/workshops/[id]#${string}`, params: { id: string; }]'.
+    Type '["/admin/workshops/[id]", { id: any; }]' is not assignable to type '[route: `/workshops/[id]#${string}`, params: { id: string; }]'.
+      Type at position 0 in source is not compatible with type at position 0 in target.
+        Type '"/admin/workshops/[id]"' is not assignable to type '`/workshops/[id]#${string}`'. (ts)
+<h1>Quản trị workshop</h1><p><a href={resolve('/admin/workshops/new')}>Tạo bản nháp</a></p><p>Dữ liệu theo lần đọc hiện tại. Mở workshop để đối chiếu và chỉnh sửa.</p>
+{#each data.workshops as w(w.id)}<article><h2><a href={resolve('/admin/workshops/[id]',{id:w.id})}>{w.title}</a></h2><p>{w.state==='DRAFT'?'Bản nháp':w.state==='OPEN'?'Đang mở':'Tạm dừng'} · Sức chứa {w.capacity} · Đăng ký hiệu lực {w.active}</p><p>{scheduleLabel(w.schedule.start)} — {scheduleLabel(w.schedule.end)}</p><p>Quan sát lúc {observationLabel(w.observedAt)}</p></article>{:else}<p>Chưa có workshop.</p>{/each}
+
+/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/routes/admin/workshops/[id]/+page.svelte:1:93
+Error: Cannot find module './$types' or its corresponding type declarations. (ts)
+<script lang="ts">import AdminForm from '$lib/AdminForm.svelte';import type {PageData} from './$types';let {data}:{data:PageData}=$props();</script>
+<svelte:head><title>Sửa workshop – Workshop thử nghiệm</title></svelte:head>
+
+====================================
+svelte-check found 9 errors and 0 warnings in 7 files

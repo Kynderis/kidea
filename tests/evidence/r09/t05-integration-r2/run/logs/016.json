@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "33c1762922c9678b69581261da5c50b35cb7fbd0c824ca4e18fef4a2016790ee"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nlocator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('button:disabled').filter({ hasText: /^Xuất bản$/ }) to be visible\n\n    at checkAdmin (/plan/admin-browser.mjs:9:194)\n    at async file:///plan/browser.mjs:40:2 {\n  log: [\n    \"  - waiting for locator('button:disabled').filter({ hasText: /^Xuất bản$/ }) to be visible\"\n  ],\n  name: 'TimeoutError'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

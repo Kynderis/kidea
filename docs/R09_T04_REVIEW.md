@@ -1,6 +1,6 @@
 # R09-T04-OUTPUT-r1 — đầu ra hạn mức hai đăng ký
 
-Ngày 2026-09-18. **Chờ Human review đầu ra, không phải xin phép build lại.** ID `R09-T04-OUTPUT-r1`, revision 1; mười owner là các nghĩa vụ trong public impact plan T04. Đã ghi đủ 10/10 kết luận qua public ASSESS, chưa CLOSE. Cây MVP còn dở và điểm quay lại `W-009-MAX2` được giữ nguyên. Xem identity/digest và danh sách owner trong [gói cố định](../tests/evidence/r09/t04-output-review-r1/prepared.json), [review thực](../tests/evidence/r09/t04-output-review-r1/review-file.md).
+Ngày 2026-09-18. **APPROVED.** Human: “phê duyệt T04 và làm tiếp nhé”. Public APPROVE và CLOSE đã thành công; W-009-MAX2 đã COMPLETE, W-009-ADMIN-OPS đang IN_PROGRESS. ID `R09-T04-OUTPUT-r1`, revision 1; mười owner là các nghĩa vụ trong public impact plan T04. Đã ghi đủ 10/10 kết luận qua public ASSESS và CLOSE sau approval thật. CLOSE đã quay lại `W-009-MAX2`; sau COMPLETE, cây MVP còn dở và điểm tiếp tục hiện tại là `W-009-ADMIN-OPS`. Xem identity/digest và danh sách owner trong [gói cố định](../tests/evidence/r09/t04-output-review-r1/prepared.json), [review thực](../tests/evidence/r09/t04-output-review-r1/review-file.md).
 
 Whole-file SHA-256 của review revision 1: `ac2826b416a862e7b99659bbaa314cbd77d6ebf55e678d565fd90b25cb84e36b`. Purpose CONTENT; subject gồm báo cáo T04, nguồn/test cuối, responsibility mapping và 10 assessment; input gồm scope/completion/đầu vào của toàn bộ 10 owner cùng receipt cố định.
 

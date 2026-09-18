@@ -1,3 +1,4 @@
+import {checkAdmin} from './admin-browser.mjs';
 import {createRequire} from 'node:module';import {readFileSync,writeFileSync} from 'node:fs';import assert from 'node:assert/strict';
 const require=createRequire('/web/package.json');const {chromium}=require('playwright');
 const fixture=JSON.parse(readFileSync('/fixtures/workshop.json'));const base='https://workshop.test';const checks=[],pageErrors=[],external=[],requests=[];
@@ -36,5 +37,6 @@ try{
  await quotaPage.goto(base+'/workshops/'+quotaWorkshops[0]);await quotaPage.getByRole('button',{name:'Hủy đăng ký',exact:true}).click();await quotaPage.getByRole('button',{name:'Xác nhận hủy',exact:true}).click();await quotaPage.getByText('Lần đó hủy đăng ký thành công.',{exact:false}).waitFor();assert.deepEqual(await api(restoredU,'/requests/'+limitedId),limitedResult);
  await quotaPage.goto(base+'/workshops/'+quotaWorkshops[1]);await quotaPage.getByRole('button',{name:'Đăng ký',exact:true}).click();await quotaPage.getByText('Lần đó đăng ký thành công.',{exact:false}).waitFor();const quotaHistory=await api(restoredU,'/me/registrations');assert.equal(quotaHistory.flatMap(g=>g.registrations).filter(r=>r.state==='ACTIVE').length,2);assert.deepEqual(await api(restoredU,'/requests/'+limitedId),limitedResult);record('quota-cancel-releases-slot-new-intent-old-rejection-immutable');
 
+ await checkAdmin({context,base,record});
  assert.deepEqual(pageErrors,[]);assert.deepEqual(external,[]);record('no-page-error-or-external-request');writeFileSync('/out/result.json',JSON.stringify({status:'PASS',checks,browser:browser.version(),tlsBypass:false},null,2));
 }catch(e){writeFileSync('/out/result.json',JSON.stringify({status:'FAIL',checks,error:e.stack},null,2));throw e;}finally{writeFileSync('/out/requests.json',JSON.stringify(requests,null,2));await browser.close();}

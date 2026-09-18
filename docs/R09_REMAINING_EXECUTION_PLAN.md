@@ -8,8 +8,8 @@ Quyền: [R09_EXECUTION_AUTHORITY](R09_EXECUTION_AUTHORITY.md). Không tạo yê
 | T03.1 | Decoder/merge theo actor/epoch/workshop/audience/version; intent persist-before-send và no replay | 33unit PASS; giữ FAIL route reuse trước bản sửa |
 | T03.2 | Intro prerender, list/detail SSR/no-store/noindex/URL/escape; private/history và auth bootstrap đúng quyền server | Public/private SSR và đăng ký đã viết;18SSR–Chrome PASS với API giả |
 | T03.3 | Wiring API thật, Chrome keyboard/360–1280/200%, mất phản hồi/reload/actor-switch/permission | 15kiểm HTTPS/backend thật PASS;33unit/18SSR–Chrome. Giữ giới hạn lát đầu, chưa admin/events/ops |
-| T04 | Max2ACTIVE đã duyệt, impact từ bước1 trên MVP dở, cập nhật cây qua public helper, G2 | Code và kiểm T04 hoàn tất trên lát hiện có; chờ đúng review đầu ra trước public CLOSE, không phải G2 toàn ứng dụng. [Gói T04](R09_T04_REVIEW.md) |
-| T05 | Admin intent/dirty fields, event/outbox/reconcile, heartbeat/monitor/backup | Chưa hoàn tất; giữ toàn bộ137nghĩa vụ và TC |
+| T04 | Max2ACTIVE đã duyệt, impact từ bước1 trên MVP dở, cập nhật cây qua public helper, G2 | Đã APPROVED/CLOSE và COMPLETE đúng phạm vi; không phải G2 toàn ứng dụng. [Gói T04](R09_T04_REVIEW.md) |
+| T05 | Admin intent/dirty fields, event/outbox/reconcile, heartbeat/monitor/backup | Admin Web:63unit/18SSR–Chrome/29HTTPS PASS; events/ops còn mở. [Tiến độ](R09_T05_PROGRESS.md); giữ toàn bộ137nghĩa vụ và TC |
 | T08 | Bundle fixed/readiness/compatibility/restore; Human chạy vai PROD lab | Chuẩn bị đầy đủ trước yêu cầu Human thực hiện; chưa deploy |
 | T09/T10 | Hủy PAUSED sau release; hotfix bản đúng/master có Feature dở,2patch và G2 từng candidate | Chờ baseline release; không nhập kết quả mẫu |
 | T11–T13 | Reject/approval/quyền; ngắt/ngoại tác chưa biết; Git/handoff đầy đủ | Dùng helper công khai; không giả Human acceptance hoặc sửa metadata tay |
