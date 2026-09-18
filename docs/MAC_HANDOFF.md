@@ -1,6 +1,8 @@
 # Bàn giao Kidea sang phiên Codex trên Mac
 
-**Tiếp tục trọn R09:** [R7](../tests/evidence/r09/t02-build-r7.md) FAIL ở signal handler HTTP, đã sửa đường dừng và thêm regression, không mở ngoại lệ. R8 đang chạy theo quyền chung (source1a4dc77, manifestffcaa888);100offline PASS. [Web T03](../tests/evidence/r09/t03-authoring.md) có33unit/13SSR–Chrome PASS trên API giả (pilot0d50d3c), chưa nối backend thật. [View hiện tại](../tests/evidence/r09/pilot-view-current.md)24mẫu Chrome đạt khi không build, giữ FAIL dưới tải; chưa khép T14/toàn R09.
+**Tiến độ mới nhất:** [R9](../tests/evidence/r09/t02-build-r9.md) FAIL ở parser thứ tự in TSan control; đã sửa đúng cặp đã duyệt,112offline PASS. Build r10 (vẫn thuộc R09) đang chạy, source3876326/manifest a82750b3; không mở ngoại lệ mới. Web đang kiểm bổ sung phục hồi trang riêng tư sau đổi phiên; HTTPS/backend thật chờ release artifact cuối. R09 chưa nghiệm thu.
+
+**Tiếp tục trọn R09:** [R7](../tests/evidence/r09/t02-build-r7.md) FAIL ở signal handler HTTP, đã sửa đường dừng và thêm regression, không mở ngoại lệ. [R8 hoàn tất](../tests/evidence/r09/t02-build-r8.md) theo quyền chung (source1a4dc77, manifestffcaa888), giữ EX r2;100offline PASS. R9 source5c1fc6/manifest a85c9bf4 đang kiểm endpoint session. [Web T03](../tests/evidence/r09/t03-authoring.md) có33unit/17SSR–Chrome PASS trên API giả (pilot5c1fc6), gồm private SSR, chưa nối backend thật. [View hiện tại](../tests/evidence/r09/pilot-view-current.md)24mẫu Chrome đạt khi không build, giữ FAIL dưới tải; chưa khép T14/toàn R09.
 
 **Quyền hiện hành: Human đã duyệt [thực thi trọn R09](R09_EXECUTION_AUTHORITY.md).** Bao gồm r7 và các lượt sửa/kiểm tiếp theo trong giới hạn chung; không hỏi lại từng build. Những đoạn chờ quyền từng lượt bên dưới là lịch sử.
 

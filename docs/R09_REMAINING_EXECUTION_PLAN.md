@@ -4,10 +4,10 @@ Quyền: [R09_EXECUTION_AUTHORITY](R09_EXECUTION_AUTHORITY.md). Không tạo yê
 
 | Mốc | Đầu ra và kiểm bắt buộc | Điểm hiện tại |
 |---|---|---|
-| T02 | Dev/ASan/TSan/release, CTest/oracle/HTTP/controls; review đúng EX r2 | r7 đang chạy, kết quả gốc mỗi lượt giữ riêng |
-| T03.1 | Decoder/merge theo actor/epoch/workshop/audience/version; intent persist-before-send và no replay | Authoring trong web/,23unit PASS; chưa tích hợp |
-| T03.2 | Intro prerender, list/detail SSR/no-store/noindex/URL/escape; private/history và auth bootstrap đúng quyền server | Đang viết public SSR; chưa private/session/đăng ký |
-| T03.3 | Wiring API thật, Chrome keyboard/360–1280/200%, mất phản hồi/reload/actor-switch/permission | Chưa chạy; unit không thay browser/API |
+| T02 | Dev/ASan/TSan/release, CTest/oracle/HTTP/controls; review đúng EX r2 | r8 hoàn tất với giới hạn EX r2; r9 endpoint session đang chạy, giữ mọi kết quả gốc |
+| T03.1 | Decoder/merge theo actor/epoch/workshop/audience/version; intent persist-before-send và no replay | 33unit PASS; giữ FAIL route reuse trước bản sửa |
+| T03.2 | Intro prerender, list/detail SSR/no-store/noindex/URL/escape; private/history và auth bootstrap đúng quyền server | Public/private SSR và đăng ký đã viết;17SSR–Chrome PASS với API giả |
+| T03.3 | Wiring API thật, Chrome keyboard/360–1280/200%, mất phản hồi/reload/actor-switch/permission | HTTPS/backend thật đang chuẩn bị; Chrome Mac component đã kiểm, không thay integration |
 | T04 | Max2ACTIVE đã duyệt, impact từ bước1 trên MVP dở, cập nhật cây qua public helper, G2 | Chờ T03, không áp nghiệp vụ này sớm vào T02 |
 | T05 | Admin intent/dirty fields, event/outbox/reconcile, heartbeat/monitor/backup | Chưa hoàn tất; giữ toàn bộ137nghĩa vụ và TC |
 | T08 | Bundle fixed/readiness/compatibility/restore; Human chạy vai PROD lab | Chuẩn bị đầy đủ trước yêu cầu Human thực hiện; chưa deploy |

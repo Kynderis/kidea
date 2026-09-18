@@ -1,0 +1,41 @@
+✔ intro is prerendered readable HTML with noindex and fixed canonical (10.778294ms)
+✔ SSR list escapes title and strips all private fields (57.050968ms)
+✔ SSR detail retains public schedule and identity link (12.860809ms)
+✔ hidden and missing are generic without private body (11.17001ms)
+✔ concurrent actor cookies never forwarded into public SSR (12.822858ms)
+✔ bad backend invalid is unavailable, not empty success (5.683963ms)
+✔ bad backend malformed is unavailable, not empty success (7.749283ms)
+✔ private SSR isolates simultaneous actors and never embeds credentials (20.726505ms)
+✔ private SSR denies missing or invalid session  (4.470233ms)
+✔ private SSR denies missing or invalid session workshop_session=REVOKED (4.984019ms)
+✔ private SSR rejects wrong actor group (7.873683ms)
+✔ Chrome public SSR navigation 360 zoom 1 (1067.716622ms)
+✔ Chrome public SSR navigation 1280 zoom 1 (419.521834ms)
+✔ Chrome public SSR navigation 360 zoom 2 (1030.875181ms)
+✔ Chrome public SSR navigation 1280 zoom 2 (418.361514ms)
+✔ Chrome lost mutation response reload GET reconciliation and exact cancel (1341.157397ms)
+✖ Chrome restored private page revalidates changed session before revealing history (3464.102633ms)
+✔ Chrome JS disabled list and detail readable (400.726819ms)
+{"serverStdout":"Listening on http://127.0.0.1:63770\n","serverStderr":"\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n","scope":"Built Web + local fake API contract; not backend integration or product acceptance"}
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22190.94454
+
+✖ failing tests:
+
+test at tests/server/public.test.mjs:57:9
+✖ Chrome restored private page revalidates changed session before revealing history (3464.102633ms)
+  locator.waitFor: Timeout 3000ms exceeded.
+  Call log:
+  [2m  - waiting for getByText('REG-V · Đã đăng ký', { exact: true }) to be visible[22m
+  
+      at TestContext.<anonymous> (/Users/kendrick/Desktop/kidea-workshop-pilot/web/tests/server/public.test.mjs:62:61)
+      at async file:///Users/kendrick/Desktop/kidea-workshop-pilot/web/tests/server/public.test.mjs:57:3 {
+    name: 'TimeoutError',
+    log: [ "  - waiting for getByText('REG-V · Đã đăng ký', { exact: true }) to be visible" ]
+  }

@@ -1,0 +1,112 @@
+--- a/backend/include/workshop/model.hpp
++++ b/backend/include/workshop/model.hpp
+@@ -22,6 +22,7 @@
+   std::string actor;
+   bool participant{};
+   bool admin{};
++  std::string csrf;
+ };
+ struct Instant {
+   std::int64_t seconds;
+--- a/backend/src/store.cpp
++++ b/backend/src/store.cpp
+@@ -185,7 +185,7 @@
+   if (mutation &&
+       (origin != meta("origin") || csrf.empty() || csrf != q.text(3)))
+     return std::nullopt;
+-  return Identity{q.text(0), q.number(1) == 1, q.number(2) == 1};
++  return Identity{q.text(0), q.number(1) == 1, q.number(2) == 1, q.text(3)};
+ }
+ std::optional<Json> Store::workshop(const std::string &wid, bool adminScope) {
+   Statement s(
+@@ -223,6 +223,17 @@
+ Response Store::read(const std::string &route,
+                      const std::optional<Identity> &actor) {
+   const bool adminRoute = route.starts_with("/admin/");
++  if (route == "/session") {
++    if (!actor)
++      return reply(401, "UNAVAILABLE");
++    Json body;
++    body["actor"] = actor->actor;
++    body["epoch"] = meta("epoch");
++    body["participant"] = actor->participant;
++    body["admin"] = actor->admin;
++    body["csrf"] = actor->csrf;
++    return {200, body};
++  }
+   if (adminRoute && (!actor || !actor->admin))
+     return reply(actor ? 404 : 401, "UNAVAILABLE");
+   const std::string prefix = adminRoute ? "/admin/workshops" : "/workshops";
+--- a/contracts/openapi.json
++++ b/contracts/openapi.json
+@@ -1390,6 +1390,32 @@
+           }
+         ]
+       }
++    },
++    "/session": {
++      "get": {
++        "operationId": "get_session",
++        "description": "Current authenticated lab session; no-store; cookie token is never returned. No role supplied by client is trusted.",
++        "security": [
++          {
++            "session": []
++          }
++        ],
++        "responses": {
++          "200": {
++            "description": "Current actor/epoch/CSRF and server roles",
++            "content": {
++              "application/json": {
++                "schema": {
++                  "$ref": "#/components/schemas/Session"
++                }
++              }
++            }
++          },
++          "401": {
++            "description": "Missing, expired or revoked session"
++          }
++        }
++      }
+     }
+   },
+   "components": {
+@@ -1852,6 +1878,37 @@
+           "registrations"
+         ],
+         "additionalProperties": false
++      },
++      "Session": {
++        "type": "object",
++        "properties": {
++          "actor": {
++            "type": "string",
++            "minLength": 1
++          },
++          "epoch": {
++            "type": "string",
++            "minLength": 1
++          },
++          "csrf": {
++            "type": "string",
++            "minLength": 1
++          },
++          "participant": {
++            "type": "boolean"
++          },
++          "admin": {
++            "type": "boolean"
++          }
++        },
++        "required": [
++          "actor",
++          "epoch",
++          "csrf",
++          "participant",
++          "admin"
++        ],
++        "additionalProperties": false
+       }
+     }
+   },

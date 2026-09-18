@@ -17,3 +17,13 @@ Còn lại: auth/bootstrap theo quyền server, private history/đăng ký/hủy
 [Receipt mới](t03-authoring/registration-receipt.json), pilot0d50d3c:33unit/13SSR–Chrome/check/lint/build PASS. Component giữ intent trước POST; reload chỉ GET; kết quả lịch sử không thay history; Escape không hủy; hủy đúng ID; actor/epoch generation và abort xử lý response cũ. Đã tái hiện lỗi route reuse: đi W→W2 còn intentW; key theo workshop/epoch sửa đúng nguyên nhân, [FAIL trước](t03-authoring/chrome-route-regression.log), [PASS cuối](t03-authoring/chrome-registration-final.log). Giữ lỗi đặt biến state đụng rune $state trước đổi thành clientState.
 
 Đường này hiện kiểm bằng API giả browser, chưa backend thật. Cần bổ sung endpoint session được backend xác thực, cổng HTTPS, private SSR/history và kiểm tích hợp trên artifact cuối. Không nhận T03 DONE.
+
+## Private SSR và xác thực phiên
+
+Pilot `5c1fc6f`: [33 unit/17 SSR–Chrome PASS](t03-authoring/private-receipt.json), [log Chrome](t03-authoring/chrome-private.log), [check](t03-authoring/private-check-final.log), [lint](t03-authoring/private-lint-final.log), [build](t03-authoring/private-build-final.log). `/me` đọc phiên và lịch sử qua backend nội bộ cố định; chỉ forward cookie phiên, kiểm actor/epoch, không đưa token/CSRF vào HTML. Các ca mới kiểm hai tài khoản đồng thời, thiếu/thu hồi phiên và dữ liệu sai actor; giữ lỗi typecheck đầu tiên trong log. API trong bộ này vẫn giả; endpoint C++ đang được kiểm đầy đủ riêng ở r9. Chưa suy thành HTTPS/backend thật hoặc T03 DONE.
+
+## Phục hồi trang riêng tư sau đổi phiên
+
+Pilot `029b663c9b98c6513f4315de5d1dbc99231a51f2`:18/18SSR–Chrome, typecheck/lint/build PASS;33unit trước đó không đổi. [FAIL tái hiện](t03-authoring/restore-before.log), [PASS](t03-authoring/restore-final.log). Trước sửa, phát sinh pagehide/pageshow persisted sau đổi cookie vẫn giữ REG-U và không tải REG-V. Trang `/me` nay xóa vùng hiển thị riêng đồng bộ khi pagehide, và tải lại từ server khi pageshow persisted. Kiểm cả việc ẩn ngay và dữ liệu đúng phiên mới, không chỉ đợi nội dung mới xuất hiện.
+
+Đây là kiểm handler lifecycle trong Chrome với PageTransitionEvent được chủ động phát và API giả, không tuyên bố đã tái hiện mọi điều kiện browser BFCache hoặc tín hiệu thu hồi phiên T05. Lỗi lint tên browser global ở lượt đầu được giữ; sửa bằng globalThis/kiểu tham số cụ thể, không tắt lint. Backend nguồn đang build không bị thay.

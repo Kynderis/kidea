@@ -1,0 +1,66 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved full R09 execution: Duy\u1ec7t ph\u1ea1m vi tr\u1ecdn R09 nh\u01b0 tr\u00ean. Save truthful continuation only; preserve all work/gates and prior failure evidence. No output acceptance or new exception."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/t03/session-boundary.md",
+      "anchor": null
+    },
+    {
+      "path": "backend/tests/session.mjs",
+      "anchor": null
+    },
+    {
+      "path": "web/src/lib/Registration.svelte",
+      "anchor": null
+    },
+    {
+      "path": "web/src/routes/me/+page.server.ts",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "71ca7cacd1ab0f84ffc4a01626c73dd8a6475fe862db4ca118b19ce438b7fb81",
+  "expectedGit": {
+    "head": "5c1fc6ffc8cf80a218b8d85d2b7d3fa662ea439a",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "R7 signal-unsafe HTTP FAIL preserved. Signal fix source1a4dc77 verified by full r8: dev/ASan/release46CTest796assertions each; TSan40clean6knownWAL12reports under unchangedEXr2; all4HTTP18 and2shutdown checks passed. Web33unit17SSR/Chrome fake-API checks passed at5c1fc6, including session/privateSSR isolation.",
+    "remaining": "R9 full backend source5c1fc6 manifesta85c9bf4 in progress. True HTTPS Web/backend integration prepared under Kidea tests/r09/t03-integration, not yet run. T04 onward and final real maps/gates still incomplete. Existing W001/10UNEXPANDED accurately retained; no imported approvals or taskDONE.",
+    "nextAction": "Read Kidea docs/R09_EXECUTION_AUTHORITY.md and monitor t02-22fb4551-94d7-47cb-9b51-32266f7743bd; collect all presets and retain FAIL/PASS. Then bind final release and Web artifacts to integration manifest and run internal Docker HTTPS lab. Continue approved R09 without per-run reapproval; stop only at actual scope/safety/resource/deploy or Human acceptance boundaries.",
+    "sourceRefs": [
+      {
+        "path": "docs/t03/session-boundary.md",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/session.mjs",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/Registration.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/me/+page.server.ts",
+        "anchor": null
+      }
+    ]
+  }
+}

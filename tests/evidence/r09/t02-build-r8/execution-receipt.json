@@ -1,0 +1,179 @@
+{
+  "runId": "t02-6f8c36c5-94f5-4942-880b-54de5743efb4",
+  "result": {
+    "runId": "t02-6f8c36c5-94f5-4942-880b-54de5743efb4",
+    "manifestHash": "ffcaa8889ec47d0aa62bf95860a704225d54af5015586d9c4a0754fda8b97aef",
+    "results": [
+      {
+        "preset": "dev",
+        "code": 0,
+        "reason": null
+      },
+      {
+        "preset": "asan-ubsan",
+        "code": 0,
+        "reason": null
+      },
+      {
+        "preset": "tsan",
+        "code": 0,
+        "reason": null
+      },
+      {
+        "preset": "release",
+        "code": 0,
+        "reason": null
+      }
+    ],
+    "state": "EVIDENCE_READY_WITH_TSAN_LIMITATION_REVIEW_REQUIRED",
+    "notProductAcceptance": true
+  },
+  "sourceUnchanged": 78,
+  "profiles": {
+    "dev": {
+      "containerState": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-18T01:57:18.483506721Z",
+        "FinishedAt": "2026-09-18T02:03:38.392959651Z"
+      },
+      "httpPassed": 18,
+      "httpCount": 18,
+      "httpServerExit": 0,
+      "shutdown": [
+        {
+          "signal": "SIGTERM",
+          "status": "PASS",
+          "exit": 0
+        },
+        {
+          "signal": "SIGINT",
+          "status": "PASS",
+          "exit": 0
+        }
+      ],
+      "artifactHashes": "97200f019f58717a97f1b4ca750cd2957746de544c05bb660f19cf12aaeed584  /build/dev/workshop_backend\n374d210c725cca33ab6ea96c00391b687f3d96a52b7fcf787dea998b0ddabcb1  /build/dev/workshop_tests\n"
+    },
+    "asan-ubsan": {
+      "containerState": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-18T02:03:40.705572831Z",
+        "FinishedAt": "2026-09-18T02:11:03.530360905Z"
+      },
+      "httpPassed": 18,
+      "httpCount": 18,
+      "httpServerExit": 0,
+      "shutdown": [
+        {
+          "signal": "SIGTERM",
+          "status": "PASS",
+          "exit": 0
+        },
+        {
+          "signal": "SIGINT",
+          "status": "PASS",
+          "exit": 0
+        }
+      ],
+      "artifactHashes": "e34dd475b483a4ade46b4e62fb442cca118ab1b811254900f30c8cb8e1778ecd  /build/asan-ubsan/workshop_backend\ne79bed9ad002d4860ba9065cb1b9834fbdbcd2c4bf5f3e53649300a1a8adf54e  /build/asan-ubsan/workshop_tests\n"
+    },
+    "tsan": {
+      "containerState": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-18T02:11:05.71529571Z",
+        "FinishedAt": "2026-09-18T02:17:11.030616748Z"
+      },
+      "httpPassed": 18,
+      "httpCount": 18,
+      "httpServerExit": 0,
+      "shutdown": [
+        {
+          "signal": "SIGTERM",
+          "status": "PASS",
+          "exit": 0
+        },
+        {
+          "signal": "SIGINT",
+          "status": "PASS",
+          "exit": 0
+        }
+      ],
+      "artifactHashes": "fc87b119a09e291b49a0f6af1f93bba70d2324cd24de0955ca16356504ba8b0e  /build/tsan/workshop_backend\nbd383efc9191c96a374df4ab2b8d78a41c1474c6e3d26ed66322efa5e211cb12  /build/tsan/workshop_tests\n",
+      "caseClassification": {
+        "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED",
+        "assertionCount": 796,
+        "rawCTestPreserved": true
+      },
+      "reportCount": 12,
+      "knownCases": [
+        "I09",
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05"
+      ],
+      "httpClassification": {
+        "state": "CLEAN",
+        "reports": 0
+      }
+    },
+    "release": {
+      "containerState": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-18T02:17:13.067018553Z",
+        "FinishedAt": "2026-09-18T02:22:20.243181593Z"
+      },
+      "httpPassed": 18,
+      "httpCount": 18,
+      "httpServerExit": 0,
+      "shutdown": [
+        {
+          "signal": "SIGTERM",
+          "status": "PASS",
+          "exit": 0
+        },
+        {
+          "signal": "SIGINT",
+          "status": "PASS",
+          "exit": 0
+        }
+      ],
+      "artifactHashes": "b629e67e762d2207152df5aafd78fe3414035e9d1c26bf4ddba202b68002104a  /build/release/workshop_backend\n0f30b9d9a39bc13125b76d3f86b2f0f714c4e017505b3a3cbd1e3066e82ab6e1  /build/release/workshop_tests\n"
+    }
+  },
+  "containersRemaining": "",
+  "outputKiB": 2017240,
+  "at": "2026-09-18T02:23:08.992710+00:00"
+}
