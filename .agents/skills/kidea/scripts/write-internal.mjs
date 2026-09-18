@@ -15,6 +15,16 @@ import { assertRuntime,assertLocalRoot,hasLocalAssumptions,portablePathKey,check
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const integrity=bytes=>({method:'SHA256',value:sha(bytes),byteLength:bytes.length});
 const same=isDeepStrictEqual;
+// Limits match the reader: only the digest-bound internal request has the
+// larger envelope allowance; individual source/copy/checkpoint files stay64MiB.
+export const MAX_PREPARED_REQUEST_BYTES=128*1024*1024;
+export const MAX_RECOVERY_FILE_BYTES=64*1024*1024;
+function recoverableRequest(request,line) {
+  if(Buffer.byteLength(line)>MAX_PREPARED_REQUEST_BYTES)fail('RECOVERY_REQUEST_TOO_LARGE');
+  const decodedLength=b=>Math.floor(b.length*3/4)-(b.endsWith('==')?2:b.endsWith('=')?1:0);
+  const bodies=[...(request.inputs??[]).map(i=>i.expectedBase64),...(request.targets??[]).flatMap(t=>[t.beforeBase64,t.plannedBase64]),...[...(request.bootstrap?.evidence??[]),...(request.continuation?.evidence??[])].map(e=>e.bytesBase64)];
+  if(bodies.some(b=>b!==null&&decodedLength(b)>MAX_RECOVERY_FILE_BYTES))fail('RECOVERY_FILE_TOO_LARGE');
+}
 const preparedPlans=new WeakSet();
 const fail=code=>{throw Object.assign(new Error(code),{code});};
 const inside=(root,target)=>{const rel=path.relative(root,target);return rel!== '..'&&!rel.startsWith(`..${path.sep}`)&&!path.isAbsolute(rel);};
@@ -124,6 +134,7 @@ export function prepareInternalBootstrap(args) {
   const request=prepareBootstrapRequest(args);
   request.recoveryCheckout=args.authorization.allowReadLocalGit===true&&localEntry(args.root,'.git',true)?readGitContext(args.root):null;
   const line=JSON.stringify(request);
+  recoverableRequest(request,line);
   const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId:request.operationId});
   preparedPlans.add(prepared);return prepared;
 }
@@ -288,6 +299,7 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   if(binding)request.continuation={checkout:structuredClone(binding.checkout),evidence:binding.evidence.map(e=>({path:e.path,bytesBase64:e.bytes.toString('base64')}))};
   if(impact)request.impact={directories:impact.directories};
   const line=JSON.stringify(request);
+  recoverableRequest(request,line);
   const prepared=Object.freeze({line,planDigest:sha(Buffer.from(line)),operationId});
   preparedPlans.add(prepared);return prepared;
 }
@@ -435,6 +447,10 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
       if(localEntry(root,'.kidea',true))fail('KIDEA_ALREADY_EXISTS');
       for(const d of request.bootstrap.directories)if(localEntry(root,d,true))fail('DIRECTORY_ALREADY_EXISTS');
     }
+    checkpoint={schemaVersion:2,projectId:context.projectId,kind:'checkpoint',id:operationId,ownerId:context.ownerId,createdAt:now(),tool:context.tool,
+      permissionRefs:context.permissionRefs,inputRefs:context.inputRefs,targets:targets.map((t,i)=>({path:t.path,action:t.action,before:copy(t,i,'before'),planned:copy(t,i,'planned')})),
+      observations:[],nextAction:'Prepared only. Reconcile actual bytes before continuing an interrupted operation.'};
+    if(record(checkpoint).length>MAX_RECOVERY_FILE_BYTES)fail('RECOVERY_FILE_TOO_LARGE');
     directory('.kidea',!!request.bootstrap);directory('.kidea/checkpoints');directory(pendingDirectory);
     if(readdirSync(path.join(root,pendingDirectory)).length)fail('INCOMPLETE_WRITE_EXISTS');
     pendingBytes=Buffer.from(JSON.stringify({protocolVersion:2,operationId,planDigest:prepared.planDigest,checkpointRef:{path:checkpointPath,anchor:null}})+'\n');
@@ -448,9 +464,6 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
       if(!readGitVersion(root,t.beforeVersion.location).equals(t.before)||!same(t.beforeVersion.integrity,integrity(t.before)))fail('GIT_PREIMAGE_CHANGED');
       gitVersions.set(JSON.stringify(t.beforeVersion.location),t.before);
     }
-    checkpoint={schemaVersion:2,projectId:context.projectId,kind:'checkpoint',id:operationId,ownerId:context.ownerId,createdAt:now(),tool:context.tool,
-      permissionRefs:context.permissionRefs,inputRefs:context.inputRefs,targets:targets.map((t,i)=>({path:t.path,action:t.action,before:copy(t,i,'before'),planned:copy(t,i,'planned')})),
-      observations:[],nextAction:'Prepared only. Reconcile actual bytes before continuing an interrupted operation.'};
     for(const e of request.bootstrap?.evidence??[])remember(e.path,Buffer.from(e.bytesBase64,'base64'));
     for(const e of request.continuation?.evidence??[])remember(e.path,Buffer.from(e.bytesBase64,'base64'));
     for(const [i,t]of targets.entries()) {

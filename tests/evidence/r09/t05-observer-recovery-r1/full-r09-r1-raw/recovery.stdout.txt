@@ -1,0 +1,18 @@
+✔ serialized envelope over128MiB is rejected before guard and leaves work unchanged (3626.733221ms)
+✔ changed tool remains blocked without migration, and exact scoped migration can complete only metadata (3728.614486ms)
+✔ wrong operation, digest, missing/additional pair, blank statement and wrong new integrity cannot migrate (3909.680991ms)
+✔ migration does not waive stale basis, OTHER bytes, source drift or runtime changes (10412.961297ms)
+✔ individual planned file over64MiB is rejected before guard despite envelope below128MiB (1801.237828ms)
+Recovery evidence: /Users/kendrick/Desktop/kidea/.test-output/r09/recovery-Feivr5
+✔ before, partial and planned recover in a fresh process; original evidence survives (10483.936649ms)
+✔ source drift, stale/new authority, foreign bytes and unknown pending entries remain blocked (7376.872373ms)
+✔ interruption during recovery retains guard and requires fresh explicit replacement grant (4475.495716ms)
+✔ interrupted CREATE-only bootstrap completes exact files; changed checkout and request bytes block (6595.449859ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29110.775173

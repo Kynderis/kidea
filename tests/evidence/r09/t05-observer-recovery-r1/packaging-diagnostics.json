@@ -1,0 +1,6 @@
+{
+  "initialStage": "Copied synthetic .git caused embedded-git warning/gitlink; stage validator caught directory before any commit.",
+  "resolution": "Removed only our new gitlink from index with --cached -f after copied .git was renamed; then staged all copied fixture files and every preserved metadata byte as ordinary files. Real test fixture/pilot/Git config untouched.",
+  "historicalFAILLogsUnchanged": true,
+  "initialUnstage": "git rm --cached without -f refused new gitlink due index/file mismatch; no source/pilot data removed."
+}

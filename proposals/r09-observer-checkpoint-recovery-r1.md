@@ -1,5 +1,9 @@
 # R09 — gói khép checkpoint observer r1
 
+**ĐÃ HUMAN DUYỆT VÀ THỰC THI — 2026-09-19.** Human “tôi duyệt, làm tiếp đi” đã duyệt đúng gói giới hạn/migration/completion trình trước đó. Đã áp đúng patch, bản Kidea đang dùng qua 293 core + 9 recovery PASS; public RECOVER hoàn tất đúng operation/bytes và giữ dữ liệu còn lại. Pilot local checkpoint `aba73cf246f2ccfd8a30d0322048dc0a5934bebb`. [Bằng chứng thực thi](../tests/evidence/r09/t05-observer-recovery-r1/preservation.json), [điểm tiếp tục](../docs/R09_T05_PROGRESS.md). Không là nghiệm thu R09; các trần và phần loại trừ trong gói giữ nguyên.
+
+## Bản đề xuất trước duyệt — giữ nguyên để đối chiếu phạm vi
+
 **ĐỀ XUẤT — CHỜ HUMAN DUYỆT.** Bản vá đã chuẩn bị và kiểm trong worktree riêng; chưa áp dụng vào Kidea đang dùng, chưa phục hồi hoặc gỡ khóa pilot. Không là nghiệm thu R09.
 
 ## Phần cần duyệt nhanh

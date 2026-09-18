@@ -1,0 +1,64 @@
+# DỮ LIỆU GIẢ — không phải xác nhận hoặc kết quả chạy thật
+
+<!-- kidea:data:start -->
+```json
+{
+  "schemaVersion": 2,
+  "projectId": "synthetic-r02-t04",
+  "kind": "work",
+  "currentRoundId": "ROUND-001",
+  "currentItemId": "impact-49e9fcfb5617aad332d56d58",
+  "rounds": [
+    {
+      "id": "ROUND-001",
+      "name": "Đợt giả",
+      "type": "MVP",
+      "scopeRefs": [
+        {
+          "path": "docs/features.md",
+          "anchor": "scope"
+        }
+      ],
+      "targetVersion": "1.0.0",
+      "releaseRef": {
+        "path": "docs/operations/RL-001.md",
+        "id": "RL-001",
+        "revision": 1,
+        "recordVersion": {
+          "source": {
+            "path": "docs/operations/RL-001.md",
+            "anchor": null
+          },
+          "location": {
+            "kind": "SNAPSHOT",
+            "ref": {
+              "path": "docs/operations/evidence/release-r1.snapshot",
+              "anchor": null
+            }
+          },
+          "integrity": {
+            "method": "SHA256",
+            "value": "c9e1829c885839b524a96bf8a61903942bd85e542e41ea8bd906907d46859ff6",
+            "byteLength": 5720
+          }
+        }
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "W-001",
+      "roundId": "ROUND-001",
+      "name": "Mẫu W-001",
+      "kind": "STEP",
+      "parentId": null,
+      "shape": "GROUP",
+      "decomposition": "PARTIAL",
+      "scopeRef": {
+        "path": "docs/plan.md",
+        "anchor": "scope"
+      },
+      "inputRefs": [
+        {
+          "path": "docs/features.md",
+          "a

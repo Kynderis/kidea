@@ -6,6 +6,7 @@ import {isDeepStrictEqual as same} from 'node:util';
 import {parseTree} from 'jsonc-parser';
 import {localEntry,byteIntegrity,hashBytes,recordBytes} from './bootstrap-plan.mjs';
 import {diagnosePending} from './diagnose-pending.mjs';
+import {MAX_PREPARED_REQUEST_BYTES,MAX_RECOVERY_FILE_BYTES} from './write-internal.mjs';
 import {inspectBoundGraph} from './status.mjs';
 import {readGitContext,readGitVersion} from './git-versions.mjs';
 import {assertRuntime,assertLocalRoot,hasLocalAssumptions,portablePathKey} from './runtime.mjs';
@@ -16,16 +17,21 @@ const markerPath='.kidea/checkpoints/pending/active.json';
 function json(b){const t=new TextDecoder('utf-8',{fatal:true}).decode(b),errors=[],tree=parseTree(t,errors,{disallowComments:true,allowTrailingComma:false});if(!tree||errors.length)fail('RECOVERY_JSON');const walk=n=>{if(n.type==='object'){const keys=n.children.map(p=>p.children[0].value);if(new Set(keys).size!==keys.length)fail('RECOVERY_JSON');}for(const c of n.children??[])walk(c);};walk(tree);return JSON.parse(t);}
 function inspect(root,p) {
  assertRuntime();assertLocalRoot(root);
- if(!path.isAbsolute(root)||realpathSync(root)!==root||lstatSync(root).isSymbolicLink()||!closed(p,['root','readProject','allowReadLocalGit','allowCompletePlanned','allowReplaceInterruptedGuard','ownerId','targets','statement','assumptions'])||p.root!==root||p.readProject!==true||typeof p.allowReadLocalGit!=='boolean')fail('RECOVERY_READ_PERMISSION');
- const reads=new Map(),read=(f,missing=false)=>{const e=localEntry(root,f);if(!e){if(missing){reads.set(f,null);return null;}fail('RECOVERY_EVIDENCE_MISSING');}if(!e.stat.isFile()||e.stat.size>64*1024*1024)fail('RECOVERY_FILE_UNSUPPORTED');const b=readFileSync(e.full);reads.set(f,b);return b;};
+ if(!path.isAbsolute(root)||realpathSync(root)!==root||lstatSync(root).isSymbolicLink()||!closed(p,['root','readProject','allowReadLocalGit','allowCompletePlanned','allowReplaceInterruptedGuard','ownerId','targets','statement','assumptions','toolMigration'])||p.root!==root||p.readProject!==true||typeof p.allowReadLocalGit!=='boolean')fail('RECOVERY_READ_PERMISSION');
+ const reads=new Map(),read=(f,missing=false,limit=MAX_RECOVERY_FILE_BYTES)=>{const e=localEntry(root,f);if(!e){if(missing){reads.set(f,null);return null;}fail('RECOVERY_EVIDENCE_MISSING');}if(!e.stat.isFile()||e.stat.size>limit)fail('RECOVERY_FILE_UNSUPPORTED');const b=readFileSync(e.full);reads.set(f,b);return b;};
  const diagnosis=diagnosePending(root,{allowGit:p.allowReadLocalGit});
  if(diagnosis.state!=='RECONCILIATION_REQUIRED'||diagnosis.diagnostics.length||diagnosis.targets.some(t=>t.code||t.match==='UNKNOWN'))fail('RECOVERY_UNKNOWN');
- const markerBytes=read(markerPath),marker=json(markerBytes),prefix=`.kidea/checkpoints/operations/${marker.operationId}/`,requestBytes=read(prefix+'prepared-request.json');
+ const markerBytes=read(markerPath),marker=json(markerBytes),prefix=`.kidea/checkpoints/operations/${marker.operationId}/`,requestBytes=read(prefix+'prepared-request.json',false,MAX_PREPARED_REQUEST_BYTES);
  if(hashBytes(requestBytes)!==marker.planDigest)fail('RECOVERY_REQUEST_CHANGED');
  const request=json(requestBytes),checkpointPath=prefix+'checkpoint.md';
  if(request.protocolVersion!==2||request.root!==root||request.operationId!==marker.operationId||request.cleanup||!validate(request.context?.tool,'ToolIdentity',()=>{})||!Array.isArray(request.inputs)||!Array.isArray(request.targets)||request.targets.length!==diagnosis.targets.length||!same(request.authorization.targets,request.targets.map(({path,action})=>({path,action}))))fail('RECOVERY_REQUEST_INVALID');
  // Changed code/runtime is a separate migration decision, not implicit replay.
- for(const c of request.context.tool.components){let bytes;if(c.name===`node-${process.versions.node}-${process.platform}-${process.arch}`)bytes=readFileSync(process.execPath);else if(/^[a-z][a-z0-9-]*\.mjs$/.test(c.name))bytes=readFileSync(new URL(c.name,import.meta.url));else fail('RECOVERY_TOOL_CHANGED');if(!same(byteIntegrity(bytes),c.integrity))fail('RECOVERY_TOOL_CHANGED');}
+ const changed=[],actualComponents=[];
+ for(const c of request.context.tool.components){let bytes;if(c.name===`node-${process.versions.node}-${process.platform}-${process.arch}`)bytes=readFileSync(process.execPath);else if(/^[a-z][a-z0-9-]*\.mjs$/.test(c.name))bytes=readFileSync(new URL(c.name,import.meta.url));else fail('RECOVERY_TOOL_CHANGED');const actual=byteIntegrity(bytes);actualComponents.push({name:c.name,integrity:actual});if(!same(actual,c.integrity))changed.push({name:c.name,from:c.integrity,to:actual});}
+ const migration=p.toolMigration??null;
+ if(migration!==null) {
+  if(!closed(migration,['operationId','planDigest','components','statement'])||migration.operationId!==marker.operationId||migration.planDigest!==marker.planDigest||typeof migration.statement!=='string'||!migration.statement.trim()||!Array.isArray(migration.components)||!changed.length||changed.some(c=>!['recovery.mjs','write-internal.mjs'].includes(c.name))||!same(migration.components,changed))fail('RECOVERY_MIGRATION_PERMISSION');
+ } else if(changed.length)fail('RECOVERY_TOOL_CHANGED');
  const checkout=localEntry(root,'.git')?(p.allowReadLocalGit?readGitContext(root):fail('GIT_READ_NOT_AUTHORIZED')):null;
  if(!Object.hasOwn(request,'recoveryCheckout')||!same(checkout,request.recoveryCheckout)||request.continuation&&!same(checkout,request.continuation.checkout))fail('RECOVERY_CHECKOUT_CHANGED');
  const files=new Map(),gitVersions=new Map(),targets=[],names=new Set();
@@ -51,8 +57,8 @@ function inspect(root,p) {
  files.set(checkpointPath,recordBytes(checkpoint));
  const graph=inspectBoundGraph(root,files,{gitVersions,checkpointPaths:[checkpointPath]});
  if(graph.status.readState!=='OK'||graph.status.projectId!==request.context.projectId||!graph.status.data.items.some(i=>i.id===request.context.ownerId))throw Object.assign(new Error('RECOVERY_GRAPH_INVALID'),{code:'RECOVERY_GRAPH_INVALID',diagnostics:graph.status.diagnostics});
- const basis=hashBytes(Buffer.from(JSON.stringify({root,checkout,reads:[...reads].map(([p,b])=>[p,b===null?null:byteIntegrity(b)]),tool:request.context.tool})));
- return {reads,files,gitVersions,checkpoint,request,markerBytes,prefix,checkpointPath,checkout,result:{state:'RECOVERY_READY',basis,projectId:request.context.projectId,ownerId:request.context.ownerId,operationId:marker.operationId,planDigest:marker.planDigest,checkout,targets,interruptedRecovery:reads.get(prefix+'recovery-guard.json')!==null,verification:'EXACT_METADATA_COMPLETION_ONLY_NOT_EXTERNAL_REPLAY'}};
+ const basis=hashBytes(Buffer.from(JSON.stringify({root,checkout,reads:[...reads].map(([p,b])=>[p,b===null?null:byteIntegrity(b)]),tool:request.context.tool,actualComponents,toolMigration:migration})));
+ return {reads,files,gitVersions,checkpoint,request,markerBytes,prefix,checkpointPath,checkout,result:{state:'RECOVERY_READY',basis,projectId:request.context.projectId,ownerId:request.context.ownerId,operationId:marker.operationId,planDigest:marker.planDigest,checkout,targets,toolMigration:migration,interruptedRecovery:reads.get(prefix+'recovery-guard.json')!==null,verification:'EXACT_METADATA_COMPLETION_ONLY_NOT_EXTERNAL_REPLAY'}};
 }
 export function readRecovery(root,q){if(!closed(q,['operation','permission'])||q.operation!=='READ_RECOVERY')fail('RECOVERY_INPUT_INVALID');return inspect(root,q.permission).result;}
 export function completeRecovery(root,q,{testFault=null}={}) {

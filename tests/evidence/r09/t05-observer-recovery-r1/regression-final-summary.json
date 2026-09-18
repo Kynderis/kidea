@@ -1,0 +1,59 @@
+{
+  "status": "ALL_GROUPS_FINAL_PASS_SAME_SOURCE",
+  "groups": {
+    "core": {
+      "status": "PASS",
+      "proof": "full-r09-r1-raw/core.stdout.txt",
+      "exitCode": 0
+    },
+    "cycles": {
+      "status": "PASS",
+      "proof": "full-r09-r1-raw/cycles.stdout.txt",
+      "exitCode": 0
+    },
+    "delivery": {
+      "status": "PASS",
+      "proof": "full-r09-r1-raw/delivery.stdout.txt",
+      "exitCode": 0
+    },
+    "recovery": {
+      "status": "PASS",
+      "proof": "full-r09-r1-raw/recovery.stdout.txt",
+      "exitCode": 0
+    },
+    "interop": {
+      "status": "PASS",
+      "proof": "full-r09-r1-raw/interop.stdout.txt",
+      "exitCode": 0
+    },
+    "r06": {
+      "status": "PASS",
+      "proof": "r06-r2.stdout.log",
+      "exitCode": 0,
+      "originalFAILRetained": true,
+      "testCount": 20
+    },
+    "r06-boundaries": {
+      "status": "PASS",
+      "proof": "r06-boundaries-r2.stdout.log",
+      "exitCode": 0,
+      "originalFAILRetained": true,
+      "testCount": 5
+    },
+    "r07": {
+      "status": "PASS",
+      "proof": "full-r09-r1-raw/r07.stdout.txt",
+      "exitCode": 0
+    },
+    "r08-local": {
+      "status": "PASS",
+      "proof": "full-r09-r1-raw/r08-local.stdout.txt",
+      "exitCode": 0
+    }
+  },
+  "fullR1Overall": "FAIL: missing caller R06 environment; seven groups passed, raw retained",
+  "failedGroupsRerunInFullOnlyNoOtherGroupDropped": true,
+  "inputsUnchangedFullR1AndR06R2": true,
+  "approvedRuntimePatchUnchanged": true,
+  "notProductR09Acceptance": true
+}
