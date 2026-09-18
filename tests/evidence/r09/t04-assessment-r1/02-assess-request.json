@@ -1,0 +1,104 @@
+{
+  "operation": "ASSESS",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowImpactWrite": true,
+    "roundId": "ROUND-001",
+    "ownerId": "impact-674f707e883397e64ce404d0",
+    "statement": "Human approved T04 rule D and continuous R09 implementation/testing. Record evidence-based impact conclusions only; do not approve output or close the impact.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/t04/report-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/index.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/backend.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/https.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/mutations.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/query-plan.txt",
+      "anchor": null
+    },
+    {
+      "path": "docs/architecture/traceability.md",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "909386e6cea26b2e17a25f14b9385a60c5070e7bbcd6dec9987c6c1647767299",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedRoundId": "ROUND-001",
+  "expectedOwnerId": "impact-674f707e883397e64ce404d0",
+  "expectedGit": {
+    "head": "de26fb6e646e57891464fc86a3058e635af336bf",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "assessment": {
+    "nodeId": "T04-BUSINESS",
+    "verdict": "NEEDS_CHANGE",
+    "reason": "A durable LIMIT_REACHED result and explicit priority are required for the newly approved actor quota.",
+    "behavior": "Existing intent result first; PAUSED before new registration; duplicate before quota; quota before capacity; cancellation never rewrites historical intent results.",
+    "verification": "Q01 priority/actor/count/outbox checks, Q02 legacy rows, Q03 both serial orders, Q04 ten concurrent schedules; four intentional wrong implementations are rejected.",
+    "inputBasis": "de60739b35a3019870c58bb523f20638fe3d731dc58a7ab6dfbbba8483dae3b4",
+    "assumptions": "Single local Intel pilot, fixed source and fake data. Scoped T04 change only; performance, independent recovery, full-product G2, release and R09 Human acceptance remain pending.",
+    "evidenceRefs": [
+      {
+        "path": "docs/t04/report-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/index.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/backend.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/https.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/mutations.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/query-plan.txt",
+        "anchor": null
+      },
+      {
+        "path": "docs/architecture/traceability.md",
+        "anchor": null
+      }
+    ],
+    "downstream": [
+      "T04-QUALITY",
+      "T04-UX",
+      "T04-OPS",
+      "T04-ADMIN",
+      "T04-ARCH"
+    ],
+    "resolved": true
+  }
+}

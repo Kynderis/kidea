@@ -1,0 +1,906 @@
+{
+  "operation": "OPEN",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowImpactWrite": true,
+    "roundId": "ROUND-001",
+    "ownerId": "W-009-MAX2",
+    "statement": "Human approved T04 max2ACTIVE in R09 decision D, full R09 execution, and exact work replan R09-REPLAN-LEGACY-r1. Open the scoped change through the public API, preserve the unfinished MVP return point and all output gates.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "graph": {
+    "format": "kidea-impact-graph-r1",
+    "nodes": [
+      {
+        "id": "T04-SCOPE",
+        "name": "Scope amendment",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/features.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-BUSINESS",
+        "name": "Registration ordering and old-data behavior",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-QUALITY",
+        "name": "Invariant, concurrency and performance obligations",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/quality.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-UX",
+        "name": "Quota result and immutable intent UI",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/experience.md",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/state.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-OPS",
+        "name": "Outbox, observations and recovery consumers",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/operations.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/availability.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-ADMIN",
+        "name": "Capacity/state authority and unchanged admin rights",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/admin.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-ARCH",
+        "name": "Transactional authority, idempotency and API compatibility",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "contracts/openapi.json",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/executor.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/availability.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-TESTS",
+        "name": "Complete oracle and negative/concurrent regression",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-IMPLEMENT",
+        "name": "Backend/API/Web implementation plus unchanged consumers",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/main.cpp",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/routes/me/+page.server.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/server/public.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "id": "T04-DELIVERY",
+        "name": "Compatibility, legacy rows and release boundaries",
+        "scopeRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "completionRef": {
+          "path": "docs/t04/max2.md",
+          "anchor": null
+        },
+        "inputRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/rules.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/workflow/r09-checkpoint-r1.md",
+            "anchor": null
+          }
+        ]
+      }
+    ],
+    "seeds": [
+      "T04-SCOPE"
+    ],
+    "edges": [
+      {
+        "from": "T04-SCOPE",
+        "to": "T04-BUSINESS",
+        "reason": "A global actor limit adds a new registration outcome and old-data rule.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/features.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-QUALITY",
+        "reason": "Concurrency and reject ordering must preserve invariants across workshops; latency remains an obligation.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/quality.md",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-UX",
+        "reason": "LIMIT_REACHED must decode only as historical REGISTER rejection; the client must not become quota authority.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/experience.md",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/state.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-OPS",
+        "reason": "Rejections must not increment version/outbox; restoring legacy rows must not delete registrations.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/operations.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-ADMIN",
+        "reason": "Admin capacity/state and participant quota are distinct; admin rights must not bypass participant checks.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/admin.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-BUSINESS",
+        "to": "T04-ARCH",
+        "reason": "The count and seat decision must share the write transaction and remembered intent lookup.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/shared/registration.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/features/register-cancel.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/business/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "contracts/openapi.json",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/executor.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-ARCH",
+        "to": "T04-TESTS",
+        "reason": "Tests must distinguish stale count, retry re-evaluation, CANCELLED inclusion and changed priority.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "contracts/openapi.json",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/executor.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-UX",
+        "to": "T04-TESTS",
+        "reason": "Decoder and real browser assertions must retain unknown/cancel guards and history semantics.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/experience.md",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/state.ts",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-OPS",
+        "to": "T04-TESTS",
+        "reason": "No-op outbox and old-data preservation require explicit assertions, not code-call coverage.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/operations.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-ADMIN",
+        "to": "T04-TESTS",
+        "reason": "Capacity and PAUSED regression remains mandatory despite unchanged admin code.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/admin.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-QUALITY",
+        "to": "T04-TESTS",
+        "reason": "Existing 796 assertions stay; new quota schedules cannot replace original oracles.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/quality.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-TESTS",
+        "to": "T04-IMPLEMENT",
+        "reason": "Changed code must satisfy old and new expected outcomes on final source.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/tests.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/tests.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/tests/cases.cmake",
+            "anchor": null
+          },
+          {
+            "path": "web/tests/unit/state.test.mjs",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/main.cpp",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/routes/me/+page.server.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/server/public.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-ARCH",
+        "to": "T04-IMPLEMENT",
+        "reason": "API enum and transactional implementation must match the new rule and old auth/idempotency boundaries.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "contracts/openapi.json",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/executor.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/schema/001.sql",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/main.cpp",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/routes/me/+page.server.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/server/public.ts",
+            "anchor": null
+          }
+        ]
+      },
+      {
+        "from": "T04-IMPLEMENT",
+        "to": "T04-DELIVERY",
+        "reason": "The additive rejection code and preserved legacy rows affect compatibility and release verification.",
+        "evidenceRefs": [
+          {
+            "path": "docs/t04/max2.md",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/store.cpp",
+            "anchor": null
+          },
+          {
+            "path": "backend/src/main.cpp",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/reply.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/Registration.svelte",
+            "anchor": null
+          },
+          {
+            "path": "web/src/routes/me/+page.server.ts",
+            "anchor": null
+          },
+          {
+            "path": "web/src/lib/server/public.ts",
+            "anchor": null
+          },
+          {
+            "path": "docs/design/architecture.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/engineering/rules.md",
+            "anchor": null
+          },
+          {
+            "path": "docs/workflow/r09-checkpoint-r1.md",
+            "anchor": null
+          }
+        ]
+      }
+    ],
+    "diagnostics": []
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/t04/impact-graph.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "78e1f469ddda409f03189e0a0fe9be7f8252a150025f3213a4534cf2dd0f4059",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedRoundId": "ROUND-001",
+  "expectedOwnerId": "W-009-MAX2",
+  "expectedGit": {
+    "head": "c88c14fc17145899b3345fec30d0eae22f5b4873",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  }
+}

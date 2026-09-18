@@ -1,0 +1,1632 @@
+{
+  "format": "kidea-map-r1",
+  "adapter": {
+    "name": "clang-json",
+    "version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin\n",
+    "tool": {
+      "path": "/usr/bin/clang++-18",
+      "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45",
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "components": [
+        {
+          "id": "clang",
+          "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45"
+        },
+        {
+          "id": "container",
+          "sha256": "6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92"
+        }
+      ],
+      "version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin\n"
+    }
+  },
+  "configuration": {
+    "target": "x86_64-linux-gnu",
+    "translationUnit": "backend/src/executor.cpp",
+    "args": [
+      "--target=x86_64-linux-gnu",
+      "-DCMARK_STATIC_DEFINE",
+      "-I/Users/kendrick/Desktop/kidea-workshop-pilot/backend/include",
+      "-isystem",
+      "/vendor/cmark/src",
+      "-isystem",
+      "/build/dev/vendor/cmark/src",
+      "-isystem",
+      "/vendor/sqlite",
+      "-isystem",
+      "/usr/include/jsoncpp",
+      "-g",
+      "-std=c++20",
+      "-fPIC",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Werror",
+      "/Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp",
+      "-fsyntax-only",
+      "-Xclang",
+      "-ast-dump=json",
+      "-Xclang",
+      "-ast-dump-filter=workshop"
+    ],
+    "manifestHash": "f79450d250d38064c9b393f518df101d7f1a20967e0e121eb86a352c2c75a42f"
+  },
+  "sources": [
+    {
+      "path": "backend/include/workshop/admission.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "d67e77d67d4a96947f54b16c0bda90ae308d1718752671c24e62749c2a6e0790",
+        "byteLength": 1396
+      }
+    },
+    {
+      "path": "backend/include/workshop/executor.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "5fbc51aa67e0e14bdba4463f5f8331bc238802fac46a6b504383f33b29313f32",
+        "byteLength": 666
+      }
+    },
+    {
+      "path": "backend/include/workshop/model.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "67f4b531c7a33daf89893c0858db4497f5541f05a0a97de0b1d93e66f4e8f931",
+        "byteLength": 1370
+      }
+    },
+    {
+      "path": "backend/include/workshop/store.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "5c29b356ad1278753652e13b31ca3eea9803eb70c4309114dc7e59a1438b449d",
+        "byteLength": 2472
+      }
+    },
+    {
+      "path": "backend/src/executor.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "482a72aa3729396990e3dc6dc5eae4b6b9fe27a209aa52ecd28602d7d0534321",
+        "byteLength": 1898
+      }
+    },
+    {
+      "path": "backend/src/main.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "a9709d321905ff19131792382a0fa5f1f6803089f7dedd334067500dc6d256a6",
+        "byteLength": 6026
+      }
+    },
+    {
+      "path": "backend/src/model.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "36733243e0250cde6ae2dc37dda70cb25ef447678d869c0ebf07b4364b133c8b",
+        "byteLength": 8490
+      }
+    },
+    {
+      "path": "backend/src/store.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "af4634e7dde54eedaef4b4aff57761e0a943077b6710bafa5df4bef42d9c173d",
+        "byteLength": 24638
+      }
+    }
+  ],
+  "inputBasis": "c57012344451694b68a07b29d28ddb2f54a2719ed07acd9083829f25eb6ab951",
+  "nodes": [
+    {
+      "id": "backend/include/workshop/admission.hpp",
+      "path": "backend/include/workshop/admission.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp",
+      "path": "backend/include/workshop/executor.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/model.hpp",
+      "path": "backend/include/workshop/model.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/store.hpp",
+      "path": "backend/include/workshop/store.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/executor.cpp",
+      "path": "backend/src/executor.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/main.cpp",
+      "path": "backend/src/main.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/model.cpp",
+      "path": "backend/src/model.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/store.cpp",
+      "path": "backend/src/store.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::Invalid CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::Invalid",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::Invalid void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::Invalid",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::Invalid void (const Invalid &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::Invalid",
+      "signature": "void (const Invalid &)",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::Invalid void (Invalid &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::Invalid",
+      "signature": "void (Invalid &&)",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::operator= Invalid &(const Invalid &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::operator=",
+      "signature": "Invalid &(const Invalid &)",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::operator= Invalid &(Invalid &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::operator=",
+      "signature": "Invalid &(Invalid &&)",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::~Invalid void () noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::~Invalid",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::StorageError CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::StorageError",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::StorageError void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::StorageError",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::StorageError void (const StorageError &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::StorageError",
+      "signature": "void (const StorageError &)",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::StorageError void (StorageError &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::StorageError",
+      "signature": "void (StorageError &&)",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::operator= StorageError &(const StorageError &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::operator=",
+      "signature": "StorageError &(const StorageError &)",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::operator= StorageError &(StorageError &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::operator=",
+      "signature": "StorageError &(StorageError &&)",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::~StorageError void () noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::~StorageError",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::Response CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::Response",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::status int",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::status",
+      "signature": "int",
+      "kind": "symbol",
+      "offset": 412
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::body Json",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::body",
+      "signature": "Json",
+      "kind": "symbol",
+      "offset": 427
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::Response void (const Response &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::Response",
+      "signature": "void (const Response &)",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::Response void (Response &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::Response",
+      "signature": "void (Response &&)",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::operator= Response &(const Response &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::operator=",
+      "signature": "Response &(const Response &)",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::operator= Response &(Response &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::operator=",
+      "signature": "Response &(Response &&)",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::~Response void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::~Response",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::Identity CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::Identity",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::actor std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::actor",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 468
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::participant bool",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::participant",
+      "signature": "bool",
+      "kind": "symbol",
+      "offset": 482
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::admin bool",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::admin",
+      "signature": "bool",
+      "kind": "symbol",
+      "offset": 504
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::csrf std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::csrf",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 527
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::Identity void (const Identity &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::Identity",
+      "signature": "void (const Identity &)",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::Identity void (Identity &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::Identity",
+      "signature": "void (Identity &&)",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::operator= Identity &(const Identity &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::operator=",
+      "signature": "Identity &(const Identity &)",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::operator= Identity &(Identity &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::operator=",
+      "signature": "Identity &(Identity &&)",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::~Identity void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::~Identity",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::Instant CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::Instant",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::seconds std::int64_t",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::seconds",
+      "signature": "std::int64_t",
+      "kind": "symbol",
+      "offset": 568
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::fraction std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::fraction",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 591
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::operator<=> std::strong_ordering (const Instant &) const",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::operator<=>",
+      "signature": "std::strong_ordering (const Instant &) const",
+      "kind": "symbol",
+      "offset": 608
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::Instant void (const Instant &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::Instant",
+      "signature": "void (const Instant &)",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::Instant void (Instant &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::Instant",
+      "signature": "void (Instant &&)",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::operator= Instant &(const Instant &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::operator=",
+      "signature": "Instant &(const Instant &)",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::operator= Instant &(Instant &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::operator=",
+      "signature": "Instant &(Instant &&)",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::~Instant void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::~Instant",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::operator== bool (const Instant &) const",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::operator==",
+      "signature": "bool (const Instant &) const",
+      "kind": "symbol",
+      "offset": 608
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::Fields CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::Fields",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::title std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::title",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 687
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::description std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::description",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 694
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::start std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::start",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 707
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::end std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::end",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 714
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::capacity int",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::capacity",
+      "signature": "int",
+      "kind": "symbol",
+      "offset": 725
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::from Instant",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::from",
+      "signature": "Instant",
+      "kind": "symbol",
+      "offset": 747
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::until Instant",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::until",
+      "signature": "Instant",
+      "kind": "symbol",
+      "offset": 755
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::Fields void (const Fields &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::Fields",
+      "signature": "void (const Fields &)",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::Fields void (Fields &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::Fields",
+      "signature": "void (Fields &&)",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::operator= Fields &(const Fields &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::operator=",
+      "signature": "Fields &(const Fields &)",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::operator= Fields &(Fields &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::operator=",
+      "signature": "Fields &(Fields &&)",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::~Fields void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::~Fields",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::codepoints",
+      "signature": "std::vector<std::uint32_t> (std::string_view)",
+      "kind": "symbol",
+      "offset": 794
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::trim std::string (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::trim",
+      "signature": "std::string (std::string_view)",
+      "kind": "symbol",
+      "offset": 836
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::plain bool (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::plain",
+      "signature": "bool (std::string_view)",
+      "kind": "symbol",
+      "offset": 865
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::decode Json (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::decode",
+      "signature": "Json (std::string_view)",
+      "kind": "symbol",
+      "offset": 895
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::keys",
+      "signature": "void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)",
+      "kind": "symbol",
+      "offset": 926
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::string std::string (const Json &, const char *)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::string",
+      "signature": "std::string (const Json &, const char *)",
+      "kind": "symbol",
+      "offset": 1056
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::instant Instant (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::instant",
+      "signature": "Instant (std::string_view)",
+      "kind": "symbol",
+      "offset": 1100
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::fields Fields (const Json &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::fields",
+      "signature": "Fields (const Json &)",
+      "kind": "symbol",
+      "offset": 1134
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::normalized Json (const Fields &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::normalized",
+      "signature": "Json (const Fields &)",
+      "kind": "symbol",
+      "offset": 1161
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::dump std::string (const Json &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::dump",
+      "signature": "std::string (const Json &)",
+      "kind": "symbol",
+      "offset": 1201
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::next_version std::string (const std::string &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::next_version",
+      "signature": "std::string (const std::string &)",
+      "kind": "symbol",
+      "offset": 1233
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::reply Response (int, const std::string &, const std::string &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::reply",
+      "signature": "Response (int, const std::string &, const std::string &)",
+      "kind": "symbol",
+      "offset": 1277
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store CXXRecordDecl",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 142
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::Store CXXRecordDecl",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::Store",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 142
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::Store void (const std::string &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::Store",
+      "signature": "void (const std::string &)",
+      "kind": "symbol",
+      "offset": 169
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::~Store void () noexcept",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::~Store",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 203
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::Store void (const Store &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::Store",
+      "signature": "void (const Store &)",
+      "kind": "symbol",
+      "offset": 215
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::operator= Store &(const Store &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::operator=",
+      "signature": "Store &(const Store &)",
+      "kind": "symbol",
+      "offset": 255
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::initialize void (const std::string &, const std::string &, const Json &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::initialize",
+      "signature": "void (const std::string &, const std::string &, const Json &)",
+      "kind": "symbol",
+      "offset": 304
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::rateKey std::string (const std::string &, std::int64_t, const std::string &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::rateKey",
+      "signature": "std::string (const std::string &, std::int64_t, const std::string &)",
+      "kind": "symbol",
+      "offset": 425
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::handle Response (const std::string &, const std::string &, const std::string &, const std::string &, const std::string &, const Json &, std::int64_t)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::handle",
+      "signature": "Response (const std::string &, const std::string &, const std::string &, const std::string &, const std::string &, const Json &, std::int64_t)",
+      "kind": "symbol",
+      "offset": 536
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::db_ sqlite3 *",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::db_",
+      "signature": "sqlite3 *",
+      "kind": "symbol",
+      "offset": 1338
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::received_ std::int64_t",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::received_",
+      "signature": "std::int64_t",
+      "kind": "symbol",
+      "offset": 1360
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::started_ std::chrono::steady_clock::time_point",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::started_",
+      "signature": "std::chrono::steady_clock::time_point",
+      "kind": "symbol",
+      "offset": 1413
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::point void (std::string_view)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::point",
+      "signature": "void (std::string_view)",
+      "kind": "symbol",
+      "offset": 1510
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::exec void (const char *)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::exec",
+      "signature": "void (const char *)",
+      "kind": "symbol",
+      "offset": 1542
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::meta std::string (const char *)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::meta",
+      "signature": "std::string (const char *)",
+      "kind": "symbol",
+      "offset": 1576
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::identity std::optional<Identity> (const std::string &, const std::string &, const std::string &, bool, std::int64_t)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::identity",
+      "signature": "std::optional<Identity> (const std::string &, const std::string &, const std::string &, bool, std::int64_t)",
+      "kind": "symbol",
+      "offset": 1622
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::workshop std::optional<Json> (const std::string &, bool)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::workshop",
+      "signature": "std::optional<Json> (const std::string &, bool)",
+      "kind": "symbol",
+      "offset": 1772
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::read Response (const std::string &, const std::optional<Identity> &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::read",
+      "signature": "Response (const std::string &, const std::optional<Identity> &)",
+      "kind": "symbol",
+      "offset": 1820
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::mutate Response (const std::string &, const Json &, const Identity &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::mutate",
+      "signature": "Response (const std::string &, const Json &, const Identity &)",
+      "kind": "symbol",
+      "offset": 1891
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::registration Response (const std::string &, const Json &, const Identity &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::registration",
+      "signature": "Response (const std::string &, const Json &, const Identity &)",
+      "kind": "symbol",
+      "offset": 1963
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::admin Response (const Json &, const Identity &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::admin",
+      "signature": "Response (const Json &, const Identity &)",
+      "kind": "symbol",
+      "offset": 2041
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::remembered Response (const std::string &, const std::string &, const std::string &, const std::string &, const std::string &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::remembered",
+      "signature": "Response (const std::string &, const std::string &, const std::string &, const std::string &, const std::string &)",
+      "kind": "symbol",
+      "offset": 2091
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::remember void (const std::string &, const std::string &, const std::string &, const std::string &, const std::string &, const Response &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::remember",
+      "signature": "void (const std::string &, const std::string &, const std::string &, const std::string &, const std::string &, const Response &)",
+      "kind": "symbol",
+      "offset": 2259
+    },
+    {
+      "id": "backend/include/workshop/store.hpp#workshop::Store::changed void (const std::string &)",
+      "path": "backend/include/workshop/store.hpp",
+      "name": "workshop::Store::changed",
+      "signature": "void (const std::string &)",
+      "kind": "symbol",
+      "offset": 2415
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor CXXRecordDecl",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 161
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::Executor CXXRecordDecl",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::Executor",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 161
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::Executor void (const std::string &)",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::Executor",
+      "signature": "void (const std::string &)",
+      "kind": "symbol",
+      "offset": 235
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::~Executor void () noexcept",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::~Executor",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 272
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::Executor void (const Executor &)",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::Executor",
+      "signature": "void (const Executor &)",
+      "kind": "symbol",
+      "offset": 287
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::operator= Executor &(const Executor &)",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::operator=",
+      "signature": "Executor &(const Executor &)",
+      "kind": "symbol",
+      "offset": 336
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::submit bool (bool, Job)",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::submit",
+      "signature": "bool (bool, Job)",
+      "kind": "symbol",
+      "offset": 381
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::drain bool (std::chrono::seconds)",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::drain",
+      "signature": "bool (std::chrono::seconds)",
+      "kind": "symbol",
+      "offset": 416
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::mutex_ std::mutex",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::mutex_",
+      "signature": "std::mutex",
+      "kind": "symbol",
+      "offset": 468
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::wake_ std::condition_variable",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::wake_",
+      "signature": "std::condition_variable",
+      "kind": "symbol",
+      "offset": 502
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::finished_ std::condition_variable",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::finished_",
+      "signature": "std::condition_variable",
+      "kind": "symbol",
+      "offset": 509
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::queue_ std::deque<std::pair<bool, Job>>",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::queue_",
+      "signature": "std::deque<std::pair<bool, Job>>",
+      "kind": "symbol",
+      "offset": 555
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::writes_ std::size_t",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::writes_",
+      "signature": "std::size_t",
+      "kind": "symbol",
+      "offset": 577
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::closing_ bool",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::closing_",
+      "signature": "bool",
+      "kind": "symbol",
+      "offset": 595
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::done_ bool",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::done_",
+      "signature": "bool",
+      "kind": "symbol",
+      "offset": 607
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp#workshop::Executor::thread_ std::thread",
+      "path": "backend/include/workshop/executor.hpp",
+      "name": "workshop::Executor::thread_",
+      "signature": "std::thread",
+      "kind": "symbol",
+      "offset": 630
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::Executor void (const std::string &)",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::Executor",
+      "signature": "void (const std::string &)",
+      "kind": "symbol",
+      "offset": 83
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::started std::promise<void>",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::started",
+      "signature": "std::promise<void>",
+      "kind": "symbol",
+      "offset": 140
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::result future<void>",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::result",
+      "signature": "future<void>",
+      "kind": "symbol",
+      "offset": 156
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::operator() void ()",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::operator()",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 211
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::store Store",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::store",
+      "signature": "Store",
+      "kind": "symbol",
+      "offset": 288
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::job Job",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::job",
+      "signature": "Job",
+      "kind": "symbol",
+      "offset": 357
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::lock std::unique_lock<mutex>",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::lock",
+      "signature": "std::unique_lock<mutex>",
+      "kind": "symbol",
+      "offset": 399
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::operator() auto () const -> bool",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::operator()",
+      "signature": "auto () const -> bool",
+      "kind": "symbol",
+      "offset": 440
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:15:28) void () noexcept",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:15:28)",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 440
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::entry typename std::remove_reference<pair<bool, function<void (Store &)>> &>::type",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::entry",
+      "signature": "typename std::remove_reference<pair<bool, function<void (Store &)>> &>::type",
+      "kind": "symbol",
+      "offset": 565
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::lock std::lock_guard<mutex>",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::lock",
+      "signature": "std::lock_guard<mutex>",
+      "kind": "symbol",
+      "offset": 1090
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) &)",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25)",
+      "signature": "void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) &)",
+      "kind": "symbol",
+      "offset": 211
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) &&) noexcept(false)",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25)",
+      "signature": "void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) &&) noexcept(false)",
+      "kind": "symbol",
+      "offset": 211
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::operator= (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) &(const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) &)",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::operator=",
+      "signature": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) &(const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) &)",
+      "kind": "symbol",
+      "offset": 211
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25) void () noexcept",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:7:25)",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 211
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::~Executor void () noexcept",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::~Executor",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 1255
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::submit bool (bool, Job)",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::submit",
+      "signature": "bool (bool, Job)",
+      "kind": "symbol",
+      "offset": 1391
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::drain bool (std::chrono::seconds)",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::drain",
+      "signature": "bool (std::chrono::seconds)",
+      "kind": "symbol",
+      "offset": 1688
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45) void () noexcept",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45)",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 1845
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45) void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45) &)",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45)",
+      "signature": "void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45) &)",
+      "kind": "symbol",
+      "offset": 1845
+    },
+    {
+      "id": "backend/src/executor.cpp#workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45) void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45) &&) noexcept",
+      "path": "backend/src/executor.cpp",
+      "name": "workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45)",
+      "signature": "void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/executor.cpp:69:45) &&) noexcept",
+      "kind": "symbol",
+      "offset": 1845
+    }
+  ],
+  "edges": [
+    {
+      "from": "backend/include/workshop/executor.hpp",
+      "to": "backend/include/workshop/store.hpp",
+      "kind": "include-source-directive"
+    },
+    {
+      "from": "backend/include/workshop/store.hpp",
+      "to": "backend/include/workshop/model.hpp",
+      "kind": "include-source-directive"
+    },
+    {
+      "from": "backend/src/executor.cpp#workshop::~Executor void () noexcept",
+      "to": "backend/include/workshop/executor.hpp#workshop::Executor::drain bool (std::chrono::seconds)",
+      "kind": "resolved-declaration-call",
+      "offset": 1276
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:algorithm"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:map"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:mutex"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:string"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:condition_variable"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:deque"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:future"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:mutex"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:thread"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:compare"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:cstdint"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:json/json.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:stdexcept"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:string"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:string_view"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:vector"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:functional"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:optional"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:sqlite3.h"
+    },
+    {
+      "code": "CONDITIONAL_SCOPE_TARGET_SPECIFIC",
+      "detail": "backend/include/workshop/store.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/executor.cpp:workshop/executor.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/executor.cpp:cstdlib"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:workshop/admission.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:workshop/executor.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:atomic"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:cerrno"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:csignal"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:drogon/drogon.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:fstream"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:iostream"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:iterator"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:map"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:pthread.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:workshop/model.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:algorithm"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:charconv"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:cmark.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:limits"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:memory"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:regex"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:workshop/store.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:deque"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:filesystem"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:limits"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:memory"
+    },
+    {
+      "code": "CONDITIONAL_SCOPE_TARGET_SPECIFIC",
+      "detail": "backend/src/store.cpp"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::result future<void>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() auto () const -> bool"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::entry typename std::remove_reference<pair<bool, function<void (Store &)>> &>::type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::entry typename std::remove_reference<pair<bool, function<void (Store &)>> &>::type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() void ()"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::operator() auto () const -> bool"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::entry typename std::remove_reference<pair<bool, function<void (Store &)>> &>::type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::entry typename std::remove_reference<pair<bool, function<void (Store &)>> &>::type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::Executor void (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::~Executor void () noexcept"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::~Executor void () noexcept"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::~Executor void () noexcept"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::submit bool (bool, Job)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::submit bool (bool, Job)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::submit bool (bool, Job)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::submit bool (bool, Job)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::drain bool (std::chrono::seconds)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/executor.cpp#workshop::drain bool (std::chrono::seconds)"
+    }
+  ],
+  "limits": [
+    "One translation unit and compile target; include directives are not proof of active preprocessing.",
+    "Resolved declaration calls do not prove virtual/callback runtime dispatch; external headers remain outside this local graph."
+  ],
+  "completeness": "INCOMPLETE",
+  "verification": "STRUCTURE_ONLY_SEMANTIC_REVIEW_REQUIRED",
+  "digest": "8a63a2eda79df49730c0482acd883140f3051abef1e73078785b3881328db436"
+}

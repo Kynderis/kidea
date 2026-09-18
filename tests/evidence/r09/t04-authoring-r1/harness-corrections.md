@@ -1,0 +1,3 @@
+The first offline policy run failed because its historical ASan fixture has796 assertions and was compared against the expanded856 requirement. The historical-label test now explicitly covers its original46cases, and a new negative test requires that same old fixture to FAIL the complete856 closure. Runtime collectors still require all856, with all original796entries unchanged. No sanitizer classification/exception was changed.
+
+Initial Web command did not start: bundled Node bin has no npm executable. Use existing /usr/local/bin/npm with the installed Node24 bin prepended for this process only; no installation or host configuration change. Browser evidence variable is WORKSHOP_BROWSER_OUT.

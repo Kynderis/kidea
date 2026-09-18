@@ -1,0 +1,58 @@
+{
+  "operation": "START",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowWorkTransition": true,
+    "ownerId": "W-003-CONTENT",
+    "statement": "Human approved full R09 execution and exact R09-REPLAN-LEGACY-r1 package with Tôi phê duyệt nhé. Record only evidence-backed content reconciliation and scoped backend/Web intermediate progress; preserve unfinished implementation and final acceptance.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/workflow/r09-checkpoint-r1.md",
+      "anchor": "quality"
+    },
+    {
+      "path": "docs/design/quality.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/legacy-provenance-r1.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "5f0bf8996d754c7abe39778b0146c0ca4268f506de5ba71f9f03684112e4b9bb",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedGit": {
+    "head": "c88c14fc17145899b3345fec30d0eae22f5b4873",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "expectedOwnerId": "W-003-CONTENT",
+  "transition": {
+    "conditionsMet": true,
+    "reason": "Accepted inherited input content and scope are bound by the Human-approved package; semantic boundaries retain all runtime and future obligations.",
+    "nextAction": "Record existing accepted content without claiming tests ran.",
+    "evidenceRefs": [
+      {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "quality"
+      },
+      {
+        "path": "docs/design/quality.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/legacy-provenance-r1.json",
+        "anchor": null
+      }
+    ]
+  }
+}

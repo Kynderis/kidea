@@ -1,0 +1,27 @@
+✔ intro is prerendered readable HTML with noindex and fixed canonical (9.094809ms)
+✔ SSR list escapes title and strips all private fields (53.035694ms)
+✔ SSR detail retains public schedule and identity link (13.097557ms)
+✔ hidden and missing are generic without private body (11.389064ms)
+✔ concurrent actor cookies never forwarded into public SSR (11.385729ms)
+✔ bad backend invalid is unavailable, not empty success (5.811042ms)
+✔ bad backend malformed is unavailable, not empty success (5.794844ms)
+✔ private SSR isolates simultaneous actors and never embeds credentials (18.113536ms)
+✔ private SSR denies missing or invalid session  (3.755585ms)
+✔ private SSR denies missing or invalid session workshop_session=REVOKED (5.641098ms)
+✔ private SSR rejects wrong actor group (7.985569ms)
+✔ Chrome public SSR navigation 360 zoom 1 (653.628764ms)
+✔ Chrome public SSR navigation 1280 zoom 1 (428.854973ms)
+✔ Chrome public SSR navigation 360 zoom 2 (534.897928ms)
+✔ Chrome public SSR navigation 1280 zoom 2 (526.711329ms)
+✔ Chrome lost mutation response reload GET reconciliation and exact cancel (1241.807275ms)
+✔ Chrome restored private page revalidates changed session before revealing history (464.150261ms)
+✔ Chrome JS disabled list and detail readable (407.131306ms)
+{"serverStdout":"Listening on http://127.0.0.1:64496\n","serverStderr":"\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n","scope":"Built Web + local fake API contract; not backend integration or product acceptance"}
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16838.284483

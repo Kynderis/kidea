@@ -1,0 +1,125 @@
+void quota() {
+  if (selected == "Q01") {
+    Fixture f;
+    const auto w1 = f.create(), w2 = f.create(), w3 = f.create(),
+               w4 = f.create(1);
+    const auto first = f.reg("U", w1, "one");
+    check(first.body["code"] == "REGISTERED", "zero-active-accepts");
+    check(f.reg("U", w2, "two").body["code"] == "REGISTERED",
+          "one-active-accepts");
+    auto before = f.events();
+    const auto limited = f.reg("U", w3, "limited");
+    check(limited.body["code"] == "LIMIT_REACHED" &&
+              limited.body["effect"] == "REJECTED",
+          "two-active-rejects");
+    check(f.active() == 2 && f.events() == before,
+          "quota-reject-no-domain-event");
+    check(f.reg("U", w1, "duplicate").body["code"] == "ALREADY_REGISTERED",
+          "duplicate-before-quota");
+    check(f.reg("V", w4, "other-actor").body["code"] == "REGISTERED",
+          "quota-is-per-actor");
+    check(f.reg("U", w4, "quota-full").body["code"] == "LIMIT_REACHED",
+          "quota-before-full");
+    f.admin("STATE", w3, "PAUSED");
+    check(f.reg("U", w3, "paused-quota").body["code"] == "PAUSED",
+          "paused-before-quota");
+    f.admin("STATE", w3, "OPEN");
+    const auto rid = first.body["registrationId"].asString();
+    check(f.reg("U", w1, "cancel", rid).body["code"] == "CANCELLED",
+          "cancel-releases-quota");
+    check(f.reg("U", w3, "limited").body == limited.body,
+          "old-rejection-immutable-after-cancel");
+    check(f.reg("U", w3, "fresh").body["code"] == "REGISTERED",
+          "cancelled-excluded-fresh-intent-accepts");
+    before = f.events();
+    check(f.reg("U", w1, "cancel-again", rid).body["code"] == "ALREADY_CANCELLED",
+          "repeat-cancel-no-extra-quota");
+    check(f.reg("U", w1, "still-limited").body["code"] == "LIMIT_REACHED",
+          "repeat-cancel-does-not-free-active");
+    check(f.active() == 3 && f.events() == before,
+          "repeat-cancel-and-limit-no-event");
+  } else if (selected == "Q02") {
+    Fixture f;
+    const auto a = f.create(), b = f.create(), c = f.create(), d = f.create();
+    unsigned n = 0;
+    for (const auto &w : {a, b, c}) {
+      f.sql("INSERT INTO registrations VALUES('legacy" + std::to_string(++n) +
+            "','U','" + w + "','ACTIVE')");
+    }
+    auto before = f.events();
+    check(f.reg("U", d, "legacy-limit").body["code"] == "LIMIT_REACHED",
+          "legacy-over-limit-blocks-new");
+    check(f.active() == 3 && f.events() == before,
+          "legacy-rows-retained-no-event");
+    check(f.reg("U", a, "legacy-duplicate").body["code"] == "ALREADY_REGISTERED",
+          "legacy-duplicate-keeps-original");
+    check(f.reg("U", a, "cancel-one", "legacy1").body["code"] == "CANCELLED",
+          "legacy-first-cancel-allowed");
+    check(f.reg("U", d, "at-two").body["code"] == "LIMIT_REACHED",
+          "legacy-at-two-still-blocked");
+    check(f.reg("U", b, "cancel-two", "legacy2").body["code"] == "CANCELLED",
+          "legacy-second-cancel-allowed");
+    check(f.reg("U", d, "below-two").body["code"] == "REGISTERED",
+          "legacy-below-two-accepts");
+    check(f.count("SELECT count(*) FROM registrations") == 4 && f.active() == 2,
+          "legacy-history-not-deleted");
+  } else if (selected == "Q03") {
+    for (bool cancelFirst : {false, true}) {
+      Fixture f;
+      const auto a = f.create(), b = f.create(), c = f.create();
+      const auto rid = f.reg("U", a).body["registrationId"].asString();
+      f.reg("U", b);
+      const auto before = f.events();
+      workshop::Response add{}, cancel{};
+      if (cancelFirst) {
+        cancel = f.reg("U", a, "cancel", rid);
+        add = f.reg("U", c, "add");
+      } else {
+        add = f.reg("U", c, "add");
+        cancel = f.reg("U", a, "cancel", rid);
+      }
+      const std::string suffix = cancelFirst ? "cancel-first" : "register-first";
+      check(cancel.body["code"] == "CANCELLED", "cancel-order-" + suffix);
+      check(add.body["code"] == (cancelFirst ? "REGISTERED" : "LIMIT_REACHED"),
+            "registration-order-" + suffix);
+      check(f.active() == (cancelFirst ? 2 : 1) &&
+                f.events() == before + (cancelFirst ? 2 : 1),
+            "counts-events-order-" + suffix);
+      check(f.reg("U", c, "add").body == add.body,
+            "retry-preserves-order-" + suffix);
+    }
+  } else if (selected == "Q04") {
+    for (unsigned round = 0; round < 10; ++round) {
+      Fixture f;
+      const auto a = f.create(), b = f.create(), c = f.create();
+      f.reg("U", a);
+      const auto before = f.events();
+      std::barrier gate(3);
+      workshop::Response x{}, y{};
+      const auto run = [&](const std::string &wid, const std::string &request,
+                           workshop::Response &response) {
+        workshop::Store other(f.file);
+        auto input = f.base();
+        input["requestId"] = request;
+        input["workshopId"] = wid;
+        gate.arrive_and_wait();
+        response = other.handle("POST", "/registrations", "FAKE-U", "FAKE-CSRF-U",
+                                "https://workshop.test", input, 1800000000);
+      };
+      std::thread one(run, b, "concurrent-b", std::ref(x));
+      std::thread two(run, c, "concurrent-c", std::ref(y));
+      gate.arrive_and_wait();
+      one.join();
+      two.join();
+      const auto suffix = std::to_string(round);
+      check((x.body["code"] == "REGISTERED" && y.body["code"] == "LIMIT_REACHED") ||
+                (y.body["code"] == "REGISTERED" && x.body["code"] == "LIMIT_REACHED"),
+            "cross-workshop-one-winner-" + suffix);
+      check(f.active() == 2 && f.events() == before + 1,
+            "cross-workshop-atomic-count-event-" + suffix);
+      check(f.reg("U", b, "concurrent-b").body == x.body &&
+                f.reg("U", c, "concurrent-c").body == y.body,
+            "cross-workshop-retry-both-results-" + suffix);
+    }
+  }
+}

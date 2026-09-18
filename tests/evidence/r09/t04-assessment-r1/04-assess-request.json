@@ -1,0 +1,100 @@
+{
+  "operation": "ASSESS",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowImpactWrite": true,
+    "roundId": "ROUND-001",
+    "ownerId": "impact-8df8104c3f943afb7b262c0d",
+    "statement": "Human approved T04 rule D and continuous R09 implementation/testing. Record evidence-based impact conclusions only; do not approve output or close the impact.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/t04/report-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/index.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/backend.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/https.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/mutations.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/query-plan.txt",
+      "anchor": null
+    },
+    {
+      "path": "docs/architecture/traceability.md",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "7781dfbcec9fbafff6c2a8322d34908c1d8499da644358162b8c3e9a78f606a7",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedRoundId": "ROUND-001",
+  "expectedOwnerId": "impact-8df8104c3f943afb7b262c0d",
+  "expectedGit": {
+    "head": "de26fb6e646e57891464fc86a3058e635af336bf",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "assessment": {
+    "nodeId": "T04-UX",
+    "verdict": "NEEDS_CHANGE",
+    "reason": "The Web must distinguish a final quota rejection from an unknown transport outcome without assuming history is current quota.",
+    "behavior": "REGISTER LIMIT_REACHED/REJECTED is decoded and described as historical; CANCEL cannot use this code. Old rejected intent stays rejected after cancellation; a new intent can succeed.",
+    "verification": "34 unit and 18 Mac Chrome SSR checks plus actual HTTPS quota rejection/cancellation/fresh request; old lost-response/no-replay/actor isolation checks remain. The browser screenshot is reviewed separately.",
+    "inputBasis": "de60739b35a3019870c58bb523f20638fe3d731dc58a7ab6dfbbba8483dae3b4",
+    "assumptions": "Single local Intel pilot, fixed source and fake data. Scoped T04 change only; performance, independent recovery, full-product G2, release and R09 Human acceptance remain pending.",
+    "evidenceRefs": [
+      {
+        "path": "docs/t04/report-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/index.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/backend.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/https.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/mutations.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/query-plan.txt",
+        "anchor": null
+      },
+      {
+        "path": "docs/architecture/traceability.md",
+        "anchor": null
+      }
+    ],
+    "downstream": [
+      "T04-TESTS"
+    ],
+    "resolved": true
+  }
+}

@@ -1,0 +1,1182 @@
+#include "workshop/admission.hpp"
+#include "workshop/executor.hpp"
+#include "workshop/store.hpp"
+#include <atomic>
+#include <barrier>
+#include <cstdlib>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <iterator>
+#include <sys/wait.h>
+#include <thread>
+#include <unistd.h>
+using JsonValue = workshop::Json;
+namespace {
+std::string selected;
+unsigned assertions{};
+void check(bool value, const std::string &variant) {
+  JsonValue j;
+  j["caseId"] = selected;
+  j["sequence"] = assertions;
+  j["variant"] = variant;
+  j["status"] = value ? "PASS" : "FAIL";
+  std::cout << workshop::dump(j) << '\n' << std::flush;
+  if (!value)
+    throw std::runtime_error(variant);
+  ++assertions;
+}
+std::string load(const std::string &path) {
+  std::ifstream f(path);
+  if (!f)
+    throw std::runtime_error("fixture input missing");
+  return {std::istreambuf_iterator<char>(f), {}};
+}
+JsonValue valid() {
+  return workshop::decode(
+      R"({"title":"Lớp học thủ công","description":"Buổi thực hành","capacity":10,"schedule":{"start":"2026-10-01T09:00:00+07:00","end":"2026-10-01T10:00:00+07:00"}})");
+}
+struct Fixture {
+  std::string file;
+  std::unique_ptr<workshop::Store> store;
+  unsigned sequence{};
+  Fixture() {
+    static std::atomic<unsigned> counter{};
+    const char *output = std::getenv("WORKSHOP_CASE_ROOT");
+    if (!output)
+      throw std::runtime_error("explicit case evidence root required");
+    const auto dir = std::filesystem::path(output) /
+                     (selected + "-" + std::to_string(getpid()) + "-" +
+                      std::to_string(counter++));
+    if (!std::filesystem::create_directories(dir))
+      throw std::runtime_error("CREATE_ONLY");
+    file = (dir / "db.sqlite").string();
+    JsonValue seed;
+    seed["epoch"] = "epoch-test";
+    seed["origin"] = "https://workshop.test";
+    seed["sessions"] = JsonValue(::Json::arrayValue);
+    for (const std::string who : {"U", "V", "A", "M"}) {
+      JsonValue s;
+      s["actor"] = who;
+      s["token"] = "FAKE-" + who;
+      s["csrf"] = "FAKE-CSRF-" + who;
+      s["participant"] = who != "A";
+      s["admin"] = who == "A" || who == "M";
+      s["expires"] = ::Json::Int64(4102444800);
+      seed["sessions"].append(s);
+    }
+    workshop::Store::initialize(file, load(WORKSHOP_SCHEMA), seed);
+    store = std::make_unique<workshop::Store>(file);
+  }
+  workshop::Response call(const std::string &who, const std::string &route,
+                          const JsonValue &j = JsonValue{},
+                          const std::string &method = "POST") {
+    const auto beforeActive = active(), beforeEvents = events();
+    auto result = store->handle(method, route, who == "G" ? "" : "FAKE-" + who,
+                                "FAKE-CSRF-" + who, "https://workshop.test", j,
+                                1800000000);
+    JsonValue observation;
+    observation["caseId"] = selected;
+    observation["method"] = method;
+    observation["route"] = route;
+    observation["fakeActor"] = who;
+    observation["request"] = j;
+    observation["status"] = result.status;
+    observation["result"] = result.body;
+    observation["beforeActive"] = static_cast<::Json::Int64>(beforeActive);
+    observation["afterActive"] = static_cast<::Json::Int64>(active());
+    observation["beforeOutbox"] = static_cast<::Json::Int64>(beforeEvents);
+    observation["afterOutbox"] = static_cast<::Json::Int64>(events());
+    std::ofstream log(std::filesystem::path(file).parent_path() /
+                          "observations.jsonl",
+                      std::ios::app);
+    log << workshop::dump(observation) << '\n';
+    if (!log)
+      throw std::runtime_error("evidence write");
+    return result;
+  }
+  JsonValue base() {
+    JsonValue j;
+    j["epoch"] = "epoch-test";
+    return j;
+  }
+  workshop::Response admin(const std::string &action, const std::string &wid,
+                           const JsonValue &value,
+                           const std::string &request = "") {
+    auto j = base();
+    j["intentId"] =
+        request.empty() ? "admin-" + std::to_string(++sequence) : request;
+    j["action"] = action;
+    if (action != "CREATE")
+      j["workshopId"] = wid;
+    if (action == "STATE")
+      j["targetState"] = value;
+    else
+      j["fields"] = value;
+    return call("A", "/admin/intents", j);
+  }
+  std::string create(int capacity = 10, const std::string &state = "OPEN") {
+    auto f = valid();
+    f["capacity"] = capacity;
+    auto r = admin("CREATE", "", f);
+    if (r.body["code"] != "CREATED")
+      throw std::runtime_error("create failed");
+    const auto wid = r.body["workshopId"].asString();
+    if (state != "DRAFT") {
+      admin("STATE", wid, "OPEN");
+      if (state == "PAUSED")
+        admin("STATE", wid, "PAUSED");
+    }
+    return wid;
+  }
+  workshop::Response reg(const std::string &who, const std::string &wid,
+                         const std::string &request = "",
+                         const std::string &rid = "") {
+    auto j = base();
+    j["requestId"] =
+        request.empty() ? "request-" + std::to_string(++sequence) : request;
+    j["workshopId"] = wid;
+    return call(who,
+                rid.empty() ? "/registrations"
+                            : "/registrations/" + rid + "/cancel",
+                j);
+  }
+  std::int64_t count(const std::string &sql) {
+    sqlite3 *db{};
+    if (sqlite3_open_v2(file.c_str(), &db, SQLITE_OPEN_READONLY, nullptr) !=
+        SQLITE_OK)
+      throw std::runtime_error("oracle open");
+    sqlite3_stmt *q{};
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &q, nullptr) != SQLITE_OK ||
+        sqlite3_step(q) != SQLITE_ROW)
+      throw std::runtime_error("oracle query");
+    auto result = sqlite3_column_int64(q, 0);
+    sqlite3_finalize(q);
+    sqlite3_close(db);
+    return result;
+  }
+  void sql(const std::string &sql) {
+    sqlite3 *db{};
+    if (sqlite3_open(file.c_str(), &db) != SQLITE_OK)
+      throw std::runtime_error("fixture open");
+    const int r = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, nullptr);
+    sqlite3_close(db);
+    if (r != SQLITE_OK)
+      throw std::runtime_error("fixture setup");
+  }
+  std::int64_t active() {
+    return count("SELECT count(*) FROM registrations WHERE state='ACTIVE'");
+  }
+  std::int64_t events() { return count("SELECT count(*) FROM outbox"); }
+  void code(const workshop::Response &r, const std::string &expected,
+            const std::string &variant) {
+    check(r.status == 200 && r.body["state"] == "FINAL" &&
+              r.body["code"] == expected,
+          variant);
+  }
+};
+void permission() {
+  if (selected == "P04")
+    for (const std::string state : {"OPEN", "PAUSED"}) {
+      Fixture f;
+      auto w = f.create();
+      auto rid = f.reg("U", w).body["registrationId"].asString();
+      if (state == "PAUSED")
+        f.admin("STATE", w, "PAUSED");
+      check(f.reg("V", w, "one", rid).body ==
+                f.reg("V", w, "two", "missing").body,
+            "cancel-hidden-equals-missing-" + state);
+    }
+  if (selected == "P02")
+    for (const std::string who : {"G", "U", "V", "A", "M"})
+      for (const std::string action : {"CREATE", "EDIT"}) {
+        Fixture f;
+        auto w = f.create();
+        auto j = f.base();
+        j["intentId"] = "role";
+        j["action"] = action;
+        j["fields"] = valid();
+        if (action == "EDIT")
+          j["workshopId"] = w;
+        const auto result = f.call(who, "/admin/intents", j);
+        check(result.status == ((who == "A" || who == "M") ? 200
+                                : who == "G"               ? 401
+                                                           : 404),
+              std::string("admin-role-").append(who).append(action));
+      }
+  if (selected == "P01" || selected == "P04") {
+    for (const std::string state : {"DRAFT", "OPEN", "PAUSED"})
+      for (const std::string who : {"G", "U", "A"}) {
+        Fixture f;
+        auto w = f.create(10, state);
+        auto r = f.call(who, "/workshops/" + w, {}, "GET");
+        check(r.status == (state == "DRAFT" ? 404 : 200),
+              std::string(state).append("-").append(who));
+        if (state == "DRAFT")
+          check(r.body == f.call(who, "/workshops/missing", {}, "GET").body,
+                "hidden-equals-missing-" + who);
+        check(f.call(who, "/admin/workshops/" + w, {}, "GET").status ==
+                  (who == "A"   ? 200
+                   : who == "G" ? 401
+                                : 404),
+              std::string("admin-scope-").append(state).append(who));
+      }
+  } else if (selected == "P02" || selected == "P03") {
+    for (const std::string who : {"G", "U", "V", "A", "M"}) {
+      Fixture f;
+      auto w = f.create();
+      auto r = f.reg(who, w);
+      check(r.status == (who == "G"   ? 401
+                         : who == "A" ? 404
+                                      : 200),
+            "register-" + who);
+      auto j = f.base();
+      j["intentId"] = "x";
+      j["action"] = "STATE";
+      j["workshopId"] = w;
+      j["targetState"] = "PAUSED";
+      check(f.call(who, "/admin/intents", j).status ==
+                ((who == "A" || who == "M") ? 200
+                 : who == "G"               ? 401
+                                            : 404),
+            "admin-" + who);
+      j["role"] = "admin";
+      check(f.call("U", "/admin/intents", j).status != 200,
+            "forged-role-" + who);
+    }
+    for (const std::string state : {"OPEN", "PAUSED"}) {
+      Fixture f;
+      auto w = f.create();
+      auto rid = f.reg("U", w).body["registrationId"].asString();
+      if (state == "PAUSED")
+        f.admin("STATE", w, "PAUSED");
+      auto wrong = f.reg("V", w, "x", rid),
+           missing = f.reg("V", w, "y", "missing");
+      check(wrong.status == 404 && wrong.body == missing.body,
+            "ownership-" + state);
+      check(f.reg("A", w, "z", rid).status == 404,
+            "admin-cannot-cancel-" + state);
+    }
+  } else if (selected == "P05") {
+    Fixture f;
+    auto w1 = f.create(), w2 = f.create(), draft = f.create(10, "DRAFT");
+    static_cast<void>(draft);
+    auto rows = f.call("G", "/workshops", {}, "GET").body;
+    check(rows.size() == 2 && rows[0]["id"].asString() == std::min(w1, w2),
+          "stable-id-tie");
+    JsonValue patch;
+    patch["schedule"] = valid()["schedule"];
+    patch["schedule"]["start"] = "2020-01-01T00:00:00Z";
+    patch["schedule"]["end"] = "2020-01-01T01:00:00Z";
+    f.admin("EDIT", w2, patch);
+    check(f.call("G", "/workshops", {}, "GET").body[0]["id"] == w2,
+          "past-still-listed-first");
+  } else if (selected == "P06") {
+    Fixture f;
+    auto w = f.create();
+    auto a = f.reg("U", w).body["registrationId"].asString();
+    f.reg("U", w, "cancel", a);
+    auto b = f.reg("U", w).body["registrationId"].asString();
+    auto history = f.call("U", "/me/registrations", {}, "GET").body;
+    check(history.size() == 1 && history[0]["registrations"].size() == 2 &&
+              a != b,
+          "history-keeps-two-identities");
+    check(f.call("V", "/me/registrations", {}, "GET").body.empty(),
+          "no-other-history");
+    check(f.call("A", "/me/registrations", {}, "GET").status == 404,
+          "no-admin-history");
+  } else if (selected == "P07") {
+    for (const std::string before : {"DRAFT", "OPEN", "PAUSED"})
+      for (const std::string target : {"DRAFT", "OPEN", "PAUSED", "other"}) {
+        Fixture f;
+        auto w = f.create(10, before);
+        auto n = f.events();
+        auto r = f.admin("STATE", w, target);
+        const bool allowed = (before == "DRAFT" && target == "OPEN") ||
+                             (before == "OPEN" && target == "PAUSED") ||
+                             (before == "PAUSED" && target == "OPEN");
+        f.code(r,
+               before == target ? "UNCHANGED"
+               : allowed        ? "UPDATED"
+                                : "STATE_REJECTED",
+               std::string(before).append("-").append(target));
+        check(f.events() == n + (allowed ? 1 : 0),
+              std::string("event-").append(before).append(target));
+      }
+  } else if (selected == "P08") {
+    for (const std::string state : {"DRAFT", "OPEN", "PAUSED"}) {
+      Fixture f;
+      auto w = f.create(10, state);
+      auto before = f.call("A", "/admin/workshops/" + w, {}, "GET").body;
+      auto after = f.store
+                       ->handle("GET", "/admin/workshops/" + w, "FAKE-A", "",
+                                "", {}, 2000000000)
+                       .body;
+      before.removeMember("observedAt");
+      after.removeMember("observedAt");
+      check(before == after, "no-clock-transition-" + state);
+    }
+  }
+}
+void quota() {
+  if (selected == "Q01") {
+    Fixture f;
+    const auto w1 = f.create(), w2 = f.create(), w3 = f.create(),
+               w4 = f.create(1);
+    const auto first = f.reg("U", w1, "one");
+    check(first.body["code"] == "REGISTERED", "zero-active-accepts");
+    check(f.reg("U", w2, "two").body["code"] == "REGISTERED",
+          "one-active-accepts");
+    auto before = f.events();
+    const auto limited = f.reg("U", w3, "limited");
+    check(limited.body["code"] == "LIMIT_REACHED" &&
+              limited.body["effect"] == "REJECTED",
+          "two-active-rejects");
+    check(f.active() == 2 && f.events() == before,
+          "quota-reject-no-domain-event");
+    check(f.reg("U", w1, "duplicate").body["code"] == "ALREADY_REGISTERED",
+          "duplicate-before-quota");
+    check(f.reg("V", w4, "other-actor").body["code"] == "REGISTERED",
+          "quota-is-per-actor");
+    check(f.reg("U", w4, "quota-full").body["code"] == "LIMIT_REACHED",
+          "quota-before-full");
+    f.admin("STATE", w3, "PAUSED");
+    check(f.reg("U", w3, "paused-quota").body["code"] == "PAUSED",
+          "paused-before-quota");
+    f.admin("STATE", w3, "OPEN");
+    const auto rid = first.body["registrationId"].asString();
+    check(f.reg("U", w1, "cancel", rid).body["code"] == "CANCELLED",
+          "cancel-releases-quota");
+    check(f.reg("U", w3, "limited").body == limited.body,
+          "old-rejection-immutable-after-cancel");
+    check(f.reg("U", w3, "fresh").body["code"] == "REGISTERED",
+          "cancelled-excluded-fresh-intent-accepts");
+    before = f.events();
+    check(f.reg("U", w1, "cancel-again", rid).body["code"] == "ALREADY_CANCELLED",
+          "repeat-cancel-no-extra-quota");
+    check(f.reg("U", w1, "still-limited").body["code"] == "LIMIT_REACHED",
+          "repeat-cancel-does-not-free-active");
+    check(f.active() == 3 && f.events() == before,
+          "repeat-cancel-and-limit-no-event");
+  } else if (selected == "Q02") {
+    Fixture f;
+    const auto a = f.create(), b = f.create(), c = f.create(), d = f.create();
+    unsigned n = 0;
+    for (const auto &w : {a, b, c}) {
+      f.sql("INSERT INTO registrations VALUES('legacy" + std::to_string(++n) +
+            "','U','" + w + "','ACTIVE')");
+    }
+    auto before = f.events();
+    check(f.reg("U", d, "legacy-limit").body["code"] == "LIMIT_REACHED",
+          "legacy-over-limit-blocks-new");
+    check(f.active() == 3 && f.events() == before,
+          "legacy-rows-retained-no-event");
+    check(f.reg("U", a, "legacy-duplicate").body["code"] == "ALREADY_REGISTERED",
+          "legacy-duplicate-keeps-original");
+    check(f.reg("U", a, "cancel-one", "legacy1").body["code"] == "CANCELLED",
+          "legacy-first-cancel-allowed");
+    check(f.reg("U", d, "at-two").body["code"] == "LIMIT_REACHED",
+          "legacy-at-two-still-blocked");
+    check(f.reg("U", b, "cancel-two", "legacy2").body["code"] == "CANCELLED",
+          "legacy-second-cancel-allowed");
+    check(f.reg("U", d, "below-two").body["code"] == "REGISTERED",
+          "legacy-below-two-accepts");
+    check(f.count("SELECT count(*) FROM registrations") == 4 && f.active() == 2,
+          "legacy-history-not-deleted");
+  } else if (selected == "Q03") {
+    for (bool cancelFirst : {false, true}) {
+      Fixture f;
+      const auto a = f.create(), b = f.create(), c = f.create();
+      const auto rid = f.reg("U", a).body["registrationId"].asString();
+      f.reg("U", b);
+      const auto before = f.events();
+      workshop::Response add{}, cancel{};
+      if (cancelFirst) {
+        cancel = f.reg("U", a, "cancel", rid);
+        add = f.reg("U", c, "add");
+      } else {
+        add = f.reg("U", c, "add");
+        cancel = f.reg("U", a, "cancel", rid);
+      }
+      const std::string suffix = cancelFirst ? "cancel-first" : "register-first";
+      check(cancel.body["code"] == "CANCELLED", "cancel-order-" + suffix);
+      check(add.body["code"] == (cancelFirst ? "REGISTERED" : "LIMIT_REACHED"),
+            "registration-order-" + suffix);
+      check(f.active() == (cancelFirst ? 2 : 1) &&
+                f.events() == before + (cancelFirst ? 2 : 1),
+            "counts-events-order-" + suffix);
+      check(f.reg("U", c, "add").body == add.body,
+            "retry-preserves-order-" + suffix);
+    }
+  } else if (selected == "Q04") {
+    for (unsigned round = 0; round < 10; ++round) {
+      Fixture f;
+      const auto a = f.create(), b = f.create(), c = f.create();
+      f.reg("U", a);
+      const auto before = f.events();
+      std::barrier gate(3);
+      workshop::Response x{}, y{};
+      const auto run = [&](const std::string &wid, const std::string &request,
+                           workshop::Response &response) {
+        workshop::Store other(f.file);
+        auto input = f.base();
+        input["requestId"] = request;
+        input["workshopId"] = wid;
+        gate.arrive_and_wait();
+        response = other.handle("POST", "/registrations", "FAKE-U", "FAKE-CSRF-U",
+                                "https://workshop.test", input, 1800000000);
+      };
+      std::thread one(run, b, "concurrent-b", std::ref(x));
+      std::thread two(run, c, "concurrent-c", std::ref(y));
+      gate.arrive_and_wait();
+      one.join();
+      two.join();
+      const auto suffix = std::to_string(round);
+      check((x.body["code"] == "REGISTERED" && y.body["code"] == "LIMIT_REACHED") ||
+                (y.body["code"] == "REGISTERED" && x.body["code"] == "LIMIT_REACHED"),
+            "cross-workshop-one-winner-" + suffix);
+      check(f.active() == 2 && f.events() == before + 1,
+            "cross-workshop-atomic-count-event-" + suffix);
+      check(f.reg("U", b, "concurrent-b").body == x.body &&
+                f.reg("U", c, "concurrent-c").body == y.body,
+            "cross-workshop-retry-both-results-" + suffix);
+    }
+  }
+}
+
+void registration() {
+  if (selected == "R04") {
+    for (int n : {1, 10}) {
+      Fixture f;
+      auto w = f.create(10);
+      auto rid = f.reg("U", w).body["registrationId"].asString();
+      for (int i = 1; i < n; ++i)
+        f.sql("INSERT INTO registrations VALUES('s" + std::to_string(i) +
+              "','s" + std::to_string(i) + "','" + w + "','ACTIVE')");
+      auto before = f.events();
+      f.code(f.reg("U", w, "C", rid), "CANCELLED",
+             "cancel-N" + std::to_string(n));
+      check(f.active() == n - 1 && f.events() == before + 1,
+            "one-slot-released-N" + std::to_string(n));
+    }
+    return;
+  }
+  if (selected == "R01" || selected == "R02") {
+    for (int capacity : {1, 10}) {
+      Fixture f;
+      auto w = f.create(capacity);
+      for (int i = 0; i < capacity - (selected == "R01" ? 1 : 0); ++i) {
+        f.sql("INSERT INTO registrations VALUES('seed" + std::to_string(i) +
+              "','seed" + std::to_string(i) + "','" + w + "','ACTIVE')");
+      }
+      auto n = f.events();
+      f.code(f.reg("U", w), selected == "R01" ? "REGISTERED" : "FULL",
+             "capacity-" + std::to_string(capacity));
+      check(f.active() == capacity &&
+                f.events() == n + (selected == "R01" ? 1 : 0),
+            "count-event-" + std::to_string(capacity));
+    }
+  } else if (selected == "R03") {
+    for (int capacity : {1, 10}) {
+      Fixture f;
+      auto w = f.create(capacity);
+      f.reg("U", w);
+      auto n = f.events();
+      f.code(f.reg("U", w), "ALREADY_REGISTERED",
+             "duplicate-before-full-" + std::to_string(capacity));
+      check(f.active() == 1 && f.events() == n, "no-duplicate-event");
+    }
+  } else if (selected == "R04" || selected == "R05" || selected == "R06") {
+    for (int capacity : {1, 10}) {
+      Fixture f;
+      auto w = f.create(capacity);
+      auto a = f.reg("U", w).body["registrationId"].asString();
+      f.code(f.reg("U", w, "cancel-a", a), "CANCELLED", "first-cancel");
+      check(f.active() == 0, "released");
+      if (selected == "R05") {
+        auto b = f.reg("U", w).body["registrationId"].asString();
+        check(a != b, "new-id");
+      }
+      auto n = f.events();
+      for (int i = 0; i < 2; ++i)
+        f.code(f.reg("U", w, "again" + std::to_string(i), a),
+               "ALREADY_CANCELLED", "old-id-" + std::to_string(i));
+      check(f.events() == n && f.active() == (selected == "R05" ? 1 : 0),
+            "old-id-does-not-affect-B");
+    }
+  } else if (selected == "R07") {
+    for (bool active : {false, true})
+      for (bool full : {false, true}) {
+        Fixture f;
+        auto w = f.create(full ? 1 : 10);
+        std::string rid;
+        if (active)
+          rid = f.reg("U", w).body["registrationId"].asString();
+        else if (full)
+          f.reg("V", w);
+        f.admin("STATE", w, "PAUSED");
+        auto n = f.events();
+        f.code(f.reg("U", w), "PAUSED",
+               "new-paused-" + std::to_string(active) + std::to_string(full));
+        if (active)
+          f.code(f.reg("U", w, "cancel", rid), "PAUSED", "cancel-paused");
+        check(f.events() == n, "paused-no-event");
+      }
+    Fixture f;
+    auto w = f.create();
+    auto rid = f.reg("U", w).body["registrationId"].asString();
+    f.reg("U", w, "c", rid);
+    f.admin("STATE", w, "PAUSED");
+    f.code(f.reg("U", w, "again", rid), "PAUSED",
+           "paused-before-already-cancelled");
+  } else if (selected == "R08") {
+    Fixture f;
+    auto w = f.create(10, "DRAFT");
+    check(f.reg("U", w).status == 404, "draft-not-accessible");
+    auto j = f.base();
+    j["requestId"] = "x";
+    j["workshopId"] = w;
+    check(f.call("U", "/registrations//cancel", j).status == 400,
+          "missing-cancel-id");
+    check(f.active() == 0, "unchanged");
+  }
+}
+void retry() {
+  Fixture f;
+  auto w = f.create();
+  if (selected == "I01" || selected == "I09") {
+    if (selected == "I09") {
+      std::barrier gate(3);
+      workshop::Response a{}, b{};
+      JsonValue j = f.base();
+      j["requestId"] = "X";
+      j["workshopId"] = w;
+      auto run = [&](workshop::Response &r) {
+        workshop::Store other(f.file);
+        gate.arrive_and_wait();
+        r = other.handle("POST", "/registrations", "FAKE-U", "FAKE-CSRF-U",
+                         "https://workshop.test", j, 1800000000);
+      };
+      std::thread x(run, std::ref(a)), y(run, std::ref(b));
+      gate.arrive_and_wait();
+      x.join();
+      y.join();
+      const auto settled = f.reg("U", w, "X");
+      for (const auto &observed : {a, b})
+        check((observed.status == 503 && observed.body["state"] == "UNKNOWN") ||
+                  observed.body == settled.body,
+              "initial-same-intent-" + workshop::dump(observed.body));
+      check(settled.body["code"] == "REGISTERED", "same-intent-reconciled");
+    } else {
+      f.store->fault([](std::string_view p) {
+        if (p == "after_commit")
+          throw workshop::StorageError("lost response");
+      });
+      check(f.reg("U", w, "X").body["state"] == "UNKNOWN", "response-lost");
+      f.store->fault({});
+    }
+    auto a = f.reg("U", w, "X"), b = f.reg("U", w, "X");
+    check(a.body == b.body && f.active() == 1, "history-idempotent");
+    check(f.count("SELECT count(*) FROM request_results WHERE "
+                  "namespace='registration'") == 1,
+          "single-result");
+  } else if (selected == "I02" || selected == "I08") {
+    auto rid = f.reg("U", w).body["registrationId"].asString();
+    auto first = f.reg("U", w, "X", rid);
+    if (selected == "I08")
+      f.admin("STATE", w, "PAUSED");
+    check(f.reg("U", w, "X", rid).body == first.body && f.active() == 0,
+          "historical-cancel");
+    f.code(f.reg("U", w, "Y", rid),
+           selected == "I08" ? "PAUSED" : "ALREADY_CANCELLED",
+           "new-intent-current-state");
+  } else if (selected == "I03") {
+    auto rid = f.reg("U", w, "X").body["registrationId"].asString();
+    check(f.reg("U", w, "X", rid).status == 409, "action-conflict");
+    auto other = f.create();
+    check(f.reg("U", other, "X").status == 409, "workshop-conflict");
+    f.reg("U", w, "C", rid);
+    auto second = f.reg("U", w, "B").body["registrationId"].asString();
+    check(f.reg("U", w, "C", second).status == 409, "registration-id-conflict");
+  } else if (selected == "I04") {
+    f.store->fault([](std::string_view p) {
+      if (p == "before_commit")
+        throw workshop::StorageError("injected");
+    });
+    check(f.reg("U", w, "X").body["state"] == "UNKNOWN", "not-final");
+    f.store->fault({});
+    check(f.call("U", "/requests/X", {}, "GET").body["state"] == "UNKNOWN",
+          "missing-not-proof-of-nonexecution");
+    f.code(f.reg("U", w, "X"), "REGISTERED", "same-id-reconcile");
+  } else if (selected == "I05") {
+    for (bool cancel : {false, true})
+      for (bool pause : {false, true}) {
+        Fixture x;
+        auto id = x.create();
+        auto first = x.reg("U", id, "X");
+        if (cancel)
+          x.reg("U", id, "C", first.body["registrationId"].asString());
+        if (pause)
+          x.admin("STATE", id, "PAUSED");
+        const auto n = x.events();
+        check(x.reg("U", id, "X").body == first.body && x.events() == n &&
+                  x.active() == (cancel ? 0 : 1),
+              "history-" + std::to_string(cancel) + std::to_string(pause));
+      }
+  } else if (selected == "I06") {
+    f.reg("U", w, "X");
+    check(f.call("V", "/requests/X", {}, "GET").body["state"] == "UNKNOWN",
+          "no-cross-actor-result");
+    f.code(f.reg("V", w, "X"), "REGISTERED", "same-literal-different-actor");
+    f.sql("UPDATE sessions SET revoked=1 WHERE actor='U'");
+    check(f.call("U", "/requests/X", {}, "GET").status == 401 &&
+              f.reg("U", w, "X").status == 401,
+          "revoked-before-history");
+  } else if (selected == "I07") {
+    auto id = f.create(1);
+    auto rid = f.reg("V", id).body["registrationId"].asString();
+    auto first = f.reg("U", id, "X");
+    f.code(first, "FULL", "original-full");
+    f.reg("V", id, "cancel", rid);
+    check(f.reg("U", id, "X").body == first.body, "full-stays-historical");
+    f.code(f.reg("U", id, "Y"), "REGISTERED", "new-id-new-decision");
+  } else if (selected == "I10") {
+    for (bool rebook : {false, true}) {
+      Fixture x;
+      auto wid = x.create(3);
+      x.reg("V", wid);
+      auto rid = x.reg("U", wid).body["registrationId"].asString();
+      x.store->fault([](std::string_view p) {
+        if (p == "after_commit")
+          throw workshop::StorageError("response");
+      });
+      check(x.reg("U", wid, "Y", rid).body["state"] == "UNKNOWN",
+            "cancel-unknown-" + std::to_string(rebook));
+      x.store->fault({});
+      if (rebook) {
+        auto b = x.reg("U", wid, "B").body["registrationId"].asString();
+        check(b != rid, "distinct-B");
+      }
+      x.code(x.reg("U", wid, "Y", rid), "CANCELLED", "cancel-history");
+      check(x.active() == (rebook ? 2 : 1),
+            "reconcile-keeps-N-" + std::to_string(rebook));
+    }
+  }
+}
+void concurrency() {
+  for (bool reverse : {false, true}) {
+    Fixture f;
+    auto w = f.create(selected == "C01" ? 1 : 10);
+    std::string rid;
+    if (selected == "C02")
+      for (int i = 0; i < 9; ++i)
+        f.sql("INSERT INTO registrations VALUES('s" + std::to_string(i) +
+              "','s" + std::to_string(i) + "','" + w + "','ACTIVE')");
+    if (selected == "C04")
+      rid = f.reg("U", w).body["registrationId"].asString();
+    workshop::Response first{}, second{};
+    const auto a = [&] {
+      return selected == "C04" ? f.reg("U", w, "cancel", rid)
+                               : f.reg("U", w, "X");
+    };
+    const auto b = [&] {
+      if (selected == "C01")
+        return f.reg("V", w, "Y");
+      if (selected == "C05")
+        return f.reg("U", w, "Y");
+      if (selected == "C02") {
+        JsonValue patch;
+        patch["capacity"] = 9;
+        return f.admin("EDIT", w, patch);
+      }
+      return f.admin("STATE", w, "PAUSED");
+    };
+    if (reverse) {
+      second = b();
+      first = a();
+    } else {
+      first = a();
+      second = b();
+    }
+    const auto suffix = reverse ? "reverse" : "forward";
+    if (selected == "C01" || selected == "C05") {
+      check(f.active() == 1, "one-active-" + std::string(suffix));
+      check((reverse ? first : second).body["code"] ==
+                (selected == "C01" ? "FULL" : "ALREADY_REGISTERED"),
+            "loser-" + std::string(suffix));
+    }
+    if (selected == "C02") {
+      check(f.active() == (reverse ? 9 : 10),
+            "capacity-order-" + std::string(suffix));
+      check((reverse ? first : second).body["code"] ==
+                (reverse ? "FULL" : "BELOW_ACTIVE"),
+            "rejected-order-" + std::string(suffix));
+    }
+    if (selected == "C03" || selected == "C04") {
+      check(first.body["code"] == (reverse             ? "PAUSED"
+                                   : selected == "C03" ? "REGISTERED"
+                                                       : "CANCELLED"),
+            "pause-order-" + std::string(suffix));
+      check(f.active() ==
+                (selected == "C03" ? (reverse ? 0 : 1) : (reverse ? 1 : 0)),
+            "pause-count-" + std::string(suffix));
+    }
+  }
+  // A real writer race, distinct from the deterministic order oracles above.
+  Fixture f;
+  auto w = f.create(1);
+  std::barrier barrier(3);
+  workshop::Response a{}, b{};
+  auto run = [&](const std::string &who, workshop::Response &out) {
+    workshop::Store s(f.file);
+    JsonValue j = f.base();
+    j["requestId"] = "race";
+    j["workshopId"] = w;
+    barrier.arrive_and_wait();
+    out = s.handle("POST", "/registrations", "FAKE-" + who, "FAKE-CSRF-" + who,
+                   "https://workshop.test", j, 1800000000);
+  };
+  std::thread one(run, "U", std::ref(a)), two(run, "V", std::ref(b));
+  barrier.arrive_and_wait();
+  one.join();
+  two.join();
+  check(a.status == 200 || (a.status == 503 && a.body["state"] == "UNKNOWN"),
+        "race-initial-U-" + workshop::dump(a.body));
+  check(b.status == 200 || (b.status == 503 && b.body["state"] == "UNKNOWN"),
+        "race-initial-V-" + workshop::dump(b.body));
+  if (a.body["state"] == "UNKNOWN")
+    a = f.reg("U", w, "race");
+  if (b.body["state"] == "UNKNOWN")
+    b = f.reg("V", w, "race");
+  check(f.active() == 1 && ((a.body["code"] == "REGISTERED") !=
+                            (b.body["code"] == "REGISTERED")),
+        "barrier-last-seat-race");
+  check(a.body["code"] == "FULL" || b.body["code"] == "FULL",
+        "race-other-final-full");
+}
+void data() {
+  if (selected == "D01") {
+    for (const std::string raw :
+         {"0", "1", "1000", "1001", "-1", "1.5", "null"}) {
+      Fixture f;
+      auto value = valid();
+      value["capacity"] = workshop::decode("{\"n\":" + raw + "}")["n"];
+      auto r = f.admin("CREATE", "", value);
+      f.code(r, (raw == "1" || raw == "1000") ? "CREATED" : "INVALID_FIELDS",
+             "capacity-" + raw);
+    }
+    Fixture f;
+    auto value = valid();
+    value.removeMember("capacity");
+    f.code(f.admin("CREATE", "", value), "INVALID_FIELDS", "missing-capacity");
+  } else if (selected == "D02") {
+    for (int capacity : {8, 9, 10}) {
+      Fixture f;
+      auto w = f.create();
+      for (int i = 0; i < 9; ++i)
+        f.sql("INSERT INTO registrations VALUES('s" + std::to_string(i) +
+              "','s" + std::to_string(i) + "','" + w + "','ACTIVE')");
+      JsonValue patch;
+      patch["capacity"] = capacity;
+      f.code(f.admin("EDIT", w, patch),
+             capacity == 8   ? "BELOW_ACTIVE"
+             : capacity == 9 ? "UPDATED"
+                             : "UNCHANGED",
+             "capacity-floor-" + std::to_string(capacity));
+      check(f.active() == 9, "no-cancel");
+    }
+  } else if (selected == "D03" || selected == "D04") {
+    const bool title = selected == "D03";
+    const auto key = title ? "title" : "description";
+    const int max = title ? 120 : 5000;
+    for (int n : {0, 1, max, max + 1}) {
+      Fixture f;
+      auto v = valid();
+      v[key] = std::string(static_cast<std::size_t>(n), 'x');
+      f.code(f.admin("CREATE", "", v),
+             (n > 0 && n <= max) ? "CREATED" : "INVALID_FIELDS",
+             "length-" + std::to_string(n));
+    }
+    for (const std::string text : {" \t\r\n", "a\nb", "a\r\nb", "😀"}) {
+      Fixture f;
+      auto v = valid();
+      v[key] = text;
+      f.code(f.admin("CREATE", "", v),
+             text == " \t\r\n" || (title && text.find('\n') != text.npos)
+                 ? "INVALID_FIELDS"
+                 : "CREATED",
+             "text-" + text);
+    }
+    Fixture f;
+    auto v = valid();
+    v.removeMember(key);
+    f.code(f.admin("CREATE", "", v), "INVALID_FIELDS", "missing");
+    v[key] = JsonValue{};
+    f.code(f.admin("CREATE", "", v), "INVALID_FIELDS", "null");
+  } else if (selected == "D05") {
+    for (const std::string text :
+         {"<b>abc</b>", "**abc**", "_abc_", "[abc](https://example.test)",
+          "# Heading", "- item", "```x```", "<!-- comment -->",
+          "<https://example.test>", "[ref]: /somewhere"})
+      for (const std::string field : {"title", "description"}) {
+        Fixture f;
+        auto w = f.create();
+        auto v = valid();
+        v[field] = text;
+        f.code(f.admin("CREATE", "", v), "INVALID_FIELDS",
+               std::string("create-").append(field).append(text));
+        JsonValue patch;
+        patch[field] = text;
+        auto n = f.events();
+        f.code(f.admin("EDIT", w, patch), "INVALID_FIELDS",
+               std::string("edit-").append(field).append(text));
+        check(n == f.events(), "no-event-" + text);
+      }
+    for (const std::string text : {"Lớp học thủ công", "C++ & C#", "2 * 3 < 10",
+                                   "a_b_c", "https://example.test", "😀"}) {
+      Fixture f;
+      auto v = valid();
+      v["title"] = text;
+      f.code(f.admin("CREATE", "", v), "CREATED", "literal-" + text);
+    }
+  } else if (selected == "D06") {
+    for (const std::string end :
+         {"2026-10-01T09:00:00+07:00", "2026-10-01T08:59:59+07:00",
+          "2026-10-01T09:00:01+07:00", "2026-10-01T02:00:00Z",
+          "2026-10-01T10:00:00", "2026-02-30T10:00:00Z"}) {
+      Fixture f;
+      auto v = valid();
+      v["schedule"]["end"] = end;
+      f.code(f.admin("CREATE", "", v),
+             end == "2026-10-01T09:00:01+07:00" ? "CREATED" : "INVALID_FIELDS",
+             "end-" + end);
+    }
+    for (const std::string key : {"start", "end"})
+      for (bool missing : {true, false}) {
+        Fixture f;
+        auto v = valid();
+        if (missing)
+          v["schedule"].removeMember(key);
+        else
+          v["schedule"][key] = JsonValue{};
+        f.code(f.admin("CREATE", "", v), "INVALID_FIELDS",
+               "missing-null-" + key + std::to_string(missing));
+      }
+  } else if (selected == "D07") {
+    for (const std::string state : {"DRAFT", "OPEN", "PAUSED"})
+      for (const std::string field :
+           {"title", "description", "capacity", "schedule"}) {
+        Fixture f;
+        auto w = f.create(10, state);
+        JsonValue patch;
+        if (field == "capacity")
+          patch[field] = 11;
+        else if (field == "schedule") {
+          patch[field] = valid()[field];
+          patch[field]["end"] = "2026-10-01T11:00:00+07:00";
+        } else
+          patch[field] = "changed";
+        f.code(f.admin("EDIT", w, patch), "UPDATED", state + field);
+        auto n = f.events();
+        f.code(f.admin("EDIT", w, patch), "UNCHANGED",
+               std::string("repeat-").append(state).append(field));
+        check(f.events() == n, "repeat-no-event");
+      }
+  } else if (selected == "D08") {
+    Fixture f;
+    auto w = f.create();
+    f.reg("U", w);
+    JsonValue patch;
+    patch["schedule"] = valid()["schedule"];
+    patch["schedule"]["end"] = "2026-10-01T11:00:00+07:00";
+    f.code(f.admin("EDIT", w, patch), "UPDATED", "schedule-with-active");
+    f.code(f.admin("STATE", w, "DRAFT"), "STATE_REJECTED", "no-return-draft");
+    check(f.call("A", "/admin/workshops/" + w, {}, "DELETE").status == 405 &&
+              f.active() == 1,
+          "no-delete");
+  } else if (selected == "D09") {
+    Fixture f;
+    auto r = f.admin("CREATE", "", valid());
+    f.code(r, "CREATED", "create");
+    auto w = r.body["workshopId"].asString();
+    auto v = f.call("A", "/admin/workshops/" + w, {}, "GET").body;
+    check(v["state"] == "DRAFT" && v["active"].asInt() == 0 &&
+              v["capacity"].asInt() == 10,
+          "draft-fields");
+    check(f.call("G", "/workshops/" + w, {}, "GET").status == 404,
+          "private-draft");
+    check(f.count("SELECT count(*) FROM admin_audit") == 1 && f.events() == 1,
+          "atomic-result-audit-outbox");
+  }
+}
+void technical() {
+  if (selected == "JSON") {
+    check(workshop::trim("\u00a0\u3000text\u2003") == "text", "unicode-trim");
+    check(workshop::trim("\u00a0\u3000").empty(), "unicode-whitespace-only");
+    Fixture f;
+    auto w = f.create();
+    auto j = f.base();
+    j["requestId"] = "expired";
+    j["workshopId"] = w;
+    check(f.store->handle("POST", "/registrations", "FAKE-U", "FAKE-CSRF-U",
+                          "https://workshop.test", j, 4102444801)
+                  .status == 401,
+          "session-expired");
+  }
+  if (selected == "SQLFAIL") {
+    for (const std::string table :
+         {"request_results", "outbox", "admin_audit"}) {
+      Fixture f;
+      auto w = f.create();
+      auto before = f.events();
+      f.sql("CREATE TRIGGER fail_write BEFORE INSERT ON " + table +
+            " BEGIN SELECT RAISE(ABORT,'fault'); END");
+      const auto response = table == "admin_audit"
+                                ? f.admin("STATE", w, "PAUSED")
+                                : f.reg("U", w, "X");
+      check(response.body["state"] == "UNKNOWN", "sqlite-step-" + table);
+      check(f.active() == 0 && f.events() == before, "sqlite-atomic-" + table);
+    }
+    Fixture f;
+    auto w = f.create();
+    f.store->denyResultRead(true);
+    check(f.reg("U", w, "P").body["state"] == "UNKNOWN" && f.active() == 0,
+          "sqlite-prepare-error");
+    f.store->denyResultRead(false);
+    f.store->rejectCommit(true);
+    check(f.reg("U", w, "C").body["state"] == "UNKNOWN" && f.active() == 0,
+          "sqlite-commit-rejected");
+    f.store->rejectCommit(false);
+    f.store->fault([](std::string_view point) {
+      if (point == "before_commit" || point == "before_rollback")
+        throw workshop::StorageError("rollback uncertain");
+    });
+    check(f.reg("U", w, "R").body["state"] == "UNKNOWN", "rollback-unknown");
+    f.store.reset();
+    f.store = std::make_unique<workshop::Store>(f.file);
+    check(f.active() == 0, "reopen-reconciles-uncommitted");
+  } else if (selected == "TX") {
+    for (const std::string point :
+         {"before_begin", "after_domain", "after_outbox", "after_result",
+          "before_commit", "after_commit"}) {
+      Fixture f;
+      auto w = f.create();
+      auto before = f.events();
+      f.store->fault([point](std::string_view p) {
+        if (p == point)
+          throw workshop::StorageError("fault");
+      });
+      check(f.reg("U", w, "X").body["state"] == "UNKNOWN", "fault-" + point);
+      f.store->fault({});
+      const bool committed = point == "after_commit";
+      check(f.active() == (committed ? 1 : 0) &&
+                f.events() == before + (committed ? 1 : 0),
+            "atomic-" + point);
+      f.code(f.reg("U", w, "X"), "REGISTERED", "reconcile-" + point);
+    }
+    for (const std::string point :
+         {"after_domain", "after_outbox", "after_audit", "after_result",
+          "before_commit"}) {
+      Fixture f;
+      f.store->fault([point](std::string_view p) {
+        if (p == point)
+          throw workshop::StorageError("fault");
+      });
+      check(f.admin("CREATE", "", valid()).body["state"] == "UNKNOWN",
+            "admin-" + point);
+      check(f.count("SELECT count(*) FROM workshops") == 0 &&
+                f.count("SELECT count(*) FROM admin_audit") == 0 &&
+                f.events() == 0,
+            "admin-atomic-" + point);
+    }
+  } else if (selected == "CRASH") {
+    for (bool committed : {false, true}) {
+      Fixture f;
+      auto w = f.create();
+      f.store.reset();
+      const pid_t pid = fork();
+      if (pid < 0)
+        throw std::runtime_error("fork");
+      if (pid == 0) {
+        workshop::Store store(f.file);
+        store.fault([committed](std::string_view point) {
+          if (point == (committed ? "after_commit" : "before_commit"))
+            _exit(77);
+        });
+        JsonValue j;
+        j["epoch"] = "epoch-test";
+        j["requestId"] = "X";
+        j["workshopId"] = w;
+        store.handle("POST", "/registrations", "FAKE-U", "FAKE-CSRF-U",
+                     "https://workshop.test", j, 1800000000);
+        _exit(78);
+      }
+      int status{};
+      waitpid(pid, &status, 0);
+      check(WIFEXITED(status) && WEXITSTATUS(status) == 77,
+            "injected-process-loss");
+      f.store = std::make_unique<workshop::Store>(f.file);
+      check(f.active() == (committed ? 1 : 0),
+            "durable-" + std::to_string(committed));
+      f.code(f.reg("U", w, "X"), "REGISTERED", "crash-reconcile");
+    }
+  } else if (selected == "JSON") {
+    for (const std::string &input : std::vector<std::string>{
+             "{\"a\":1,\"a\":2}", "{\"a\":1,}", "{/*x*/\"a\":1}", "[]",
+             "{}true",
+             std::string("{\"x\":\"") + char(0xc0) + char(0xaf) + "\"}"}) {
+      bool rejected = false;
+      try {
+        workshop::decode(input);
+      } catch (const workshop::Invalid &) {
+        rejected = true;
+      }
+      check(rejected, "invalid-json-" + std::to_string(assertions));
+    }
+    for (const std::string input :
+         {"/*before*/{}", "{}/*after*/", "//before\n{}", "{}//after",
+          "{\"a\":/*value*/1}", "{\"a\":1,//member\n\"b\":2}",
+          "{\"a\":[1,/*array*/2]}", "{\"a\":{/**/\"b\":1}}",
+          "{\"a\":\"\\\"\"/*after-escaped-quote*/}",
+          "{\"a\":\"\\\\\"/*after-escaped-backslash*/}"}) {
+      bool rejected = false;
+      try {
+        workshop::decode(input);
+      } catch (const workshop::Invalid &) {
+        rejected = true;
+      }
+      check(rejected, "comment-rejected-" + std::to_string(assertions));
+    }
+    for (const std::string value :
+         {"https://workshop.test/path", "/*text*/", "//text", "quote\"/*text*/",
+          "slash\\//text", "\\\"/*text*/", "Tiếng Việt / 😀"}) {
+      JsonValue object;
+      object["text"] = value;
+      check(workshop::decode(workshop::dump(object)) == object,
+            "string-slashes-preserved-" + std::to_string(assertions));
+    }
+    check(workshop::next_version("9007199254740992") == "9007199254740993",
+          "uint64-not-double");
+    bool overflow = false;
+    try {
+      workshop::next_version("18446744073709551615");
+    } catch (const workshop::StorageError &) {
+      overflow = true;
+    }
+    check(overflow, "overflow-stops");
+    Fixture f;
+    auto w = f.create();
+    auto j = f.base();
+    j["requestId"] = "x";
+    j["workshopId"] = w;
+    j["actor"] = "V";
+    check(f.call("U", "/registrations", j).status == 400, "unknown-field");
+    j.removeMember("actor");
+    check(f.store->handle("POST", "/registrations", "FAKE-U", "wrong",
+                          "https://workshop.test", j, 1800000000)
+                  .status == 401,
+          "csrf");
+    check(f.store->handle("POST", "/registrations", "FAKE-U", "FAKE-CSRF-U",
+                          "https://evil.test", j, 1800000000)
+                  .status == 401,
+          "origin");
+    j["epoch"] = "old";
+    check(f.call("U", "/registrations", j).status == 409, "epoch");
+    check(f.active() == 0, "no-mutation");
+  } else if (selected == "K3K4") {
+    Fixture f;
+    auto create = f.admin("CREATE", "", valid(), "intent");
+    check(f.admin("CREATE", "", valid(), "intent").body == create.body,
+          "admin-dedup");
+    auto w = create.body["workshopId"].asString();
+    JsonValue title;
+    title["title"] = "one";
+    f.admin("EDIT", w, title);
+    JsonValue desc;
+    desc["description"] = "description";
+    f.admin("EDIT", w, desc);
+    title["title"] = "two";
+    f.admin("EDIT", w, title);
+    auto current = f.call("A", "/admin/workshops/" + w, {}, "GET").body;
+    check(current["title"] == "two" && current["description"] == "description",
+          "dirty-field-last-writer");
+    JsonValue partial;
+    partial["schedule"]["start"] = "2026-10-01T01:00:00Z";
+    f.code(f.admin("EDIT", w, partial), "INVALID_FIELDS",
+           "schedule-atomic-group");
+    auto intent = f.base();
+    intent["intentId"] = "intent";
+    intent["action"] = "CREATE";
+    intent["fields"] = valid();
+    check(f.call("M", "/admin/intents", intent).status == 404,
+          "admin-intent-other-owner");
+    check(f.call("A", "/admin/intents/missing", {}, "GET").body["state"] ==
+              "UNKNOWN",
+          "admin-missing-unknown");
+  } else if (selected == "ADMISSION") {
+    workshop::Admission gate;
+    const auto now = workshop::Admission::Clock::now();
+    for (int i = 0; i < 200; ++i)
+      check(gate.global(now), "global-" + std::to_string(i));
+    check(!gate.global(now), "global-over");
+    for (int i = 0; i < 40; ++i)
+      check(gate.caller("actor:U", now), "actor-" + std::to_string(i));
+    check(!gate.caller("actor:U", now) && gate.caller("actor:V", now),
+          "actor-isolation");
+    check(gate.caller("actor:U", now + std::chrono::seconds(1)), "refill");
+    Fixture f;
+    workshop::Executor executor(f.file);
+    std::promise<void> held, release;
+    auto ready = held.get_future();
+    auto wait = release.get_future().share();
+    check(executor.submit(true,
+                          [&](workshop::Store &) {
+                            held.set_value();
+                            wait.wait();
+                          }),
+          "worker-held");
+    ready.wait();
+    for (int i = 0; i < 64; ++i)
+      check(executor.submit(true, [](workshop::Store &) {}),
+            "queue-" + std::to_string(i));
+    check(!executor.submit(true, [](workshop::Store &) {}), "queue-over");
+    release.set_value();
+    check(executor.drain(std::chrono::seconds(30)) &&
+              !executor.submit(false, [](workshop::Store &) {}),
+          "drain-stops-admission");
+  } else
+    throw std::runtime_error("unknown case");
+}
+} // namespace
+int main(int argc, char **argv) {
+  if (argc != 2)
+    return 2;
+  selected = argv[1];
+  try {
+    if (selected.starts_with("P"))
+      permission();
+    else if (selected.starts_with("Q"))
+      quota();
+    else if (selected.starts_with("R"))
+      registration();
+    else if (selected.starts_with("I"))
+      retry();
+    else if (selected.size() == 3 && selected.starts_with("C") &&
+             selected != "CRASH")
+      concurrency();
+    else if (selected.starts_with("D"))
+      data();
+    else
+      technical();
+    if (assertions == 0)
+      throw std::runtime_error("no assertions");
+    return 0;
+  } catch (const std::exception &e) {
+    JsonValue j;
+    j["caseId"] = selected;
+    j["status"] = "FAIL";
+    j["detail"] = e.what();
+    std::cout << workshop::dump(j) << '\n' << std::flush;
+    return 1;
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "operation": "ASSESS",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowImpactWrite": true,
+    "roundId": "ROUND-001",
+    "ownerId": "impact-58984aa7bc29f63705c60cdc",
+    "statement": "Human approved T04 rule D and continuous R09 implementation/testing. Record evidence-based impact conclusions only; do not approve output or close the impact.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/t04/report-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/index.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/backend.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/https.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/mutations.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/query-plan.txt",
+      "anchor": null
+    },
+    {
+      "path": "docs/architecture/traceability.md",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "431e674fe46c1b592f7719de267d8f72f30264e9567e3f882d2f215013233bee",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedRoundId": "ROUND-001",
+  "expectedOwnerId": "impact-58984aa7bc29f63705c60cdc",
+  "expectedGit": {
+    "head": "de26fb6e646e57891464fc86a3058e635af336bf",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "assessment": {
+    "nodeId": "T04-TESTS",
+    "verdict": "NEEDS_CHANGE",
+    "reason": "The original 46-case oracle could not certify the newly approved rule; four quota cases add 60 observable assertions without replacing original expectations.",
+    "behavior": "Final oracle requires 50 cases/856 assertions. The offline policy fixture may describe historical 796 evidence only for its historical subset; a new negative test rejects it for the current full closure.",
+    "verification": "Four presets run completely, 113 policy/gate checks, 34 unit, 18 SSR Chrome, real HTTPS and four rejected mutants. Raw TSan CTest FAILs and corrected harness FAILs are retained. The inherited 137 obligations and final product G2 are still incomplete.",
+    "inputBasis": "de60739b35a3019870c58bb523f20638fe3d731dc58a7ab6dfbbba8483dae3b4",
+    "assumptions": "Single local Intel pilot, fixed source and fake data. Scoped T04 change only; performance, independent recovery, full-product G2, release and R09 Human acceptance remain pending.",
+    "evidenceRefs": [
+      {
+        "path": "docs/t04/report-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/index.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/backend.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/https.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/mutations.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/query-plan.txt",
+        "anchor": null
+      },
+      {
+        "path": "docs/architecture/traceability.md",
+        "anchor": null
+      }
+    ],
+    "downstream": [
+      "T04-IMPLEMENT"
+    ],
+    "resolved": true
+  }
+}

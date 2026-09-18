@@ -1,0 +1,1 @@
+The read-only container tmpfs disallows executing the compiled diagnostic. Compilation succeeded; the diagnostic did not run (exit 126). Retry r2 uses an explicitly writable disposable /out bind for the binary, retaining read-only source, no network and all resource limits. No product source or expected query plan changed.

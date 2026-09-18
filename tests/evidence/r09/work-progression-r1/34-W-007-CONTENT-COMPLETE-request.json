@@ -1,0 +1,104 @@
+{
+  "operation": "COMPLETE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowWorkTransition": true,
+    "ownerId": "W-007-CONTENT",
+    "statement": "Human approved full R09 execution and exact R09-REPLAN-LEGACY-r1 package with Tôi phê duyệt nhé. Record only evidence-backed content reconciliation and scoped backend/Web intermediate progress; preserve unfinished implementation and final acceptance.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/workflow/r09-checkpoint-r1.md",
+      "anchor": "architecture"
+    },
+    {
+      "path": "docs/design/architecture.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/engineering/rules.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/engineering/cpp.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/engineering/web.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/legacy-provenance-r1.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "5d0956814a2c2249464e91eeb269d09273b1f7917f117e746b1c3d2787c2a4c0",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedGit": {
+    "head": "c88c14fc17145899b3345fec30d0eae22f5b4873",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "expectedOwnerId": "W-007-CONTENT",
+  "transition": {
+    "conditionsMet": true,
+    "reason": "The inherited content is unchanged against accepted provenance; the approved package explicitly reconciles these design/definition outputs. This completes content only, not runtime tests or implementation.",
+    "nextAction": "Continue to the next approved content step.",
+    "evidenceRefs": [
+      {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "architecture"
+      },
+      {
+        "path": "docs/design/architecture.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/rules.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/cpp.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/web.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/legacy-provenance-r1.json",
+        "anchor": null
+      }
+    ],
+    "resultRefs": [
+      {
+        "path": "docs/design/architecture.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/rules.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/cpp.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/web.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/legacy-provenance-r1.json",
+        "anchor": null
+      }
+    ]
+  }
+}

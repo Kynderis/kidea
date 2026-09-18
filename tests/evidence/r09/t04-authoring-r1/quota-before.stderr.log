@@ -1,0 +1,23 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ undefined
+- 'LIMIT_REACHED'
+
+    at file:///Users/kendrick/Desktop/kidea/tests/evidence/r09/t04-authoring-r1/quota-before.mjs:1:252
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: 'LIMIT_REACHED',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

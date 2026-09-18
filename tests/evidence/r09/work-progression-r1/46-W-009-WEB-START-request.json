@@ -1,0 +1,66 @@
+{
+  "operation": "START",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowWorkTransition": true,
+    "ownerId": "W-009-WEB",
+    "statement": "Human approved full R09 execution and exact R09-REPLAN-LEGACY-r1 package with Tôi phê duyệt nhé. Record only evidence-backed content reconciliation and scoped backend/Web intermediate progress; preserve unfinished implementation and final acceptance.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/workflow/r09-checkpoint-r1.md",
+      "anchor": "web-leaf"
+    },
+    {
+      "path": "docs/workflow/r09-checkpoint-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/engineering/tests.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/legacy-provenance-r1.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "a58f98fe3644e284dc39507f026132905fdf65ff4fe6bbd3f17f12d629551e9b",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedGit": {
+    "head": "c88c14fc17145899b3345fec30d0eae22f5b4873",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "expectedOwnerId": "W-009-WEB",
+  "transition": {
+    "conditionsMet": true,
+    "reason": "The scoped prerequisites and planning gate are current; recorded backend/Web receipts were reviewed with all FAILs and EXr2 retained.",
+    "nextAction": "Record only the first implementation slice.",
+    "evidenceRefs": [
+      {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "web-leaf"
+      },
+      {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/tests.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/legacy-provenance-r1.json",
+        "anchor": null
+      }
+    ]
+  }
+}

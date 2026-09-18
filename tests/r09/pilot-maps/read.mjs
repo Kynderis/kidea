@@ -4,6 +4,7 @@ import {readMapSources,documentationMap} from '../../../.agents/skills/kidea/scr
 const root='/Users/kendrick/Desktop/kidea-workshop-pilot',out=process.argv[2],require=createRequire(root+'/web/package.json');const ts=require('typescript'),svelte=require('svelte/compiler');
 function files(dir){return fs.readdirSync(root+'/'+dir,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name)).flatMap(e=>e.isDirectory()?files(dir+'/'+e.name):[dir+'/'+e.name]);}
 const spec=['docs/features.md',...['docs/business','docs/design','docs/engineering'].flatMap(files)].filter(p=>p.endsWith('.md'));const web=[...files('web/src'),...files('web/tests'),'web/tsconfig.json','web/package.json','web/package-lock.json','web/svelte.config.js','web/vite.config.ts'];
+if(process.argv[3]!==undefined){if(process.argv[3]!=='--t04')throw Error('UNKNOWN_SCOPE');spec.push('docs/t04/max2.md');}
 const capabilities=['typescript','svelte/compiler'].map(id=>{const p=require.resolve(id),bytes=fs.readFileSync(p);return {id,path:p,sha256:createHash('sha256').update(bytes).digest('hex')};});
 const docs= documentationMap(readMapSources(root,spec));const implementation=webMap(readMapSources(root,web),{ts,svelte,tool:{version:'typescript'+ts.version+'/svelte'+svelte.VERSION,components:capabilities},tsconfig:'web/tsconfig.json'});
 for(const [name,value]of Object.entries({documentation:docs,web:implementation}))fs.writeFileSync(out+'/'+name+'.json',JSON.stringify(value,null,2)+'\n',{flag:'wx'});

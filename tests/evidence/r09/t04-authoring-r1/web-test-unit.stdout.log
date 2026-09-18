@@ -1,0 +1,42 @@
+✔ decode public snapshot strips optional private additions (6.072301ms)
+✔ reject snapshot draft (0.362404ms)
+✔ reject snapshot overflow (0.614752ms)
+✔ reject snapshot numeric (0.158623ms)
+✔ reject snapshot mixed (0.195442ms)
+✔ reject snapshot capacity (0.160068ms)
+✔ reject snapshot schedule (0.145555ms)
+✔ uint64 exact ordering beyond JS integer (0.604801ms)
+✔ cancel rebook cannot be revived by old response (0.260758ms)
+✔ missing collection group does not erase known history (0.373672ms)
+✔ workshop versions independent (0.272848ms)
+✔ same version conflicting content remains unknown on repeated original (0.262737ms)
+✔ late response discarded after actor (0.234446ms)
+✔ late response discarded after epoch (0.110409ms)
+✔ late response discarded after login (0.094228ms)
+✔ late response discarded after unmount (0.128053ms)
+✔ reject invalid history [{"id":"A","state":"ACTIVE"},{"id":"A","state":"CANCELLED"}] (0.101769ms)
+✔ reject invalid history [{"id":"A","state":"ACTIVE"},{"id":"B","state":"ACTIVE"}] (0.061072ms)
+✔ reject invalid history [{"id":"A","state":"BAD"}] (0.062705ms)
+✔ sent persisted before POST; reload can only GET (0.276122ms)
+✔ storage failure blocks mutation (0.310979ms)
+✔ intent cannot cross actor or restored epoch (0.171259ms)
+✔ silent and known disconnect never claim fresh (0.126418ms)
+✔ schedule preserves both dates and explicit offset (0.291123ms)
+✔ observation time uses declared UTC and invalid stays unknown (1.531843ms)
+✔ historical registration result decodes but does not change current history (0.273681ms)
+✔ uncertain or mismatched reply {"state":"UNKNOWN"} (0.107528ms)
+✔ uncertain or mismatched reply {"effect":"REJECTED"} (0.07773ms)
+✔ uncertain or mismatched reply {"workshopId":"other"} (0.067445ms)
+✔ uncertain or mismatched reply {"registrationId":""} (0.064429ms)
+✔ uncertain or mismatched reply {"code":"CREATED"} (0.06996ms)
+✔ uncertain or mismatched reply {"code":"NEW_UNKNOWN_CODE"} (0.088569ms)
+✔ cancellation reply must match exact registration (0.173081ms)
+✔ quota rejection is historical REGISTER-only result (0.200536ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 205.39179

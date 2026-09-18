@@ -1,0 +1,59 @@
+{
+  "operation": "SELECT",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowWorkTransition": true,
+    "ownerId": "W-008",
+    "statement": "Human approved full R09 execution and exact R09-REPLAN-LEGACY-r1 package with Tôi phê duyệt nhé. Record only evidence-backed content reconciliation and scoped backend/Web intermediate progress; preserve unfinished implementation and final acceptance.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/workflow/r09-checkpoint-r1.md",
+      "anchor": "technical-tests"
+    },
+    {
+      "path": "docs/engineering/tests.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/legacy-provenance-r1.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "c621a8c8824b5eb3ed94c13d62fc7b85caaa7a4b9027d7ff402ea54e77806cee",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedGit": {
+    "head": "c88c14fc17145899b3345fec30d0eae22f5b4873",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "expectedOwnerId": "W-008",
+  "transition": {
+    "conditionsMet": true,
+    "reason": "Enter the scoped inherited-content reconciliation leaf under its approved step.",
+    "nextAction": "Verify fixed inherited inputs; no runtime completion.",
+    "evidenceRefs": [
+      {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "technical-tests"
+      },
+      {
+        "path": "docs/engineering/tests.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/legacy-provenance-r1.json",
+        "anchor": null
+      }
+    ],
+    "nextItemId": "W-008-CONTENT"
+  }
+}

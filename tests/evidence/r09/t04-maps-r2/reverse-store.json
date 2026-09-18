@@ -1,0 +1,98 @@
+[
+  {
+    "from": "docs/t04/max2.md",
+    "to": "backend/src/store.cpp",
+    "kind": "responsibility",
+    "mappingId": "T04-ATOMIC-QUOTA",
+    "purpose": "Count actor ACTIVE globally inside BEGIN IMMEDIATE before capacity; duplicate and remembered intent keep their earlier priority.",
+    "conditions": "Q01 and Q04 compare real final codes/counts/outbox, including two concurrent different-workshop writes. Full original oracle remains required.",
+    "evidence": [
+      {
+        "path": "backend/src/store.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/tests.cpp",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/oracle-extension.json",
+        "anchor": null
+      }
+    ]
+  },
+  {
+    "from": "docs/t04/max2.md",
+    "to": "backend/src/store.cpp",
+    "kind": "responsibility",
+    "mappingId": "T04-LEGACY-CANCEL",
+    "purpose": "Preserve preexisting excess rows; cancellation releases quota once and CANCELLED is excluded. Existing one_active partial index supports actor filtering.",
+    "conditions": "Q01/Q02/Q03 assert exact history/count/event consequences and both serial orders; schema/data are not rewritten.",
+    "evidence": [
+      {
+        "path": "backend/src/store.cpp",
+        "anchor": null
+      },
+      {
+        "path": "backend/schema/001.sql",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/tests.cpp",
+        "anchor": null
+      }
+    ]
+  },
+  {
+    "from": "docs/t04/max2.md",
+    "to": "backend/src/store.cpp",
+    "kind": "responsibility",
+    "mappingId": "T04-HISTORICAL-RESULT",
+    "purpose": "LIMIT_REACHED remains immutable for the same intent after cancellation; fresh intent is a separate server decision. Web does not infer current quota from history.",
+    "conditions": "Q01/Q03 and Web tests distinguish old rejection, new success and invalid CANCEL decoding; lost reply/no replay regressions remain.",
+    "evidence": [
+      {
+        "path": "backend/src/store.cpp",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/reply.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/Registration.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/unit/state.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "backend/tests/tests.cpp",
+        "anchor": null
+      }
+    ]
+  },
+  {
+    "from": "docs/t04/max2.md",
+    "to": "backend/src/store.cpp",
+    "kind": "responsibility",
+    "mappingId": "T04-CONTRACT",
+    "purpose": "Add the REJECTED outcome without claiming a technical failure or granting client-side mutation authority.",
+    "conditions": "Old client unknown-code behavior remains uncertain rather than false success; mixed-version release readiness is still an explicit T08 obligation.",
+    "evidence": [
+      {
+        "path": "contracts/openapi.json",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/reply.ts",
+        "anchor": null
+      },
+      {
+        "path": "backend/src/store.cpp",
+        "anchor": null
+      }
+    ]
+  }
+]

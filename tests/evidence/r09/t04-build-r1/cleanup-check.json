@@ -1,0 +1,44 @@
+{
+  "containers": {
+    "args": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=kidea.r09.owner=r09-web-98142b25-b447-4b6b-bc3e-2b21c8fc6f58",
+      "--format",
+      "{{.ID}}"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "network": {
+    "args": [
+      "docker",
+      "network",
+      "ls",
+      "--filter",
+      "label=kidea.r09.owner=r09-web-98142b25-b447-4b6b-bc3e-2b21c8fc6f58",
+      "--format",
+      "{{.ID}}"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "buildContainers": {
+    "args": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=kidea.t02.run=t02-be72d72c-9405-4dfa-88d3-ddfe608d5330",
+      "--format",
+      "{{.ID}}"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

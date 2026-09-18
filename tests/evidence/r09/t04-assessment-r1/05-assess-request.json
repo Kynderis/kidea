@@ -1,0 +1,100 @@
+{
+  "operation": "ASSESS",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowImpactWrite": true,
+    "roundId": "ROUND-001",
+    "ownerId": "impact-2cb80e52da66be40410037b8",
+    "statement": "Human approved T04 rule D and continuous R09 implementation/testing. Record evidence-based impact conclusions only; do not approve output or close the impact.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/t04/report-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/index.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/backend.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/https.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/mutations.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/query-plan.txt",
+      "anchor": null
+    },
+    {
+      "path": "docs/architecture/traceability.md",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "9bfefadfc0358df2da68d3c31d39ea8a16660f4d272635d60425d54dd1d4c17f",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedRoundId": "ROUND-001",
+  "expectedOwnerId": "impact-2cb80e52da66be40410037b8",
+  "expectedGit": {
+    "head": "de26fb6e646e57891464fc86a3058e635af336bf",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "assessment": {
+    "nodeId": "T04-OPS",
+    "verdict": "NO_CHANGE",
+    "reason": "No schema, outbox payload or domain-update contract changes are needed: rejection changes only the intent result, while successful registration/cancellation uses existing changed().",
+    "behavior": "Quota rejection does not consume capacity, advance domain version or emit public event. Existing excess registrations and immutable results remain stored. Event publishing, monitor and backup consumers still require T05 implementation and verification.",
+    "verification": "Q01/Q02/Q03/Q04 exact event/count/history assertions and existing crash/transaction cases. No independent backup/host-failure or real monitoring claim is made.",
+    "inputBasis": "de60739b35a3019870c58bb523f20638fe3d731dc58a7ab6dfbbba8483dae3b4",
+    "assumptions": "Single local Intel pilot, fixed source and fake data. Scoped T04 change only; performance, independent recovery, full-product G2, release and R09 Human acceptance remain pending.",
+    "evidenceRefs": [
+      {
+        "path": "docs/t04/report-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/index.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/backend.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/https.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/mutations.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/query-plan.txt",
+        "anchor": null
+      },
+      {
+        "path": "docs/architecture/traceability.md",
+        "anchor": null
+      }
+    ],
+    "downstream": [
+      "T04-TESTS"
+    ],
+    "resolved": true
+  }
+}

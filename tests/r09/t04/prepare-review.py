@@ -1,0 +1,18 @@
+from pathlib import Path
+import json,subprocess,hashlib
+repo=Path('/Users/kendrick/Desktop/kidea');pilot=Path('/Users/kendrick/Desktop/kidea-workshop-pilot').resolve();out=repo/'tests/evidence/r09/t04-output-review-r1';out.mkdir(exist_ok=False)
+node='/Users/kendrick/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node';cli=str(repo/'.agents/skills/kidea/scripts/kidea.mjs');id='R09-T04-OUTPUT-r1';reviewPath=f'.kidea/reviews/{id}.md'
+def record(p):return json.loads((pilot/p).read_text().split('```json\n')[1].split('\n```')[0])
+plan=record('.kidea/plans/impact.md');assert len(plan['items'])==10 and all(i['executionStatus']=='DONE' for i in plan['items']);owners=[i['id'] for i in plan['items']]
+refs=lambda paths:[{'path':p,'anchor':None} for p in dict.fromkeys(paths)]
+subjects=refs(['docs/t04/report-r1.md','docs/architecture/traceability.md',*[(i['resultRefs'][-1]['path']) for i in plan['items']], 'backend/src/store.cpp','backend/tests/tests.cpp','backend/tests/cases.cmake','contracts/openapi.json','web/src/lib/reply.ts','web/tests/unit/state.test.mjs','tests/t02/tsan/expected.json'])
+inputs=refs([r['path'] for i in plan['items'] for r in [i['scopeRef'],i['completionRef'],*i['inputRefs']]]+['docs/t04/evidence/'+p.name for p in sorted((pilot/'docs/t04/evidence').iterdir()) if p.is_file()]+['docs/t04/oracle-extension.json'])
+permission={'root':str(pilot),'reviewPath':reviewPath,'ownerIds':owners,'allowReviewMetadata':True,'allowCreateEvidence':True,'allowLinkOwners':True,'createDirectories':[],'allowReadLocalGit':True,'assumptions':{'localFilesystem':True,'noActiveSync':True,'singleKideaRun':True},'statement':'Human authorized full R09 implementation, evidence and preparation of concrete output packages. CREATE and SUBMIT only; actual output approval is still required and not inferred from tests.'}
+def call(q,label):
+ (out/(label+'-request.json')).write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n');v=subprocess.run([node,cli,'approve'],cwd=pilot,input=json.dumps(q),capture_output=True,text=True);(out/(label+'-result.json')).write_text(v.stdout);(out/(label+'-stderr.log')).write_text(v.stderr);d=json.loads(v.stdout);assert v.returncode==0,d;return d
+q={'operation':'CREATE','id':id,'revision':1,'expectedDigest':None,'ownerIds':owners,'permission':permission,'package':{'subjectRefs':subjects,'inputRefs':inputs,'purpose':'CONTENT','waiverReason':None}}
+r=call(q,'create');assert r['state']=='REVIEW_RECORDED',r
+q.update(operation='SUBMIT',expectedDigest=hashlib.sha256((pilot/reviewPath).read_bytes()).hexdigest(),package={'conditionsMet':True,'statement':'Scoped T04 implementation and all ten impact consumers are evidenced on final source: 50/856 full presets with unchanged EX r2 limitation, 113 offline gates, 34 Web unit, 18 Mac SSR Chrome and 18 actual HTTPS checks, mutation sensitivity and query plan. Original 137 obligations, T05/T08/T14, INCOMPLETE maps, performance/independent recovery and final R09 acceptance remain explicit; no runtime or Human approval is inferred for them.'})
+r=call(q,'submit');assert r['state']=='REVIEW_RECORDED',r
+presented={'id':id,'revision':1,'expectedDigest':hashlib.sha256((pilot/reviewPath).read_bytes()).hexdigest(),'ownerIds':owners,'path':str(pilot/reviewPath),'purpose':'CONTENT','scope':'T04 output only; close impact and return to unfinished W-009-MAX2 after actual Human approval','state':'IN_REVIEW'}
+(out/'prepared.json').write_text(json.dumps(presented,ensure_ascii=False,indent=2)+'\n');(out/'review-file.md').write_bytes((pilot/reviewPath).read_bytes());print(json.dumps(presented,ensure_ascii=False,indent=2))

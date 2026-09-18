@@ -1,0 +1,14 @@
+file:///Users/kendrick/Desktop/kidea-workshop-pilot/scripts/t02/tsan-policy.mjs:66
+  if (!Array.isArray(actual)||!Array.isArray(expected)||!expected.length||actual.some(r=>r.status!=='PASS')||JSON.stringify(canonical(actual))!==JSON.stringify(canonical(expected))) throw Error('ASSERTION_CLOSURE');
+                                                                                                                                                                                            ^
+
+Error: ASSERTION_CLOSURE
+    at requireObservations (file:///Users/kendrick/Desktop/kidea-workshop-pilot/scripts/t02/tsan-policy.mjs:66:189)
+    at file:///Users/kendrick/Desktop/kidea-workshop-pilot/tests/t02/tsan/policy.test.mjs:24:80
+    at test (file:///Users/kendrick/Desktop/kidea-workshop-pilot/tests/t02/tsan/policy.test.mjs:5:24)
+    at file:///Users/kendrick/Desktop/kidea-workshop-pilot/tests/t02/tsan/policy.test.mjs:24:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

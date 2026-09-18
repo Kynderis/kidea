@@ -1,0 +1,1530 @@
+{
+  "format": "kidea-map-r1",
+  "adapter": {
+    "name": "clang-json",
+    "version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin\n",
+    "tool": {
+      "path": "/usr/bin/clang++-18",
+      "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45",
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "components": [
+        {
+          "id": "clang",
+          "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45"
+        },
+        {
+          "id": "container",
+          "sha256": "6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92"
+        }
+      ],
+      "version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin\n"
+    }
+  },
+  "configuration": {
+    "target": "x86_64-linux-gnu",
+    "translationUnit": "backend/src/main.cpp",
+    "args": [
+      "--target=x86_64-linux-gnu",
+      "-DCMARK_STATIC_DEFINE",
+      "-I/Users/kendrick/Desktop/kidea-workshop-pilot/backend/include",
+      "-isystem",
+      "/vendor/cmark/src",
+      "-isystem",
+      "/build/dev/vendor/cmark/src",
+      "-isystem",
+      "/vendor/sqlite",
+      "-isystem",
+      "/usr/include/jsoncpp",
+      "-isystem",
+      "/vendor/drogon/trantor",
+      "-isystem",
+      "/vendor/drogon/lib/inc",
+      "-isystem",
+      "/build/dev/vendor/drogon/lib/inc",
+      "-isystem",
+      "/vendor/drogon/orm_lib/inc",
+      "-isystem",
+      "/vendor/drogon/nosql_lib/redis/inc",
+      "-isystem",
+      "/build/dev/vendor/drogon",
+      "-isystem",
+      "/build/dev/vendor/drogon/exports",
+      "-isystem",
+      "/build/dev/vendor/drogon/trantor/exports",
+      "-g",
+      "-std=c++20",
+      "-fPIE",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Werror",
+      "/Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp",
+      "-fsyntax-only",
+      "-Xclang",
+      "-ast-dump=json",
+      "-Xclang",
+      "-ast-dump-filter=main"
+    ],
+    "manifestHash": "f79450d250d38064c9b393f518df101d7f1a20967e0e121eb86a352c2c75a42f"
+  },
+  "sources": [
+    {
+      "path": "backend/include/workshop/admission.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "d67e77d67d4a96947f54b16c0bda90ae308d1718752671c24e62749c2a6e0790",
+        "byteLength": 1396
+      }
+    },
+    {
+      "path": "backend/include/workshop/executor.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "5fbc51aa67e0e14bdba4463f5f8331bc238802fac46a6b504383f33b29313f32",
+        "byteLength": 666
+      }
+    },
+    {
+      "path": "backend/include/workshop/model.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "67f4b531c7a33daf89893c0858db4497f5541f05a0a97de0b1d93e66f4e8f931",
+        "byteLength": 1370
+      }
+    },
+    {
+      "path": "backend/include/workshop/store.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "5c29b356ad1278753652e13b31ca3eea9803eb70c4309114dc7e59a1438b449d",
+        "byteLength": 2472
+      }
+    },
+    {
+      "path": "backend/src/executor.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "482a72aa3729396990e3dc6dc5eae4b6b9fe27a209aa52ecd28602d7d0534321",
+        "byteLength": 1898
+      }
+    },
+    {
+      "path": "backend/src/main.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "a9709d321905ff19131792382a0fa5f1f6803089f7dedd334067500dc6d256a6",
+        "byteLength": 6026
+      }
+    },
+    {
+      "path": "backend/src/model.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "36733243e0250cde6ae2dc37dda70cb25ef447678d869c0ebf07b4364b133c8b",
+        "byteLength": 8490
+      }
+    },
+    {
+      "path": "backend/src/store.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "af4634e7dde54eedaef4b4aff57761e0a943077b6710bafa5df4bef42d9c173d",
+        "byteLength": 24638
+      }
+    }
+  ],
+  "inputBasis": "c57012344451694b68a07b29d28ddb2f54a2719ed07acd9083829f25eb6ab951",
+  "nodes": [
+    {
+      "id": "backend/include/workshop/admission.hpp",
+      "path": "backend/include/workshop/admission.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp",
+      "path": "backend/include/workshop/executor.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/model.hpp",
+      "path": "backend/include/workshop/model.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/store.hpp",
+      "path": "backend/include/workshop/store.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/executor.cpp",
+      "path": "backend/src/executor.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/main.cpp",
+      "path": "backend/src/main.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/model.cpp",
+      "path": "backend/src/model.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/store.cpp",
+      "path": "backend/src/store.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/main.cpp#main int (int, char **)",
+      "path": "backend/src/main.cpp",
+      "name": "main",
+      "signature": "int (int, char **)",
+      "kind": "symbol",
+      "offset": 880
+    },
+    {
+      "id": "backend/src/main.cpp#terminationSignals sigset_t",
+      "path": "backend/src/main.cpp",
+      "name": "terminationSignals",
+      "signature": "sigset_t",
+      "kind": "symbol",
+      "offset": 1584
+    },
+    {
+      "id": "backend/src/main.cpp#signalWaitFailed bool",
+      "path": "backend/src/main.cpp",
+      "name": "signalWaitFailed",
+      "signature": "bool",
+      "kind": "symbol",
+      "offset": 1862
+    },
+    {
+      "id": "backend/src/main.cpp#executor shared_ptr<_NonArray<Executor>>",
+      "path": "backend/src/main.cpp",
+      "name": "executor",
+      "signature": "shared_ptr<_NonArray<Executor>>",
+      "kind": "symbol",
+      "offset": 1897
+    },
+    {
+      "id": "backend/src/main.cpp#active shared_ptr<_NonArray<atomic<unsigned int>>>",
+      "path": "backend/src/main.cpp",
+      "name": "active",
+      "signature": "shared_ptr<_NonArray<atomic<unsigned int>>>",
+      "kind": "symbol",
+      "offset": 1964
+    },
+    {
+      "id": "backend/src/main.cpp#admission shared_ptr<_NonArray<Admission>>",
+      "path": "backend/src/main.cpp",
+      "name": "admission",
+      "signature": "shared_ptr<_NonArray<Admission>>",
+      "kind": "symbol",
+      "offset": 2026
+    },
+    {
+      "id": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const",
+      "path": "backend/src/main.cpp",
+      "name": "operator()",
+      "signature": "void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const",
+      "kind": "symbol",
+      "offset": 2412
+    },
+    {
+      "id": "backend/src/main.cpp#method const char *const",
+      "path": "backend/src/main.cpp",
+      "name": "method",
+      "signature": "const char *const",
+      "kind": "symbol",
+      "offset": 2594
+    },
+    {
+      "id": "backend/src/main.cpp#mutation const bool",
+      "path": "backend/src/main.cpp",
+      "name": "mutation",
+      "signature": "const bool",
+      "kind": "symbol",
+      "offset": 2690
+    },
+    {
+      "id": "backend/src/main.cpp#previous const __int_type",
+      "path": "backend/src/main.cpp",
+      "name": "previous",
+      "signature": "const __int_type",
+      "kind": "symbol",
+      "offset": 2757
+    },
+    {
+      "id": "backend/src/main.cpp#once const shared_ptr<_NonArray<atomic<bool>>>",
+      "path": "backend/src/main.cpp",
+      "name": "once",
+      "signature": "const shared_ptr<_NonArray<atomic<bool>>>",
+      "kind": "symbol",
+      "offset": 2987
+    },
+    {
+      "id": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)",
+      "path": "backend/src/main.cpp",
+      "name": "finish",
+      "signature": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)",
+      "kind": "symbol",
+      "offset": 3053
+    },
+    {
+      "id": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "path": "backend/src/main.cpp",
+      "name": "operator()",
+      "signature": "void (const workshop::Response &) const",
+      "kind": "symbol",
+      "offset": 3062
+    },
+    {
+      "id": "backend/src/main.cpp#(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) &) noexcept(false)",
+      "path": "backend/src/main.cpp",
+      "name": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)",
+      "signature": "void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) &) noexcept(false)",
+      "kind": "symbol",
+      "offset": 3062
+    },
+    {
+      "id": "backend/src/main.cpp#(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) &&) noexcept",
+      "path": "backend/src/main.cpp",
+      "name": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)",
+      "signature": "void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) &&) noexcept",
+      "kind": "symbol",
+      "offset": 3062
+    },
+    {
+      "id": "backend/src/main.cpp#operator= (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) &(const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) &)",
+      "path": "backend/src/main.cpp",
+      "name": "operator=",
+      "signature": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) &(const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) &)",
+      "kind": "symbol",
+      "offset": 3062
+    },
+    {
+      "id": "backend/src/main.cpp#~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25) void () noexcept",
+      "path": "backend/src/main.cpp",
+      "name": "~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 3062
+    },
+    {
+      "id": "backend/src/main.cpp#input workshop::Json",
+      "path": "backend/src/main.cpp",
+      "name": "input",
+      "signature": "workshop::Json",
+      "kind": "symbol",
+      "offset": 3663
+    },
+    {
+      "id": "backend/src/main.cpp#peer const std::string",
+      "path": "backend/src/main.cpp",
+      "name": "peer",
+      "signature": "const std::string",
+      "kind": "symbol",
+      "offset": 3928
+    },
+    {
+      "id": "backend/src/main.cpp#path const basic_string<char>",
+      "path": "backend/src/main.cpp",
+      "name": "path",
+      "signature": "const basic_string<char>",
+      "kind": "symbol",
+      "offset": 3984
+    },
+    {
+      "id": "backend/src/main.cpp#token const std::string",
+      "path": "backend/src/main.cpp",
+      "name": "token",
+      "signature": "const std::string",
+      "kind": "symbol",
+      "offset": 4039
+    },
+    {
+      "id": "backend/src/main.cpp#csrf const std::string",
+      "path": "backend/src/main.cpp",
+      "name": "csrf",
+      "signature": "const std::string",
+      "kind": "symbol",
+      "offset": 4108
+    },
+    {
+      "id": "backend/src/main.cpp#origin const std::string",
+      "path": "backend/src/main.cpp",
+      "name": "origin",
+      "signature": "const std::string",
+      "kind": "symbol",
+      "offset": 4172
+    },
+    {
+      "id": "backend/src/main.cpp#operator() void (workshop::Store &) const",
+      "path": "backend/src/main.cpp",
+      "name": "operator()",
+      "signature": "void (workshop::Store &) const",
+      "kind": "symbol",
+      "offset": 4253
+    },
+    {
+      "id": "backend/src/main.cpp#now const rep",
+      "path": "backend/src/main.cpp",
+      "name": "now",
+      "signature": "const rep",
+      "kind": "symbol",
+      "offset": 4484
+    },
+    {
+      "id": "backend/src/main.cpp#(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) &) noexcept(false)",
+      "path": "backend/src/main.cpp",
+      "name": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43)",
+      "signature": "void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) &) noexcept(false)",
+      "kind": "symbol",
+      "offset": 4253
+    },
+    {
+      "id": "backend/src/main.cpp#(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) &&) noexcept(false)",
+      "path": "backend/src/main.cpp",
+      "name": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43)",
+      "signature": "void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) &&) noexcept(false)",
+      "kind": "symbol",
+      "offset": 4253
+    },
+    {
+      "id": "backend/src/main.cpp#operator= (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) &(const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) &)",
+      "path": "backend/src/main.cpp",
+      "name": "operator=",
+      "signature": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) &(const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) &)",
+      "kind": "symbol",
+      "offset": 4253
+    },
+    {
+      "id": "backend/src/main.cpp#~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43) void () noexcept",
+      "path": "backend/src/main.cpp",
+      "name": "~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:103:43)",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 4253
+    },
+    {
+      "id": "backend/src/main.cpp#(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) &)",
+      "path": "backend/src/main.cpp",
+      "name": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9)",
+      "signature": "void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) &)",
+      "kind": "symbol",
+      "offset": 2412
+    },
+    {
+      "id": "backend/src/main.cpp#(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) &&) noexcept",
+      "path": "backend/src/main.cpp",
+      "name": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9)",
+      "signature": "void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) &&) noexcept",
+      "kind": "symbol",
+      "offset": 2412
+    },
+    {
+      "id": "backend/src/main.cpp#operator= (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) &(const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) &)",
+      "path": "backend/src/main.cpp",
+      "name": "operator=",
+      "signature": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) &(const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) &)",
+      "kind": "symbol",
+      "offset": 2412
+    },
+    {
+      "id": "backend/src/main.cpp#~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9) void () noexcept",
+      "path": "backend/src/main.cpp",
+      "name": "~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:63:9)",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 2412
+    },
+    {
+      "id": "backend/src/main.cpp#operator() void () const",
+      "path": "backend/src/main.cpp",
+      "name": "operator()",
+      "signature": "void () const",
+      "kind": "symbol",
+      "offset": 5348
+    },
+    {
+      "id": "backend/src/main.cpp#noWait const timespec",
+      "path": "backend/src/main.cpp",
+      "name": "noWait",
+      "signature": "const timespec",
+      "kind": "symbol",
+      "offset": 5458
+    },
+    {
+      "id": "backend/src/main.cpp#signal const int",
+      "path": "backend/src/main.cpp",
+      "name": "signal",
+      "signature": "const int",
+      "kind": "symbol",
+      "offset": 5484
+    },
+    {
+      "id": "backend/src/main.cpp#~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45) void () noexcept",
+      "path": "backend/src/main.cpp",
+      "name": "~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45)",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 5348
+    },
+    {
+      "id": "backend/src/main.cpp#(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45) void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45) &) noexcept",
+      "path": "backend/src/main.cpp",
+      "name": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45)",
+      "signature": "void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45) &) noexcept",
+      "kind": "symbol",
+      "offset": 5348
+    },
+    {
+      "id": "backend/src/main.cpp#(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45) void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45) &&) noexcept",
+      "path": "backend/src/main.cpp",
+      "name": "(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45)",
+      "signature": "void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:125:45) &&) noexcept",
+      "kind": "symbol",
+      "offset": 5348
+    }
+  ],
+  "edges": [
+    {
+      "from": "backend/include/workshop/executor.hpp",
+      "to": "backend/include/workshop/store.hpp",
+      "kind": "include-source-directive"
+    },
+    {
+      "from": "backend/include/workshop/store.hpp",
+      "to": "backend/include/workshop/model.hpp",
+      "kind": "include-source-directive"
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 3551
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 3828
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (workshop::Store &) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 4774
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (workshop::Store &) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 4895
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (workshop::Store &) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 5052
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 4774
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 4895
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 5052
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 5156
+    },
+    {
+      "from": "backend/src/main.cpp#main int (int, char **)",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 3551
+    },
+    {
+      "from": "backend/src/main.cpp#main int (int, char **)",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 3828
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (workshop::Store &) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 4774
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (workshop::Store &) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 4895
+    },
+    {
+      "from": "backend/src/main.cpp#operator() void (workshop::Store &) const",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 5052
+    },
+    {
+      "from": "backend/src/main.cpp#main int (int, char **)",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 4774
+    },
+    {
+      "from": "backend/src/main.cpp#main int (int, char **)",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 4895
+    },
+    {
+      "from": "backend/src/main.cpp#main int (int, char **)",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 5052
+    },
+    {
+      "from": "backend/src/main.cpp#main int (int, char **)",
+      "to": "backend/src/main.cpp#operator() void (const workshop::Response &) const",
+      "kind": "resolved-declaration-call",
+      "offset": 5156
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:algorithm"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:map"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:mutex"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:string"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:condition_variable"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:deque"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:future"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:mutex"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:thread"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:compare"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:cstdint"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:json/json.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:stdexcept"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:string"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:string_view"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:vector"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:functional"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:optional"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:sqlite3.h"
+    },
+    {
+      "code": "CONDITIONAL_SCOPE_TARGET_SPECIFIC",
+      "detail": "backend/include/workshop/store.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/executor.cpp:workshop/executor.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/executor.cpp:cstdlib"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:workshop/admission.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:workshop/executor.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:atomic"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:cerrno"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:csignal"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:drogon/drogon.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:fstream"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:iostream"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:iterator"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:map"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:pthread.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:workshop/model.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:algorithm"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:charconv"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:cmark.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:limits"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:memory"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:regex"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:workshop/store.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:deque"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:filesystem"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:limits"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:memory"
+    },
+    {
+      "code": "CONDITIONAL_SCOPE_TARGET_SPECIFIC",
+      "detail": "backend/src/store.cpp"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#executor shared_ptr<_NonArray<Executor>>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#active shared_ptr<_NonArray<atomic<unsigned int>>>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#admission shared_ptr<_NonArray<Admission>>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#method const char *const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#method const char *const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#mutation const bool"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#mutation const bool"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#previous const __int_type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#previous const __int_type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#once const shared_ptr<_NonArray<atomic<bool>>>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#peer const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#peer const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#peer const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#path const basic_string<char>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#path const basic_string<char>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#path const basic_string<char>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#token const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#token const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#csrf const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#csrf const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#origin const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#origin const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#method const char *const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#method const char *const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#mutation const bool"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#mutation const bool"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#previous const __int_type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#previous const __int_type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#once const shared_ptr<_NonArray<atomic<bool>>>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (const workshop::Response &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#finish (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/main.cpp:76:25)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#peer const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#peer const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#peer const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#path const basic_string<char>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#path const basic_string<char>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#path const basic_string<char>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#token const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#token const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#csrf const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#csrf const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#origin const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#origin const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void (workshop::Store &) const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#now const rep"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#signal const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void () const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void () const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void () const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void () const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void () const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#operator() void () const"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#signal const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/main.cpp#main int (int, char **)"
+    }
+  ],
+  "limits": [
+    "One translation unit and compile target; include directives are not proof of active preprocessing.",
+    "Resolved declaration calls do not prove virtual/callback runtime dispatch; external headers remain outside this local graph."
+  ],
+  "completeness": "INCOMPLETE",
+  "verification": "STRUCTURE_ONLY_SEMANTIC_REVIEW_REQUIRED",
+  "digest": "0fe4bd46f6b7d1bdd3cf0a7a240b59cf2043cd9884f0b8475a81d99581ffdef0"
+}

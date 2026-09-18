@@ -1,0 +1,1 @@
+import assert from 'node:assert/strict';import {decodeReply} from '/Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/reply.ts';const intent={actor:'U',epoch:'E',requestId:'X',workshopId:'W',registrationId:null,sent:true,state:'UNKNOWN'};assert.equal(decodeReply({state:'FINAL',code:'LIMIT_REACHED',effect:'REJECTED',workshopId:'W'},intent)?.code,'LIMIT_REACHED');

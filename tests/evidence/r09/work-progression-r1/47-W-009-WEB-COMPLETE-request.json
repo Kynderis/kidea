@@ -1,0 +1,92 @@
+{
+  "operation": "COMPLETE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowWorkTransition": true,
+    "ownerId": "W-009-WEB",
+    "statement": "Human approved full R09 execution and exact R09-REPLAN-LEGACY-r1 package with Tôi phê duyệt nhé. Record only evidence-backed content reconciliation and scoped backend/Web intermediate progress; preserve unfinished implementation and final acceptance.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/workflow/r09-checkpoint-r1.md",
+      "anchor": "web-leaf"
+    },
+    {
+      "path": "docs/workflow/r09-checkpoint-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/engineering/tests.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/legacy-provenance-r1.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/evidence/https-r3.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/evidence/https-manifest-r3.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "5c5b5c1850b214a74c35950477d743907e1f9f149307d6c217d8533d5b36e476",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedGit": {
+    "head": "c88c14fc17145899b3345fec30d0eae22f5b4873",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "expectedOwnerId": "W-009-WEB",
+  "transition": {
+    "conditionsMet": true,
+    "reason": "Bound backend four-preset and Web real-HTTPS evidence satisfies this intermediate scope. EXr2 remains a limitation; admin/events/ops, full G2 and final acceptance are not complete.",
+    "nextAction": "Continue the unfinished implementation work.",
+    "evidenceRefs": [
+      {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": "web-leaf"
+      },
+      {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/engineering/tests.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/legacy-provenance-r1.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/evidence/https-r3.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/evidence/https-manifest-r3.json",
+        "anchor": null
+      }
+    ],
+    "resultRefs": [
+      {
+        "path": "docs/workflow/evidence/https-r3.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/evidence/https-manifest-r3.json",
+        "anchor": null
+      }
+    ]
+  }
+}

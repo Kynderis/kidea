@@ -1,0 +1,5736 @@
+{
+  "format": "kidea-map-r1",
+  "adapter": {
+    "name": "typescript-svelte",
+    "version": "6.0.3",
+    "versions": {
+      "typescript": "6.0.3",
+      "svelte": "5.57.0"
+    },
+    "tool": {
+      "version": "typescript6.0.3/svelte5.57.0",
+      "components": [
+        {
+          "id": "typescript",
+          "path": "/Users/kendrick/Desktop/kidea-workshop-pilot/web/node_modules/typescript/lib/typescript.js",
+          "sha256": "569177652966bd528c319171c7dd22860dbf72bde116cbc4f644f1d02bb12e39"
+        },
+        {
+          "id": "svelte/compiler",
+          "path": "/Users/kendrick/Desktop/kidea-workshop-pilot/web/node_modules/svelte/compiler/index.js",
+          "sha256": "38f88d68baa287815cb6ea6523fac7beccced2403ca2daea6c385d60f42d78a5"
+        }
+      ]
+    }
+  },
+  "configuration": {
+    "tsconfig": "web/tsconfig.json",
+    "options": {
+      "allowJs": true,
+      "checkJs": false,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "sourceMap": true,
+      "strict": true,
+      "moduleResolution": "bundler",
+      "allowImportingTsExtensions": true
+    }
+  },
+  "sources": [
+    {
+      "path": "web/package-lock.json",
+      "integrity": {
+        "method": "SHA256",
+        "value": "45f0a6b360bc70fa127e47c5df2ce3db3c9c5cb21d40216166bda80b63954545",
+        "byteLength": 122585
+      }
+    },
+    {
+      "path": "web/package.json",
+      "integrity": {
+        "method": "SHA256",
+        "value": "eaff7c1197077ec14ee2161fa1d0be6777eed231c7b230298c42ee737c2679ba",
+        "byteLength": 1070
+      }
+    },
+    {
+      "path": "web/src/app.html",
+      "integrity": {
+        "method": "SHA256",
+        "value": "3c432102be6077941e580467886374c73be132017d3f3851ec18cbc62aa1cc4e",
+        "byteLength": 261
+      }
+    },
+    {
+      "path": "web/src/lib/display.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "7d155f7cd2d0b3b6fd7ff1e89009b85f01f9f7194ec77087ae9214d3924f889d",
+        "byteLength": 592
+      }
+    },
+    {
+      "path": "web/src/lib/Registration.svelte",
+      "integrity": {
+        "method": "SHA256",
+        "value": "37da5b88df4da544711b861e27cac7e7fcb6fff0dce58c5d3b751ec14ab767ea",
+        "byteLength": 6734
+      }
+    },
+    {
+      "path": "web/src/lib/reply.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "5a13bac05a2d5bf94f875e03c1641377a230a4d39702e13ed3c521a7c1471206",
+        "byteLength": 1723
+      }
+    },
+    {
+      "path": "web/src/lib/server/public.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "3bb5fa4a6c5b112581f91b1ff0e11dab071d74ac4eac950fb99a705c652198f5",
+        "byteLength": 1103
+      }
+    },
+    {
+      "path": "web/src/lib/state.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "4ad2ad4deb741661702460afdd6e9981d7aa0d885f85a06d708eed585f064695",
+        "byteLength": 5494
+      }
+    },
+    {
+      "path": "web/src/routes/+error.svelte",
+      "integrity": {
+        "method": "SHA256",
+        "value": "ef117616206d7c3efe7bce941351e67f85b0cb3d4b26be73703d98249fa4cb7e",
+        "byteLength": 522
+      }
+    },
+    {
+      "path": "web/src/routes/+layout.svelte",
+      "integrity": {
+        "method": "SHA256",
+        "value": "be2481dd948f6d4b078b47c5cc43bdd21df5c6ed908d1da987a28b47615aff73",
+        "byteLength": 1383
+      }
+    },
+    {
+      "path": "web/src/routes/+page.svelte",
+      "integrity": {
+        "method": "SHA256",
+        "value": "961da437fa7d7f3881dab30bdb28ba788483e17791bfd10ee636ccb03744abf7",
+        "byteLength": 620
+      }
+    },
+    {
+      "path": "web/src/routes/+page.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "9b61973cd5b564e8d732673fca7747092927ac8747205c1963a7312b14544594",
+        "byteLength": 29
+      }
+    },
+    {
+      "path": "web/src/routes/me/+page.server.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "fe419e231a9361f3669348c18233c0f411efce89f37113001702089cf49a2407",
+        "byteLength": 2085
+      }
+    },
+    {
+      "path": "web/src/routes/me/+page.svelte",
+      "integrity": {
+        "method": "SHA256",
+        "value": "c3c9081b34a13f5c8a4163c2c4e690d0feca4d9542682f25980d7a3451abed63",
+        "byteLength": 1542
+      }
+    },
+    {
+      "path": "web/src/routes/workshops/[id]/+page.server.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "f5e3615b206f829d61a78bf19e28971e44a0a8df4aae3efec46972d48d3fa9f1",
+        "byteLength": 327
+      }
+    },
+    {
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "integrity": {
+        "method": "SHA256",
+        "value": "f0c712fb041cecc71e3e92c09bf9820904dc440c12d900c2ab0b6ba1fc0ec2cf",
+        "byteLength": 1355
+      }
+    },
+    {
+      "path": "web/src/routes/workshops/+page.server.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "a8697c305d052eaad8c0a34b27b5ede86b8a72455aba616cbc7fad794549a515",
+        "byteLength": 170
+      }
+    },
+    {
+      "path": "web/src/routes/workshops/+page.svelte",
+      "integrity": {
+        "method": "SHA256",
+        "value": "ecf694cfd7ffcba1ed7ffe225dd464298f1d1eaf1f8338ff003aea4e5fa77c30",
+        "byteLength": 1052
+      }
+    },
+    {
+      "path": "web/svelte.config.js",
+      "integrity": {
+        "method": "SHA256",
+        "value": "e205f6ea457920bd40b90d7d73950244fc2df05acc48fbfff926de796809c938",
+        "byteLength": 187
+      }
+    },
+    {
+      "path": "web/tests/server/public.test.mjs",
+      "integrity": {
+        "method": "SHA256",
+        "value": "26abb844ac7ce4320ae34d521265f10286d93967790aae86e5c0833f8b846b0f",
+        "byteLength": 12939
+      }
+    },
+    {
+      "path": "web/tests/unit/state.test.mjs",
+      "integrity": {
+        "method": "SHA256",
+        "value": "73982efebdd5824acc20abc24f3a8825167f7d0e4f57a7d98c7a84a12ae5604d",
+        "byteLength": 6336
+      }
+    },
+    {
+      "path": "web/tsconfig.json",
+      "integrity": {
+        "method": "SHA256",
+        "value": "6202643ccf59d3e51f4215e6c8cb5a96245ccacc7a47496afdf4eb7b748fe928",
+        "byteLength": 367
+      }
+    },
+    {
+      "path": "web/vite.config.ts",
+      "integrity": {
+        "method": "SHA256",
+        "value": "1e849563c7b7403a43680ae811628bef59bf4b008af9f2f76d8968c5101ddf5f",
+        "byteLength": 142
+      }
+    }
+  ],
+  "inputBasis": "2996ee1ff8bb61979d736a1aa5899dc354c849d3f22430688b730ff81e2f197b",
+  "nodes": [
+    {
+      "id": "web/src/app.html",
+      "path": "web/src/app.html",
+      "kind": "file"
+    },
+    {
+      "id": "web/src/lib/display.ts",
+      "path": "web/src/lib/display.ts",
+      "kind": "file"
+    },
+    {
+      "id": "web/src/lib/display.ts#scheduleLabel",
+      "path": "web/src/lib/display.ts",
+      "name": "scheduleLabel",
+      "kind": "symbol",
+      "offset": 0
+    },
+    {
+      "id": "web/src/lib/display.ts#match",
+      "path": "web/src/lib/display.ts",
+      "name": "match",
+      "kind": "symbol",
+      "offset": 149
+    },
+    {
+      "id": "web/src/lib/display.ts#observationLabel",
+      "path": "web/src/lib/display.ts",
+      "name": "observationLabel",
+      "kind": "symbol",
+      "offset": 364
+    },
+    {
+      "id": "web/src/lib/display.ts#date",
+      "path": "web/src/lib/display.ts",
+      "name": "date",
+      "kind": "symbol",
+      "offset": 429
+    },
+    {
+      "id": "web/src/lib/Registration.svelte",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "file"
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#session",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "session",
+      "kind": "symbol",
+      "offset": 298
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#history",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "history",
+      "kind": "symbol",
+      "offset": 391
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#pending",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "pending",
+      "kind": "symbol",
+      "offset": 427
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#message",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "message",
+      "kind": "symbol",
+      "offset": 461
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#busy",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "busy",
+      "kind": "symbol",
+      "offset": 511
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#cancelId",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "cancelId",
+      "kind": "symbol",
+      "offset": 535
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#dialog",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "dialog",
+      "kind": "symbol",
+      "offset": 574
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#generation",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "generation",
+      "kind": "symbol",
+      "offset": 603
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#mounted",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "mounted",
+      "kind": "symbol",
+      "offset": 620
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#contextAbort",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "contextAbort",
+      "kind": "symbol",
+      "offset": 638
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#signal",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "signal",
+      "kind": "symbol",
+      "offset": 681
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#clientState",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "clientState",
+      "kind": "symbol",
+      "offset": 765
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#key",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "key",
+      "kind": "symbol",
+      "offset": 808
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#save",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "save",
+      "kind": "symbol",
+      "offset": 912
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#loadHistory",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "loadHistory",
+      "kind": "symbol",
+      "offset": 968
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#c",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "c",
+      "kind": "symbol",
+      "offset": 1015
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#r",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "r",
+      "kind": "symbol",
+      "offset": 1052
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#raw",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "raw",
+      "kind": "symbol",
+      "offset": 1260
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#merged",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "merged",
+      "kind": "symbol",
+      "offset": 1328
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#refresh",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "refresh",
+      "kind": "symbol",
+      "offset": 1536
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#g",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "g",
+      "kind": "symbol",
+      "offset": 1571
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#v",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "v",
+      "kind": "symbol",
+      "offset": 1834
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#saved",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "saved",
+      "kind": "symbol",
+      "offset": 2330
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#execute",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "execute",
+      "kind": "symbol",
+      "offset": 2881
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#method",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "method",
+      "kind": "symbol",
+      "offset": 3031
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#route",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "route",
+      "kind": "symbol",
+      "offset": 3169
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#result",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "result",
+      "kind": "symbol",
+      "offset": 3878
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#begin",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "begin",
+      "kind": "symbol",
+      "offset": 4322
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#intent",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "intent",
+      "kind": "symbol",
+      "offset": 4425
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#show",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "show",
+      "kind": "symbol",
+      "offset": 4647
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#active",
+      "path": "web/src/lib/Registration.svelte",
+      "name": "active",
+      "kind": "symbol",
+      "offset": 4853
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5030",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5030
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5106",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5106
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5115",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5115
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5219",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5219
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5314",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5314
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5329",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5329
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5469",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5469
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5484",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5484
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5582",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5582
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5597",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5597
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5615",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5615
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5766",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5766
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5781",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5781
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5856",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5856
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5915",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5915
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@5980",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 5980
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@6016",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 6016
+    },
+    {
+      "id": "web/src/lib/Registration.svelte#markup@6086",
+      "path": "web/src/lib/Registration.svelte",
+      "kind": "markup",
+      "offset": 6086
+    },
+    {
+      "id": "web/src/lib/reply.ts",
+      "path": "web/src/lib/reply.ts",
+      "kind": "file"
+    },
+    {
+      "id": "web/src/lib/reply.ts#effects",
+      "path": "web/src/lib/reply.ts",
+      "name": "effects",
+      "kind": "symbol",
+      "offset": 42
+    },
+    {
+      "id": "web/src/lib/reply.ts#FinalReply",
+      "path": "web/src/lib/reply.ts",
+      "name": "FinalReply",
+      "kind": "symbol",
+      "offset": 236
+    },
+    {
+      "id": "web/src/lib/reply.ts#decodeReply",
+      "path": "web/src/lib/reply.ts",
+      "name": "decodeReply",
+      "kind": "symbol",
+      "offset": 315
+    },
+    {
+      "id": "web/src/lib/reply.ts#v",
+      "path": "web/src/lib/reply.ts",
+      "name": "v",
+      "kind": "symbol",
+      "offset": 466
+    },
+    {
+      "id": "web/src/lib/reply.ts#cancel",
+      "path": "web/src/lib/reply.ts",
+      "name": "cancel",
+      "kind": "symbol",
+      "offset": 661
+    },
+    {
+      "id": "web/src/lib/reply.ts#resultLabel",
+      "path": "web/src/lib/reply.ts",
+      "name": "resultLabel",
+      "kind": "symbol",
+      "offset": 1211
+    },
+    {
+      "id": "web/src/lib/server/public.ts",
+      "path": "web/src/lib/server/public.ts",
+      "kind": "file"
+    },
+    {
+      "id": "web/src/lib/server/public.ts#readPublic",
+      "path": "web/src/lib/server/public.ts",
+      "name": "readPublic",
+      "kind": "symbol",
+      "offset": 127
+    },
+    {
+      "id": "web/src/lib/server/public.ts#base",
+      "path": "web/src/lib/server/public.ts",
+      "name": "base",
+      "kind": "symbol",
+      "offset": 181
+    },
+    {
+      "id": "web/src/lib/server/public.ts#response",
+      "path": "web/src/lib/server/public.ts",
+      "name": "response",
+      "kind": "symbol",
+      "offset": 326
+    },
+    {
+      "id": "web/src/lib/server/public.ts#raw",
+      "path": "web/src/lib/server/public.ts",
+      "name": "raw",
+      "kind": "symbol",
+      "offset": 702
+    },
+    {
+      "id": "web/src/lib/server/public.ts#values",
+      "path": "web/src/lib/server/public.ts",
+      "name": "values",
+      "kind": "symbol",
+      "offset": 804
+    },
+    {
+      "id": "web/src/lib/server/public.ts#decoded",
+      "path": "web/src/lib/server/public.ts",
+      "name": "decoded",
+      "kind": "symbol",
+      "offset": 902
+    },
+    {
+      "id": "web/src/lib/state.ts",
+      "path": "web/src/lib/state.ts",
+      "kind": "file"
+    },
+    {
+      "id": "web/src/lib/state.ts#Context",
+      "path": "web/src/lib/state.ts",
+      "name": "Context",
+      "kind": "symbol",
+      "offset": 0
+    },
+    {
+      "id": "web/src/lib/state.ts#Registration",
+      "path": "web/src/lib/state.ts",
+      "name": "Registration",
+      "kind": "symbol",
+      "offset": 153
+    },
+    {
+      "id": "web/src/lib/state.ts#History",
+      "path": "web/src/lib/state.ts",
+      "name": "History",
+      "kind": "symbol",
+      "offset": 220
+    },
+    {
+      "id": "web/src/lib/state.ts#Snapshot",
+      "path": "web/src/lib/state.ts",
+      "name": "Snapshot",
+      "kind": "symbol",
+      "offset": 341
+    },
+    {
+      "id": "web/src/lib/state.ts#record",
+      "path": "web/src/lib/state.ts",
+      "name": "record",
+      "kind": "symbol",
+      "offset": 565
+    },
+    {
+      "id": "web/src/lib/state.ts#text",
+      "path": "web/src/lib/state.ts",
+      "name": "text",
+      "kind": "symbol",
+      "offset": 669
+    },
+    {
+      "id": "web/src/lib/state.ts#version",
+      "path": "web/src/lib/state.ts",
+      "name": "version",
+      "kind": "symbol",
+      "offset": 745
+    },
+    {
+      "id": "web/src/lib/state.ts#integer",
+      "path": "web/src/lib/state.ts",
+      "name": "integer",
+      "kind": "symbol",
+      "offset": 873
+    },
+    {
+      "id": "web/src/lib/state.ts#decodeSnapshot",
+      "path": "web/src/lib/state.ts",
+      "name": "decodeSnapshot",
+      "kind": "symbol",
+      "offset": 952
+    },
+    {
+      "id": "web/src/lib/state.ts#decodeHistory",
+      "path": "web/src/lib/state.ts",
+      "name": "decodeHistory",
+      "kind": "symbol",
+      "offset": 1903
+    },
+    {
+      "id": "web/src/lib/state.ts#registrations",
+      "path": "web/src/lib/state.ts",
+      "name": "registrations",
+      "kind": "symbol",
+      "offset": 2109
+    },
+    {
+      "id": "web/src/lib/state.ts#ids",
+      "path": "web/src/lib/state.ts",
+      "name": "ids",
+      "kind": "symbol",
+      "offset": 2147
+    },
+    {
+      "id": "web/src/lib/state.ts#active",
+      "path": "web/src/lib/state.ts",
+      "name": "active",
+      "kind": "symbol",
+      "offset": 2173
+    },
+    {
+      "id": "web/src/lib/state.ts#r",
+      "path": "web/src/lib/state.ts",
+      "name": "r",
+      "kind": "symbol",
+      "offset": 2194
+    },
+    {
+      "id": "web/src/lib/state.ts#historyContent",
+      "path": "web/src/lib/state.ts",
+      "name": "historyContent",
+      "kind": "symbol",
+      "offset": 2545
+    },
+    {
+      "id": "web/src/lib/state.ts#ClientState",
+      "path": "web/src/lib/state.ts",
+      "name": "ClientState",
+      "kind": "symbol",
+      "offset": 2671
+    },
+    {
+      "id": "web/src/lib/state.ts#next",
+      "path": "web/src/lib/state.ts",
+      "name": "next",
+      "kind": "symbol",
+      "offset": 3385
+    },
+    {
+      "id": "web/src/lib/state.ts#previous",
+      "path": "web/src/lib/state.ts",
+      "name": "previous",
+      "kind": "symbol",
+      "offset": 3491
+    },
+    {
+      "id": "web/src/lib/state.ts#a",
+      "path": "web/src/lib/state.ts",
+      "name": "a",
+      "kind": "symbol",
+      "offset": 3556
+    },
+    {
+      "id": "web/src/lib/state.ts#b",
+      "path": "web/src/lib/state.ts",
+      "name": "b",
+      "kind": "symbol",
+      "offset": 3588
+    },
+    {
+      "id": "web/src/lib/state.ts#state",
+      "path": "web/src/lib/state.ts",
+      "name": "state",
+      "kind": "symbol",
+      "offset": 4117
+    },
+    {
+      "id": "web/src/lib/state.ts#v",
+      "path": "web/src/lib/state.ts",
+      "name": "v",
+      "kind": "symbol",
+      "offset": 4143
+    },
+    {
+      "id": "web/src/lib/state.ts#result",
+      "path": "web/src/lib/state.ts",
+      "name": "result",
+      "kind": "symbol",
+      "offset": 4159
+    },
+    {
+      "id": "web/src/lib/state.ts#Intent",
+      "path": "web/src/lib/state.ts",
+      "name": "Intent",
+      "kind": "symbol",
+      "offset": 4300
+    },
+    {
+      "id": "web/src/lib/state.ts#decodeIntent",
+      "path": "web/src/lib/state.ts",
+      "name": "decodeIntent",
+      "kind": "symbol",
+      "offset": 4449
+    },
+    {
+      "id": "web/src/lib/state.ts#prepareSend",
+      "path": "web/src/lib/state.ts",
+      "name": "prepareSend",
+      "kind": "symbol",
+      "offset": 4941
+    },
+    {
+      "id": "web/src/lib/state.ts#freshness",
+      "path": "web/src/lib/state.ts",
+      "name": "freshness",
+      "kind": "symbol",
+      "offset": 5243
+    },
+    {
+      "id": "web/src/routes/+error.svelte",
+      "path": "web/src/routes/+error.svelte",
+      "kind": "file"
+    },
+    {
+      "id": "web/src/routes/+error.svelte#markup@180",
+      "path": "web/src/routes/+error.svelte",
+      "kind": "markup",
+      "offset": 180
+    },
+    {
+      "id": "web/src/routes/+error.svelte#markup@407",
+      "path": "web/src/routes/+error.svelte",
+      "kind": "markup",
+      "offset": 407
+    },
+    {
+      "id": "web/src/routes/+layout.svelte",
+      "path": "web/src/routes/+layout.svelte",
+      "kind": "route"
+    },
+    {
+      "id": "web/src/routes/+layout.svelte#markup@226",
+      "path": "web/src/routes/+layout.svelte",
+      "kind": "markup",
+      "offset": 226
+    },
+    {
+      "id": "web/src/routes/+layout.svelte#markup@301",
+      "path": "web/src/routes/+layout.svelte",
+      "kind": "markup",
+      "offset": 301
+    },
+    {
+      "id": "web/src/routes/+page.svelte",
+      "path": "web/src/routes/+page.svelte",
+      "kind": "route"
+    },
+    {
+      "id": "web/src/routes/+page.svelte#markup@395",
+      "path": "web/src/routes/+page.svelte",
+      "kind": "markup",
+      "offset": 395
+    },
+    {
+      "id": "web/src/routes/+page.ts",
+      "path": "web/src/routes/+page.ts",
+      "kind": "route"
+    },
+    {
+      "id": "web/src/routes/+page.ts#prerender",
+      "path": "web/src/routes/+page.ts",
+      "name": "prerender",
+      "kind": "symbol",
+      "offset": 12
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts",
+      "path": "web/src/routes/me/+page.server.ts",
+      "kind": "route"
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#load",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "load",
+      "kind": "symbol",
+      "offset": 180
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#token",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "token",
+      "kind": "symbol",
+      "offset": 267
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#base",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "base",
+      "kind": "symbol",
+      "offset": 367
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#get",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "get",
+      "kind": "symbol",
+      "offset": 505
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#response",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "response",
+      "kind": "symbol",
+      "offset": 563
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#who",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "who",
+      "kind": "symbol",
+      "offset": 1098
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#raw",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "raw",
+      "kind": "symbol",
+      "offset": 1380
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#groups",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "groups",
+      "kind": "symbol",
+      "offset": 1489
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#value",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "value",
+      "kind": "symbol",
+      "offset": 1511
+    },
+    {
+      "id": "web/src/routes/me/+page.server.ts#history",
+      "path": "web/src/routes/me/+page.server.ts",
+      "name": "history",
+      "kind": "symbol",
+      "offset": 1531
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte",
+      "path": "web/src/routes/me/+page.svelte",
+      "kind": "route"
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte#visible",
+      "path": "web/src/routes/me/+page.svelte",
+      "name": "visible",
+      "kind": "symbol",
+      "offset": 197
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte#hide",
+      "path": "web/src/routes/me/+page.svelte",
+      "name": "hide",
+      "kind": "symbol",
+      "offset": 240
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte#show",
+      "path": "web/src/routes/me/+page.svelte",
+      "name": "show",
+      "kind": "symbol",
+      "offset": 289
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte#markup@948",
+      "path": "web/src/routes/me/+page.svelte",
+      "kind": "markup",
+      "offset": 948
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte#markup@1000",
+      "path": "web/src/routes/me/+page.svelte",
+      "kind": "markup",
+      "offset": 1000
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte#markup@1034",
+      "path": "web/src/routes/me/+page.svelte",
+      "kind": "markup",
+      "offset": 1034
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte#markup@1083",
+      "path": "web/src/routes/me/+page.svelte",
+      "kind": "markup",
+      "offset": 1083
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte#markup@1178",
+      "path": "web/src/routes/me/+page.svelte",
+      "kind": "markup",
+      "offset": 1178
+    },
+    {
+      "id": "web/src/routes/me/+page.svelte#markup@1187",
+      "path": "web/src/routes/me/+page.svelte",
+      "kind": "markup",
+      "offset": 1187
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.server.ts",
+      "path": "web/src/routes/workshops/[id]/+page.server.ts",
+      "kind": "route"
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.server.ts#load",
+      "path": "web/src/routes/workshops/[id]/+page.server.ts",
+      "name": "load",
+      "kind": "symbol",
+      "offset": 95
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "route"
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@270",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 270
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@354",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 354
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@424",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 424
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@523",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 523
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@575",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 575
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@633",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 633
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@667",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 667
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@715",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 715
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@765",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 765
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@826",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 826
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@852",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 852
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@1033",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 1033
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@1179",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 1179
+    },
+    {
+      "id": "web/src/routes/workshops/[id]/+page.svelte#markup@1202",
+      "path": "web/src/routes/workshops/[id]/+page.svelte",
+      "kind": "markup",
+      "offset": 1202
+    },
+    {
+      "id": "web/src/routes/workshops/+page.server.ts",
+      "path": "web/src/routes/workshops/+page.server.ts",
+      "kind": "route"
+    },
+    {
+      "id": "web/src/routes/workshops/+page.server.ts#load",
+      "path": "web/src/routes/workshops/+page.server.ts",
+      "name": "load",
+      "kind": "symbol",
+      "offset": 59
+    },
+    {
+      "id": "web/src/routes/workshops/+page.svelte",
+      "path": "web/src/routes/workshops/+page.svelte",
+      "kind": "route"
+    },
+    {
+      "id": "web/src/routes/workshops/+page.svelte#markup@523",
+      "path": "web/src/routes/workshops/+page.svelte",
+      "kind": "markup",
+      "offset": 523
+    },
+    {
+      "id": "web/src/routes/workshops/+page.svelte#markup@569",
+      "path": "web/src/routes/workshops/+page.svelte",
+      "kind": "markup",
+      "offset": 569
+    },
+    {
+      "id": "web/src/routes/workshops/+page.svelte#markup@597",
+      "path": "web/src/routes/workshops/+page.svelte",
+      "kind": "markup",
+      "offset": 597
+    },
+    {
+      "id": "web/src/routes/workshops/+page.svelte#markup@653",
+      "path": "web/src/routes/workshops/+page.svelte",
+      "kind": "markup",
+      "offset": 653
+    },
+    {
+      "id": "web/src/routes/workshops/+page.svelte#markup@696",
+      "path": "web/src/routes/workshops/+page.svelte",
+      "kind": "markup",
+      "offset": 696
+    },
+    {
+      "id": "web/src/routes/workshops/+page.svelte#markup@741",
+      "path": "web/src/routes/workshops/+page.svelte",
+      "kind": "markup",
+      "offset": 741
+    },
+    {
+      "id": "web/src/routes/workshops/+page.svelte#markup@762",
+      "path": "web/src/routes/workshops/+page.svelte",
+      "kind": "markup",
+      "offset": 762
+    },
+    {
+      "id": "web/src/routes/workshops/+page.svelte#markup@856",
+      "path": "web/src/routes/workshops/+page.svelte",
+      "kind": "markup",
+      "offset": 856
+    },
+    {
+      "id": "web/tests/server/public.test.mjs",
+      "path": "web/tests/server/public.test.mjs",
+      "kind": "file"
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#snapshot",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "snapshot",
+      "kind": "symbol",
+      "offset": 155
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#requests",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "requests",
+      "kind": "symbol",
+      "offset": 422
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#mode",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "mode",
+      "kind": "symbol",
+      "offset": 438
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#wrongPrivateActor",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "wrongPrivateActor",
+      "kind": "symbol",
+      "offset": 455
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#child",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "child",
+      "kind": "symbol",
+      "offset": 483
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#stdout",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "stdout",
+      "kind": "symbol",
+      "offset": 493
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#stderr",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "stderr",
+      "kind": "symbol",
+      "offset": 504
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#api",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "api",
+      "kind": "symbol",
+      "offset": 520
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#actor",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "actor",
+      "kind": "symbol",
+      "offset": 735
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#v",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "v",
+      "kind": "symbol",
+      "offset": 1338
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#reservation",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "reservation",
+      "kind": "symbol",
+      "offset": 1589
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#port",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "port",
+      "kind": "symbol",
+      "offset": 1680
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#base",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "base",
+      "kind": "symbol",
+      "offset": 1762
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#closed",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "closed",
+      "kind": "symbol",
+      "offset": 2135
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#ready",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "ready",
+      "kind": "symbol",
+      "offset": 2189
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#i",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "i",
+      "kind": "symbol",
+      "offset": 2209
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#r",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "r",
+      "kind": "symbol",
+      "offset": 2516
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#html",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "html",
+      "kind": "symbol",
+      "offset": 2542
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#links",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "links",
+      "kind": "symbol",
+      "offset": 3066
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#m",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "m",
+      "kind": "symbol",
+      "offset": 4144
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#responses",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "responses",
+      "kind": "symbol",
+      "offset": 4440
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#other",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "other",
+      "kind": "symbol",
+      "offset": 4628
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#cookie",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "cookie",
+      "kind": "symbol",
+      "offset": 4950
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#out",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "out",
+      "kind": "symbol",
+      "offset": 5628
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#zoom",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "zoom",
+      "kind": "symbol",
+      "offset": 5678
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#profile",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "profile",
+      "kind": "symbol",
+      "offset": 5703
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#context",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "context",
+      "kind": "symbol",
+      "offset": 5917
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#width",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "width",
+      "kind": "symbol",
+      "offset": 6099
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#page",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "page",
+      "kind": "symbol",
+      "offset": 6203
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#errors",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "errors",
+      "kind": "symbol",
+      "offset": 6285
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#metrics",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "metrics",
+      "kind": "symbol",
+      "offset": 6602
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#cdp",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "cdp",
+      "kind": "symbol",
+      "offset": 7184
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#image",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "image",
+      "kind": "symbol",
+      "offset": 7228
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#browser",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "browser",
+      "kind": "symbol",
+      "offset": 7465
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#calls",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "calls",
+      "kind": "symbol",
+      "offset": 7775
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#registration",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "registration",
+      "kind": "symbol",
+      "offset": 7788
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#dropped",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "dropped",
+      "kind": "symbol",
+      "offset": 7817
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#originalId",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "originalId",
+      "kind": "symbol",
+      "offset": 7835
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#request",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "request",
+      "kind": "symbol",
+      "offset": 7910
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#url",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "url",
+      "kind": "symbol",
+      "offset": 7935
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#value",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "value",
+      "kind": "symbol",
+      "offset": 8050
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#body",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "body",
+      "kind": "symbol",
+      "offset": 8456
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#a",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "a",
+      "kind": "symbol",
+      "offset": 9547
+    },
+    {
+      "id": "web/tests/server/public.test.mjs#timer",
+      "path": "web/tests/server/public.test.mjs",
+      "name": "timer",
+      "kind": "symbol",
+      "offset": 12550
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs",
+      "path": "web/tests/unit/state.test.mjs",
+      "kind": "file"
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#h",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "h",
+      "kind": "symbol",
+      "offset": 199
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#snap",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "snap",
+      "kind": "symbol",
+      "offset": 328
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#v",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "v",
+      "kind": "symbol",
+      "offset": 621
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#s",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "s",
+      "kind": "symbol",
+      "offset": 1116
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#mode",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "mode",
+      "kind": "symbol",
+      "offset": 2408
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#old",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "old",
+      "kind": "symbol",
+      "offset": 2539
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#registrations",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "registrations",
+      "kind": "symbol",
+      "offset": 2796
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#intent",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "intent",
+      "kind": "symbol",
+      "offset": 3067
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#i",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "i",
+      "kind": "symbol",
+      "offset": 3245
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#saved",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "saved",
+      "kind": "symbol",
+      "offset": 3260
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#restored",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "restored",
+      "kind": "symbol",
+      "offset": 3319
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#raw",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "raw",
+      "kind": "symbol",
+      "offset": 3673
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#result",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "result",
+      "kind": "symbol",
+      "offset": 4728
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#extra",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "extra",
+      "kind": "symbol",
+      "offset": 5179
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#cancel",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "cancel",
+      "kind": "symbol",
+      "offset": 5509
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#r",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "r",
+      "kind": "symbol",
+      "offset": 5844
+    },
+    {
+      "id": "web/tests/unit/state.test.mjs#current",
+      "path": "web/tests/unit/state.test.mjs",
+      "name": "current",
+      "kind": "symbol",
+      "offset": 6113
+    },
+    {
+      "id": "web/tsconfig.json",
+      "path": "web/tsconfig.json",
+      "kind": "configuration"
+    },
+    {
+      "id": "web/package.json",
+      "path": "web/package.json",
+      "kind": "configuration"
+    },
+    {
+      "id": "web/package-lock.json",
+      "path": "web/package-lock.json",
+      "kind": "configuration"
+    },
+    {
+      "id": "web/svelte.config.js",
+      "path": "web/svelte.config.js",
+      "kind": "configuration"
+    },
+    {
+      "id": "web/vite.config.ts",
+      "path": "web/vite.config.ts",
+      "kind": "configuration"
+    }
+  ],
+  "edges": [
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#key",
+      "kind": "lexical-call-candidate",
+      "offset": 955
+    },
+    {
+      "from": "web/src/lib/Registration.svelte#loadHistory",
+      "to": "web/src/lib/Registration.svelte#signal",
+      "kind": "lexical-call-candidate",
+      "offset": 1119
+    },
+    {
+      "from": "web/src/lib/Registration.svelte#refresh",
+      "to": "web/src/lib/Registration.svelte#signal",
+      "kind": "lexical-call-candidate",
+      "offset": 1818
+    },
+    {
+      "from": "web/src/lib/Registration.svelte#refresh",
+      "to": "web/src/lib/Registration.svelte#key",
+      "kind": "lexical-call-candidate",
+      "offset": 2358
+    },
+    {
+      "from": "web/src/lib/Registration.svelte#refresh",
+      "to": "web/src/lib/Registration.svelte#loadHistory",
+      "kind": "lexical-call-candidate",
+      "offset": 2774
+    },
+    {
+      "from": "web/src/lib/Registration.svelte#execute",
+      "to": "web/src/lib/Registration.svelte#signal",
+      "kind": "lexical-call-candidate",
+      "offset": 3422
+    },
+    {
+      "from": "web/src/lib/Registration.svelte#execute",
+      "to": "web/src/lib/Registration.svelte#save",
+      "kind": "lexical-call-candidate",
+      "offset": 4032
+    },
+    {
+      "from": "web/src/lib/Registration.svelte#execute",
+      "to": "web/src/lib/Registration.svelte#loadHistory",
+      "kind": "lexical-call-candidate",
+      "offset": 4155
+    },
+    {
+      "from": "web/src/lib/Registration.svelte#begin",
+      "to": "web/src/lib/Registration.svelte#execute",
+      "kind": "lexical-call-candidate",
+      "offset": 4581
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#refresh",
+      "kind": "lexical-call-candidate",
+      "offset": 4631
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#refresh",
+      "kind": "lexical-call-candidate",
+      "offset": 4662
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5030",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5106",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5115",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5219",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5314",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5329",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5469",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5484",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5582",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5597",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5615",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5766",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5781",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5856",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5915",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@5980",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@6016",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/Registration.svelte",
+      "to": "web/src/lib/Registration.svelte#markup@6086",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/lib/reply.ts",
+      "to": "web/src/lib/state.ts",
+      "kind": "import",
+      "specifier": "./state"
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#record",
+      "kind": "lexical-call-candidate",
+      "offset": 1016
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 1028
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 1041
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#version",
+      "kind": "lexical-call-candidate",
+      "offset": 1057
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 1118
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 1134
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#integer",
+      "kind": "lexical-call-candidate",
+      "offset": 1156
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#integer",
+      "kind": "lexical-call-candidate",
+      "offset": 1209
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#integer",
+      "kind": "lexical-call-candidate",
+      "offset": 1262
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#integer",
+      "kind": "lexical-call-candidate",
+      "offset": 1320
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#record",
+      "kind": "lexical-call-candidate",
+      "offset": 1344
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 1365
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeSnapshot",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 1390
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeHistory",
+      "to": "web/src/lib/state.ts#record",
+      "kind": "lexical-call-candidate",
+      "offset": 1965
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeHistory",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 1977
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeHistory",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 1993
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeHistory",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 2009
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeHistory",
+      "to": "web/src/lib/state.ts#version",
+      "kind": "lexical-call-candidate",
+      "offset": 2030
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeHistory",
+      "to": "web/src/lib/state.ts#record",
+      "kind": "lexical-call-candidate",
+      "offset": 2221
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeHistory",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 2233
+    },
+    {
+      "from": "web/src/lib/state.ts",
+      "to": "web/src/lib/state.ts#decodeHistory",
+      "kind": "lexical-call-candidate",
+      "offset": 3391
+    },
+    {
+      "from": "web/src/lib/state.ts",
+      "to": "web/src/lib/state.ts#historyContent",
+      "kind": "lexical-call-candidate",
+      "offset": 3660
+    },
+    {
+      "from": "web/src/lib/state.ts",
+      "to": "web/src/lib/state.ts#historyContent",
+      "kind": "lexical-call-candidate",
+      "offset": 3683
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeIntent",
+      "to": "web/src/lib/state.ts#record",
+      "kind": "lexical-call-candidate",
+      "offset": 4594
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeIntent",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 4640
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeIntent",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 4660
+    },
+    {
+      "from": "web/src/lib/state.ts#decodeIntent",
+      "to": "web/src/lib/state.ts#text",
+      "kind": "lexical-call-candidate",
+      "offset": 4707
+    },
+    {
+      "from": "web/src/routes/+error.svelte",
+      "to": "web/src/routes/+error.svelte#markup@180",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/+error.svelte",
+      "to": "web/src/routes/+error.svelte#markup@407",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/+layout.svelte",
+      "to": "web/src/routes/+layout.svelte#markup@226",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/+layout.svelte",
+      "to": "web/src/routes/+layout.svelte#markup@301",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/+page.svelte",
+      "to": "web/src/routes/+page.svelte#markup@395",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/me/+page.server.ts",
+      "to": "web/src/routes/me/+page.server.ts#get",
+      "kind": "lexical-call-candidate",
+      "offset": 1108
+    },
+    {
+      "from": "web/src/routes/me/+page.server.ts",
+      "to": "web/src/routes/me/+page.server.ts#get",
+      "kind": "lexical-call-candidate",
+      "offset": 1390
+    },
+    {
+      "from": "web/src/routes/me/+page.svelte",
+      "to": "web/src/routes/me/+page.svelte#hide",
+      "kind": "lexical-call-candidate",
+      "offset": 345
+    },
+    {
+      "from": "web/src/routes/me/+page.svelte",
+      "to": "web/src/routes/me/+page.svelte#markup@948",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/me/+page.svelte",
+      "to": "web/src/routes/me/+page.svelte#markup@1000",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/me/+page.svelte",
+      "to": "web/src/routes/me/+page.svelte#markup@1034",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/me/+page.svelte",
+      "to": "web/src/routes/me/+page.svelte#markup@1083",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/me/+page.svelte",
+      "to": "web/src/routes/me/+page.svelte#markup@1178",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/me/+page.svelte",
+      "to": "web/src/routes/me/+page.svelte#markup@1187",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@270",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@354",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@424",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@523",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@575",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@633",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@667",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@715",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@765",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@826",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@852",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@1033",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@1179",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/[id]/+page.svelte",
+      "to": "web/src/routes/workshops/[id]/+page.svelte#markup@1202",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/+page.svelte",
+      "to": "web/src/routes/workshops/+page.svelte#markup@523",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/+page.svelte",
+      "to": "web/src/routes/workshops/+page.svelte#markup@569",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/+page.svelte",
+      "to": "web/src/routes/workshops/+page.svelte#markup@597",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/+page.svelte",
+      "to": "web/src/routes/workshops/+page.svelte#markup@653",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/+page.svelte",
+      "to": "web/src/routes/workshops/+page.svelte#markup@696",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/+page.svelte",
+      "to": "web/src/routes/workshops/+page.svelte#markup@741",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/+page.svelte",
+      "to": "web/src/routes/workshops/+page.svelte#markup@762",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/src/routes/workshops/+page.svelte",
+      "to": "web/src/routes/workshops/+page.svelte#markup@856",
+      "kind": "markup-expression"
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/src/lib/state.ts",
+      "kind": "import",
+      "specifier": "../../src/lib/state.ts"
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#snap",
+      "kind": "lexical-call-candidate",
+      "offset": 643
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#snap",
+      "kind": "lexical-call-candidate",
+      "offset": 700
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#snap",
+      "kind": "lexical-call-candidate",
+      "offset": 990
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 1152
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 1224
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 1307
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 1474
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 1585
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 1779
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 1939
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 1997
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 2167
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 2203
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 2268
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 2315
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 2567
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 2690
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 3034
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 3248
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 3510
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 3693
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 4956
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#result",
+      "kind": "lexical-call-candidate",
+      "offset": 5060
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 5069
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#result",
+      "kind": "lexical-call-candidate",
+      "offset": 5406
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 5425
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 5521
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#result",
+      "kind": "lexical-call-candidate",
+      "offset": 5579
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#result",
+      "kind": "lexical-call-candidate",
+      "offset": 5663
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#result",
+      "kind": "lexical-call-candidate",
+      "offset": 5748
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 5944
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 6007
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 6092
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#h",
+      "kind": "lexical-call-candidate",
+      "offset": 6161
+    },
+    {
+      "from": "web/tests/unit/state.test.mjs",
+      "to": "web/tests/unit/state.test.mjs#intent",
+      "kind": "lexical-call-candidate",
+      "offset": 6227
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "TSCONFIG_EXTENDS_UNRESOLVED",
+      "file": "web/tsconfig.json",
+      "detail": "./.svelte-kit/tsconfig.json"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/display.ts",
+      "detail": "/^(\\d{4})-(\\d\\d)-(\\d\\d)T(\\d\\d:\\d\\d)(?::\\d\\d(?:\\.\\d+)?)?(Z|[+-]\\d\\d:\\d\\d)$/.exec"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/display.ts",
+      "detail": "Number.isNaN"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/display.ts",
+      "detail": "date.valueOf"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/display.ts",
+      "detail": "date.toISOString().replace('T',' ').replace"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/display.ts",
+      "detail": "date.toISOString().replace"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/display.ts",
+      "detail": "date.toISOString"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "r"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "g"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "r"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "raw"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$app/paths"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "svelte"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$lib/state"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$lib/state"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$lib/reply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$props"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$state"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$state"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$state"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$state"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$state"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$state"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "AbortSignal.any"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "AbortSignal.timeout"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "localStorage.setItem"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "fetch"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "/api/v1/me/registrations"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "r.json"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "clientState.collection"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "clientState.history.get"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "dialog?.close"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "contextAbort.abort"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "clientState.reset"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "fetch"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "/api/v1/session"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "r.json"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "clientState.reset"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "localStorage.getItem"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "decodeIntent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "prepareSend"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "encodeURIComponent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "encodeURIComponent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "fetch"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "/api/v1"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "r.json"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "crypto.randomUUID"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "onMount"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "window.addEventListener"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "contextAbort.abort"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "clientState.unmount"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "window.removeEventListener"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "$derived"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "history?.registrations.find"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{message}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{r.id}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{r.state==='ACTIVE'?'Đã đăng ký':'Đã hủy'}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{resolve('/me')}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{busy}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{()=>{if(pending)void execute(pending,true);}}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{busy}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{()=>{cancelId=active?.id??null;dialog.showModal();}}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{busy}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{()=>begin(null)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{workshop.remaining===0?'Kiểm tra và đăng ký':'Đăng ký'}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{busy}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{()=>{void refresh();}}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "bind:this={dialog}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{()=>{cancelId=null;}}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{workshop.title}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{()=>{cancelId=null;dialog.close();}}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/Registration.svelte",
+      "detail": "{()=>{const id=cancelId;cancelId=null;dialog.close();if(id)begin(id);}}"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/reply.ts",
+      "detail": "Array.isArray"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/reply.ts",
+      "detail": "Object.hasOwn"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/reply.ts",
+      "detail": "['REGISTERED','ALREADY_REGISTERED','FULL','LIMIT_REACHED'].includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/reply.ts",
+      "detail": "['CANCELLED','ALREADY_CANCELLED'].includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/reply.ts",
+      "detail": "['PAUSED','FULL','LIMIT_REACHED'].includes"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "@sveltejs/kit"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "$env/dynamic/private"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "$lib/state"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "/^http:\\/\\/(127\\.0\\.0\\.1|localhost):[0-9]+$/.test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "fetch"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "/api/v1/workshops"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "encodeURIComponent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "AbortSignal.timeout"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "response.json"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "Array.isArray"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "values.map"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "decoded.some"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/server/public.ts",
+      "detail": "decoded.filter"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/src/lib/state.ts",
+      "detail": "v"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/src/lib/state.ts",
+      "detail": "next"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Array.isArray"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "/^(0|[1-9][0-9]{0,19})$/.test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "BigInt"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Number.isSafeInteger"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "[v.schedule.start,v.schedule.end].every"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "/([+-]\\d\\d:\\d\\d|Z)$/.test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Number.isFinite"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Date.parse"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Date.parse"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Date.parse"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Array.isArray"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "ids.has"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "ids.add"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "registrations.push"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "[...h.registrations].sort"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "a.id.localeCompare"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.history.clear"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.uncertain.clear"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.accepts"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.history.get"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "BigInt"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "BigInt"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.uncertain.add"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.uncertain.has"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.history.set"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.uncertain.delete"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.accepts"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Array.isArray"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "this.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "JSON.parse"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "persist"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Number.isFinite"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/lib/state.ts",
+      "detail": "Number.isFinite"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/+error.svelte",
+      "detail": "$app/paths"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/+error.svelte",
+      "detail": "$app/state"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/+error.svelte",
+      "detail": "{page.status===404?'Không thể truy cập workshop này':page.status===401?'Cần phiên tài khoản thử hợp lệ':'Chưa tải được trang'}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/+error.svelte",
+      "detail": "{resolve('/workshops')}"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/+layout.svelte",
+      "detail": "$app/paths"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/+layout.svelte",
+      "detail": "$props"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/+layout.svelte",
+      "detail": "{resolve('/')}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/+layout.svelte",
+      "detail": "{resolve('/workshops')}"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/+page.svelte",
+      "detail": "$app/paths"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/+page.svelte",
+      "detail": "{resolve('/workshops')}"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "@sveltejs/kit"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "$env/dynamic/private"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "$lib/state"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "$lib/server/public"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "setHeaders"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "cookies.get"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "/^http:\\/\\/(127\\.0\\.0\\.1|localhost):[0-9]+$/.test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "fetch"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "/api/v1"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "encodeURIComponent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "AbortSignal.timeout"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "response.json"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "Array.isArray"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "decodeHistory"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "readPublic"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.server.ts",
+      "detail": "groups.push"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "svelte"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "$app/paths"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "$lib/display"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "./$types"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "$props"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "$state"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "onMount"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "flushSync"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "window.location.reload"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "window.addEventListener"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "window.addEventListener"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "window.removeEventListener"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "window.removeEventListener"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "{resolve('/workshops/[id]',{id:group.workshop.id})}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "{group.workshop.title}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "{scheduleLabel(group.workshop.schedule.start)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "{scheduleLabel(group.workshop.schedule.end)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "{r.id}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/me/+page.svelte",
+      "detail": "{r.state==='ACTIVE'?'Đã đăng ký':'Đã hủy'}"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.server.ts",
+      "detail": "$lib/server/public"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.server.ts",
+      "detail": "@sveltejs/kit"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.server.ts",
+      "detail": "setHeaders"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.server.ts",
+      "detail": "readPublic"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.server.ts",
+      "detail": "error"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "$lib/Registration.svelte"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "$lib/display"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "$app/paths"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "./$types"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "$props"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{data.workshop.title}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{data.workshop.description.slice(0,160)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{'https://workshop.test/workshops/'+encodeURIComponent(data.workshop.id)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{resolve('/workshops')}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{data.workshop.title}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{data.workshop.description}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{scheduleLabel(data.workshop.schedule.start)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{scheduleLabel(data.workshop.schedule.end)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{data.workshop.state==='OPEN'?'Mở đăng ký':'Tạm dừng'}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{data.workshop.remaining}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{data.workshop.capacity}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{observationLabel(data.workshop.observedAt)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "<Registration workshop={data.workshop} />"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/[id]/+page.svelte",
+      "detail": "{data.workshop}"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/+page.server.ts",
+      "detail": "$lib/server/public"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/workshops/+page.server.ts",
+      "detail": "setHeaders"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/workshops/+page.server.ts",
+      "detail": "readPublic"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "$lib/display"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "$app/paths"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "./$types"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "$props"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "{resolve('/workshops/[id]',{id:workshop.id})}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "{workshop.title}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "{workshop.state==='OPEN'?'Mở đăng ký':'Tạm dừng'}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "{scheduleLabel(workshop.schedule.start)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "{scheduleLabel(workshop.schedule.end)}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "{workshop.remaining}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "{workshop.capacity}"
+    },
+    {
+      "code": "SVELTE_REACTIVE_OR_EVENT_RELATION_REQUIRES_REVIEW",
+      "file": "web/src/routes/workshops/+page.svelte",
+      "detail": "{observationLabel(workshop.observedAt)}"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "actor"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "a"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "node:test"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "node:assert/strict"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "node:http"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "node:child_process"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "createServer"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "requests.push"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "res.setHeader"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/session"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/me/registrations"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "res.end"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "res.end"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/session"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/workshops/hidden"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "res.end"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "res.end"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/workshops/W2"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "res.end"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/workshops"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "api.listen"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "createServer"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "reservation.listen"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "reservation.address"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "reservation.close"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "http://127.0.0.1:"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "spawn"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "String"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "https://workshop.test"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "http://127.0.0.1:"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "api.address"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "child.stdout.on"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "child.stderr.on"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "child.on"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "setTimeout"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r.text"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r.text"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r.headers.get"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html.includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html.includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "[...html.matchAll(/href=\"([^\"]+)\"/g)].map"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html.matchAll"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "links.includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r.text"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html.includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r.text"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html.includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "Promise.all"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "['U','V'].map"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "requests.every"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "Promise.all"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "['U','V'].map"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "responses.entries"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r.text"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r.headers.get"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html.includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html.includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html.includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "html.includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "(await r.text()).includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r.text"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "fetch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "(await r.text()).includes"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "r.text"
+    },
+    {
+      "code": "DYNAMIC_IMPORT_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "import('playwright')"
+    },
+    {
+      "code": "DYNAMIC_IMPORT_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "import('node:fs')"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "mkdirSync"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "writeFileSync"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "Math.log"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "Math.log"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "chromium.launchPersistentContext"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.newPage"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.setViewportSize"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.on"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "errors.push"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.goto"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('heading',{level:1,name:'Danh sách workshop'}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('link',{name:snapshot.title}).click"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('heading',{level:1,name:snapshot.title}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.evaluate"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.locator('img').count"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.locator"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.deepEqual"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('link',{name:'← Danh sách workshop'}).focus"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.keyboard.press"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('heading',{level:1,name:'Danh sách workshop'}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.newCDPSession"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "cdp.send"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "writeFileSync"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "Buffer.from"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "cdp.detach"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.close"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.close"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "chromium.launch"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "browser.newContext"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.newPage"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.route"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "route.request"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "request.url"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "calls.push"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "request.method"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "request.postData"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/session"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/me/registrations"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/registrations"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "request.postDataJSON"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "request.headers"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "route.abort"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/requests/"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/registrations/A/cancel"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "route.fulfill"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "route.fulfill"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.goto"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Đăng ký',exact:true}).click"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Kiểm tra kết quả',exact:true}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.reload"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Kiểm tra kết quả',exact:true}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "calls.filter"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.evaluate"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "document.createElement"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "document.body.append"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('link',{name:'Test switch workshop'}).click"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Đăng ký',exact:true}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Kiểm tra kết quả',exact:true}).count"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.evaluate"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "document.createElement"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "document.body.append"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('link',{name:'Test return workshop'}).click"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Kiểm tra kết quả',exact:true}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "calls.filter"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Kiểm tra kết quả',exact:true}).click"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Hủy đăng ký',exact:true}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "calls.some"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/requests/"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Hủy đăng ký',exact:true}).click"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('dialog').waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.keyboard.press"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "calls.filter"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Hủy đăng ký',exact:true}).click"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('button',{name:'Xác nhận hủy',exact:true}).click"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText('A · Đã hủy',{exact:true}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "calls.filter"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "calls.filter"
+    },
+    {
+      "code": "URL_RELATION_REQUIRES_REVIEW",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "/api/v1/registrations/A/cancel"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.close"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "browser.newContext"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.addCookies"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.newPage"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.goto"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText('REG-U · Đã đăng ký',{exact:true}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.evaluate"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "globalThis.dispatchEvent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText('REG-U · Đã đăng ký',{exact:true}).count"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.addCookies"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.evaluate"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "globalThis.dispatchEvent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText('REG-V · Đã đăng ký',{exact:true}).waitFor"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText('REG-U · Đã đăng ký',{exact:true}).count"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByText"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.close"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "browser.newContext"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.newPage"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.goto"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('link',{name:snapshot.title}).click"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole('heading',{level:1}).textContent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "page.getByRole"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "context.close"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "browser.close"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "child.kill"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "setTimeout"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "child.kill"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "clearTimeout"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "api.close"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "console.log"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/server/public.test.mjs",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "i"
+    },
+    {
+      "code": "SYMBOL_REQUIRES_SCOPE_OR_OVERLOAD_REVIEW",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "node:test"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "node:assert/strict"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeSnapshot"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.deepEqual"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "Object.entries"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeSnapshot"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.ok"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "version"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.history.get"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.collection"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.unmount"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.reset"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeHistory"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "prepareSend"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeIntent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "prepareSend"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.fail"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.throws"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "prepareSend"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "Error"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeIntent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeIntent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeIntent"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "freshness"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "freshness"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "freshness"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "freshness"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "freshness"
+    },
+    {
+      "code": "DYNAMIC_IMPORT_REQUIRES_REVIEW",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "import('../../src/lib/display.ts')"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "scheduleLabel"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "scheduleLabel"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.match"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "observationLabel"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "observationLabel"
+    },
+    {
+      "code": "DYNAMIC_IMPORT_REQUIRES_REVIEW",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "import('../../src/lib/reply.ts')"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "s.history.get"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "JSON.stringify"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "test"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "current.merge"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "decodeReply"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "assert.equal"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/tests/unit/state.test.mjs",
+      "detail": "current.history.get"
+    },
+    {
+      "code": "EXECUTABLE_CONFIG_NOT_EXECUTED",
+      "file": "web/svelte.config.js"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/vite.config.ts",
+      "detail": "@sveltejs/kit/vite"
+    },
+    {
+      "code": "MODULE_UNRESOLVED",
+      "file": "web/vite.config.ts",
+      "detail": "vite"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/vite.config.ts",
+      "detail": "defineConfig"
+    },
+    {
+      "code": "CALL_TARGET_UNRESOLVED",
+      "file": "web/vite.config.ts",
+      "detail": "sveltekit"
+    }
+  ],
+  "limits": [
+    "Static local module resolution only; package exports/generated files outside the read scope remain unresolved.",
+    "Lexical call candidates are not type-resolved dispatch. Markup/reactivity and indirect consumers require review."
+  ],
+  "completeness": "INCOMPLETE",
+  "verification": "STRUCTURE_ONLY_SEMANTIC_REVIEW_REQUIRED",
+  "digest": "0a2dbf3cd45386b406bd759d09abf73d26064c9cdad8cb06bff015d2b3a6bf40"
+}

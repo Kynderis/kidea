@@ -1,0 +1,100 @@
+{
+  "operation": "ASSESS",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowImpactWrite": true,
+    "roundId": "ROUND-001",
+    "ownerId": "impact-23c3cb811463886499569ba2",
+    "statement": "Human approved T04 rule D and continuous R09 implementation/testing. Record evidence-based impact conclusions only; do not approve output or close the impact.",
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    }
+  },
+  "requiredFiles": [
+    {
+      "path": "docs/t04/report-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/index.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/backend.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/https.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/mutations.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/t04/evidence/query-plan.txt",
+      "anchor": null
+    },
+    {
+      "path": "docs/architecture/traceability.md",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "48cd969d0e3300eac656c83917fccb7dd7a31b093d08664ce29c936d17736e48",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedRoundId": "ROUND-001",
+  "expectedOwnerId": "impact-23c3cb811463886499569ba2",
+  "expectedGit": {
+    "head": "de26fb6e646e57891464fc86a3058e635af336bf",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "assessment": {
+    "nodeId": "T04-QUALITY",
+    "verdict": "NO_CHANGE",
+    "reason": "The change adds a concurrency invariant but does not change any inherited latency, freshness, recovery or resource threshold.",
+    "behavior": "The existing immediate transaction serializes quota and seat decisions; failures remain UNKNOWN. Existing partial index supplies actor lookup. Performance and independent recovery obligations remain pending for the complete product.",
+    "verification": "Four full presets retain 796 assertions and add 60; real two-connection races preserve quota. Actual pinned SQLite EXPLAIN uses one_active. This is functional evidence, not WQ/E1 performance PASS; TSan has only the existing two EX r2 pairs.",
+    "inputBasis": "de60739b35a3019870c58bb523f20638fe3d731dc58a7ab6dfbbba8483dae3b4",
+    "assumptions": "Single local Intel pilot, fixed source and fake data. Scoped T04 change only; performance, independent recovery, full-product G2, release and R09 Human acceptance remain pending.",
+    "evidenceRefs": [
+      {
+        "path": "docs/t04/report-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/index.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/backend.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/https.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/mutations.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/t04/evidence/query-plan.txt",
+        "anchor": null
+      },
+      {
+        "path": "docs/architecture/traceability.md",
+        "anchor": null
+      }
+    ],
+    "downstream": [
+      "T04-TESTS"
+    ],
+    "resolved": true
+  }
+}
