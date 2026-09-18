@@ -1,0 +1,73 @@
+✖ confirmation older-read never sends an unconfirmed or wrong-session POST (1059.038837ms)
+✖ confirmation actor-during-read never sends an unconfirmed or wrong-session POST (1537.946576ms)
+✖ confirmation epoch-during-read never sends an unconfirmed or wrong-session POST (831.095783ms)
+✔ confirmation snapshot-503 never sends an unconfirmed or wrong-session POST (738.876507ms)
+✔ confirmation snapshot-malformed never sends an unconfirmed or wrong-session POST (679.495602ms)
+✔ confirmation session-401 never sends an unconfirmed or wrong-session POST (659.17603ms)
+✔ confirmation session-403 never sends an unconfirmed or wrong-session POST (652.572175ms)
+✔ confirmation session-503 never sends an unconfirmed or wrong-session POST (654.378588ms)
+{"serverStdout":"Listening on http://127.0.0.1:53115\n","serverStderr":"","scope":"built Web/native Mac Chrome + explicit fake API; no backend integration/acceptance"}
+ℹ tests 8
+ℹ suites 0
+ℹ pass 5
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8211.977163
+
+✖ failing tests:
+
+test at tests/r09/t05/admin-observation-server.test.mjs:23:159
+✖ confirmation older-read never sends an unconfirmed or wrong-session POST (1059.038837ms)
+  AssertionError [ERR_ASSERTION]: an older or invalid read is not a new comparison source
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:35:91)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:23:153 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r09/t05/admin-observation-server.test.mjs:23:159
+✖ confirmation actor-during-read never sends an unconfirmed or wrong-session POST (1537.946576ms)
+  AssertionError [ERR_ASSERTION]: must stop before POST
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:33:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:23:153 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r09/t05/admin-observation-server.test.mjs:23:159
+✖ confirmation epoch-during-read never sends an unconfirmed or wrong-session POST (831.095783ms)
+  AssertionError [ERR_ASSERTION]: must stop before POST
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:33:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:23:153 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

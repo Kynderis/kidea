@@ -1,0 +1,2787 @@
+{
+  "intents": [
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-1",
+        "action": "CREATE",
+        "fields": {
+          "title": "Sensitive forms mixed A-B",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "b766d19b550471d60702f1d61b5901e3"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-2",
+        "action": "STATE",
+        "workshopId": "b766d19b550471d60702f1d61b5901e3",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "b766d19b550471d60702f1d61b5901e3"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "4ea509d1-fe89-4079-90fd-dc5e770eca7c",
+        "action": "EDIT",
+        "workshopId": "b766d19b550471d60702f1d61b5901e3",
+        "fields": {
+          "capacity": 9
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "b766d19b550471d60702f1d61b5901e3"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "262a4ad9-8390-4e25-92ea-9050784482bb",
+        "action": "EDIT",
+        "workshopId": "b766d19b550471d60702f1d61b5901e3",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-07T09:00:00+07:00",
+            "end": "2026-11-07T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "b766d19b550471d60702f1d61b5901e3"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-4",
+        "action": "CREATE",
+        "fields": {
+          "title": "Sensitive forms capacity A-B",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6b0834b175c88b25d3010ea32cde87d3"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-5",
+        "action": "STATE",
+        "workshopId": "6b0834b175c88b25d3010ea32cde87d3",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6b0834b175c88b25d3010ea32cde87d3"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "4770c7f2-6dd0-4dc4-bc4a-2462330baa12",
+        "action": "EDIT",
+        "workshopId": "6b0834b175c88b25d3010ea32cde87d3",
+        "fields": {
+          "capacity": 9
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6b0834b175c88b25d3010ea32cde87d3"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "984c0be9-e1c0-4094-a617-bbfd434d1f4b",
+        "action": "EDIT",
+        "workshopId": "6b0834b175c88b25d3010ea32cde87d3",
+        "fields": {
+          "capacity": 8
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6b0834b175c88b25d3010ea32cde87d3"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-7",
+        "action": "CREATE",
+        "fields": {
+          "title": "Sensitive forms capacity B-A",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e688f74c15784905ab670668a51411f5"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-8",
+        "action": "STATE",
+        "workshopId": "e688f74c15784905ab670668a51411f5",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e688f74c15784905ab670668a51411f5"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "7f1a388d-4608-4ad7-9f35-35a3dc32fb9b",
+        "action": "EDIT",
+        "workshopId": "e688f74c15784905ab670668a51411f5",
+        "fields": {
+          "capacity": 8
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e688f74c15784905ab670668a51411f5"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "1a8a3e1e-9fab-4164-b53b-da9751a5ac61",
+        "action": "EDIT",
+        "workshopId": "e688f74c15784905ab670668a51411f5",
+        "fields": {
+          "capacity": 9
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "e688f74c15784905ab670668a51411f5"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-10",
+        "action": "CREATE",
+        "fields": {
+          "title": "Sensitive forms schedule A-B",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ded8f08f76df174175aa0a53f79145f9"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-11",
+        "action": "STATE",
+        "workshopId": "ded8f08f76df174175aa0a53f79145f9",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ded8f08f76df174175aa0a53f79145f9"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "f35237fd-d6f7-465e-be51-c3a305ddb0da",
+        "action": "EDIT",
+        "workshopId": "ded8f08f76df174175aa0a53f79145f9",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-07T09:00:00+07:00",
+            "end": "2026-11-07T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ded8f08f76df174175aa0a53f79145f9"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "014c9fac-d7b0-4e85-9f54-0dd1e4f61801",
+        "action": "EDIT",
+        "workshopId": "ded8f08f76df174175aa0a53f79145f9",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-08T09:00:00+07:00",
+            "end": "2026-11-08T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ded8f08f76df174175aa0a53f79145f9"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-13",
+        "action": "CREATE",
+        "fields": {
+          "title": "Sensitive forms schedule B-A",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-14",
+        "action": "STATE",
+        "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "cb0758da-a3aa-46da-bed8-a852a84dffcf",
+        "action": "EDIT",
+        "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-08T09:00:00+07:00",
+            "end": "2026-11-08T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "accaea3a-9f7f-4fee-be9a-116a36e35dbc",
+        "action": "EDIT",
+        "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-07T09:00:00+07:00",
+            "end": "2026-11-07T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-16",
+        "action": "CREATE",
+        "fields": {
+          "title": "Sensitive forms state A-B",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-17",
+        "action": "STATE",
+        "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "d9eb4eba-7e38-4352-826d-55e3468e75b1",
+        "action": "STATE",
+        "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "c7d6be59-6b88-433d-9db6-86130a587efb",
+        "action": "STATE",
+        "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UNCHANGED",
+        "effect": "NO_CHANGE",
+        "state": "FINAL",
+        "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-19",
+        "action": "CREATE",
+        "fields": {
+          "title": "Sensitive forms state B-A",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-20",
+        "action": "STATE",
+        "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "c7849081-1dda-4269-81e6-1b7d1057f063",
+        "action": "STATE",
+        "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "8efc27f0-0bc9-4c43-9d2f-0d6b08b80aa4",
+        "action": "STATE",
+        "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UNCHANGED",
+        "effect": "NO_CHANGE",
+        "state": "FINAL",
+        "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-22",
+        "action": "CREATE",
+        "fields": {
+          "title": "Changed confirmation capacity",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-23",
+        "action": "STATE",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-25",
+        "action": "EDIT",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4",
+        "fields": {
+          "capacity": 9
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "0313bea7-5cbb-421c-bc86-7ff18b85f081",
+        "action": "EDIT",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4",
+        "fields": {
+          "capacity": 8
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-26",
+        "action": "CREATE",
+        "fields": {
+          "title": "Changed confirmation schedule",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-27",
+        "action": "STATE",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-29",
+        "action": "EDIT",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-08T09:00:00+07:00",
+            "end": "2026-11-08T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "c5aba90e-57e5-44fe-9b9a-f6d15570b863",
+        "action": "EDIT",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-07T09:00:00+07:00",
+            "end": "2026-11-07T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-30",
+        "action": "CREATE",
+        "fields": {
+          "title": "Changed confirmation state-capacity",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-31",
+        "action": "STATE",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-33",
+        "action": "EDIT",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334",
+        "fields": {
+          "capacity": 9
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "7554b7f0-94ec-4ea2-bf5e-455be9006113",
+        "action": "STATE",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-34",
+        "action": "CREATE",
+        "fields": {
+          "title": "Changed confirmation state-state",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-35",
+        "action": "STATE",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-37",
+        "action": "STATE",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "22e72978-4d9e-43bd-ab81-6f4188c42eb7",
+        "action": "STATE",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-38",
+        "action": "CREATE",
+        "fields": {
+          "title": "PAUSE race register participant-first",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ef7dae8ebaa10ceff2549920cfdea53a"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-39",
+        "action": "STATE",
+        "workshopId": "ef7dae8ebaa10ceff2549920cfdea53a",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ef7dae8ebaa10ceff2549920cfdea53a"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "4f2684a7-1b9f-4897-8ce6-28ffda9f6c57",
+        "action": "STATE",
+        "workshopId": "ef7dae8ebaa10ceff2549920cfdea53a",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ef7dae8ebaa10ceff2549920cfdea53a"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-40",
+        "action": "CREATE",
+        "fields": {
+          "title": "PAUSE race register pause-first",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "a0e0dd315a8ea690f21c30a55a16ac09"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-41",
+        "action": "STATE",
+        "workshopId": "a0e0dd315a8ea690f21c30a55a16ac09",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "a0e0dd315a8ea690f21c30a55a16ac09"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "94e4aa36-b8ec-483a-9720-e7fbe285027f",
+        "action": "STATE",
+        "workshopId": "a0e0dd315a8ea690f21c30a55a16ac09",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "a0e0dd315a8ea690f21c30a55a16ac09"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-42",
+        "action": "CREATE",
+        "fields": {
+          "title": "PAUSE race cancel participant-first",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-43",
+        "action": "STATE",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "c2abd556-d716-49b8-bc59-fe70824597a9",
+        "action": "STATE",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-45",
+        "action": "CREATE",
+        "fields": {
+          "title": "PAUSE race cancel pause-first",
+          "description": "FAKE-PRIVATE-CONTENT-sensitive",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "sensitive-46",
+        "action": "STATE",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "7678d2f7-9b44-413b-bc61-6d666acc27c1",
+        "action": "STATE",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      }
+    }
+  ],
+  "registrations": [
+    {
+      "actor": "SENSITIVE-0",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-3",
+        "workshopId": "b766d19b550471d60702f1d61b5901e3"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "0168610a51e79889997723dcf5014527",
+        "state": "FINAL",
+        "workshopId": "b766d19b550471d60702f1d61b5901e3"
+      }
+    },
+    {
+      "actor": "SENSITIVE-1",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-6",
+        "workshopId": "6b0834b175c88b25d3010ea32cde87d3"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "6abe96c3aaf9b50e80f17efc3b4d0381",
+        "state": "FINAL",
+        "workshopId": "6b0834b175c88b25d3010ea32cde87d3"
+      }
+    },
+    {
+      "actor": "SENSITIVE-2",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-9",
+        "workshopId": "e688f74c15784905ab670668a51411f5"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "10bfa40120387eaf56e60a8ce227ab86",
+        "state": "FINAL",
+        "workshopId": "e688f74c15784905ab670668a51411f5"
+      }
+    },
+    {
+      "actor": "SENSITIVE-3",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-12",
+        "workshopId": "ded8f08f76df174175aa0a53f79145f9"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "530f69ec0912b37dbcc2783e62ba11a8",
+        "state": "FINAL",
+        "workshopId": "ded8f08f76df174175aa0a53f79145f9"
+      }
+    },
+    {
+      "actor": "SENSITIVE-4",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-15",
+        "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "8fc8d3ebfa67e62a515925725906c576",
+        "state": "FINAL",
+        "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d"
+      }
+    },
+    {
+      "actor": "SENSITIVE-5",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-18",
+        "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "4a334b5ae37c33674e5a85bf2f22c9af",
+        "state": "FINAL",
+        "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4"
+      }
+    },
+    {
+      "actor": "SENSITIVE-6",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-21",
+        "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "ce02e59dde69f489cbce270e5f228dfe",
+        "state": "FINAL",
+        "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68"
+      }
+    },
+    {
+      "actor": "SENSITIVE-7",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-24",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "aa87b9d1d310ddcd9e305c884a74466a",
+        "state": "FINAL",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4"
+      }
+    },
+    {
+      "actor": "SENSITIVE-8",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-28",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "60a8e56d00e3cbc0c0523abcab1e2af7",
+        "state": "FINAL",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a"
+      }
+    },
+    {
+      "actor": "SENSITIVE-9",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-32",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "9d6fea36e1d7828e820dc81b9a00b69e",
+        "state": "FINAL",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334"
+      }
+    },
+    {
+      "actor": "SENSITIVE-10",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-36",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "51dd06e4cb57ab95497c27eb31a72e79",
+        "state": "FINAL",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18"
+      }
+    },
+    {
+      "actor": "SENSITIVE-11",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "cb8e29a3-1c9d-4f2d-aa07-2ce90fd5b450",
+        "workshopId": "ef7dae8ebaa10ceff2549920cfdea53a"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "ee5a3a6b50be41517220f430d31a25b0",
+        "state": "FINAL",
+        "workshopId": "ef7dae8ebaa10ceff2549920cfdea53a"
+      }
+    },
+    {
+      "actor": "SENSITIVE-12",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "579305b5-5689-4afb-bf70-d5a0f9356857",
+        "workshopId": "a0e0dd315a8ea690f21c30a55a16ac09"
+      },
+      "result": {
+        "code": "PAUSED",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "a0e0dd315a8ea690f21c30a55a16ac09"
+      }
+    },
+    {
+      "actor": "SENSITIVE-13",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-44",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "16c7cca5cd3546fa02275d6d29e56e2a",
+        "state": "FINAL",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      }
+    },
+    {
+      "actor": "SENSITIVE-13",
+      "path": "/api/v1/registrations/16c7cca5cd3546fa02275d6d29e56e2a/cancel",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "9c988101-84bf-4ace-94ba-8050fbfad225",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      },
+      "result": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "16c7cca5cd3546fa02275d6d29e56e2a",
+        "state": "FINAL",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      }
+    },
+    {
+      "actor": "SENSITIVE-14",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "sensitive-register-47",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "ccf0a81daa404434136c4c89fd31f0d8",
+        "state": "FINAL",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      }
+    },
+    {
+      "actor": "SENSITIVE-14",
+      "path": "/api/v1/registrations/ccf0a81daa404434136c4c89fd31f0d8/cancel",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "26f86c55-51ab-42a0-93fd-21ca33643e2e",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      },
+      "result": {
+        "code": "PAUSED",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      }
+    }
+  ],
+  "forms": [
+    {
+      "kind": "mixed",
+      "order": "A-B",
+      "id": "b766d19b550471d60702f1d61b5901e3",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "b766d19b550471d60702f1d61b5901e3",
+        "observedAt": 1789741253,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms mixed A-B",
+        "version": "3"
+      },
+      "steps": [
+        {
+          "actor": "A",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "4ea509d1-fe89-4079-90fd-dc5e770eca7c",
+            "action": "EDIT",
+            "workshopId": "b766d19b550471d60702f1d61b5901e3",
+            "fields": {
+              "capacity": 9
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "b766d19b550471d60702f1d61b5901e3"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 9,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "b766d19b550471d60702f1d61b5901e3",
+            "observedAt": 1789741255,
+            "remaining": 8,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms mixed A-B",
+            "version": "4"
+          }
+        },
+        {
+          "actor": "B",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "262a4ad9-8390-4e25-92ea-9050784482bb",
+            "action": "EDIT",
+            "workshopId": "b766d19b550471d60702f1d61b5901e3",
+            "fields": {
+              "schedule": {
+                "start": "2026-11-07T09:00:00+07:00",
+                "end": "2026-11-07T10:00:00+07:00"
+              }
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "b766d19b550471d60702f1d61b5901e3"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 9,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "b766d19b550471d60702f1d61b5901e3",
+            "observedAt": 1789741256,
+            "remaining": 8,
+            "schedule": {
+              "end": "2026-11-07T10:00:00+07:00",
+              "start": "2026-11-07T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms mixed A-B",
+            "version": "5"
+          }
+        }
+      ],
+      "after": {
+        "active": 1,
+        "capacity": 9,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "b766d19b550471d60702f1d61b5901e3",
+        "observedAt": 1789741256,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-07T10:00:00+07:00",
+          "start": "2026-11-07T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms mixed A-B",
+        "version": "5"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "capacity",
+      "order": "A-B",
+      "id": "6b0834b175c88b25d3010ea32cde87d3",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "6b0834b175c88b25d3010ea32cde87d3",
+        "observedAt": 1789741261,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms capacity A-B",
+        "version": "3"
+      },
+      "steps": [
+        {
+          "actor": "A",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "4770c7f2-6dd0-4dc4-bc4a-2462330baa12",
+            "action": "EDIT",
+            "workshopId": "6b0834b175c88b25d3010ea32cde87d3",
+            "fields": {
+              "capacity": 9
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "6b0834b175c88b25d3010ea32cde87d3"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 9,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "6b0834b175c88b25d3010ea32cde87d3",
+            "observedAt": 1789741262,
+            "remaining": 8,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms capacity A-B",
+            "version": "4"
+          }
+        },
+        {
+          "actor": "B",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "984c0be9-e1c0-4094-a617-bbfd434d1f4b",
+            "action": "EDIT",
+            "workshopId": "6b0834b175c88b25d3010ea32cde87d3",
+            "fields": {
+              "capacity": 8
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "6b0834b175c88b25d3010ea32cde87d3"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 8,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "6b0834b175c88b25d3010ea32cde87d3",
+            "observedAt": 1789741263,
+            "remaining": 7,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms capacity A-B",
+            "version": "5"
+          }
+        }
+      ],
+      "after": {
+        "active": 1,
+        "capacity": 8,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "6b0834b175c88b25d3010ea32cde87d3",
+        "observedAt": 1789741263,
+        "remaining": 7,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms capacity A-B",
+        "version": "5"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "capacity",
+      "order": "B-A",
+      "id": "e688f74c15784905ab670668a51411f5",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "e688f74c15784905ab670668a51411f5",
+        "observedAt": 1789741268,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms capacity B-A",
+        "version": "3"
+      },
+      "steps": [
+        {
+          "actor": "B",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "7f1a388d-4608-4ad7-9f35-35a3dc32fb9b",
+            "action": "EDIT",
+            "workshopId": "e688f74c15784905ab670668a51411f5",
+            "fields": {
+              "capacity": 8
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "e688f74c15784905ab670668a51411f5"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 8,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "e688f74c15784905ab670668a51411f5",
+            "observedAt": 1789741270,
+            "remaining": 7,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms capacity B-A",
+            "version": "4"
+          }
+        },
+        {
+          "actor": "A",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "1a8a3e1e-9fab-4164-b53b-da9751a5ac61",
+            "action": "EDIT",
+            "workshopId": "e688f74c15784905ab670668a51411f5",
+            "fields": {
+              "capacity": 9
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "e688f74c15784905ab670668a51411f5"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 9,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "e688f74c15784905ab670668a51411f5",
+            "observedAt": 1789741271,
+            "remaining": 8,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms capacity B-A",
+            "version": "5"
+          }
+        }
+      ],
+      "after": {
+        "active": 1,
+        "capacity": 9,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "e688f74c15784905ab670668a51411f5",
+        "observedAt": 1789741271,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms capacity B-A",
+        "version": "5"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "schedule",
+      "order": "A-B",
+      "id": "ded8f08f76df174175aa0a53f79145f9",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "ded8f08f76df174175aa0a53f79145f9",
+        "observedAt": 1789741275,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms schedule A-B",
+        "version": "3"
+      },
+      "steps": [
+        {
+          "actor": "A",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "f35237fd-d6f7-465e-be51-c3a305ddb0da",
+            "action": "EDIT",
+            "workshopId": "ded8f08f76df174175aa0a53f79145f9",
+            "fields": {
+              "schedule": {
+                "start": "2026-11-07T09:00:00+07:00",
+                "end": "2026-11-07T10:00:00+07:00"
+              }
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "ded8f08f76df174175aa0a53f79145f9"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "ded8f08f76df174175aa0a53f79145f9",
+            "observedAt": 1789741277,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-07T10:00:00+07:00",
+              "start": "2026-11-07T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms schedule A-B",
+            "version": "4"
+          }
+        },
+        {
+          "actor": "B",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "014c9fac-d7b0-4e85-9f54-0dd1e4f61801",
+            "action": "EDIT",
+            "workshopId": "ded8f08f76df174175aa0a53f79145f9",
+            "fields": {
+              "schedule": {
+                "start": "2026-11-08T09:00:00+07:00",
+                "end": "2026-11-08T10:00:00+07:00"
+              }
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "ded8f08f76df174175aa0a53f79145f9"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "ded8f08f76df174175aa0a53f79145f9",
+            "observedAt": 1789741278,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-08T10:00:00+07:00",
+              "start": "2026-11-08T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms schedule A-B",
+            "version": "5"
+          }
+        }
+      ],
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "ded8f08f76df174175aa0a53f79145f9",
+        "observedAt": 1789741278,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-08T10:00:00+07:00",
+          "start": "2026-11-08T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms schedule A-B",
+        "version": "5"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "schedule",
+      "order": "B-A",
+      "id": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+        "observedAt": 1789741283,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms schedule B-A",
+        "version": "3"
+      },
+      "steps": [
+        {
+          "actor": "B",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "cb0758da-a3aa-46da-bed8-a852a84dffcf",
+            "action": "EDIT",
+            "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+            "fields": {
+              "schedule": {
+                "start": "2026-11-08T09:00:00+07:00",
+                "end": "2026-11-08T10:00:00+07:00"
+              }
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+            "observedAt": 1789741285,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-08T10:00:00+07:00",
+              "start": "2026-11-08T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms schedule B-A",
+            "version": "4"
+          }
+        },
+        {
+          "actor": "A",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "accaea3a-9f7f-4fee-be9a-116a36e35dbc",
+            "action": "EDIT",
+            "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+            "fields": {
+              "schedule": {
+                "start": "2026-11-07T09:00:00+07:00",
+                "end": "2026-11-07T10:00:00+07:00"
+              }
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "0d3ba9a3667a690f7932ac98d7aa2b6d"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+            "observedAt": 1789741286,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-07T10:00:00+07:00",
+              "start": "2026-11-07T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "Sensitive forms schedule B-A",
+            "version": "5"
+          }
+        }
+      ],
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "0d3ba9a3667a690f7932ac98d7aa2b6d",
+        "observedAt": 1789741286,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-07T10:00:00+07:00",
+          "start": "2026-11-07T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms schedule B-A",
+        "version": "5"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "state",
+      "order": "A-B",
+      "id": "8ce115cffc80a34bf0b8b3774eacaee4",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "8ce115cffc80a34bf0b8b3774eacaee4",
+        "observedAt": 1789741290,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms state A-B",
+        "version": "3"
+      },
+      "steps": [
+        {
+          "actor": "A",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "d9eb4eba-7e38-4352-826d-55e3468e75b1",
+            "action": "STATE",
+            "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4",
+            "targetState": "PAUSED"
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "8ce115cffc80a34bf0b8b3774eacaee4",
+            "observedAt": 1789741292,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "Sensitive forms state A-B",
+            "version": "4"
+          }
+        },
+        {
+          "actor": "B",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "c7d6be59-6b88-433d-9db6-86130a587efb",
+            "action": "STATE",
+            "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4",
+            "targetState": "PAUSED"
+          },
+          "result": {
+            "code": "UNCHANGED",
+            "effect": "NO_CHANGE",
+            "state": "FINAL",
+            "workshopId": "8ce115cffc80a34bf0b8b3774eacaee4"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "8ce115cffc80a34bf0b8b3774eacaee4",
+            "observedAt": 1789741293,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "Sensitive forms state A-B",
+            "version": "4"
+          }
+        }
+      ],
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "8ce115cffc80a34bf0b8b3774eacaee4",
+        "observedAt": 1789741293,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Sensitive forms state A-B",
+        "version": "4"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "kind": "state",
+      "order": "B-A",
+      "id": "b0a03b802bd8c1503d7cc1fe9b191a68",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "b0a03b802bd8c1503d7cc1fe9b191a68",
+        "observedAt": 1789741298,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Sensitive forms state B-A",
+        "version": "3"
+      },
+      "steps": [
+        {
+          "actor": "B",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "c7849081-1dda-4269-81e6-1b7d1057f063",
+            "action": "STATE",
+            "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68",
+            "targetState": "PAUSED"
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "b0a03b802bd8c1503d7cc1fe9b191a68",
+            "observedAt": 1789741299,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "Sensitive forms state B-A",
+            "version": "4"
+          }
+        },
+        {
+          "actor": "A",
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "8efc27f0-0bc9-4c43-9d2f-0d6b08b80aa4",
+            "action": "STATE",
+            "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68",
+            "targetState": "PAUSED"
+          },
+          "result": {
+            "code": "UNCHANGED",
+            "effect": "NO_CHANGE",
+            "state": "FINAL",
+            "workshopId": "b0a03b802bd8c1503d7cc1fe9b191a68"
+          },
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "b0a03b802bd8c1503d7cc1fe9b191a68",
+            "observedAt": 1789741301,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "Sensitive forms state B-A",
+            "version": "4"
+          }
+        }
+      ],
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "b0a03b802bd8c1503d7cc1fe9b191a68",
+        "observedAt": 1789741301,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Sensitive forms state B-A",
+        "version": "4"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    }
+  ],
+  "dialogs": [
+    {
+      "kind": "capacity",
+      "id": "871be02c3490e1f3ffc5768b86f481b4",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "871be02c3490e1f3ffc5768b86f481b4",
+        "observedAt": 1789741304,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation capacity",
+        "version": "3"
+      },
+      "changed": {
+        "active": 1,
+        "capacity": 9,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "871be02c3490e1f3ffc5768b86f481b4",
+        "observedAt": 1789741306,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation capacity",
+        "version": "4"
+      },
+      "dialogBefore": "Xác nhận thay đổi\n\nChanged confirmation capacity · 871be02c3490e1f3ffc5768b86f481b4\n\nQuan sát 2026-09-18 14:21:45 UTC\n\nGiảm sức chứa: 10 → 8; đang có 1 đăng ký theo lần quan sát.\n\nQuay lạiXác nhận thay đổi",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "0313bea7-5cbb-421c-bc86-7ff18b85f081",
+        "action": "EDIT",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4",
+        "fields": {
+          "capacity": 8
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "871be02c3490e1f3ffc5768b86f481b4"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 8,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "871be02c3490e1f3ffc5768b86f481b4",
+        "observedAt": 1789741307,
+        "remaining": 7,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation capacity",
+        "version": "5"
+      },
+      "posts": 1
+    },
+    {
+      "kind": "schedule",
+      "id": "578bf29fed17af35ecf11b0c5f6c0b8a",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "578bf29fed17af35ecf11b0c5f6c0b8a",
+        "observedAt": 1789741311,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation schedule",
+        "version": "3"
+      },
+      "changed": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "578bf29fed17af35ecf11b0c5f6c0b8a",
+        "observedAt": 1789741312,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-08T10:00:00+07:00",
+          "start": "2026-11-08T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation schedule",
+        "version": "4"
+      },
+      "dialogBefore": "Xác nhận thay đổi\n\nChanged confirmation schedule · 578bf29fed17af35ecf11b0c5f6c0b8a\n\nQuan sát 2026-09-18 14:21:51 UTC\n\nĐổi lịch: 2026-11-06T09:00:00+07:00 — 2026-11-06T10:00:00+07:00 → 2026-11-07T09:00:00+07:00 — 2026-11-07T10:00:00+07:00. Giữ các đăng ký hiện có; không gửi thông báo tự động.\n\nQuay lạiXác nhận thay đổi",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "c5aba90e-57e5-44fe-9b9a-f6d15570b863",
+        "action": "EDIT",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-07T09:00:00+07:00",
+            "end": "2026-11-07T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "578bf29fed17af35ecf11b0c5f6c0b8a"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "578bf29fed17af35ecf11b0c5f6c0b8a",
+        "observedAt": 1789741314,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-07T10:00:00+07:00",
+          "start": "2026-11-07T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation schedule",
+        "version": "5"
+      },
+      "posts": 1
+    },
+    {
+      "kind": "state-capacity",
+      "id": "ee2521359aaba55b5eb07e5667055334",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "ee2521359aaba55b5eb07e5667055334",
+        "observedAt": 1789741318,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation state-capacity",
+        "version": "3"
+      },
+      "changed": {
+        "active": 1,
+        "capacity": 9,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "ee2521359aaba55b5eb07e5667055334",
+        "observedAt": 1789741319,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation state-capacity",
+        "version": "4"
+      },
+      "dialogBefore": "Xác nhận thay đổi\n\nChanged confirmation state-capacity · ee2521359aaba55b5eb07e5667055334\n\nQuan sát 2026-09-18 14:21:58 UTC\n\nTạm dừng đăng ký và hủy mới; giữ các đăng ký hiện có.\n\nQuay lạiXác nhận thay đổi",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "7554b7f0-94ec-4ea2-bf5e-455be9006113",
+        "action": "STATE",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ee2521359aaba55b5eb07e5667055334"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 9,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "ee2521359aaba55b5eb07e5667055334",
+        "observedAt": 1789741321,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Changed confirmation state-capacity",
+        "version": "5"
+      },
+      "posts": 1
+    },
+    {
+      "kind": "state-state",
+      "id": "0c0bcd4ca54430a24fa242e04664cd18",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "0c0bcd4ca54430a24fa242e04664cd18",
+        "observedAt": 1789741324,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation state-state",
+        "version": "3"
+      },
+      "changed": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "0c0bcd4ca54430a24fa242e04664cd18",
+        "observedAt": 1789741326,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "Changed confirmation state-state",
+        "version": "4"
+      },
+      "dialogBefore": "Xác nhận thay đổi\n\nChanged confirmation state-state · 0c0bcd4ca54430a24fa242e04664cd18\n\nQuan sát 2026-09-18 14:22:05 UTC\n\nTạm dừng đăng ký và hủy mới; giữ các đăng ký hiện có.\n\nQuay lạiXác nhận thay đổi",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "22e72978-4d9e-43bd-ab81-6f4188c42eb7",
+        "action": "STATE",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "0c0bcd4ca54430a24fa242e04664cd18"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "0c0bcd4ca54430a24fa242e04664cd18",
+        "observedAt": 1789741327,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Changed confirmation state-state",
+        "version": "5"
+      },
+      "posts": 1
+    }
+  ],
+  "pauseRaces": [
+    {
+      "operation": "register",
+      "order": "participant-first",
+      "id": "ef7dae8ebaa10ceff2549920cfdea53a",
+      "actor": "SENSITIVE-11",
+      "registration": null,
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "ef7dae8ebaa10ceff2549920cfdea53a",
+        "observedAt": 1789741330,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "PAUSE race register participant-first",
+        "version": "2"
+      },
+      "steps": [
+        {
+          "side": "participant",
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "ef7dae8ebaa10ceff2549920cfdea53a",
+            "observedAt": 1789741332,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "PAUSE race register participant-first",
+            "version": "3"
+          }
+        },
+        {
+          "side": "pause",
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "ef7dae8ebaa10ceff2549920cfdea53a",
+            "observedAt": 1789741333,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "PAUSE race register participant-first",
+            "version": "4"
+          }
+        }
+      ],
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "ef7dae8ebaa10ceff2549920cfdea53a",
+        "observedAt": 1789741333,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "PAUSE race register participant-first",
+        "version": "4"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "cb8e29a3-1c9d-4f2d-aa07-2ce90fd5b450",
+        "workshopId": "ef7dae8ebaa10ceff2549920cfdea53a"
+      },
+      "path": "/api/v1/registrations",
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "ee5a3a6b50be41517220f430d31a25b0",
+        "state": "FINAL",
+        "workshopId": "ef7dae8ebaa10ceff2549920cfdea53a"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "operation": "register",
+      "order": "pause-first",
+      "id": "a0e0dd315a8ea690f21c30a55a16ac09",
+      "actor": "SENSITIVE-12",
+      "registration": null,
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "a0e0dd315a8ea690f21c30a55a16ac09",
+        "observedAt": 1789741337,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "PAUSE race register pause-first",
+        "version": "2"
+      },
+      "steps": [
+        {
+          "side": "pause",
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "a0e0dd315a8ea690f21c30a55a16ac09",
+            "observedAt": 1789741339,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "PAUSE race register pause-first",
+            "version": "3"
+          }
+        },
+        {
+          "side": "participant",
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "a0e0dd315a8ea690f21c30a55a16ac09",
+            "observedAt": 1789741340,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "PAUSE race register pause-first",
+            "version": "3"
+          }
+        }
+      ],
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "a0e0dd315a8ea690f21c30a55a16ac09",
+        "observedAt": 1789741340,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "PAUSE race register pause-first",
+        "version": "3"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "579305b5-5689-4afb-bf70-d5a0f9356857",
+        "workshopId": "a0e0dd315a8ea690f21c30a55a16ac09"
+      },
+      "path": "/api/v1/registrations",
+      "result": {
+        "code": "PAUSED",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "a0e0dd315a8ea690f21c30a55a16ac09"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "operation": "cancel",
+      "order": "participant-first",
+      "id": "6f1f96fac4a34298cd40f4aabb9161df",
+      "actor": "SENSITIVE-13",
+      "registration": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "16c7cca5cd3546fa02275d6d29e56e2a",
+        "state": "FINAL",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      },
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "6f1f96fac4a34298cd40f4aabb9161df",
+        "observedAt": 1789741344,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "PAUSE race cancel participant-first",
+        "version": "3"
+      },
+      "steps": [
+        {
+          "side": "participant",
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "6f1f96fac4a34298cd40f4aabb9161df",
+            "observedAt": 1789741346,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "OPEN",
+            "title": "PAUSE race cancel participant-first",
+            "version": "4"
+          }
+        },
+        {
+          "side": "pause",
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "6f1f96fac4a34298cd40f4aabb9161df",
+            "observedAt": 1789741347,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "PAUSE race cancel participant-first",
+            "version": "5"
+          }
+        }
+      ],
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "6f1f96fac4a34298cd40f4aabb9161df",
+        "observedAt": 1789741347,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "PAUSE race cancel participant-first",
+        "version": "5"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "9c988101-84bf-4ace-94ba-8050fbfad225",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      },
+      "path": "/api/v1/registrations/16c7cca5cd3546fa02275d6d29e56e2a/cancel",
+      "result": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "16c7cca5cd3546fa02275d6d29e56e2a",
+        "state": "FINAL",
+        "workshopId": "6f1f96fac4a34298cd40f4aabb9161df"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "operation": "cancel",
+      "order": "pause-first",
+      "id": "fa0df1911789f90ef411d2a408458af0",
+      "actor": "SENSITIVE-14",
+      "registration": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "ccf0a81daa404434136c4c89fd31f0d8",
+        "state": "FINAL",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      },
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "fa0df1911789f90ef411d2a408458af0",
+        "observedAt": 1789741352,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "PAUSE race cancel pause-first",
+        "version": "3"
+      },
+      "steps": [
+        {
+          "side": "pause",
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "fa0df1911789f90ef411d2a408458af0",
+            "observedAt": 1789741354,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "PAUSE race cancel pause-first",
+            "version": "4"
+          }
+        },
+        {
+          "side": "participant",
+          "after": {
+            "active": 1,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-sensitive",
+            "epoch": "epoch-t02-fixture",
+            "id": "fa0df1911789f90ef411d2a408458af0",
+            "observedAt": 1789741355,
+            "remaining": 9,
+            "schedule": {
+              "end": "2026-11-06T10:00:00+07:00",
+              "start": "2026-11-06T09:00:00+07:00"
+            },
+            "state": "PAUSED",
+            "title": "PAUSE race cancel pause-first",
+            "version": "4"
+          }
+        }
+      ],
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-sensitive",
+        "epoch": "epoch-t02-fixture",
+        "id": "fa0df1911789f90ef411d2a408458af0",
+        "observedAt": 1789741355,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "PAUSE race cancel pause-first",
+        "version": "4"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "26f86c55-51ab-42a0-93fd-21ca33643e2e",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      },
+      "path": "/api/v1/registrations/ccf0a81daa404434136c4c89fd31f0d8/cancel",
+      "result": {
+        "code": "PAUSED",
+        "effect": "REJECTED",
+        "state": "FINAL",
+        "workshopId": "fa0df1911789f90ef411d2a408458af0"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    }
+  ]
+}

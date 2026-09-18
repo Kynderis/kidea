@@ -1,0 +1,1157 @@
+{
+  "intents": [
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-1",
+        "action": "CREATE",
+        "fields": {
+          "title": "Publication before edit",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ad467e6b47f324aebfdae1c076403d31"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "1f35626d-7f67-42ce-8b82-52b74a29e945",
+        "action": "EDIT",
+        "workshopId": "ad467e6b47f324aebfdae1c076403d31",
+        "fields": {
+          "title": "FAKE-BOUNDARY-SAVED-EDIT"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ad467e6b47f324aebfdae1c076403d31"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-2",
+        "action": "CREATE",
+        "fields": {
+          "title": "Absent STATE",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "69954f955a57e7d72b0c3597fa84f7f8"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-3",
+        "action": "CREATE",
+        "fields": {
+          "title": "Packet exact same intent",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "23f21f61c63e709508849870dd806177"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-4",
+        "action": "CREATE",
+        "fields": {
+          "title": "Shared literal namespace",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "f9aacc91633a9dcf99019ba8044175e2"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-5",
+        "action": "STATE",
+        "workshopId": "f9aacc91633a9dcf99019ba8044175e2",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "f9aacc91633a9dcf99019ba8044175e2"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-shared-literal-ID",
+        "action": "CREATE",
+        "fields": {
+          "title": "Shared literal B admin",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "b261c55ac094d075834da485ae235a56"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-6",
+        "action": "CREATE",
+        "fields": {
+          "title": "Admin switch",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "bf31abe9fef356ffae02c8064d1f24c3"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "2be350a8-efe4-467c-be5f-7e3251d6d3ff",
+        "action": "EDIT",
+        "workshopId": "bf31abe9fef356ffae02c8064d1f24c3",
+        "fields": {
+          "title": "Authorized shared content after actor switch"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "bf31abe9fef356ffae02c8064d1f24c3"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-7",
+        "action": "CREATE",
+        "fields": {
+          "title": "Two forms different-fields",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "dcfaa76c723bdd3fce808d21c658021b"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "01eff394-60cd-49ae-9308-a14c4beafeab",
+        "action": "EDIT",
+        "workshopId": "dcfaa76c723bdd3fce808d21c658021b",
+        "fields": {
+          "title": "Two-form A different-fields"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "dcfaa76c723bdd3fce808d21c658021b"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "32660bc9-5723-4dcc-a9e6-d5883976542a",
+        "action": "EDIT",
+        "workshopId": "dcfaa76c723bdd3fce808d21c658021b",
+        "fields": {
+          "description": "Two-form B description"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "dcfaa76c723bdd3fce808d21c658021b"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-8",
+        "action": "CREATE",
+        "fields": {
+          "title": "Two forms same-field-A-then-B",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "cf7d1c237f16525b40ad9740d11f6526"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "60eb5cfd-97fe-4aae-acf2-4f60d4f3d6d7",
+        "action": "EDIT",
+        "workshopId": "cf7d1c237f16525b40ad9740d11f6526",
+        "fields": {
+          "title": "Two-form A same-field-A-then-B"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "cf7d1c237f16525b40ad9740d11f6526"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "0437586c-f1e1-4287-acb1-fde0b4444d0f",
+        "action": "EDIT",
+        "workshopId": "cf7d1c237f16525b40ad9740d11f6526",
+        "fields": {
+          "title": "Two-form B same-field-A-then-B"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "cf7d1c237f16525b40ad9740d11f6526"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "boundary-9",
+        "action": "CREATE",
+        "fields": {
+          "title": "Two forms same-field-B-then-A",
+          "description": "FAKE-PRIVATE-CONTENT-boundary",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-04T09:00:00+07:00",
+            "end": "2026-11-04T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "fec3da8dc08a44f701f729aecb8fae38"
+      }
+    },
+    {
+      "actor": "B",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "77569d73-0cc5-41fe-b9c1-5fcd4ad7d557",
+        "action": "EDIT",
+        "workshopId": "fec3da8dc08a44f701f729aecb8fae38",
+        "fields": {
+          "title": "Two-form B same-field-B-then-A"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "fec3da8dc08a44f701f729aecb8fae38"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "ad586b5e-1a6a-4ccd-898f-1f65a319a4df",
+        "action": "EDIT",
+        "workshopId": "fec3da8dc08a44f701f729aecb8fae38",
+        "fields": {
+          "title": "Two-form A same-field-B-then-A"
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "fec3da8dc08a44f701f729aecb8fae38"
+      }
+    }
+  ],
+  "publication": {
+    "id": "ad467e6b47f324aebfdae1c076403d31",
+    "before": {
+      "active": 0,
+      "capacity": 10,
+      "description": "FAKE-PRIVATE-CONTENT-boundary",
+      "epoch": "epoch-t02-fixture",
+      "id": "ad467e6b47f324aebfdae1c076403d31",
+      "observedAt": 1789741210,
+      "remaining": 10,
+      "schedule": {
+        "end": "2026-11-04T10:00:00+07:00",
+        "start": "2026-11-04T09:00:00+07:00"
+      },
+      "state": "DRAFT",
+      "title": "Publication before edit",
+      "version": "1"
+    },
+    "saved": {
+      "active": 0,
+      "capacity": 10,
+      "description": "FAKE-PRIVATE-CONTENT-boundary",
+      "epoch": "epoch-t02-fixture",
+      "id": "ad467e6b47f324aebfdae1c076403d31",
+      "observedAt": 1789741210,
+      "remaining": 10,
+      "schedule": {
+        "end": "2026-11-04T10:00:00+07:00",
+        "start": "2026-11-04T09:00:00+07:00"
+      },
+      "state": "DRAFT",
+      "title": "FAKE-BOUNDARY-SAVED-EDIT",
+      "version": "2"
+    },
+    "editCommand": {
+      "epoch": "epoch-t02-fixture",
+      "intentId": "1f35626d-7f67-42ce-8b82-52b74a29e945",
+      "action": "EDIT",
+      "workshopId": "ad467e6b47f324aebfdae1c076403d31",
+      "fields": {
+        "title": "FAKE-BOUNDARY-SAVED-EDIT"
+      }
+    },
+    "failedCommand": {
+      "epoch": "epoch-t02-fixture",
+      "intentId": "664eabb0-a85c-4506-8f73-33edb7b053a3",
+      "action": "STATE",
+      "workshopId": "ad467e6b47f324aebfdae1c076403d31",
+      "targetState": "OPEN"
+    },
+    "status": 503,
+    "result": {
+      "code": "UNCONFIRMED",
+      "state": "UNKNOWN"
+    },
+    "lookups": [
+      {
+        "status": 202,
+        "result": {
+          "code": "UNCONFIRMED",
+          "state": "UNKNOWN"
+        }
+      },
+      {
+        "status": 202,
+        "result": {
+          "code": "UNCONFIRMED",
+          "state": "UNKNOWN"
+        }
+      }
+    ],
+    "after": {
+      "active": 0,
+      "capacity": 10,
+      "description": "FAKE-PRIVATE-CONTENT-boundary",
+      "epoch": "epoch-t02-fixture",
+      "id": "ad467e6b47f324aebfdae1c076403d31",
+      "observedAt": 1789741213,
+      "remaining": 10,
+      "schedule": {
+        "end": "2026-11-04T10:00:00+07:00",
+        "start": "2026-11-04T09:00:00+07:00"
+      },
+      "state": "DRAFT",
+      "title": "FAKE-BOUNDARY-SAVED-EDIT",
+      "version": "2"
+    },
+    "posts": 2,
+    "scope": "injected SQLite audit abort; actual backend rollback/HTTP503/GET202, no physical disk failure or crash proof"
+  },
+  "absentState": [
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "4e4ccd90-86e7-4389-9827-d12912e6669c",
+        "action": "STATE",
+        "workshopId": "69954f955a57e7d72b0c3597fa84f7f8",
+        "targetState": "OPEN"
+      },
+      "status": 202,
+      "result": {
+        "code": "UNCONFIRMED",
+        "state": "UNKNOWN"
+      },
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "epoch": "epoch-t02-fixture",
+        "id": "69954f955a57e7d72b0c3597fa84f7f8",
+        "observedAt": 1789741215,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Absent STATE",
+        "version": "1"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "epoch": "epoch-t02-fixture",
+        "id": "69954f955a57e7d72b0c3597fa84f7f8",
+        "observedAt": 1789741216,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Absent STATE",
+        "version": "1"
+      },
+      "posts": 1
+    },
+    {
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "4e4ccd90-86e7-4389-9827-d12912e6669c",
+        "action": "STATE",
+        "workshopId": "69954f955a57e7d72b0c3597fa84f7f8",
+        "targetState": "OPEN"
+      },
+      "status": 202,
+      "result": {
+        "code": "UNCONFIRMED",
+        "state": "UNKNOWN"
+      },
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "epoch": "epoch-t02-fixture",
+        "id": "69954f955a57e7d72b0c3597fa84f7f8",
+        "observedAt": 1789741215,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Absent STATE",
+        "version": "1"
+      },
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "epoch": "epoch-t02-fixture",
+        "id": "69954f955a57e7d72b0c3597fa84f7f8",
+        "observedAt": 1789741216,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Absent STATE",
+        "version": "1"
+      },
+      "posts": 1
+    }
+  ],
+  "packet": {
+    "command": {
+      "epoch": "epoch-t02-fixture",
+      "intentId": "boundary-3",
+      "action": "CREATE",
+      "fields": {
+        "title": "Packet exact same intent",
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "capacity": 10,
+        "schedule": {
+          "start": "2026-11-04T09:00:00+07:00",
+          "end": "2026-11-04T10:00:00+07:00"
+        }
+      }
+    },
+    "first": {
+      "code": "CREATED",
+      "effect": "APPLIED",
+      "state": "FINAL",
+      "workshopId": "23f21f61c63e709508849870dd806177"
+    },
+    "replay": {
+      "code": "CREATED",
+      "effect": "APPLIED",
+      "state": "FINAL",
+      "workshopId": "23f21f61c63e709508849870dd806177"
+    },
+    "mismatch": {
+      "code": "REQUEST_CONFLICT",
+      "state": "ERROR"
+    },
+    "cross": {
+      "code": "UNAVAILABLE",
+      "state": "ERROR"
+    },
+    "crossGetStatus": 404,
+    "before": {
+      "active": 0,
+      "capacity": 10,
+      "description": "FAKE-PRIVATE-CONTENT-boundary",
+      "epoch": "epoch-t02-fixture",
+      "id": "23f21f61c63e709508849870dd806177",
+      "observedAt": 1789741217,
+      "remaining": 10,
+      "schedule": {
+        "end": "2026-11-04T10:00:00+07:00",
+        "start": "2026-11-04T09:00:00+07:00"
+      },
+      "state": "DRAFT",
+      "title": "Packet exact same intent",
+      "version": "1"
+    },
+    "after": {
+      "active": 0,
+      "capacity": 10,
+      "description": "FAKE-PRIVATE-CONTENT-boundary",
+      "epoch": "epoch-t02-fixture",
+      "id": "23f21f61c63e709508849870dd806177",
+      "observedAt": 1789741221,
+      "remaining": 10,
+      "schedule": {
+        "end": "2026-11-04T10:00:00+07:00",
+        "start": "2026-11-04T09:00:00+07:00"
+      },
+      "state": "DRAFT",
+      "title": "Packet exact same intent",
+      "version": "1"
+    }
+  },
+  "namespaces": {
+    "actors": [
+      "BOUNDARY-U",
+      "BOUNDARY-V"
+    ],
+    "literal": "boundary-shared-literal-ID",
+    "registration": {
+      "epoch": "epoch-t02-fixture",
+      "requestId": "boundary-shared-literal-ID",
+      "workshopId": "f9aacc91633a9dcf99019ba8044175e2"
+    },
+    "ur": {
+      "code": "REGISTERED",
+      "effect": "APPLIED",
+      "registrationId": "456963cf0131ac74778f7208ae943918",
+      "state": "FINAL",
+      "workshopId": "f9aacc91633a9dcf99019ba8044175e2"
+    },
+    "vr": {
+      "code": "REGISTERED",
+      "effect": "APPLIED",
+      "registrationId": "25a94dffc584ac003bcf3a3ad741861b",
+      "state": "FINAL",
+      "workshopId": "f9aacc91633a9dcf99019ba8044175e2"
+    },
+    "literalAdmin": {
+      "epoch": "epoch-t02-fixture",
+      "intentId": "boundary-shared-literal-ID",
+      "action": "CREATE",
+      "fields": {
+        "title": "Shared literal B admin",
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "capacity": 10,
+        "schedule": {
+          "start": "2026-11-04T09:00:00+07:00",
+          "end": "2026-11-04T10:00:00+07:00"
+        }
+      }
+    },
+    "br": {
+      "code": "CREATED",
+      "effect": "APPLIED",
+      "state": "FINAL",
+      "workshopId": "b261c55ac094d075834da485ae235a56"
+    },
+    "regConflict": {
+      "code": "REQUEST_CONFLICT",
+      "state": "ERROR"
+    },
+    "lookups": [
+      {
+        "route": "/requests/boundary-shared-literal-ID",
+        "status": 200,
+        "result": {
+          "code": "REGISTERED",
+          "effect": "APPLIED",
+          "registrationId": "456963cf0131ac74778f7208ae943918",
+          "state": "FINAL",
+          "workshopId": "f9aacc91633a9dcf99019ba8044175e2"
+        }
+      },
+      {
+        "route": "/requests/boundary-shared-literal-ID",
+        "status": 200,
+        "result": {
+          "code": "REGISTERED",
+          "effect": "APPLIED",
+          "registrationId": "25a94dffc584ac003bcf3a3ad741861b",
+          "state": "FINAL",
+          "workshopId": "f9aacc91633a9dcf99019ba8044175e2"
+        }
+      },
+      {
+        "route": "/admin/intents/boundary-shared-literal-ID",
+        "status": 200,
+        "result": {
+          "code": "CREATED",
+          "effect": "APPLIED",
+          "state": "FINAL",
+          "workshopId": "b261c55ac094d075834da485ae235a56"
+        }
+      },
+      {
+        "route": "/admin/intents/boundary-shared-literal-ID",
+        "status": 404,
+        "result": {
+          "code": "UNAVAILABLE",
+          "state": "ERROR"
+        }
+      },
+      {
+        "route": "/admin/intents/boundary-shared-literal-ID",
+        "status": 404,
+        "result": {
+          "code": "UNAVAILABLE",
+          "state": "ERROR"
+        }
+      },
+      {
+        "route": "/requests/boundary-shared-literal-ID",
+        "status": 401,
+        "result": {
+          "code": "UNAVAILABLE",
+          "state": "ERROR"
+        }
+      },
+      {
+        "route": "/requests/boundary-shared-literal-ID",
+        "status": 404,
+        "result": {
+          "code": "UNAVAILABLE",
+          "state": "ERROR"
+        }
+      }
+    ],
+    "after": {
+      "active": 2,
+      "capacity": 10,
+      "description": "FAKE-PRIVATE-CONTENT-boundary",
+      "epoch": "epoch-t02-fixture",
+      "id": "f9aacc91633a9dcf99019ba8044175e2",
+      "observedAt": 1789741229,
+      "remaining": 8,
+      "schedule": {
+        "end": "2026-11-04T10:00:00+07:00",
+        "start": "2026-11-04T09:00:00+07:00"
+      },
+      "state": "OPEN",
+      "title": "Shared literal namespace",
+      "version": "4"
+    }
+  },
+  "actorSwitch": {
+    "command": {
+      "epoch": "epoch-t02-fixture",
+      "intentId": "2be350a8-efe4-467c-be5f-7e3251d6d3ff",
+      "action": "EDIT",
+      "workshopId": "bf31abe9fef356ffae02c8064d1f24c3",
+      "fields": {
+        "title": "Authorized shared content after actor switch"
+      }
+    },
+    "result": {
+      "code": "UPDATED",
+      "effect": "APPLIED",
+      "state": "FINAL",
+      "workshopId": "bf31abe9fef356ffae02c8064d1f24c3"
+    },
+    "otherAdminStatus": 404,
+    "posts": 1,
+    "after": {
+      "active": 0,
+      "capacity": 10,
+      "description": "FAKE-PRIVATE-CONTENT-boundary",
+      "epoch": "epoch-t02-fixture",
+      "id": "bf31abe9fef356ffae02c8064d1f24c3",
+      "observedAt": 1789741233,
+      "remaining": 10,
+      "schedule": {
+        "end": "2026-11-04T10:00:00+07:00",
+        "start": "2026-11-04T09:00:00+07:00"
+      },
+      "state": "DRAFT",
+      "title": "Authorized shared content after actor switch",
+      "version": "2"
+    }
+  },
+  "twoForms": [
+    {
+      "variant": "different-fields",
+      "id": "dcfaa76c723bdd3fce808d21c658021b",
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "epoch": "epoch-t02-fixture",
+        "id": "dcfaa76c723bdd3fce808d21c658021b",
+        "observedAt": 1789741235,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Two forms different-fields",
+        "version": "1"
+      },
+      "steps": [
+        {
+          "actor": "A",
+          "patch": {
+            "title": "Two-form A different-fields"
+          },
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "01eff394-60cd-49ae-9308-a14c4beafeab",
+            "action": "EDIT",
+            "workshopId": "dcfaa76c723bdd3fce808d21c658021b",
+            "fields": {
+              "title": "Two-form A different-fields"
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "dcfaa76c723bdd3fce808d21c658021b"
+          },
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-boundary",
+            "epoch": "epoch-t02-fixture",
+            "id": "dcfaa76c723bdd3fce808d21c658021b",
+            "observedAt": 1789741237,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-04T10:00:00+07:00",
+              "start": "2026-11-04T09:00:00+07:00"
+            },
+            "state": "DRAFT",
+            "title": "Two-form A different-fields",
+            "version": "2"
+          }
+        },
+        {
+          "actor": "B",
+          "patch": {
+            "description": "Two-form B description"
+          },
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "32660bc9-5723-4dcc-a9e6-d5883976542a",
+            "action": "EDIT",
+            "workshopId": "dcfaa76c723bdd3fce808d21c658021b",
+            "fields": {
+              "description": "Two-form B description"
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "dcfaa76c723bdd3fce808d21c658021b"
+          },
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "Two-form B description",
+            "epoch": "epoch-t02-fixture",
+            "id": "dcfaa76c723bdd3fce808d21c658021b",
+            "observedAt": 1789741238,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-04T10:00:00+07:00",
+              "start": "2026-11-04T09:00:00+07:00"
+            },
+            "state": "DRAFT",
+            "title": "Two-form A different-fields",
+            "version": "3"
+          }
+        }
+      ],
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "Two-form B description",
+        "epoch": "epoch-t02-fixture",
+        "id": "dcfaa76c723bdd3fce808d21c658021b",
+        "observedAt": 1789741238,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Two-form A different-fields",
+        "version": "3"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "variant": "same-field-A-then-B",
+      "id": "cf7d1c237f16525b40ad9740d11f6526",
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "epoch": "epoch-t02-fixture",
+        "id": "cf7d1c237f16525b40ad9740d11f6526",
+        "observedAt": 1789741241,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Two forms same-field-A-then-B",
+        "version": "1"
+      },
+      "steps": [
+        {
+          "actor": "A",
+          "patch": {
+            "title": "Two-form A same-field-A-then-B"
+          },
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "60eb5cfd-97fe-4aae-acf2-4f60d4f3d6d7",
+            "action": "EDIT",
+            "workshopId": "cf7d1c237f16525b40ad9740d11f6526",
+            "fields": {
+              "title": "Two-form A same-field-A-then-B"
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "cf7d1c237f16525b40ad9740d11f6526"
+          },
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-boundary",
+            "epoch": "epoch-t02-fixture",
+            "id": "cf7d1c237f16525b40ad9740d11f6526",
+            "observedAt": 1789741242,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-04T10:00:00+07:00",
+              "start": "2026-11-04T09:00:00+07:00"
+            },
+            "state": "DRAFT",
+            "title": "Two-form A same-field-A-then-B",
+            "version": "2"
+          }
+        },
+        {
+          "actor": "B",
+          "patch": {
+            "title": "Two-form B same-field-A-then-B"
+          },
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "0437586c-f1e1-4287-acb1-fde0b4444d0f",
+            "action": "EDIT",
+            "workshopId": "cf7d1c237f16525b40ad9740d11f6526",
+            "fields": {
+              "title": "Two-form B same-field-A-then-B"
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "cf7d1c237f16525b40ad9740d11f6526"
+          },
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-boundary",
+            "epoch": "epoch-t02-fixture",
+            "id": "cf7d1c237f16525b40ad9740d11f6526",
+            "observedAt": 1789741243,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-04T10:00:00+07:00",
+              "start": "2026-11-04T09:00:00+07:00"
+            },
+            "state": "DRAFT",
+            "title": "Two-form B same-field-A-then-B",
+            "version": "3"
+          }
+        }
+      ],
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "epoch": "epoch-t02-fixture",
+        "id": "cf7d1c237f16525b40ad9740d11f6526",
+        "observedAt": 1789741243,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Two-form B same-field-A-then-B",
+        "version": "3"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    },
+    {
+      "variant": "same-field-B-then-A",
+      "id": "fec3da8dc08a44f701f729aecb8fae38",
+      "before": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "epoch": "epoch-t02-fixture",
+        "id": "fec3da8dc08a44f701f729aecb8fae38",
+        "observedAt": 1789741246,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Two forms same-field-B-then-A",
+        "version": "1"
+      },
+      "steps": [
+        {
+          "actor": "B",
+          "patch": {
+            "title": "Two-form B same-field-B-then-A"
+          },
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "77569d73-0cc5-41fe-b9c1-5fcd4ad7d557",
+            "action": "EDIT",
+            "workshopId": "fec3da8dc08a44f701f729aecb8fae38",
+            "fields": {
+              "title": "Two-form B same-field-B-then-A"
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "fec3da8dc08a44f701f729aecb8fae38"
+          },
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-boundary",
+            "epoch": "epoch-t02-fixture",
+            "id": "fec3da8dc08a44f701f729aecb8fae38",
+            "observedAt": 1789741247,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-04T10:00:00+07:00",
+              "start": "2026-11-04T09:00:00+07:00"
+            },
+            "state": "DRAFT",
+            "title": "Two-form B same-field-B-then-A",
+            "version": "2"
+          }
+        },
+        {
+          "actor": "A",
+          "patch": {
+            "title": "Two-form A same-field-B-then-A"
+          },
+          "command": {
+            "epoch": "epoch-t02-fixture",
+            "intentId": "ad586b5e-1a6a-4ccd-898f-1f65a319a4df",
+            "action": "EDIT",
+            "workshopId": "fec3da8dc08a44f701f729aecb8fae38",
+            "fields": {
+              "title": "Two-form A same-field-B-then-A"
+            }
+          },
+          "result": {
+            "code": "UPDATED",
+            "effect": "APPLIED",
+            "state": "FINAL",
+            "workshopId": "fec3da8dc08a44f701f729aecb8fae38"
+          },
+          "after": {
+            "active": 0,
+            "capacity": 10,
+            "description": "FAKE-PRIVATE-CONTENT-boundary",
+            "epoch": "epoch-t02-fixture",
+            "id": "fec3da8dc08a44f701f729aecb8fae38",
+            "observedAt": 1789741248,
+            "remaining": 10,
+            "schedule": {
+              "end": "2026-11-04T10:00:00+07:00",
+              "start": "2026-11-04T09:00:00+07:00"
+            },
+            "state": "DRAFT",
+            "title": "Two-form A same-field-B-then-A",
+            "version": "3"
+          }
+        }
+      ],
+      "after": {
+        "active": 0,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-CONTENT-boundary",
+        "epoch": "epoch-t02-fixture",
+        "id": "fec3da8dc08a44f701f729aecb8fae38",
+        "observedAt": 1789741248,
+        "remaining": 10,
+        "schedule": {
+          "end": "2026-11-04T10:00:00+07:00",
+          "start": "2026-11-04T09:00:00+07:00"
+        },
+        "state": "DRAFT",
+        "title": "Two-form A same-field-B-then-A",
+        "version": "3"
+      },
+      "posts": [
+        1,
+        1
+      ]
+    }
+  ],
+  "publicationProtocol": {
+    "command": {
+      "epoch": "epoch-t02-fixture",
+      "intentId": "664eabb0-a85c-4506-8f73-33edb7b053a3",
+      "action": "STATE",
+      "workshopId": "ad467e6b47f324aebfdae1c076403d31",
+      "targetState": "OPEN"
+    },
+    "status": 503,
+    "result": {
+      "code": "UNCONFIRMED",
+      "state": "UNKNOWN"
+    }
+  }
+}

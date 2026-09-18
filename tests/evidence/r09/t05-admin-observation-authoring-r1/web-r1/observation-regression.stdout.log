@@ -1,0 +1,37 @@
+✔ confirmation older-read never sends an unconfirmed or wrong-session POST (962.146002ms)
+✔ confirmation actor-during-read never sends an unconfirmed or wrong-session POST (744.908354ms)
+✔ confirmation epoch-during-read never sends an unconfirmed or wrong-session POST (692.666136ms)
+✔ confirmation snapshot-503 never sends an unconfirmed or wrong-session POST (677.414887ms)
+✔ confirmation snapshot-malformed never sends an unconfirmed or wrong-session POST (696.812789ms)
+✖ confirmation session-401 never sends an unconfirmed or wrong-session POST (30693.167635ms)
+✖ confirmation session-403 never sends an unconfirmed or wrong-session POST (30716.344849ms)
+✔ confirmation session-503 never sends an unconfirmed or wrong-session POST (667.809045ms)
+{"serverStdout":"Listening on http://127.0.0.1:53416\n","serverStderr":"","scope":"built Web/native Mac Chrome + explicit fake API; no backend integration/acceptance"}
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 67137.267303
+
+✖ failing tests:
+
+test at ../../kidea/tests/r09/t05/admin-observation-server.test.mjs:23:159
+✖ confirmation session-401 never sends an unconfirmed or wrong-session POST (30693.167635ms)
+  page.waitForFunction: Timeout 30000ms exceeded.
+      at TestContext.<anonymous> (/Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:32:86)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:23:153 {
+    name: 'TimeoutError',
+    log: []
+  }
+
+test at ../../kidea/tests/r09/t05/admin-observation-server.test.mjs:23:159
+✖ confirmation session-403 never sends an unconfirmed or wrong-session POST (30716.344849ms)
+  page.waitForFunction: Timeout 30000ms exceeded.
+      at TestContext.<anonymous> (/Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:32:86)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:23:153 {
+    name: 'TimeoutError',
+    log: []
+  }

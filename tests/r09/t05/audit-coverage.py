@@ -83,23 +83,37 @@ sensitive_pauses = [f'sensitive-PAUSE-{op}-{order}-real-held-browser-requests-se
 mapping['AD-T13'] += sensitive_forms
 mapping['AR-T07'] += sensitive_forms + sensitive_dialogs
 mapping['AR-T03'] += sensitive_pauses
+observation_dialogs = [f'observation-N-only-{kind}-{op}-real-WSS-closes-old-confirmation-fresh-single-POST' for kind in ['capacity','schedule','state'] for op in ['register','cancel']]
+observation_faults = [f'observation-{kind}-no-POST-no-stale-comparison-no-domain-change' for kind in ['snapshot-503','snapshot-malformed','snapshot-older','snapshot-conflict','session-503','session-401','session-403','actor-confirm-read','actor-begin-read']]
+permission_cells = [f'permission-{state}-{role}-HTTP-SSR-WSS-current-server-authority' for state in ['DRAFT','OPEN','PAUSED'] for role in ['guest','owner','other','admin-only','invalid-cookie']]
+permission_guards = ['permission-forged-role-actor-epoch-CSRF-Origin-no-data','permission-real-SQL-admin-revocation-closes-dialog-hides-private-data-zero-POST']
+mapping['P01'] = permission_cells + ['PAUSED-public-SSR-and-participant-controls']
+for ident in ['P02','P03','P06','AD-T09','E09','QT09','QT10']:
+    mapping.setdefault(ident, []).extend(permission_cells + permission_guards)
+for ident in ['AD-T06','AD-T13','AR-T07']:
+    mapping[ident] += observation_dialogs
+for ident in ['AD-T06','AD-T09','AR-T09']:
+    mapping[ident] += observation_faults
 gaps = {
+ 'P02':'Current create/edit/state authority and forged roles proved; monitoring not implemented/tested.',
+ 'P03':'Current own/cross-owner HTTP/SSR/WSS history and denied personal mutations proved; complete invalid-ID and all state/mutation permutations remain.',
+ 'P06':'Distinct ACTIVE/CANCELLED histories proved over HTTP/SSR/WSS; complete client history/lifecycle variants remain.',
  'E07':'Real commit with lost reply and GET-only lookup proved; complete uncertain durability versus stale-view variants remain.',
  'E08':'Actual mutation snapshots/no-op and new admin SQL event/version audit covered; complete six-action retry/reject event matrix remains.',
  'E09':'Audience and SSR protection covered; full HTTP/SSR/socket/log and monitoring permutations remain.',
  'AD-T01':'Server INVALID_FIELDS has no field detail; complete invalid CREATE UI field matrix remains unproven.',
  'AD-T05':'Both register/cancel and PAUSE orders now executed with real held browser POSTs and durable results; preserve MVP block on new PAUSED cancels until T09.',
- 'AD-T06':'Real capacity/schedule/state dialogs invalidate four known live source changes and require fresh confirmation; isolated N-only change and complete observation/error permutations still unproven.',
+ 'AD-T06':'Six N-only register/cancel changes and nine controlled read/session faults now executed; complete lifecycle/arrival-point and observation/error permutations remain.',
  'AD-T07':'Actual SQLite audit-aborted publication after committed EDIT now preserves distinct historical confirmation and UNKNOWN; no physical I/O/crash proof inferred.',
  'AD-T08':'Committed and unreceived loss, reload, double pointer clicks cover all three actions; duplicate titles keep exact IDs. Operational/platform cases remain separate.',
- 'AD-T09':'Complete G/U/admin-only/missing/forged/revoked scope matrix across HTTP/SSR/WSS and caches remains.',
+ 'AD-T09':'Current implemented HTTP/SSR/WSS role/state matrix and real revocation proved; monitoring, deployment/cache and complete lifecycle permutations remain.',
  'AD-T11':'Fault injection is component TX/SQLFAIL; admin process crash pre/post commit and real I/O failures not all proved.',
  'AD-T12':'New durable audit excludes fake token/CSRF/private body markers; full public export/forged actor matrix not proved.',
  'AD-T13':'Adds real capacity/schedule/state forms in both commit orders and mixed-field patches, preserving prior text-field tests; complete arrival-point/observation-error permutations remain.',
  'AD-T14':'All-state field edits/IDs proved; audience and delayed view variants not exhaustively combined with each edit.',
  'AD-T15':'No controlled quota/old recovery-point/epoch restoration exercise; no automatic deletion/replay authorized.',
  'AR-T04':'Component crash covers registrations; admin and outbox emission crash boundaries remain incomplete.',
- 'AR-T07':'Real A/B forms cover title/description dirty patches and both same-field orders; complete two-form sensitive capacity/schedule/state variants are not inferred from these text-field cases.',
+ 'AR-T07':'Real capacity/schedule/state forms cover both commit orders and six N-only dialog changes; complete arrival-point/error permutations remain.',
  'AR-T10':'Executed blackout is greater than 5s, not the specified 30s; no complete backlog/heartbeat-silence matrix.',
  'AR-T13':'Online SQLite backup with concurrent WAL and interrupted verified destination not implemented/tested.',
  'AR-T14':'New-host restore, epoch rotation/revocation and remembered client intents not tested.',
@@ -133,8 +147,9 @@ gaps = {
 component_links = {'AR-T02':['C01','R03'], 'AR-T03':['C02','C03','C04'], 'AR-T04':['CRASH','TX'],
  'AR-T05':['I05','K3K4'], 'AR-T08':['TX','SQLFAIL'], 'AR-T19':['Q03','I05'],
  'AD-T04':['C02'], 'AD-T05':['C03','C04'], 'AD-T11':['TX','SQLFAIL'], 'QT11':[f'D{i:02}' for i in range(1,10)], 'QT07':['CRASH']}
-units = repo / 'tests/evidence/r09/t05-admin-sensitive-authoring-r1/web-r1/checks.json'
-assert all(value == 0 for value in json.loads(units.read_text()).values())
+units = repo / 'tests/evidence/r09/t05-admin-observation-authoring-r1/web-r2/checks.json'
+web_checks = json.loads(units.read_text())
+assert set(web_checks)=={'test:unit','check','lint','build','test:server','content-regression','sensitive-regression','observation-regression'} and all(value==0 for value in web_checks.values()), 'full final Web gates'
 matrix = json.loads((integration / 'run/browser/matrix-evidence.json').read_text())
 assert matrix['race']['after']['capacity'] == matrix['race']['after']['active'] == 10
 assert matrix['reverseRace']['after']['capacity'] == matrix['reverseRace']['after']['active'] == 9
@@ -190,7 +205,54 @@ for item in sensitive['pauseRaces']:
     assert item['result']['code'] == ('PAUSED' if item['order']=='pause-first' else 'REGISTERED' if item['operation']=='register' else 'CANCELLED')
     assert item['after']['state']=='PAUSED'
     assert item['after']['active'] == (int(item['order']=='participant-first') if item['operation']=='register' else int(item['order']=='pause-first'))
-covered_functional = {'AD-T05','AD-T02','AD-T03','AD-T04','AD-T07','AD-T08','AD-T10','AR-T05','AR-T06','AR-T19'}
+observation_path = integration / 'run/browser/admin-observation-evidence.json'
+observation = json.loads(observation_path.read_text())
+assert len(observation['dialogs']) == 6 and {(v['kind'],v['operation']) for v in observation['dialogs']} == {(kind,op) for kind in ['capacity','schedule','state'] for op in ['register','cancel']}, 'observation dialogs'
+assert len(observation['faults']) == 9 and {v['kind'] for v in observation['faults']} == {'snapshot-503','snapshot-malformed','snapshot-older','snapshot-conflict','session-503','session-401','session-403','actor-confirm-read','actor-begin-read'}, 'observation faults'
+for item in observation['dialogs']:
+    assert item['posts'] == 1 and browser_posts(item['id']) == [item['command']], 'observation dialog wire replay'
+    assert all(item['before'][k] == item['changed'][k] for k in ['capacity','schedule','state','title','description']), 'N-only source'
+    assert item['changed']['active'] == item['before']['active'] + (1 if item['operation']=='register' else -1)
+for item in observation['faults']:
+    assert item['posts'] == 0 and browser_posts(item['id']) == [], 'observation fault wire replay'
+    assert item['after'] == {**item['before'],'observedAt':item['after']['observedAt']}, 'observation fault domain mutation'
+assert len(observation['permissions']) == 15 and {(v['state'],v['role']) for v in observation['permissions']} == {(state,role) for state in ['DRAFT','OPEN','PAUSED'] for role in ['guest','owner','other','admin-only','invalid-cookie']}, 'permission cells'
+assert len(observation['sockets']) == 52 and sum(v.get('denial')=='visibility' for v in observation['sockets'])==4, 'denied socket frames'
+for socket in observation['sockets']:
+    if socket['allowed']:continue
+    if socket.get('denial')=='visibility':
+        assert socket['audience']=='public' and socket['id'] in {v['id'] for v in observation['permissionFixtures'] if v['state']=='DRAFT'} and socket['role'] in ['guest','owner','other','admin-only'] and len(socket['messages'])==1, 'denied socket frames'
+        assert set(socket['messages'][0])=={'message','receipt'} and isinstance(socket['messages'][0]['receipt'],str) and socket['messages'][0]['receipt'], 'denied socket frames'
+        assert socket['messages'][0]['message']=={'type':'SUBSCRIBED','epoch':'epoch-t02-fixture','audience':'public'}, 'denied socket frames'
+    else:assert not socket['messages'], 'denied socket frames'
+for item in observation['permissions']:
+    assert len(item['cells']) == 10, 'permission HTTP/SSR cells'
+    admin = item['role'] == 'admin-only'
+    personal = item['role'] in ['owner','other']
+    denied = 401 if item['role'] in ['guest','invalid-cookie'] else 404
+    for cell in item['cells']:
+        route = cell['route']
+        expected = (404 if '/intents/' in route else 200) if route.startswith('/admin') and admin else denied if route.startswith('/admin') else (200 if personal else 401 if cell['method']=='SSR_GET' else denied) if route.startswith('/me') else 404 if item['state']=='DRAFT' else 200
+        assert cell['status'] == expected, 'permission cell authority'
+        if cell['method']=='SSR_GET' and expected!=200:
+            assert cell['privateMarkerAbsent'], 'permission SSR leak'
+        if route=='/me/registrations' and personal:
+            actor = 'PERM-OWNER' if item['role']=='owner' else 'PERM-OTHER'
+            assert all(g['actor']==actor for g in cell['body']), 'permission private owner'
+            if item['role']=='other':assert cell['body']==[], 'permission cross-owner history'
+for n, item in enumerate(observation['permissions']):
+    for offset, audience in enumerate(['public','admin','private']):
+        socket = observation['sockets'][3*n+offset]
+        assert (socket['role'],socket['audience'],socket['id']) == (item['role'],audience,'*' if audience=='private' else item['id']), 'permission socket cells'
+        expected = (item['state']!='DRAFT' and item['role']!='invalid-cookie') if audience=='public' else item['role']=='admin-only' if audience=='admin' else item['role'] in ['owner','other']
+        assert socket['allowed'] == expected, 'permission socket authority'
+        if not expected:
+            visibility = audience=='public' and item['state']=='DRAFT' and item['role']!='invalid-cookie'
+            assert (socket.get('denial')=='visibility')==visibility, 'permission socket denial class'
+
+assert observation['revocation']['posts'] == 0 and browser_posts(observation['revocation']['id']) == [], 'revocation wire replay'
+assert len(json.loads(audit_path.read_text())['checks']) == 22, 'complete SQL audit'
+covered_functional = {'P01','AD-T05','AD-T02','AD-T03','AD-T04','AD-T07','AD-T08','AD-T10','AR-T05','AR-T06','AR-T19'}
 for row in rows:
     source = pilot / row['source']['path']
     assert sha(source) == row['source']['sha256'], source
@@ -206,10 +268,14 @@ for row in rows:
     if row['id'] in {'AD-T07','AD-T08','AD-T09','AD-T13','AR-T05','AR-T07','AR-T19'}:
         evidence.append({'kind':'BROWSER_ALL_REQUESTS','path':str(wire_path.relative_to(repo)), 'sha256':sha(wire_path), 'selector':'all request events including after route removal/reload; no new or replayed POST for bounded workshop IDs', 'status':'PASS'})
         evidence.append({'kind':'REAL_ADMIN_BOUNDARY_DETAILS','path':str(boundary_path.relative_to(repo)), 'sha256':sha(boundary_path), 'selector':'publication/absentState/packet/namespaces/actorSwitch/twoForms as applicable; explicit fake SQLite trigger', 'status':'PASS'})
-    if row['id'] in {'AD-T02','AD-T03','AD-T04','AD-T07','AD-T08','AD-T09','AD-T10','AD-T12','AD-T13','AR-T05','AR-T06','AR-T07','AR-T19'}:
+    if row['id'] in {'P01','P02','P03','P06','AD-T06','AR-T09','AD-T02','AD-T03','AD-T04','AD-T07','AD-T08','AD-T09','AD-T10','AD-T12','AD-T13','AR-T05','AR-T06','AR-T07','AR-T19'}:
         evidence.append({'kind':'DURABLE_SQL_READ_ONLY','path':str(audit_path.relative_to(repo)), 'sha256':sha(audit_path), 'selector':'checks; see bound matrix-evidence.json for exact intents', 'status':'PASS'})
     if row['id'] in {'AD-T05','AD-T06','AD-T13','AR-T03','AR-T07'}:
         evidence.append({'kind':'REAL_SENSITIVE_ADMIN_AND_PAUSE_DETAILS','path':str(sensitive_path.relative_to(repo)), 'sha256':sha(sensitive_path), 'selector':'forms/dialogs/pauseRaces; exact literal requests, held before decision, current PAUSED cancel rule','status':'PASS'})
+    if row['id'] in {'P01','P02','P03','P06','AD-T06','AD-T09','AD-T13','AR-T07','AR-T09','E09','QT09','QT10'}:
+        evidence.append({'kind':'OBSERVATION_PERMISSION_DETAILS','path':str(observation_path.relative_to(repo)), 'sha256':sha(observation_path), 'selector':'six actual N-only WSS changes; nine explicitly injected HTTP/session read faults; fifteen implemented HTTP/SSR/WSS role-state cells; real SQL revocation as applicable','status':'PASS','limit':'Read fault replies are controlled browser fixtures; not physical restore/epoch, monitoring, deployment/cache or operational proof.'})
+    if row['id'] in {'AD-T06','AD-T09','AD-T13','AR-T07','AR-T09'}:
+        evidence.append({'kind':'OBSERVATION_BROWSER_ALL_REQUESTS','path':str(wire_path.relative_to(repo)), 'sha256':sha(wire_path), 'selector':'six N-only workshops one fresh command each; nine read/session fault workshops zero POST including after route removal', 'status':'PASS'})
     if re.fullmatch('E0[1-6]',row['id']) or row['id'] == 'QT05':
         evidence.append({'kind':'CURRENT_WEB_UNIT_SUITE','path':str(units.relative_to(repo)), 'sha256':sha(units), 'selector':'93-test suite; inspect web/tests/unit/updates.test.mjs and collections.test.mjs', 'status':'PASS','limit':'Suite support only; not exhaustive live variant coverage.'})
     if row['id'] == 'AR-T21':

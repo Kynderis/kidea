@@ -1,0 +1,10 @@
+{
+  "args": [
+    "logs",
+    "4e01966cac6674915c835cf4279ed24861842179b1c902bddce04f4e107d3a71"
+  ],
+  "code": 0,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: no frames before denied\n\n1 !== 0\n\n    at socket (file:///plan/admin-observation-browser.mjs:25:76)\n    at async checkAdminObservation (file:///plan/admin-observation-browser.mjs:61:4)\n    at async file:///plan/browser.mjs:57:2 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 1,\n  expected: 0,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n",
+  "failure": null
+}

@@ -1,0 +1,11 @@
+{
+  "status": "HARNESS_CONTRACT_MISMATCH",
+  "failedRun": "r09-web-5ffe14d1-7a36-4451-a0a9-e8254375950b",
+  "completedSelectors": 114,
+  "failure": "new oracle asserted zero frames on public DRAFT; protocol emits SUBSCRIBED before reading snapshot",
+  "sourceContract": "pilot/docs/t05/updates-protocol-r1.md paragraphs1-2 and backend/src/update_transport.cpp subscribe",
+  "retainedOriginalOracle": "updates-public-DRAFT-no-snapshot retained unchanged",
+  "correction": "Only visibility denial accepts exactly one SUBSCRIBED with exact epoch/audience and no other fields; authority denial remains zero frames. Private SUBSCRIBE omits workshopId as required by contract.",
+  "rawFailureLimitation": "r1 did not store the failed socket message; failure reports count1 only. Source inspection establishes contract, not claimed exact raw r1 frame.",
+  "nextAttempt": "new frozen full attempt; all old100 and new32 groups retained"
+}

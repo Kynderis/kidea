@@ -1,0 +1,945 @@
+{
+  "source": "/Users/kendrick/Desktop/kidea/.test-output/r09-web-e9e73f27-85a1-49a6-826d-abdaee0dce33",
+  "run": {
+    "id": "r09-web-e9e73f27-85a1-49a6-826d-abdaee0dce33",
+    "manifestHash": "1a5e6dfb4779ec7fcc0daf0d989a8b488b8f10d0a9275bcfbfc88f35c4eae996",
+    "started": "2026-09-18T14:02:13.823Z",
+    "ended": "2026-09-18T14:13:30.989Z",
+    "status": "FAIL",
+    "error": "Error: Command failed: python3 /Users/kendrick/Desktop/kidea/tests/r09/t03-integration/matrix-audit.py /Users/kendrick/Desktop/kidea/.test-output/r09-web-e9e73f27-85a1-49a6-826d-abdaee0dce33\n    at genericNodeError (node:internal/errors:985:15)\n    at wrappedFn (node:internal/errors:539:14)\n    at checkExecSyncError (node:child_process:942:11)\n    at execFileSync (node:child_process:978:15)\n    at file:///Users/kendrick/Desktop/kidea/tests/r09/t03-integration/run.mjs:27:74\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+  },
+  "browser": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "public-SSR-JS-off-TLS",
+        "status": "PASS"
+      },
+      {
+        "name": "server-session-cookie-isolation",
+        "status": "PASS"
+      },
+      {
+        "name": "real-commit-lost-response-reload-GET-only",
+        "status": "PASS"
+      },
+      {
+        "name": "last-seat-FULL-other-user",
+        "status": "PASS"
+      },
+      {
+        "name": "Escape-no-write-exact-id-cancel",
+        "status": "PASS"
+      },
+      {
+        "name": "cancel-rebook-old-result-immutable",
+        "status": "PASS"
+      },
+      {
+        "name": "private-SSR-no-cross-user-data",
+        "status": "PASS"
+      },
+      {
+        "name": "proxy-forgery-and-CSRF-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "restored-page-server-revalidates-new-actor",
+        "status": "PASS"
+      },
+      {
+        "name": "invalid-session-clears-private-page",
+        "status": "PASS"
+      },
+      {
+        "name": "real-JS-off-intro-list-detail-navigation",
+        "status": "PASS"
+      },
+      {
+        "name": "PAUSED-public-SSR-and-participant-controls",
+        "status": "PASS"
+      },
+      {
+        "name": "PAUSED-preserves-old-result-and-denies-new-registration",
+        "status": "PASS"
+      },
+      {
+        "name": "baseline-PAUSED-cancel-rejected-before-T09",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-second-ACTIVE-real-browser",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-third-ACTIVE-rejected-without-consuming-seat",
+        "status": "PASS"
+      },
+      {
+        "name": "quota-cancel-releases-slot-new-intent-old-rejection-immutable",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-create-real-commit-loss-reload-GET-only-exact-ID",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-draft-never-public-or-anonymous-SSR",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-dirty-only-patch-no-implicit-publish",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-state-separate-confirm-Escape-no-write",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-changed-observation-invalidates-sensitive-confirmation",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-reviewed-rebase-preserves-other-editors-fields",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-same-version-conflict-blocks-writes-until-authoritative-reconcile",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-invalid-field-preserves-input-without-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-responsive-360-no-horizontal-overflow",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-actor-switch-hides-form-and-denies-old-result",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-original-actor-restores-intent-through-GET-without-replay",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-admin-DRAFT-four-field-UI-patch-schedule-confirm-state-ID-stable",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-admin-OPEN-four-field-UI-patch-schedule-confirm-state-ID-stable",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-EDIT-real-commit-lost-reply-reload-GET-only",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-admin-PAUSED-four-field-UI-patch-schedule-confirm-state-ID-stable",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-all-nine-STATE-cells-noop-rejection-version-and-read-only-result",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-real-server-four-field-rejections-and-unknown-state-no-version-change",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-real-duplicate-titles-distinct-authoritative-IDs",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-real-capacity-wins-race-tenth-registration-FULL-no-version-event",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-unreceived-POST-real-absent-lookup-UNKNOWN-two-reloads-GET-only-no-replacement",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-CREATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-title-search-no-POST-replay",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-double-pointer-click-CREATE-one-POST-one-version-durable-result",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-double-pointer-click-EDIT-one-POST-one-version-durable-result",
+        "status": "PASS"
+      },
+      {
+        "name": "matrix-double-pointer-click-STATE-one-POST-one-version-durable-result",
+        "status": "PASS"
+      },
+      {
+        "name": "boundary-saved-EDIT-real-STATE-audit-abort-503-UNKNOWN-no-rollback-of-edit-no-replay",
+        "status": "PASS"
+      },
+      {
+        "name": "boundary-STATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-POST-replay",
+        "status": "PASS"
+      },
+      {
+        "name": "boundary-admin-literal-intent-exact-replay-payload-conflict-other-admin-no-result-leak",
+        "status": "PASS"
+      },
+      {
+        "name": "boundary-registration-literal-ID-U-V-admin-namespaces-isolated-real-HTTP",
+        "status": "PASS"
+      },
+      {
+        "name": "boundary-browser-admin-A-B-A-intent-marker-isolated-GET-only-recovery",
+        "status": "PASS"
+      },
+      {
+        "name": "boundary-two-real-admin-forms-different-fields-dirty-patches-serialize-no-whole-record-overwrite",
+        "status": "PASS"
+      },
+      {
+        "name": "boundary-two-real-admin-forms-same-field-A-then-B-dirty-patches-serialize-no-whole-record-overwrite",
+        "status": "PASS"
+      },
+      {
+        "name": "boundary-two-real-admin-forms-same-field-B-then-A-dirty-patches-serialize-no-whole-record-overwrite",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-two-forms-mixed-A-B-confirmed-before-decision-exact-patches",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-two-forms-capacity-A-B-confirmed-before-decision-exact-patches",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-two-forms-capacity-B-A-confirmed-before-decision-exact-patches",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-two-forms-schedule-A-B-confirmed-before-decision-exact-patches",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-two-forms-schedule-B-A-confirmed-before-decision-exact-patches",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-two-forms-state-A-B-confirmed-before-decision-exact-patches",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-two-forms-state-B-A-confirmed-before-decision-exact-patches",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-live-capacity-change-invalidates-dialog-zero-POST-until-new-confirmation",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-live-schedule-change-invalidates-dialog-zero-POST-until-new-confirmation",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-live-state-capacity-change-invalidates-dialog-zero-POST-until-new-confirmation",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-live-state-state-change-invalidates-dialog-zero-POST-until-new-confirmation",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-PAUSE-register-participant-first-real-held-browser-requests-serial-results",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-PAUSE-register-pause-first-real-held-browser-requests-serial-results",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-PAUSE-cancel-participant-first-real-held-browser-requests-serial-results",
+        "status": "PASS"
+      },
+      {
+        "name": "sensitive-PAUSE-cancel-pause-first-real-held-browser-requests-serial-results",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-collection-creation-DRAFT-admin-only",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-public-DRAFT-no-snapshot",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-Origin-CSRF-epoch-role-cookie-URL-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "collection-pages-real-DRAFT-admin-only-private-empty-subscription",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-publish-enters-authorized-public-collection",
+        "status": "PASS"
+      },
+      {
+        "name": "public-list-real-publication-enters-live-collection",
+        "status": "PASS"
+      },
+      {
+        "name": "collection-pages-real-registration-public-count-admin-count-private-own-history",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-public-admin-private-authoritative-version-audience",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-CANCELLED-not-resurrected-and-seats-reconciled",
+        "status": "PASS"
+      },
+      {
+        "name": "collection-pages-real-cancel-preserves-tombstone-and-authoritative-counts",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-live-public-admin-360-no-horizontal-overflow",
+        "status": "PASS"
+      },
+      {
+        "name": "collection-pages-real-content-update-keeps-ID-links-and-private-history",
+        "status": "PASS"
+      },
+      {
+        "name": "me-injected-older-GET-cannot-resurrect-live-CANCELLED-no-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "me-injected-session-503-hides-then-recovers-same-actor-history-no-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "collection-pages-360-and-SUBSCRIBE-before-reconcile-GET",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-injected-participant-session-429-503-read-recovery-not-revocation-no-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-injected-admin-session-429-503-read-recovery-preserves-draft-no-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-heartbeat-is-not-domain-event-noop-no-fake-snapshot",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-app-blackout-local-stale-then-valid-signal-no-mutation-replay",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-known-close-reconnect-SUBSCRIBE-before-GET-no-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "me-real-session-revocation-clears-private-collection",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-session-revocation-closes-channel-hides-private-history",
+        "status": "PASS"
+      },
+      {
+        "name": "admin-list-real-revocation-hides-DRAFT-and-published-rows",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-admin-revocation-hides-form-without-replaying-intent",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-unknown-commands-guessed-ACK-single-and-fragmented-frame-limit",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-abusive-ACK-flood-closes-not-isolated-rate-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-actor-eight-socket-limit",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-anonymous-sixteen-peer-limit",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-global-128-pending-active-limit",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-writer-durable-result-while-128-sockets-active",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-writer-durable-result-while-reader-credit-full",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-real-no-ACK-reader-eight-frame-bound-and-close",
+        "status": "PASS"
+      },
+      {
+        "name": "updates-admission-tests-preserve-domain-and-final-authoritative-read",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-N-only-capacity-register-real-WSS-closes-old-confirmation-fresh-single-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-N-only-capacity-cancel-real-WSS-closes-old-confirmation-fresh-single-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-N-only-schedule-register-real-WSS-closes-old-confirmation-fresh-single-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-N-only-schedule-cancel-real-WSS-closes-old-confirmation-fresh-single-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-N-only-state-register-real-WSS-closes-old-confirmation-fresh-single-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-N-only-state-cancel-real-WSS-closes-old-confirmation-fresh-single-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-snapshot-503-no-POST-no-stale-comparison-no-domain-change",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-snapshot-malformed-no-POST-no-stale-comparison-no-domain-change",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-snapshot-older-no-POST-no-stale-comparison-no-domain-change",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-snapshot-conflict-no-POST-no-stale-comparison-no-domain-change",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-session-503-no-POST-no-stale-comparison-no-domain-change",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-session-401-no-POST-no-stale-comparison-no-domain-change",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-session-403-no-POST-no-stale-comparison-no-domain-change",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-actor-confirm-read-no-POST-no-stale-comparison-no-domain-change",
+        "status": "PASS"
+      },
+      {
+        "name": "observation-actor-begin-read-no-POST-no-stale-comparison-no-domain-change",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-DRAFT-guest-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-DRAFT-owner-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-DRAFT-other-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-DRAFT-admin-only-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-DRAFT-invalid-cookie-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-OPEN-guest-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-OPEN-owner-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-OPEN-other-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-OPEN-admin-only-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-OPEN-invalid-cookie-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-PAUSED-guest-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-PAUSED-owner-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-PAUSED-other-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-PAUSED-admin-only-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-PAUSED-invalid-cookie-HTTP-SSR-WSS-current-server-authority",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-forged-role-actor-epoch-CSRF-Origin-no-data",
+        "status": "PASS"
+      },
+      {
+        "name": "permission-real-SQL-admin-revocation-closes-dialog-hides-private-data-zero-POST",
+        "status": "PASS"
+      },
+      {
+        "name": "no-page-error-or-external-request",
+        "status": "PASS"
+      }
+    ],
+    "browser": "153.0.8010.12",
+    "tlsBypass": false,
+    "fixtures": {
+      "initialUV": "WSS intentionally closed to retain stale HTTP-only mutation fixtures; new checkUpdates contexts and raw WSS are not intercepted",
+      "sameVersionAdminConflict": "one HTTP GET response altered to test reconciliation; distinguish from backend reply"
+    }
+  },
+  "files": [
+    {
+      "path": "app/backend.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/backend.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/backend.stdout",
+      "sha256": "d6ca99c0b62c459693dec37a5503d1d1e13f4423fc8bf0c04c32b365a98db8a9"
+    },
+    {
+      "path": "app/boundary-fixtures.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/boundary-fixtures.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/boundary-fixtures.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/init.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/init.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/init.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/seed.json",
+      "sha256": "5b51c6ad5ddbd88a50654c5df910b252b2ed53b8182fc05fb36b1cb0eaa8b867"
+    },
+    {
+      "path": "app/web.process.json",
+      "sha256": "1aff36f796932c34d424461078ea28c3b7feef0b4538624958a98e8dc7e4bca4"
+    },
+    {
+      "path": "app/web.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/web.stdout",
+      "sha256": "1280bed20c1210eb20be935c8f0d5629cc2eb73cc66d115341830fd01e0dbbd3"
+    },
+    {
+      "path": "app/workshop.sqlite",
+      "sha256": "5c0cd4b6a99e3efe4bdcc2575f6eb5a78c522ae4e4473fc52abe5b62d997c94f"
+    },
+    {
+      "path": "app/workshop.sqlite-shm",
+      "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+    },
+    {
+      "path": "app/workshop.sqlite-wal",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "browser/admin-360.png",
+      "sha256": "4faf2c31f91713e75ae62967014ba798be419a9f407b8dbe8eb209b2de0a82a6"
+    },
+    {
+      "path": "browser/admin-boundaries-evidence.json",
+      "sha256": "7e4a4df351c0eac5cbd64da2e49b068a32b45b75190224f5a11f568dd7e9b851"
+    },
+    {
+      "path": "browser/admin-observation-evidence.json",
+      "sha256": "8a36ffc1d83f01e944cd8315de594cff12f49c6300aa76e27793c4fb41fc8628"
+    },
+    {
+      "path": "browser/admin-sensitive-evidence.json",
+      "sha256": "9a9c038d0783425c415d32af1b6867a37ffebe7c6c4d53a8096953edba9c3d39"
+    },
+    {
+      "path": "browser/boundary-publication-unknown.png",
+      "sha256": "81238cbef386337259397379397a1708cf15fd347d05bca902dd3db862758cf8"
+    },
+    {
+      "path": "browser/collection-admin-list-360.png",
+      "sha256": "2a6a713141fcbc16d243909b0280cc33bbf446721ed9dc89e475123c9540a6d5"
+    },
+    {
+      "path": "browser/collection-me-360.png",
+      "sha256": "6d348b3a3fd5fc65dc09c2614b89fb0f19dbb8de3b476b699319c16dfd2c8b76"
+    },
+    {
+      "path": "browser/collection-public-list-360.png",
+      "sha256": "4a50c3144807bd7b3b9447bdd49a6d91520206c59960a7850ae513979f5d24c1"
+    },
+    {
+      "path": "browser/control-request.json",
+      "sha256": "1622aed7f3bd110ecce7cfdc68e38dbcae251733af11f445347ed975377efb95"
+    },
+    {
+      "path": "browser/control-result-1.receipt",
+      "sha256": "0dd4b6dae5bf46975da100215bfc6880f1b3d501c83c7b1e5f8965e576cd8a7e"
+    },
+    {
+      "path": "browser/control-result-2.receipt",
+      "sha256": "c4dd7622359450095760e3ee0188fa152573a24bda4586b99db4d0f9837550f3"
+    },
+    {
+      "path": "browser/control-result-3.receipt",
+      "sha256": "4a45df19536954fa20e6c4b738ebb5fed1e22bf274b6dffa6768849c2c6f55d8"
+    },
+    {
+      "path": "browser/control-result-4.receipt",
+      "sha256": "d2525c4b145a5bdf5ff17a9f1403982840c57d1408aa09028c1ec7f38f871a84"
+    },
+    {
+      "path": "browser/control-result-5.receipt",
+      "sha256": "164ed848eff4871230e7d19e2419a37ce6d5e32e805a06fc8053b139c5cc618f"
+    },
+    {
+      "path": "browser/control-result-6.receipt",
+      "sha256": "8c47d5bcc69d66b154b5762e13005045453cd865aca2d51d05be54d3d4339833"
+    },
+    {
+      "path": "browser/control-result-7.receipt",
+      "sha256": "d9907e18f188cb09af70a6d73f5dd6e83dfd5ab5e13c549474b2cce1f2cb70ab"
+    },
+    {
+      "path": "browser/history.json",
+      "sha256": "c98c72276db8853d29b4661433e626d573330ff35739ae2642fab9f00d2d38c0"
+    },
+    {
+      "path": "browser/matrix-audit.json",
+      "sha256": "0a66affd8e2472d0b3afcb2ddf4dddc1f3e81aa81b456969fabf9a0ffbc6b5d9"
+    },
+    {
+      "path": "browser/matrix-capacity-rejected.png",
+      "sha256": "1722617415992e23a7f5d0a56687cb1b1bbd70836e1d378f0faf31120c9374eb"
+    },
+    {
+      "path": "browser/matrix-evidence.json",
+      "sha256": "c2471fc600b1f7c767b8608f5a4fd837beeee05cd80bc440490f01b4e3996813"
+    },
+    {
+      "path": "browser/private.png",
+      "sha256": "c82537628b2b3fdda112f2f69505562276fccddc1e7c044b41418f7966b360cf"
+    },
+    {
+      "path": "browser/quota-rejected.png",
+      "sha256": "4b3a0842fd07ef6c0f10f95d2c767948aa431698b6bc8e18d38f0eadac4456ce"
+    },
+    {
+      "path": "browser/requests.json",
+      "sha256": "67eb98051e6cbb7de1f45ccefa2cae5f077e0623640c609eef999516ebf12e29"
+    },
+    {
+      "path": "browser/result.json",
+      "sha256": "b2d53e297bb54e712f321b12f168f61b6132c614d779824d06a72af35e6ff417"
+    },
+    {
+      "path": "browser/session-observations.json",
+      "sha256": "45084fa79a0eda595570a610a1700a3f8675deea07fddae119b297a6441be795"
+    },
+    {
+      "path": "browser/updates-admin-360.png",
+      "sha256": "bd8756812ace71dfefa54b727b98e668195e8972223d21dd060f755745c17cf3"
+    },
+    {
+      "path": "browser/updates-evidence.json",
+      "sha256": "271d9f310c66cb72e3e76a3caffbce0a448757f54d22e6aa60f5161d83e0fb1e"
+    },
+    {
+      "path": "browser/updates-public-360.png",
+      "sha256": "03d77619b480f842f5305fcd67ca4033faaf25d5b32f813603983607bdf54c2a"
+    },
+    {
+      "path": "fixtures/app-ready.json",
+      "sha256": "defe601fdd2b7dd0aeeca67b001de8ef0dd7285226fe3ff0d84e44c1e8f8ea9c"
+    },
+    {
+      "path": "fixtures/root.crt",
+      "sha256": "6000f6941a48e3988a898f1640e3a4a754cdb1e21ce47ce188b4c5f8b287f51c"
+    },
+    {
+      "path": "fixtures/workshop.json",
+      "sha256": "90c1ef1b4003289c3bf03713bdfbf318a42138d916b7d61f1690ab694e2f0ff1"
+    },
+    {
+      "path": "logs/001.json",
+      "sha256": "e02b141cc942268f26045f66b7c0dbbba18e8889fd946e8705372868c9553096"
+    },
+    {
+      "path": "logs/002.json",
+      "sha256": "2a8d8552ce58bc22a1bdfa752ff022b581b88242957ebd81ac7d376928ec36a2"
+    },
+    {
+      "path": "logs/003.json",
+      "sha256": "0f0c9980dd31f7bcb6821f140196caf879b4fc2448a6788628b20d64c43393ae"
+    },
+    {
+      "path": "logs/004.json",
+      "sha256": "01f4213ee75f7d9f8c19edfeaf22d6e17dfcaf283ac39c0a80606b54b307a49e"
+    },
+    {
+      "path": "logs/005.json",
+      "sha256": "a2758cd6d13d0a039b0b4c31c11e1f9bd2592c8a8996d7113eeeb4510c1af7b6"
+    },
+    {
+      "path": "logs/006.json",
+      "sha256": "bc9fa4f100c8c2176265620f8d9e64dc5c10157ad20f48bede35ce05039cce73"
+    },
+    {
+      "path": "logs/007.json",
+      "sha256": "95c8474ae0eca8e20b7a43dfdbb9e683849092088c9e84e94155eb177d48fd88"
+    },
+    {
+      "path": "logs/008.json",
+      "sha256": "59768f7cdfeba4001f4abe2b482b79067c5d24d63fe7244de299c8e1bdc0a0d4"
+    },
+    {
+      "path": "logs/009.json",
+      "sha256": "2b3dc2ccc5c5de0443127d5acc221a5c29e91a14e2f26b65785014934d44c802"
+    },
+    {
+      "path": "logs/010.json",
+      "sha256": "2ef62b49d3b4cdd9e736da5d61e3a790f6854e02ab89a895674012dc577d7e00"
+    },
+    {
+      "path": "logs/011.json",
+      "sha256": "bc959d514580c8418048613ee10eb0f24ebf14a0c00ca1a11b179ca5b9a11216"
+    },
+    {
+      "path": "logs/012.json",
+      "sha256": "82b1d81deda279f0fef99bcabd1bb3bac4f4a695cb703af649f86c29eb514511"
+    },
+    {
+      "path": "logs/013.json",
+      "sha256": "11e6ca9fd5a7b5a73c9e62783459c19b90187b75f197199bcdd370877d69ed6b"
+    },
+    {
+      "path": "logs/014.json",
+      "sha256": "d18a8c22c10040341bdc4ad132e3026be9138326f711a49e1b124a004c37b627"
+    },
+    {
+      "path": "logs/015.json",
+      "sha256": "75660c46e026ce72e4bce2a64d3886ae1d5af1ce792b7959280e1d02eed7c06c"
+    },
+    {
+      "path": "logs/016.json",
+      "sha256": "ec0d1ab358bf9d8b224ce0c44495bd827e9d239f127fca17af96dc3437f1e6ff"
+    },
+    {
+      "path": "logs/017.json",
+      "sha256": "eddb9f2b011f64a81f231e759ee4b28fc187c9214fc73d2e84b591af65f73ae1"
+    },
+    {
+      "path": "logs/018.json",
+      "sha256": "d18a8c22c10040341bdc4ad132e3026be9138326f711a49e1b124a004c37b627"
+    },
+    {
+      "path": "logs/019.json",
+      "sha256": "a44bae62c56f543b65f4dec3da2ade5e26937afac2f783e1694bcaafb347c32e"
+    },
+    {
+      "path": "logs/020.json",
+      "sha256": "d18a8c22c10040341bdc4ad132e3026be9138326f711a49e1b124a004c37b627"
+    },
+    {
+      "path": "logs/021.json",
+      "sha256": "ebf23b00bb966996995256af23753dc58916a73c17ec3b8eef083a742ba7f399"
+    },
+    {
+      "path": "logs/022.json",
+      "sha256": "d18a8c22c10040341bdc4ad132e3026be9138326f711a49e1b124a004c37b627"
+    },
+    {
+      "path": "logs/023.json",
+      "sha256": "fd6c648fc6104569d6da43af16f1bcf07372779370824485b1e474518971ab34"
+    },
+    {
+      "path": "logs/024.json",
+      "sha256": "d18a8c22c10040341bdc4ad132e3026be9138326f711a49e1b124a004c37b627"
+    },
+    {
+      "path": "logs/025.json",
+      "sha256": "ebf23b00bb966996995256af23753dc58916a73c17ec3b8eef083a742ba7f399"
+    },
+    {
+      "path": "logs/026.json",
+      "sha256": "d18a8c22c10040341bdc4ad132e3026be9138326f711a49e1b124a004c37b627"
+    },
+    {
+      "path": "logs/027.json",
+      "sha256": "fd6c648fc6104569d6da43af16f1bcf07372779370824485b1e474518971ab34"
+    },
+    {
+      "path": "logs/028.json",
+      "sha256": "c8d25710f0ee7547af0aa00fd9bdc20ec1a4c0cce9da0073e31693b1a9819110"
+    },
+    {
+      "path": "logs/029.json",
+      "sha256": "ee286397984ab6d7581d87d4aeb39913a4854fb97d2fd711b2bfc443aeacb7af"
+    },
+    {
+      "path": "logs/030.json",
+      "sha256": "45e4ba85d26ca3891b3b36e996b1598c59920504efef61ecdf494821e3b6c400"
+    },
+    {
+      "path": "logs/031.json",
+      "sha256": "ee286397984ab6d7581d87d4aeb39913a4854fb97d2fd711b2bfc443aeacb7af"
+    },
+    {
+      "path": "logs/032.json",
+      "sha256": "38d39cfcb48ac0db09e8162ce01b93ecb21707fe043b749effbed5156dc387af"
+    },
+    {
+      "path": "logs/033.json",
+      "sha256": "aa354922af962cd8601f0df211f6e21e2bac56bbc367d2a837b71ef157a6df38"
+    },
+    {
+      "path": "logs/034.json",
+      "sha256": "b69c4abc1ad5ef9f5a774c2c15ae5c7c9eb360dacab71e7a1aa63f896cb1f264"
+    },
+    {
+      "path": "logs/035.json",
+      "sha256": "7339b64bd4f02c078a33cdf6d4b9297e5ad8370249b2f3eb54c64867b8d1d546"
+    },
+    {
+      "path": "logs/036.json",
+      "sha256": "2397dc3b2238f7c5d0589b843328ebcce95b8508b8ea6ece570b15aba81f26cb"
+    },
+    {
+      "path": "logs/037.json",
+      "sha256": "5d0979becc8b446850e421d8b2a16e0c904c206f034cadd898bfb5a30f16d63a"
+    },
+    {
+      "path": "logs/038.json",
+      "sha256": "d18a8c22c10040341bdc4ad132e3026be9138326f711a49e1b124a004c37b627"
+    },
+    {
+      "path": "logs/039.json",
+      "sha256": "40f5269535f5f4302a3899fd4ff9c38905d0418125b14acc5301c8bb5ad08503"
+    },
+    {
+      "path": "logs/040.json",
+      "sha256": "37baa5e4e9099f1ff8c2d5066f542c2710f4863aa43fce90370974c445378c3b"
+    },
+    {
+      "path": "logs/041.json",
+      "sha256": "f5362d82730543e85dc830cb8ef2e0a35a9998a60553a94ee2909520d5f09bfd"
+    },
+    {
+      "path": "logs/042.json",
+      "sha256": "3f8be7b74ab31ef5ebcac7ef02005b74041dc57688edad363706174f672e2274"
+    },
+    {
+      "path": "logs/043.json",
+      "sha256": "aa7dcb58394988e57090635be9479570d0b7172768c20ccede76821f48f3c3a0"
+    },
+    {
+      "path": "logs/app-state.json",
+      "sha256": "639771fe5068f6dbd44bce9713b298abb5c6be23c7b3b915020a0253fd3f5183"
+    },
+    {
+      "path": "logs/app.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/browser-state.json",
+      "sha256": "34a0bbb8ac2cf57749b1b6d0d45895ec47ef403aa447f7c1e72717e2220c63ef"
+    },
+    {
+      "path": "logs/browser.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/caddy-state.json",
+      "sha256": "58d27640e4ea5a09193d1a919a3b7ac720f2ff1f7b15e6d64ad0484193f0c101"
+    },
+    {
+      "path": "logs/caddy.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result.json",
+      "sha256": "1b85786cbbdb218f8b5d79f75d7195301d4f050619b4d03f3e4991432c6afa17"
+    }
+  ],
+  "excluded": [
+    "ephemeral CA private keys",
+    "browser profile"
+  ],
+  "notProductAcceptance": true
+}

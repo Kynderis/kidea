@@ -1,5 +1,7 @@
 # T05 updates runtime evidence
 
+Observation/permission r1:132 HTTPS/WSS selectors PASS (all100 retained +32),22 SQL checks,93unit/18nativeSSR/4content+4sensitive+8observation regressions/type/lint/build PASS. Source45d3808 rejects older confirmation reads and revalidates identity after snapshot reads. Coverage137 remains11covered/88partial/38NOT_RUN;16 negative proof fixtures rejected. Review8DRAFT/W-009-ADMIN-OPS IN_PROGRESS, not G2/R09 acceptance. See `docs/R09_T05_PROGRESS.md` for all raw FAIL, injected/actual fault scopes, frozen sources and remaining source clauses. Docker client wait600s; individual30s/container20min/run30min/resource limits unchanged.
+
 Sensitive admin r1 newly passes100HTTPS/WSS selectors (all85 retained +15),18SQL obligations,93unit/18nativeSSR/4retained+4new fake-API/socket native regressions and type/lint/build. Source b496e88 fixes stale STATE confirmation after a known live source change with no dirty fields. Full137 ledger remains10covered/89partial/38NOT_RUN,9negative proof fixtures rejected. Current review7DRAFT/W-009-ADMIN-OPS IN_PROGRESS; not G2 or R09 acceptance. See `docs/R09_T05_PROGRESS.md` for frozen manifests, baseline FAIL, permissions/observation/ops remaining and unchanged resource/backend policy. Docker client wait360s accommodates added groups; individual request30s/container20min/run30min limits remain.
 
 This harness validates the local pilot, not a generated application's production

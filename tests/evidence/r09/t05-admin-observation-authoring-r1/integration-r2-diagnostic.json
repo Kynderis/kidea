@@ -1,0 +1,10 @@
+{
+  "status": "HARNESS_AUDIT_CORRELATION_MISMATCH",
+  "browser": "132/132 PASS",
+  "sql": "FAIL after19 successful checks",
+  "cause": "DENIED audit intent_id is server generated; new oracle incorrectly searched untrusted client ID",
+  "sourceContract": "pilot/backend/src/store.cpp Store::handle and docs/design/admin.md#audit",
+  "correction": "exact36 server-generated DENIED rows after first owned phase audit row; exact18UNAUTHENTICATED/9PERM-OWNER/9PERM-OTHER, unique opaque IDs, empty deltas/no results/no domain events. All previous phases precede boundary; no clock assumptions.",
+  "notBackendSourceChange": true,
+  "next": "new frozen full integration-r3, all132 browser and22 SQL checks"
+}

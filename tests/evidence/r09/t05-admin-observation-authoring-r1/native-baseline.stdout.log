@@ -1,0 +1,37 @@
+✖ confirmation older-read never sends an unconfirmed or wrong-session POST (1252.895684ms)
+✔ confirmation actor-during-read never sends an unconfirmed or wrong-session POST (1494.347328ms)
+✔ confirmation epoch-during-read never sends an unconfirmed or wrong-session POST (749.858226ms)
+✔ confirmation snapshot-503 never sends an unconfirmed or wrong-session POST (626.232034ms)
+✔ confirmation snapshot-malformed never sends an unconfirmed or wrong-session POST (638.527331ms)
+✔ confirmation session-401 never sends an unconfirmed or wrong-session POST (683.475823ms)
+✔ confirmation session-403 never sends an unconfirmed or wrong-session POST (650.653699ms)
+✔ confirmation session-503 never sends an unconfirmed or wrong-session POST (655.810645ms)
+{"serverStdout":"Listening on http://127.0.0.1:53011\n","serverStderr":"","scope":"built Web/native Mac Chrome + explicit fake API; no backend integration/acceptance"}
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9023.715656
+
+✖ failing tests:
+
+test at tests/r09/t05/admin-observation-server.test.mjs:23:159
+✖ confirmation older-read never sends an unconfirmed or wrong-session POST (1252.895684ms)
+  AssertionError [ERR_ASSERTION]: an older or invalid read is not a new comparison source
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:35:91)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+      at async file:///Users/kendrick/Desktop/kidea/tests/r09/t05/admin-observation-server.test.mjs:23:153 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

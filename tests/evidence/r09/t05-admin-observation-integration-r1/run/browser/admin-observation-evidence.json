@@ -1,0 +1,2180 @@
+{
+  "intents": [
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-1",
+        "action": "CREATE",
+        "fields": {
+          "title": "N only capacity register",
+          "description": "FAKE-PRIVATE-observation-N only capacity register",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-2",
+        "action": "STATE",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "6b3e00bb-6ef3-4271-9a10-5f8cbd101b3c",
+        "action": "EDIT",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5",
+        "fields": {
+          "capacity": 8
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-5",
+        "action": "CREATE",
+        "fields": {
+          "title": "N only capacity cancel",
+          "description": "FAKE-PRIVATE-observation-N only capacity cancel",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-6",
+        "action": "STATE",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "cbcf4381-dfd2-4e9b-a45b-1b73505618ae",
+        "action": "EDIT",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03",
+        "fields": {
+          "capacity": 8
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-10",
+        "action": "CREATE",
+        "fields": {
+          "title": "N only schedule register",
+          "description": "FAKE-PRIVATE-observation-N only schedule register",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-11",
+        "action": "STATE",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "8576426a-1c15-4d02-8eb3-6338cd3c27ea",
+        "action": "EDIT",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-07T09:00:00+07:00",
+            "end": "2026-11-07T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-14",
+        "action": "CREATE",
+        "fields": {
+          "title": "N only schedule cancel",
+          "description": "FAKE-PRIVATE-observation-N only schedule cancel",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-15",
+        "action": "STATE",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "ca83ad00-dec4-4e14-b94c-26e5fbd79692",
+        "action": "EDIT",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-07T09:00:00+07:00",
+            "end": "2026-11-07T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-19",
+        "action": "CREATE",
+        "fields": {
+          "title": "N only state register",
+          "description": "FAKE-PRIVATE-observation-N only state register",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-20",
+        "action": "STATE",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "6b61225e-2270-487e-8606-e85ac5ffd827",
+        "action": "STATE",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-23",
+        "action": "CREATE",
+        "fields": {
+          "title": "N only state cancel",
+          "description": "FAKE-PRIVATE-observation-N only state cancel",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-24",
+        "action": "STATE",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "fe5efb33-c7c9-4115-a266-923a1f73c55c",
+        "action": "STATE",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-28",
+        "action": "CREATE",
+        "fields": {
+          "title": "Observation fault snapshot-503",
+          "description": "FAKE-PRIVATE-observation-Observation fault snapshot-503",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7272aa8a09e0aa45880e2eea89214bd1"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-29",
+        "action": "STATE",
+        "workshopId": "7272aa8a09e0aa45880e2eea89214bd1",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7272aa8a09e0aa45880e2eea89214bd1"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-31",
+        "action": "CREATE",
+        "fields": {
+          "title": "Observation fault snapshot-malformed",
+          "description": "FAKE-PRIVATE-observation-Observation fault snapshot-malformed",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "dd485fc83c4a8d9ed58a2e76309c6a2e"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-32",
+        "action": "STATE",
+        "workshopId": "dd485fc83c4a8d9ed58a2e76309c6a2e",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "dd485fc83c4a8d9ed58a2e76309c6a2e"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-34",
+        "action": "CREATE",
+        "fields": {
+          "title": "Observation fault snapshot-older",
+          "description": "FAKE-PRIVATE-observation-Observation fault snapshot-older",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "73b11b7c6593968442d321649455e425"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-35",
+        "action": "STATE",
+        "workshopId": "73b11b7c6593968442d321649455e425",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "73b11b7c6593968442d321649455e425"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-37",
+        "action": "CREATE",
+        "fields": {
+          "title": "Observation fault snapshot-conflict",
+          "description": "FAKE-PRIVATE-observation-Observation fault snapshot-conflict",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "932c80a1d603f89eb34893dce672fbde"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-38",
+        "action": "STATE",
+        "workshopId": "932c80a1d603f89eb34893dce672fbde",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "932c80a1d603f89eb34893dce672fbde"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-40",
+        "action": "CREATE",
+        "fields": {
+          "title": "Observation fault session-503",
+          "description": "FAKE-PRIVATE-observation-Observation fault session-503",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "cdeccf44fa0bd7dcdce533525a1a0fe5"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-41",
+        "action": "STATE",
+        "workshopId": "cdeccf44fa0bd7dcdce533525a1a0fe5",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "cdeccf44fa0bd7dcdce533525a1a0fe5"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-43",
+        "action": "CREATE",
+        "fields": {
+          "title": "Observation fault session-401",
+          "description": "FAKE-PRIVATE-observation-Observation fault session-401",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9d54bf0d8a26be23dd88e4a5560d1a4f"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-44",
+        "action": "STATE",
+        "workshopId": "9d54bf0d8a26be23dd88e4a5560d1a4f",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "9d54bf0d8a26be23dd88e4a5560d1a4f"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-46",
+        "action": "CREATE",
+        "fields": {
+          "title": "Observation fault session-403",
+          "description": "FAKE-PRIVATE-observation-Observation fault session-403",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "c451fb3613e2b3b890a44111a2795363"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-47",
+        "action": "STATE",
+        "workshopId": "c451fb3613e2b3b890a44111a2795363",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "c451fb3613e2b3b890a44111a2795363"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-49",
+        "action": "CREATE",
+        "fields": {
+          "title": "Observation fault actor-confirm-read",
+          "description": "FAKE-PRIVATE-observation-Observation fault actor-confirm-read",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "60c52053d3aa64bd7b1e161ab78e68f4"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-50",
+        "action": "STATE",
+        "workshopId": "60c52053d3aa64bd7b1e161ab78e68f4",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "60c52053d3aa64bd7b1e161ab78e68f4"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-52",
+        "action": "CREATE",
+        "fields": {
+          "title": "Observation fault actor-begin-read",
+          "description": "FAKE-PRIVATE-observation-Observation fault actor-begin-read",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "cc770c6f0abe376a261f3bbc49f9adbf"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-53",
+        "action": "STATE",
+        "workshopId": "cc770c6f0abe376a261f3bbc49f9adbf",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "cc770c6f0abe376a261f3bbc49f9adbf"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-55",
+        "action": "CREATE",
+        "fields": {
+          "title": "Permission DRAFT",
+          "description": "FAKE-PRIVATE-observation-Permission DRAFT",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "86c00cd1008e5009b0a0b063341bc500"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-56",
+        "action": "CREATE",
+        "fields": {
+          "title": "Permission OPEN",
+          "description": "FAKE-PRIVATE-observation-Permission OPEN",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-57",
+        "action": "STATE",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-61",
+        "action": "CREATE",
+        "fields": {
+          "title": "Permission PAUSED",
+          "description": "FAKE-PRIVATE-observation-Permission PAUSED",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "CREATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-62",
+        "action": "STATE",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a",
+        "targetState": "OPEN"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a"
+      }
+    },
+    {
+      "actor": "A",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "observation-66",
+        "action": "STATE",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a"
+      }
+    }
+  ],
+  "registrations": [
+    {
+      "actor": "OBS-1",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-3",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "0e7e0468668bfd141014453774cdd6f6",
+        "state": "FINAL",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5"
+      }
+    },
+    {
+      "actor": "OBS-0",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-4",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "4a48ab0d97c0d9967754702c8110fbfd",
+        "state": "FINAL",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5"
+      }
+    },
+    {
+      "actor": "OBS-3",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-7",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "664a1b26fbe3bde69e765848cc518049",
+        "state": "FINAL",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      }
+    },
+    {
+      "actor": "OBS-2",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-8",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "d879e4490d5f376c986b19fd8d22ec92",
+        "state": "FINAL",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      }
+    },
+    {
+      "actor": "OBS-2",
+      "path": "/api/v1/registrations/d879e4490d5f376c986b19fd8d22ec92/cancel",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-9",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      },
+      "result": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "d879e4490d5f376c986b19fd8d22ec92",
+        "state": "FINAL",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      }
+    },
+    {
+      "actor": "OBS-5",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-12",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "cd7fd9faac1f0f49b32832fd12d089b0",
+        "state": "FINAL",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c"
+      }
+    },
+    {
+      "actor": "OBS-4",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-13",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "cce951f0cfd265dbd5cf762d82a81c4a",
+        "state": "FINAL",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c"
+      }
+    },
+    {
+      "actor": "OBS-7",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-16",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "c313e1ff41002a2e8772599cf6f62f0f",
+        "state": "FINAL",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      }
+    },
+    {
+      "actor": "OBS-6",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-17",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "382115539257a9f78eb536e5a489c892",
+        "state": "FINAL",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      }
+    },
+    {
+      "actor": "OBS-6",
+      "path": "/api/v1/registrations/382115539257a9f78eb536e5a489c892/cancel",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-18",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      },
+      "result": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "382115539257a9f78eb536e5a489c892",
+        "state": "FINAL",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      }
+    },
+    {
+      "actor": "OBS-9",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-21",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "f478317c3a158b96007b683786b655c2",
+        "state": "FINAL",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b"
+      }
+    },
+    {
+      "actor": "OBS-8",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-22",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "ea6bb57b405075eef4de1ff48c7088c5",
+        "state": "FINAL",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b"
+      }
+    },
+    {
+      "actor": "OBS-11",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-25",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "5efad2c71dc6b244bfded198060ae2a5",
+        "state": "FINAL",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      }
+    },
+    {
+      "actor": "OBS-10",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-26",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "d275ae614aa175f742539ffd83763556",
+        "state": "FINAL",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      }
+    },
+    {
+      "actor": "OBS-10",
+      "path": "/api/v1/registrations/d275ae614aa175f742539ffd83763556/cancel",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-27",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      },
+      "result": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "d275ae614aa175f742539ffd83763556",
+        "state": "FINAL",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      }
+    },
+    {
+      "actor": "OBS-12",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-30",
+        "workshopId": "7272aa8a09e0aa45880e2eea89214bd1"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "f0e310bb5ce5e3ed23d333d129c5110c",
+        "state": "FINAL",
+        "workshopId": "7272aa8a09e0aa45880e2eea89214bd1"
+      }
+    },
+    {
+      "actor": "OBS-13",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-33",
+        "workshopId": "dd485fc83c4a8d9ed58a2e76309c6a2e"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "651d11d2e81112bf4da3e0bbfae412b2",
+        "state": "FINAL",
+        "workshopId": "dd485fc83c4a8d9ed58a2e76309c6a2e"
+      }
+    },
+    {
+      "actor": "OBS-14",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-36",
+        "workshopId": "73b11b7c6593968442d321649455e425"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "d477b4dff1f7eb171bfd5854a9a495a6",
+        "state": "FINAL",
+        "workshopId": "73b11b7c6593968442d321649455e425"
+      }
+    },
+    {
+      "actor": "OBS-15",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-39",
+        "workshopId": "932c80a1d603f89eb34893dce672fbde"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "1cf8e166f38c94d8b3ce583302f91b05",
+        "state": "FINAL",
+        "workshopId": "932c80a1d603f89eb34893dce672fbde"
+      }
+    },
+    {
+      "actor": "OBS-16",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-42",
+        "workshopId": "cdeccf44fa0bd7dcdce533525a1a0fe5"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "fae66cd695741bbc43a49aa687286b0b",
+        "state": "FINAL",
+        "workshopId": "cdeccf44fa0bd7dcdce533525a1a0fe5"
+      }
+    },
+    {
+      "actor": "OBS-17",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-45",
+        "workshopId": "9d54bf0d8a26be23dd88e4a5560d1a4f"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "78d7e2b9116419831bfe62de42bdac70",
+        "state": "FINAL",
+        "workshopId": "9d54bf0d8a26be23dd88e4a5560d1a4f"
+      }
+    },
+    {
+      "actor": "OBS-18",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-48",
+        "workshopId": "c451fb3613e2b3b890a44111a2795363"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "4c3ae9d049f9b56708c1e22bd9828287",
+        "state": "FINAL",
+        "workshopId": "c451fb3613e2b3b890a44111a2795363"
+      }
+    },
+    {
+      "actor": "OBS-19",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-51",
+        "workshopId": "60c52053d3aa64bd7b1e161ab78e68f4"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "3f78626c2dc8cd1293365e3391956d92",
+        "state": "FINAL",
+        "workshopId": "60c52053d3aa64bd7b1e161ab78e68f4"
+      }
+    },
+    {
+      "actor": "OBS-20",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-54",
+        "workshopId": "cc770c6f0abe376a261f3bbc49f9adbf"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "7d1aa12378fc63805cf7c6913cc451c3",
+        "state": "FINAL",
+        "workshopId": "cc770c6f0abe376a261f3bbc49f9adbf"
+      }
+    },
+    {
+      "actor": "PERM-OWNER",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-58",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "ad500e66a1a9ede351695ef213ca1f81",
+        "state": "FINAL",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      }
+    },
+    {
+      "actor": "PERM-OWNER",
+      "path": "/api/v1/registrations/ad500e66a1a9ede351695ef213ca1f81/cancel",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-59",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      },
+      "result": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "ad500e66a1a9ede351695ef213ca1f81",
+        "state": "FINAL",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      }
+    },
+    {
+      "actor": "PERM-OWNER",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-60",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "49919544ed5c66fef6c571dfe8976c24",
+        "state": "FINAL",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      }
+    },
+    {
+      "actor": "PERM-OWNER",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-63",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "8fd5e0ec6046f74f7a4a9df0666e83da",
+        "state": "FINAL",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a"
+      }
+    },
+    {
+      "actor": "PERM-OWNER",
+      "path": "/api/v1/registrations/8fd5e0ec6046f74f7a4a9df0666e83da/cancel",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-64",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a"
+      },
+      "result": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "8fd5e0ec6046f74f7a4a9df0666e83da",
+        "state": "FINAL",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a"
+      }
+    },
+    {
+      "actor": "PERM-OWNER",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "observation-registration-65",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a"
+      },
+      "result": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "8252fab53bb4aa5cdb40789690e50a66",
+        "state": "FINAL",
+        "workshopId": "ed6ec162c4fd7eadbbcd8fb71785d37a"
+      }
+    }
+  ],
+  "dialogs": [
+    {
+      "kind": "capacity",
+      "operation": "register",
+      "id": "5bb03d884efd84e054ca43c1f16fd2f5",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only capacity register",
+        "epoch": "epoch-t02-fixture",
+        "id": "5bb03d884efd84e054ca43c1f16fd2f5",
+        "observedAt": 1789739941,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only capacity register",
+        "version": "3"
+      },
+      "changed": {
+        "active": 2,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only capacity register",
+        "epoch": "epoch-t02-fixture",
+        "id": "5bb03d884efd84e054ca43c1f16fd2f5",
+        "observedAt": 1789739942,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only capacity register",
+        "version": "4"
+      },
+      "participantResult": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "4a48ab0d97c0d9967754702c8110fbfd",
+        "state": "FINAL",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "6b3e00bb-6ef3-4271-9a10-5f8cbd101b3c",
+        "action": "EDIT",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5",
+        "fields": {
+          "capacity": 8
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "5bb03d884efd84e054ca43c1f16fd2f5"
+      },
+      "after": {
+        "active": 2,
+        "capacity": 8,
+        "description": "FAKE-PRIVATE-observation-N only capacity register",
+        "epoch": "epoch-t02-fixture",
+        "id": "5bb03d884efd84e054ca43c1f16fd2f5",
+        "observedAt": 1789739944,
+        "remaining": 6,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only capacity register",
+        "version": "5"
+      },
+      "posts": 1
+    },
+    {
+      "kind": "capacity",
+      "operation": "cancel",
+      "id": "7b23e20cf973b2d8fba0ba254cfa5b03",
+      "before": {
+        "active": 2,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only capacity cancel",
+        "epoch": "epoch-t02-fixture",
+        "id": "7b23e20cf973b2d8fba0ba254cfa5b03",
+        "observedAt": 1789739949,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only capacity cancel",
+        "version": "4"
+      },
+      "changed": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only capacity cancel",
+        "epoch": "epoch-t02-fixture",
+        "id": "7b23e20cf973b2d8fba0ba254cfa5b03",
+        "observedAt": 1789739950,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only capacity cancel",
+        "version": "5"
+      },
+      "participantResult": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "d879e4490d5f376c986b19fd8d22ec92",
+        "state": "FINAL",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "cbcf4381-dfd2-4e9b-a45b-1b73505618ae",
+        "action": "EDIT",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03",
+        "fields": {
+          "capacity": 8
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7b23e20cf973b2d8fba0ba254cfa5b03"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 8,
+        "description": "FAKE-PRIVATE-observation-N only capacity cancel",
+        "epoch": "epoch-t02-fixture",
+        "id": "7b23e20cf973b2d8fba0ba254cfa5b03",
+        "observedAt": 1789739952,
+        "remaining": 7,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only capacity cancel",
+        "version": "6"
+      },
+      "posts": 1
+    },
+    {
+      "kind": "schedule",
+      "operation": "register",
+      "id": "003f815cb210352c7bceeb8d45b3a54c",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only schedule register",
+        "epoch": "epoch-t02-fixture",
+        "id": "003f815cb210352c7bceeb8d45b3a54c",
+        "observedAt": 1789739956,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only schedule register",
+        "version": "3"
+      },
+      "changed": {
+        "active": 2,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only schedule register",
+        "epoch": "epoch-t02-fixture",
+        "id": "003f815cb210352c7bceeb8d45b3a54c",
+        "observedAt": 1789739957,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only schedule register",
+        "version": "4"
+      },
+      "participantResult": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "cce951f0cfd265dbd5cf762d82a81c4a",
+        "state": "FINAL",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "8576426a-1c15-4d02-8eb3-6338cd3c27ea",
+        "action": "EDIT",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-07T09:00:00+07:00",
+            "end": "2026-11-07T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "003f815cb210352c7bceeb8d45b3a54c"
+      },
+      "after": {
+        "active": 2,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only schedule register",
+        "epoch": "epoch-t02-fixture",
+        "id": "003f815cb210352c7bceeb8d45b3a54c",
+        "observedAt": 1789739959,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-07T10:00:00+07:00",
+          "start": "2026-11-07T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only schedule register",
+        "version": "5"
+      },
+      "posts": 1
+    },
+    {
+      "kind": "schedule",
+      "operation": "cancel",
+      "id": "7cf912bcf6f4a4ca759d412573558ae9",
+      "before": {
+        "active": 2,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only schedule cancel",
+        "epoch": "epoch-t02-fixture",
+        "id": "7cf912bcf6f4a4ca759d412573558ae9",
+        "observedAt": 1789739964,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only schedule cancel",
+        "version": "4"
+      },
+      "changed": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only schedule cancel",
+        "epoch": "epoch-t02-fixture",
+        "id": "7cf912bcf6f4a4ca759d412573558ae9",
+        "observedAt": 1789739965,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only schedule cancel",
+        "version": "5"
+      },
+      "participantResult": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "382115539257a9f78eb536e5a489c892",
+        "state": "FINAL",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "ca83ad00-dec4-4e14-b94c-26e5fbd79692",
+        "action": "EDIT",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9",
+        "fields": {
+          "schedule": {
+            "start": "2026-11-07T09:00:00+07:00",
+            "end": "2026-11-07T10:00:00+07:00"
+          }
+        }
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "7cf912bcf6f4a4ca759d412573558ae9"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only schedule cancel",
+        "epoch": "epoch-t02-fixture",
+        "id": "7cf912bcf6f4a4ca759d412573558ae9",
+        "observedAt": 1789739967,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-07T10:00:00+07:00",
+          "start": "2026-11-07T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only schedule cancel",
+        "version": "6"
+      },
+      "posts": 1
+    },
+    {
+      "kind": "state",
+      "operation": "register",
+      "id": "28111f65ee371f0da4a407349e7e439b",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only state register",
+        "epoch": "epoch-t02-fixture",
+        "id": "28111f65ee371f0da4a407349e7e439b",
+        "observedAt": 1789739971,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only state register",
+        "version": "3"
+      },
+      "changed": {
+        "active": 2,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only state register",
+        "epoch": "epoch-t02-fixture",
+        "id": "28111f65ee371f0da4a407349e7e439b",
+        "observedAt": 1789739972,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only state register",
+        "version": "4"
+      },
+      "participantResult": {
+        "code": "REGISTERED",
+        "effect": "APPLIED",
+        "registrationId": "ea6bb57b405075eef4de1ff48c7088c5",
+        "state": "FINAL",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "6b61225e-2270-487e-8606-e85ac5ffd827",
+        "action": "STATE",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "28111f65ee371f0da4a407349e7e439b"
+      },
+      "after": {
+        "active": 2,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only state register",
+        "epoch": "epoch-t02-fixture",
+        "id": "28111f65ee371f0da4a407349e7e439b",
+        "observedAt": 1789739974,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "N only state register",
+        "version": "5"
+      },
+      "posts": 1
+    },
+    {
+      "kind": "state",
+      "operation": "cancel",
+      "id": "6959892072afbdbd94c1f94e3efce644",
+      "before": {
+        "active": 2,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only state cancel",
+        "epoch": "epoch-t02-fixture",
+        "id": "6959892072afbdbd94c1f94e3efce644",
+        "observedAt": 1789739979,
+        "remaining": 8,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only state cancel",
+        "version": "4"
+      },
+      "changed": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only state cancel",
+        "epoch": "epoch-t02-fixture",
+        "id": "6959892072afbdbd94c1f94e3efce644",
+        "observedAt": 1789739980,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "N only state cancel",
+        "version": "5"
+      },
+      "participantResult": {
+        "code": "CANCELLED",
+        "effect": "APPLIED",
+        "registrationId": "d275ae614aa175f742539ffd83763556",
+        "state": "FINAL",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      },
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "fe5efb33-c7c9-4115-a266-923a1f73c55c",
+        "action": "STATE",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644",
+        "targetState": "PAUSED"
+      },
+      "result": {
+        "code": "UPDATED",
+        "effect": "APPLIED",
+        "state": "FINAL",
+        "workshopId": "6959892072afbdbd94c1f94e3efce644"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-N only state cancel",
+        "epoch": "epoch-t02-fixture",
+        "id": "6959892072afbdbd94c1f94e3efce644",
+        "observedAt": 1789739981,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "PAUSED",
+        "title": "N only state cancel",
+        "version": "6"
+      },
+      "posts": 1
+    }
+  ],
+  "faults": [
+    {
+      "kind": "snapshot-503",
+      "id": "7272aa8a09e0aa45880e2eea89214bd1",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault snapshot-503",
+        "epoch": "epoch-t02-fixture",
+        "id": "7272aa8a09e0aa45880e2eea89214bd1",
+        "observedAt": 1789739985,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault snapshot-503",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault snapshot-503",
+        "epoch": "epoch-t02-fixture",
+        "id": "7272aa8a09e0aa45880e2eea89214bd1",
+        "observedAt": 1789739986,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault snapshot-503",
+        "version": "3"
+      },
+      "hits": 1,
+      "posts": 0,
+      "scope": "only explicit browser HTTP replies/session switch injected; real backend unchanged, socket closed for controlled read fixture"
+    },
+    {
+      "kind": "snapshot-malformed",
+      "id": "dd485fc83c4a8d9ed58a2e76309c6a2e",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault snapshot-malformed",
+        "epoch": "epoch-t02-fixture",
+        "id": "dd485fc83c4a8d9ed58a2e76309c6a2e",
+        "observedAt": 1789739989,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault snapshot-malformed",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault snapshot-malformed",
+        "epoch": "epoch-t02-fixture",
+        "id": "dd485fc83c4a8d9ed58a2e76309c6a2e",
+        "observedAt": 1789739990,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault snapshot-malformed",
+        "version": "3"
+      },
+      "hits": 1,
+      "posts": 0,
+      "scope": "only explicit browser HTTP replies/session switch injected; real backend unchanged, socket closed for controlled read fixture"
+    },
+    {
+      "kind": "snapshot-older",
+      "id": "73b11b7c6593968442d321649455e425",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault snapshot-older",
+        "epoch": "epoch-t02-fixture",
+        "id": "73b11b7c6593968442d321649455e425",
+        "observedAt": 1789739994,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault snapshot-older",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault snapshot-older",
+        "epoch": "epoch-t02-fixture",
+        "id": "73b11b7c6593968442d321649455e425",
+        "observedAt": 1789739994,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault snapshot-older",
+        "version": "3"
+      },
+      "hits": 1,
+      "posts": 0,
+      "scope": "only explicit browser HTTP replies/session switch injected; real backend unchanged, socket closed for controlled read fixture"
+    },
+    {
+      "kind": "snapshot-conflict",
+      "id": "932c80a1d603f89eb34893dce672fbde",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault snapshot-conflict",
+        "epoch": "epoch-t02-fixture",
+        "id": "932c80a1d603f89eb34893dce672fbde",
+        "observedAt": 1789739998,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault snapshot-conflict",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault snapshot-conflict",
+        "epoch": "epoch-t02-fixture",
+        "id": "932c80a1d603f89eb34893dce672fbde",
+        "observedAt": 1789739998,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault snapshot-conflict",
+        "version": "3"
+      },
+      "hits": 1,
+      "posts": 0,
+      "scope": "only explicit browser HTTP replies/session switch injected; real backend unchanged, socket closed for controlled read fixture"
+    },
+    {
+      "kind": "session-503",
+      "id": "cdeccf44fa0bd7dcdce533525a1a0fe5",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault session-503",
+        "epoch": "epoch-t02-fixture",
+        "id": "cdeccf44fa0bd7dcdce533525a1a0fe5",
+        "observedAt": 1789740002,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault session-503",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault session-503",
+        "epoch": "epoch-t02-fixture",
+        "id": "cdeccf44fa0bd7dcdce533525a1a0fe5",
+        "observedAt": 1789740002,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault session-503",
+        "version": "3"
+      },
+      "hits": 1,
+      "posts": 0,
+      "scope": "only explicit browser HTTP replies/session switch injected; real backend unchanged, socket closed for controlled read fixture"
+    },
+    {
+      "kind": "session-401",
+      "id": "9d54bf0d8a26be23dd88e4a5560d1a4f",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault session-401",
+        "epoch": "epoch-t02-fixture",
+        "id": "9d54bf0d8a26be23dd88e4a5560d1a4f",
+        "observedAt": 1789740006,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault session-401",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault session-401",
+        "epoch": "epoch-t02-fixture",
+        "id": "9d54bf0d8a26be23dd88e4a5560d1a4f",
+        "observedAt": 1789740007,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault session-401",
+        "version": "3"
+      },
+      "hits": 1,
+      "posts": 0,
+      "scope": "only explicit browser HTTP replies/session switch injected; real backend unchanged, socket closed for controlled read fixture"
+    },
+    {
+      "kind": "session-403",
+      "id": "c451fb3613e2b3b890a44111a2795363",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault session-403",
+        "epoch": "epoch-t02-fixture",
+        "id": "c451fb3613e2b3b890a44111a2795363",
+        "observedAt": 1789740010,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault session-403",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault session-403",
+        "epoch": "epoch-t02-fixture",
+        "id": "c451fb3613e2b3b890a44111a2795363",
+        "observedAt": 1789740011,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault session-403",
+        "version": "3"
+      },
+      "hits": 1,
+      "posts": 0,
+      "scope": "only explicit browser HTTP replies/session switch injected; real backend unchanged, socket closed for controlled read fixture"
+    },
+    {
+      "kind": "actor-confirm-read",
+      "id": "60c52053d3aa64bd7b1e161ab78e68f4",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault actor-confirm-read",
+        "epoch": "epoch-t02-fixture",
+        "id": "60c52053d3aa64bd7b1e161ab78e68f4",
+        "observedAt": 1789740015,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault actor-confirm-read",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault actor-confirm-read",
+        "epoch": "epoch-t02-fixture",
+        "id": "60c52053d3aa64bd7b1e161ab78e68f4",
+        "observedAt": 1789740015,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault actor-confirm-read",
+        "version": "3"
+      },
+      "hits": 1,
+      "posts": 0,
+      "scope": "only explicit browser HTTP replies/session switch injected; real backend unchanged, socket closed for controlled read fixture"
+    },
+    {
+      "kind": "actor-begin-read",
+      "id": "cc770c6f0abe376a261f3bbc49f9adbf",
+      "before": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault actor-begin-read",
+        "epoch": "epoch-t02-fixture",
+        "id": "cc770c6f0abe376a261f3bbc49f9adbf",
+        "observedAt": 1789740019,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault actor-begin-read",
+        "version": "3"
+      },
+      "after": {
+        "active": 1,
+        "capacity": 10,
+        "description": "FAKE-PRIVATE-observation-Observation fault actor-begin-read",
+        "epoch": "epoch-t02-fixture",
+        "id": "cc770c6f0abe376a261f3bbc49f9adbf",
+        "observedAt": 1789740019,
+        "remaining": 9,
+        "schedule": {
+          "end": "2026-11-06T10:00:00+07:00",
+          "start": "2026-11-06T09:00:00+07:00"
+        },
+        "state": "OPEN",
+        "title": "Observation fault actor-begin-read",
+        "version": "3"
+      },
+      "hits": 1,
+      "posts": 0,
+      "scope": "only explicit browser HTTP replies/session switch injected; real backend unchanged, socket closed for controlled read fixture"
+    }
+  ],
+  "permissions": [],
+  "sockets": [],
+  "denied": [
+    {
+      "role": "guest",
+      "path": "/api/v1/admin/intents",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "permission-denied-67",
+        "action": "CREATE",
+        "fields": {
+          "title": "Must never exist",
+          "description": "No leaked creation",
+          "capacity": 10,
+          "schedule": {
+            "start": "2026-11-06T09:00:00+07:00",
+            "end": "2026-11-06T10:00:00+07:00"
+          }
+        }
+      },
+      "status": 401
+    },
+    {
+      "role": "guest",
+      "path": "/api/v1/admin/intents",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "permission-denied-68",
+        "action": "EDIT",
+        "workshopId": "86c00cd1008e5009b0a0b063341bc500",
+        "fields": {
+          "capacity": 9
+        }
+      },
+      "status": 401
+    },
+    {
+      "role": "guest",
+      "path": "/api/v1/admin/intents",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "intentId": "permission-denied-69",
+        "action": "STATE",
+        "workshopId": "86c00cd1008e5009b0a0b063341bc500",
+        "targetState": "OPEN"
+      },
+      "status": 401
+    },
+    {
+      "role": "guest",
+      "path": "/api/v1/registrations/49919544ed5c66fef6c571dfe8976c24/cancel",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "permission-denied-70",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      },
+      "status": 401
+    },
+    {
+      "role": "guest",
+      "path": "/api/v1/registrations",
+      "command": {
+        "epoch": "epoch-t02-fixture",
+        "requestId": "permission-denied-71",
+        "workshopId": "63e1706b793882d4f225b0ce971663cf"
+      },
+      "status": 401
+    }
+  ]
+}

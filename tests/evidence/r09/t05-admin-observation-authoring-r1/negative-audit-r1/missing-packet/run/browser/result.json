@@ -1,0 +1,535 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "public-SSR-JS-off-TLS",
+      "status": "PASS"
+    },
+    {
+      "name": "server-session-cookie-isolation",
+      "status": "PASS"
+    },
+    {
+      "name": "real-commit-lost-response-reload-GET-only",
+      "status": "PASS"
+    },
+    {
+      "name": "last-seat-FULL-other-user",
+      "status": "PASS"
+    },
+    {
+      "name": "Escape-no-write-exact-id-cancel",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel-rebook-old-result-immutable",
+      "status": "PASS"
+    },
+    {
+      "name": "private-SSR-no-cross-user-data",
+      "status": "PASS"
+    },
+    {
+      "name": "proxy-forgery-and-CSRF-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "restored-page-server-revalidates-new-actor",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid-session-clears-private-page",
+      "status": "PASS"
+    },
+    {
+      "name": "real-JS-off-intro-list-detail-navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "PAUSED-public-SSR-and-participant-controls",
+      "status": "PASS"
+    },
+    {
+      "name": "PAUSED-preserves-old-result-and-denies-new-registration",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline-PAUSED-cancel-rejected-before-T09",
+      "status": "PASS"
+    },
+    {
+      "name": "quota-second-ACTIVE-real-browser",
+      "status": "PASS"
+    },
+    {
+      "name": "quota-third-ACTIVE-rejected-without-consuming-seat",
+      "status": "PASS"
+    },
+    {
+      "name": "quota-cancel-releases-slot-new-intent-old-rejection-immutable",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-create-real-commit-loss-reload-GET-only-exact-ID",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-draft-never-public-or-anonymous-SSR",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-dirty-only-patch-no-implicit-publish",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-state-separate-confirm-Escape-no-write",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-changed-observation-invalidates-sensitive-confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-reviewed-rebase-preserves-other-editors-fields",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-same-version-conflict-blocks-writes-until-authoritative-reconcile",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-invalid-field-preserves-input-without-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-responsive-360-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-actor-switch-hides-form-and-denies-old-result",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-original-actor-restores-intent-through-GET-without-replay",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-STATE-real-commit-lost-reply-reload-GET-only-keeps-saved-content",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-admin-DRAFT-four-field-UI-patch-schedule-confirm-state-ID-stable",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-admin-OPEN-four-field-UI-patch-schedule-confirm-state-ID-stable",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-EDIT-real-commit-lost-reply-reload-GET-only",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-admin-PAUSED-four-field-UI-patch-schedule-confirm-state-ID-stable",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-all-nine-STATE-cells-noop-rejection-version-and-read-only-result",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-real-server-four-field-rejections-and-unknown-state-no-version-change",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-real-duplicate-titles-distinct-authoritative-IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-real-registration-wins-capacity-race-server-field-error-keeps-input-no-auto-retry",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-real-capacity-wins-race-tenth-registration-FULL-no-version-event",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-unreceived-POST-real-absent-lookup-UNKNOWN-two-reloads-GET-only-no-replacement",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-CREATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-title-search-no-POST-replay",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-double-pointer-click-CREATE-one-POST-one-version-durable-result",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-double-pointer-click-EDIT-one-POST-one-version-durable-result",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix-double-pointer-click-STATE-one-POST-one-version-durable-result",
+      "status": "PASS"
+    },
+    {
+      "name": "boundary-saved-EDIT-real-STATE-audit-abort-503-UNKNOWN-no-rollback-of-edit-no-replay",
+      "status": "PASS"
+    },
+    {
+      "name": "boundary-STATE-unreceived-real-absent-lookup-UNKNOWN-two-reloads-no-POST-replay",
+      "status": "PASS"
+    },
+    {
+      "name": "boundary-registration-literal-ID-U-V-admin-namespaces-isolated-real-HTTP",
+      "status": "PASS"
+    },
+    {
+      "name": "boundary-browser-admin-A-B-A-intent-marker-isolated-GET-only-recovery",
+      "status": "PASS"
+    },
+    {
+      "name": "boundary-two-real-admin-forms-different-fields-dirty-patches-serialize-no-whole-record-overwrite",
+      "status": "PASS"
+    },
+    {
+      "name": "boundary-two-real-admin-forms-same-field-A-then-B-dirty-patches-serialize-no-whole-record-overwrite",
+      "status": "PASS"
+    },
+    {
+      "name": "boundary-two-real-admin-forms-same-field-B-then-A-dirty-patches-serialize-no-whole-record-overwrite",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-two-forms-mixed-A-B-confirmed-before-decision-exact-patches",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-two-forms-capacity-A-B-confirmed-before-decision-exact-patches",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-two-forms-capacity-B-A-confirmed-before-decision-exact-patches",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-two-forms-schedule-A-B-confirmed-before-decision-exact-patches",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-two-forms-schedule-B-A-confirmed-before-decision-exact-patches",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-two-forms-state-A-B-confirmed-before-decision-exact-patches",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-two-forms-state-B-A-confirmed-before-decision-exact-patches",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-live-capacity-change-invalidates-dialog-zero-POST-until-new-confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-live-schedule-change-invalidates-dialog-zero-POST-until-new-confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-live-state-capacity-change-invalidates-dialog-zero-POST-until-new-confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-live-state-state-change-invalidates-dialog-zero-POST-until-new-confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-PAUSE-register-participant-first-real-held-browser-requests-serial-results",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-PAUSE-register-pause-first-real-held-browser-requests-serial-results",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-PAUSE-cancel-participant-first-real-held-browser-requests-serial-results",
+      "status": "PASS"
+    },
+    {
+      "name": "sensitive-PAUSE-cancel-pause-first-real-held-browser-requests-serial-results",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-collection-creation-DRAFT-admin-only",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-public-DRAFT-no-snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-Origin-CSRF-epoch-role-cookie-URL-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "collection-pages-real-DRAFT-admin-only-private-empty-subscription",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-publish-enters-authorized-public-collection",
+      "status": "PASS"
+    },
+    {
+      "name": "public-list-real-publication-enters-live-collection",
+      "status": "PASS"
+    },
+    {
+      "name": "collection-pages-real-registration-public-count-admin-count-private-own-history",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-public-admin-private-authoritative-version-audience",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-CANCELLED-not-resurrected-and-seats-reconciled",
+      "status": "PASS"
+    },
+    {
+      "name": "collection-pages-real-cancel-preserves-tombstone-and-authoritative-counts",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-live-public-admin-360-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "collection-pages-real-content-update-keeps-ID-links-and-private-history",
+      "status": "PASS"
+    },
+    {
+      "name": "me-injected-older-GET-cannot-resurrect-live-CANCELLED-no-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "me-injected-session-503-hides-then-recovers-same-actor-history-no-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "collection-pages-360-and-SUBSCRIBE-before-reconcile-GET",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-injected-participant-session-429-503-read-recovery-not-revocation-no-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-injected-admin-session-429-503-read-recovery-preserves-draft-no-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-heartbeat-is-not-domain-event-noop-no-fake-snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-app-blackout-local-stale-then-valid-signal-no-mutation-replay",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-known-close-reconnect-SUBSCRIBE-before-GET-no-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "me-real-session-revocation-clears-private-collection",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-session-revocation-closes-channel-hides-private-history",
+      "status": "PASS"
+    },
+    {
+      "name": "admin-list-real-revocation-hides-DRAFT-and-published-rows",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-admin-revocation-hides-form-without-replaying-intent",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-unknown-commands-guessed-ACK-single-and-fragmented-frame-limit",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-abusive-ACK-flood-closes-not-isolated-rate-proof",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-actor-eight-socket-limit",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-anonymous-sixteen-peer-limit",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-global-128-pending-active-limit",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-writer-durable-result-while-128-sockets-active",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-writer-durable-result-while-reader-credit-full",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-real-no-ACK-reader-eight-frame-bound-and-close",
+      "status": "PASS"
+    },
+    {
+      "name": "updates-admission-tests-preserve-domain-and-final-authoritative-read",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-N-only-capacity-register-real-WSS-closes-old-confirmation-fresh-single-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-N-only-capacity-cancel-real-WSS-closes-old-confirmation-fresh-single-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-N-only-schedule-register-real-WSS-closes-old-confirmation-fresh-single-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-N-only-schedule-cancel-real-WSS-closes-old-confirmation-fresh-single-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-N-only-state-register-real-WSS-closes-old-confirmation-fresh-single-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-N-only-state-cancel-real-WSS-closes-old-confirmation-fresh-single-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-snapshot-503-no-POST-no-stale-comparison-no-domain-change",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-snapshot-malformed-no-POST-no-stale-comparison-no-domain-change",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-snapshot-older-no-POST-no-stale-comparison-no-domain-change",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-snapshot-conflict-no-POST-no-stale-comparison-no-domain-change",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-session-503-no-POST-no-stale-comparison-no-domain-change",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-session-401-no-POST-no-stale-comparison-no-domain-change",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-session-403-no-POST-no-stale-comparison-no-domain-change",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-actor-confirm-read-no-POST-no-stale-comparison-no-domain-change",
+      "status": "PASS"
+    },
+    {
+      "name": "observation-actor-begin-read-no-POST-no-stale-comparison-no-domain-change",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-DRAFT-guest-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-DRAFT-owner-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-DRAFT-other-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-DRAFT-admin-only-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-DRAFT-invalid-cookie-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-OPEN-guest-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-OPEN-owner-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-OPEN-other-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-OPEN-admin-only-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-OPEN-invalid-cookie-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-PAUSED-guest-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-PAUSED-owner-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-PAUSED-other-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-PAUSED-admin-only-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-PAUSED-invalid-cookie-HTTP-SSR-WSS-current-server-authority",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-forged-role-actor-epoch-CSRF-Origin-no-data",
+      "status": "PASS"
+    },
+    {
+      "name": "permission-real-SQL-admin-revocation-closes-dialog-hides-private-data-zero-POST",
+      "status": "PASS"
+    },
+    {
+      "name": "no-page-error-or-external-request",
+      "status": "PASS"
+    }
+  ],
+  "browser": "153.0.8010.12",
+  "tlsBypass": false,
+  "fixtures": {
+    "initialUV": "WSS intentionally closed to retain stale HTTP-only mutation fixtures; new checkUpdates contexts and raw WSS are not intercepted",
+    "sameVersionAdminConflict": "one HTTP GET response altered to test reconciliation; distinguish from backend reply"
+  }
+}
