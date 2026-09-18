@@ -1,0 +1,57 @@
+{
+  "finalSource": "fa366db49917c8f0699d4d911bbd09762889a570",
+  "attempts": [
+    {
+      "logs": [
+        "check-first.stdout.log",
+        "check-first.stderr.log"
+      ],
+      "result": "NOT_ACCEPTED_WARNING",
+      "observed": "0 errors, 1 Svelte state capture warning; explicit nullable received rows and derived initial fallback fixed source cause",
+      "exitCodeRetained": false
+    },
+    {
+      "logs": [
+        "unit-first.stdout.log",
+        "unit-first.stderr.log"
+      ],
+      "result": "FAIL",
+      "observed": "Node24 strip mode rejects TypeScript parameter properties; explicit constructor field assignments fix portability without loader change",
+      "exitCodeRetained": false
+    },
+    {
+      "logs": [
+        "server-r2.stdout.log",
+        "server-r2.stderr.log"
+      ],
+      "result": "FAIL",
+      "observed": "Private SSR browser fixture had no API forwarding for hydrated identity/read validation; raw timeout retained",
+      "exitCodeRetained": false
+    },
+    {
+      "logs": [
+        "server-final.stdout.log",
+        "server-final.stderr.log"
+      ],
+      "result": "FAIL",
+      "observed": "18 cases passed but fixture callback continued after context close; drain route callbacks before close, retain unhandled failure",
+      "exitCode": 1
+    },
+    {
+      "logs": [
+        "test-unit-r4.stdout.log",
+        "check-r4.stdout.log",
+        "lint-r4.stdout.log",
+        "build-r4.stdout.log",
+        "test-server-r4.stdout.log"
+      ],
+      "result": "PASS",
+      "exitCodesFile": "checks-r4.json",
+      "units": 93,
+      "ssrNativeChrome": 18
+    }
+  ],
+  "firstFailFullSourceSnapshot": "NOT_RETAINED; logs identify exact failing locations; no full frozen source claim for first authoring attempt",
+  "r2SourceSnapshot": "source-r2",
+  "noSkippedCasesOrSafetyRelaxation": true
+}

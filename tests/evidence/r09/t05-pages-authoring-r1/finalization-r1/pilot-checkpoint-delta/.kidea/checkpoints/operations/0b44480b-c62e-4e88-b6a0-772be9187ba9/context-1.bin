@@ -1,0 +1,85 @@
+{
+  "basis": "de605d0cee474650ccbc4f2c66b0fa856ab7e6dce2e7d6331756060eb06868ed",
+  "checkout": {
+    "head": "fa366db49917c8f0699d4d911bbd09762889a570",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "note": {
+    "itemId": "W-009-ADMIN-OPS",
+    "completed": "live public/admin collections and standalone /me. Public cannot see DRAFT or private IDs. Each audience has its own validated identity, epoch, generation and high-water observations. SUBSCRIBED forces fresh GET; duplicate delivery cannot resurrect cancelled history. Temporary identity failure hides private content and recovers only the same identity without POST; confirmed identity/role/epoch loss clears content. Empty anonymous public collection has no epoch metadata and uses bounded read-only HTTP bootstrap until a real epoch becomes available, then WSS. No fabricated epoch, dependency or backend change.\n\nFinal Web: 93 unit PASS, check zero errors/warnings, lint/build PASS, 18 SSR–native Chrome Mac PASS with API fixtures. Real HTTPS/WSS Docker Chromium: 62 checks PASS, retaining all old checks. Actual publish/register/cancel/content updates, SUBSCRIBE-before-GET for each collection/history audience, private old-GET/no-resurrection, injected503 hidden/recovery and real participant/admin revocation. Screenshot360 validates no horizontal overflow only at this tested viewport. Native SSR fixtures are not real WSS integration.",
+    "remaining": "Complete T05 matrix, workload/queue/RSS, monitoring/backup/readiness/restore; unresolved semantic impact freshness; later R09 tasks, Human PROD, G2 and final acceptance remain open. Android/iOS Future, AppleSilicon NOT_RUN, R10 unopened.",
+    "nextAction": "Audit remaining T05 functional matrix and add bounded missing regression cases under existing full R09 authority. Preserve exact current proof, accepted T04 history, unresolved impacts and later operational/acceptance gates.",
+    "sourceRefs": [
+      {
+        "path": "tests/t05/pages-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/collections.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/LiveCollection.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/LiveHistory.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/workshops/+page.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/admin/workshops/+page.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/me/+page.svelte",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/unit/collections.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/server/public.test.mjs",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/backend-source-audit.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/attempts.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/web.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/ssr.stdout.log",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/https-run.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/https-browser.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/https-manifest.json",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/pages-evidence-r1/source.json",
+        "anchor": null
+      }
+    ]
+  }
+}

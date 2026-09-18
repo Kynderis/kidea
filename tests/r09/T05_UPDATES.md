@@ -10,10 +10,11 @@ host ports or trust-store changes are needed.
 ## Backend and sanitizer component
 
 The pilot's `scripts/t05/build.sh` extends the complete T02 build. It retains all
-old CTest, HTTP, session and shutdown checks and adds updates units/tidy. Every
-product source change requires a new frozen manifest and complete four-preset
-build; an interrupted attempt is never resumed into a PASS evidence directory.
-The previously accepted SQLite/WAL TSan exception remains limited to its old
+old CTest, HTTP, session and shutdown checks and adds updates units/tidy. Every change within the compiled backend source closure requires a new
+frozen manifest and complete four-preset build; an interrupted attempt is never resumed into a PASS evidence directory.
+A Web-only change can reuse that exact artifact only after verifying the whole
+compiled source closure unchanged; it needs a new frozen Web/integration manifest
+and complete Web checks. The previously accepted SQLite/WAL TSan exception remains limited to its old
 classification. New updates units and transport component paths have no waiver.
 
 `t05-socket-run.mjs <complete-backend-run> <new-evidence-directory>` binds source
@@ -77,7 +78,17 @@ screenshots directly before claiming visual acceptance.
 
 ## Scope still open
 
-Live public/admin lists and the standalone `/me` page are not implemented by this
-slice. Full T05 matrix, monitoring/backup/readiness, workload measurements,
+Live public/admin lists and standalone `/me` now use audience-specific WSS and
+SUBSCRIBE-before-reconcile-GET. New collection helpers validate identity/epoch
+and atomic snapshots; private history retains cancellation high-water against
+older GET and hides on temporary session failure, clearing on actual loss.
+An empty anonymous public list has no epoch metadata: bounded read-only HTTP
+bootstrap waits for a real epoch before connecting WSS; it stays UNKNOWN.
+The new real collection mutation/revocation checks are distinct from the
+explicitly injected old private GET and session503. Native SSR API fixtures
+forward hydrated reads and drain route callbacks before context close.
+All old integration checks remain; final pages slice has93 units,18 native SSR
+Chrome and62 real HTTPS/WSS checks.
+Full T05 matrix, monitoring/backup/readiness, workload measurements,
 independent restore and later R09 gates remain pending. Only public Kidea helpers
 write `.kidea`; a DRAFT source review is not a new Human approval or DONE result.

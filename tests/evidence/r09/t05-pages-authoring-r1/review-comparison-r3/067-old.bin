@@ -1,0 +1,93 @@
+import {decodeSnapshot,decodeHistory,type ClientState,type Context,type Snapshot,version} from './state.ts';
+export type UpdateStatus='UNKNOWN'|'OBSERVED';
+export type UpdateSource='HTTP'|'SOCKET';
+export interface UpdateWire {
+ state():number;send(data:string):void;close():void;
+ listen(kind:'open'|'message'|'close'|'error',fn:(data?:unknown)=>void):void;
+}
+export type UpdateOptions={
+ audience:'public'|'admin'|'private';epoch:string;workshopId?:string;
+ csrf:()=>string;validate:()=>Promise<boolean>;read:()=>Promise<unknown>;
+ snapshot:(data:unknown,source:UpdateSource)=>boolean;status:(state:UpdateStatus)=>void;
+ factory?:()=>UpdateWire;now?:()=>number;reconnectMs?:number;
+};
+const object=(v:unknown):v is Record<string,unknown>=>v!==null&&typeof v==='object'&&!Array.isArray(v);
+export function decodeUpdate(raw:string,epoch:string,audience:string){
+ let parsed:unknown;try{parsed=JSON.parse(raw);}catch{return null;}
+ if(!object(parsed)||typeof parsed.receipt!=='string'||parsed.receipt.length!==32||!object(parsed.message))return null;
+ const v=parsed.message;if(v.epoch!==epoch||v.audience!==audience||!['SUBSCRIBED','SNAPSHOT','HEARTBEAT'].includes(String(v.type)))return null;
+ if(v.type==='SNAPSHOT'&&!('data'in v))return null;
+ return {receipt:parsed.receipt,message:v};
+}
+export class PublicUpdates {
+ readonly snapshots=new Map<string,Snapshot>();readonly uncertain=new Set<string>();
+ readonly epoch:string;
+ constructor(epoch:string,initial:Snapshot[]){this.epoch=epoch;for(const w of initial)if(w.epoch===epoch)this.snapshots.set(w.id,w);}
+ merge(raw:unknown,source:UpdateSource):boolean {
+  const values=Array.isArray(raw)?raw:[raw];const next:Snapshot[]=[];const ids=new Set<string>();
+  for(const v of values){const w=decodeSnapshot(v);if(!w||w.epoch!==this.epoch||ids.has(w.id))return false;ids.add(w.id);next.push(w);}
+  for(const w of next){const before=this.snapshots.get(w.id);
+   if(before){if(BigInt(w.version)<BigInt(before.version))continue;
+    if(w.version===before.version){const content=({observedAt:_,...value}:Snapshot)=>{void _;return JSON.stringify(value);};
+     if(source==='SOCKET'&&content(w)!==content(before)){this.uncertain.add(w.id);continue;}
+     if(source==='SOCKET'&&this.uncertain.has(w.id))continue;
+    }
+   }
+   this.snapshots.set(w.id,w);this.uncertain.delete(w.id);
+  }
+  return this.uncertain.size===0;
+ }
+}
+// A private authoritative HTTP read can resolve a same-version contradiction;
+// this helper never permits an older GET to erase a newer CANCELLED/history.
+export function authoritativeHistoryVersion(before:string|undefined,next:unknown):boolean {
+ return version(next)&&(!before||BigInt(next)>=BigInt(before));
+}
+function historyBatch(raw:unknown,context:Context){
+ if(!Array.isArray(raw))return null;const values=[];const ids=new Set<string>();
+ for(const v of raw){const next=decodeHistory(v);if(!next||next.actor!==context.actor||next.epoch!==context.epoch||ids.has(next.workshopId))return null;ids.add(next.workshopId);values.push(next);}return values;
+}
+export function mergeHistory(client:ClientState,raw:unknown,context:Context):boolean {
+ if(!client.accepts(context))return false;const values=historyBatch(raw,context);if(!values)return false;
+ for(const next of values)client.merge(next,context);return client.uncertain.size===0;
+}
+export function reconcileHistory(client:ClientState,raw:unknown,context:Context):boolean {
+ if(!client.accepts(context))return false;const values=historyBatch(raw,context);if(!values)return false;
+ for(const next of values){if(!authoritativeHistoryVersion(client.history.get(next.workshopId)?.workshopVersion,next.workshopVersion))continue;client.history.set(next.workshopId,next);client.uncertain.delete(next.workshopId);}
+ return client.uncertain.size===0;
+}
+function browserWire():UpdateWire {
+ const socket=new globalThis.WebSocket((globalThis.location.protocol==='https:'?'wss:':'ws:')+'//'+globalThis.location.host+'/api/v1/updates');
+ return {state:()=>socket.readyState,send:data=>socket.send(data),close:()=>socket.close(),listen:(kind,fn)=>socket.addEventListener(kind,event=>fn(kind==='message'&&'data'in event?event.data:undefined))};
+}
+export function openUpdates(options:UpdateOptions):()=>void {
+ let stopped=false,attempt=0,wire:UpdateWire|null=null,reconnect:ReturnType<typeof setTimeout>|null=null;
+ let alive:number|null=null,validData=false,subscribed=false;const now=options.now??Date.now;
+ let last:UpdateStatus|null=null;const status=(value:UpdateStatus)=>{if(value!==last){last=value;options.status(value);}};
+ function freshness(){status(subscribed&&validData&&alive!==null&&now()>=alive&&now()-alive<=5000?'OBSERVED':'UNKNOWN');}
+ function fail(a:number){if(stopped||a!==attempt)return;attempt++;subscribed=false;alive=null;validData=false;status('UNKNOWN');const old=wire;wire=null;old?.close();if(reconnect===null)reconnect=setTimeout(()=>{reconnect=null;void connect();},options.reconnectMs??1000);}
+ async function valid(a:number){const permitted=await options.validate();return permitted&&!stopped&&a===attempt;}
+ async function read(a:number){const raw=await options.read();if(!await valid(a))return false;validData=options.snapshot(raw,'HTTP');return validData;}
+ async function connect(){const a=++attempt;status('UNKNOWN');
+  try{if(!await valid(a)){fail(a);return;}const socket=(options.factory??browserWire)();if(stopped||a!==attempt){socket.close();return;}wire=socket;
+   const queue={count:0,bytes:0,promise:Promise.resolve()};
+   socket.listen('open',()=>{void(async()=>{try{if(!await valid(a)){fail(a);return;}socket.send(JSON.stringify({type:'SUBSCRIBE',audience:options.audience,epoch:options.epoch,csrf:options.csrf(),...(options.workshopId?{workshopId:options.workshopId}:{})}));}catch{fail(a);}})();});
+   socket.listen('message',raw=>{
+    const receivedAt=now();if(stopped||a!==attempt)return;if(typeof raw!=='string'){fail(a);return;}const size=new TextEncoder().encode(raw).length;
+    if(++queue.count>8||(queue.bytes+=size)>1048576){fail(a);return;}
+    queue.promise=queue.promise.then(async()=>{
+     if(stopped||a!==attempt)return;const envelope=decodeUpdate(raw,options.epoch,options.audience);if(!envelope||!await valid(a)){fail(a);return;}
+     const message=envelope.message;
+     if(message.type==='SUBSCRIBED'){if(subscribed){fail(a);return;}subscribed=true;if(!await read(a)){validData=false;}}
+     else if(!subscribed){fail(a);return;}
+     else if(message.type==='SNAPSHOT'){validData=options.snapshot(message.data,'SOCKET');if(!validData)await read(a);}
+     else if(!validData)await read(a);
+     if(stopped||a!==attempt)return;alive=receivedAt;freshness();socket.send(JSON.stringify({type:'ACK',receipt:envelope.receipt}));
+    }).catch(()=>fail(a)).finally(()=>{queue.count--;queue.bytes-=size;});
+   });
+   socket.listen('close',()=>fail(a));socket.listen('error',()=>fail(a));
+  }catch{fail(a);}
+ }
+ const stale=globalThis.setInterval(()=>{if(!stopped)freshness();},250);void connect();
+ return()=>{if(stopped)return;stopped=true;attempt++;globalThis.clearInterval(stale);if(reconnect!==null)clearTimeout(reconnect);wire?.close();wire=null;};
+}

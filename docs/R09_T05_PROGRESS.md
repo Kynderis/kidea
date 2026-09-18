@@ -1,6 +1,31 @@
 # R09 T05 — outbox, cập nhật trực tiếp và phần vận hành còn lại
 
-## Lát cập nhật trực tiếp — nguồn cuối ngày 2026-09-18
+## Hiện hành — danh sách trực tiếp và `/me`, ngày 2026-09-18
+
+Quyền trọn R09 và yêu cầu tiếp tục của Human áp dụng. T04 đã nghiệm thu; T05/`W-009-ADMIN-OPS` vẫn IN_PROGRESS, chưa hoàn tất137 nghĩa vụ/G2 hoặc nghiệm thu R09. Các phần dưới là lịch sử đúng nguồn cũ.
+
+Đã nối WSS cho danh sách public/admin và trang đăng ký riêng `/me`. Public không nhận DRAFT hay ID đăng ký riêng; admin nhận số đăng ký hiệu lực. Mỗi audience xác minh identity/epoch/generation riêng, subscribe trước GET đối chiếu và giữ high-water đúng miền version. `/me` xác minh lại phiên sau hydrate trước khi hiện dữ liệu riêng, giữ CANCELLED trước GET cũ; lỗi đọc phiên tạm thời ẩn dữ liệu rồi chỉ phục hồi cùng identity, mất quyền thật xóa dữ liệu. Không tự POST khi reconnect.
+
+Danh sách public rỗng và anonymous chưa có metadata epoch: dùng HTTP bootstrap chỉ đọc, có deadline và dừng theo vòng đời trang, cho tới khi có epoch thật; sau đó nối WSS. Không tạo epoch giả hoặc nhận trạng thái rỗng này là OBSERVED trực tiếp.
+
+Web nguồn cuối `fa366db49917c8f0699d4d911bbd09762889a570`: [receipt và patch](../tests/evidence/r09/t05-pages-authoring-r1/source-final.json). Backend dùng nguyên artifact source `1fb4a69f9faf69893440d43fdc8648347074e715`: [112 nguồn khớp](../tests/evidence/r09/t05-pages-authoring-r1/backend-source-audit.json). Không nhận đây là lượt build/sanitizer backend mới; bằng chứng bốn preset và giới hạn EX r2 của lát trước còn đúng artifact.
+
+- [Web cuối](../tests/evidence/r09/t05-pages-authoring-r1/checks-r4.json):93 unit PASS, check0 lỗi/0 cảnh báo, lint/build PASS. [18 SSR–native Chrome Mac](../tests/evidence/r09/t05-pages-authoring-r1/test-server-r4.stdout.log) PASS dùng API fixture, không thay kiểm backend/WSS thật.
+- [HTTPS/WSS cuối](../tests/evidence/r09/t05-pages-integration-r2/run/browser/result.json):**62/62 PASS**, giữ đủ52 kiểm cũ và thêm10 kiểm cho ba trang. Backend thật/Caddy TLS/Docker Chromium153.0.8010.12, không bypass TLS. Các mutation publish/register/cancel/đổi nội dung và thu hồi phiên/quyền là thật; GET lịch sử cũ và session503 được tiêm riêng, không gộp thành lỗi backend thật.
+- [Runner](../tests/evidence/r09/t05-pages-integration-r2/run/result.json) PASS, xác minh nguồn/plan/dependency/build cả trước và sau, dọn container/network sở hữu. [Manifest](../tests/evidence/r09/t05-pages-integration-r2/manifest.json) cố định; r1 chỉ chuẩn bị, NOT_RUN_SUPERSEDED.
+- Đã xem trực tiếp ảnh danh sách public/admin và `/me`360px của lượt cuối, không tràn ngang. Chỉ nhận viewport đã kiểm, không mọi viewport/zoom. Các probe quota128/socket và mutation<5s giữ nguyên phạm vi chức năng, không chứng minh workload/percentile/queue/RSS.
+
+Giữ nguyên raw FAIL/các retry trong [authoring-r1](../tests/evidence/r09/t05-pages-authoring-r1/attempts.json): Svelte cảnh báo capture initial; Node24 strip mode không hỗ trợ parameter properties; fixture chưa forward browser API; callback fixture còn chạy sau context close dù18 case đã đạt. Sửa nguyên nhân: derived initial fallback, constructor explicit fields, forward fake API và chờ route callbacks kết thúc trước khi đóng context. Kiểm lại cả năm gate cuối, không bỏ ca, nuốt lỗi async hoặc hạ kiểm an toàn. Không có frozen full-source snapshot của lượt authoring FAIL đầu; không nhận log đó là manifest hoàn chỉnh. READ khởi chạy nền đầu không hoàn tất được ghi riêng; READ r2 hoàn tất trước commit, không suy nguyên nhân process dừng.
+
+Còn lại: đối chiếu ma trận AD/E/AR/OP/QT và137 nghĩa vụ, thêm ca thiếu; workload/percentile/queue/RSS, telemetry/observer độc lập, online backup/watermark/readiness/restore; đối chiếu ý nghĩa ba bản đồ/impact và các gate R09 sau. T08 Human PROD và nghiệm thu cuối thuộc Human; native Future, Apple Silicon NOT_RUN, R10 chưa mở. Kidea core293 của lát trước là bằng chứng dùng lại do engine không đổi, không phải lượt core mới.
+
+[Public REVISE revision4](../tests/evidence/r09/t05-pages-authoring-r1/finalization-r1/review-revise-r4-result.json) ghi REVIEW_RECORDED/DRAFT, giữ owners và lịch sử nghiệm thu T04. [Public READ cuối](../tests/evidence/r09/t05-pages-authoring-r1/finalization-r1/resume-read-final-result.json) trả WAITING với IMPACT_REVIEW_REQUIRED; không tự ghi approval, DONE hoặc hoàn tất impact. Metadata chỉ được viết bằng public helper. [Public SAVE](../tests/evidence/r09/t05-pages-authoring-r1/finalization-r1/resume-save-final-result.json) trả CONTINUATION_SAVED, giữ status/gate/blocker/return stack và điểm tiếp tục đúng phần còn thiếu.
+
+Pilot checkpoint local `ccd2b9b575e20f64453fd6aadc329465e5127d82`, Git sạch/không remote; [receipt cuối](../tests/evidence/r09/t05-pages-authoring-r1/finalization-r1/pilot-checkpoint-final.json). [Delta nguồn/checkpoint công khai](../tests/evidence/r09/t05-pages-authoring-r1/finalization-r1/pilot-checkpoint-delta.json) giữ các metadata/evidence đã tạo; mã Web vẫn đúng sourcefa366 đã kiểm. [Cleanup](../tests/evidence/r09/t05-pages-authoring-r1/cleanup-final.json) không còn container active/network R09.
+
+Bước tiếp theo: audit ma trận T05 và bổ sung regression còn thiếu theo ca cụ thể. Độ khó cao vì liên quan concurrency, crash/audit, phiên/epoch và phân biệt bằng chứng thành phần/tích hợp. Đề xuất **GPT-5.6 Sol + High**: đủ chiều sâu đối chiếu và sửa ca khó trong phạm vi hữu hạn; chưa cần tăng tới XHigh/Max. Đây là đánh giá task của Codex; model có mức High theo [OpenAI Docs](https://developers.openai.com/api/docs/models/gpt-5.6-sol), không là cam kết chi phí Codex theo giá API.
+
+## Lát outbox/detail/form — lịch sử nguồn Web9506, ngày 2026-09-18
 
 Quyền thực thi trọn R09 giữ nguyên. T04 đã được Human nghiệm thu; T05 và `W-009-ADMIN-OPS` vẫn IN_PROGRESS. Không coi các kiểm dưới đây là toàn bộ ma trận T05, G2 hoặc nghiệm thu R09.
 

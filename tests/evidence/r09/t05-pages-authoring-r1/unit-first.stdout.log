@@ -1,0 +1,121 @@
+✔ admin snapshot accepts DRAFT but strips extraneous private identity (4.246917ms)
+✔ admin refuses invalid state (0.250532ms)
+✔ admin refuses invalid remaining (0.238828ms)
+✔ admin refuses invalid version (0.168122ms)
+✔ admin refuses invalid epoch (0.179494ms)
+✔ dirty patch excludes untouched fields (0.288052ms)
+✔ schedule edits always send both endpoints (0.204986ms)
+✔ explicit review preserves only edited fields over newest data (0.279163ms)
+✔ same field remains an explicit user decision, not a silent overwrite (0.217667ms)
+✔ observation time alone does not trigger a stale edit, state/count/version do (0.444482ms)
+✔ sensitive changes share one confirmation with both consequences (0.274675ms)
+✔ field error for title (0.565306ms)
+✔ field error for description (0.199766ms)
+✔ field error for capacity (0.150223ms)
+✔ field error for start (0.099786ms)
+✔ field error for end (0.090101ms)
+✔ Unicode point count and explicit offsets retain valid inputs (0.265754ms)
+✔ persist before POST, double submit and reload only GET (0.426535ms)
+✔ storage failure prevents sending and preserves unsent state (0.33387ms)
+✔ intent cannot cross B/E (0.118777ms)
+✔ intent cannot cross A/NEW (0.102788ms)
+✔ corrupt and mismatched payload cannot unlock replacement (0.1817ms)
+✔ decode correct CREATE final only (0.24304ms)
+✔ decode correct EDIT final only (0.097671ms)
+✔ decode correct STATE final only (0.085405ms)
+✔ create gets exact result ID, never title or current state (0.140959ms)
+✔ edit/state results bind exact target and action (0.134038ms)
+✔ admin observation conflict includes same-version content and wrong identity (0.220838ms)
+✔ admin observation order preserves exact uint64 and ignores timestamp-only changes (0.126313ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///Users/kendrick/Desktop/kidea-workshop-pilot/web/src/lib/collections.ts:15
+ who:Session|null=null;confirmed=false;active=true;generation=1;
+ constructor(readonly audience:Audience,readonly epoch:string|undefined,readonly read:()=>Promise<Response>,readonly change:(confirmed:boolean,terminal:boolean)=>void){}
+                      ^^^^^^^^^^^^^^^^^
+ end(){if(!this.active)return;this.active=false;this.generation++;this.who=null;this.confirmed=false;this.change(false,true);}
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:68:40)
+    at processTypeScriptCode (node:internal/modules/typescript:146:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:215:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:680:29)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v24.19.0
+✖ tests/unit/collections.test.mjs (165.887293ms)
+✔ decode public snapshot strips optional private additions (5.046295ms)
+✔ reject snapshot draft (1.729246ms)
+✔ reject snapshot overflow (0.637426ms)
+✔ reject snapshot numeric (0.17907ms)
+✔ reject snapshot mixed (0.160096ms)
+✔ reject snapshot capacity (0.19177ms)
+✔ reject snapshot schedule (0.141493ms)
+✔ uint64 exact ordering beyond JS integer (0.582875ms)
+✔ cancel rebook cannot be revived by old response (0.36268ms)
+✔ missing collection group does not erase known history (0.353166ms)
+✔ workshop versions independent (0.235187ms)
+✔ same version conflicting content remains unknown on repeated original (0.235645ms)
+✔ late response discarded after actor (0.210058ms)
+✔ late response discarded after epoch (0.110956ms)
+✔ late response discarded after login (0.094379ms)
+✔ late response discarded after unmount (0.140841ms)
+✔ reject invalid history [{"id":"A","state":"ACTIVE"},{"id":"A","state":"CANCELLED"}] (0.092178ms)
+✔ reject invalid history [{"id":"A","state":"ACTIVE"},{"id":"B","state":"ACTIVE"}] (0.063918ms)
+✔ reject invalid history [{"id":"A","state":"BAD"}] (0.054692ms)
+✔ sent persisted before POST; reload can only GET (0.250792ms)
+✔ storage failure blocks mutation (0.353422ms)
+✔ intent cannot cross actor or restored epoch (0.176081ms)
+✔ silent and known disconnect never claim fresh (0.133397ms)
+✔ schedule preserves both dates and explicit offset (0.356962ms)
+✔ observation time uses declared UTC and invalid stays unknown (1.626927ms)
+✔ historical registration result decodes but does not change current history (0.326782ms)
+✔ uncertain or mismatched reply {"state":"UNKNOWN"} (0.13905ms)
+✔ uncertain or mismatched reply {"effect":"REJECTED"} (0.082889ms)
+✔ uncertain or mismatched reply {"workshopId":"other"} (0.067145ms)
+✔ uncertain or mismatched reply {"registrationId":""} (0.064461ms)
+✔ uncertain or mismatched reply {"code":"CREATED"} (0.070089ms)
+✔ uncertain or mismatched reply {"code":"NEW_UNKNOWN_CODE"} (0.083035ms)
+✔ cancellation reply must match exact registration (0.156257ms)
+✔ quota rejection is historical REGISTER-only result (0.176892ms)
+✔ public stream replaces whole snapshots, never applies seat deltas (2.495469ms)
+✔ public same-version contradiction becomes unknown until explicit HTTP read (0.409534ms)
+✔ uint64 ordering is exact and separate workshops never share a cursor (0.306614ms)
+✔ bad schema, private identity, DRAFT and wrong epoch do not enter public state (1.447059ms)
+✔ an older collection cannot delete an already observed workshop (0.206239ms)
+✔ strict envelope matches epoch and audience; malformed frames fail closed (0.65563ms)
+✔ subscribe happens before GET and all further commands are ACK, never POST (2.481552ms)
+✔ known disconnection immediately marks unknown (0.699323ms)
+✔ a generation closed while GET is pending never applies late data (0.698563ms)
+✔ revoked actor before a message cannot render private payload or ACK it (0.906161ms)
+✔ bounded client queue rejects a ninth frame while validation is stuck (0.76176ms)
+✔ oversize envelope closes the client without applying data (1.597481ms)
+✔ authoritative private GET cannot resurrect history older than its high-water (0.164554ms)
+✔ private explicit reconciliation resolves equal version while preserving newer CANCELLED (0.664159ms)
+✔ malformed private HTTP batch is rejected before any partial application (0.250492ms)
+✔ buffered heartbeat processing never invents a fresh receive timestamp (0.762572ms)
+✔ malformed socket collection never partially advances private history (0.285913ms)
+✔ a contradictory duplicate workshop in one collection is rejected before applying either (0.175133ms)
+ℹ tests 82
+ℹ suites 0
+ℹ pass 81
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 223.92325
+
+✖ failing tests:
+
+test at tests/unit/collections.test.mjs:1:1
+✖ tests/unit/collections.test.mjs (165.887293ms)
+  'test failed'

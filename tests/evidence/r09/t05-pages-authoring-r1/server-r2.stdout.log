@@ -1,0 +1,41 @@
+✔ intro is prerendered readable HTML with noindex and fixed canonical (8.622198ms)
+✔ SSR list escapes title and strips all private fields (53.894171ms)
+✔ SSR detail retains public schedule and identity link (12.92897ms)
+✔ hidden and missing are generic without private body (10.419745ms)
+✔ concurrent actor cookies never forwarded into public SSR (10.810528ms)
+✔ bad backend invalid is unavailable, not empty success (5.881712ms)
+✔ bad backend malformed is unavailable, not empty success (5.539638ms)
+✔ private SSR isolates simultaneous actors and never embeds credentials (18.143395ms)
+✔ private SSR denies missing or invalid session  (4.923899ms)
+✔ private SSR denies missing or invalid session workshop_session=REVOKED (5.97774ms)
+✔ private SSR rejects wrong actor group (7.781048ms)
+✔ Chrome public SSR navigation 360 zoom 1 (653.29027ms)
+✔ Chrome public SSR navigation 1280 zoom 1 (529.933024ms)
+✔ Chrome public SSR navigation 360 zoom 2 (600.748515ms)
+✔ Chrome public SSR navigation 1280 zoom 2 (527.255163ms)
+✔ Chrome lost mutation response reload GET reconciliation and exact cancel (1381.212248ms)
+✖ Chrome restored private page revalidates changed session before revealing history (30356.385358ms)
+✔ Chrome JS disabled list and detail readable (447.994895ms)
+{"serverStdout":"Listening on http://127.0.0.1:50406\n","serverStderr":"\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n","scope":"Built Web + local fake API contract; not backend integration or product acceptance"}
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39465.734514
+
+✖ failing tests:
+
+test at tests/server/public.test.mjs:57:9
+✖ Chrome restored private page revalidates changed session before revealing history (30356.385358ms)
+  locator.waitFor: Timeout 30000ms exceeded.
+  Call log:
+  [2m  - waiting for getByText('REG-U · Đã đăng ký', { exact: true }) to be visible[22m
+  
+      at TestContext.<anonymous> (/Users/kendrick/Desktop/kidea-workshop-pilot/web/tests/server/public.test.mjs:58:264)
+      at async file:///Users/kendrick/Desktop/kidea-workshop-pilot/web/tests/server/public.test.mjs:57:3 {
+    name: 'TimeoutError',
+    log: [ "  - waiting for getByText('REG-U · Đã đăng ký', { exact: true }) to be visible" ]
+  }

@@ -1,0 +1,35 @@
+✔ intro is prerendered readable HTML with noindex and fixed canonical (7.602936ms)
+✔ SSR list escapes title and strips all private fields (42.09656ms)
+✔ SSR detail retains public schedule and identity link (13.728387ms)
+✔ hidden and missing are generic without private body (8.383612ms)
+✔ concurrent actor cookies never forwarded into public SSR (9.004326ms)
+✔ bad backend invalid is unavailable, not empty success (3.245817ms)
+✔ bad backend malformed is unavailable, not empty success (6.210416ms)
+✔ private SSR isolates simultaneous actors and never embeds credentials (15.446272ms)
+✔ private SSR denies missing or invalid session  (2.916063ms)
+✔ private SSR denies missing or invalid session workshop_session=REVOKED (3.951549ms)
+✔ private SSR rejects wrong actor group (6.74139ms)
+✔ Chrome public SSR navigation 360 zoom 1 (535.782199ms)
+✔ Chrome public SSR navigation 1280 zoom 1 (422.011243ms)
+✔ Chrome public SSR navigation 360 zoom 2 (504.949871ms)
+✔ Chrome public SSR navigation 1280 zoom 2 (392.097079ms)
+✔ Chrome lost mutation response reload GET reconciliation and exact cancel (1268.52984ms)
+✔ Chrome restored private page revalidates changed session before revealing history (472.094167ms)
+✔ Chrome JS disabled list and detail readable (362.824978ms)
+{"serverStdout":"Listening on http://127.0.0.1:50585\n","serverStderr":"\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/session\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /api/v1/updates\u001b[0m\n\n\u001b[1;31m[404] GET /favicon.ico\u001b[0m\n","scope":"Built Web + local fake API contract; not backend integration or product acceptance"}
+ℹ Error: A resource generated asynchronous activity after the test ended. This activity created the error "Error: route.fulfill: Fetch response has been disposed" which triggered an unhandledRejection event, caught by the test runner.
+✖ tests/server/public.test.mjs (7460.742576ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7468.963723
+
+✖ failing tests:
+
+test at tests/server/public.test.mjs:1:1
+✖ tests/server/public.test.mjs (7460.742576ms)
+  'test failed'

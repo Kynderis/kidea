@@ -1,0 +1,51 @@
+{
+  "state": "BASELINE_PASS_FOUR_MUTANTS_REJECTED",
+  "rows": [
+    {
+      "name": "baseline",
+      "exit": 0,
+      "firstFailure": null
+    },
+    {
+      "name": "no-quota",
+      "exit": 1,
+      "firstFailure": {
+        "caseId": "Q01",
+        "sequence": 2,
+        "status": "FAIL",
+        "variant": "two-active-rejects"
+      }
+    },
+    {
+      "name": "counts-cancelled",
+      "exit": 1,
+      "firstFailure": {
+        "caseId": "Q01",
+        "sequence": 10,
+        "status": "FAIL",
+        "variant": "cancelled-excluded-fresh-intent-accepts"
+      }
+    },
+    {
+      "name": "recount-retry",
+      "exit": 1,
+      "firstFailure": {
+        "caseId": "Q01",
+        "sequence": 9,
+        "status": "FAIL",
+        "variant": "old-rejection-immutable-after-cancel"
+      }
+    },
+    {
+      "name": "wrong-duplicate",
+      "exit": 1,
+      "firstFailure": {
+        "caseId": "Q01",
+        "sequence": 4,
+        "status": "FAIL",
+        "variant": "duplicate-before-quota"
+      }
+    }
+  ],
+  "scope": "Targeted diagnostic; not a substitute for full four-preset regression."
+}
