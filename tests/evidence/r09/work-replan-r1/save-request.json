@@ -1,0 +1,82 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "preserveReviewIds": [],
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved full R09 execution. Save this truthful bounded checkpoint only; keep the presented replan review IN_REVIEW until an explicit matching Human response. No work completion or approval by this SAVE."
+  },
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "requiredFiles": [
+    {
+      "path": "docs/workflow/r09-replan-r1.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/r09-checkpoint-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/legacy-provenance-r1.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/evidence/backend-r10.json",
+      "anchor": null
+    },
+    {
+      "path": "docs/workflow/evidence/https-r3.json",
+      "anchor": null
+    },
+    {
+      "path": "web/src/routes/me/+page.svelte",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "3e1e655d0d3fbd8463e7255fb5caf5675e7a1d6938cf908416bcff702d76fbd4",
+  "expectedGit": {
+    "head": "029b663c9b98c6513f4315de5d1dbc99231a51f2",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-001",
+    "completed": "Backend source3876326 build-r10 completed all4presets; each18HTTP8session2shutdown, dev/ASan/release46CTest796assertions; TSan40clean6knownWAL12reports under unchangedEXr2, HTTPclean. Web029b663:33unit18SSR\u2013Chrome/check/lint/build PASS; real HTTPS r3 passed15scoped checks with frozen manifest8ec1b192. FAIL r7/r9/integrationr1/map mount retained. All owned containers/networks cleaned. Read-only doc/Web/Clang map receipts exist; incomplete semantic relations remain explicit.",
+    "remaining": "Actual pilot work tree remains W001/10UNEXPANDED. Public R09-REPLAN-LEGACY-r1 revision1 is IN_REVIEW at presented digest8dce62dcf6f9b37d9e7246937eca54f7bc5ef88304606089e4fe7ee5df14c37c, ownersW001\u2013W010; no approval or REPLAN performed. T04/max2, admin/events/ops, finalG2/release/realPRODrole/later changes/T14 and finalR09 acceptance remain.",
+    "nextAction": "Await only the explicit response to the presented replan/provenance package; do not request per-build authorization again. With matching approval, verify exact digest/source/owners, record through public approve, then public REPLAN_WORK and evidence-backed progression. Preserve all future/output gates; never invent Human confirmation or write .kidea manually. Use Kidea docs/R09_REPLAN_REVIEW.md and full-scope authority; no R10 phase opening.",
+    "sourceRefs": [
+      {
+        "path": "docs/workflow/r09-replan-r1.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/r09-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/legacy-provenance-r1.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/evidence/backend-r10.json",
+        "anchor": null
+      },
+      {
+        "path": "docs/workflow/evidence/https-r3.json",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/me/+page.svelte",
+        "anchor": null
+      }
+    ]
+  }
+}

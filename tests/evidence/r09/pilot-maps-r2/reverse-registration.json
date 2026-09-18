@@ -1,0 +1,46 @@
+[
+  {
+    "from": "docs/business/shared/workshop.md#access",
+    "to": "web/src/lib/Registration.svelte",
+    "kind": "responsibility",
+    "mappingId": "WEB-IDENTITY",
+    "purpose": "Keep public SSR anonymous; private history and mutation identity come from the authenticated server session.",
+    "conditions": "No client actor/role authority; cookies excluded from public fetch and credentials excluded from SSR payload. Server implementation remains a separate responsibility.",
+    "evidence": [
+      {
+        "path": "web/src/lib/server/public.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/routes/me/+page.server.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/server/public.test.mjs",
+        "anchor": null
+      }
+    ]
+  },
+  {
+    "from": "docs/business/features/register-cancel.md#ac",
+    "to": "web/src/lib/Registration.svelte",
+    "kind": "responsibility",
+    "mappingId": "WEB-HISTORY",
+    "purpose": "Separate immutable intent result from current versioned registration history; cancellation binds the captured registration ID.",
+    "conditions": "Older/conflicting history cannot invent current ACTIVE; event transport and all concurrency schedules remain separate checks.",
+    "evidence": [
+      {
+        "path": "web/src/lib/state.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/src/lib/reply.ts",
+        "anchor": null
+      },
+      {
+        "path": "web/tests/server/public.test.mjs",
+        "anchor": null
+      }
+    ]
+  }
+]

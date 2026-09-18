@@ -1,0 +1,2572 @@
+{
+  "format": "kidea-map-r1",
+  "adapter": {
+    "name": "clang-json",
+    "version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin\n",
+    "tool": {
+      "path": "/usr/bin/clang++-18",
+      "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45",
+      "image": "sha256:6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92",
+      "components": [
+        {
+          "id": "clang",
+          "sha256": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45"
+        },
+        {
+          "id": "container",
+          "sha256": "6fba0f63f498882a30a8dce7a1d7b6fa051d44b113f3188c38977f7a20e65a92"
+        }
+      ],
+      "version": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin\n"
+    }
+  },
+  "configuration": {
+    "target": "x86_64-linux-gnu",
+    "translationUnit": "backend/src/model.cpp",
+    "args": [
+      "--target=x86_64-linux-gnu",
+      "-DCMARK_STATIC_DEFINE",
+      "-I/Users/kendrick/Desktop/kidea-workshop-pilot/backend/include",
+      "-isystem",
+      "/vendor/cmark/src",
+      "-isystem",
+      "/build/dev/vendor/cmark/src",
+      "-isystem",
+      "/vendor/sqlite",
+      "-isystem",
+      "/usr/include/jsoncpp",
+      "-g",
+      "-std=c++20",
+      "-fPIC",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Werror",
+      "/Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp",
+      "-fsyntax-only",
+      "-Xclang",
+      "-ast-dump=json",
+      "-Xclang",
+      "-ast-dump-filter=workshop"
+    ],
+    "manifestHash": "14463f37d0db2c2fcd5e15083f194a74e44cbba1f8296cafa55803489e136383"
+  },
+  "sources": [
+    {
+      "path": "backend/include/workshop/admission.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "d67e77d67d4a96947f54b16c0bda90ae308d1718752671c24e62749c2a6e0790",
+        "byteLength": 1396
+      }
+    },
+    {
+      "path": "backend/include/workshop/executor.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "5fbc51aa67e0e14bdba4463f5f8331bc238802fac46a6b504383f33b29313f32",
+        "byteLength": 666
+      }
+    },
+    {
+      "path": "backend/include/workshop/model.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "67f4b531c7a33daf89893c0858db4497f5541f05a0a97de0b1d93e66f4e8f931",
+        "byteLength": 1370
+      }
+    },
+    {
+      "path": "backend/include/workshop/store.hpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "5c29b356ad1278753652e13b31ca3eea9803eb70c4309114dc7e59a1438b449d",
+        "byteLength": 2472
+      }
+    },
+    {
+      "path": "backend/src/executor.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "482a72aa3729396990e3dc6dc5eae4b6b9fe27a209aa52ecd28602d7d0534321",
+        "byteLength": 1898
+      }
+    },
+    {
+      "path": "backend/src/main.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "a9709d321905ff19131792382a0fa5f1f6803089f7dedd334067500dc6d256a6",
+        "byteLength": 6026
+      }
+    },
+    {
+      "path": "backend/src/model.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "36733243e0250cde6ae2dc37dda70cb25ef447678d869c0ebf07b4364b133c8b",
+        "byteLength": 8490
+      }
+    },
+    {
+      "path": "backend/src/store.cpp",
+      "integrity": {
+        "method": "SHA256",
+        "value": "3835023dcea35bc3db764c9e19ef87e547adab58a8f799d1c29befc6b148931b",
+        "byteLength": 24228
+      }
+    }
+  ],
+  "inputBasis": "1bf3a3de014781708d55dbced7213f3e79bfd74a188678c4dae8b8d4fad4a327",
+  "nodes": [
+    {
+      "id": "backend/include/workshop/admission.hpp",
+      "path": "backend/include/workshop/admission.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/executor.hpp",
+      "path": "backend/include/workshop/executor.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/model.hpp",
+      "path": "backend/include/workshop/model.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/store.hpp",
+      "path": "backend/include/workshop/store.hpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/executor.cpp",
+      "path": "backend/src/executor.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/main.cpp",
+      "path": "backend/src/main.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/model.cpp",
+      "path": "backend/src/model.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/src/store.cpp",
+      "path": "backend/src/store.cpp",
+      "kind": "file"
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::Invalid CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::Invalid",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::Invalid void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::Invalid",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::Invalid void (const Invalid &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::Invalid",
+      "signature": "void (const Invalid &)",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::Invalid void (Invalid &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::Invalid",
+      "signature": "void (Invalid &&)",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::operator= Invalid &(const Invalid &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::operator=",
+      "signature": "Invalid &(const Invalid &)",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::operator= Invalid &(Invalid &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::operator=",
+      "signature": "Invalid &(Invalid &&)",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::~Invalid void () noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::~Invalid",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 210
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Invalid::runtime_error void (const char *) noexcept(false)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Invalid::runtime_error",
+      "signature": "void (const char *) noexcept(false)",
+      "kind": "symbol",
+      "offset": 275
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::StorageError CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::StorageError",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::StorageError void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::StorageError",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::StorageError void (const StorageError &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::StorageError",
+      "signature": "void (const StorageError &)",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::StorageError void (StorageError &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::StorageError",
+      "signature": "void (StorageError &&)",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::operator= StorageError &(const StorageError &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::operator=",
+      "signature": "StorageError &(const StorageError &)",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::operator= StorageError &(StorageError &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::operator=",
+      "signature": "StorageError &(StorageError &&)",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::~StorageError void () noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::~StorageError",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 300
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::StorageError::runtime_error void (const char *) noexcept(false)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::StorageError::runtime_error",
+      "signature": "void (const char *) noexcept(false)",
+      "kind": "symbol",
+      "offset": 370
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::Response CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::Response",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::status int",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::status",
+      "signature": "int",
+      "kind": "symbol",
+      "offset": 412
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::body Json",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::body",
+      "signature": "Json",
+      "kind": "symbol",
+      "offset": 427
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::Response void (const Response &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::Response",
+      "signature": "void (const Response &)",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::Response void (Response &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::Response",
+      "signature": "void (Response &&)",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::operator= Response &(const Response &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::operator=",
+      "signature": "Response &(const Response &)",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::operator= Response &(Response &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::operator=",
+      "signature": "Response &(Response &&)",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Response::~Response void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Response::~Response",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 395
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::Identity CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::Identity",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::actor std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::actor",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 468
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::participant bool",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::participant",
+      "signature": "bool",
+      "kind": "symbol",
+      "offset": 482
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::admin bool",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::admin",
+      "signature": "bool",
+      "kind": "symbol",
+      "offset": 504
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::csrf std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::csrf",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 527
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::Identity void (const Identity &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::Identity",
+      "signature": "void (const Identity &)",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::Identity void (Identity &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::Identity",
+      "signature": "void (Identity &&)",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::operator= Identity &(const Identity &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::operator=",
+      "signature": "Identity &(const Identity &)",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::operator= Identity &(Identity &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::operator=",
+      "signature": "Identity &(Identity &&)",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Identity::~Identity void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Identity::~Identity",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 443
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::Instant CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::Instant",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::seconds std::int64_t",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::seconds",
+      "signature": "std::int64_t",
+      "kind": "symbol",
+      "offset": 568
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::fraction std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::fraction",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 591
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::operator<=> std::strong_ordering (const Instant &) const noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::operator<=>",
+      "signature": "std::strong_ordering (const Instant &) const noexcept",
+      "kind": "symbol",
+      "offset": 608
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::cmp std::strong_ordering",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::cmp",
+      "signature": "std::strong_ordering",
+      "kind": "symbol",
+      "offset": 651
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::Instant void (const Instant &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::Instant",
+      "signature": "void (const Instant &)",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::Instant void (Instant &&) noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::Instant",
+      "signature": "void (Instant &&) noexcept",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::operator= Instant &(const Instant &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::operator=",
+      "signature": "Instant &(const Instant &)",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::operator= Instant &(Instant &&) noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::operator=",
+      "signature": "Instant &(Instant &&) noexcept",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::~Instant void () noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::~Instant",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::operator== bool (const Instant &) const",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::operator==",
+      "signature": "bool (const Instant &) const",
+      "kind": "symbol",
+      "offset": 608
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Instant::Instant void ()",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Instant::Instant",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 543
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::Fields CXXRecordDecl",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::Fields",
+      "signature": "CXXRecordDecl",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::title std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::title",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 687
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::description std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::description",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 694
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::start std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::start",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 707
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::end std::string",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::end",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 714
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::capacity int",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::capacity",
+      "signature": "int",
+      "kind": "symbol",
+      "offset": 725
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::from Instant",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::from",
+      "signature": "Instant",
+      "kind": "symbol",
+      "offset": 747
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::until Instant",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::until",
+      "signature": "Instant",
+      "kind": "symbol",
+      "offset": 755
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::Fields void (const Fields &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::Fields",
+      "signature": "void (const Fields &)",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::Fields void (Fields &&) noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::Fields",
+      "signature": "void (Fields &&) noexcept",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::operator= Fields &(const Fields &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::operator=",
+      "signature": "Fields &(const Fields &)",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::operator= Fields &(Fields &&)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::operator=",
+      "signature": "Fields &(Fields &&)",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::~Fields void () noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::~Fields",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::Fields::Fields void () noexcept",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::Fields::Fields",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 664
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::codepoints",
+      "signature": "std::vector<std::uint32_t> (std::string_view)",
+      "kind": "symbol",
+      "offset": 794
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::trim std::string (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::trim",
+      "signature": "std::string (std::string_view)",
+      "kind": "symbol",
+      "offset": 836
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::plain bool (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::plain",
+      "signature": "bool (std::string_view)",
+      "kind": "symbol",
+      "offset": 865
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::decode Json (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::decode",
+      "signature": "Json (std::string_view)",
+      "kind": "symbol",
+      "offset": 895
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::keys",
+      "signature": "void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)",
+      "kind": "symbol",
+      "offset": 926
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::string std::string (const Json &, const char *)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::string",
+      "signature": "std::string (const Json &, const char *)",
+      "kind": "symbol",
+      "offset": 1056
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::instant Instant (std::string_view)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::instant",
+      "signature": "Instant (std::string_view)",
+      "kind": "symbol",
+      "offset": 1100
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::fields Fields (const Json &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::fields",
+      "signature": "Fields (const Json &)",
+      "kind": "symbol",
+      "offset": 1134
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::normalized Json (const Fields &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::normalized",
+      "signature": "Json (const Fields &)",
+      "kind": "symbol",
+      "offset": 1161
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::dump std::string (const Json &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::dump",
+      "signature": "std::string (const Json &)",
+      "kind": "symbol",
+      "offset": 1201
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::next_version std::string (const std::string &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::next_version",
+      "signature": "std::string (const std::string &)",
+      "kind": "symbol",
+      "offset": 1233
+    },
+    {
+      "id": "backend/include/workshop/model.hpp#workshop::reply Response (int, const std::string &, const std::string &)",
+      "path": "backend/include/workshop/model.hpp",
+      "name": "workshop::reply",
+      "signature": "Response (int, const std::string &, const std::string &)",
+      "kind": "symbol",
+      "offset": 1277
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::codepoints",
+      "signature": "std::vector<std::uint32_t> (std::string_view)",
+      "kind": "symbol",
+      "offset": 209
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::result std::vector<std::uint32_t>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::result",
+      "signature": "std::vector<std::uint32_t>",
+      "kind": "symbol",
+      "offset": 271
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::i std::size_t",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::i",
+      "signature": "std::size_t",
+      "kind": "symbol",
+      "offset": 298
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::c const unsigned char",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::c",
+      "signature": "const unsigned char",
+      "kind": "symbol",
+      "offset": 337
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::n std::size_t",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::n",
+      "signature": "std::size_t",
+      "kind": "symbol",
+      "offset": 391
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::cp std::uint32_t",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::cp",
+      "signature": "std::uint32_t",
+      "kind": "symbol",
+      "offset": 414
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::k std::size_t",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::k",
+      "signature": "std::size_t",
+      "kind": "symbol",
+      "offset": 797
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::b unsigned char",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::b",
+      "signature": "unsigned char",
+      "kind": "symbol",
+      "offset": 829
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::trim std::string (std::string_view)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::trim",
+      "signature": "std::string (std::string_view)",
+      "kind": "symbol",
+      "offset": 1226
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::points const std::vector<std::uint32_t>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::points",
+      "signature": "const std::vector<std::uint32_t>",
+      "kind": "symbol",
+      "offset": 1266
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::whitespace const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:49:27)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::whitespace",
+      "signature": "const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:49:27)",
+      "kind": "symbol",
+      "offset": 1303
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::operator() bool (std::uint32_t) const",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::operator()",
+      "signature": "bool (std::uint32_t) const",
+      "kind": "symbol",
+      "offset": 1316
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__invoke bool (std::uint32_t)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__invoke",
+      "signature": "bool (std::uint32_t)",
+      "kind": "symbol",
+      "offset": 1316
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:49:27) void () noexcept",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:49:27)",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 1316
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::offsets std::vector<std::size_t>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::offsets",
+      "signature": "std::vector<std::size_t>",
+      "kind": "symbol",
+      "offset": 1609
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__range1 const std::vector<std::uint32_t> &",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__range1",
+      "signature": "const std::vector<std::uint32_t> &",
+      "kind": "symbol",
+      "offset": 1638
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__begin1 const_iterator",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__begin1",
+      "signature": "const_iterator",
+      "kind": "symbol",
+      "offset": 1636
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__end1 const_iterator",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__end1",
+      "signature": "const_iterator",
+      "kind": "symbol",
+      "offset": 1636
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::cp unsigned int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::cp",
+      "signature": "unsigned int",
+      "kind": "symbol",
+      "offset": 1633
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::a std::size_t",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::a",
+      "signature": "std::size_t",
+      "kind": "symbol",
+      "offset": 1903
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::b std::size_t",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::b",
+      "signature": "std::size_t",
+      "kind": "symbol",
+      "offset": 1910
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::plain bool (std::string_view)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::plain",
+      "signature": "bool (std::string_view)",
+      "kind": "symbol",
+      "offset": 2109
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::parser const std::unique_ptr<cmark_parser, decltype(&cmark_parser_free)>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::parser",
+      "signature": "const std::unique_ptr<cmark_parser, decltype(&cmark_parser_free)>",
+      "kind": "symbol",
+      "offset": 2150
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::doc const std::unique_ptr<cmark_node, decltype(&cmark_node_free)>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::doc",
+      "signature": "const std::unique_ptr<cmark_node, decltype(&cmark_node_free)>",
+      "kind": "symbol",
+      "offset": 2404
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::it const std::unique_ptr<cmark_iter, decltype(&cmark_iter_free)>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::it",
+      "signature": "const std::unique_ptr<cmark_iter, decltype(&cmark_iter_free)>",
+      "kind": "symbol",
+      "offset": 2656
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::t const cmark_node_type",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::t",
+      "signature": "const cmark_node_type",
+      "kind": "symbol",
+      "offset": 2881
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::decode Json (std::string_view)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::decode",
+      "signature": "Json (std::string_view)",
+      "kind": "symbol",
+      "offset": 3107
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::quoted bool",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::quoted",
+      "signature": "bool",
+      "kind": "symbol",
+      "offset": 3390
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::escaped bool",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::escaped",
+      "signature": "bool",
+      "kind": "symbol",
+      "offset": 3413
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__range1 std::string_view &",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__range1",
+      "signature": "std::string_view &",
+      "kind": "symbol",
+      "offset": 3452
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::c const char",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::c",
+      "signature": "const char",
+      "kind": "symbol",
+      "offset": 3448
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::b ::Json::CharReaderBuilder",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::b",
+      "signature": "::Json::CharReaderBuilder",
+      "kind": "symbol",
+      "offset": 3748
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::reader const std::unique_ptr< ::Json::CharReader>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::reader",
+      "signature": "const std::unique_ptr< ::Json::CharReader>",
+      "kind": "symbol",
+      "offset": 4034
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::j Json",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::j",
+      "signature": "Json",
+      "kind": "symbol",
+      "offset": 4068
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::errors std::string",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::errors",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 4085
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::keys",
+      "signature": "void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)",
+      "kind": "symbol",
+      "offset": 4228
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__range1 Members &&",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__range1",
+      "signature": "Members &&",
+      "kind": "symbol",
+      "offset": 4416
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__begin1 iterator",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__begin1",
+      "signature": "iterator",
+      "kind": "symbol",
+      "offset": 4414
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__end1 iterator",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__end1",
+      "signature": "iterator",
+      "kind": "symbol",
+      "offset": 4414
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::k std::basic_string<char> const &",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::k",
+      "signature": "std::basic_string<char> const &",
+      "kind": "symbol",
+      "offset": 4412
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__range1 const std::vector<std::string> &",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__range1",
+      "signature": "const std::vector<std::string> &",
+      "kind": "symbol",
+      "offset": 4560
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::k const std::basic_string<char> &",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::k",
+      "signature": "const std::basic_string<char> &",
+      "kind": "symbol",
+      "offset": 4556
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::string",
+      "signature": "std::string (const Json &, const char *)",
+      "kind": "symbol",
+      "offset": 4658
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::v const String",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::v",
+      "signature": "const String",
+      "kind": "symbol",
+      "offset": 4763
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::cp const std::vector<std::uint32_t>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::cp",
+      "signature": "const std::vector<std::uint32_t>",
+      "kind": "symbol",
+      "offset": 4797
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::instant Instant (std::string_view)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::instant",
+      "signature": "Instant (std::string_view)",
+      "kind": "symbol",
+      "offset": 4920
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::pattern const std::regex",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::pattern",
+      "signature": "const std::regex",
+      "kind": "symbol",
+      "offset": 5051
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::s const std::string",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::s",
+      "signature": "const std::string",
+      "kind": "symbol",
+      "offset": 5197
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::m std::smatch",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::m",
+      "signature": "std::smatch",
+      "kind": "symbol",
+      "offset": 5221
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::y const int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::y",
+      "signature": "const int",
+      "kind": "symbol",
+      "offset": 5303
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::mo const int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::mo",
+      "signature": "const int",
+      "kind": "symbol",
+      "offset": 5324
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::d const int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::d",
+      "signature": "const int",
+      "kind": "symbol",
+      "offset": 5346
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::h const int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::h",
+      "signature": "const int",
+      "kind": "symbol",
+      "offset": 5379
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::mi const int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::mi",
+      "signature": "const int",
+      "kind": "symbol",
+      "offset": 5400
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::se const int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::se",
+      "signature": "const int",
+      "kind": "symbol",
+      "offset": 5422
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::date const std::chrono::year_month_day",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::date",
+      "signature": "const std::chrono::year_month_day",
+      "kind": "symbol",
+      "offset": 5480
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::offset int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::offset",
+      "signature": "int",
+      "kind": "symbol",
+      "offset": 5695
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::zone const std::string",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::zone",
+      "signature": "const std::string",
+      "kind": "symbol",
+      "offset": 5727
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::oh const int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::oh",
+      "signature": "const int",
+      "kind": "symbol",
+      "offset": 5775
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::om const int",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::om",
+      "signature": "const int",
+      "kind": "symbol",
+      "offset": 5824
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::fraction std::string",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::fraction",
+      "signature": "std::string",
+      "kind": "symbol",
+      "offset": 6021
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::fields",
+      "signature": "Fields (const Json &)",
+      "kind": "symbol",
+      "offset": 6397
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::f Fields",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::f",
+      "signature": "Fields",
+      "kind": "symbol",
+      "offset": 6548
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::titlePoints const std::vector<std::uint32_t>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::titlePoints",
+      "signature": "const std::vector<std::uint32_t>",
+      "kind": "symbol",
+      "offset": 6652
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::lineBreak const bool",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::lineBreak",
+      "signature": "const bool",
+      "kind": "symbol",
+      "offset": 6700
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::operator() auto (auto) const",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::operator()",
+      "signature": "auto (auto) const",
+      "kind": "symbol",
+      "offset": 6770
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::operator() bool (unsigned int) const",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::operator()",
+      "signature": "bool (unsigned int) const",
+      "kind": "symbol",
+      "offset": 6770
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::__invoke auto (auto)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::__invoke",
+      "signature": "auto (auto)",
+      "kind": "symbol",
+      "offset": 6770
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59) void () noexcept",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::~(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59)",
+      "signature": "void () noexcept",
+      "kind": "symbol",
+      "offset": 6770
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59) void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59) &) noexcept",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59)",
+      "signature": "void (const (lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59) &) noexcept",
+      "kind": "symbol",
+      "offset": 6770
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59) void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59) &&) noexcept",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59)",
+      "signature": "void ((lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59) &&) noexcept",
+      "kind": "symbol",
+      "offset": 6770
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59) void ()",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::(lambda at /Users/kendrick/Desktop/kidea-workshop-pilot/backend/src/model.cpp:194:59)",
+      "signature": "void ()",
+      "kind": "symbol",
+      "offset": 6770
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::schedule const Value &",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::schedule",
+      "signature": "const Value &",
+      "kind": "symbol",
+      "offset": 7358
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::normalized Json (const Fields &)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::normalized",
+      "signature": "Json (const Fields &)",
+      "kind": "symbol",
+      "offset": 7646
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::dump std::string (const Json &)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::dump",
+      "signature": "std::string (const Json &)",
+      "kind": "symbol",
+      "offset": 7870
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::b ::Json::StreamWriterBuilder",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::b",
+      "signature": "::Json::StreamWriterBuilder",
+      "kind": "symbol",
+      "offset": 7922
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::next_version std::string (const std::string &)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::next_version",
+      "signature": "std::string (const std::string &)",
+      "kind": "symbol",
+      "offset": 8000
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::n std::uint64_t",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::n",
+      "signature": "std::uint64_t",
+      "kind": "symbol",
+      "offset": 8053
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::r const __detail::__integer_from_chars_result_type<unsigned long>",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::r",
+      "signature": "const __detail::__integer_from_chars_result_type<unsigned long>",
+      "kind": "symbol",
+      "offset": 8071
+    },
+    {
+      "id": "backend/src/model.cpp#workshop::reply Response (int, const std::string &, const std::string &)",
+      "path": "backend/src/model.cpp",
+      "name": "workshop::reply",
+      "signature": "Response (int, const std::string &, const std::string &)",
+      "kind": "symbol",
+      "offset": 8319
+    }
+  ],
+  "edges": [
+    {
+      "from": "backend/include/workshop/executor.hpp",
+      "to": "backend/include/workshop/store.hpp",
+      "kind": "include-source-directive"
+    },
+    {
+      "from": "backend/include/workshop/store.hpp",
+      "to": "backend/include/workshop/model.hpp",
+      "kind": "include-source-directive"
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::points const std::vector<std::uint32_t>",
+      "to": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 1275
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::trim std::string (std::string_view)",
+      "to": "backend/src/model.cpp#workshop::operator() bool (std::uint32_t) const",
+      "kind": "resolved-declaration-call",
+      "offset": 1947
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::trim std::string (std::string_view)",
+      "to": "backend/src/model.cpp#workshop::operator() bool (std::uint32_t) const",
+      "kind": "resolved-declaration-call",
+      "offset": 1997
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::decode Json (std::string_view)",
+      "to": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 3214
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::cp const std::vector<std::uint32_t>",
+      "to": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 4802
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)",
+      "kind": "resolved-declaration-call",
+      "offset": 6423
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::trim std::string (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 6563
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)",
+      "kind": "resolved-declaration-call",
+      "offset": 6568
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::trim std::string (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 6607
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)",
+      "kind": "resolved-declaration-call",
+      "offset": 6612
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::titlePoints const std::vector<std::uint32_t>",
+      "to": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 6666
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 6930
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 7057
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::plain bool (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 7107
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::plain bool (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 7126
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)",
+      "kind": "resolved-declaration-call",
+      "offset": 7386
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)",
+      "kind": "resolved-declaration-call",
+      "offset": 7450
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)",
+      "kind": "resolved-declaration-call",
+      "offset": 7487
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/include/workshop/model.hpp#workshop::Instant::operator= Instant &(Instant &&) noexcept",
+      "kind": "resolved-declaration-call",
+      "offset": 7514
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::instant Instant (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 7523
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/include/workshop/model.hpp#workshop::Instant::operator= Instant &(Instant &&) noexcept",
+      "kind": "resolved-declaration-call",
+      "offset": 7543
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/src/model.cpp#workshop::instant Instant (std::string_view)",
+      "kind": "resolved-declaration-call",
+      "offset": 7553
+    },
+    {
+      "from": "backend/src/model.cpp#workshop::fields Fields (const Json &)",
+      "to": "backend/include/workshop/model.hpp#workshop::Instant::operator<=> std::strong_ordering (const Instant &) const noexcept",
+      "kind": "resolved-declaration-call",
+      "offset": 7577
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:algorithm"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:map"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:mutex"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/admission.hpp:string"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:condition_variable"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:deque"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:future"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:mutex"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/executor.hpp:thread"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:compare"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:cstdint"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:json/json.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:stdexcept"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:string"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:string_view"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/model.hpp:vector"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:functional"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:optional"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/include/workshop/store.hpp:sqlite3.h"
+    },
+    {
+      "code": "CONDITIONAL_SCOPE_TARGET_SPECIFIC",
+      "detail": "backend/include/workshop/store.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/executor.cpp:workshop/executor.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/executor.cpp:cstdlib"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:workshop/admission.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:workshop/executor.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:atomic"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:cerrno"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:csignal"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:drogon/drogon.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:fstream"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:iostream"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:iterator"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:map"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/main.cpp:pthread.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:workshop/model.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:algorithm"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:charconv"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:cmark.h"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:limits"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:memory"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/model.cpp:regex"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:workshop/store.hpp"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:chrono"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:deque"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:filesystem"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:limits"
+    },
+    {
+      "code": "INCLUDE_OUTSIDE_LOCAL_SCOPE",
+      "detail": "backend/src/store.cpp:memory"
+    },
+    {
+      "code": "CONDITIONAL_SCOPE_TARGET_SPECIFIC",
+      "detail": "backend/src/store.cpp"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/include/workshop/model.hpp#workshop::Instant::operator<=> std::strong_ordering (const Instant &) const noexcept"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/include/workshop/model.hpp#workshop::Instant::cmp std::strong_ordering"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/include/workshop/model.hpp#workshop::Instant::operator<=> std::strong_ordering (const Instant &) const noexcept"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/include/workshop/model.hpp#workshop::Instant::operator= Instant &(Instant &&) noexcept"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::c const unsigned char"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::b unsigned char"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::codepoints std::vector<std::uint32_t> (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::__begin1 const_iterator"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::__end1 const_iterator"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::cp unsigned int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::b std::size_t"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::trim std::string (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::parser const std::unique_ptr<cmark_parser, decltype(&cmark_parser_free)>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::doc const std::unique_ptr<cmark_node, decltype(&cmark_node_free)>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::doc const std::unique_ptr<cmark_node, decltype(&cmark_node_free)>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::it const std::unique_ptr<cmark_iter, decltype(&cmark_iter_free)>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::it const std::unique_ptr<cmark_iter, decltype(&cmark_iter_free)>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::plain bool (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::t const cmark_node_type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::t const cmark_node_type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::t const cmark_node_type"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::__begin1 const_iterator"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::__end1 const_iterator"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::reader const std::unique_ptr< ::Json::CharReader>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::decode Json (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::__range1 Members &&"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::__begin1 iterator"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::__end1 iterator"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::k std::basic_string<char> const &"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::__begin1 const_iterator"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::__end1 const_iterator"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::k const std::basic_string<char> &"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::keys void (const Json &, const std::vector<std::string> &, const std::vector<std::string> &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::v const String"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::v const String"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::cp const std::vector<std::uint32_t>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::string std::string (const Json &, const char *)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::y const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::y const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::y const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::mo const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::mo const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::mo const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::d const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::d const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::d const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::h const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::h const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::h const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::mi const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::mi const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::mi const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::se const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::se const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::se const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::zone const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::zone const std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::oh const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::oh const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::om const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::om const int"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fraction std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fraction std::string"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::instant Instant (std::string_view)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::titlePoints const std::vector<std::uint32_t>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::lineBreak const bool"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::lineBreak const bool"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::lineBreak const bool"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::schedule const Value &"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::fields Fields (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::normalized Json (const Fields &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::dump std::string (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::dump std::string (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::dump std::string (const Json &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::r const __detail::__integer_from_chars_result_type<unsigned long>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::r const __detail::__integer_from_chars_result_type<unsigned long>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::r const __detail::__integer_from_chars_result_type<unsigned long>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::r const __detail::__integer_from_chars_result_type<unsigned long>"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::next_version std::string (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::next_version std::string (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::next_version std::string (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::next_version std::string (const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::reply Response (int, const std::string &, const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::reply Response (int, const std::string &, const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::reply Response (int, const std::string &, const std::string &)"
+    },
+    {
+      "code": "INDIRECT_OR_EXTERNAL_CALL_UNRESOLVED",
+      "detail": "backend/src/model.cpp#workshop::reply Response (int, const std::string &, const std::string &)"
+    }
+  ],
+  "limits": [
+    "One translation unit and compile target; include directives are not proof of active preprocessing.",
+    "Resolved declaration calls do not prove virtual/callback runtime dispatch; external headers remain outside this local graph."
+  ],
+  "completeness": "INCOMPLETE",
+  "verification": "STRUCTURE_ONLY_SEMANTIC_REVIEW_REQUIRED",
+  "digest": "66e5ab367d0ec4c62caff9cc54238bba531d309de4a8900ff7e8717c69ecee70"
+}

@@ -1,0 +1,11 @@
+# Current pilot maps — extraction completed, semantic coverage incomplete
+
+Read-only adapters were run on real current pilot sources. The21inherited product documents byte-match accepted C source8ce0af4. [Document map](pilot-maps-r2/documentation.json):142nodes/1052links,0structural diagnostics. That does not prove semantic responsibility or application correctness.
+
+[Web map](pilot-maps-r2/web.json) includes current source and tests:23files,223nodes/124edges,647diagnostics. Keep unresolved package/generated aliases, calls, reactive/event bindings, dynamic URLs and executable config explicit. Trusted TypeScript/Svelte parsers were preloaded from existing locked dependencies; project-selected executable config was not run by the map adapter.
+
+[C++ capture](pilot-maps-r2/clang-run/result.json) used cached Clang18 in one bounded Linux amd64 container, four production translation units and reviewed dev compile arguments. Source/generated-header/vendor hashes were frozen; no build or deploy is inferred from AST capture. [Counts and raw AST hashes](pilot-maps-r2/clang-run/summary.json); raw AST files are gzip-compressed without changing their decompressed bytes. All four commands exit0; maps remain INCOMPLETE because external headers/calls, callback dispatch and other indirect relations need semantic review. The original [mount configuration FAIL](pilot-maps-r1/clang-run/result.json) was retained, fixed by mounting the manifest outside the read-only /plan bind; no source/compiler/sandbox weakening.
+
+[Six authored Web responsibility rows](pilot-maps-r2/traceability-draft.md) produce18links and a derived reverse lookup. Event wiring is explicitly not implemented; the [derived receipt](pilot-maps-r2/traceability.json) stays INCOMPLETE. This draft is evidence prepared outside the pilot; it has not replaced the project's authored mapping or changed .kidea work state. No fourth test-progress map or invented runtime relation was created.
+
+Next: carry these receipts into semantic impact review and the single authored responsibility source at the appropriate stage. Final pilot view/T14 still requires current completed maps and actual work/review records. The earlier view with10UNEXPANDED groups is a historical snapshot, not final acceptance.

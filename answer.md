@@ -1,6 +1,8 @@
-Đang tiếp tục trọn R09 theo quyền đã duyệt, không cần xác nhận từng lượt build.
+Đã kiểm xong lát backend/Web đầu tiên:
 
-- R8 đã hoàn tất với giới hạn WAL/TSan được giữ nguyên; lỗi signal handler đã sửa và kiểm.
-- R9 đạt dev/ASan nhưng FAIL ở parser thứ tự in bài đối chứng TSan. Đã sửa đúng cặp đọc/ghi đã duyệt,112 kiểm offline đạt; đang chạy đầy đủ build r10 trên nguồn3876326, manifest a82750b3. Đây là số lượt build, chưa mở phase R10.
-- Web33unit/17SSR–Chrome đã đạt với API giả. Bổ sung lỗi phục hồi trang riêng tư sau đổi tài khoản đã sửa,18SSR–Chrome PASS; gói HTTPS/backend thật đã chuẩn bị và chờ release artifact cuối.
-- Giữ tất cả FAIL/PASS, ngân sách cộng dồn và gate chưa nghiệm thu. Tiếp tục T03 rồi các lát còn lại; không tự nhận toàn R09 hoàn tất.
+- Backend hoàn tất4cấu hình, giữ giới hạn TSan đã duyệt.
+- Web đạt33unit,18SSR–Chrome và15tình huống HTTPS với backend thật. Các lỗi và log FAIL/PASS được giữ.
+
+Đang chờ bạn duyệt [gói ghi nhận cây việc](docs/R09_REPLAN_REVIEW.md): giữ10bước, phân17việc và ghi nhận21hồ sơ kế thừa, không nhậpDONE. Sau đó tiếp tục T04; R09 chưa hoàn tất.
+
+Chốt này do skill Kidea yêu cầu xác nhận đúng bản review trước đổi cây công việc; không phải xin lại quyền build/Docker hoặc nghiệp vụ đã duyệt. Review R09-REPLAN-LEGACY-r1 revision1, SHA2568dce62dcf6f9b37d9e7246937eca54f7bc5ef88304606089e4fe7ee5df14c37c đang IN_REVIEW, chưa APPROVE.
