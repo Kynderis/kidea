@@ -1,7 +1,7 @@
 {
   "scope": "R09 compact recovery protocol v3 r1",
-  "authorization": "Human approved: Duyệt recovery protocol v3 r1",
-  "result": "CANDIDATE_PASS_PILOT_RETRY_PENDING",
+  "authorization": "Human approved: Duy\u1ec7t recovery protocol v3 r1",
+  "result": "PASS_PILOT_R13_IN_REVIEW",
   "behavior": {
     "reviewWrites": 3,
     "otherWrites": 2,
@@ -78,5 +78,17 @@
     "No historical checkpoint cleanup",
     "No Pilot metadata changed yet",
     "No automatic approval or completion"
-  ]
+  ],
+  "pilot": {
+    "retry": "REVIEW_RECORDED_DRAFT_R13",
+    "read": "WAITING",
+    "save": "CONTINUATION_SAVED",
+    "submit": "REVIEW_RECORDED_IN_REVIEW_R13",
+    "reviewDigest": "52927f9e36c11f5736ec1bcca005bdaacd502c6b3ae35173ef386d7dcf1475f2",
+    "pilotCommit": "78dbcf50263b2a53bd63f4792a6480cdc4bb4c8e",
+    "remote": null,
+    "pending": false,
+    "humanApproval": "NOT_RECORDED",
+    "t05R09Completion": "NOT_RECORDED"
+  }
 }

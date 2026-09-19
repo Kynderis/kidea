@@ -1,5 +1,13 @@
 # R09 T05 — outbox, cập nhật trực tiếp và phần vận hành còn lại
 
+## Hiện hành — recovery protocol v3 hoàn tất, review r13 chờ Human
+
+**Hiện hành, 2026-09-20.** Human đã duyệt recovery protocol v3 r1. Kidea commit/push `0b7fa924` chỉ dùng v3 cho review write mới: live input giữ SHA-256/độ dài, Git input giữ location/integrity, target vẫn giữ đầy đủ before/planned bytes; writer/recovery đọc lại byte thật và fail closed. Protocol v2 lịch sử vẫn được hỗ trợ, trần 128 MiB/64 MiB giữ nguyên. Kết quả cuối đạt 14/14 recovery tập trung, 293/293 core và 9/9 suite R09; mọi FAIL ban đầu được giữ và sửa đúng nguyên nhân. [Bằng chứng](../tests/evidence/r09/recovery-protocol-v3-r1/summary.json).
+
+Đúng một retry Pilot đã ghi `R09-T04-OUTPUT-r1` revision 13 DRAFT. Public READ sau khi sửa request anchor từ tiêu đề Markdown sang `null` trả WAITING, đúng checkout `a91e8fd`, current item `W-009-ADMIN-OPS`, không blocker và attention `IMPACT_REVIEW_REQUIRED`. SAVE trả `CONTINUATION_SAVED`; SUBMIT đưa revision 13 sang **IN_REVIEW**, digest toàn file `52927f9e…f1475f2`, gồm 117 subject version và 154 input version. Metadata Pilot được commit local `78dbcf5`, sạch, không remote/pending. Đây chưa phải Human approval hay T05/R09 completion.
+
+**Còn lại:** Human cần nghiệm thu đúng r13 hiện hành trước khi có thể ghi APPROVED. Coverage PARTIAL/NOT_RUN, WQ/vận hành hữu hạn, semantic impact refresh, monitoring/observer, T08 restore/release, G2 và nghiệm thu cuối vẫn mở theo phạm vi tương ứng. Task kỹ thuật tiếp theo là coverage reconciliation + WQ/impact refresh; độ khó cao, đề xuất **GPT-5.6 Sol + High**. R10 chưa mở; Android/iOS vẫn Future, Windows và Apple Silicon chưa được chứng minh bởi lượt này.
+
 ## Hiện hành — backend readiness/lifecycle component PASS
 
 **Hiện hành, 2026-09-19.** Pilot source `4ee234e`, evidence commit local `a91e8fd` (Pilot không có remote). Backend nay tách `STARTING`, `READ_READY`, `WRITE_READY`, `DRAINING` và `STOPPED`. Đọc mở sau khi SQLite recovery/schema/epoch hợp lệ; ghi chỉ mở khi có receipt lab riêng tư cùng epoch, recovery point không quá 15 phút, đủ assertion backup/topology/receiver và probe ứng dụng có xác thực không quá 7 giây. Sample và probe trạng thái ghi không thể tự làm mới admission. Receipt sai quyền, sai epoch, lỗi định dạng, thiếu proof hoặc observer mất tín hiệu đều fail closed; drain chặn request mới trước khi chờ job đã nhận.

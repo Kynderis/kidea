@@ -1,11 +1,7 @@
-Đã hoàn tất lát backend readiness/lifecycle của R09-T05 trên Pilot source `4ee234e`; bằng chứng commit local `a91e8fd` và đã được sao sang repo Kidea. Backend tách read/write readiness, fail closed khi receipt/probe/backup/topology không hợp lệ và drain request mới trước khi chờ job đã nhận.
+Đã hoàn tất recovery protocol v3 r1 theo phê duyệt của Human. Kidea commit/push `0b7fa924` dùng integrity-bound input cho review write mới, hỗ trợ ngược protocol v2 và giữ nguyên trần 128 MiB/64 MiB. Kết quả cuối PASS 14/14 recovery tập trung, 293/293 core và 9/9 suite R09; các lượt FAIL ban đầu được giữ trong bằng chứng.
 
-Bốn preset dev, ASan/UBSan, TSan và release đều exit 0. Mỗi preset đạt 50 CTest/856 assertion, 14 lifecycle, 34 HTTP, 77 update, 174 telemetry, 20 backup, hai shutdown và tám session; observer 35/35. Web đạt sync, typecheck 0 diagnostics, lint, 102/102 unit và production build. TSan chỉ giữ đúng bảy ca/14 report SQLite-WAL kế thừa dưới EX r2; HTTP/lifecycle sạch. Lượt FAIL đầu của HTTP oracle được giữ và sửa đúng nguyên nhân scheduler, không nới safety gate.
+Đúng một retry Pilot đã tạo review `R09-T04-OUTPUT-r1` revision 13. Public READ trả WAITING, SAVE continuation thành công và SUBMIT đưa r13 sang **IN_REVIEW** với digest `52927f9e36c11f5736ec1bcca005bdaacd502c6b3ae35173ef386d7dcf1475f2`. Pilot metadata commit local `78dbcf5`, sạch, không remote và không pending.
 
-Đây là component PASS, chưa phải T05/R09 hoàn tất. Receipt lab không phải proof production; telemetry vẫn `writeReady=false`, M3/M7 UNKNOWN. Còn coverage reconciliation, WQ/vận hành, scheduler/retention, independent observer hiện thời, restore/release T08, impact ngữ nghĩa, G2 và Human nghiệm thu. Public review r12 đã stale do nguồn mới có ý nghĩa. Lượt tạo r13 bị từ chối `RECOVERY_REQUEST_TOO_LARGE` trước khi ghi; READ sau lỗi không có pending-write diagnostic. r13 chưa tồn tại và continuation chưa lưu.
+Human vẫn cần nghiệm thu đúng r13 hiện hành; chưa ghi APPROVED và chưa hoàn tất T05/R09. Còn coverage PARTIAL/NOT_RUN, WQ/vận hành, semantic impact refresh, monitoring/observer, T08 restore/release, G2 và nghiệm thu cuối. Task kỹ thuật tiếp theo là coverage reconciliation + WQ/impact refresh; đề xuất **GPT-5.6 Sol + High**. R10 chưa mở; Android/iOS vẫn Future, Windows và Apple Silicon chưa được chứng minh.
 
-Kiểm lõi Kidea trên Node v24.21.0 đạt 293/293, stderr rỗng và đầu vào không đổi.
-
-Task tiếp theo là coverage reconciliation và WQ/vận hành hữu hạn. Độ khó cao; đề xuất **GPT-5.6 Sol + High**. [Bằng chứng và điểm tiếp tục](docs/R09_T05_PROGRESS.md).
-
-Để lưu review/checkpoint, cần duyệt [gói compact recovery protocol v3 r1](proposals/r09-recovery-protocol-v3-r1.md): giữ cap 128 MiB, dùng hash+độ dài cho input chỉ đọc, tương thích ngược v2, kiểm đầy đủ rồi retry r13 đúng một lần. Đây là thay đổi đường phục hồi nên chưa tự áp dụng.
+[Bằng chứng và log FAIL/PASS](tests/evidence/r09/recovery-protocol-v3-r1/summary.json) · [Trạng thái T05](docs/R09_T05_PROGRESS.md) · [Roadmap](KIDEA_ROADMAP.md)

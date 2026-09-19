@@ -1,6 +1,6 @@
 # R09 — compact recovery protocol v3 r1
 
-**HUMAN ĐÃ DUYỆT — CANDIDATE ĐÃ PASS, CHỜ RETRY PILOT.** Human xác nhận “Duyệt recovery protocol v3 r1”. Runtime/helper và test đã triển khai; [candidate](../tests/evidence/r09/recovery-protocol-v3-r1/summary.json) PASS 14/14 recovery tập trung, 293/293 core và 9/9 suite R09 trên nguồn cuối. Lượt core đầu giữ 2 FAIL hồi quy rồi sửa đúng hợp đồng; lượt R09 đầu giữ 2 FAIL do thiếu env R06 và lượt cuối đủ env PASS. Chưa retry review hoặc ghi metadata Pilot tại thời điểm cập nhật này; không tăng bất kỳ giới hạn byte nào.
+**HUMAN ĐÃ DUYỆT — TRIỂN KHAI VÀ RETRY PILOT ĐÃ HOÀN TẤT.** Human xác nhận “Duyệt recovery protocol v3 r1”. Runtime/helper và test đã triển khai ở commit Kidea `0b7fa924`; [kết quả](../tests/evidence/r09/recovery-protocol-v3-r1/summary.json) PASS 14/14 recovery tập trung, 293/293 core và 9/9 suite R09 trên nguồn cuối. Lượt core đầu giữ 2 FAIL hồi quy rồi sửa đúng hợp đồng; lượt R09 đầu giữ 2 FAIL do thiếu env R06 và lượt cuối đủ env PASS. Đúng một retry Pilot tạo r13 DRAFT, public READ hợp lệ, SAVE continuation thành công và SUBMIT đưa r13 sang IN_REVIEW; metadata Pilot commit local `78dbcf5`, không remote. Không tăng giới hạn byte, không tự APPROVE hoặc COMPLETE.
 
 ## Phần cần duyệt nhanh
 
