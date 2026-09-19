@@ -1,5 +1,11 @@
 # Bàn giao Kidea sang phiên Codex trên Mac
 
+**Hiện hành — backend readiness/lifecycle component PASS, 2026-09-19.** Pilot source `4ee234e`, evidence commit local `a91e8fd`, không remote. Bốn preset dev/ASan/TSan/release đều exit 0; mỗi preset đạt 50 CTest/856 assertion, 14 lifecycle, 34 HTTP, 77 update, 174 telemetry, 20 backup, hai shutdown và tám session. Observer 35/35; Web 102/102 cùng typecheck/lint/build PASS. TSan chỉ còn đúng bảy ca/14 report SQLite-WAL kế thừa dưới EX r2; HTTP/lifecycle sạch. [Bằng chứng](../tests/evidence/r09/t05-readiness-lifecycle-r1/summary.json).
+
+Kiểm lõi Kidea trên Node v24.21.0 đạt 293/293, stderr rỗng và đầu vào không đổi.
+
+Đây chỉ là component PASS. Receipt lab không phải proof production; telemetry vẫn `writeReady=false`, M3/M7 UNKNOWN. Public review r12 stale vì thay đổi có ý nghĩa. Lượt tạo r13 bị từ chối `RECOVERY_REQUEST_TOO_LARGE` trước khi ghi; READ sau lỗi không có pending-write diagnostic. r13 chưa tồn tại và continuation chưa lưu. T05/R09 còn coverage reconciliation, WQ/vận hành, scheduling/retention, independent observer hiện thời, restore/release T08, impact/G2 và nghiệm thu. R10 chưa mở; Android/iOS Future, Apple Silicon và Windows hiện hành chưa kiểm. Task tiếp theo khó, đề xuất **GPT-5.6 Sol + High**.
+
 **Hiện hành — backup online và bản sao lab độc lập đã được kiểm, 2026-09-19.** Pilot source `a1102ce`, evidence source `a8388e4`, metadata checkpoint `23e0588`, repo local không remote. Bốn preset r5 đều exit 0; mỗi preset đạt 174 telemetry, 20 backup, 77 update. TSan chỉ còn đúng 7 ca/14 report WAL kế thừa EX r2, HTTP sạch và phần mới không có sanitizer report. Các FAIL r1/r3/r4 vẫn được giữ.
 
 Binary release tạo snapshot một file `0600`, 2.408.448 byte, hash `2c4ebb1c…ad7e88`, `quick_check=ok`, journal `delete`, watermark/epoch đúng, không sidecar. Cùng file được xác minh trên VM Debian 12 x86_64 độc lập tại GCP; receipt chỉ lab, không production. VM và boot disk đã xóa, kiểm sau xóa rỗng. Bundle Git Pilot mới đã verify nhưng nằm cùng Mac, không thay bản sao độc lập.

@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "attempts": [
+    {
+      "id": "authoring-r1",
+      "state": "FAIL",
+      "cause": "Manual CTest harness omitted WORKSHOP_CASE_ROOT; source unchanged; corrected rerun passed."
+    },
+    {
+      "id": "authoring-r2",
+      "state": "FAIL",
+      "cause": "Formatter gate included modified telemetry.cpp; formatted the complete configured C++ scope."
+    },
+    {
+      "id": "authoring-r4",
+      "state": "FAIL",
+      "cause": "Harness pre-created the HTTP CREATE-only output directory; rerun used a new absent child path."
+    },
+    {
+      "id": "frozen-r2",
+      "state": "FAIL",
+      "cause": "ASan HTTP sampled during dispatcher/collector contention and the timing-specific pending-only oracle failed. No sanitizer report; 50 CTest and lifecycle 14 passed. Oracle split into sequence/catalog plus a coherent pending-or-completed state, while deterministic telemetry unit retained exact pending coverage."
+    },
+    {
+      "id": "web-final-r1",
+      "state": "INVALID_SETUP",
+      "cause": "Copy harness named a nonexistent static directory; output not used as final evidence."
+    },
+    {
+      "id": "frozen-r3",
+      "state": "PASS",
+      "cause": "All four presets passed on committed source; TSan retained only exact EX-T02-WAL-01-r2 cases."
+    },
+    {
+      "id": "web-final-r2",
+      "state": "PASS",
+      "cause": "48 source files hash-matched; offline Node24 sync/check/lint/102 unit/build passed."
+    }
+  ],
+  "externalRaw": {
+    "frozenFail": "/Users/kendrick/Desktop/kidea-t02-build-lab/t02-e4098d98-5dc5-4b39-8607-bc145c200e6f",
+    "frozenPass": "/Users/kendrick/Desktop/kidea-t02-build-lab/t02-6f159979-1280-4665-bfe1-cdd2da88bb3e",
+    "webPass": "/Users/kendrick/Desktop/kidea-t02-build-lab/final-web-readiness-r2",
+    "authoring": "/Users/kendrick/Desktop/kidea-t02-build-lab/authoring-lifecycle-r1..r5"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "status": "COMPONENT_PASS_WITH_DECLARED_TSAN_LIMITATION",
+  "sourceCommit": "4ee234e2d182ec37e0254df73c6d0bb70c694768",
+  "manifestSha256": "3c9d85dfcb0b151a7556f7d8572062b90341be5f7a7e64902a8331808a27e338",
+  "runId": "t02-6f159979-1280-4665-bfe1-cdd2da88bb3e",
+  "results": {
+    "presets": 4,
+    "ctestPerPreset": 50,
+    "baselineAssertions": 856,
+    "lifecyclePerPreset": 14,
+    "httpPerPreset": 34,
+    "updatesPerPreset": 77,
+    "telemetryPerPreset": 174,
+    "backupPerPreset": 20,
+    "shutdownPerPreset": 2,
+    "sessionPerPreset": 8,
+    "observerDev": 35,
+    "webUnit": 102
+  },
+  "tsan": {
+    "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED",
+    "knownCases": 7,
+    "knownReports": 14,
+    "exception": "EX-T02-WAL-01-r2",
+    "httpReports": 0,
+    "newLifecycleReports": 0
+  },
+  "claims": [
+    "Internal backend component separates read and write readiness.",
+    "Mutations require same-epoch private receipt, fresh backup assertions, verified topology and current authenticated observer probe.",
+    "Drain closes new API work before accepted executor jobs drain."
+  ],
+  "limits": [
+    "Receipt booleans are operator-bound lab configuration, not production proof.",
+    "Telemetry still exports writeReady=false; M3 and M7 remain UNKNOWN.",
+    "No current independent observer deployment, restore, WQ, Human PROD, G2 or T05/R09 completion claim.",
+    "Mac Intel and Linux amd64 Docker evidence only; Apple Silicon and current Windows not run."
+  ]
+}

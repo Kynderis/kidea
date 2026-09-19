@@ -1,5 +1,9 @@
 # Kidea — Lộ trình xây dựng, vòng R2
 
+**Hiện hành — backend readiness/lifecycle component PASS, 2026-09-19.** Pilot source `4ee234e`, evidence commit local `a91e8fd`, không remote. Bốn preset dev/ASan/TSan/release đều exit 0; mỗi preset đạt 50 CTest/856 assertion, 14 lifecycle, 34 HTTP, 77 update, 174 telemetry, 20 backup, hai shutdown và tám session. Observer 35/35; Web 102/102 cùng typecheck/lint/build PASS. TSan chỉ giữ đúng bảy ca/14 report SQLite-WAL kế thừa dưới EX r2; HTTP/lifecycle sạch. [Bằng chứng](tests/evidence/r09/t05-readiness-lifecycle-r1/summary.json).
+
+Đây là component PASS, chưa phải T05/R09 hoàn tất. Receipt lab không phải proof production; telemetry vẫn `writeReady=false`, M3/M7 UNKNOWN. Review r12 đã stale; lượt tạo r13 bị từ chối `RECOVERY_REQUEST_TOO_LARGE` trước khi ghi, READ sau lỗi không có pending-write diagnostic. Còn coverage reconciliation, WQ/vận hành, scheduler/retention, independent observer hiện thời, restore/release T08, impact/G2 và nghiệm thu. R10 chưa mở; Android/iOS Future, Apple Silicon và Windows hiện hành chưa kiểm. Task tiếp theo khó, đề xuất **GPT-5.6 Sol + High**. [Chi tiết/giới hạn](docs/R09_T05_PROGRESS.md). Các đoạn dưới giữ lịch sử.
+
 **Hiện hành — backup online và bản sao lab độc lập đã được kiểm, 2026-09-19.** Pilot source `a1102ce`, evidence source `a8388e4`, metadata checkpoint `23e0588` (không remote). Thành phần backup ghi watermark trong snapshot, xác minh hash/integrity, đo headroom thật và xuất một file `0600` rollback-journal không WAL/SHM sidecar. Embedded writer/collector có gate nội bộ 100 ms rồi fail UNKNOWN.
 
 Manifest r5 `16e2bd76…b226d6`: dev, ASan/UBSan, TSan, release đều exit 0; mỗi preset đạt 174 telemetry, 20 backup, 77 update; phần mới không có sanitizer report. TSan giữ đúng 7 ca/14 report WAL kế thừa EX r2, HTTP sạch; không nới oracle. Cùng snapshot 2.408.448 byte/hash `2c4ebb1c…ad7e88` được xác minh local rồi chuyển bằng gcloud SCP tới Debian 12 x86_64 `e2-micro` độc lập: mode/owner/hash/quick-check/journal/watermark/fsync đều đạt. Receipt chỉ lab, không production. VM và boot disk đã xóa, inventory sau xóa rỗng. Các FAIL r1/r3/r4 và authoring giữ nguyên. [Bằng chứng](tests/evidence/r09/t05-backup-component-r1/summary.json).
@@ -1158,6 +1162,8 @@ Hoàn thiện hướng dẫn bước 9–10; chưa cấp quyền code/deploy pil
 ## R09 — Pilot thật, từng lát cắt và từng đường lỗi
 
 Dùng Kidea trong phiên mới; gate của lộ trình này không thay gate từng bước/phase của sản phẩm pilot. Mỗi task code dưới đây phải tách theo kế hoạch pilot được duyệt, không phải một lượt xây cả ứng dụng.
+
+**Trạng thái 2026-09-19:** lát backend readiness/lifecycle của T05 đạt component PASS trên Pilot source `4ee234e` với bốn preset, lifecycle/HTTP/telemetry/backup, observer và Web đều qua kiểm cuối; bảy ca/14 report TSan SQLite-WAL kế thừa vẫn bị giới hạn bởi EX r2. Kết quả chưa chứng minh readiness production, M3/M7, WQ, restore/release, G2 hoặc nghiệm thu T05/R09. Review r12 đã stale do thay đổi có ý nghĩa. Lượt tạo r13 bị từ chối `RECOVERY_REQUEST_TOO_LARGE` trước khi ghi; READ sau lỗi không có pending-write diagnostic. r13 chưa tồn tại và chưa có Human approval. Tiếp theo là coverage reconciliation và WQ/vận hành hữu hạn; R10 chưa mở. [Chi tiết và giới hạn](docs/R09_T05_PROGRESS.md#hiện-hành--backend-readinesslifecycle-component-pass).
 
 R09-T01 đã phân rã S01–S05 tại [gói r1 mục 3](proposals/r09-pilot-r1.md); trạng thái trong [sổ công việc](#work-state). Các task còn lại **chưa phân rã subtask**, có chuỗi phụ thuộc/đầu ra tại gói r1 mục 4. Rà mục tiêu/phụ thuộc/lựa chọn/quyền/kiểm chứng theo [cách phối hợp đã duyệt](#risk-first-review-approved), ghi lát cắt/test/gate trước mở từng task. Không dùng danh mục này để duyệt trước cả cụm.
 

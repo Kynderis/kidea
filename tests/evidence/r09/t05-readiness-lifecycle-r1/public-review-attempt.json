@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "reviewId": "R09-T04-OUTPUT-r1",
+  "beforeRevision": 12,
+  "beforeStatus": "DRAFT",
+  "attemptedRevision": 13,
+  "reviseResult": {
+    "code": "RECOVERY_REQUEST_TOO_LARGE",
+    "written": false,
+    "meaning": "The public helper could not prepare its bounded recovery request under the current 128 MiB limit."
+  },
+  "readAfterFailure": {
+    "state": "READ_BLOCKED",
+    "currentSourceDiffersCount": 20,
+    "pendingWriteDiagnostic": false,
+    "context": null
+  },
+  "pilotGitAfterFailure": {
+    "head": "a91e8fd866ef96a9b28a4369a577125dc8e6e1d2",
+    "status": "CLEAN",
+    "kideaDiffLines": 0
+  },
+  "conclusion": "Revision 12 remains unchanged and stale. Revision 13 was not created. Do not retry, delete metadata, or claim the continuation was saved; diagnose and approve a bounded helper fix first."
+}

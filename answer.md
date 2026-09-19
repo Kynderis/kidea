@@ -1,7 +1,9 @@
-Đã hoàn tất lát backup online của R09-T05 trên Pilot source `a1102ce`: bốn preset đều exit 0; mỗi preset đạt 174 telemetry, 20 backup, 77 update. TSan chỉ còn đúng 7 ca/14 report WAL kế thừa, HTTP sạch; các FAIL r1/r3/r4 được giữ và sửa đúng nguyên nhân.
+Đã hoàn tất lát backend readiness/lifecycle của R09-T05 trên Pilot source `4ee234e`; bằng chứng commit local `a91e8fd` và đã được sao sang repo Kidea. Backend tách read/write readiness, fail closed khi receipt/probe/backup/topology không hợp lệ và drain request mới trước khi chờ job đã nhận.
 
-Binary release tạo snapshot một file `0600`, hash/integrity/watermark/headroom đạt. Cùng snapshot được xác minh trên VM Debian 12 x86_64 độc lập ở GCP; receipt chỉ lab. VM và boot disk đã xóa, kiểm sau xóa rỗng. Pilot evidence source `a8388e4`, metadata checkpoint `23e0588`; repo local không remote.
+Bốn preset dev, ASan/UBSan, TSan và release đều exit 0. Mỗi preset đạt 50 CTest/856 assertion, 14 lifecycle, 34 HTTP, 77 update, 174 telemetry, 20 backup, hai shutdown và tám session; observer 35/35. Web đạt sync, typecheck 0 diagnostics, lint, 102/102 unit và production build. TSan chỉ giữ đúng bảy ca/14 report SQLite-WAL kế thừa dưới EX r2; HTTP/lifecycle sạch. Lượt FAIL đầu của HTTP oracle được giữ và sửa đúng nguyên nhân scheduler, không nới safety gate.
 
-Public review đã lên revision 12 nhưng vẫn DRAFT; SAVE trả `CONTINUATION_SAVED`, `W-009-ADMIN-OPS` vẫn IN_PROGRESS. T05/R09 còn scheduler/retention/restore drill, admission/readiness/lifecycle, coverage chức năng, WQ, G2/output acceptance và Human nghiệm thu. Task tiếp theo là admission/readiness/lifecycle; độ khó cao, đề xuất **GPT-5.6 Sol + High**. [Bằng chứng và điểm tiếp tục](docs/R09_T05_PROGRESS.md).
+Đây là component PASS, chưa phải T05/R09 hoàn tất. Receipt lab không phải proof production; telemetry vẫn `writeReady=false`, M3/M7 UNKNOWN. Còn coverage reconciliation, WQ/vận hành, scheduler/retention, independent observer hiện thời, restore/release T08, impact ngữ nghĩa, G2 và Human nghiệm thu. Public review r12 đã stale do nguồn mới có ý nghĩa. Lượt tạo r13 bị từ chối `RECOVERY_REQUEST_TOO_LARGE` trước khi ghi; READ sau lỗi không có pending-write diagnostic. r13 chưa tồn tại và continuation chưa lưu.
 
-Kiểm lõi Kidea cuối đạt 293/293 trên Node `v24.21.0`; không fail/cancel/skip/todo, stderr rỗng và đầu vào không đổi.
+Kiểm lõi Kidea trên Node v24.21.0 đạt 293/293, stderr rỗng và đầu vào không đổi.
+
+Task tiếp theo là coverage reconciliation và WQ/vận hành hữu hạn. Độ khó cao; đề xuất **GPT-5.6 Sol + High**. [Bằng chứng và điểm tiếp tục](docs/R09_T05_PROGRESS.md).

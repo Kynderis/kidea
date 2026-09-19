@@ -1,0 +1,96 @@
+{
+  "entries": [
+    {
+      "caseId": "HTTP",
+      "variant": "startup",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "read-ready-before-write-ready",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "write-probe-blocked-before-observer",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-public-token-file-rejected",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "readiness-public-file-rejected",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "readiness-wrong-epoch-rejected",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-deny-missing-token",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-deny-product-session",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-no-mutation",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-invalid-nonce-not-a-sample",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-fast-authenticated",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-boot-sequence-and-slow-unknown",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "samples-do-not-open-write-admission",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-read-probe",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "write-ready-after-bound-proof-and-observer",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "create",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-real-pending-and-sequence",
+      "status": "FAIL"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "harness",
+      "status": "FAIL",
+      "detail": "collector-real-pending-and-sequence"
+    }
+  ],
+  "serverExit": 0
+}
