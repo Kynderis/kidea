@@ -1,0 +1,35 @@
+Synthetic review fixtures retained: /Users/kendrick/Desktop/kidea/.test-output/r02-t08/review-BOYpiI
+✔ non-semantic source change preserves exact original confirmation and revision with old/new evidence (5445.48465ms)
+✔ non-semantic proof rejects unknown/semantic changes, missing evidence, authority or package replacement without writes (6403.694114ms)
+✔ revalidation source race rejects execution without writes (4331.493508ms)
+✔ N/A revalidation retains waiver, ownership and confirmation without completing the item (5303.378011ms)
+✔ real init -> draft -> submit -> explicit approval; no product write or task advance (4046.278643ms)
+✔ explanation retains IN_REVIEW, rejection retains feedback and revision requires new submit (8344.2674ms)
+✔ stale review is not progress; scoped comparison reopens with old approval retained as history (5022.057681ms)
+✔ wrong ID rejects without writes (3005.457668ms)
+✔ wrong revision rejects without writes (3142.039028ms)
+✔ stale digest rejects without writes (3230.386117ms)
+✔ wrong owner rejects without writes (3175.64231ms)
+✔ no permission rejects without writes (2835.464894ms)
+✔ missing Human rejects without writes (3258.004904ms)
+✔ unclear intent rejects without writes (3177.514122ms)
+✔ wrong confirmation scope rejects without writes (3190.190779ms)
+✔ conditions failed rejects without writes (3140.197213ms)
+✔ DRAFT cannot approve; submit requires readiness (2557.534065ms)
+✔ N/A preserves purpose and reason without completing owner or other gates (3903.199565ms)
+✔ changed source after preparation rejects before product effects (2234.49049ms)
+✔ interrupted review retains pending and blocks any next attempt (2788.062958ms)
+✔ stale source exception is unavailable to generic writer (2290.540099ms)
+✔ public entry rejects missing input and extra ID argument without mutations (921.284162ms)
+✔ Git-first review history reads exact old record without changing refs or index (4092.553955ms)
+✔ child approval never approves parent review or finishes parent (3972.005698ms)
+✔ missing source, unrelated malformed record and incorrect comparison cannot use stale exception (2789.171437ms)
+✔ public approve creates a draft through trusted stdin without executing source text (1944.879068ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94726.612623

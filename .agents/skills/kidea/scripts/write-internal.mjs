@@ -23,10 +23,16 @@ function recoverableRequest(request,line) {
   if(Buffer.byteLength(line)>MAX_PREPARED_REQUEST_BYTES)fail('RECOVERY_REQUEST_TOO_LARGE');
   const decodedLength=b=>Math.floor(b.length*3/4)-(b.endsWith('==')?2:b.endsWith('=')?1:0);
   const bodies=[...(request.inputs??[]).map(i=>i.expectedBase64),...(request.targets??[]).flatMap(t=>[t.beforeBase64,t.plannedBase64]),...[...(request.bootstrap?.evidence??[]),...(request.continuation?.evidence??[])].map(e=>e.bytesBase64)];
-  if(bodies.some(b=>b!==null&&decodedLength(b)>MAX_RECOVERY_FILE_BYTES))fail('RECOVERY_FILE_TOO_LARGE');
+  if(bodies.some(b=>typeof b==='string'&&decodedLength(b)>MAX_RECOVERY_FILE_BYTES))fail('RECOVERY_FILE_TOO_LARGE');
+  if(request.protocolVersion===3) {
+    const rows=[...(request.inputs??[]),...(request.gitInputs??[])];
+    if(request.review?.inputEncoding!=='INTEGRITY'||rows.some(r=>!r?.integrity||r.integrity.method!=='SHA256'||!/^[a-f0-9]{64}$/.test(r.integrity.value??'')||!Number.isInteger(r.integrity.byteLength)||r.integrity.byteLength<0))fail('RECOVERY_REQUEST_INVALID');
+    if(rows.some(r=>r.integrity.byteLength>MAX_RECOVERY_FILE_BYTES))fail('RECOVERY_FILE_TOO_LARGE');
+  }
 }
 const preparedPlans=new WeakSet();
 const fail=code=>{throw Object.assign(new Error(code),{code});};
+const closed=(value,keys)=>value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).every(k=>keys.includes(k));
 const inside=(root,target)=>{const rel=path.relative(root,target);return rel!== '..'&&!rel.startsWith(`..${path.sep}`)&&!path.isAbsolute(rel);};
 const checked=(value,type)=>{if(!validate(value,type,()=>{}))fail('INVALID_'+type.toUpperCase());};
 
@@ -127,7 +133,7 @@ export function prepareInternalReviewWrite(args, {reviewPath, relatedPaths=[], d
   for(const t of args.targets)if(t.path!==reviewPath&&!relatedPaths.includes(t.path)&&!(t.action==='CREATE'&&t.path.startsWith('.kidea/reviews/evidence/')))fail('REVIEW_TARGET_SCOPE');
   for(const p of relatedPaths)if(!p.startsWith('.kidea/')||p.startsWith('.kidea/reviews/')||p.startsWith('.kidea/checkpoints/'))fail('REVIEW_TARGET_SCOPE');
   if(!same(args.authorization.createDirectories??[],directories))fail('DIRECTORY_NOT_AUTHORIZED');
-  return preparePlan(args,null,null,{reviewPath,directories});
+  return preparePlan(args,null,null,{reviewPath,directories,inputEncoding:'INTEGRITY'});
 }
 
 export function prepareInternalBootstrap(args) {
@@ -259,7 +265,7 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   if(!Array.isArray(context.permissionRefs)||!context.permissionRefs.length||!Array.isArray(context.inputRefs)||!context.inputRefs.length)fail('CONTEXT_REFERENCES_REQUIRED');
   const inputs=new Map(),gitInputs=new Map();
   function bind(p,data){if(inputs.has(p)&&!inputs.get(p).equals(data))fail('SOURCE_CHANGED');inputs.set(p,Buffer.from(data));}
-  function bindGit(location,data){const key=JSON.stringify(location);if(gitInputs.has(key)&&gitInputs.get(key).expectedBase64!==data.toString('base64'))fail('SOURCE_CHANGED');gitInputs.set(key,{location:structuredClone(location),expectedBase64:data.toString('base64')});}
+  function bindGit(location,data){const key=JSON.stringify(location),prior=gitInputs.get(key);if(prior&&!prior.bytes.equals(data))fail('SOURCE_CHANGED');gitInputs.set(key,{location:structuredClone(location),bytes:Buffer.from(data)});}
   for(const graph of [priorGraph,current,projected].filter(Boolean)) {
     for(const [p,data]of graph.reads)bind(p,data);
     for(const {location,bytes}of graph.gitReads?.values()??[])bindGit(location,bytes);
@@ -291,8 +297,10 @@ function preparePlan({root,authorization,context,targets,operationId=randomUUID(
   }
   // Return only serialized, detached data; mutating caller buffers cannot change
   // a plan after graph validation. Execution rechecks these bytes before writing.
-  const request={protocolVersion:2,operationId,root,authorization:structuredClone(authorization),context:structuredClone(context),
-    inputs:[...inputs].sort(([a],[b])=>a.localeCompare(b)).map(([p,b])=>({path:p,expectedBase64:b.toString('base64')})),gitInputs:[...gitInputs.values()],targets:planned};
+  const compact=review?.inputEncoding==='INTEGRITY',protocolVersion=compact?3:2;
+  const request={protocolVersion,operationId,root,authorization:structuredClone(authorization),context:structuredClone(context),
+    inputs:[...inputs].sort(([a],[b])=>a.localeCompare(b)).map(([p,b])=>compact?{path:p,integrity:integrity(b)}:{path:p,expectedBase64:b.toString('base64')}),
+    gitInputs:[...gitInputs.values()].map(({location,bytes})=>compact?{location,integrity:integrity(bytes)}:{location,expectedBase64:bytes.toString('base64')}),targets:planned};
   request.recoveryCheckout=allowGit&&localEntry(root,'.git',true)?readGitContext(root):null;
   if(cleanup)request.cleanup=structuredClone(cleanup);
   if(review)request.review=structuredClone(review);
@@ -365,8 +373,18 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
   const prefix=`.kidea/checkpoints/operations/${operationId}/`,checkpointPath=prefix+'checkpoint.md';
   const pendingDirectory='.kidea/checkpoints/pending',pendingPath=pendingDirectory+'/active.json';
   const targets=request.targets.map(t=>({...t,before:t.beforeBase64===null?null:Buffer.from(t.beforeBase64,'base64'),planned:Buffer.from(t.plannedBase64,'base64')}));
-  const expected=new Map(request.inputs.map(i=>[i.path,Buffer.from(i.expectedBase64,'base64')]));
-  const gitVersions=new Map((request.gitInputs??[]).map(i=>[JSON.stringify(i.location),Buffer.from(i.expectedBase64,'base64')]));
+  const compact=request.protocolVersion===3;
+  if(![2,3].includes(request.protocolVersion)||compact&&request.review?.inputEncoding!=='INTEGRITY')fail('RECOVERY_REQUEST_INVALID');
+  const exactInput=(row,git=false)=>{
+    if(compact) {
+      if(!closed(row,git?['location','integrity']:['path','integrity'])||!validate(row.integrity,'Integrity',()=>{})||row.integrity.method!=='SHA256'||row.integrity.byteLength>MAX_RECOVERY_FILE_BYTES||(git?!validate(row.location,'Location',()=>{}):!validPath(row.path)))fail('RECOVERY_REQUEST_INVALID');
+      if(git&&authorization.allowReadLocalGit!==true)fail('GIT_READ_NOT_AUTHORIZED');
+      let bytes;try{bytes=git?readGitVersion(root,row.location):localBytes(root,row.path);}catch{fail(git?'GIT_SOURCE_CHANGED':'SOURCE_CHANGED');}
+      if(!same(integrity(bytes),row.integrity))fail(git?'GIT_SOURCE_CHANGED':'SOURCE_CHANGED');return bytes;
+    }
+    return Buffer.from(row.expectedBase64,'base64');
+  };
+  const expected=new Map(),gitVersions=new Map();
   const evidence=new Map(),deleted=new Map(),events=[];
   let pendingBytes,checkpoint,pendingOwned=false,effects=false,bytesVerified=false,barrierUsed=false;
   const now=()=>new Date().toISOString();
@@ -439,7 +457,9 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
   }
   try {
     assertRuntime();assertLocalRoot(root);
-    if(request.protocolVersion!==2||!hasLocalAssumptions(authorization.assumptions))fail('ENVIRONMENT_NOT_CONFIRMED');
+    if(![2,3].includes(request.protocolVersion)||!hasLocalAssumptions(authorization.assumptions))fail('ENVIRONMENT_NOT_CONFIRMED');
+    for(const i of request.inputs)expected.set(i.path,exactInput(i));
+    for(const i of request.gitInputs??[])gitVersions.set(JSON.stringify(i.location),exactInput(i,true));
     if(authorization.allowReadLocalGit!==true&&(gitVersions.size||targets.some(t=>t.beforeVersion)))fail('GIT_READ_NOT_AUTHORIZED');
     checkInputs();
     if(localEntry(root,prefix.slice(0,-1),true))fail('OPERATION_ALREADY_EXISTS');
@@ -453,7 +473,7 @@ export async function executeInternalWrite(prepared,{testFault='NONE',testBarrie
     if(record(checkpoint).length>MAX_RECOVERY_FILE_BYTES)fail('RECOVERY_FILE_TOO_LARGE');
     directory('.kidea',!!request.bootstrap);directory('.kidea/checkpoints');directory(pendingDirectory);
     if(readdirSync(path.join(root,pendingDirectory)).length)fail('INCOMPLETE_WRITE_EXISTS');
-    pendingBytes=Buffer.from(JSON.stringify({protocolVersion:2,operationId,planDigest:prepared.planDigest,checkpointRef:{path:checkpointPath,anchor:null}})+'\n');
+    pendingBytes=Buffer.from(JSON.stringify({protocolVersion:request.protocolVersion,operationId,planDigest:prepared.planDigest,checkpointRef:{path:checkpointPath,anchor:null}})+'\n');
     // wx is the single cooperative project guard. Never reclaim an existing
     // marker by age, PID, or a record claiming the previous operation was done.
     const fd=openSync(path.join(root,pendingPath),'wx');pendingOwned=true;effects=true;

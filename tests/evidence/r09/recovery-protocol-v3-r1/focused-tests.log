@@ -1,0 +1,23 @@
+✔ large Git-backed review uses compact protocol3 and completes without raising caps (7594.002343ms)
+✔ interrupted protocol3 review is read and completed from exact retained targets (5207.687283ms)
+✔ protocol3 recovery accepts an UPDATE input target already at planned bytes (5028.820724ms)
+✔ protocol3 recovery rejects live source drift and OTHER target bytes (6485.200116ms)
+✔ protocol3 recovery rejects tampered integrity and missing Git object (6121.231394ms)
+✔ serialized envelope over128MiB is rejected before guard and leaves work unchanged (4026.95737ms)
+✔ changed tool remains blocked without migration, and exact scoped migration can complete only metadata (4021.924592ms)
+✔ wrong operation, digest, missing/additional pair, blank statement and wrong new integrity cannot migrate (4568.457243ms)
+✔ migration does not waive stale basis, OTHER bytes, source drift or runtime changes (11835.723802ms)
+✔ individual planned file over64MiB is rejected before guard despite envelope below128MiB (1875.888452ms)
+Recovery evidence: /Users/kendrick/Desktop/kidea/.test-output/r09/recovery-Q19EVD
+✔ before, partial and planned recover in a fresh process; original evidence survives (11698.018396ms)
+✔ source drift, stale/new authority, foreign bytes and unknown pending entries remain blocked (8311.500575ms)
+✔ interruption during recovery retains guard and requires fresh explicit replacement grant (5035.607589ms)
+✔ interrupted CREATE-only bootstrap completes exact files; changed checkout and request bytes block (7080.420504ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32306.024109

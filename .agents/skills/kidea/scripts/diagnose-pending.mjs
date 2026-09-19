@@ -31,7 +31,7 @@ export function diagnosePending(root,{allowGit=false,beforeRecheck}={}) {
     before=inspectPendingWrites(root);if(!before.pending)return {...report,state:'NO_PENDING'};
     if(!same(readdirSync(path.join(root,pendingWritesPath)).sort(),['active.json']))fail('UNKNOWN_PENDING_ENTRY');
     const marker=json(read(pendingWritesPath+'/active.json'));
-    if(!marker||!same(Object.keys(marker).sort(),['checkpointRef','operationId','planDigest','protocolVersion'])||marker.protocolVersion!==2||!uuid.test(marker.operationId)||!/^[a-f0-9]{64}$/.test(marker.planDigest))fail('INVALID_PENDING_MARKER');
+    if(!marker||!same(Object.keys(marker).sort(),['checkpointRef','operationId','planDigest','protocolVersion'])||![2,3].includes(marker.protocolVersion)||!uuid.test(marker.operationId)||!/^[a-f0-9]{64}$/.test(marker.planDigest))fail('INVALID_PENDING_MARKER');
     const prefix=`.kidea/checkpoints/operations/${marker.operationId}/`;
     if(!same(marker.checkpointRef,{path:prefix+'checkpoint.md',anchor:null}))fail('INVALID_PENDING_CHECKPOINT');
     report.operationId=marker.operationId;report.checkpointRef=marker.checkpointRef;

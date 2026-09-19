@@ -1,6 +1,6 @@
 # R09 — compact recovery protocol v3 r1
 
-**ĐỀ XUẤT — CHỜ HUMAN DUYỆT.** Gói này xử lý lỗi Kidea `RECOVERY_REQUEST_TOO_LARGE` khi chuẩn bị revision 13 của review Pilot. Chưa sửa runtime/helper, chưa retry review, chưa ghi metadata Pilot và chưa tăng bất kỳ giới hạn byte nào.
+**HUMAN ĐÃ DUYỆT — CANDIDATE ĐÃ PASS, CHỜ RETRY PILOT.** Human xác nhận “Duyệt recovery protocol v3 r1”. Runtime/helper và test đã triển khai; [candidate](../tests/evidence/r09/recovery-protocol-v3-r1/summary.json) PASS 14/14 recovery tập trung, 293/293 core và 9/9 suite R09 trên nguồn cuối. Lượt core đầu giữ 2 FAIL hồi quy rồi sửa đúng hợp đồng; lượt R09 đầu giữ 2 FAIL do thiếu env R06 và lượt cuối đủ env PASS. Chưa retry review hoặc ghi metadata Pilot tại thời điểm cập nhật này; không tăng bất kỳ giới hạn byte nào.
 
 ## Phần cần duyệt nhanh
 

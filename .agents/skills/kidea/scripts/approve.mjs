@@ -32,7 +32,7 @@ export function prepareReview(root,request) {
   if(operation==='REVALIDATE'&&(grant.allowPreserveApproval!==true||request.package!==undefined||request.human!==undefined))fail('PRESERVATION_SCOPE_REQUIRED');
   if(grant.allowReadLocalGit!==undefined&&typeof grant.allowReadLocalGit!=='boolean')fail('AUTHORIZATION_REQUIRED');
   if(!hasLocalAssumptions(grant.assumptions))fail('ENVIRONMENT_NOT_CONFIRMED');
-  const tool=initToolIdentity();tool.version='kidea-schema2-review-local-r2';
+  const tool=initToolIdentity();tool.version='kidea-schema2-review-local-r3';
   tool.components.push({name:'approve.mjs',integrity:byteIntegrity(readFileSync(new URL('./approve.mjs',import.meta.url)))});
   tool.components.push({name:'review-validity.mjs',integrity:byteIntegrity(readFileSync(new URL('./review-validity.mjs',import.meta.url)))});
   const graph=inspectStatusGraph(root,new Map(),[],{allowGit:grant.allowReadLocalGit===true});
@@ -130,8 +130,8 @@ export function prepareReview(root,request) {
   const prepared=prepareInternalReviewWrite({root,authorization,context:{projectId:graph.status.projectId,ownerId:request.ownerIds[0],tool,permissionRefs:[permission],inputRefs:[requestEvidence]},targets,operationId},{reviewPath,relatedPaths,directories});
   // Bind all discovery bytes too: the writer must reject edits between the
   // caller's version/scope check and its own preparation.
-  const bound=new Map(JSON.parse(prepared.line).inputs.map(i=>[i.path,i.expectedBase64]));
-  for(const [p,b]of graph.reads)if(bound.get(p)!==b.toString('base64'))fail('SOURCE_CHANGED');
+  const plannedRequest=JSON.parse(prepared.line),bound=new Map(plannedRequest.inputs.map(i=>[i.path,plannedRequest.protocolVersion===3?i.integrity:i.expectedBase64]));
+  for(const [p,b]of graph.reads)if(plannedRequest.protocolVersion===3?!same(bound.get(p),byteIntegrity(b)):bound.get(p)!==b.toString('base64'))fail('SOURCE_CHANGED');
   return {state:'PREPARED_READ_ONLY',id,revision:review.revision,recordedStatus:review.status,prepared};
 }
 

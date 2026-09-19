@@ -1,0 +1,82 @@
+{
+  "scope": "R09 compact recovery protocol v3 r1",
+  "authorization": "Human approved: Duyệt recovery protocol v3 r1",
+  "result": "CANDIDATE_PASS_PILOT_RETRY_PENDING",
+  "behavior": {
+    "reviewWrites": 3,
+    "otherWrites": 2,
+    "liveInputs": "SHA256_AND_BYTE_LENGTH_RECHECKED",
+    "gitInputs": "EXACT_LOCATION_PLUS_SHA256_AND_BYTE_LENGTH_RECHECKED",
+    "targets": "FULL_BEFORE_AND_PLANNED_BYTES_RETAINED",
+    "legacyV2": "SUPPORTED",
+    "envelopeLimitMiB": 128,
+    "perFileLimitMiB": 64
+  },
+  "tests": {
+    "focusedFinal": {
+      "tests": 14,
+      "pass": 14,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0,
+      "log": "focused-tests.log"
+    },
+    "coreInitial": {
+      "tests": 293,
+      "pass": 291,
+      "fail": 2,
+      "cause": "v3 source drift escaped the writer result contract as a thrown SOURCE_CHANGED error",
+      "evidence": "core-initial-fail/summary.json"
+    },
+    "repairFocused": {
+      "tests": 26,
+      "pass": 26,
+      "fail": 0,
+      "evidence": "core-failure-repair-focused.log"
+    },
+    "coreFinal": {
+      "tests": 293,
+      "pass": 293,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0,
+      "inputsUnchanged": true,
+      "evidence": "core-final-pass/summary.json"
+    },
+    "r09Initial": {
+      "passSuites": 7,
+      "failSuites": [
+        "r06",
+        "r06-boundaries"
+      ],
+      "cause": "required trusted R06 tool and sample paths were absent from the runner process environment",
+      "inputsUnchanged": true,
+      "evidence": "r09-initial-fail/summary.json"
+    },
+    "r06Recheck": {
+      "r06": "PASS",
+      "boundaries": "PASS",
+      "installedOrConfiguredHost": false,
+      "evidence": [
+        "r06-with-live-tools.log.gz",
+        "r06-boundaries-with-live-tools.log"
+      ]
+    },
+    "r09Final": {
+      "suites": 9,
+      "pass": 9,
+      "fail": 0,
+      "inputsUnchanged": true,
+      "evidence": "r09-final-pass/summary.json"
+    }
+  },
+  "limits": [
+    "No cap raised",
+    "No test skipped or expectation weakened",
+    "No historical checkpoint cleanup",
+    "No Pilot metadata changed yet",
+    "No automatic approval or completion"
+  ]
+}

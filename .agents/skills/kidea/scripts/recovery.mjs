@@ -24,7 +24,8 @@ function inspect(root,p) {
  const markerBytes=read(markerPath),marker=json(markerBytes),prefix=`.kidea/checkpoints/operations/${marker.operationId}/`,requestBytes=read(prefix+'prepared-request.json',false,MAX_PREPARED_REQUEST_BYTES);
  if(hashBytes(requestBytes)!==marker.planDigest)fail('RECOVERY_REQUEST_CHANGED');
  const request=json(requestBytes),checkpointPath=prefix+'checkpoint.md';
- if(request.protocolVersion!==2||request.root!==root||request.operationId!==marker.operationId||request.cleanup||!validate(request.context?.tool,'ToolIdentity',()=>{})||!Array.isArray(request.inputs)||!Array.isArray(request.targets)||request.targets.length!==diagnosis.targets.length||!same(request.authorization.targets,request.targets.map(({path,action})=>({path,action}))))fail('RECOVERY_REQUEST_INVALID');
+ const compact=request.protocolVersion===3;
+ if(![2,3].includes(request.protocolVersion)||request.protocolVersion!==marker.protocolVersion||compact&&request.review?.inputEncoding!=='INTEGRITY'||request.root!==root||request.operationId!==marker.operationId||request.cleanup||!validate(request.context?.tool,'ToolIdentity',()=>{})||!Array.isArray(request.inputs)||!Array.isArray(request.targets)||request.targets.length!==diagnosis.targets.length||!same(request.authorization.targets,request.targets.map(({path,action})=>({path,action}))))fail('RECOVERY_REQUEST_INVALID');
  // Changed code/runtime is a separate migration decision, not implicit replay.
  const changed=[],actualComponents=[];
  for(const c of request.context.tool.components){let bytes;if(c.name===`node-${process.versions.node}-${process.platform}-${process.arch}`)bytes=readFileSync(process.execPath);else if(/^[a-z][a-z0-9-]*\.mjs$/.test(c.name))bytes=readFileSync(new URL(c.name,import.meta.url));else fail('RECOVERY_TOOL_CHANGED');const actual=byteIntegrity(bytes);actualComponents.push({name:c.name,integrity:actual});if(!same(actual,c.integrity))changed.push({name:c.name,from:c.integrity,to:actual});}
@@ -44,8 +45,25 @@ function inspect(root,p) {
   if(match==='OTHER')fail('RECOVERY_OTHER_BYTES');
   targets.push({path:t.path,action:t.action,match,integrity:actual===null?null:byteIntegrity(actual)});files.set(t.path,planned);
  }
- for(const i of request.inputs){const expected=Buffer.from(i.expectedBase64,'base64');if(!names.has(portablePathKey(i.path))){if(!read(i.path).equals(expected))fail('RECOVERY_SOURCE_CHANGED');files.set(i.path,expected);}}
- for(const i of request.gitInputs??[]){if(!p.allowReadLocalGit)fail('GIT_READ_NOT_AUTHORIZED');const b=readGitVersion(root,i.location);if(b.toString('base64')!==i.expectedBase64)fail('RECOVERY_GIT_CHANGED');gitVersions.set(JSON.stringify(i.location),b);}
+ const bound=(row,git=false,retainedBytes=undefined)=>{
+  if(compact) {
+   if(!closed(row,git?['location','integrity']:['path','integrity'])||!validate(row.integrity,'Integrity',()=>{})||row.integrity.method!=='SHA256'||row.integrity.byteLength>MAX_RECOVERY_FILE_BYTES||(git?!validate(row.location,'Location',()=>{}):!validPath(row.path)))fail('RECOVERY_REQUEST_INVALID');
+   let b;try{b=retainedBytes!==undefined?retainedBytes:git?readGitVersion(root,row.location):read(row.path);}catch{fail(git?'RECOVERY_GIT_CHANGED':'RECOVERY_SOURCE_CHANGED');}
+   if(!same(byteIntegrity(b),row.integrity))fail(git?'RECOVERY_GIT_CHANGED':'RECOVERY_SOURCE_CHANGED');return b;
+  }
+  if(!closed(row,git?['location','expectedBase64']:['path','expectedBase64'])||typeof row.expectedBase64!=='string')fail('RECOVERY_REQUEST_INVALID');
+  return Buffer.from(row.expectedBase64,'base64');
+ };
+ for(const i of request.inputs){
+  const target=request.targets.find(t=>portablePathKey(t.path)===portablePathKey(i.path));
+  // An UPDATE target may also be a bound input. Recovery permits that target
+  // to contain BEFORE, PLANNED, or a planned prefix, so validate the compact
+  // input against the retained BEFORE copy instead of its interrupted bytes.
+  if(target?.beforeBase64===null)fail('RECOVERY_REQUEST_INVALID');
+  const retained=target?Buffer.from(target.beforeBase64,'base64'):undefined,expected=bound(i,false,retained);
+  if(!target){if(!compact&&!read(i.path).equals(expected))fail('RECOVERY_SOURCE_CHANGED');files.set(i.path,expected);}
+ }
+ for(const i of request.gitInputs??[]){if(!p.allowReadLocalGit)fail('GIT_READ_NOT_AUTHORIZED');const b=bound(i,true);gitVersions.set(JSON.stringify(i.location),b);}
  for(const e of [...request.bootstrap?.evidence??[],...request.continuation?.evidence??[]]){const expected=Buffer.from(e.bytesBase64,'base64');if(!read(e.path).equals(expected))fail('RECOVERY_EVIDENCE_CHANGED');files.set(e.path,expected);}
  const prepared=read(prefix+'prepared.md'),m=new TextDecoder('utf-8',{fatal:true}).decode(prepared).match(/```json\r?\n([\s\S]*?)\r?\n```/),checkpoint=m&&json(Buffer.from(m[1]));
  if(!validate(checkpoint,'checkpoint',()=>{})||checkpoint.id!==marker.operationId||checkpoint.projectId!==request.context.projectId||checkpoint.ownerId!==request.context.ownerId||checkpoint.targets.length!==targets.length||!same(checkpoint.tool,request.context.tool)||!same(checkpoint.permissionRefs,request.context.permissionRefs)||!same(checkpoint.inputRefs,request.context.inputRefs))fail('RECOVERY_CHECKPOINT_CHANGED');
