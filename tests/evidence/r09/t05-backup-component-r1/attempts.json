@@ -1,0 +1,101 @@
+{
+  "authoring": [
+    {
+      "id": "gate-r1",
+      "reason": "Missing executor test include.",
+      "state": "FAIL"
+    },
+    {
+      "id": "gate-r2",
+      "reason": "Gate test sampled and advanced sequence; test corrected to use readiness probe.",
+      "state": "FAIL"
+    },
+    {
+      "id": "gate-r3",
+      "reason": "Formatting gate rejected source.",
+      "state": "FAIL"
+    },
+    {
+      "id": "gate-r4",
+      "reason": "Dev checks passed with timed mutex candidate.",
+      "state": "PASS"
+    },
+    {
+      "id": "gate-tsan-r1",
+      "reason": "Wrapper omitted required image environment.",
+      "state": "FAIL_BEFORE_BUILD"
+    },
+    {
+      "id": "gate-tsan-r2",
+      "reason": "TSan rejected timed_mutex path with unlock-of-unlocked report.",
+      "state": "FAIL"
+    },
+    {
+      "id": "gate-tsan-r3b",
+      "reason": "Direct wrapper omitted immutable vendor mount.",
+      "state": "FAIL_BEFORE_BUILD"
+    },
+    {
+      "id": "gate-tsan-r3c",
+      "reason": "Immediate try-lock made the second sequential collector sample return busy while request worker unwound.",
+      "state": "FAIL"
+    },
+    {
+      "id": "gate-wait-dev-r1",
+      "reason": "Bounded 100 ms gate: 50 core cases, 174 telemetry, 20 backup, 77 updates and observer checks passed.",
+      "state": "PASS"
+    },
+    {
+      "id": "gate-wait-tsan-r1",
+      "reason": "HTTP clean; exact seven inherited WAL cases/14 reports; new telemetry and backup clean.",
+      "state": "PASS_SCOPED"
+    }
+  ],
+  "exceptionUnchanged": "EX-T02-WAL-01-r2",
+  "fullRuns": [
+    {
+      "id": "r1",
+      "reason": "New backup writer thread produced two TSan WAL reports; fixture did not match deployed process boundary.",
+      "runId": "t02-b2c7835a-4450-44dd-a09e-9d43a4cd6b32",
+      "state": "FAIL"
+    },
+    {
+      "id": "r3",
+      "reason": "Four presets passed, then release CLI left snapshot and temporary WAL/SHM sidecars.",
+      "runId": "t02-e9d433a5-2c08-4912-83a6-ffbe8a0e5aef",
+      "state": "BUILD_PASS_INTEGRATION_FAIL"
+    },
+    {
+      "id": "r4",
+      "reason": "Dev and ASan/UBSan passed; TSan HTTP observed writer/collector WAL overlap outside the exact seven inherited exception cases.",
+      "runId": "t02-1df4e9aa-9e6f-4a3d-8676-a9a6ee497591",
+      "state": "FAIL"
+    },
+    {
+      "id": "r5",
+      "reason": "All four presets passed; HTTP clean; backup/telemetry/updates sanitizer stderr empty; independent GCP host verified snapshot.",
+      "runId": "t02-506be612-809b-49bd-9657-624c1554ee39",
+      "state": "PASS_SCOPED"
+    }
+  ],
+  "noOracleWeakening": true,
+  "rawEvidenceRoots": [
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/t02-b2c7835a-4450-44dd-a09e-9d43a4cd6b32",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/t02-e9d433a5-2c08-4912-83a6-ffbe8a0e5aef",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/t02-1df4e9aa-9e6f-4a3d-8676-a9a6ee497591",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/t02-506be612-809b-49bd-9657-624c1554ee39",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-r1",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-r2",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-r3",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-r4",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-tsan-r1",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-tsan-r2",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-tsan-r3b",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-tsan-r3c",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-wait-dev-r1",
+    "/Users/kendrick/Desktop/kidea-t02-build-lab/backup-authoring-gate-wait-tsan-r1"
+  ],
+  "schema": 1,
+  "sourceCommit": "a1102cef7ecd75c6367ceb345a672b5e9053d8a8",
+  "state": "FINAL_PASS_WITH_PRESERVED_FAILURES"
+}

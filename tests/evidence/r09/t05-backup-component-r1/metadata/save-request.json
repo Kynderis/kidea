@@ -1,0 +1,57 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved the full remaining R09 scope and repeatedly said \u201cL\u00e0m ti\u1ebfp \u0111i\u201d, authorizing this exact continuation checkpoint after the verified backup slice. Change only current work nextAction/checkpointRef and generated bounded checkpoint evidence; preserve owners, statuses, gates, blockers, return stack and revision12 DRAFT review history. No Human acceptance, COMPLETE, PROD/oncall, release, restore, installation or new resource exception."
+  },
+  "requiredFiles": [
+    {
+      "path": "tests/t05/backup-component-checkpoint-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t05/backup-component-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "tests/t05/backup-component-evidence-r1/inventory.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "b21db0e32d0f4fddbf7daf691af0981f502225deb092a229df112e5cdad6ec78",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedGit": {
+    "head": "a8388e47cae1c70bc85f9f783299e7a73518472d",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-009-ADMIN-OPS",
+    "completed": "Online SQLite backup verified on final tested Pilot source a1102ce and checkpoint/evidence commit a8388e4. Frozen dev, ASan/UBSan, TSan under unchanged EX-T02-WAL-01-r2, and release presets all exited 0; each ran 174 telemetry, 20 backup and 77 update checks with empty sanitizer stderr for the additions. TSan retained exactly seven inherited WAL cases and 14 reports; HTTP was clean. The release CLI produced one private rollback-journal snapshot with durable in-snapshot watermark, matching hash/integrity and measured headroom. The same bytes were authenticated to one independent Debian x86_64 GCP host and reverified for owner/mode/hash/quick-check/journal/watermark/epoch and file/directory fsync. Receipt is lab-only; VM and disk were deleted and post-delete inventories are empty. r1/r3/r4 and authoring failures remain evidence. Review R09-T04-OUTPUT-r1 revision12 is DRAFT; no G2 or Human acceptance.",
+    "remaining": "Backup scheduling, retention and restore drill remain open; one verified lab copy is not production recovery. Backend admission/readiness/lifecycle, M2 remaining producers, M3/M7 and integrated M8/M9 display semantics, remaining functional/input/arrival coverage and WQ remain open. Stale semantic impacts, cross-host timing/E1, Human on-call/PROD, T08 release/restore, G2, output acceptance and final Human acceptance remain open. Android/iOS are Future; current Windows/Apple Silicon and R10 remain unopened.",
+    "nextAction": "Implement and verify backend admission/readiness/lifecycle on the current Pilot source, preserving the least-read collector, bounded UNKNOWN behavior, backup receipt semantics, known-critical history, unchanged EX r2 and resource baseline. Then refresh remaining coverage and prepare bounded WQ evidence. Do not infer scheduler, retention, restore, production recovery, cross-host timing, Human on-call/PROD, T08, G2 or final acceptance from this backup component and one lab transfer.",
+    "sourceRefs": [
+      {
+        "path": "tests/t05/backup-component-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t05/backup-component-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/backup-component-evidence-r1/inventory.json",
+        "anchor": null
+      }
+    ]
+  }
+}

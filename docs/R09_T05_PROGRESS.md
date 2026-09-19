@@ -1,6 +1,18 @@
 # R09 T05 — outbox, cập nhật trực tiếp và phần vận hành còn lại
 
-## Hiện hành — least-read collector bridge trên nguồn thật
+## Hiện hành — backup online và bản sao lab độc lập đã được kiểm
+
+**Hiện hành, 2026-09-19.** Pilot source được kiểm là `a1102ce`; evidence source ở `a8388e4`, metadata checkpoint ở `23e0588` (repo Pilot không remote). Thành phần backup dùng SQLite online backup, ghi watermark bền vững trong chính snapshot, xác minh hash/integrity/watermark và đo headroom thật. Snapshot cuối chuyển sang rollback-journal trước công bố, quyền `0600`, là một file portable không có WAL/SHM sidecar. Embedded writer/collector dùng gate nội bộ; collector chờ tối đa 100 ms cho request vừa hoàn tất rồi trả UNKNOWN nếu writer còn bận.
+
+Manifest r5 `16e2bd76…b226d6` khóa đúng source `a1102ce`. Dev, ASan/UBSan, TSan và release đều exit 0; mỗi preset đạt 174 kiểm telemetry, 20 backup và 77 update, stderr sanitizer của ba phần đều rỗng. TSan giữ đúng 7 ca/14 report SQLite-WAL kế thừa thuộc EX r2; HTTP sạch, ngoại lệ/oracle không đổi. Các FAIL r1 writer-thread, r3 WAL sidecar, r4 HTTP overlap và authoring diagnostics được giữ.
+
+Sau khi chốt metadata, bộ kiểm lõi Kidea trên Node `v24.21.0` đạt 293/293, không fail/cancel/skip/todo, stderr rỗng và xác nhận đầu vào không đổi.
+
+Binary release tạo snapshot 2.408.448 byte, hash `2c4ebb1c…ad7e88`, `quick_check=ok`, journal `delete`, watermark/epoch đúng và không sidecar. Cùng file được chuyển bằng gcloud SCP tới Debian 12 x86_64 `e2-micro` độc lập trong project `kidea-508908`; verifier có sẵn trên VM xác nhận mode/owner/hash/immutable quick-check/watermark và fsync file+thư mục. Receipt ghi `INDEPENDENT_HOST_SNAPSHOT_VERIFIED`, chỉ đủ điều kiện recovery point của lab, không phải production. VM và boot disk đã xóa; hai inventory sau xóa đều rỗng. Bundle Git Pilot `23e0588` đã verify đủ lịch sử nhưng vẫn chỉ nằm cùng Mac, không thay bằng chứng host độc lập.
+
+Public REVISE đã ghi `R09-T04-OUTPUT-r1` revision 12 **DRAFT**; SAVE trả `CONTINUATION_SAVED` và nói rõ đây không phải xác nhận task hoàn tất. `W-009-ADMIN-OPS` vẫn IN_PROGRESS, không có blocker; các impact ngữ nghĩa cũ còn cần làm mới. **T05/R09 chưa hoàn tất:** chưa có scheduler/retention/restore drill, admission/readiness/lifecycle, các nhánh chức năng còn thiếu, WQ, G2, output acceptance hoặc Human nghiệm thu. Điểm tiếp tục là admission/readiness/lifecycle rồi rà coverage/WQ; restore/release đầy đủ thuộc T08. Android/iOS Future, Windows/Apple Silicon chưa kiểm nguồn mới, R10 chưa mở. Task tiếp theo khó; đề xuất **GPT-5.6 Sol + High**. [Bằng chứng backup](../tests/evidence/r09/t05-backup-component-r1/summary.json), [FAIL/PASS](../tests/evidence/r09/t05-backup-component-r1/attempts.json), [public metadata](../tests/evidence/r09/t05-backup-component-r1/public-metadata.json), [cloud receipt](../tests/evidence/r09/t05-backup-component-r1/final/cloud/returned/receipt.json), [cleanup](../tests/evidence/r09/t05-backup-component-r1/final/cloud/post-delete-instances.json).
+
+## Lịch sử — least-read collector bridge trên nguồn thật
 
 **Hiện hành — cầu collector chỉ đọc đã được kiểm, 2026-09-19.** Pilot source cuối `8aca5d5`, checkpoint local `e26bafb` (không remote). Collector C++ mở kết nối SQLite riêng `READONLY` + `query_only`, dùng token riêng tư không thể thay bằng session ứng dụng, và xuất schema2 với boot/sequence/nonce cùng trạng thái UNKNOWN/PARTIAL theo từng tín hiệu. M1 là khoảng tuổi bảo thủ; M2 chỉ báo các lỗi thật đã biết và không biến producer chưa có thành số 0.
 

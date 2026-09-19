@@ -1,0 +1,67 @@
+{
+  "state": "LOCAL_CLI_INTEGRATION_VERIFIED",
+  "attempts": [
+    {
+      "attempt": 1,
+      "state": "INVOCATION_REJECTED_BEFORE_BINARY",
+      "exit": 125
+    },
+    {
+      "attempt": 2,
+      "state": "PASS"
+    }
+  ],
+  "binarySha256": "fa6ffbf8bf98bea23dd1e53da6bd1a40dc817a8b3166f4cebed51351f85b6551",
+  "snapshotSha256": "2c4ebb1cae1feb615e525a6f5d840f6079dcc534e205f0ad80ead65869ad7e88",
+  "snapshotBytes": 2408448,
+  "snapshotMode": "0o600",
+  "journalMode": "delete",
+  "quickCheck": "ok",
+  "watermark": "r09_t05_cloud_20260919",
+  "createdAtMs": 1789786800000,
+  "sidecars": [],
+  "create": {
+    "bytes": 2408448,
+    "createdAtMs": 1789786800000,
+    "epoch": "E-BACKUP",
+    "recoveryPointEligible": false,
+    "schema": 1,
+    "sha256": "2c4ebb1cae1feb615e525a6f5d840f6079dcc534e205f0ad80ead65869ad7e88",
+    "state": "LOCAL_SNAPSHOT_VERIFIED",
+    "topology": "NOT_ASSESSED_BY_BYTE_VERIFIER",
+    "watermark": "r09_t05_cloud_20260919"
+  },
+  "verify": {
+    "bytes": 2408448,
+    "createdAtMs": 1789786800000,
+    "epoch": "E-BACKUP",
+    "recoveryPointEligible": false,
+    "schema": 1,
+    "sha256": "2c4ebb1cae1feb615e525a6f5d840f6079dcc534e205f0ad80ead65869ad7e88",
+    "state": "DESTINATION_SNAPSHOT_VERIFIED",
+    "topology": "NOT_ASSESSED_BY_BYTE_VERIFIER",
+    "watermark": "r09_t05_cloud_20260919"
+  },
+  "headroom": {
+    "accountedBytes": 4833280,
+    "budgetBytes": 2147483648,
+    "complete": true,
+    "minimumAvailableBytes": 323515015168,
+    "schema": 1,
+    "state": "MEASURED",
+    "stop": false,
+    "targets": [
+      {
+        "allocatedBytes": 4833280,
+        "availableBytes": 323515015168,
+        "logicalBytes": 4817594,
+        "root": "/lab"
+      }
+    ],
+    "temporaryRequiredBytes": 2408448,
+    "totalAllocatedBytes": 4833280,
+    "totalLogicalBytes": 4817594,
+    "warning": false,
+    "warningBytes": 1717986918
+  }
+}

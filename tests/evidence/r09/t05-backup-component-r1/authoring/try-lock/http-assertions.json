@@ -1,0 +1,51 @@
+{
+  "entries": [
+    {
+      "caseId": "HTTP",
+      "variant": "startup",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-public-token-file-rejected",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-deny-missing-token",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-deny-product-session",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-no-mutation",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-invalid-nonce-not-a-sample",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-fast-authenticated",
+      "status": "PASS"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "collector-boot-sequence-and-slow-unknown",
+      "status": "FAIL"
+    },
+    {
+      "caseId": "HTTP",
+      "variant": "harness",
+      "status": "FAIL",
+      "detail": "collector-boot-sequence-and-slow-unknown"
+    }
+  ],
+  "serverExit": 0
+}

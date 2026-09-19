@@ -1,0 +1,237 @@
+{
+  "claims": {
+    "R09Complete": false,
+    "admissionReadinessLifecycle": false,
+    "oneAuthenticatedIndependentLabCopy": true,
+    "onlineBackupComponent": true,
+    "productionRecoveryPoint": false,
+    "restoreDrill": false,
+    "retention": false,
+    "scheduler": false,
+    "singlePortableFile": true
+  },
+  "cleanup": {
+    "diskList": [],
+    "instanceList": []
+  },
+  "independentHost": {
+    "bytes": 2408448,
+    "createdAtMs": 1789786800000,
+    "directoryFsync": true,
+    "epoch": "E-BACKUP",
+    "fileFsync": true,
+    "immutableRead": true,
+    "journalMode": "delete",
+    "labRecoveryPointEligible": true,
+    "limitation": "One authenticated lab transfer and verification; scheduling, retention, restore and production operations are not proven.",
+    "mode": "0o600",
+    "productionRecoveryPointEligible": false,
+    "quickCheck": [
+      "ok"
+    ],
+    "receiver": {
+      "architecture": "x86_64",
+      "bootId": "af78f457-b941-48bd-b19d-5c46e3504758",
+      "hostname": "kidea-r09-backup-20260919-01",
+      "instanceId": "4973063457336458217",
+      "kernel": "6.1.0-53-cloud-amd64",
+      "projectId": "kidea-508908",
+      "uid": 1892848610,
+      "zone": "us-central1-a"
+    },
+    "schema": 1,
+    "sha256": "2c4ebb1cae1feb615e525a6f5d840f6079dcc534e205f0ad80ead65869ad7e88",
+    "state": "INDEPENDENT_HOST_SNAPSHOT_VERIFIED",
+    "watermark": "r09_t05_cloud_20260919"
+  },
+  "localCli": {
+    "attempts": [
+      {
+        "attempt": 1,
+        "exit": 125,
+        "state": "INVOCATION_REJECTED_BEFORE_BINARY"
+      },
+      {
+        "attempt": 2,
+        "state": "PASS"
+      }
+    ],
+    "binarySha256": "fa6ffbf8bf98bea23dd1e53da6bd1a40dc817a8b3166f4cebed51351f85b6551",
+    "create": {
+      "bytes": 2408448,
+      "createdAtMs": 1789786800000,
+      "epoch": "E-BACKUP",
+      "recoveryPointEligible": false,
+      "schema": 1,
+      "sha256": "2c4ebb1cae1feb615e525a6f5d840f6079dcc534e205f0ad80ead65869ad7e88",
+      "state": "LOCAL_SNAPSHOT_VERIFIED",
+      "topology": "NOT_ASSESSED_BY_BYTE_VERIFIER",
+      "watermark": "r09_t05_cloud_20260919"
+    },
+    "createdAtMs": 1789786800000,
+    "headroom": {
+      "accountedBytes": 4833280,
+      "budgetBytes": 2147483648,
+      "complete": true,
+      "minimumAvailableBytes": 323515015168,
+      "schema": 1,
+      "state": "MEASURED",
+      "stop": false,
+      "targets": [
+        {
+          "allocatedBytes": 4833280,
+          "availableBytes": 323515015168,
+          "logicalBytes": 4817594,
+          "root": "/lab"
+        }
+      ],
+      "temporaryRequiredBytes": 2408448,
+      "totalAllocatedBytes": 4833280,
+      "totalLogicalBytes": 4817594,
+      "warning": false,
+      "warningBytes": 1717986918
+    },
+    "journalMode": "delete",
+    "quickCheck": "ok",
+    "sidecars": [],
+    "snapshotBytes": 2408448,
+    "snapshotMode": "0o600",
+    "snapshotSha256": "2c4ebb1cae1feb615e525a6f5d840f6079dcc534e205f0ad80ead65869ad7e88",
+    "state": "LOCAL_CLI_INTEGRATION_VERIFIED",
+    "verify": {
+      "bytes": 2408448,
+      "createdAtMs": 1789786800000,
+      "epoch": "E-BACKUP",
+      "recoveryPointEligible": false,
+      "schema": 1,
+      "sha256": "2c4ebb1cae1feb615e525a6f5d840f6079dcc534e205f0ad80ead65869ad7e88",
+      "state": "DESTINATION_SNAPSHOT_VERIFIED",
+      "topology": "NOT_ASSESSED_BY_BYTE_VERIFIER",
+      "watermark": "r09_t05_cloud_20260919"
+    },
+    "watermark": "r09_t05_cloud_20260919"
+  },
+  "localGitBundle": {
+    "bundleBytes": 31301336,
+    "bundleSha256": "36f20a1ccd714730e601c98d6da1ad1afdb6f6d8dc3a380f82e122191ef88659",
+    "evidenceSourceCommit": "a8388e47cae1c70bc85f9f783299e7a73518472d",
+    "independentHostBackup": false,
+    "pilotCommit": "23e05889ce1ec61e46415b55db42520c8b94af54",
+    "remoteCount": 0,
+    "state": "VERIFIED_LOCAL_GIT_BUNDLE",
+    "testedSourceCommit": "a1102cef7ecd75c6367ceb345a672b5e9053d8a8"
+  },
+  "manifestSha256": "16e2bd76dccae1d74f214e7352238f7dd1fba2064783336bf8bf9ef549b226d6",
+  "presets": {
+    "asan-ubsan": {
+      "backupChecks": 20,
+      "exit": 0,
+      "sanitizerStderrBytes": 0,
+      "telemetryChecks": 174,
+      "updatesChecks": 77
+    },
+    "dev": {
+      "backupChecks": 20,
+      "exit": 0,
+      "sanitizerStderrBytes": 0,
+      "telemetryChecks": 174,
+      "updatesChecks": 77
+    },
+    "release": {
+      "backupChecks": 20,
+      "exit": 0,
+      "sanitizerStderrBytes": 0,
+      "telemetryChecks": 174,
+      "updatesChecks": 77
+    },
+    "tsan": {
+      "backupChecks": 20,
+      "exit": 0,
+      "sanitizerStderrBytes": 0,
+      "telemetryChecks": 174,
+      "updatesChecks": 77
+    }
+  },
+  "publicMetadata": {
+    "claims": {
+      "G2Passed": false,
+      "R09Complete": false,
+      "humanAcceptance": false
+    },
+    "initialRead": {
+      "reason": "Revision 11 source bindings were stale before REVISE.",
+      "resultBytes": 0,
+      "resultPath": "metadata/read-result.empty",
+      "state": "READ_BLOCKED",
+      "stderrPath": "metadata/read-stderr.log"
+    },
+    "metadataCommit": "23e05889ce1ec61e46415b55db42520c8b94af54",
+    "readAfterRevise": {
+      "attention": [
+        "IMPACT_REVIEW_REQUIRED"
+      ],
+      "basis": "b21db0e32d0f4fddbf7daf691af0981f502225deb092a229df112e5cdad6ec78",
+      "blockers": [],
+      "checkoutBranch": "refs/heads/master",
+      "checkoutHead": "a8388e47cae1c70bc85f9f783299e7a73518472d",
+      "executionStatus": "IN_PROGRESS",
+      "itemId": "W-009-ADMIN-OPS",
+      "state": "WAITING"
+    },
+    "review": {
+      "id": "R09-T04-OUTPUT-r1",
+      "operationState": "REVIEW_RECORDED",
+      "recordedStatus": "DRAFT",
+      "revision": 12,
+      "verification": "BOUND_BYTES_NOT_HUMAN_AUTHENTICATION_OR_TASK_COMPLETION"
+    },
+    "save": {
+      "bytesVerified": true,
+      "itemId": "W-009-ADMIN-OPS",
+      "state": "CONTINUATION_SAVED",
+      "verification": "SAVED_NOTE_NOT_TASK_COMPLETION"
+    },
+    "schema": 1,
+    "state": "PUBLIC_CHECKPOINT_SAVED"
+  },
+  "rootCoreValidation": {
+    "cancelled": 0,
+    "exitCode": 0,
+    "fail": 0,
+    "inputsUnchanged": true,
+    "node": "v24.21.0",
+    "pass": 293,
+    "runner": "tests/r02-t07/run-tests.mjs",
+    "schema": 1,
+    "skipped": 0,
+    "state": "PASS",
+    "stderrBytes": 0,
+    "stdoutBytes": 911,
+    "tests": 293,
+    "todo": 0
+  },
+  "runId": "t02-506be612-809b-49bd-9657-624c1554ee39",
+  "schema": 1,
+  "sourceCommit": "a1102cef7ecd75c6367ceb345a672b5e9053d8a8",
+  "state": "BACKUP_COMPONENT_AND_ONE_INDEPENDENT_LAB_COPY_VERIFIED",
+  "tsan": {
+    "exception": "EX-T02-WAL-01-r2",
+    "http": {
+      "reports": 0,
+      "state": "CLEAN"
+    },
+    "inheritedCaseIds": [
+      "I09",
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "Q04"
+    ],
+    "newBackupReports": 0,
+    "newTelemetryReports": 0,
+    "reports": 14,
+    "state": "KNOWN_WAL_REPORT_REVIEW_REQUIRED"
+  }
+}
