@@ -1,8 +1,8 @@
 # R09 — compact recovery protocol v3 r1
 
-**HUMAN ĐÃ DUYỆT — TRIỂN KHAI VÀ RETRY PILOT ĐÃ HOÀN TẤT.** Human xác nhận “Duyệt recovery protocol v3 r1”. Runtime/helper và test đã triển khai ở commit Kidea `0b7fa924`; [kết quả](../tests/evidence/r09/recovery-protocol-v3-r1/summary.json) PASS 14/14 recovery tập trung, 293/293 core và 9/9 suite R09 trên nguồn cuối. Lượt core đầu giữ 2 FAIL hồi quy rồi sửa đúng hợp đồng; lượt R09 đầu giữ 2 FAIL do thiếu env R06 và lượt cuối đủ env PASS. Đúng một retry Pilot tạo r13 DRAFT, public READ hợp lệ, SAVE continuation thành công và SUBMIT đưa r13 sang IN_REVIEW; metadata Pilot commit local `78dbcf5`, không remote. Không tăng giới hạn byte, không tự APPROVE hoặc COMPLETE.
+**HUMAN ĐÃ DUYỆT — TRIỂN KHAI, RETRY VÀ REVIEW R13 ĐÃ HOÀN TẤT.** Human xác nhận “Duyệt recovery protocol v3 r1”, rồi duyệt đúng `R09-T04-OUTPUT-r1` revision 13 với digest trình duyệt `52927f9e…f1475f2`. Runtime/helper và test đã triển khai ở commit Kidea `0b7fa924`; [kết quả](../tests/evidence/r09/recovery-protocol-v3-r1/summary.json) PASS 14/14 recovery tập trung, 293/293 core và 9/9 suite R09 trên nguồn cuối. Lượt core đầu giữ 2 FAIL hồi quy rồi sửa đúng hợp đồng; lượt R09 đầu giữ 2 FAIL do thiếu env R06 và lượt cuối đủ env PASS. Public APPROVE ghi `APPROVED` với byte verification, public READ đọc lại đúng trạng thái; metadata Pilot commit local `993b7e8`, không remote. Không tăng giới hạn byte hoặc tự COMPLETE T05/R09.
 
-## Phần cần duyệt nhanh
+## Phạm vi đã duyệt
 
 1. Thêm protocol nội bộ v3 **chỉ cho review write mới**. Với nguồn chỉ đọc, prepared request lưu `SHA256` + `byteLength`; Git input lưu `location` + integrity. Target trước/sau vẫn giữ nguyên byte đầy đủ để có thể hoàn tất chính xác khi ngắt.
 2. Writer và recovery reader đọc lại byte thật từ file hiện hành hoặc đúng Git object, kiểm hash/độ dài rồi mới dựng graph. Mất nguồn, đổi byte, thiếu Git object, đổi checkout, target OTHER/UNKNOWN hoặc graph sai đều chặn như cũ.

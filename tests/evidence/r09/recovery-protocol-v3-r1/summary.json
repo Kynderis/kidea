@@ -1,7 +1,8 @@
 {
   "scope": "R09 compact recovery protocol v3 r1",
-  "authorization": "Human approved: Duy\u1ec7t recovery protocol v3 r1",
-  "result": "PASS_PILOT_R13_IN_REVIEW",
+  "authorization": "Human approved: Duyệt recovery protocol v3 r1",
+  "reviewAuthorization": "Human approved exact R09-T04-OUTPUT-r1 revision 13 at pre-approval digest 52927f9e36c11f5736ec1bcca005bdaacd502c6b3ae35173ef386d7dcf1475f2",
+  "result": "PASS_PILOT_R13_APPROVED",
   "behavior": {
     "reviewWrites": 3,
     "otherWrites": 2,
@@ -76,19 +77,33 @@
     "No cap raised",
     "No test skipped or expectation weakened",
     "No historical checkpoint cleanup",
-    "No Pilot metadata changed yet",
-    "No automatic approval or completion"
+    "Approval applies to exact revision 13 package only",
+    "No T05/R09 completion, G2 acceptance, release or production readiness recorded"
   ],
   "pilot": {
     "retry": "REVIEW_RECORDED_DRAFT_R13",
-    "read": "WAITING",
+    "readBeforeSubmit": "WAITING",
     "save": "CONTINUATION_SAVED",
     "submit": "REVIEW_RECORDED_IN_REVIEW_R13",
-    "reviewDigest": "52927f9e36c11f5736ec1bcca005bdaacd502c6b3ae35173ef386d7dcf1475f2",
-    "pilotCommit": "78dbcf50263b2a53bd63f4792a6480cdc4bb4c8e",
+    "preApprovalDigest": "52927f9e36c11f5736ec1bcca005bdaacd502c6b3ae35173ef386d7dcf1475f2",
+    "approve": "REVIEW_RECORDED_APPROVED_R13",
+    "approvedFileDigest": "2d1243ff12b6fd8ed13bb0dfd82f19c4a85f7731363b57f5aaa68a07bc076abc",
+    "approvedFileByteLength": 2256890,
+    "owners": 10,
+    "subjectVersions": 117,
+    "inputVersions": 154,
+    "readAfterApproval": "WAITING_APPROVED_R13",
+    "readAfterApprovalBasis": "78e707c494a77d3e00e6ef84e5dafb6461fa7c6e774c68df20e783cb840f4037",
+    "currentItem": "W-009-ADMIN-OPS",
+    "currentItemStatus": "IN_PROGRESS",
+    "blockers": [],
+    "attention": [
+      "IMPACT_REVIEW_REQUIRED"
+    ],
+    "pilotCommit": "993b7e81c66045fc8ef60b21d2cd216b2c9b667f",
     "remote": null,
     "pending": false,
-    "humanApproval": "NOT_RECORDED",
+    "humanApproval": "RECORDED_FOR_EXACT_R13",
     "t05R09Completion": "NOT_RECORDED"
   }
 }
