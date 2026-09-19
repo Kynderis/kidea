@@ -1,0 +1,41 @@
+{
+  "boot": "622cfe075dd378df5c5f581cf2b03184",
+  "nonce": "tls_probe",
+  "sampledAtMs": 1789782758079,
+  "schema": 2,
+  "sequence": 2,
+  "signals": {
+    "M1": {
+      "ageBasis": "TRANSACTION_START_UPPER_BOUND",
+      "oldestAgeLowerMs": 41064,
+      "oldestAgeUpperMs": 42064,
+      "pending": 1,
+      "state": "BOUNDED"
+    },
+    "M2": {
+      "open": [
+        {
+          "code": "INVARIANT",
+          "count": 1
+        }
+      ],
+      "resolved": [],
+      "state": "PARTIAL",
+      "unknownCodes": [
+        "VERSION_CONFLICT",
+        "PERMISSION"
+      ]
+    },
+    "M3": {
+      "state": "UNKNOWN"
+    },
+    "M4": {
+      "lastSuccess": null,
+      "state": "KNOWN"
+    },
+    "M7": {
+      "state": "UNKNOWN"
+    }
+  },
+  "source": "backend_fast"
+}

@@ -1,0 +1,10 @@
+{
+  "command": [
+    "docker",
+    "logs",
+    "r09-collector-6d531c36-467c-4562-bee8-f1e7d8a721fb-observer"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "file:///observer/src/display.mjs:14\n  if(s.last){const v=s.last;lines.push(label(s,'D\u1eef li\u1ec7u + log + backup + b\u1ea3n t\u1ea1m: '+v.M8.targets.reduce((n,t)=>n+t.bytes,0)+' byte / 2 GiB'+(v.M8.complete?'':' \u2014 c\u00f2n thi\u1ebfu \u0111\u00edch')));\n                                                                                                 ^\n\nTypeError: Cannot read properties of undefined (reading 'reduce')\n    at describe (file:///observer/src/display.mjs:14:98)\n    at Server.<anonymous> (file:///observer/src/server.mjs:51:891)\n    at Server.emit (node:events:509:28)\n    at parserOnIncoming (node:_http_server:1282:12)\n    at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17)\n\nNode.js v24.19.0\n"
+}

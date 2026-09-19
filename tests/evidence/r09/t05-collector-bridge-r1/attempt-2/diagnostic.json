@@ -1,0 +1,14 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "-e",
+    "NODE_EXTRA_CA_CERTS=/config/cert.pem",
+    "r09-collector-b89d3ce1-3807-4295-8b06-cbc07ea2627d-observer",
+    "node",
+    "/plan/tls-probe.mjs"
+  ],
+  "exit": 1,
+  "stdout": "",
+  "stderr": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1\n\n    at file:///plan/tls-probe.mjs:20:8\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 0,\n  expected: 1,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+}

@@ -1,0 +1,57 @@
+{
+  "operation": "SAVE",
+  "permission": {
+    "root": "/Users/kendrick/Desktop/kidea-workshop-pilot",
+    "readProject": true,
+    "allowReadLocalGit": true,
+    "allowSaveContinuation": true,
+    "assumptions": {
+      "localFilesystem": true,
+      "noActiveSync": true,
+      "singleKideaRun": true
+    },
+    "statement": "Human approved the full remaining R09 scope and said \u201cL\u00e0m ti\u1ebfp \u0111i\u201d, authorizing the exact continuation checkpoint after the verified collector slice. Change only current work nextAction/checkpointRef and generated bounded checkpoint evidence; preserve owners, statuses, gates, blockers, return stack, review history and revision11 DRAFT. No Human acceptance, COMPLETE, PROD/oncall, deployment, installation or new resource exception."
+  },
+  "requiredFiles": [
+    {
+      "path": "tests/t05/real-telemetry-checkpoint-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "docs/t05/collector-bridge-r1.md",
+      "anchor": null
+    },
+    {
+      "path": "tests/t05/collector-bridge-evidence-r1/final/inventory.json",
+      "anchor": null
+    }
+  ],
+  "expectedBasis": "13968529f02df0d2f28811a8603f2d15a1627601d532556ea0df94097e5fc45c",
+  "expectedProjectId": "36ea2fe5-f510-4003-ba02-199f7a723322",
+  "expectedGit": {
+    "head": "1d76ece1450bb869cf68086618a82e451913c515",
+    "branch": "refs/heads/master",
+    "unmerged": false,
+    "conflictPaths": []
+  },
+  "checkpoint": {
+    "itemId": "W-009-ADMIN-OPS",
+    "completed": "Least-read collector bridge verified on final Pilot commit 1d76ece. Frozen dev, ASan/UBSan, TSan under existing EX-T02-WAL-01-r2, and release presets all completed; 35 observer tests and 27 TSan HTTP checks passed, with exactly seven known SQLite-WAL TSan cases and 14 retained reports. Actual release C++ through private Caddy TLS into the observer and Chrome passed seven checks for access denial, per-signal UNKNOWN, critical bounded age, boot change, retained critical history, source-down no false green, and session-revocation clearing. Three failed integration attempts and their fixes are retained. Review R09-T04-OUTPUT-r1 revision11 is DRAFT; no G2 or Human acceptance.",
+    "remaining": "M2 VERSION_CONFLICT/PERMISSION/reconciliation producers remain partial; M3/M7/M8/M9 are UNKNOWN and the dashboard probe is a declared fixture. Online verified backup with recovery-point watermark/receipt, complete storage headroom, backend admission/readiness/lifecycle, remaining functional/input/arrival cases and WQ are open. Independent host, cross-host clock/E1, Human on-call/PROD, T08 release/restore, stale semantic impacts, G2 and final Human acceptance remain open. Android/iOS are Future; current Windows/Apple Silicon and R10 remain unopened.",
+    "nextAction": "Implement the online verified backup path with recovery-point watermark/receipt and complete storage-headroom signals, then wire backend admission/readiness/lifecycle and run WQ plus remaining functional cases. Preserve the verified least-read collector, per-signal UNKNOWN, known-critical history, existing EX r2 and resource baseline. Do not claim independent-host, cross-host timing, Human on-call/PROD, T08, G2 or final acceptance from this one-Mac collector proof.",
+    "sourceRefs": [
+      {
+        "path": "tests/t05/real-telemetry-checkpoint-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "docs/t05/collector-bridge-r1.md",
+        "anchor": null
+      },
+      {
+        "path": "tests/t05/collector-bridge-evidence-r1/final/inventory.json",
+        "anchor": null
+      }
+    ]
+  }
+}

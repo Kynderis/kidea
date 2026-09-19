@@ -1,0 +1,82 @@
+{
+  "status": "PASS_SCOPED",
+  "recordedAt": "2026-09-19T05:23:41.160402+00:00",
+  "scope": "R09-T05 read-only collector bridge and fallback observer on Mac Intel/Docker/Chrome",
+  "productAcceptance": false,
+  "pilot": {
+    "testedSource": "8aca5d5cb90b039de4d0667e9bb64c9782cab3aa",
+    "checkpoint": "e26bafb525a1141dbe18bd63ad89709eafc7774a",
+    "remote": null,
+    "localBundle": {
+      "path": "/Users/kendrick/Desktop/kidea/.test-output/r09-collector-pilot-e26bafb.bundle",
+      "sha256": "23c0fd22ccaafb08a385299ce6d6be5def23cafc59f7d06d96b8512184692bf6",
+      "bytes": 28249828,
+      "verified": true
+    }
+  },
+  "build": {
+    "runId": "t02-500f5aa7-5533-453b-a340-405f44dec5ed",
+    "manifestSha256": "8f79a60ab79f6d11c397a94d84bba972985839cf96ed37b87a2fad1615bb52fc",
+    "presets": {
+      "dev": "PASS",
+      "asan-ubsan": "PASS",
+      "tsan": "PASS_WITH_EXISTING_EX_T02_WAL_01_R2",
+      "release": "PASS"
+    },
+    "observerTests": "35/35 PASS",
+    "observerLint": "PASS",
+    "tsanKnownWalCases": 7,
+    "tsanReports": 14,
+    "tsanCleanCases": 43,
+    "tsanHttpChecks": "27/27 PASS"
+  },
+  "integration": {
+    "runId": "r09-collector-3ba6421d-1262-4bd3-befc-6710da09e697",
+    "status": "PASS",
+    "elapsedSeconds": 56.40840117298649,
+    "chromeChecks": "7/7 PASS",
+    "consoleErrors": 0,
+    "path": "release C++ collector -> private Caddy TLS -> observer -> Chrome",
+    "priorAttempts": [
+      "FAIL capability boundary",
+      "FAIL pending fixture consumed by updater",
+      "FAIL UNKNOWN M8 display crash"
+    ],
+    "cleanup": "PASS"
+  },
+  "core": {
+    "status": "293/293 PASS",
+    "skipped": 0,
+    "inputsUnchanged": true,
+    "node": "v24.19.0",
+    "output": "/Users/kendrick/Desktop/kidea/.test-output/r02-t07/regression-BWMYjx"
+  },
+  "metadata": {
+    "review": {
+      "id": "R09-T04-OUTPUT-r1",
+      "revision": 11,
+      "status": "DRAFT"
+    },
+    "workItem": {
+      "id": "W-009-ADMIN-OPS",
+      "status": "IN_PROGRESS"
+    },
+    "save": "CONTINUATION_SAVED"
+  },
+  "openWork": [
+    "online backup recovery-point watermark and verified receipt",
+    "headroom measurement",
+    "admission, readiness and lifecycle gates",
+    "remaining functional, input and arrival cases",
+    "workload qualification",
+    "independent host/E1 and Human on-call/PROD",
+    "T08, G2 and final acceptance"
+  ],
+  "limitations": [
+    "Mac Intel PASS does not establish Apple Silicon or Windows PASS.",
+    "The verified integration used Docker on the same Mac and is not independent-host evidence.",
+    "M2 remains partial; M3/M7/M8/M9 remain unknown where producers are not implemented.",
+    "Dashboard probe remains a declared fixture.",
+    "This evidence does not complete T05 or R09."
+  ]
+}
