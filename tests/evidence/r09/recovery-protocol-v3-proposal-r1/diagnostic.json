@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "observedAt": "2026-09-19",
+  "failedOperation": "REVISE R09-T04-OUTPUT-r1 revision 12 to proposed revision 13",
+  "failureCode": "RECOVERY_REQUEST_TOO_LARGE",
+  "currentLimitBytes": 134217728,
+  "lastSuccessfulComparableRequest": {
+    "path": ".kidea/checkpoints/operations/bb7727b3-071b-40a9-bd5d-e16ef7c88945/prepared-request.json",
+    "bytes": 124338855,
+    "protocolVersion": 2,
+    "liveInputs": 418,
+    "decodedLiveInputBytes": 19176720,
+    "gitInputs": 1649,
+    "decodedGitInputBytes": 70099860,
+    "targets": 3,
+    "decodedTargetBytes": 3758897
+  },
+  "hashBoundEstimate": {
+    "bytes": 5518159,
+    "reductionBytes": 118820696,
+    "reductionPercent": 95.56,
+    "method": "Replace input and gitInput expectedBase64 bodies with SHA256 and byteLength while retaining target before/planned bytes."
+  },
+  "pilotAfterFailure": {
+    "pendingWriteDiagnostic": false,
+    "gitStatus": "CLEAN",
+    "reviewRevision": 12,
+    "reviewStatus": "DRAFT",
+    "proposedRevision13Created": false
+  },
+  "conclusion": "Raising the 128 MiB envelope would only defer repeated growth. A bounded backward-compatible hash-bound input encoding is the proposed fix."
+}

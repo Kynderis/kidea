@@ -7,3 +7,5 @@ Bốn preset dev, ASan/UBSan, TSan và release đều exit 0. Mỗi preset đạ
 Kiểm lõi Kidea trên Node v24.21.0 đạt 293/293, stderr rỗng và đầu vào không đổi.
 
 Task tiếp theo là coverage reconciliation và WQ/vận hành hữu hạn. Độ khó cao; đề xuất **GPT-5.6 Sol + High**. [Bằng chứng và điểm tiếp tục](docs/R09_T05_PROGRESS.md).
+
+Để lưu review/checkpoint, cần duyệt [gói compact recovery protocol v3 r1](proposals/r09-recovery-protocol-v3-r1.md): giữ cap 128 MiB, dùng hash+độ dài cho input chỉ đọc, tương thích ngược v2, kiểm đầy đủ rồi retry r13 đúng một lần. Đây là thay đổi đường phục hồi nên chưa tự áp dụng.
